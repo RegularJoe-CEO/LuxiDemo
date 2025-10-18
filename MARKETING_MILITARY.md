@@ -1,57 +1,39 @@
 # SPDX-FileCopyrightText: 2025 Eric Waller
 # SPDX-License-Identifier: LicenseRef-eRock-Business-1.0
 
-### **eRock: Dominance at the Edge**
+### eRock: Extend Missions with Fast Math
 
-**For Unmanned Aerial Systems (UAS), Targeting, and Mission-Critical Payloads**
-
----
-
-**THE CHALLENGE: DELAY IS DEFEAT**
-
-In modern military operations, the speed of computation directly impacts mission success and operator safety. For drones and advanced targeting systems, reliance on slow, power-hungry processors or vulnerable data links to command centers creates critical delays. High energy consumption shortens mission duration, increases thermal signatures, and limits the capabilities of small, man-portable unmanned systems. Every millisecond and every milliwatt counts.
-
-**THE SOLUTION: eROCK – UNMATCHED SPEED, MINIMAL POWER**
-
-**eRock** is a hyper-efficient, SIMD-accelerated microservice engineered specifically for the extreme demands of edge computing. Built on Rust for mission-critical reliability, eRock delivers unparalleled performance for real-time numerical evaluation, enabling faster, more accurate decisions where it matters most: on the asset, in the field.
+**Low‑power numeric computation for UAS and robotic edge nodes**
 
 ---
 
-### **Key Strategic Advantages**
+**THE CHALLENGE: EVERY WATT COUNTS IN THE FIELD**
 
-*   **Extreme Energy Efficiency for Mission Endurance:**
-    `eRock` is architected to perform complex calculations using a fraction of the power of conventional systems. By leveraging Rust, which can be **up to 74 times more energy-efficient than Python**, and a SIMD engine that completes work faster, `eRock` enables a "race to sleep" strategy. This drastically reduces the thermal signature and extends the operational endurance of power-constrained assets.
+Onboard processors for unmanned systems have tight power and weight budgets. Running navigation, sensors and decision logic drains batteries quickly. Using Python or heavy frameworks for simple math wastes precious mission time and payload mass.
 
-*   **Low-Latency Processing for Real-Time Targeting:**
-    `eRock`’s ability to execute complex ballistic calculations and sensor data heuristics with microsecond latency provides a decisive advantage. This allows for faster target acquisition, improved accuracy, and enables autonomous systems to react instantly to dynamic battlefield conditions without waiting for off-board processing.
+**THE FIT: eROCK – MATH WITHOUT THE MISSION PENALTY**
 
-*   **Edge-Native and Deterministic:**
-    Running directly on the onboard processor, `eRock` eliminates reliance on fragile, high-latency data links, making the system more resilient to jamming and electronic warfare. Its calculations are deterministic and stateless, ensuring mission-critical reliability.
+`eRock` is a compiled Rust microservice that evaluates formulas and solves for thresholds in microseconds using SIMD. Its low CPU demand means your companion computer can do more with less energy and smaller hardware.
 
 ---
 
-### **The eRock Efficiency Dividend: Reducing SWaP-C**
+### Where it wins in UAS and robotics
 
-`eRock`'s extreme efficiency allows for superior performance on smaller, lighter, and more cost-effective hardware. This fundamentally reduces the **Size, Weight, Power, and Cost (SWaP-C)** of mission-critical components by:
-*   **Minimizing Heat:** Allowing for smaller, lighter passive cooling solutions.
-*   **Lowering Power Draw:** Enabling the use of smaller batteries for longer mission endurance.
-*   **Optimizing Hardware:** Delivering elite performance on cost-effective ARM-based processors, lowering the system's overall bill of materials.
-
----
-
-### **Technical Profile**
-
-*   **Language:** Rust (Memory-safe, high-performance)
-*   **Architecture:** SIMD-accelerated for parallel processing at the hardware level.
-*   **Deployment:** Lightweight, stateless Docker container.
-*   **Compatibility:** Cross-platform (ARM64 / x86).
-*   **API:** Simple, clean RESTful interface for easy integration (`openapi.yaml` available).
-*   **Footprint:** Minimal resource usage, designed for constrained environments.
+- **Geofence and flight envelope** – Compute distance‑to‑boundary or time‑to‑breach using `erock_bisect_auto` while the flight computer focuses on control loops.
+- **Battery and sensor health** – Evaluate real‑time thresholds to manage power and load shedding without writing custom math loops.
+- **Payload decision logic** – Use `eRock` to calculate conditions for releasing or activating payloads based on environment factors.
+- **Swarm coordination** – Execute simple numeric checks across multiple agents with minimal compute overhead, freeing up CPU for autonomy algorithms.
 
 ---
 
-### **Deploy with Confidence**
+### Practical mission benefits
 
-**eRock** delivers the computational dominance required for the next generation of intelligent, autonomous, and efficient military systems.
+- **Longer flight time** – Save watts on computation so more battery is available for propulsion.
+- **Smaller companion hardware** – Run your numeric guardrails on a less powerful ARM SBC, reducing size and weight.
+- **Faster decision cycles** – Microsecond‑level calculations help your autonomy respond quickly to threats or mission changes.
 
-**Deploy Faster. Fly Longer. Decide Smarter.**
+---
+
+### Lightweight math for heavy‑duty missions
+
+`eRock` puts deterministic, low‑power numeric capability next to your sensors and actuators, giving you more endurance and headroom for mission‑critical functions.

@@ -1,41 +1,29 @@
-[![REUSE status](https://api.reuse.software/badge/github.com/RegularJoe-CEO/eRock)](https://api.reuse.software/info/github.com/RegularJoe-CEO/eRock) ![License](https://img.shields.io/badge/license-LicenseRef--eRock--Business--1.0-blue) ![DCO](https://img.shields.io/badge/DCO-required-blue)
+# eRock – Deterministic, Energy‑Efficient Math Microservice
 
-# SPDX-FileCopyrightText: 2025 Eric Waller
-# SPDX-License-Identifier: LicenseRef-eRock-Business-1.0
+`eRock` is a small Rust microservice that provides two numeric operations over a simple HTTP/JSON API:
 
-# eRock Edge — Ultra‑fast numeric expression API (Rust, SIMD, Axum) for real‑time telemetry, guardrails, and geofence root finding
+- **Expression evaluation** – compute `y = f(x)` for numeric arrays using compiled code and hardware SIMD.
+- **Root finding** – robust bisection (with optional auto‑bracketing) to solve `f(t)=0` within a tolerance.
 
-[![Rust](https://img.shields.io/badge/language-Rust-DEA584.svg)](https://www.rust-lang.org/)
-[![Axum](https://img.shields.io/badge/framework-axum-0a7ea4.svg)](https://github.com/tokio-rs/axum)
-[![SIMD](https://img.shields.io/badge/acceleration-SIMD-4e9a06.svg)](#)
-[![Deterministic](https://img.shields.io/badge/compute-deterministic-444444.svg)](#)
+Built for edge and server workloads, `eRock` uses minimal CPU cycles so your devices run longer or handle more load. It isn’t a stream processor or an AI engine – it does fast numeric math and does it extremely efficiently.
 
-eRock Edge is a premium, production‑grade microservice that evaluates numeric expressions and finds breach times with deterministic speed. Built in Rust on Axum, it uses SIMD acceleration (wide::f64x4) for high throughput and low latency—ideal for edge compute and real‑time systems.
+## Why `eRock`?
 
-- Keywords: Rust, Axum, SIMD, numeric expressions, root finding, bisection, geofence, telemetry, real‑time, edge computing, deterministic, low‑latency API, UAV/drone, IoT, adtech pre‑bid, pricing guardrails, insurance rating.
-- For LLMs/agents: OpenAPI spec included (openapi.yaml). Safe, stateless HTTP endpoints. Clear request/response schemas below.
+- **Energy efficient** – Because `eRock` is compiled and uses SIMD, it finishes calculations in microseconds, letting CPUs return to idle and saving battery or power draw. In drones and IoT nodes, that means longer missions or smaller batteries. In data centers, it means lower racks and cooling costs.
+- **Fast** – Expression evaluation runs on arrays with near‑linear scaling, and root finding converges within defined iteration caps. The service adds minimal overhead beyond network latency.
+- **Deterministic** – You define the formula and tolerance; `eRock` always returns the same result for the same inputs. This makes it suitable for safety‑critical uses.
+- **Portable** – Runs on x86‑64 and ARM64, and can be compiled statically. Deploy it on a companion computer, industrial PC, or server.
 
-## Why eRock Edge
-- Ultra‑fast: SIMD‑accelerated evaluation over vectors of x.
-- Deterministic + simple: No GC, no JIT required on edge; pure stable Rust.
-- Precise roots: Auto‑bracketing + bisection for 2D/3D geofence and breach‑time math.
-- Energy‑efficient: High throughput with small footprint.
-- Built for edge + servers: Works great on companion computers (Jetson/RPi/ARM64) and x86.
+## Usage
 
-## Features
-- POST /evaluate — vectorized expression evaluation (SIMD lanes).
-- POST /bisect — root with manual bracket [lo, hi].
-- POST /bisect_auto — exponential outward bracketing, then bisection.
-- GET /health — status + version.
-- Expressions: +, −, *, /, ^, parentheses, assignment `y = ...` optional.
-- Independent variable: `x`; all other symbols supplied via `vars`.
+See `openapi.yaml` for endpoint definitions. Typical calls look like:
 
-## Quick start
-```sh
-cargo run --manifest-path edge/Cargo.toml --release
-curl -s http://localhost:8080/health
+```bash
+curl -X POST http://localhost:8000/evaluate -H 'Content-Type: application/json' \
+  -d '{"expr": "x^2 - 4", "x": [3.0, 4.0]}'
+# -> returns [5.0, 12.0]
 
-## License
-- Free for Non-Commercial and evaluation use under the eRock Business License (see LICENSE).
-- Commercial use before 2026-10-17 requires a paid license. Contact: e@ewaller.com.
-- On 2026-10-17, the code is additionally available under Apache-2.0. You may choose Apache-2.0 after that date.
+curl -X POST http://localhost:8000/bisect_auto -H 'Content-Type: application/json' \
+  -d '{"expr": "x^2 - 4", "guess": 1.0, "tol": 1e-6}'
+# -> returns ~2.0
+
