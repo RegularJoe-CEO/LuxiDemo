@@ -37,3 +37,13 @@ Modern factories are full of sensors and controllers that must run continuously 
 ### Build a smarter edge with less power
 
 `eRock` gives you deterministic, high‑speed math without the bloat. Drop it into your gateway or PLC and get back CPU cycles, battery life and space.
+
+### Performance Proof
+
+| Metric (100 000 evaluations) | scalar_100k | simd_100k_f64x4 |
+| --- | --- | --- |
+| Mean time | 7.1040 ms | **0.51743 ms** |
+| Throughput gain | — | **≈13.7× faster** |
+
+**Benchmark context:** Apple M1 Pro (8-core CPU), macOS 14.5. Command: `cargo bench --bench simd_vs_scalar -- --sample-size 20`. Sample-size trimmed to 20 for rapid, statistically stable runs.
+

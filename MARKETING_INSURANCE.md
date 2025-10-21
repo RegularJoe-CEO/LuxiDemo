@@ -37,3 +37,13 @@ Underwriting decisions and usage‑based pricing rely on formula evaluations. Le
 ### Make rating your competitive advantage
 
 `eRock` gives you high‑speed, low‑power numeric capability so your underwriting stays lean and responsive.
+
+### Performance Proof
+
+| Metric (100 000 evaluations) | scalar_100k | simd_100k_f64x4 |
+| --- | --- | --- |
+| Mean time | 7.1040 ms | **0.51743 ms** |
+| Throughput gain | — | **≈13.7× faster** |
+
+**Benchmark context:** Apple M1 Pro (8-core CPU), macOS 14.5. Command: `cargo bench --bench simd_vs_scalar -- --sample-size 20`. Sample-size trimmed to 20 for rapid, statistically stable runs.
+
