@@ -1,0 +1,26 @@
+[package]
+name = "erock"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "erock"
+path = "src/lib.rs"
+
+[[bin]]
+name = "erock_server"
+path = "src/bin/erock_server.rs"
+
+[[bin]]
+name = "erock_client"
+path = "src/bin/erock_client.rs"
+
+[dependencies]
+tonic = "0.11"
+prost = "0.12"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "net", "fs"] }
+tokio-stream = { version = "0.1", features = ["net"] }
+rhai = "1.18.0"
+
+[build-dependencies]
+tonic-build = "0.11"

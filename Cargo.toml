@@ -1,0 +1,26 @@
+[package]
+name = "erock"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+rhai = "1.23.4"
+wide = "0.7.33"
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+
+[[bin]]
+name = "erock_server"
+path = "src/bin/erock_server.rs"
+
+[[bin]]
+name = "erock_client"
+path = "src/bin/erock_client.rs"
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[[bench]]
+name = "my_benchmark"
+harness = false

@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package erock;
+
+service MathService {
+  rpc Evaluate (EvaluateRequest) returns (EvaluateResponse);
+  rpc FindRoot (FindRootRequest) returns (FindRootResponse);
+}
+
+message EvaluateRequest {
+  string expr = 1;
+  repeated double x = 2;
+  map<string, double> vars = 3;
+}
+
+message EvaluateResponse {
+  repeated double y = 1;
+}
+
+message FindRootRequest {
+  string expr = 1;
+  double lo = 2;
+  double hi = 3;
+  double tol = 4;
+  map<string, double> vars = 5;
+}
+
+message FindRootResponse {
+  double root = 1;
+}
