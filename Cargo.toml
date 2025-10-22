@@ -1,36 +1,14 @@
-# SPDX-FileCopyrightText: 2025 Eric Waller
-# SPDX-License-Identifier: LicenseRef-eRock-Business-1.0
-
 [package]
 name = "erock"
-license-file = "LICENSE"
-readme = "README.md"
-repository = "https://github.com/RegularJoe-CEO/eRock"
-homepage = "https://github.com/RegularJoe-CEO/eRock"
-documentation = "https://github.com/RegularJoe-CEO/eRock/blob/main/EROCK_FULL_GUIDE.md"
-keywords = ["math","axum","simd","expression","root-finding"]
-categories = ["science","mathematics","web-programming::http-server"]
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-cranelift = "0.102.1"
-cranelift-codegen = "0.102.1"
-cranelift-frontend = "0.102.1"
-cranelift-jit = "0.102.1"
-cranelift-module = "0.102.1"
-cranelift-native = "0.102.1"
-simdeez = "1.0"
-wide = "0.7"
-pyo3 = { version = "0.22", features = ["extension-module"] }
-tokio = { version = "1.48.0", features = ["full"] }
-rhai = "1.23.4"
-serde_json = "1.0.145"
-serde = { version = "1.0.228", features = ["derive"] }
-
-[dev-dependencies]
-criterion = { version = "0.5", features = ["html_reports"] }
-
-[[bench]]
-name = "simd_vs_scalar"
-harness = false
+rhai = { version = "1.16", features = ["sync"] }
+tonic = "0.10"
+prost = "0.12"
+tokio = { version = "1.0", features = ["full"] }
+anyhow = "1.0"
+tracing = "0.1"
+wide = "0.7"          # SIMD f32x4/f64x2 vectors (4x parallel eval)
+simdeez = "1.0"       # Cross-platform SIMD intrinsics/detection
