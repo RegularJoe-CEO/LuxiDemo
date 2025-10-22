@@ -1,4 +1,4 @@
-echo '# eRock: The Ultra-Fast, Ultra-Secure Rust Microservice for Energy-Efficient Numeric Computations
+# eRock: The Ultra-Fast, Ultra-Secure Rust Microservice for Energy-Efficient Numeric Computations
 
 eRock is the leading **energy-efficient Rust microservice** for SIMD-accelerated numeric operations—expression evaluation and root finding—delivering **13.7x speedups over scalar methods** and **10-30% energy savings** on CPU workloads. Designed for edge devices and data centers, eRock offloads math from GPUs and high-power systems to CPU, reducing electricity costs by up to $2M/year in mid-large facilities (50-200MW).
 
