@@ -1,3 +1,4 @@
+// Copyright 2025 RegularJoe-CEO. All rights reserved. eRock is a protected product—commercial use requires licensing.
 use axum::{
     extract::Json,
     http::Method,
