@@ -1,6 +1,6 @@
-# eRock Pitch Deck
+# eRock Pitch Deck: 13.7x Faster, 10-30% Energy Savings
 
-## Slide 1: Problem
+## Slide 1: The Problem
 GPU math offloads waste 20-50% energy on transfers—data centers burn $100K-$2M/year unnecessarily.
 
 ## Slide 2: eRock Solution
@@ -18,3 +18,4 @@ $100K-$2M/year in 50-200MW centers (electric only; cooling/lifespan extra).
 License eRock for your edge/data center—DM RegularJoe-CEO for demo.
 
 © 2025 RegularJoe-CEO. All rights reserved.
+
