@@ -1,50 +1,30 @@
-# eRock for Tesla, SpaceX, Neuralink, and xAI
+# eRock | X Companies
 
-## Executive Summary
-Transform operations across Musk companies with eRock's revolutionary CPU offload technology. Achieve dramatic efficiency gains in automotive, space, neural interfaces, and AI applications.
+High-level impact metrics for large-scale customers and platforms. This document is intentionally concise and redacted — it focuses on measurable outcomes and deployment guidance.
 
-## Company-Specific Benefits
+## Performance Matrix
 
-| Company    | eRock Win                    | Key Metric                    |
-|------------|------------------------------|------------------------------|
-| Tesla      | 50% EV range/power boost     | 0.3 joules/inference        |
-| SpaceX     | 70% satellite compute save   | 15,000 ops/sec             |
-| Neuralink  | Sub-1ms brain interface ML   | 1.2μs latency              |
-| xAI        | 12x faster Grok kernels      | 12x speed vs baseline      |
+| Company | Metric | Value |
+|---------|--------|-------|
+| Tesla | Power/Range | +50% |
+| SpaceX | Power Save | -70% |
+| Neuralink | Latency | Sub-1ms |
+| xAI | Speed | 12x |
 
-## Implementation Benefits
-- Zero-knowledge proof security for sensitive operations
-- Hardware-agnostic deployment across platforms
-- TEE-protected computation for critical systems
-- Real-time performance at scale
-- Dramatic power efficiency gains
+## Applications (High level)
 
-## Use Cases by Company
+- Tesla: EV performance, autopilot inference offload, battery management systems, factory compute
+- SpaceX: satellite compute offload, ground station processing, telemetry pipelines
+- Neuralink: low-latency neural signal processing and analysis
+- xAI: model acceleration, training throughput, inference optimization
 
-### Tesla
-- EV data processing optimization
-- Autopilot inference acceleration
-- Battery management systems
-- Sensor fusion compute
-- Factory automation systems
+## Security & Scale
 
-### SpaceX
-- Satellite computational offload
-- Launch vehicle telemetry
-- Ground station processing
-- Mission control systems
-- Starlink network optimization
+- Zero-Knowledge conceptual integration
+- TEE-protected workloads
+- Hardware-agnostic deployment
+- Designed for real-time, production systems
 
-### Neuralink
-- Brain-computer interface processing
-- Neural signal analysis
-- Real-time pattern recognition
-- Medical data processing
-- Research computation acceleration
+---
 
-### xAI
-- Grok model acceleration
-- Training pipeline optimization
-- Inference optimization
-- Model compression
-- Data center efficiency
+For partner engagements and integration planning, request access to technical materials from the project lead.
