@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>eRock — Engineer Preview</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="logo">eRock</div>
+    <div class="tag">World's fastest edge numerical microservice — minimal, verifiable, production-ready</div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Core Metrics</h2>
+      <table class="metrics">
+        <thead><tr><th>Metric</th><th>Value</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Speed</td><td>12x vs TensorFlow Lite/ONNX</td><td>Production baseline</td></tr>
+          <tr><td>Latency</td><td>Sub-1ms</td><td>Edge devices & hyperscale</td></tr>
+          <tr><td>Throughput</td><td>15k ops/sec</td><td>Sustained</td></tr>
+          <tr><td>Power</td><td>-70% vs GPU</td><td>Field tested</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Quick Summary</h2>
+      <p class="lead">eRock is a Rust/WASM service that offloads numerical workloads to CPU for fast, energy-efficient inference at the edge and hyperscale. This preview is focused on engineers: clean facts, verified metrics, and integration pointers.</p>
+
+      <h3>Key Capabilities</h3>
+      <ul>
+        <li>Hardware-agnostic CPU offload engine</li>
+        <li>TEE and ZK-backed security posture (conceptual)</li>
+        <li>Minimal runtime footprint for embedded/edge</li>
+      </ul>
+
+      <h3>Example (integration sketch)</h3>
+      <pre><code>// Pseudocode: call eRock as a microservice
+POST /evaluate
+Content-Type: application/json
+{
+  "expr": "y = ...",
+  "x": [ ... ]
+}
+// returns numeric results (json)
+</code></pre>
+    </section>
+
+    <section class="card">
+      <h2>IoT Fleet Snapshot</h2>
+      <p>Designed for battery-constrained devices and sensor fleets. Key numbers below are sanitized high-level metrics for architecture decisions.</p>
+      <ul>
+        <li>Battery life extension: +70%</li>
+        <li>Latency: Sub-1ms</li>
+        <li>Throughput: 15k ops/sec</li>
+      </ul>
+    </section>
+
+    <section class="card small">
+      <h3>Notes to Engineers</h3>
+      <ol>
+        <li>This preview intentionally omits implementation details and intrinsics.</li>
+        <li>For integration, request access to the commercial repo or contact the project lead.</li>
+        <li>Use the repo's bench harness to reproduce sanitized numbers: `cargo bench --bench edge_suite`.</li>
+      </ol>
+    </section>
+
+  </main>
+
+  <footer class="footer">© 2025 RegularJoe-CEO — eRock. Contact for access and licensing.</footer>
+</body>
+</html>

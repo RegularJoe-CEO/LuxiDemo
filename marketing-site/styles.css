@@ -1,0 +1,11 @@
+:root{--bg:#0b0f12;--panel:#0f1417;--muted:#9aa5b1;--accent:#7bd389;--mono:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace}
+*{box-sizing:border-box}html,body{height:100%}body{margin:0;background:linear-gradient(180deg,#071018 0%,#0b0f12 100%);color:#e6eef3;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.hero{display:flex;align-items:center;gap:20px;padding:28px 32px;border-bottom:1px solid rgba(255,255,255,0.03)}.logo{font-weight:800;font-size:22px;letter-spacing:1px;color:var(--accent)}.tag{color:var(--muted)}
+.container{max-width:980px;margin:28px auto;padding:0 20px;display:grid;grid-template-columns:1fr;gap:16px}
+.card{background:var(--panel);padding:18px;border-radius:10px;box-shadow:0 6px 18px rgba(2,6,8,0.6)}
+.card.small{max-width:520px}
+.metrics{width:100%;border-collapse:collapse;margin-top:8px}thead th{color:var(--muted);text-align:left;padding:8px 6px;font-weight:600;font-size:13px}tbody td{padding:10px 6px;border-top:1px solid rgba(255,255,255,0.02);font-family:var(--mono);font-size:13px}
+.lead{color:var(--muted);margin-top:6px}
+pre{background:#06070a;padding:12px;border-radius:6px;color:#cbd5e1;overflow:auto}code{font-family:var(--mono);font-size:13px}
+.footer{text-align:center;padding:18px;color:var(--muted);font-size:13px}
+@media(min-width:900px){.container{grid-template-columns:repeat(2,1fr);}.card.small{grid-column:1 / span 2}}
