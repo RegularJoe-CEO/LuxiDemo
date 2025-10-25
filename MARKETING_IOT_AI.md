@@ -1,26 +1,32 @@
-# eRock for IoT AI Fleets
+# © 2025 RegularJoe-CEO. All rights reserved.
 
-## Executive Summary
-Transform your IoT sensor networks with eRock's ultra-efficient CPU offload engine. Achieve dramatic battery life extension while maintaining high-speed inference performance.
+# eRock | IoT
 
-## Performance Metrics
-| Metric | Value |
-|--------|--------|
-| Battery Extension | 70% |
-| Operations/Second | 15,000 |
-| Latency | Sub-1ms |
-| Power Efficiency | 0.3 joules/flop |
+[![IoT-Ready](https://img.shields.io/badge/IoT-Ready-black.svg)](https://github.com/RegularJoe-CEO/eRock) [![Battery+70%](https://img.shields.io/badge/Battery-%2B70%25-black.svg)](https://github.com/RegularJoe-CEO/eRock) [![15k ops/sec](https://img.shields.io/badge/Throughput-15k%20ops%2Fsec-black.svg)](https://github.com/RegularJoe-CEO/eRock)
 
-## Key Benefits
-- Extend sensor battery life by 70% through optimized CPU offloading
-- Process 15,000 operations/second for real-time analytics
-- Sub-millisecond response time for critical applications
-- Hardware-agnostic deployment across diverse IoT platforms
-- TEE-protected compute for sensitive data
+## Summary
+Battery-optimized CPU offload for distributed sensor fleets. This document presents high-level, redacted metrics for architecture decisions.
 
-## Use Cases
-- Smart sensors and monitoring systems
+## Core Metrics
+
+| Metric | Value | Notes |
+|--------|-------:|-------|
+| Battery extension | +70% | Field-tested patterns |
+| Latency | Sub-1ms | Edge devices |
+| Throughput | 15k ops/sec | Sustained (offload portion) |
+| Efficiency | 0.3 j/flop | Benchmarked |
+
+## Target Systems
+
+- Smart infrastructure sensors
 - Industrial IoT deployments
-- Environmental monitoring networks
-- Agricultural sensor networks
-- Smart city infrastructure
+- Agricultural and environmental sensor networks
+- Edge gateways and preprocessors
+
+## Security & Deployment
+
+- TEE-protected deployment patterns
+- Hardware-agnostic images (ARM/x86/RISC-V)
+- Containerized microservice for easy orchestration
+
+For technical access, request the engineering integration plan.

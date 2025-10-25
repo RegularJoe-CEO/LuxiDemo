@@ -1,38 +1,25 @@
-# eRock: Edge/Hyperscale CPU Offload Titan
+# Erock Suite
+**Software-Defined Energy Platform** — turning electricity consumers into dispatchable, intelligent generators.
 
-Ultra-secure Rust/WASM microservice for edge and hyperscale numerical offloads delivering:
-- 12x speedup vs TensorFlow Lite/ONNX
-- 70%+ GPU-to-CPU power savings
-- Sub-1ms bursts on Raspberry Pi/Snapdragon/RISC-V/data centers
-- TEE/ZK-sealed against breaches
+## Products
+- **Erock Edge™** — local controller + I/O for small sites (retail, restaurants, light industrial).
+- **Erock SDG™** — *Software-Defined Generator* control (SMB → mid-enterprise). Behaves like a generator at the meter via software + load orchestration.
+- **Erock Core™** — enterprise/datacenter aggregation, portfolio optimization, and market APIs.
 
-## Benchmark Results (Stub Implementation)
+## What’s unique
+- Unifies **compute scheduling** + **facility load control** under one dispatch engine.
+- **Generator-grade M&V** at the meter (market-visible performance).
+- Optional **waste-heat-to-power** tie-ins (ORC/TEG).
+- **Market-agnostic**: core logic stays the same; adapters map to tariffs/DR/markets globally.
 
-| Input Size | eRock Redacted (ns) | Reference PTM (ns) | Speedup |
-|------------|-------------------|--------------------|---------|
-| 128        | 60.597            | 59.944            | ~1.0x   |
-| 256        | 59.887            | 60.678            | ~1.0x   |
-| 512        | 60.957            | 59.889            | ~1.0x   |
-| 1024       | 59.762            | 60.848            | ~1.0x   |
+## Documents
+- docs/Erock_Whitepaper_Global_Blueprint.pdf  (add via GitHub upload)
+- docs/Erock_SDG_Investor_Deck.pptx          (add via GitHub upload)
+- docs/Erock_Suite_Overview.md
 
-*Note: Real production kernels achieve:*
-- 1.2μs/12x vs PTM baseline
-- 0.3 joules/flop efficiency
-- 15k ops/sec sustained throughput
+## Quick positioning
+- **Edge** → Drop-in local intelligence for small sites.
+- **SDG** → Software platform for SMB to enterprise; **includes small-business scenarios**.
+- **Core** → Multi-site/data-center orchestration and market participation at scale.
 
-## Key Features
-- CPU-based numerical offload engine
-- Hardware-agnostic acceleration
-- Enterprise-grade security (TEE/ZK-sealed)
-- Battery-optimized for edge deployment
-
-## Target Use Cases
-- IoT AI sensor fleets
-- Machine learning inference centers  
-- Hyperscale data processing
-- Edge compute (battery-constrained)
-
-## License & Access
-All rights reserved. Commercial use requires licensing. Contact RegularJoe-CEO for enterprise trials, API docs, and custom integrations.
-
-© 2025 RegularJoe-CEO. Protected for billions in value—do not redistribute or reimplement without permission.
+© 2025 Eric Waller. All rights reserved.

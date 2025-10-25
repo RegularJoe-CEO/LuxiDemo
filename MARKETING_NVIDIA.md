@@ -1,3 +1,5 @@
+# © 2025 RegularJoe-CEO. All rights reserved.
+
 # eRock | NVIDIA
 
 ## Purpose

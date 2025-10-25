@@ -1,3 +1,5 @@
+# © 2025 RegularJoe-CEO. All rights reserved.
+
 # eRock | X Companies
 
 High-level impact metrics for large-scale customers and platforms. This document is intentionally concise and redacted — it focuses on measurable outcomes and deployment guidance.
