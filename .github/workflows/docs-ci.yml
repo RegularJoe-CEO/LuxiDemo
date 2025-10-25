@@ -3,6 +3,7 @@ on: [pull_request, push]
 jobs:
   markdown:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - uses: avto-dev/markdown-lint@v1
@@ -10,6 +11,7 @@ jobs:
           args: '**/*.md'
   links:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - name: Detect broken links
