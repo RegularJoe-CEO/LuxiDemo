@@ -1,3 +1,6 @@
+<!-- SPDX-FileCopyrightText: 2025 Eric Waller -->
+<!-- SPDX-License-Identifier: Proprietary -->
+
 # Erock Suite
 **Software-Defined Energy Platform** — turning electricity consumers into dispatchable, intelligent generators.
 

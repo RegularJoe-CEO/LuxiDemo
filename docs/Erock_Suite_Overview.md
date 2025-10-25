@@ -1,3 +1,6 @@
+<!-- SPDX-FileCopyrightText: 2025 Eric Waller -->
+<!-- SPDX-License-Identifier: Proprietary -->
+
 # Erock Suite Overview
 
 **Mission:** Turn code + flexible load into dispatchable, verifiable capacity.

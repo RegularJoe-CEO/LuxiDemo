@@ -1,3 +1,6 @@
+<!-- SPDX-FileCopyrightText: 2025 Eric Waller -->
+<!-- SPDX-License-Identifier: Proprietary -->
+
 # Erock Edge™
 
 Local controller for small/medium sites with sub-meters and I/O for HVAC, refrigeration, fans, and basic compute tasks.

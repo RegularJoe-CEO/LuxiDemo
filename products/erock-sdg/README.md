@@ -1,3 +1,6 @@
+<!-- SPDX-FileCopyrightText: 2025 Eric Waller -->
+<!-- SPDX-License-Identifier: Proprietary -->
+
 # Erock SDG™ — Software-Defined Generator
 
 **Scope:** **Includes SMBs** and scales to mid-sized enterprises.
