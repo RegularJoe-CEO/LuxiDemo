@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>eRock — META</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="logo">eRock</div>
+    <div class="tag">Large platform deployment guidance</div>
+    <div class="copyright">© 2025 RegularJoe-CEO. All rights reserved.</div>
+  </header>
+  <main class="container">
+    <section class="card">
+      <h1>eRock | META</h1>
+      <p class="lead">Sanitized advice for deploying eRock in large-scale platform environments (recommendation systems, embedding fanout paths).</p>
+
+      <h2>Sanitized Metrics</h2>
+      <table class="metrics">
+        <thead><tr><th>Metric</th><th>Typical Impact</th></tr></thead>
+        <tbody>
+          <tr><td>Per-request energy</td><td>-40–70% (mixed pipelines)</td></tr>
+          <tr><td>Throughput (system-level)</td><td>+20–60% on fanout/recommender paths</td></tr>
+          <tr><td>Tail latency</td><td>Maintained or improved (reduced GPU queuing)</td></tr>
+          <tr><td>Ops/sec (offload portion)</td><td>~15k ops/sec per node</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Integration Patterns</h2>
+      <ul>
+        <li>Insert eRock as a deterministic microservice for small-kernel tasks</li>
+        <li>Reduce cross-node GPU communication by performing local CPU compute</li>
+        <li>Combine with existing privacy tooling (TEE, attestation) for protected data paths</li>
+      </ul>
+
+      <p class="lead">For a tailored integration study and access to technical materials, request repository access from the project lead.</p>
+    </section>
+  </main>
+  <footer class="footer">© 2025 RegularJoe-CEO — eRock</footer>
+</body>
+</html>

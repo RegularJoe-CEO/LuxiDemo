@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>eRock — NVIDIA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="logo">eRock</div>
+    <div class="tag">NVIDIA integration guidance</div>
+    <div class="copyright">© 2025 RegularJoe-CEO. All rights reserved.</div>
+  </header>
+  <main class="container">
+    <section class="card">
+      <h1>eRock | NVIDIA</h1>
+      <p class="lead">High-level guidance for integrating eRock alongside NVIDIA GPU platforms. Content is intentionally redacted and focused on outcomes.</p>
+
+      <h2>Executive Summary</h2>
+      <ul>
+        <li>eRock is a Rust/WASM CPU offload microservice designed to complement GPU stacks.</li>
+        <li>It moves high-frequency small kernels to CPU to reduce GPU round-trips and power waste.</li>
+        <li>Designed to integrate with existing orchestration (Kubernetes, Triton, etc.).</li>
+      </ul>
+
+      <h2>Sanitized Metrics</h2>
+      <table class="metrics">
+        <thead><tr><th>Metric</th><th>Typical Impact</th></tr></thead>
+        <tbody>
+          <tr><td>End-to-end throughput (mixed GPU+CPU)</td><td>+20–50%</td></tr>
+          <tr><td>System energy reduction</td><td>40–70% (GPU-related)</td></tr>
+          <tr><td>Per-inference latency</td><td>Maintained or reduced vs GPU-only</td></tr>
+          <tr><td>Sustained ops/sec (offload portion)</td><td>~15k ops/sec/node</td></tr>
+        </tbody>
+      </table>
+
+      <h2>BlueField DPU — Deployment Patterns</h2>
+      <ul>
+        <li>In-NIC preprocessing to reduce host GPU memory traffic</li>
+        <li>RDMA/zero-copy pipelines to minimize data movement</li>
+        <li>Telemetry and near-ingress scoring to cut end-to-end latency</li>
+        <li>Secure enclave placement when supported by the platform</li>
+      </ul>
+
+      <p class="lead">For an integration plan, request a partner engagement with the engineering lead.</p>
+    </section>
+  </main>
+  <footer class="footer">© 2025 RegularJoe-CEO — eRock</footer>
+</body>
+</html>
