@@ -111,7 +111,7 @@ echo "eRock: $(grep 'CPU Power' load.txt | tail -1 | awk '{print $3}')"
 
 **Commercial Use:** Requires enterprise licensing  
 **Evaluation:** Limited to 10,000 operations/day  
-**Contact:** contact@erock.ai  
+**Contact:** e@ewaller.com  
 
 **Proprietary Notice:** Performance data provided for validation. Implementation details are confidential and protected.
 
