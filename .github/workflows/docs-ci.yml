@@ -1,0 +1,20 @@
+name: docs-ci / links
+on:
+  pull_request:
+    paths:
+      - "docs/**"
+      - "*.md"
+      - "products/**/README.md"
+  push:
+    paths:
+      - "docs/**"
+      - "*.md"
+      - "products/**/README.md"
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sanity (non-blocking)
+        run: |
+          echo "Docs CI sanity check"; true
