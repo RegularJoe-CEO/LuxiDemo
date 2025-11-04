@@ -1,4 +1,4 @@
-# eRock Algorithm Implementation Details
+# Luxi Algorithm Implementation Details
 
 **Technical Reference for Researchers and Engineers**
 
@@ -549,7 +549,7 @@ Bisection:
 | Secant | Superlinear | No | No (can diverge) |
 | Brent's Method | Superlinear | No | Yes (robust) |
 
-**Why Bisection for eRock:**
+**Why Bisection for Luxi:**
 1. **Deterministic Performance:** Worst-case bounded
 2. **No Derivative:** Expression grammar doesn't support automatic differentiation
 3. **Simplicity:** Minimal code complexity for mission-critical control systems
@@ -1084,6 +1084,6 @@ For additional details, consult:
 - Benchmark data: `../BENCHMARK_DATA.md`
 - Source code: `../src/` and `../edge/src/`
 
-**Authors:** eRock Engineering Team  
+**Authors:** Luxi Engineering Team  
 **Last Updated:** 2025-10-28  
-**License:** LicenseRef-eRock-Business-1.0
+**License:** LicenseRef-Luxi-Business-1.0

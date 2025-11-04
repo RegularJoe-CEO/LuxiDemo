@@ -1,14 +1,14 @@
-# eRock Suite: A Scientific Overview
+# Luxi Suite: A Scientific Overview
 
-**Authors:** eRock Engineering Team  
+**Authors:** Luxi Engineering Team  
 **Date:** October 2025  
 **Version:** 1.0
 
 ## Abstract
 
-The eRock Suite represents a comprehensive software-defined energy platform that transforms electricity consumers into dispatchable, intelligent generators through advanced computational techniques and real-time optimization. This document provides a detailed technical analysis of the system architecture, mathematical models, algorithmic implementations, and performance characteristics suitable for peer review and academic discourse.
+The Luxi Suite represents a comprehensive software-defined energy platform that transforms electricity consumers into dispatchable, intelligent generators through advanced computational techniques and real-time optimization. This document provides a detailed technical analysis of the system architecture, mathematical models, algorithmic implementations, and performance characteristics suitable for peer review and academic discourse.
 
-The platform consists of three integrated components: **eRock Edge™** (local control for small-to-medium installations), **eRock SDG™** (Software-Defined Generator for SMB-to-enterprise scale), and **eRock Core™** (portfolio orchestration and market integration). At its computational foundation lies a high-performance numeric expression evaluator with SIMD acceleration, achieving 13.7× speedup and 18× energy efficiency improvement over conventional implementations.
+The platform consists of three integrated components: **Luxi Edge™** (local control for small-to-medium installations), **Luxi SDG™** (Software-Defined Generator for SMB-to-enterprise scale), and **Luxi Core™** (portfolio orchestration and market integration). At its computational foundation lies a high-performance numeric expression evaluator with SIMD acceleration, achieving 13.7× speedup and 18× energy efficiency improvement over conventional implementations.
 
 ## 1. Introduction
 
@@ -40,11 +40,11 @@ This work makes the following scientific contributions:
 
 ### 2.1 Three-Tier Design
 
-The eRock Suite employs a hierarchical architecture:
+The Luxi Suite employs a hierarchical architecture:
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│            eRock Core™                               │
+│            Luxi Core™                               │
 │  Portfolio Optimization | Market APIs | Analytics   │
 │  (ISO/RTO Integration, Fleet Management)            │
 └───────────────────┬─────────────────────────────────┘
@@ -52,13 +52,13 @@ The eRock Suite employs a hierarchical architecture:
         ┌───────────┴───────────┐
         │                       │
 ┌───────▼──────────┐   ┌───────▼──────────┐
-│  eRock SDG™      │   │  eRock SDG™      │
+│  Luxi SDG™      │   │  Luxi SDG™      │
 │  Site Controller │   │  Site Controller │
 │  (Dispatch Logic)│   │  (Dispatch Logic)│
 └───────┬──────────┘   └───────┬──────────┘
         │                       │
 ┌───────▼──────────┐   ┌───────▼──────────┐
-│  eRock Edge™     │   │  eRock Edge™     │
+│  Luxi Edge™     │   │  Luxi Edge™     │
 │  Local I/O       │   │  Local I/O       │
 │  (HVAC, Compute) │   │  (HVAC, Compute) │
 └──────────────────┘   └──────────────────┘
@@ -71,7 +71,7 @@ The eRock Suite employs a hierarchical architecture:
 
 ### 2.2 Component Specifications
 
-#### 2.2.1 eRock Edge™
+#### 2.2.1 Luxi Edge™
 
 **Purpose:** Local control and I/O interface for facility equipment
 
@@ -91,7 +91,7 @@ The eRock Suite employs a hierarchical architecture:
 - API response time: <1 ms (health), 7-9 ms (evaluation/root-finding)
 - Throughput: 193,421 operations/second
 
-#### 2.2.2 eRock SDG™
+#### 2.2.2 Luxi SDG™
 
 **Purpose:** Site-level optimization and dispatch coordination
 
@@ -109,7 +109,7 @@ The eRock Suite employs a hierarchical architecture:
 - SMB: $2,800/year benefit, $7,000 install, 2.5-year payback
 - Enterprise: $1.2M/year benefit, <2-year payback
 
-#### 2.2.3 eRock Core™
+#### 2.2.3 Luxi Core™
 
 **Purpose:** Multi-site aggregation and market participation
 
@@ -282,7 +282,7 @@ src/
 │   ├── mod.rs
 │   └── enclave.rs      // TEE/TPM integration
 └── bin/
-    └── erock_client.rs // CLI tools
+    └── luxi_client.rs // CLI tools
 
 edge/
 └── src/
@@ -374,7 +374,7 @@ unsafe {
 
 ### 5.2 Results
 
-| Metric | Baseline | eRock | Improvement |
+| Metric | Baseline | Luxi | Improvement |
 |--------|----------|-------|-------------|
 | Speed (100k ops) | 7.104 ms | 0.517 ms | **13.7× faster** |
 | Power (Idle) | 783 mW | - | - |
@@ -407,7 +407,7 @@ unsafe {
 
 **100 MW Facility (Illustrative):**
 - Baseline annual energy cost: $87.6M
-- eRock cost (10% workload optimization): $4.87M
+- Luxi cost (10% workload optimization): $4.87M
 - **Annual savings: $82.7M**
 - **Payback period: <1 month**
 
@@ -522,9 +522,9 @@ WORKDIR /app
 RUN cargo build --release
 
 FROM debian:bookworm-slim
-COPY --from=builder /app/target/release/erock_edge /usr/local/bin/
+COPY --from=builder /app/target/release/luxi_edge /usr/local/bin/
 EXPOSE 8080
-CMD ["erock_edge"]
+CMD ["luxi_edge"]
 ```
 
 **Image Size:** ~50 MB (static binary + minimal base)
@@ -552,10 +552,10 @@ resources:
 ### 7.3 Observability
 
 **Metrics (Prometheus):**
-- `erock_eval_duration_seconds` (histogram)
-- `erock_bisect_iterations` (histogram)
-- `erock_api_requests_total` (counter)
-- `erock_memory_bytes` (gauge)
+- `luxi_eval_duration_seconds` (histogram)
+- `luxi_bisect_iterations` (histogram)
+- `luxi_api_requests_total` (counter)
+- `luxi_memory_bytes` (gauge)
 
 **Health Checks:**
 - Liveness: `/health` (HTTP 200)
@@ -624,7 +624,7 @@ Node C: y = f3(x1, x2)
 
 1. **Expression Grammar:** No support for trigonometric functions (sin, cos, tan) in current lexer
 2. **JIT Compilation:** Stubbed implementation; no production deployment
-3. **Distributed Coordination:** Single-node design; multi-site requires eRock Core
+3. **Distributed Coordination:** Single-node design; multi-site requires Luxi Core
 4. **GPU Acceleration:** SIMD only; no CUDA/OpenCL backends
 
 ### 9.2 Planned Enhancements
@@ -646,7 +646,7 @@ Node C: y = f3(x1, x2)
 
 ## 10. Conclusion
 
-The eRock Suite demonstrates that software-defined energy management, combined with high-performance numeric computation, can achieve order-of-magnitude improvements in both economic efficiency and environmental sustainability. The 13.7× speedup and 18× energy efficiency gain of the SIMD-accelerated expression engine represent a significant advancement over conventional approaches, with measurable impact at data center scale ($82.7M annual savings for 100 MW facility).
+The Luxi Suite demonstrates that software-defined energy management, combined with high-performance numeric computation, can achieve order-of-magnitude improvements in both economic efficiency and environmental sustainability. The 13.7× speedup and 18× energy efficiency gain of the SIMD-accelerated expression engine represent a significant advancement over conventional approaches, with measurable impact at data center scale ($82.7M annual savings for 100 MW facility).
 
 The modular, market-agnostic architecture enables deployment across diverse regulatory environments without algorithmic redesign, while the Rust implementation provides memory safety guarantees critical for production control systems. Integration of TEE/ZK-proof mechanisms addresses the verification requirements of financial settlement in demand response markets.
 
@@ -682,7 +682,7 @@ This work builds upon open-source contributions from the Rust community, Tokio a
 
 **Document Metadata:**
 - SPDX-FileCopyrightText: 2025 Eric Waller
-- SPDX-License-Identifier: LicenseRef-eRock-Business-1.0
+- SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0
 - Classification: Public Technical Documentation
 - Prepared for: Scientific community review and academic discourse
 - Contact: e@ewaller.com

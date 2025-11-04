@@ -1,10 +1,10 @@
-# eRock Suite Architecture Guide for Researchers
+# Luxi Suite Architecture Guide for Researchers
 
 **A Comprehensive Technical Reference**
 
 ## Executive Summary
 
-This document provides a complete architectural overview of the eRock Suite, designed for researchers, engineers, and academics seeking to understand the system's design principles, component interactions, and scientific foundations. The eRock Suite represents a novel approach to grid-edge intelligence, combining high-performance computing, real-time optimization, and cryptographic verification to enable software-defined energy management.
+This document provides a complete architectural overview of the Luxi Suite, designed for researchers, engineers, and academics seeking to understand the system's design principles, component interactions, and scientific foundations. The Luxi Suite represents a novel approach to grid-edge intelligence, combining high-performance computing, real-time optimization, and cryptographic verification to enable software-defined energy management.
 
 ---
 
@@ -22,7 +22,7 @@ Transform electricity consumers into dispatchable, intelligent generators throug
 
 ```
 ┌───────────────────────────────────────────────────────────────┐
-│                     eRock Core™                                │
+│                     Luxi Core™                                │
 │           Portfolio Optimization & Market Integration          │
 │                                                                 │
 │  • ISO/RTO API Adapters (CAISO, PJM, ERCOT, etc.)             │
@@ -33,7 +33,7 @@ Transform electricity consumers into dispatchable, intelligent generators throug
 └───────────────┬────────────────────────────┬──────────────────┘
                 │                            │
     ┌───────────▼──────────┐     ┌──────────▼───────────┐
-    │   eRock SDG™         │     │   eRock SDG™         │
+    │   Luxi SDG™         │     │   Luxi SDG™         │
     │ (Site Controller)    │ ... │ (Site Controller)    │
     │                      │     │                      │
     │ • Dispatch logic     │     │ • Dispatch logic     │
@@ -45,7 +45,7 @@ Transform electricity consumers into dispatchable, intelligent generators throug
     └───────────┬──────────┘     └──────────┬───────────┘
                 │                            │
     ┌───────────▼──────────┐     ┌──────────▼───────────┐
-    │   eRock Edge™        │     │   eRock Edge™        │
+    │   Luxi Edge™        │     │   Luxi Edge™        │
     │  (Local I/O Layer)   │     │  (Local I/O Layer)   │
     │                      │     │                      │
     │ • HVAC control       │     │ • HVAC control       │
@@ -83,7 +83,7 @@ Transform electricity consumers into dispatchable, intelligent generators throug
 
 ## 2. Component Deep Dive
 
-### 2.1 eRock Edge™: Local Control Layer
+### 2.1 Luxi Edge™: Local Control Layer
 
 #### 2.1.1 Purpose
 Provides direct hardware interface for facility equipment control and monitoring.
@@ -116,7 +116,7 @@ Provides direct hardware interface for facility equipment control and monitoring
 ```
 ┌─────────────────────────────────────────┐
 │         Application Layer               │
-│  (eRock Edge Binary - Rust)             │
+│  (Luxi Edge Binary - Rust)             │
 │  • HTTP API Server (Axum)               │
 │  • Expression Evaluator                 │
 │  • I/O State Machine                    │
@@ -147,7 +147,7 @@ Provides direct hardware interface for facility equipment control and monitoring
 **Health Check:**
 ```
 GET /health
-Response: {"service": "erock_edge", "version": "0.1.0", "status": "ok"}
+Response: {"service": "luxi_edge", "version": "0.1.0", "status": "ok"}
 ```
 
 **Expression Evaluation:**
@@ -183,7 +183,7 @@ Response: {"root": 1.521, "f": 0.0, "lo": 1.0, "hi": 2.0, "iters": 31, "expansio
 | Max Throughput | 193k ops/sec (evaluation) |
 | Energy Efficiency | 3.08 µJ/op (SIMD) vs 55.6 µJ/op (scalar) |
 
-### 2.2 eRock SDG™: Software-Defined Generator
+### 2.2 Luxi SDG™: Software-Defined Generator
 
 #### 2.2.1 Conceptual Model
 
@@ -279,7 +279,7 @@ Uncertainty = √(σ²_baseline + σ²_actual)
 - Real-time: Every 15 minutes (telemetry)
 - Settlement: Daily/monthly aggregates (invoicing)
 
-### 2.3 eRock Core™: Portfolio Orchestration
+### 2.3 Luxi Core™: Portfolio Orchestration
 
 #### 2.3.1 Architecture
 
@@ -508,7 +508,7 @@ fn compute_settlement(usage_data: &[f64]) -> Settlement {
 1. Enclave boots, measures code hash (PCR0)
 2. Requests attestation quote from Intel
 3. Intel signs: "Enclave with hash H is running on genuine SGX"
-4. Send quote to verifier (eRock Core)
+4. Send quote to verifier (Luxi Core)
 5. Core checks: hash matches expected binary + Intel signature valid
 6. If OK, provision secrets to enclave
 ```
@@ -606,16 +606,16 @@ WORKDIR /app
 COPY Cargo.toml Cargo.lock ./
 COPY src ./src
 COPY edge ./edge
-RUN cargo build --release --bin erock_edge
+RUN cargo build --release --bin luxi_edge
 
 # Stage 2: Runtime
 FROM debian:bookworm-slim
 RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
-COPY --from=builder /app/target/release/erock_edge /usr/local/bin/
+COPY --from=builder /app/target/release/luxi_edge /usr/local/bin/
 EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=3s CMD curl -f http://localhost:8080/health || exit 1
 USER nobody
-CMD ["erock_edge"]
+CMD ["luxi_edge"]
 ```
 
 **Image Size Optimization:**
@@ -630,19 +630,19 @@ CMD ["erock_edge"]
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: erock-edge
+  name: luxi-edge
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: erock-edge
+      app: luxi-edge
   template:
     metadata:
       labels:
-        app: erock-edge
+        app: luxi-edge
     spec:
       containers:
-      - name: erock-edge
+      - name: luxi-edge
         image: ghcr.io/regularjoe-ceo/erock:latest
         ports:
         - containerPort: 8080
@@ -672,12 +672,12 @@ spec:
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: erock-edge-hpa
+  name: luxi-edge-hpa
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: erock-edge
+    name: luxi-edge
   minReplicas: 3
   maxReplicas: 100
   metrics:
@@ -704,12 +704,12 @@ use prometheus::{Histogram, Counter, register_histogram, register_counter};
 
 lazy_static! {
     static ref EVAL_DURATION: Histogram = register_histogram!(
-        "erock_eval_duration_seconds",
+        "luxi_eval_duration_seconds",
         "Expression evaluation latency"
     ).unwrap();
     
     static ref API_REQUESTS: Counter = register_counter!(
-        "erock_api_requests_total",
+        "luxi_api_requests_total",
         "Total API requests"
     ).unwrap();
 }
@@ -725,13 +725,13 @@ async fn evaluate_handler(req: Json<EvalReq>) -> Json<EvalResp> {
 **Grafana Dashboard Queries:**
 ```promql
 # P99 latency
-histogram_quantile(0.99, rate(erock_eval_duration_seconds_bucket[5m]))
+histogram_quantile(0.99, rate(luxi_eval_duration_seconds_bucket[5m]))
 
 # Requests per second
-rate(erock_api_requests_total[1m])
+rate(luxi_api_requests_total[1m])
 
 # Error rate
-rate(erock_api_errors_total[5m]) / rate(erock_api_requests_total[5m])
+rate(luxi_api_errors_total[5m]) / rate(luxi_api_requests_total[5m])
 ```
 
 **Distributed Tracing (Jaeger):**
@@ -739,7 +739,7 @@ rate(erock_api_errors_total[5m]) / rate(erock_api_requests_total[5m])
 use opentelemetry::trace::Tracer;
 
 async fn evaluate(req: EvalReq) -> Result<EvalResp> {
-    let tracer = global::tracer("erock");
+    let tracer = global::tracer("luxi");
     let mut span = tracer.start("evaluate");
     
     span.set_attribute("expr_length", req.expr.len() as i64);
@@ -767,7 +767,7 @@ async fn evaluate(req: EvalReq) -> Result<EvalResp> {
 **CPU Profiling (perf):**
 ```bash
 # Record profile
-perf record -g -F 999 ./target/release/erock_edge
+perf record -g -F 999 ./target/release/luxi_edge
 
 # Generate flamegraph
 perf script | stackcollapse-perf.pl | flamegraph.pl > flame.svg
@@ -778,7 +778,7 @@ perf annotate --stdio
 
 **Memory Profiling (valgrind):**
 ```bash
-valgrind --tool=massif --massif-out-file=massif.out ./target/release/erock_edge
+valgrind --tool=massif --massif-out-file=massif.out ./target/release/luxi_edge
 ms_print massif.out
 ```
 
@@ -1056,7 +1056,7 @@ Qed.
 
 ## 9. Conclusion
 
-The eRock Suite represents a holistic approach to software-defined energy management, combining:
+The Luxi Suite represents a holistic approach to software-defined energy management, combining:
 - **High-performance computing** (SIMD, async I/O, memory safety)
 - **Rigorous algorithms** (proven convergence, deterministic behavior)
 - **Security** (TEE, TLS, integrity monitoring)
@@ -1068,7 +1068,7 @@ This architecture enables deployment across diverse scales (SMB to data center) 
 
 **Document Metadata:**
 - SPDX-FileCopyrightText: 2025 Eric Waller
-- SPDX-License-Identifier: LicenseRef-eRock-Business-1.0
+- SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0
 - Classification: Public Technical Documentation
 - Intended Audience: Researchers, Engineers, Academic Reviewers
 - Contact: e@ewaller.com

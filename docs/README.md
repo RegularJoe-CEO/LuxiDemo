@@ -1,4 +1,4 @@
-# eRock Suite: Documentation Index for Researchers
+# Luxi Suite: Documentation Index for Researchers
 
 **Complete Guide to Scientific and Technical Documentation**
 
@@ -6,7 +6,7 @@
 
 ## Welcome
 
-This repository contains comprehensive documentation of the eRock Suite, a software-defined energy platform designed for scientific review, academic discourse, and technical implementation. The documentation is structured to support different levels of engagement, from high-level architectural understanding to detailed algorithmic analysis.
+This repository contains comprehensive documentation of the Luxi Suite, a software-defined energy platform designed for scientific review, academic discourse, and technical implementation. The documentation is structured to support different levels of engagement, from high-level architectural understanding to detailed algorithmic analysis.
 
 ---
 
@@ -18,9 +18,9 @@ This repository contains comprehensive documentation of the eRock Suite, a softw
 
 **Read:**
 - `README.md` (repository root) - Product summary and positioning
-- `docs/Erock_Suite_Overview.md` - Brief mission and economics
+- `docs/Luxi_Suite_Overview.md` - Brief mission and economics
 
-**Key Takeaway:** The eRock Suite transforms electricity consumers into dispatchable generators through software-defined control, achieving 13.7× speedup and 18× energy efficiency improvement.
+**Key Takeaway:** The Luxi Suite transforms electricity consumers into dispatchable generators through software-defined control, achieving 13.7× speedup and 18× energy efficiency improvement.
 
 ---
 
@@ -44,10 +44,10 @@ This repository contains comprehensive documentation of the eRock Suite, a softw
 
 **Citation Format:**
 ```bibtex
-@techreport{erock2025,
-  title={eRock Suite: A Scientific Overview},
-  author={eRock Engineering Team},
-  institution={eRock Systems},
+@techreport{luxi2025,
+  title={Luxi Suite: A Scientific Overview},
+  author={Luxi Engineering Team},
+  institution={Luxi Systems},
   year={2025},
   type={Technical Report},
   url={https://github.com/RegularJoe-CEO/eRock}
@@ -241,7 +241,7 @@ curl -X POST http://localhost:8080/evaluate \
 
 ### Path E: Business Analyst
 1. `README.md` (product positioning)
-2. `docs/Erock_Suite_Overview.md` (economics)
+2. `docs/Luxi_Suite_Overview.md` (economics)
 3. `products/*/README.md` (product specs)
 4. `BENCHMARK_DATA.md` § Enterprise Impact
 
@@ -300,7 +300,7 @@ src/
 │   ├── enclave.rs      // TEE/TPM integration
 │   └── mod.rs
 └── bin/
-    └── erock_client.rs // CLI tools
+    └── luxi_client.rs // CLI tools
 ```
 
 ### Edge Server (`edge/src/`)
@@ -319,7 +319,7 @@ benches/
 └── my_benchmark.rs     // Custom workload profiles
 ```
 
-**Note:** Some modules contain redacted implementations (marked `eRock SECURE`) to protect intellectual property while preserving API documentation.
+**Note:** Some modules contain redacted implementations (marked `Luxi SECURE`) to protect intellectual property while preserving API documentation.
 
 ---
 
@@ -381,7 +381,7 @@ benches/
 ## License and Copyright
 
 **Code:** Proprietary (Commercial licensing required)
-**Documentation:** Public (LicenseRef-eRock-Business-1.0)
+**Documentation:** Public (LicenseRef-Luxi-Business-1.0)
 **SPDX:** SPDX-FileCopyrightText: 2025 Eric Waller
 
 **Permitted Use (Documentation):**
@@ -405,7 +405,7 @@ benches/
 
 ---
 
-**Document Prepared By:** eRock Engineering Team  
+**Document Prepared By:** Luxi Engineering Team  
 **Last Updated:** 2025-10-28  
 **Version:** 1.0  
 **Contact:** e@ewaller.com

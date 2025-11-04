@@ -1,28 +1,39 @@
 <!-- SPDX-FileCopyrightText: 2025 Eric Waller -->
 <!-- SPDX-License-Identifier: Proprietary -->
 
-# Erock Suite
-**Software-Defined Energy Platform** — turning electricity consumers into dispatchable, intelligent generators.
+# Luxi Suite
 
 ## Products
-- **Erock Edge™** — local controller + I/O for small sites (retail, restaurants, light industrial).
-- **Erock SDG™** — *Software-Defined Generator* control (SMB → mid-enterprise). Behaves like a generator at the meter via software + load orchestration.
-- **Erock Core™** — enterprise/datacenter aggregation, portfolio optimization, and market APIs.
 
-## What’s unique
-- Unifies **compute scheduling** + **facility load control** under one dispatch engine.
-- **Generator-grade M&V** at the meter (market-visible performance).
-- Optional **waste-heat-to-power** tie-ins (ORC/TEG).
-- **Market-agnostic**: core logic stays the same; adapters map to tariffs/DR/markets globally.
+### **Luxi™** (also known as Luxi Edge™ or Luxi Core™)
+High-performance microservice for ultra-fast numeric calculations. SIMD-accelerated expression evaluation and root-finding optimized for edge devices but deployable anywhere.
 
-## Documents
-- docs/Erock_Whitepaper_Global_Blueprint.pdf  (add via GitHub upload)
-- docs/Erock_SDG_Investor_Deck.pptx          (add via GitHub upload)
-- docs/Erock_Suite_Overview.md
+**Key Features:**
+- 13.7× faster than baseline (SIMD vectorization)
+- 18× better energy efficiency (596mW under load)
+- 193k operations/second throughput
+- HTTP API: `/evaluate`, `/bisect`, `/bisect_auto`, `/health`
+- Optimized for edge hardware but works on data centers, GPU-to-CPU offload, anywhere
 
-## Quick positioning
-- **Edge** → Drop-in local intelligence for small sites.
-- **SDG** → Software platform for SMB to enterprise; **includes small-business scenarios**.
-- **Core** → Multi-site/data-center orchestration and market participation at scale.
+**Use Cases:**
+- Edge computing (IoT, sensors, embedded systems)
+- Data center computational offload
+- Real-time calculations with low power consumption
+
+### **Luxi SDG™**
+Software-Defined Generator for small businesses and smaller buildings. Independent product.
+
+**Key Features:**
+- Makes buildings behave like generators via software + load orchestration
+- Energy management at the meter level
+- SMB to enterprise scale
+- Not combined with other tools - standalone solution
+
+## Documentation
+For detailed technical documentation, see the `docs/` directory:
+- `docs/Luxi_Suite_Overview.md` - Product overview
+- `docs/SCIENTIFIC_OVERVIEW.md` - Technical reference and benchmarks
+- `docs/ARCHITECTURE.md` - System architecture
+- `docs/ALGORITHM_DETAILS.md` - Algorithm details
 
 © 2025 Eric Waller. All rights reserved.
