@@ -27,3 +27,7 @@ jobs:
       - name: Link sanity (no stale goerock link)
         run: |
           ! grep -R "goerock.replit.app" -n . || (echo "Found stale link" && exit 1)
+      - name: Agent Bootstrap & Smoke Tests
+        run: |
+          bash scripts/agent_bootstrap.sh
+

@@ -29,7 +29,92 @@ This document provides comprehensive instructions for AI agents, LLMs, and autom
 
 **Note:** The internal crate/module is named "erock" for historical reasons. Public branding is "Luxi Edge."
 
+### One-Command Bootstrap
+
+**For AI agents, run this first:**
+
+```bash
+bash scripts/agent_bootstrap.sh
+```
+
+This single command will:
+1. ✅ Check prerequisites (cargo, curl)
+2. ✅ Build Luxi Edge in release mode
+3. ✅ Launch server on port 8080
+4. ✅ Run smoke tests to verify all endpoints
+5. ✅ Report PASS/FAIL for each test
+
+**Required Tools:**
+- `cargo` (Rust toolchain) - Install from https://rustup.rs/
+- `curl` - For HTTP requests
+- `python3` - For JSON parsing in tests
+
+### Expected API Responses
+
 Base URL: http://localhost:8080
+
+**GET /ping**
+```
+pong
+```
+
+**GET /health**
+```json
+{
+  "service": "erock_edge",
+  "status": "ok",
+  "version": "0.1.0",
+  "jit_available": false,
+  "jit_enabled": false,
+  "jit_reason": "jit_disabled"
+}
+```
+
+**POST /evaluate**
+```bash
+curl -X POST http://localhost:8080/evaluate \
+  -H "Content-Type: application/json" \
+  -d '{"expr":"2*x+sin(x)", "x":[3.14]}'
+```
+Response:
+```json
+{"y":[6.281592652916487]}
+```
+
+**POST /bisect**
+```bash
+curl -X POST http://localhost:8080/bisect \
+  -H "Content-Type: application/json" \
+  -d '{"expr":"x*x - 4", "lo":0, "hi":3}'
+```
+Response:
+```json
+{
+  "root": 1.9999999998835847,
+  "f": -4.656612873077393e-10,
+  "iters": 33,
+  "bracket_ok": true
+}
+```
+
+**POST /bisect_auto**
+```bash
+curl -X POST http://localhost:8080/bisect_auto \
+  -H "Content-Type: application/json" \
+  -d '{"expr":"x*x - 4", "guess":2.0}'
+```
+Response:
+```json
+{
+  "root": 2.0,
+  "f": 0.0,
+  "lo": 2.0,
+  "hi": 2.0,
+  "iters": 0,
+  "bracket_ok": true,
+  "expansions": 0
+}
+```
 
 ## OpenAI-style function tools
 ```json

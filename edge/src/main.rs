@@ -643,6 +643,11 @@ async fn router(req: Request<Body>) -> Result<Response<Body>, Infallible> {
     Ok(response)
 }
 
+// ---------- /ping ----------
+async fn ping() -> &'static str {
+    "pong"
+}
+
 #[tokio::main]
 async fn main() {
     let addr: SocketAddr = "0.0.0.0:8080".parse().unwrap();
