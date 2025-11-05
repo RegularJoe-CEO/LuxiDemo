@@ -152,10 +152,14 @@ curl -X POST http://localhost:8080/evaluate \
 
 **Read:**
 - `BENCHMARK_DATA.md` (repository root)
+- `docs/benchmarks/README.md` (benchmark navigation hub)
+- `docs/benchmarks/FINDING_DATA.md` (step-by-step instructions for locating the latest files)
+- `docs/benchmarks/SYNCING_MAIN.md` (keeping `main` in sync and cleaning legacy files)
+- `docs/benchmarks/COMPARATIVE_ANALYSIS.md` (deep dive vs Python/NumPy and C++)
 
 **Contents:**
 - Core performance metrics (speed, power, efficiency)
-- Comparative analysis (Python/NumPy, C++ stdlib)
+- Comparative analysis (Python/NumPy, C++ stdlib, SciPy Newton)
 - Data center economics (100 MW facility savings)
 - Validation protocol (reproducible tests)
 
@@ -166,6 +170,12 @@ curl -X POST http://localhost:8080/evaluate \
 | Energy | 18× more efficient |
 | Power under load | 24% less than idle |
 | Throughput | 193k ops/sec |
+
+**How to Use:**
+- Review `BENCHMARK_DATA.md` for the executive summary.
+- Run `./tools/verify_benchmark_freshness.sh` to confirm you are on the January 2025 revision.
+- Consult `docs/benchmarks/COMPARATIVE_ANALYSIS.md` for methodology and comparisons.
+- If GitHub still shows the October snapshot, follow `docs/benchmarks/FINDING_DATA.md` and `docs/benchmarks/SYNCING_MAIN.md`.
 
 *See [BENCHMARK_DATA.md](../BENCHMARK_DATA.md) for methodology and hardware specifications.*
 
@@ -234,9 +244,10 @@ curl -X POST http://localhost:8080/evaluate \
 
 ### Path D: Performance Engineer
 1. `BENCHMARK_DATA.md` (baseline metrics)
-2. `docs/ARCHITECTURE.md` § 6 (Performance Engineering)
-3. `docs/ALGORITHM_DETAILS.md` § 4 (SIMD implementation)
-4. `benches/` (benchmark suite source)
+2. `docs/benchmarks/COMPARATIVE_ANALYSIS.md` (cross-tool competitive study)
+3. `docs/ARCHITECTURE.md` § 6 (Performance Engineering)
+4. `docs/ALGORITHM_DETAILS.md` § 4 (SIMD implementation)
+5. `benches/` (benchmark suite source)
 
 **Estimated Time:** 3-4 hours
 
@@ -273,6 +284,8 @@ curl -X POST http://localhost:8080/evaluate \
 - **vs C++ stdlib:** 5.5× faster, 33% less power
 - **vs Traditional DR:** Generator-grade M&V, sub-minute dispatch
 
+*See `docs/benchmarks/COMPARATIVE_ANALYSIS.md` for the full benchmarking narrative and methodology.*
+
 ### Q: What are the deployment requirements?
 **A:** 
 - **Edge:** ARM64/x86_64, 512 MB RAM, 100 MB storage
@@ -308,17 +321,17 @@ src/
 ### Edge Server (`edge/src/`)
 ```
 edge/src/
-├── main.rs             // Axum HTTP server
-│                       // Routes: /evaluate, /bisect, /bisect_auto, /health
+├── main.rs             // Hyper HTTP server
+│                       // Routes: /evaluate, /evaluate_derivative, /gradient, /newton, /bisect, /bisect_auto, /health
 └── jit_health.rs       // Health monitoring
 ```
 
 ### Benchmarks (`benches/`)
 ```
 benches/
-├── edge_suite.rs       // Overall system benchmarks
+├── edge_suite.rs       // Manifest placeholder (keeps Docker builds happy)
 ├── simd_vs_scalar.rs   // Vectorization speedup tests
-└── my_benchmark.rs     // Custom workload profiles
+└── my_benchmark.rs     // Fallback calculus workloads (evaluate, derivative, gradient, Newton)
 ```
 
 **Note:** Some modules contain redacted implementations (marked `Luxi SECURE`) to protect intellectual property while preserving API documentation.

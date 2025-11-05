@@ -678,13 +678,16 @@ ms_print massif.out
 
 **Benchmark Suite:**
 ```bash
-# Run all benchmarks
-cargo bench
+# Scalar vs SIMD sweep (long running)
+cargo bench --bench simd_vs_scalar -- --sample-size 10
 
-# Compare before/after optimization
-cargo bench --bench simd_vs_scalar -- --save-baseline before
+# Calculus workloads (derivative / gradient / Newton)
+cargo bench --bench my_benchmark -- --sample-size 20
+
+# Capture baselines for regression tracking
+cargo bench --bench simd_vs_scalar -- --save-baseline before --sample-size 10
 # ... apply optimization ...
-cargo bench --bench simd_vs_scalar -- --baseline before
+cargo bench --bench simd_vs_scalar -- --baseline before --sample-size 10
 ```
 
 ### 6.2 Optimization Techniques
@@ -972,6 +975,7 @@ This architecture enables deployment across diverse scales (SMB to data center) 
 - `ALGORITHM_DETAILS.md` - Deep algorithmic analysis
 - `../openapi.yaml` - API specification
 - `../BENCHMARK_DATA.md` - Performance measurements
+- `benchmarks/README.md` - Benchmark navigation hub and raw exports
 
 **Revision History:**
 - v1.0 (2025-10-28): Initial publication

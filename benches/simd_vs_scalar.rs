@@ -4,8 +4,8 @@ SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0
 */
 
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
+use erock::luxi_eval::{interpreter, lexer, parser};
 use std::collections::HashMap;
-use erock::{interpreter, lexer, parser};
 
 fn build_ast() -> (parser::Arena, usize) {
     let input = "sum = 3.14 + (x - 2) * 10";
@@ -27,7 +27,9 @@ fn bench_scalar(c: &mut Criterion) {
             vars.insert("x".to_string(), 0.0);
             let mut acc = 0.0f64;
             for &x in &xs {
-                if let Some(v) = vars.get_mut("x") { *v = x; }
+                if let Some(v) = vars.get_mut("x") {
+                    *v = x;
+                }
                 acc += interpreter::interpret(root_idx, &arena, &mut vars);
             }
             black_box(acc)

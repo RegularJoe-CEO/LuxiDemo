@@ -108,6 +108,8 @@ LuxiEdge/
 ├── LICENSE              # Luxi Business License v1.0
 ├── README.md            # Public-facing documentation
 ├── BENCHMARK_DATA.md    # Performance metrics and methodology
+├── docs/
+│   └── benchmarks/      # Centralized benchmark docs and raw exports
 ├── TECHNICAL_OVERVIEW.md # Detailed technical reference
 ├── AGENTS.md            # This file - AI agent integration guide
 │

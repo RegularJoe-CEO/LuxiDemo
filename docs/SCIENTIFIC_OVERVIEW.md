@@ -358,6 +358,19 @@ unsafe {
 | /evaluate | 7.04 ms | 12 ms | 142 |
 | /bisect | 8.93 ms | 15 ms | 112 |
 
+### 5.2.1 Calculus Extensions (Fallback Evaluator)
+
+The derivative, gradient, and Newton solvers introduced in this revision currently route through the Rhai-backed interpreter. Criterion microbenchmarks provide a baseline while the SIMD engine is still under development.
+
+| Workload | Batch Setup | Mean Time | Per Operation | Throughput |
+|----------|-------------|-----------|---------------|------------|
+| Scalar evaluation (fallback) | 1,024-point sweep of `sin(x) + x^2 - 4` | 311.6 ms | 0.304 ms/op | ~3.3k evals/s |
+| Finite-difference derivative | 512-point sweep of `cos(x) - x` | 327.3 ms | 0.639 ms/op | ~1.6k derivs/s |
+| Finite-difference gradient | Gradient of `x*y + y*z + z*x` | 1.90 ms | 1.90 ms/op | ~526 gradients/s |
+| Newton with bisection fallback | 41 guesses for `cos(x) - x` | 393.7 ms | 9.60 ms/guess | ~104 solves/s |
+
+**Note:** These numbers represent the fallback path only; production builds with SIMD acceleration are expected to reduce both latency and compute energy.
+
 **Deployment Profile:**
 - Binary size: 8-10 MB
 - Memory usage: 8-12 MB (resident)

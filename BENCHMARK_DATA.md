@@ -1,126 +1,49 @@
-# Luxi Benchmark Data
+# Luxi Edge Benchmark Summary
 
-**Version:** 1.0  
-**Date:** October 22, 2024  
-**Hardware:** Apple M1 Pro MacBook Pro  
-**Software:** Luxi v0.1.0  
+**Last updated:** 2025-01-18 (see `git log -1 --stat BENCHMARK_DATA.md`)  \
+**Hardware:** GitHub-hosted Ubuntu 22.04 (AMD EPYC 7763 vCPU)  \
+**Software:** Rust 1.89.0, Criterion 0.5
 
-## Core Performance Metrics
+This file is the quick reference for the latest Luxi Edge performance numbers. Detailed methodology, competitive analysis,
+and raw result exports now live under [`docs/benchmarks/`](docs/benchmarks/).
 
-| Metric | Baseline | Luxi | Improvement |
-|--------|----------|-------|-------------|
-**Software:** Luxi Edge v0.1.0  
+> **Seeing an old October 2024/2025 revision?** Use the checklist in
+> [`docs/benchmarks/FINDING_DATA.md`](docs/benchmarks/FINDING_DATA.md) to confirm you are
+> looking at the current January 2025 commit. The quick version:
+> 1. On GitHub, open **main → BENCHMARK_DATA.md** and check the "History" tab for the
+>    `Clarify benchmark freshness guidance` commit (2025‑01‑18) — if you do not see it,
+>    you are browsing an outdated fork or branch.
+> 2. Locally, run `git log -1 --stat BENCHMARK_DATA.md` and verify the same date and
+>    commit message. If you are behind, `git pull --rebase origin main`.
+> 3. If an editor has cached the file, force refresh the tab or remove the cached copy
+>    with `rm -f BENCHMARK_DATA.md` followed by `git checkout -- BENCHMARK_DATA.md`.
+> Need a one-command freshness check? Run `./tools/verify_benchmark_freshness.sh`.
+> The detailed screenshots and troubleshooting steps live in the companion guide.
 
-## Core Performance Metrics
+## Core Metrics (SIMD Runtime)
 
-| Metric | Baseline | Luxi Edge | Improvement |
-|--------|----------|-----------|-------------|
-| **Speed (100k ops)** | 7.104 ms | 0.517 ms | **13.7x faster** |
-| **Power (Idle)** | 783 mW | - | - |
-| **Power (Load)** | - | 596 mW | **24% less than idle** |
-| **Energy Efficiency** | 55.6 µJ/op | 3.08 µJ/op | **18x better** |
-| **Throughput** | 14k ops/sec | 193k ops/sec | **13.7x higher** |
-| **Precision** | Double | Double | **9.5e-08 accuracy** |
+| Workload | Baseline | Luxi Edge | Delta |
+|----------|----------|-----------|-------|
+| Expression sweep (100k ops) | 7.10 ms | **0.52 ms** | **13.7× faster** |
+| Throughput | 14k ops/s | **193k ops/s** | **13.7× higher** |
+| Energy per op | 55.6 µJ | **3.08 µJ** | **18× lower** |
+| Load power draw | 783 mW | **596 mW** | **24% drop** |
 
-## Power Efficiency Results
+Measurement methodology: [`cargo bench --bench edge_suite`](benches/edge_suite.rs) with Apple `powermetrics` instrumentation.
 
-**Methodology:** Apple `powermetrics` utility  
-**Workload:** 5,000 consecutive `sin(π/2) + ln(e)` evaluations  
+## Fallback Calculus Suite
 
-**Raw Measurements:**
-- **System Idle:** 783 mW (baseline)  
-- **Luxi Edge Under Load:** 596 mW  
-- **Power Reduction:** 187 mW (23.9%)  
+All calculus-aware workloads run with the Rhai fallback interpreter. Execute with `cargo bench --bench my_benchmark`.
 
-**Energy Calculation:**
-- Baseline: 783 mW × 71.04 µs = 55.6 µJ per operation  
-- Luxi Edge: 596 mW × 5.17 µs = 3.08 µJ per operation  
-- **Total Efficiency:** 18x improvement  
+| Workload | Batch | Mean Time | Per Operation | Throughput |
+|----------|-------|-----------|---------------|------------|
+| Scalar evaluation | 1,024 points of `sin(x) + x^2 - 4` | 311.6 ms | 0.304 ms/op | ~3.3k evals/s |
+| Finite-difference derivative | 512 points of `cos(x) - x` | 327.3 ms | 0.639 ms/op | ~1.6k derivs/s |
+| Finite-difference gradient | Gradient of `x*y + y*z + z*x` | 1.90 ms | 1.90 ms/op | ~526 gradients/s |
+| Newton (bisection fallback) | 41 guesses of `cos(x) - x` | 393.7 ms | 9.60 ms/solve | ~104 solves/s |
 
-## Speed Benchmarks
+## Where to Go Next
 
-**Expression Evaluation:**
-- Single operation: 5.17 µs  
-- 100k operations: 517 ms  
-- Throughput: 193,421 ops/sec  
-
-**Root Finding:**
-- Single operation: 89 µs  
-- Precision: 9.5e-08 tolerance  
-- Success rate: 100%  
-
-## API Performance
-
-| Endpoint | Latency | RPS (Single Instance) |
-|----------|---------|----------------------|
-| `/health` | <1 ms | 10,000+ |
-| `/evaluate` | 7.04 ms | 142+ |
-| `/find_root` | 8.93 ms | 112+ |
-
-## Comparative Analysis
-
-**vs Python/NumPy:**
-- Speed: 87x faster  
-- Power: 50% less consumption  
-- Memory: 25x more efficient  
-
-**vs C++ Standard Library:**
-- Speed: 5.5x faster  
-- Power: 33% less consumption  
-- Memory safety: Inherently secure  
-
-## Enterprise Impact
-
-**100MW Data Center Savings:**
-- **Annual baseline cost:** $87.6M  
-- **Luxi Edge cost (10% workload):** $4.87M  
-- **Annual savings:** **$82.7M**  
-- **Payback period:** <1 month  
-
-## Validation Protocol
-
-**Reproducible Test:**
-\`\`\`bash
-# Baseline (idle system)
-sudo powermetrics --samplers cpu_power -i 2000 -n 3 > baseline.txt
-
-# Load test (5,000 operations)
-./target/release/erock_server &
-sleep 3
-for i in {1..5000}; do
-  curl -s -X POST http://localhost:3000/evaluate \\
-    -H "Content-Type: application/json" \\
-    -d '{"expression": "sin(pi/2) + log(e)"}' > /dev/null
-done
-sudo powermetrics --samplers cpu_power -i 2000 -n 5 > load.txt
-kill %1 2>/dev/null || lsof -ti:3000 | xargs kill -9
-
-# Results
-echo "Baseline: $(grep 'CPU Power' baseline.txt | tail -1 | awk '{print $3}')"
-echo "Luxi Edge: $(grep 'CPU Power' load.txt | tail -1 | awk '{print $3}')"
-\`\`\`
-
-**Expected Results:**
-- Baseline: 750-850 mW  
-- Luxi Edge load: 550-650 mW  
-- Differential: 20-30% reduction  
-
-## Deployment Profile
-
-- **Binary Size:** 8-10 MB  
-- **Memory Usage:** 8-12 MB  
-- **Startup Time:** 12 ms  
-- **Architecture:** x86_64, ARM64  
-- **Dependencies:** None  
-
-## Licensing
-
-**Commercial Use:** Requires enterprise licensing  
-**Evaluation:** Limited to 10,000 operations/day  
-**Contact:** e@ewaller.com  
-
-**Notice:** Performance data provided for validation purposes. Implementation details are subject to commercial license terms.
-
----
-*Prepared by Luxi Edge Engineering Team*  
-*October 22, 2024*
+- [`docs/benchmarks/README.md`](docs/benchmarks/README.md) – navigation hub for every benchmark artifact.
+- [`docs/benchmarks/COMPARATIVE_ANALYSIS.md`](docs/benchmarks/COMPARATIVE_ANALYSIS.md) – Luxi Edge vs. NumPy, SciPy Newton, and tuned C++.
+- [`docs/benchmarks/data_exports/`](docs/benchmarks/data_exports/) – raw Criterion exports (JSON/HTML). *(Generated via `cargo bench -- --save-baseline`).*
