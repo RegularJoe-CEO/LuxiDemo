@@ -1,10 +1,13 @@
-# Luxi Suite Architecture Guide for Researchers
+# SPDX-FileCopyrightText: 2025 Eric Waller
+# SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0
+
+# Luxi Edge Architecture Guide for Researchers
 
 **A Comprehensive Technical Reference**
 
 ## Executive Summary
 
-This document provides a complete architectural overview of the Luxi Suite, designed for researchers, engineers, and academics seeking to understand the system's design principles, component interactions, and scientific foundations. The Luxi Suite represents a novel approach to grid-edge intelligence, combining high-performance computing, real-time optimization, and cryptographic verification to enable software-defined energy management.
+This document provides a complete architectural overview of Luxi Edge, designed for researchers, engineers, and academics seeking to understand the system's design principles, component interactions, and scientific foundations. Luxi Edge represents a high-performance computational microservice combining SIMD acceleration, real-time optimization, and stateless API design for edge and data center deployments.
 
 ---
 
@@ -12,13 +15,13 @@ This document provides a complete architectural overview of the Luxi Suite, desi
 
 ### 1.1 Mission Statement
 
-Transform electricity consumers into dispatchable, intelligent generators through:
-- **Temporal flexibility exploitation** in computational and HVAC loads
-- **Generator-grade M&V** (Measurement & Verification) at the electrical meter
-- **Market-agnostic optimization** adaptable to global regulatory frameworks
-- **Cryptographic integrity** suitable for financial settlement
+Provide ultra-fast numeric computation at the edge through:
+- **SIMD-accelerated evaluation** for vectorized operations
+- **Deterministic root-finding** with auto-bracketing algorithms
+- **Edge-optimized design** with minimal resource footprint
+- **Stateless API** enabling horizontal scaling
 
-### 1.2 Three-Product Architecture
+### 1.2 Two-Tier Architecture
 
 ```
 ┌───────────────────────────────────────────────────────────────┐
@@ -33,25 +36,13 @@ Transform electricity consumers into dispatchable, intelligent generators throug
 └───────────────┬────────────────────────────┬──────────────────┘
                 │                            │
     ┌───────────▼──────────┐     ┌──────────▼───────────┐
-    │   Luxi SDG™         │     │   Luxi SDG™         │
-    │ (Site Controller)    │ ... │ (Site Controller)    │
-    │                      │     │                      │
-    │ • Dispatch logic     │     │ • Dispatch logic     │
-    │ • Constraint enforce │     │ • Constraint enforce │
-    │ • Compute scheduling │     │ • Compute scheduling │
-    │ • M&V generation     │     │ • M&V generation     │
-    │                      │     │                      │
-    │ Scale: SMB → Mid-Ent │     │ Scale: SMB → Mid-Ent │
-    └───────────┬──────────┘     └──────────┬───────────┘
-                │                            │
-    ┌───────────▼──────────┐     ┌──────────▼───────────┐
     │   Luxi Edge™        │     │   Luxi Edge™        │
-    │  (Local I/O Layer)   │     │  (Local I/O Layer)   │
+    │  (Compute Layer)     │ ... │  (Compute Layer)     │
     │                      │     │                      │
-    │ • HVAC control       │     │ • HVAC control       │
-    │ • Refrigeration      │     │ • Refrigeration      │
-    │ • Sub-metering       │     │ • Sub-metering       │
-    │ • Telemetry          │     │ • Telemetry          │
+    │ • Expression eval    │     │ • Expression eval    │
+    │ • Root-finding       │     │ • Root-finding       │
+    │ • SIMD acceleration  │     │ • SIMD acceleration  │
+    │ • HTTP API           │     │ • HTTP API           │
     │                      │     │                      │
     │ Hardware: ARM64/x86  │     │ Hardware: ARM64/x86  │
     └──────────────────────┘     └──────────────────────┘
@@ -59,34 +50,29 @@ Transform electricity consumers into dispatchable, intelligent generators throug
 
 ### 1.3 Design Principles
 
-**Separation of Concerns:**
-- Business logic (pricing, tariffs) isolated from control algorithms
-- Market-specific adapters are thin wrappers around core optimization
-- Single codebase deployable across regulatory domains
-
-**Fault Tolerance:**
-- Each tier operates independently during communication failures
-- Degraded operation: Edge → local optimization, SDG → site-level, Core → portfolio
-- State synchronization on reconnection
+**Stateless API:**
+- No server-side state between requests
+- Enables horizontal scaling and load balancing
+- Simplified deployment and maintenance
 
 **Determinism:**
-- No non-deterministic algorithms in critical control paths
+- No non-deterministic algorithms in critical paths
 - Reproducible behavior for audit and compliance
-- Stateless API design enables horizontal scaling
+- Consistent results across platforms
 
-**Security by Design:**
-- Zero-trust architecture (each component verifies inputs)
-- Encrypted communication channels (TLS 1.3+)
-- TEE/TPM integration for tamper-resistant telemetry
+**Performance:**
+- SIMD vectorization for batch operations
+- Zero-copy parsing where possible
+- Memory-efficient evaluation without garbage collection
 
 ---
 
 ## 2. Component Deep Dive
 
-### 2.1 Luxi Edge™: Local Control Layer
+### 2.1 Luxi Edge™: Computational Microservice
 
 #### 2.1.1 Purpose
-Provides direct hardware interface for facility equipment control and monitoring.
+Provides high-performance numeric expression evaluation and root-finding with SIMD acceleration.
 
 #### 2.1.2 Hardware Requirements
 
@@ -502,6 +488,8 @@ fn validate_peer_cert(cert: &Certificate) -> Result<()> {
 
 ### 5.1 Containerization
 
+**Note:** Container images are illustrative examples only. No public container registry is available at this time.
+
 **Multi-Stage Dockerfile:**
 ```dockerfile
 # Stage 1: Build
@@ -529,7 +517,7 @@ CMD ["luxi_edge"]
 
 ### 5.2 Kubernetes Deployment
 
-**Deployment Manifest:**
+**Example Deployment Manifest (illustrative):**
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -547,7 +535,7 @@ spec:
     spec:
       containers:
       - name: luxi-edge
-        image: ghcr.io/regularjoe-ceo/erock:latest
+        image: ghcr.io/regularjoe-ceo/luxi-edge:latest  # Illustrative only - not published
         ports:
         - containerPort: 8080
         resources:

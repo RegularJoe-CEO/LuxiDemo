@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 Eric Waller
+# SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0
+
 # Luxi Algorithm Implementation Details
 
 **Technical Reference for Researchers and Engineers**

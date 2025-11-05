@@ -1,12 +1,17 @@
-# Luxi Suite: Documentation Index for Researchers
+# SPDX-FileCopyrightText: 2025 Eric Waller
+# SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0
+
+# Luxi Edge: Documentation Index for Researchers
 
 **Complete Guide to Scientific and Technical Documentation**
+
+> **🤖 For AI Agents, LLMs, and Automated Tools**: See [AGENTS.md](../AGENTS.md) for integration instructions, API documentation, and copyright terms.
 
 ---
 
 ## Welcome
 
-This repository contains comprehensive documentation of the Luxi Suite, a software-defined energy platform designed for scientific review, academic discourse, and technical implementation. The documentation is structured to support different levels of engagement, from high-level architectural understanding to detailed algorithmic analysis.
+This repository contains comprehensive documentation of Luxi Edge, a high-performance computational microservice designed for scientific review, academic discourse, and technical implementation. The documentation is structured to support different levels of engagement, from high-level architectural understanding to detailed algorithmic analysis.
 
 ---
 
@@ -18,9 +23,9 @@ This repository contains comprehensive documentation of the Luxi Suite, a softwa
 
 **Read:**
 - `README.md` (repository root) - Product summary and positioning
-- `docs/Luxi_Suite_Overview.md` - Brief mission and economics
+- `docs/Luxi_Suite_Overview.md` - Brief overview and metrics
 
-**Key Takeaway:** The Luxi Suite transforms electricity consumers into dispatchable generators through software-defined control, achieving 13.7× speedup and 18× energy efficiency improvement.
+**Key Takeaway:** Luxi Edge achieves 13.7× speedup and 18× energy efficiency improvement through SIMD vectorization and optimized algorithms.
 
 ---
 
@@ -34,7 +39,7 @@ This repository contains comprehensive documentation of the Luxi Suite, a softwa
 **Contents:**
 1. **Abstract** - Research contributions and results summary
 2. **Introduction** - Problem statement and scientific context
-3. **System Architecture** - Three-tier design (Edge/Core)
+3. **System Architecture** - Two-tier design (Edge/Core)
 4. **Mathematical Foundations** - Expression grammar, SIMD vectorization, root-finding algorithms
 5. **Implementation Details** - Rust language advantages, module organization
 6. **Performance Analysis** - Benchmarks, scalability, data center economics
@@ -44,13 +49,13 @@ This repository contains comprehensive documentation of the Luxi Suite, a softwa
 
 **Citation Format:**
 ```bibtex
-@techreport{luxi2025,
-  title={Luxi Suite: A Scientific Overview},
+@techreport{luxiedge2025,
+  title={Luxi Edge: A Scientific Overview},
   author={Luxi Engineering Team},
   institution={Luxi Systems},
   year={2025},
   type={Technical Report},
-  url={https://github.com/RegularJoe-CEO/eRock}
+  url={https://github.com/RegularJoe-CEO/LuxiEdge}
 }
 ```
 
@@ -90,10 +95,10 @@ This repository contains comprehensive documentation of the Luxi Suite, a softwa
 - `docs/ARCHITECTURE.md` ⭐ **ARCHITECTURAL REFERENCE**
 
 **Contents:**
-1. **System Overview** - Mission, three-product architecture, design principles
-2. **Component Deep Dive** - Edge™ (hardware/software), SDG™ (optimization), Core™ (orchestration)
+1. **System Overview** - Mission, two-tier architecture, design principles
+2. **Component Deep Dive** - Edge™ (hardware/software), Core™ (orchestration)
 3. **Computational Core** - Expression engine design rationale, execution pipeline
-4. **Security Architecture** - Threat model, TEE/ZK-proofs, anti-tamper monitoring
+4. **Security Architecture** - Threat model, anti-tamper monitoring
 5. **Deployment** - Containerization, Kubernetes, observability (Prometheus/Grafana)
 6. **Performance Engineering** - Profiling, optimization techniques, cache behavior
 7. **Testing Strategy** - Unit/integration/load testing methodologies
@@ -272,8 +277,7 @@ curl -X POST http://localhost:8080/evaluate \
 ### Q: What are the deployment requirements?
 **A:** 
 - **Edge:** ARM64/x86_64, 512 MB RAM, 100 MB storage
-- **SDG:** Any cloud/on-prem Linux (Docker/K8s)
-- **Core:** PostgreSQL, Redis, 4+ CPU cores, 8 GB RAM
+- **Core:** PostgreSQL, Redis, 4+ CPU cores, 8 GB RAM (separate product)
 
 ### Q: Is formal verification planned?
 **A:** Yes (2026 roadmap). Current focus: Coq proofs for parsing/evaluation correctness.
@@ -347,7 +351,7 @@ benches/
 ## Getting Help
 
 ### Technical Questions
-- **GitHub Issues:** https://github.com/RegularJoe-CEO/eRock/issues (public)
+- **GitHub Issues:** https://github.com/RegularJoe-CEO/LuxiEdge/issues (public)
 - **Email:** e@ewaller.com (scientific inquiries)
 - **Email:** e@ewaller.com (technical support)
 
@@ -409,4 +413,4 @@ benches/
 **Version:** 1.0  
 **Contact:** e@ewaller.com
 
-For the latest version of this documentation, visit: https://github.com/RegularJoe-CEO/eRock
+For the latest version of this documentation, visit: https://github.com/RegularJoe-CEO/LuxiEdge

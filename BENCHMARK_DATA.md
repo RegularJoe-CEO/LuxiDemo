@@ -1,14 +1,17 @@
-# eRock Benchmark Data
+# SPDX-FileCopyrightText: 2025 Eric Waller
+# SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0
+
+# Luxi Edge Benchmark Data
 
 **Version:** 1.0  
 **Date:** October 22, 2024  
 **Hardware:** Apple M1 Pro MacBook Pro  
-**Software:** eRock v0.1.0  
+**Software:** Luxi Edge v0.1.0  
 
 ## Core Performance Metrics
 
-| Metric | Baseline | eRock | Improvement |
-|--------|----------|-------|-------------|
+| Metric | Baseline | Luxi Edge | Improvement |
+|--------|----------|-----------|-------------|
 | **Speed (100k ops)** | 7.104 ms | 0.517 ms | **13.7x faster** |
 | **Power (Idle)** | 783 mW | - | - |
 | **Power (Load)** | - | 596 mW | **24% less than idle** |
@@ -23,12 +26,12 @@
 
 **Raw Measurements:**
 - **System Idle:** 783 mW (baseline)  
-- **eRock Under Load:** 596 mW  
+- **Luxi Edge Under Load:** 596 mW  
 - **Power Reduction:** 187 mW (23.9%)  
 
 **Energy Calculation:**
 - Baseline: 783 mW × 71.04 µs = 55.6 µJ per operation  
-- eRock: 596 mW × 5.17 µs = 3.08 µJ per operation  
+- Luxi Edge: 596 mW × 5.17 µs = 3.08 µJ per operation  
 - **Total Efficiency:** 18x improvement  
 
 ## Speed Benchmarks
@@ -67,7 +70,7 @@
 
 **100MW Data Center Savings:**
 - **Annual baseline cost:** $87.6M  
-- **eRock cost (10% workload):** $4.87M  
+- **Luxi Edge cost (10% workload):** $4.87M  
 - **Annual savings:** **$82.7M**  
 - **Payback period:** <1 month  
 
@@ -91,12 +94,12 @@ kill %1 2>/dev/null || lsof -ti:3000 | xargs kill -9
 
 # Results
 echo "Baseline: $(grep 'CPU Power' baseline.txt | tail -1 | awk '{print $3}')"
-echo "eRock: $(grep 'CPU Power' load.txt | tail -1 | awk '{print $3}')"
+echo "Luxi Edge: $(grep 'CPU Power' load.txt | tail -1 | awk '{print $3}')"
 \`\`\`
 
 **Expected Results:**
 - Baseline: 750-850 mW  
-- eRock load: 550-650 mW  
+- Luxi Edge load: 550-650 mW  
 - Differential: 20-30% reduction  
 
 ## Deployment Profile
@@ -116,5 +119,5 @@ echo "eRock: $(grep 'CPU Power' load.txt | tail -1 | awk '{print $3}')"
 **Proprietary Notice:** Performance data provided for validation. Implementation details are confidential and protected.
 
 ---
-*Prepared by eRock Engineering Team*  
+*Prepared by Luxi Edge Engineering Team*  
 *October 22, 2024*

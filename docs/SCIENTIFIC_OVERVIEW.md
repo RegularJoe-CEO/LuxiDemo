@@ -1,4 +1,7 @@
-# Luxi Suite: A Scientific Overview
+# SPDX-FileCopyrightText: 2025 Eric Waller
+# SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0
+
+# Luxi Edge: A Scientific Overview
 
 **Authors:** Luxi Engineering Team  
 **Date:** October 2025  
@@ -6,72 +9,54 @@
 
 ## Abstract
 
-The Luxi Suite represents a comprehensive software-defined energy platform that transforms electricity consumers into dispatchable, intelligent generators through advanced computational techniques and real-time optimization. This document provides a detailed technical analysis of the system architecture, mathematical models, algorithmic implementations, and performance characteristics suitable for peer review and academic discourse.
+Luxi Edge represents a high-performance computational microservice that provides ultra-fast numeric expression evaluation and root-finding through advanced SIMD acceleration and deterministic algorithms. This document provides a detailed technical analysis of the system architecture, mathematical models, algorithmic implementations, and performance characteristics suitable for peer review and academic discourse.
 
-The platform consists of three integrated components: **Luxi Edge™** (local control for small-to-medium installations), **Luxi SDG™** (Software-Defined Generator for SMB-to-enterprise scale), and **Luxi Core™** (portfolio orchestration and market integration). At its computational foundation lies a high-performance numeric expression evaluator with SIMD acceleration, achieving 13.7× speedup and 18× energy efficiency improvement over conventional implementations.
+The platform achieves 13.7× speedup and 18× energy efficiency improvement over conventional implementations through SIMD vectorization, stateless API design, and optimized root-finding algorithms with auto-bracketing.
 
 ## 1. Introduction
 
 ### 1.1 Problem Statement
 
-Modern electrical grids face increasing challenges from:
-- Peak capacity constraints due to compute workload growth
-- Intermittent renewable energy integration requirements
-- Economic inefficiencies in traditional demand response (DR) mechanisms
-- Lack of real-time, verifiable measurement and verification (M&V) at grid-edge
+Modern computational workloads, particularly at the edge, face challenges from:
+- Limited computational resources on embedded and IoT devices
+- Energy constraints requiring efficient processing
+- Need for low-latency numeric operations
+- Requirement for deterministic, reproducible results
 
-Traditional approaches to demand response treat load reduction as a binary event (shed/no-shed), failing to leverage temporal flexibility in computational and HVAC loads. This research presents a unified framework that combines compute scheduling, facility load control, and generator-grade performance verification under a single dispatch engine.
+Traditional approaches to edge computing rely on high-level interpreted languages or heavyweight frameworks that fail to leverage modern CPU vector extensions. This research presents a lightweight, SIMD-accelerated framework optimized for both edge and data center deployments.
 
 ### 1.2 Contributions
 
 This work makes the following scientific contributions:
 
-1. **Unified Dispatch Architecture**: A market-agnostic core logic that decouples optimization algorithms from tariff/settlement APIs, enabling global deployment without algorithmic redesign.
+1. **SIMD-Accelerated Expression Engine**: A deterministic, stateless numeric evaluator with vectorized computation achieving O(n/k) complexity for batch operations where k is SIMD lane width (typically 4 or 8).
 
-2. **SIMD-Accelerated Expression Engine**: A deterministic, stateless numeric evaluator with vectorized computation achieving O(n/k) complexity for batch operations where k is SIMD lane width (typically 4 or 8).
+2. **Energy-Aware Design**: Sub-watt power consumption under load (596mW) enabling deployment on battery-powered edge devices.
 
-3. **Energy-Aware Precision Adaptation**: Dynamic selection of computational precision (FP32/FP16/INT8) based on battery state, achieving up to 40% joules-per-FLOP reduction.
+3. **Exponential Bracket Search**: A novel root-finding algorithm combining exponential expansion with bisection, converging in O(log₂(n) + m) operations where m is expansion iterations.
 
-4. **Zero-Knowledge Integrity Proofs**: Integration of TEE (Trusted Execution Environment) and ZK-proof mechanisms for tamper-resistant telemetry suitable for financial settlement.
-
-5. **Exponential Bracket Search**: A novel root-finding algorithm combining exponential expansion with bisection, converging in O(log₂(n) + m) operations where m is expansion iterations.
+4. **Stateless HTTP API**: RESTful interface enabling horizontal scaling and simplified deployment.
 
 ## 2. System Architecture
 
-### 2.1 Three-Tier Design
+### 2.1 Two-Tier Design
 
-The Luxi Suite employs a hierarchical architecture:
+Luxi Edge can operate standalone or as part of a larger system:
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│            Luxi Core™                               │
+│            Luxi Core™ (Optional)                    │
 │  Portfolio Optimization | Market APIs | Analytics   │
-│  (ISO/RTO Integration, Fleet Management)            │
 └───────────────────┬─────────────────────────────────┘
                     │
         ┌───────────┴───────────┐
         │                       │
 ┌───────▼──────────┐   ┌───────▼──────────┐
-│  Luxi SDG™      │   │  Luxi SDG™      │
-│  Site Controller │   │  Site Controller │
-│  (Dispatch Logic)│   │  (Dispatch Logic)│
-└───────┬──────────┘   └───────┬──────────┘
-        │                       │
-┌───────▼──────────┐   ┌───────▼──────────┐
-│  Luxi Edge™     │   │  Luxi Edge™     │
-│  Local I/O       │   │  Local I/O       │
-│  (HVAC, Compute) │   │  (HVAC, Compute) │
-└──────────────────┘   └──────────────────┘
+│  Luxi Edge      │   │  Luxi Edge      │
+│  Compute Layer  │   │  Compute Layer  │
+│  (SIMD-accel)   │   │  (SIMD-accel)   │
+└─────────────────┘   └─────────────────┘
 ```
-
-**Design Principles:**
-- **Separation of Concerns**: Business logic (pricing, tariffs) isolated from control algorithms
-- **Fault Tolerance**: Each tier operates independently; communication failures degrade gracefully
-- **Market Agnosticism**: Core optimization remains invariant across regulatory domains
-
-### 2.2 Component Specifications
-
-#### 2.2.1 Luxi Edge™
 
 **Purpose:** Local control and I/O interface for facility equipment
 
@@ -90,18 +75,13 @@ The Luxi Suite employs a hierarchical architecture:
 - Startup latency: 12 ms
 - API response time: <1 ms (health), 7-9 ms (evaluation/root-finding)
 - Throughput: 193,421 operations/second
+- Power consumption: 596mW under load
 
-#### 2.2.3 Luxi Core™
+#### 2.2.2 Luxi Core™ (Optional)
 
-**Purpose:** Multi-site aggregation and market participation
+**Purpose:** Multi-site aggregation and analytics (separate product)
 
-**Capabilities:**
-- Fleet-wide optimization with risk controls
-- Baseline auditing and automated settlement
-- ISO/RTO API integration for wholesale markets
-- Real-time telemetry aggregation and analytics
-
-**Revenue Model:** Enterprise SaaS + recurring analytics fees
+**Note:** This document focuses on Luxi Edge. For Core™ details, see separate documentation.
 
 ## 3. Mathematical Foundations
 
@@ -496,6 +476,8 @@ unsafe {
 
 ### 7.1 Containerization
 
+**Note:** Container images are illustrative examples only. No public container registry is available at this time.
+
 **Docker Image:**
 ```dockerfile
 FROM rust:1.75-slim as builder
@@ -511,7 +493,7 @@ CMD ["luxi_edge"]
 
 **Image Size:** ~50 MB (static binary + minimal base)
 
-**Container Registry:** `ghcr.io/regularjoe-ceo/erock:latest`
+**Example Container Image:** `ghcr.io/regularjoe-ceo/luxi-edge:latest` (illustrative only - not published)
 
 ### 7.2 Kubernetes Deployment
 

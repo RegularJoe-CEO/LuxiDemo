@@ -1,8 +1,8 @@
 # SPDX-FileCopyrightText: 2025 Eric Waller
-# SPDX-License-Identifier: Proprietary
+# SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0
 
-This repository includes proprietary documentation and collateral supporting provisional and/or utility patent filings related to the Erock Suite.
+This repository includes documentation and materials supporting provisional and/or utility patent filings related to the Luxi Edge platform.
 
-Trademarks: Erock Edge™, Erock SDG™, Erock Core™ are trademarks of Eric Waller.
+Trademarks: Luxi Edge™, Luxi Core™ are trademarks of Eric Waller.
 
-Any public metrics presented are sanitized and illustrative unless otherwise noted. Deployment figures, market participation, and ROI are subject to site-specific engineering, safety constraints, and market rules.
+All performance metrics presented reflect measured results from benchmarking workloads. See BENCHMARK_DATA.md for methodology, hardware specifications, and validation protocols. Deployment figures, market participation, and ROI are subject to site-specific engineering, safety constraints, and market rules.

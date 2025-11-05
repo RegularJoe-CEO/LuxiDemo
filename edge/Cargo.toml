@@ -1,13 +1,13 @@
 # SPDX-FileCopyrightText: 2025 Eric Waller
-# SPDX-License-Identifier: LicenseRef-eRock-Business-1.0
+# SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0
 
 [package]
 name = "erock_edge"
 license-file = "../LICENSE"
 readme = "../README.md"
-repository = "https://github.com/RegularJoe-CEO/eRock"
-homepage = "https://github.com/RegularJoe-CEO/eRock"
-documentation = "https://github.com/RegularJoe-CEO/eRock/blob/main/EROCK_FULL_GUIDE.md"
+repository = "https://github.com/RegularJoe-CEO/LuxiEdge"
+homepage = "https://github.com/RegularJoe-CEO/LuxiEdge"
+documentation = "https://github.com/RegularJoe-CEO/LuxiEdge/blob/main/docs/README.md"
 keywords = ["axum","http-server","api"]
 categories = ["web-programming::http-server"]
 version = "0.1.0"

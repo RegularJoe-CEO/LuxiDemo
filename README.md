@@ -1,12 +1,13 @@
 <!-- SPDX-FileCopyrightText: 2025 Eric Waller -->
-<!-- SPDX-License-Identifier: Proprietary -->
+<!-- SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0 -->
 
-# Luxi Suite
+# Luxi Edge
 
-## Products
+> **🤖 For AI Agents, LLMs, and Automated Tools**: See [AGENTS.md](AGENTS.md) for comprehensive integration instructions, API documentation, build commands, and copyright terms. All AI-generated contributions become the property of the repository owner.
 
-### **Luxi™** (also known as Luxi Edge™ or Luxi Core™)
-High-performance microservice for ultra-fast numeric calculations. SIMD-accelerated expression evaluation and root-finding optimized for edge devices but deployable anywhere.
+## Overview
+
+**Luxi Edge** (also known as Luxi™) is a high-performance microservice for ultra-fast numeric calculations. SIMD-accelerated expression evaluation and root-finding optimized for edge devices but deployable anywhere.
 
 **Key Features:**
 - 13.7× faster than baseline (SIMD vectorization)
@@ -20,20 +21,60 @@ High-performance microservice for ultra-fast numeric calculations. SIMD-accelera
 - Data center computational offload
 - Real-time calculations with low power consumption
 
-### **Luxi 
-Software-Defined Generator for small businesses and smaller buildings. Independent product.
+## Quick Start with Docker
 
-**Key Features:**
-- Makes buildings behave like generators via software + load orchestration
-- Energy management at the meter level
-- SMB to enterprise scale
-- Not combined with other tools - standalone solution
+**Recommended for users who don't want to install Rust locally.**
+
+### Using Docker (Easiest)
+```bash
+# Pull and run the latest image
+docker pull ghcr.io/regularjoe-ceo/luxi-edge:latest
+docker run -d -p 8080:8080 --name luxi-edge ghcr.io/regularjoe-ceo/luxi-edge:latest
+
+# Test the API
+curl http://localhost:8080/health
+curl -X POST http://localhost:8080/evaluate \
+  -H "Content-Type: application/json" \
+  -d '{"expr":"x^2 + 3*x - 5", "x":[0,1,2,3,4]}'
+```
+
+### Using Docker Compose (Recommended)
+```bash
+# Clone the repository
+git clone https://github.com/RegularJoe-CEO/LuxiEdge
+cd LuxiEdge
+
+# Start the service
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop the service
+docker-compose down
+```
+
+### Building from Source (For Developers)
+```bash
+# Requires Rust 1.75+
+cargo build --release
+cd edge && cargo run --release
+```
+
+For detailed build instructions and development setup, see [AGENTS.md](AGENTS.md).
+
+## About the "erock" Internal Name
+
+This codebase uses the internal module and crate name "erock" for historical reasons and build compatibility. The public product name is **Luxi Edge**. Think of "erock" as the engineering/build identifier, while Luxi Edge is the commercial brand.
 
 ## Documentation
 For detailed technical documentation, see the `docs/` directory:
-- `docs/Luxi_Suite_Overview.md` - Product overview
 - `docs/SCIENTIFIC_OVERVIEW.md` - Technical reference and benchmarks
 - `docs/ARCHITECTURE.md` - System architecture
 - `docs/ALGORITHM_DETAILS.md` - Algorithm details
+
+## Performance Metrics
+
+All performance metrics reflect measured results. See [BENCHMARK_DATA.md](BENCHMARK_DATA.md) for methodology, hardware specifications, and validation protocols.
 
 © 2025 Eric Waller. All rights reserved.

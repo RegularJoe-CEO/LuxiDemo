@@ -1,0 +1,31 @@
+# SPDX-FileCopyrightText: 2025 Eric Waller
+# SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0
+
+version: '3.8'
+
+services:
+  luxi-edge:
+    image: ghcr.io/regularjoe-ceo/luxi-edge:latest
+    container_name: luxi-edge
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    labels:
+      - "org.opencontainers.image.title=Luxi Edge"
+      - "org.opencontainers.image.description=Ultra-fast numeric computation microservice"
+
+  # Example: Run from local build instead of pulling image
+  # Uncomment to use local Dockerfile
+  # luxi-edge-local:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8080:8080"
+  #   restart: unless-stopped

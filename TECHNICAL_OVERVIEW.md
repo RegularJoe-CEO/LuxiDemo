@@ -1,11 +1,13 @@
 <!-- SPDX-FileCopyrightText: 2025 Eric Waller -->
-<!-- SPDX-License-Identifier: LicenseRef-eRock-Business-1.0 -->
+<!-- SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0 -->
 
-# eRock Technical Overview
+# Luxi Edge Technical Overview
 
 ## Abstract
 
-This document provides a technical description of the eRock codebase architecture, implementation details, and computational methods. The content is intended for academic study and scientific analysis.
+This document provides a technical description of the Luxi Edge codebase architecture, implementation details, and computational methods. The content is intended for academic study and scientific analysis.
+
+**Note:** This codebase uses the internal module and crate name "erock" for historical reasons and build compatibility. The public product name is **Luxi Edge**.
 
 ## 1. System Architecture
 

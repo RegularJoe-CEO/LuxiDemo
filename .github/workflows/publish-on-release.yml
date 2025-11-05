@@ -36,7 +36,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/regularjoe-ceo/erock
+          images: ghcr.io/regularjoe-ceo/luxi-edge
           tags: |
             type=ref,event=tag
             type=sha

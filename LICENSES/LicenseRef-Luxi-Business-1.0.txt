@@ -1,0 +1,65 @@
+Luxi Business License v1.0
+Copyright (c) 2025 Eric Waller. All rights reserved.
+
+This is not legal advice. By using, copying, or distributing the Software, you accept these terms.
+
+Parameters
+  Licensed Work: The "Software" is the LuxiEdge codebase in this repository.
+  Licensor: Eric Waller
+  Contact: e@ewaller.com
+
+1. Definitions
+  1.1 "Software" means the source code, object code, and documentation in this repository.
+  1.2 "Non-Commercial Use" means any use with no direct or indirect monetary consideration,
+      revenue, or compensation of any kind from use of the Software or a service that depends on it.
+  1.3 "Commercial Use" means any use or distribution that is not Non-Commercial, including running
+      the Software in production, providing it as or within a service, selling or licensing it, or
+      using it to derive or facilitate revenue, cost savings sold as a service, or other commercial advantage.
+  1.4 "Evaluation Term" means up to twelve (12) months from your first internal use of the Software.
+
+2. License Grant – Free Non-Commercial and Evaluation Use
+  2.1 Subject to these terms, Licensor grants you a worldwide, non-exclusive, non-transferable,
+      royalty-free license to use, copy, modify, create derivative works of, and distribute the
+      Software solely for Non-Commercial Use and/or internal evaluation during the Evaluation Term.
+  2.2 You may distribute Non-Commercial copies and derivatives if you:
+      (a) include this license in full; (b) do not remove notices; and (c) clearly mark changes.
+  2.3 A limited, non-commercial patent license is included to the extent strictly necessary to
+      exercise the rights above. No trademark rights are granted.
+
+3. Commercial Use
+  3.1 Commercial Use requires a separate paid commercial license from Licensor.
+      Contact: e@ewaller.com
+  3.2 If you begin any Commercial Use before obtaining a commercial license, this license terminates
+      immediately (Section 6) and you must cease all use.
+  3.3 Nothing in this license obligates Licensor to offer, price, or grant a commercial license.
+
+4. Notices; Redistribution
+  4.1 You must retain all copyright, license, and attribution notices in all copies and
+      substantial portions of the Software.
+  4.2 You must not use Licensor's names, logos, or trademarks without separate permission.
+
+5. Termination; Cure
+  5.1 This license terminates automatically if you breach it. If your breach is curable, it
+      reinstates automatically upon your curing the breach within 30 days of discovery, unless
+      Licensor notifies you that reinstatement is withheld due to repeated or willful breach.
+  5.2 Upon termination, you must cease use and distribution and destroy or return copies in your control.
+
+6. Disclaimer of Warranty
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+  BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE,
+  AND NON-INFRINGEMENT. YOU USE IT AT YOUR OWN RISK.
+
+7. Limitation of Liability
+  TO THE MAXIMUM EXTENT PERMITTED BY LAW, LICENSOR WILL NOT BE LIABLE FOR ANY INDIRECT, SPECIAL,
+  INCIDENTAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR FOR LOSS OF PROFITS, REVENUE,
+  DATA, OR GOODWILL, ARISING OUT OF OR RELATING TO THIS LICENSE OR THE SOFTWARE, EVEN IF ADVISED
+  OF THE POSSIBILITY OF SUCH DAMAGES. LICENSOR'S AGGREGATE LIABILITY WILL NOT EXCEED $100.
+
+8. General
+  8.1 No waiver is effective unless in writing and signed by Licensor. If any provision is held
+      unenforceable, it will be reformed to the minimum extent necessary; the remainder remains in effect.
+  8.2 This license is governed by the laws of Texas, USA, excluding its conflict-of-laws rules.
+  8.3 You may not assign this license without Licensor's written consent. Licensor may update this
+      license for future releases; your existing copy remains under the version you accepted.
+
+— End of Luxi Business License v1.0 —

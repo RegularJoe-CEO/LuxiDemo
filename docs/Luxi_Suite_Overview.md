@@ -1,11 +1,11 @@
 <!-- SPDX-FileCopyrightText: 2025 Eric Waller -->
-<!-- SPDX-License-Identifier: Proprietary -->
+<!-- SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0 -->
 
-# Luxi Suite Overview
+# Luxi Edge Overview
 
-## Products
+## Product
 
-### **Luxi™** (Luxi Edge™ / Luxi Core™)
+### **Luxi Edge**
 High-performance microservice for ultra-fast numeric calculations. One codebase optimized for edge but deployable anywhere.
 
 **Key metrics:**
@@ -19,4 +19,6 @@ High-performance microservice for ultra-fast numeric calculations. One codebase 
 - Data center computational offload
 - GPU-to-CPU workload offload
 - Any platform needing rapid calculations
+
+All performance metrics reflect measured results. See [BENCHMARK_DATA.md](../BENCHMARK_DATA.md) for methodology.
 
