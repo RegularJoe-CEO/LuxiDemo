@@ -1,7 +1,7 @@
 # ---------- builder ----------
 FROM rust:1.84-slim AS builder
 WORKDIR /src
-RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates pkg-config build-essential && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates pkg-config build-essential libssl-dev && rm -rf /var/lib/apt/lists/*
 
 # Copy manifests first (better caching)
 COPY Cargo.toml Cargo.toml
