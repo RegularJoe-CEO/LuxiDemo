@@ -94,6 +94,7 @@ This codebase uses the internal module and crate name "erock" for historical rea
 
 ## Documentation
 For detailed technical documentation, see the `docs/` directory:
+- **`docs/HOW_IT_WORKS.md`** ⭐ **Start here!** - Simple explanation of the math service and new features
 - `docs/SCIENTIFIC_OVERVIEW.md` - Technical reference and benchmarks
 - `docs/ARCHITECTURE.md` - System architecture
 - `docs/ALGORITHM_DETAILS.md` - Algorithm details

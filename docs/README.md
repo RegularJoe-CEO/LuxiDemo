@@ -19,13 +19,14 @@ This repository contains comprehensive documentation of Luxi Edge, a high-perfor
 
 ### 1. Quick Start (5 minutes)
 
-**For:** Researchers seeking a rapid overview
+**For:** Anyone wanting to understand what Luxi Edge does
 
 **Read:**
 - `README.md` (repository root) - Product summary and positioning
+- `docs/HOW_IT_WORKS.md` ⭐ **SIMPLE EXPLANATION FOR EVERYONE**
 - `docs/Luxi_Suite_Overview.md` - Brief overview and metrics
 
-**Key Takeaway:** Luxi Edge achieves 13.7× speedup and 18× energy efficiency improvement through SIMD vectorization and optimized algorithms.
+**Key Takeaway:** Luxi Edge is a math service that evaluates expressions, finds roots, and computes derivatives/gradients at high speed. It achieves 13.7× speedup and 18× energy efficiency improvement through SIMD vectorization and optimized algorithms.
 
 ---
 
