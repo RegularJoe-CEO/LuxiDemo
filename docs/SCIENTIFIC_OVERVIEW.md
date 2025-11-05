@@ -91,24 +91,6 @@ The Luxi Suite employs a hierarchical architecture:
 - API response time: <1 ms (health), 7-9 ms (evaluation/root-finding)
 - Throughput: 193,421 operations/second
 
-#### 2.2.2 Luxi SDG™
-
-**Purpose:** Site-level optimization and dispatch coordination
-
-**Key Features:**
-- Generator-grade M&V at electrical meter
-- Constraint enforcement (temperature bounds, anti-short-cycle logic)
-- Compute workload scheduling integration
-- Optional waste-heat-to-power (ORC/TEG) coordination
-
-**Scale Range:**
-- SMB: 25 kW peak load (~20 kW flexible)
-- Enterprise: 50 MW site load (up to 5 MW flexible + 1.2 MW WHP)
-
-**Economic Model (Illustrative):**
-- SMB: $2,800/year benefit, $7,000 install, 2.5-year payback
-- Enterprise: $1.2M/year benefit, <2-year payback
-
 #### 2.2.3 Luxi Core™
 
 **Purpose:** Multi-site aggregation and market participation

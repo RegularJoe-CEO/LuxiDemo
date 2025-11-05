@@ -34,7 +34,7 @@ This repository contains comprehensive documentation of the Luxi Suite, a softwa
 **Contents:**
 1. **Abstract** - Research contributions and results summary
 2. **Introduction** - Problem statement and scientific context
-3. **System Architecture** - Three-tier design (Edge/SDG/Core)
+3. **System Architecture** - Three-tier design (Edge/Core)
 4. **Mathematical Foundations** - Expression grammar, SIMD vectorization, root-finding algorithms
 5. **Implementation Details** - Rust language advantages, module organization
 6. **Performance Analysis** - Benchmarks, scalability, data center economics
@@ -174,7 +174,6 @@ curl -X POST http://localhost:8080/evaluate \
 
 **Read:**
 - `products/erock-edge/README.md` - Local controller (SMB installations)
-- `products/erock-sdg/README.md` - Software-Defined Generator (SMB → enterprise)
 - `products/erock-core/README.md` - Portfolio orchestration (fleet management)
 
 **Scale Examples:**

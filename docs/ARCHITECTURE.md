@@ -183,102 +183,6 @@ Response: {"root": 1.521, "f": 0.0, "lo": 1.0, "hi": 2.0, "iters": 31, "expansio
 | Max Throughput | 193k ops/sec (evaluation) |
 | Energy Efficiency | 3.08 µJ/op (SIMD) vs 55.6 µJ/op (scalar) |
 
-### 2.2 Luxi SDG™: Software-Defined Generator
-
-#### 2.2.1 Conceptual Model
-
-Transform a facility into a "generator" by:
-1. **Deferring** non-critical compute workloads to off-peak hours
-2. **Reducing** HVAC load within comfort constraints
-3. **Dispatching** on command with generator-like reliability
-
-**Key Insight:** From the grid's perspective, reducing load is equivalent to injecting power.
-
-#### 2.2.2 Optimization Formulation
-
-**Objective:** Minimize operational cost over horizon T
-
-```
-min  Σ[t=0 to T] (p_t × E_t + penalty_comfort + penalty_delay)
-
-Subject to:
-  E_t = E_compute(t) + E_hvac(t) + E_base(t)
-  T_min ≤ T_indoor(t) ≤ T_max              (comfort)
-  Δ_compute(t) ≥ Δ_min                     (progress guarantee)
-  Σ short_cycles(t) ≤ max_cycles           (equipment protection)
-  
-Where:
-  p_t       = electricity price at time t ($/kWh)
-  E_t       = total energy consumption (kWh)
-  T_indoor  = indoor temperature (°C)
-  Δ_compute = computational progress (% complete)
-```
-
-**Solution Method:**
-- Small horizon (T ≤ 24h): Mixed-integer linear programming (MILP)
-- Large horizon: Heuristic decomposition with rolling window
-
-#### 2.2.3 Constraint Enforcement
-
-**Temperature Guardrails:**
-```rust
-fn enforce_temperature(current: f64, setpoint: f64) -> ControlAction {
-    const DEADBAND: f64 = 0.5;  // °C
-    const MARGIN: f64 = 2.0;    // Safety margin
-    
-    if current > setpoint + DEADBAND {
-        return ControlAction::Cool;
-    } else if current < setpoint - DEADBAND {
-        return ControlAction::Heat;
-    } else if current > setpoint + MARGIN || current < setpoint - MARGIN {
-        return ControlAction::Emergency;  // Override all optimizations
-    } else {
-        return ControlAction::Maintain;
-    }
-}
-```
-
-**Anti-Short-Cycle Logic:**
-```rust
-const MIN_OFF_TIME: Duration = Duration::from_secs(5 * 60);  // 5 minutes
-const MIN_ON_TIME: Duration = Duration::from_secs(10 * 60); // 10 minutes
-
-fn can_start_hvac(last_stop: Instant) -> bool {
-    last_stop.elapsed() >= MIN_OFF_TIME
-}
-
-fn can_stop_hvac(last_start: Instant) -> bool {
-    last_start.elapsed() >= MIN_ON_TIME
-}
-```
-
-**Rationale:** Compressor wear increases exponentially with short-cycle frequency. Enforcing minimum durations extends equipment lifespan by 2-5 years.
-
-#### 2.2.4 Measurement & Verification (M&V)
-
-**IPMVP Protocol Compliance:**
-- Option C: Whole Facility (meter-level baseline)
-- Statistical significance: 95% confidence interval
-- Baseline adjustment: Weather normalization (degree-days)
-
-**Baseline Model:**
-```
-E_baseline(t) = β₀ + β₁ × T_outdoor(t) + β₂ × T_outdoor(t)² + β₃ × day_of_week(t)
-
-Estimated via: Linear regression on pre-intervention data (90+ days)
-```
-
-**Savings Calculation:**
-```
-Savings(t) = E_baseline(t) - E_actual(t)
-
-Uncertainty = √(σ²_baseline + σ²_actual)
-```
-
-**Reporting Frequency:**
-- Real-time: Every 15 minutes (telemetry)
-- Settlement: Daily/monthly aggregates (invoicing)
-
 ### 2.3 Luxi Core™: Portfolio Orchestration
 
 #### 2.3.1 Architecture
@@ -287,14 +191,14 @@ Uncertainty = √(σ²_baseline + σ²_actual)
 ```
 Core Instance
   ├─ Tenant A (Organization 1)
-  │    ├─ Site A1 (SDG)
-  │    ├─ Site A2 (SDG)
-  │    └─ Site A3 (SDG)
+  │    ├─ Site A1
+  │    ├─ Site A2
+  │    └─ Site A3
   ├─ Tenant B (Organization 2)
-  │    └─ Site B1 (SDG)
+  │    └─ Site B1
   └─ Tenant C (Organization 3)
-       ├─ Site C1 (SDG)
-       └─ Site C2 (SDG)
+       ├─ Site C1
+       └─ Site C2
 ```
 
 **Data Isolation:**

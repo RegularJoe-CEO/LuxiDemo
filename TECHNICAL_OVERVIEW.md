@@ -17,7 +17,7 @@ The repository contains multiple components:
 - **edge/**: HTTP API server (Axum-based) for expression evaluation and root-finding endpoints
 - **src/**: Core library with runtime, compute dispatcher, and security modules (implementation details redacted)
 - **benches/**: Performance benchmarking infrastructure using Criterion.rs
-- **products/**: Product-specific documentation for Edge, SDG, and Core variants
+- **products/**: Product-specific documentation for Edge and Core variants
 
 ### 1.2 Core Components
 

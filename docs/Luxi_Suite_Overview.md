@@ -20,14 +20,3 @@ High-performance microservice for ultra-fast numeric calculations. One codebase 
 - GPU-to-CPU workload offload
 - Any platform needing rapid calculations
 
-### **Luxi SDG™**
-Software-Defined Generator for small businesses and smaller buildings. Independent, standalone product.
-
-**Key features:**
-- Energy management via software + load orchestration
-- Makes buildings behave like generators at the meter
-- SMB to enterprise scale
-- Not combined with other tools
-
-## Why Luxi
-Ultra-fast calculations with minimal power consumption, optimized for edge but versatile enough for any deployment.
