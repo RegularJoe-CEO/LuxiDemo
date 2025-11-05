@@ -1,11 +1,14 @@
-# SPDX-FileCopyrightText: 2025 Eric Waller
-# SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0
-
-# Luxi Edge Benchmark Data
+# Luxi Benchmark Data
 
 **Version:** 1.0  
 **Date:** October 22, 2024  
 **Hardware:** Apple M1 Pro MacBook Pro  
+**Software:** Luxi v0.1.0  
+
+## Core Performance Metrics
+
+| Metric | Baseline | Luxi | Improvement |
+|--------|----------|-------|-------------|
 **Software:** Luxi Edge v0.1.0  
 
 ## Core Performance Metrics
