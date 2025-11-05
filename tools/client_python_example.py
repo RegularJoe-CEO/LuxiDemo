@@ -1,24 +1,55 @@
 #!/usr/bin/env python3
-import os, json, requests, sys
-BASE = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("BASE", "http://127.0.0.1:8080")
+import argparse, json, sys, urllib.request, urllib.error
 
-def jprint(label, r):
-    print(f"{label}: {r.text}")
+def post_json(url: str, payload: dict):
+    data = json.dumps(payload).encode("utf-8")
+    req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            body = resp.read().decode("utf-8")
+            print(body)
+            return resp.status, body
+    except urllib.error.HTTPError as e:
+        sys.stderr.write(f"HTTP {e.code} for {url}\n")
+        sys.stderr.write(e.read().decode("utf-8", errors="ignore") + "\n")
+        sys.exit(1)
 
-print("health:", end=" ")
-r = requests.get(f"{BASE}/health"); print(r.text)
+def add_precision(url: str, precision: str|None):
+    if not precision:
+        return url
+    sep = "&" if "?" in url else "?"
+    return f"{url}{sep}precision={precision}"
 
-r = requests.post(f"{BASE}/evaluate", json={
-    "expr": "x*x + 2*x + 1",
-    "x": [0.0, 1.0, 2.0, 3.0]
-}); jprint("evaluate", r)
+def main():
+    ap = argparse.ArgumentParser(description="Luxi Edge client example (PR-05 precision ready)")
+    ap.add_argument("--base", default="http://localhost:8080", help="Base URL, default http://localhost:8080")
+    ap.add_argument("--precision", choices=["f64","f32","auto"], help="Optional precision hint (query parameter). Older servers ignore it.")
+    sub = ap.add_subparsers(dest="cmd", required=True)
 
-r = requests.post(f"{BASE}/bisect", json={
-    "expr": "x*x - 2",
-    "lo": 1.0, "hi": 2.0, "tol": 1e-9, "max_iter": 60
-}); jprint("bisect", r)
+    pe = sub.add_parser("evaluate")
+    pe.add_argument("--expr", required=True)
+    pe.add_argument("--x", type=float, required=True)
 
-r = requests.post(f"{BASE}/bisect_auto", json={
-    "expr": "x*x - 2",
-    "guess": 1.0, "step": 0.5, "max_expand": 20, "tol": 1e-9, "max_iter": 60
-}); jprint("bisect_auto", r)
+    pb = sub.add_parser("bisect")
+    pb.add_argument("--expr", required=True)
+    pb.add_argument("--a", type=float, required=True)
+    pb.add_argument("--b", type=float, required=True)
+    pb.add_argument("--tol", type=float, default=1e-9)
+
+    pa = sub.add_parser("bisect_auto")
+    pa.add_argument("--expr", required=True)
+    pa.add_argument("--tol", type=float, default=1e-9)
+
+    args = ap.parse_args()
+    if args.cmd == "evaluate":
+        url = add_precision(f"{args.base}/evaluate", args.precision)
+        post_json(url, {"expression": args.expr, "x": args.x})
+    elif args.cmd == "bisect":
+        url = add_precision(f"{args.base}/bisect", args.precision)
+        post_json(url, {"expression": args.expr, "a": args.a, "b": args.b, "tolerance": args.tol})
+    elif args.cmd == "bisect_auto":
+        url = add_precision(f"{args.base}/bisect_auto", args.precision)
+        post_json(url, {"expression": args.expr, "tolerance": args.tol})
+
+if __name__ == "__main__":
+    main()

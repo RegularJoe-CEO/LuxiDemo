@@ -78,3 +78,12 @@ For detailed technical documentation, see the `docs/` directory:
 All performance metrics reflect measured results. See [BENCHMARK_DATA.md](BENCHMARK_DATA.md) for methodology, hardware specifications, and validation protocols.
 
 © 2025 Eric Waller. All rights reserved.
+
+## Precision parameter (PR‑05)
+- Optional query parameter `precision=f64|f32|auto` on /evaluate, /bisect, /bisect_auto.
+- Current server builds compute in f64; older servers may ignore this parameter.
+- Python example client:
+
+```bash
+./tools/client_python_example.py --base http://localhost:8080 --precision f32 evaluate --expr "x*x+2*x+1" --x 3
+```
