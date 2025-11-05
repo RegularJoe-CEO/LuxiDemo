@@ -1,6 +1,6 @@
 /*
 SPDX-FileCopyrightText: 2025 Eric Waller
-SPDX-License-Identifier: LicenseRef-eRock-Business-1.0
+SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0
 */
 
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
