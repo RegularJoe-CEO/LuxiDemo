@@ -1,13 +1,18 @@
 # ---------- builder ----------
 FROM rust:1.82-slim AS builder
 WORKDIR /src
-# Install minimal tooling; keep image small
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates pkg-config build-essential && rm -rf /var/lib/apt/lists/*
-# Cache deps first
-COPY Cargo.toml Cargo.lock ./
+
+# Copy manifests first (better caching)
+COPY Cargo.toml Cargo.toml
 COPY edge/Cargo.toml edge/Cargo.toml
+COPY edge/Cargo.lock edge/Cargo.lock
+
+# Copy sources
 COPY src src
 COPY edge edge
+
+# Build only the edge binary
 RUN cargo build --release --manifest-path edge/Cargo.toml
 
 # ---------- runtime ----------
