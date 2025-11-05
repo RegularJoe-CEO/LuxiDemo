@@ -1,5 +1,5 @@
 # ---------- builder ----------
-FROM rust:1.82-slim AS builder
+FROM rust:1.84-slim AS builder
 WORKDIR /src
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates pkg-config build-essential && rm -rf /var/lib/apt/lists/*
 
