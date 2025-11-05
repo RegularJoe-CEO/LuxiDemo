@@ -20,7 +20,7 @@ High-performance microservice for ultra-fast numeric calculations. SIMD-accelera
 - Data center computational offload
 - Real-time calculations with low power consumption
 
-### **Luxi SDG™**
+### **Luxi 
 Software-Defined Generator for small businesses and smaller buildings. Independent product.
 
 **Key Features:**
