@@ -1,34 +1,22 @@
-# SPDX-FileCopyrightText: 2025 Eric Waller
-# SPDX-License-Identifier: LicenseRef-eRock-Business-1.0
+# ---------- builder ----------
+FROM rust:1.82-slim AS builder
+WORKDIR /src
+# Install minimal tooling; keep image small
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates pkg-config build-essential && rm -rf /var/lib/apt/lists/*
+# Cache deps first
+COPY Cargo.toml Cargo.lock ./
+COPY edge/Cargo.toml edge/Cargo.toml
+COPY src src
+COPY edge edge
+RUN cargo build --release --manifest-path edge/Cargo.toml
 
-# ---- Build stage ----
-FROM rust:1-bookworm AS builder
-LABEL org.opencontainers.image.title="eRock Edge"
-LABEL org.opencontainers.image.description="SIMD eval and root-finding microservice (Rust, Axum)"
-LABEL org.opencontainers.image.vendor="Eric Waller"
-LABEL org.opencontainers.image.licenses="LicenseRef-eRock-Business-1.0"
+# ---------- runtime ----------
+FROM debian:bookworm-slim
 WORKDIR /app
-# Copy everything (simple + reliable for workspace builds)
-COPY . .
-# Compile release for the edge crate
-RUN cargo build --manifest-path edge/Cargo.toml --release --locked
-
-# ---- Runtime stage ----
-FROM debian:bookworm-slim AS runtime
-LABEL org.opencontainers.image.title="eRock Edge"
-LABEL org.opencontainers.image.description="SIMD eval and root-finding microservice (Rust, Axum)"
-LABEL org.opencontainers.image.vendor="Eric Waller"
-LABEL org.opencontainers.image.licenses="LicenseRef-eRock-Business-1.0"
-RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates tzdata \
- && rm -rf /var/lib/apt/lists/*
-# Non-root user
-RUN useradd -m -u 10001 appuser
-WORKDIR /app
-# Copy the optimized binary
-COPY --from=builder /app/edge/target/release/erock_edge /usr/local/bin/erock_edge
-ENV RUST_LOG=info
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl && rm -rf /var/lib/apt/lists/*
+COPY --from=builder /src/edge/target/release/erock_edge /usr/local/bin/erock_edge
 EXPOSE 8080
-USER appuser
-HEALTHCHECK --interval=30s --timeout=2s --start-period=10s \
-  CMD wget -qO- http://127.0.0.1:8080/health | grep '"status":"ok"' || exit 1
-ENTRYPOINT ["/usr/local/bin/erock_edge"]
+LABEL org.opencontainers.image.title="Luxi Edge" \
+      org.opencontainers.image.description="Ultra-fast, energy-efficient numeric microservice (Rust/Axum)" \
+      org.opencontainers.image.licenses="LicenseRef-Luxi-Business-1.0"
+ENTRYPOINT ["erock_edge"]

@@ -3,12 +3,13 @@ SPDX-FileCopyrightText: 2025 Eric Waller
 SPDX-License-Identifier: LicenseRef-eRock-Business-1.0
 */
 
-use axum::{routing::{get, post}, Json, Router};
+use axum::{routing::post, Json, Router};
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 use std::collections::HashMap;
-use erock::{lexer, parser, interpreter};
+use erock::luxi_eval::{lexer, parser, interpreter};
 mod jit_health;
+#[allow(dead_code)]
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
 
@@ -193,6 +194,7 @@ async fn bisect_auto(Json(req): Json<BisectAutoReq>) -> Json<BisectAutoResp> {
 }
 
 // ---------- /health ----------
+#[allow(dead_code)]
 async fn health() -> Json<serde_json::Value> {
     Json(json!({
         "service": "erock_edge",
