@@ -1,20 +1,20 @@
-name: docs-ci / links
-on:
-  pull_request:
-    paths:
-      - "docs/**"
-      - "*.md"
-      - "products/**/README.md"
-  push:
-    paths:
-      - "docs/**"
-      - "*.md"
-      - "products/**/README.md"
+name: docs-ci
+on: [pull_request, push]
 jobs:
-  links:
+  markdown:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
-      - name: Sanity (non-blocking)
-        run: |
-          echo "Docs CI sanity check"; true
+      - uses: avto-dev/markdown-lint@v1
+        with:
+          args: '**/*.md'
+  links:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Detect broken links
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: --verbose --no-progress --exclude-all-private '**/*.md'
