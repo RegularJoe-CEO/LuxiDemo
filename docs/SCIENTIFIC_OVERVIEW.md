@@ -64,12 +64,11 @@ Luxi Edge can operate standalone or as part of a larger system:
 - ARM64/x86_64 processor with SIMD extensions (NEON/AVX2)
 - 512 MB RAM minimum
 - 8-10 MB storage for binary
-- Digital I/O for HVAC/refrigeration control
 
 **Software Stack:**
 - Rust runtime (tokio async executor)
 - Axum HTTP server (JSON API)
-- Memory-safe I/O without garbage collection overhead
+- Memory-safe implementation without garbage collection overhead
 
 **Performance:**
 - Startup latency: 12 ms

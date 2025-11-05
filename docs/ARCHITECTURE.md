@@ -27,10 +27,10 @@ Provide ultra-fast numeric computation at the edge through:
 ┌───────────────────────────────────────────────────────────────┐
 │                     Luxi Core™                                │
 │           Portfolio Optimization & Market Integration          │
+│              (Optional multi-site orchestration)               │
 │                                                                 │
-│  • ISO/RTO API Adapters (CAISO, PJM, ERCOT, etc.)             │
+│  • API Adapters for external systems                           │
 │  • Fleet-wide optimization with risk controls                  │
-│  • Baseline auditing and automated settlement                  │
 │  • Real-time telemetry aggregation                            │
 │  • Revenue: Enterprise SaaS + analytics services               │
 └───────────────┬────────────────────────────┬──────────────────┘

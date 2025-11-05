@@ -27,6 +27,8 @@ This document provides comprehensive instructions for AI agents, LLMs, and autom
 
 ## Quick Start for AI Agents
 
+**Note:** The internal crate/module is named "erock" for historical reasons. Public branding is "Luxi Edge."
+
 Base URL: http://localhost:8080
 
 ## OpenAI-style function tools

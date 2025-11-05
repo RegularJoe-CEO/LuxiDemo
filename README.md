@@ -9,17 +9,9 @@
 
 **Luxi Edge** (also known as Luxi™) is a high-performance microservice for ultra-fast numeric calculations. SIMD-accelerated expression evaluation and root-finding optimized for edge devices but deployable anywhere.
 
-**Key Features:**
-- 13.7× faster than baseline (SIMD vectorization)
-- 18× better energy efficiency (596mW under load)
-- 193k operations/second throughput
-- HTTP API: `/evaluate`, `/bisect`, `/bisect_auto`, `/health`
-- Optimized for edge hardware but works on data centers, GPU-to-CPU offload, anywhere
+---
 
-**Use Cases:**
-- Edge computing (IoT, sensors, embedded systems)
-- Data center computational offload
-- Real-time calculations with low power consumption
+## Key Results
 
 ## Quick Start with Docker
 

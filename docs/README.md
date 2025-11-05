@@ -42,7 +42,7 @@ This repository contains comprehensive documentation of Luxi Edge, a high-perfor
 3. **System Architecture** - Two-tier design (Edge/Core)
 4. **Mathematical Foundations** - Expression grammar, SIMD vectorization, root-finding algorithms
 5. **Implementation Details** - Rust language advantages, module organization
-6. **Performance Analysis** - Benchmarks, scalability, data center economics
+6. **Performance Analysis** - Benchmarks, scalability
 7. **API Specification** - RESTful endpoints with examples
 8. **Research Directions** - JIT compilation, distributed graphs, ML integration
 9. **References** - Academic citations (Hennessy & Patterson, IEEE, ACM)
@@ -167,9 +167,7 @@ curl -X POST http://localhost:8080/evaluate \
 | Power under load | 24% less than idle |
 | Throughput | 193k ops/sec |
 
-**Data Center Impact:**
-- Annual savings: $82.7M (100 MW facility)
-- Payback period: <1 month
+*See [BENCHMARK_DATA.md](../BENCHMARK_DATA.md) for methodology and hardware specifications.*
 
 ---
 
@@ -394,8 +392,8 @@ benches/
 - Scientific discourse and peer review
 
 **Prohibited Use (Code):**
-- Production deployment without license
-- Redistribution or derivative works
+- Production deployment without license (before 2026-10-17)
+- Redistribution or derivative works for commercial purposes
 - Reverse engineering of proprietary modules
 
 ---
