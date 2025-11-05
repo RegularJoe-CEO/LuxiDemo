@@ -48,6 +48,8 @@ Provide ultra-fast numeric computation at the edge through:
     └──────────────────────┘     └──────────────────────┘
 ```
 
+> **Note:** Luxi SDG™ is a separate product maintained in a private repository and not covered here.
+
 ### 1.3 Design Principles
 
 **Stateless API:**

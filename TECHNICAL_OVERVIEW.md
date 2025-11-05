@@ -331,7 +331,7 @@ Dockerfile provided for containerized deployment:
 - Base image: Rust official builder
 - Port exposure: 8080
 - Runtime: Distroless or Alpine
-- Container registry: ghcr.io/regularjoe-ceo/erock
+- Container registry: ghcr.io/regularjoe-ceo/luxi-edge (illustrative; actual image to be published)
 
 ## 10. Algorithms and Computational Complexity
 

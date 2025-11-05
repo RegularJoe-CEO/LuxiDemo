@@ -178,8 +178,9 @@ curl -X POST http://localhost:8080/evaluate \
 **For:** Product managers, sales engineers, business development
 
 **Read:**
-- `products/erock-edge/README.md` - Local controller (SMB installations)
-- `products/erock-core/README.md` - Portfolio orchestration (fleet management)
+- `products/luxi-edge/README.md` - Product specification
+
+> **Note:** Luxi SDG™ and other products are maintained in separate repositories.
 
 **Scale Examples:**
 - **SMB:** 25 kW peak, $2.8k/year benefit, 2.5-year payback
@@ -383,7 +384,7 @@ benches/
 
 ## License and Copyright
 
-**Code:** Proprietary (Commercial licensing required)
+**Code:** Commercial licensing required (see LICENSE)
 **Documentation:** Public (LicenseRef-Luxi-Business-1.0)
 **SPDX:** SPDX-FileCopyrightText: 2025 Eric Waller
 

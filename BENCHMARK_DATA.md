@@ -116,7 +116,7 @@ echo "Luxi Edge: $(grep 'CPU Power' load.txt | tail -1 | awk '{print $3}')"
 **Evaluation:** Limited to 10,000 operations/day  
 **Contact:** e@ewaller.com  
 
-**Proprietary Notice:** Performance data provided for validation. Implementation details are confidential and protected.
+**Notice:** Performance data provided for validation purposes. Implementation details are subject to commercial license terms.
 
 ---
 *Prepared by Luxi Edge Engineering Team*  

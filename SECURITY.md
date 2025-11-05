@@ -1,5 +1,5 @@
 <!-- SPDX-FileCopyrightText: 2025 Eric Waller -->
-<!-- SPDX-License-Identifier: Proprietary -->
+<!-- SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0 -->
 
 # Security Policy
 
