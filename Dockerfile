@@ -10,6 +10,7 @@ COPY edge/Cargo.lock edge/Cargo.lock
 
 # Copy sources
 COPY src src
+COPY benches benches
 COPY edge edge
 
 # Build only the edge binary
