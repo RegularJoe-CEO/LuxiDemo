@@ -97,7 +97,7 @@ fn handle_evaluate_derivative(req: EvalDerivativeReq) -> Result<EvalDerivativeRe
     let step = req.step.unwrap_or(1e-6);
     let y = interpreter::simd_eval_over_x_inplace(root, &arena, &fixed, req.x);
     let mut dy_dx = Vec::with_capacity(y.len());
-    for &x in req.x.iter() {
+    for &x in y.iter() {
         let deriv = interpreter::derivative_with_var(&arena, &fixed, "x", x, step);
         dy_dx.push(deriv);
     }
@@ -214,7 +214,7 @@ fn handle_bisect_auto(req: BisectAutoReq) -> Result<BisectAutoResp, String> {
     let fixed = req.vars.unwrap_or_default();
 
     let eval_at =
-        |t: f64| -> f64 { interpreter::simd_eval_over_x(root, &arena, &fixed, &vec![t])[0] };
+        |t: f64| -> f64 { interpreter::simd_eval_over_x_inplace(root, &arena, &fixed, vec![t])[0] };
 
     let g = req.guess;
     let mut s = req.step.unwrap_or(1.0).abs().max(1e-6);
