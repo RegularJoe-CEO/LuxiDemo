@@ -1,222 +1,380 @@
 openapi: 3.0.3
 info:
   title: Luxi Edge API
-  version: "0.1.5"
-  description: >
+  version: "0.1.0"
+  description: |
     Public contract for Luxi Edge numeric microservice.
 
     Notes:
-      - The `rhai` engine treats `^` as XOR. Use `x*x` for squares.
-      - PR‑05 introduces an optional precision negotiation parameter (`precision`) for forward-compatibility.
-        Current server builds compute in f64; `f32` and `auto` may be ignored by older servers.
-  license:
-    name: LicenseRef-Luxi-Business-1.0
+      - '^' is XOR in the underlying expression engine; use 'x*x' for squares.
+      - All evaluation endpoints treat 'expr' as a scalar expression executed over provided numeric arrays.
+      - Errors return {"error":"<message>"}.
+
 servers:
   - url: http://localhost:8080
 
 tags:
   - name: health
   - name: evaluate
+  - name: evaluate_derivative
+  - name: gradient
+  - name: newton
   - name: bisect
   - name: bisect_auto
 
 components:
-  parameters:
-    PrecisionQuery:
-      name: precision
-      in: query
-      description: >
-        Optional requested numeric precision. Values:
-        - f64 (default): 64-bit float
-        - f32: 32-bit float
-        - auto: server decides based on workload/hardware
-        Backward-compatible: older servers simply ignore this parameter.
-      required: false
-      schema:
-        type: string
-        enum: [f64, f32, auto]
-        default: f64
-
   schemas:
-    ErrorResponse:
+    Error:
       type: object
       properties:
-        code: { type: string, example: "BadRequest" }
-        message: { type: string, example: "invalid payload" }
-        details: { type: object, additionalProperties: true }
-      required: [code, message]
+        error:
+          type: string
+          example: "invalid payload"
+      required: [error]
 
     EvaluateRequest:
       type: object
       properties:
-        expression:
+        expr:
           type: string
-          example: "x*x + 2*x + 1"
+          example: "2*x + sin(x)"
         x:
-          type: number
-          format: double
-          example: 3.0
-      required: [expression, x]
+          type: array
+          items: { type: number, format: double }
+          example: [3.14]
+        vars:
+          type: object
+          additionalProperties:
+            type: number
+          example: {}
+      required: [expr, x]
 
     EvaluateResponse:
       type: object
       properties:
-        result:
+        y:
+          type: array
+          items: { type: number, format: double }
+          example: [6.2815926529]
+      required: [y]
+
+    EvaluateDerivativeRequest:
+      type: object
+      properties:
+        expr: { type: string, example: "x*x + 2*x + 1" }
+        x:
+          type: array
+          items: { type: number, format: double }
+          example: [0,1,2,3]
+        step:
           type: number
           format: double
-          example: 16.0
+          description: Finite difference step size
+          example: 1e-6
+        vars:
+          type: object
+          additionalProperties: { type: number }
+          example: {}
+      required: [expr, x]
+
+    EvaluateDerivativeResponse:
+      type: object
+      properties:
+        dy:
+          type: array
+          items: { type: number, format: double }
+          example: [2.0, 4.0, 6.0, 8.0]
+      required: [dy]
+
+    GradientRequest:
+      type: object
+      properties:
+        expr: { type: string, example: "x*y + sin(x)" }
+        point:
+          type: object
+          description: Named variables and their numeric values
+          additionalProperties: { type: number }
+          example: { x: 1.0, y: 2.0 }
+        step:
+          type: number
+          format: double
+          example: 1e-6
+      required: [expr, point]
+
+    GradientResponse:
+      type: object
+      properties:
+        gradient:
+          type: object
+          additionalProperties: { type: number }
+          example: { x: 2.5403023059, y: 1.0 }
+      required: [gradient]
+
+    NewtonRequest:
+      type: object
+      properties:
+        expr: { type: string, example: "x^2 - 2" }
+        guesses:
+          type: array
+          items: { type: number, format: double }
+          example: [1.0, 2.0]
+        vars:
+          type: object
+          additionalProperties: { type: number }
+          example: {}
+        tol:
+          type: number
+          format: double
+          example: 1e-9
+        max_iter:
+          type: integer
+          example: 25
+        step:
+          type: number
+          format: double
+          example: 1e-6
+        fallback_step:
+          type: number
+          format: double
+          example: 1.0
+        fallback_expand:
+          type: integer
+          example: 20
+        fallback_tol:
+          type: number
+          format: double
+          example: 1e-9
+        fallback_max_iter:
+          type: integer
+          example: 60
+      required: [expr, guesses]
+
+    NewtonItem:
+      type: object
+      properties:
+        guess: { type: number, format: double }
+        root: { type: number, format: double }
+        f: { type: number, format: double }
+        newton_iters: { type: integer }
+        converged: { type: boolean }
+        used_fallback: { type: boolean }
+        fallback_iters: { type: integer }
+        fallback_expansions: { type: integer }
+        bracket_ok: { type: boolean }
+      required: [guess, root, f, newton_iters, converged, used_fallback, fallback_iters, fallback_expansions, bracket_ok]
+
+    NewtonResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items: { $ref: '#/components/schemas/NewtonItem' }
+      required: [results]
 
     BisectRequest:
       type: object
       properties:
-        expression:
-          type: string
-          example: "x*x - x - 1"
-        a:
-          type: number
-          format: double
-          example: 0.0
-        b:
-          type: number
-          format: double
-          example: 2.0
-        tolerance:
-          type: number
-          format: double
-          example: 1e-9
-      required: [expression, a, b]
+        expr: { type: string, example: "x*x - 2" }
+        lo: { type: number, format: double, example: 0.0 }
+        hi: { type: number, format: double, example: 2.0 }
+        tol: { type: number, format: double, example: 1e-9 }
+        max_iter: { type: integer, example: 60 }
+      required: [expr, lo, hi]
 
     BisectResponse:
       type: object
       properties:
-        bracket_ok: { type: boolean, example: true }
-        root: { type: number, format: double, nullable: true, example: 1.6180339887 }
-        iterations: { type: integer, example: 45 }
+        root: { type: number, format: double }
+        f: { type: number, format: double }
+        iters: { type: integer }
+        bracket_ok: { type: boolean }
+      required: [root, f, iters, bracket_ok]
 
     BisectAutoRequest:
       type: object
       properties:
-        expression:
-          type: string
-          example: "x*x - 2"
-        tolerance:
-          type: number
-          format: double
-          example: 1e-9
-      required: [expression]
+        expr: { type: string, example: "x*x - 2" }
+        guess: { type: number, format: double, example: 1.0 }
+        tol: { type: number, format: double, example: 1e-9 }
+        max_iter: { type: integer, example: 60 }
+        step: { type: number, format: double, example: 1.0 }
+        expand: { type: integer, example: 20 }
+      required: [expr, guess]
 
     BisectAutoResponse:
       type: object
       properties:
-        bracket_ok: { type: boolean, example: true }
-        root: { type: number, format: double, nullable: true, example: 1.41421356237 }
-        iterations: { type: integer, example: 60 }
+        root: { type: number, format: double }
+        f: { type: number, format: double }
+        iters: { type: integer }
+        fallback_expansions: { type: integer }
+        bracket_ok: { type: boolean }
+      required: [root, f, iters, fallback_expansions, bracket_ok]
+
+    HealthResponse:
+      type: object
+      properties:
+        service: { type: string, example: "erock_edge" }
+        version: { type: string, example: "0.1.0" }
+        status:  { type: string, example: "ok" }
+        jit_available: { type: boolean, example: false }
+        jit_enabled:   { type: boolean, example: false }
+        jit_reason:    { type: string, example: "jit_disabled" }
+      required: [service, version, status]
 
 paths:
   /health:
     get:
       tags: [health]
-      summary: Liveness/health check
+      summary: Liveness / health check
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/HealthResponse' }
 
   /evaluate:
     post:
       tags: [evaluate]
-      summary: Evaluate an expression at a given x
-      description: |
-        Evaluate expression using the Luxi engine.
-        Tip: `^` is XOR in rhai; use `x*x` for squares.
-      parameters:
-        - $ref: '#/components/parameters/PrecisionQuery'
+      summary: Evaluate an expression over an array of x values
       requestBody:
         required: true
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/EvaluateRequest'
+            schema: { $ref: '#/components/schemas/EvaluateRequest' }
             examples:
-              default:
-                value: { expression: "x*x + 2*x + 1", x: 3.0 }
-              with_precision:
-                summary: Request f32 (older servers may ignore)
-                value: { expression: "x*x + 2*x + 1", x: 3.0 }
+              single:
+                value: { expr: "2*x+sin(x)", x: [3.14] }
+              multi:
+                value: { expr: "x*x + 2*x + 1", x: [0,1,2,3] }
       responses:
         "200":
           description: Success
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/EvaluateResponse'
-              examples:
-                ok:
-                  value: { result: 16.0 }
+              schema: { $ref: '#/components/schemas/EvaluateResponse' }
         "400":
           description: Bad request
-          content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } }
-        "500":
-          description: Server error
-          content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  /evaluate_derivative:
+    post:
+      tags: [evaluate_derivative]
+      summary: Evaluate first derivative at each x
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/EvaluateDerivativeRequest' }
+            example:
+              expr: "x*x + 2*x + 1"
+              x: [0,1,2,3]
+              step: 1e-6
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EvaluateDerivativeResponse' }
+        "400":
+          description: Bad request
+          content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+
+  /gradient:
+    post:
+      tags: [gradient]
+      summary: Gradient (partial derivatives) at a point
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/GradientRequest' }
+            example:
+              expr: "x*y + sin(x)"
+              point: { x: 1.0, y: 2.0 }
+              step: 1e-6
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/GradientResponse' }
+        "400":
+          description: Bad request
+          content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+
+  /newton:
+    post:
+      tags: [newton]
+      summary: Newton method with automatic bisection fallback
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/NewtonRequest' }
+            example:
+              expr: "x*x - 2"
+              guesses: [1.0, 2.0]
+              tol: 1e-9
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/NewtonResponse' }
+        "400":
+          description: Bad request
+          content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
 
   /bisect:
     post:
       tags: [bisect]
-      summary: Bisection root finding on [a, b]
-      description: |
-        Returns `bracket_ok` plus the estimated `root` when signs differ on [a,b].
-      parameters:
-        - $ref: '#/components/parameters/PrecisionQuery'
+      summary: Root finding on a user-supplied bracket [lo, hi]
       requestBody:
         required: true
         content:
           application/json:
             schema: { $ref: '#/components/schemas/BisectRequest' }
-            examples:
-              default:
-                value: { expression: "x*x - x - 1", a: 0.0, b: 2.0, tolerance: 1e-9 }
+            example:
+              expr: "x*x - 2"
+              lo: 0.0
+              hi: 2.0
+              tol: 1e-9
       responses:
         "200":
           description: Success
           content:
             application/json:
               schema: { $ref: '#/components/schemas/BisectResponse' }
-              examples:
-                ok:
-                  value: { bracket_ok: true, root: 1.6180339887, iterations: 45 }
         "400":
           description: Bad request
-          content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } }
-        "500":
-          description: Server error
-          content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } }
+          content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
 
   /bisect_auto:
     post:
       tags: [bisect_auto]
-      summary: Bisection with automatic bracketing
-      parameters:
-        - $ref: '#/components/parameters/PrecisionQuery'
+      summary: Automatic bracket expansion + bisection
       requestBody:
         required: true
         content:
           application/json:
             schema: { $ref: '#/components/schemas/BisectAutoRequest' }
-            examples:
-              default:
-                value: { expression: "x*x - 2", tolerance: 1e-9 }
+            example:
+              expr: "x*x - 2"
+              guess: 1.0
+              tol: 1e-9
+              step: 1.0
+              expand: 20
       responses:
         "200":
           description: Success
           content:
             application/json:
               schema: { $ref: '#/components/schemas/BisectAutoResponse' }
-              examples:
-                ok:
-                  value: { bracket_ok: true, root: 1.41421356237, iterations: 60 }
         "400":
           description: Bad request
-          content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } }
-        "500":
-          description: Server error
-          content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } }
+          content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+          
