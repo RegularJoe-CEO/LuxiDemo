@@ -1,5 +1,5 @@
-# SPDX-FileCopyrightText: 2025 Eric Waller
-# SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0
+<!-- SPDX-FileCopyrightText: 2025 Eric Waller -->
+<!-- SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0 -->
 
 # How the Luxi Edge Math Service Works
 

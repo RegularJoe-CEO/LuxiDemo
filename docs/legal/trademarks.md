@@ -1,5 +1,5 @@
-# SPDX-FileCopyrightText: 2025 Eric Waller
-# SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0
+<!-- SPDX-FileCopyrightText: 2025 Eric Waller -->
+<!-- SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0 -->
 
 Luxi Edge, Luxi Core, and related Luxi logos are trademarks of Eric Waller.
 
