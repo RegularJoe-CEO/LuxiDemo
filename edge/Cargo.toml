@@ -16,7 +16,10 @@ license = "LicenseRef-Luxi-Business-1.0"
 
 [dependencies]
 tokio = { version = "1", features = ["full"] }
-hyper = { version = "1", features = ["http1", "server"] }
+# Use hyper 0.14 API to match current server code (make_service_fn, Body, Server)
+hyper = { version = "0.14", features = ["http1", "server"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 tracing = "0.1"
+# Link to the workspace library crate so `use erock::...` resolves
+erock = { path = ".." }
