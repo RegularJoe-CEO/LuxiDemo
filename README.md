@@ -3,7 +3,7 @@
 
 # Luxi Edge
 
-Luxi Edge is a production-ready microservice that delivers ultra-fast numeric computation—expression evaluation, batched Newton–Raphson with automatic bisection fallback, and gradient analysis—in a compact edge-friendly footprint.
+Luxi Edge is a production-ready microservice that delivers ultra-fast numeric computation—expression evaluation, batched Newton–Raphson with automatic bisection fallback, and gradient analysis…
 
 ## Quick Start
 
@@ -27,9 +27,12 @@ bash scripts/agent_bootstrap.sh
 
 ## Key Results
 
-- **vs Python/NumPy**: 87× faster, 50% less power, 25× less memory
-- **vs C++ std**: 5.5× faster, 33% less power while maintaining memory safety
-- **Enterprise ROI**: Saves ~$82.7M annually in a 100MW data center when Luxi Edge handles 10% of the workload
+Last updated: 2025-01-18
+
+- SIMD runtime speedup: **13.7× faster** (0.52 ms vs 7.10 ms for 100k ops)
+- Throughput: **193k ops/s** vs 14k ops/s (**13.7× higher**)
+- Energy per operation: **3.08 µJ** vs 55.6 µJ (**18× lower**)
+- Load power draw: **596 mW** vs 783 mW (**24% drop**)
 
 For detailed metrics, see [`docs/benchmarks/BENCHMARK_DATA.md`](docs/benchmarks/BENCHMARK_DATA.md).
 
@@ -166,14 +169,13 @@ See [`docs/README.md`](docs/README.md) for the complete documentation index.
 
 ## About the "erock" Internal Name
 
-This codebase uses the internal module and crate name "erock" for historical reasons and build compatibility. The public product name is **Luxi Edge**. Think of "erock" as the engineering/build identifier, while Luxi Edge is the commercial brand.
+This codebase uses the internal module and crate name "erock" for historical reasons and build compatibility. The public product name is **Luxi Edge**. Think of "erock" as the engineering/build identifier.
 
 ## Precision Parameter
 
 Optional query parameter `precision=f64|f32|auto` on `/evaluate`, `/bisect`, `/bisect_auto`.
 - Current server builds compute in f64; older servers may ignore this parameter.
 - Python example client:
-
 ```bash
 ./tools/client_python_example.py --base http://localhost:8080 --precision f32 evaluate --expr "x*x+2*x+1" --x 3
 ```
