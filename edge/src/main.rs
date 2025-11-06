@@ -72,8 +72,7 @@ fn handle_evaluate(req: EvalReq) -> Result<EvalResp, String> {
     let tokens = lexer::tokenize(&req.expr);
     let (arena, root) = parser::parse(tokens)?;
     let fixed = req.vars.unwrap_or_default();
-    let y = interpreter::simd_eval_over_x_inplace(root, &arena, &fixed, req.x)
-    .map_err(|e| e.to_string())?;
+    let y = interpreter::simd_eval_over_x_inplace(root, &arena, &fixed, req.x);
     Ok(EvalResp { y })
 }
 
