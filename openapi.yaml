@@ -9,7 +9,6 @@ info:
       - '^' is XOR in the underlying expression engine; use 'x*x' for squares.
       - All evaluation endpoints treat 'expr' as a scalar expression executed over provided numeric arrays.
       - Errors return {"error":"<message>"}.
-
 servers:
   - url: http://localhost:8080
 
@@ -21,6 +20,7 @@ tags:
   - name: newton
   - name: bisect
   - name: bisect_auto
+  - name: ping
 
 components:
   schemas:
@@ -66,49 +66,57 @@ components:
           type: array
           items: { type: number, format: double }
           example: [0,1,2,3]
+        vars:
+          type: object
+          additionalProperties: { type: number }
+          example: {}
         step:
           type: number
           format: double
           description: Finite difference step size
           example: 1e-6
-        vars:
-          type: object
-          additionalProperties: { type: number }
-          example: {}
       required: [expr, x]
 
     EvaluateDerivativeResponse:
       type: object
       properties:
-        dy:
+        y:
           type: array
           items: { type: number, format: double }
-          example: [2.0, 4.0, 6.0, 8.0]
-      required: [dy]
+        dy_dx:
+          type: array
+          items: { type: number, format: double }
+      required: [y, dy_dx]
 
     GradientRequest:
       type: object
       properties:
         expr: { type: string, example: "x*y + sin(x)" }
-        point:
+        vars:
           type: object
           description: Named variables and their numeric values
           additionalProperties: { type: number }
           example: { x: 1.0, y: 2.0 }
+        variables:
+          type: array
+          items: { type: string }
+          description: Optional explicit variable list; defaults to keys of 'vars'
+          example: ["x","y"]
         step:
           type: number
           format: double
           example: 1e-6
-      required: [expr, point]
+      required: [expr, vars]
 
     GradientResponse:
       type: object
       properties:
+        value: { type: number, format: double, example: 3.8414709848 }
         gradient:
           type: object
           additionalProperties: { type: number }
           example: { x: 2.5403023059, y: 1.0 }
-      required: [gradient]
+      required: [value, gradient]
 
     NewtonRequest:
       type: object
@@ -177,6 +185,10 @@ components:
         expr: { type: string, example: "x*x - 2" }
         lo: { type: number, format: double, example: 0.0 }
         hi: { type: number, format: double, example: 2.0 }
+        vars:
+          type: object
+          additionalProperties: { type: number }
+          example: {}
         tol: { type: number, format: double, example: 1e-9 }
         max_iter: { type: integer, example: 60 }
       required: [expr, lo, hi]
@@ -195,10 +207,14 @@ components:
       properties:
         expr: { type: string, example: "x*x - 2" }
         guess: { type: number, format: double, example: 1.0 }
+        step: { type: number, format: double, example: 1.0 }
+        max_expand: { type: integer, example: 20 }
+        vars:
+          type: object
+          additionalProperties: { type: number }
+          example: {}
         tol: { type: number, format: double, example: 1e-9 }
         max_iter: { type: integer, example: 60 }
-        step: { type: number, format: double, example: 1.0 }
-        expand: { type: integer, example: 20 }
       required: [expr, guess]
 
     BisectAutoResponse:
@@ -206,10 +222,12 @@ components:
       properties:
         root: { type: number, format: double }
         f: { type: number, format: double }
+        lo: { type: number, format: double }
+        hi: { type: number, format: double }
         iters: { type: integer }
-        fallback_expansions: { type: integer }
         bracket_ok: { type: boolean }
-      required: [root, f, iters, fallback_expansions, bracket_ok]
+        expansions: { type: integer }
+      required: [root, f, lo, hi, iters, bracket_ok, expansions]
 
     HealthResponse:
       type: object
@@ -223,6 +241,19 @@ components:
       required: [service, version, status]
 
 paths:
+  /ping:
+    get:
+      tags: [ping]
+      summary: Lightweight liveness ping
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "pong"
+
   /health:
     get:
       tags: [health]
@@ -294,7 +325,7 @@ paths:
             schema: { $ref: '#/components/schemas/GradientRequest' }
             example:
               expr: "x*y + sin(x)"
-              point: { x: 1.0, y: 2.0 }
+              vars: { x: 1.0, y: 2.0 }
               step: 1e-6
       responses:
         "200":
@@ -327,7 +358,9 @@ paths:
               schema: { $ref: '#/components/schemas/NewtonResponse' }
         "400":
           description: Bad request
-          content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
 
   /bisect:
     post:
@@ -351,7 +384,8 @@ paths:
               schema: { $ref: '#/components/schemas/BisectResponse' }
         "400":
           description: Bad request
-          content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+          content:
+            application/json: { schema: { $ref: '#/components/schemas/Error' } }
 
   /bisect_auto:
     post:
@@ -367,7 +401,7 @@ paths:
               guess: 1.0
               tol: 1e-9
               step: 1.0
-              expand: 20
+              max_expand: 20
       responses:
         "200":
           description: Success
@@ -376,5 +410,5 @@ paths:
               schema: { $ref: '#/components/schemas/BisectAutoResponse' }
         "400":
           description: Bad request
-          content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
-          
+          content:
+            application/json: { schema: { $ref: '#/components/schemas/Error' } }

@@ -33,3 +33,6 @@ harness = false
 [[bench]]
 name = "simd_vs_scalar"
 harness = false
+
+[dev-dependencies]
+criterion = "0.7.0"

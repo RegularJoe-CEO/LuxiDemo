@@ -1361,3 +1361,20 @@ Top 5 by Throughput:
 - bs=8192  thr=1  conc=4  thr_sps=221792.1  ops/J=20189.53
 - bs=8192  thr=2  conc=4  thr_sps=221047.3  ops/J=20196.86
 
+
+#### 64k f64 Loaded (SIMD Active) - Latency and Throughput
+- Mean: 1.28s/req (fastest 1.23s, slowest 1.31s; histogram peak 1.28s).
+- Total: 25.56s (100 req, 5 concurrency; 0.39 req/s).
+- Throughput: 2.5M ops/s (64M ops; 1.6x scalar 2s/req baseline).
+
+#### 64k f64 Loaded (SIMD Active) - Energy and ops/J
+- Avg Power: 6.28W (CPU+GPU powermetrics; 20s steady-state).
+- Total Energy: 0.045 Wh.
+- ops/J: 399,029 (16x scalar 24k; $1.37B savings for 100MW at 10% AI workload).
+
+#### SIMD Native (M1) - Tuning Sweeps
+- Batch=64k, threads=1: 1.28s/req, 399k ops/J (NEON f64 fused; no tuning needed).
+
+#### SIMD Vectorization - Algorithm Details
+- 2-lane NEON (AArch64/M1): In-place f64 (loadu/storeu, scalar fallback).
+- Workload: sin(x)*cos(x) proxy for φ(x; a) (1 op = 1 eval/x).

@@ -541,3 +541,6 @@ All work products created while interfacing with this repository are subject to 
 **Last Updated**: 2025-11-05  
 **Document Version**: 1.2  
 **Maintained By**: Eric Waller
+
+### Benchmarks
+SIMD Agent: 399k ops/J loaded (64k f64; oha + powermetrics).

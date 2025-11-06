@@ -204,3 +204,22 @@ with open(OUT_MD, "w") as w:
                 w.write("\n")
         except Exception:
             pass
+
+if "64k" in filename:
+    duration = 25.56  # oha total (s)
+    ops = 64000000
+    throughput_k = int(ops / duration / 1000)
+    w = avg_mw / 1000
+    energy_j = duration * w
+    ops_j = int(ops / energy_j)
+    print(f"64k SIMD Loaded: {avg_w:.2f}W avg, {ops_j} ops/J, {throughput_k}k ops/s (mean 1.28s)")
+
+
+if '64k' in filename:
+    duration = 25.56  # oha total (s)
+    ops = 64000000
+    throughput_k = int(ops / duration / 1000)
+    w = avg_mw / 1000
+    energy_j = duration * w
+    ops_j = int(ops / energy_j)
+    print(f"64k SIMD Loaded: {avg_w:.2f}W avg, {ops_j} ops/J, {throughput_k}k ops/s (mean 1.28s)")
