@@ -96,7 +96,7 @@ fn handle_evaluate_derivative(req: EvalDerivativeReq) -> Result<EvalDerivativeRe
     let (arena, root) = parser::parse(tokens)?;
     let fixed = req.vars.unwrap_or_default();
     let step = req.step.unwrap_or(1e-6);
-    let y = interpreter::simd_eval_over_x(root, &arena, &fixed, &req.x);
+    let y = interpreter::simd_eval_over_x_inplace(root, &arena, &fixed, req.x);
     let mut dy_dx = Vec::with_capacity(req.x.len());
     for &x in req.x.iter() {
         let deriv = interpreter::derivative_with_var(&arena, &fixed, "x", x, step);
