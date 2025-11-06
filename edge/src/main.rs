@@ -633,6 +633,11 @@ async fn router(req: Request<Body>) -> Result<Response<Body>, Infallible> {
             },
             Err(resp) => resp,
         },
+        (Method::GET, "/ping") => Response::builder()
+            .status(StatusCode::OK)
+            .header(CONTENT_TYPE, "text/plain; charset=utf-8")
+            .body(Body::from("pong"))
+            .unwrap(),
         (Method::GET, "/health") => json_ok(&health_payload()),
         (Method::GET, _) | (Method::POST, _) | (Method::PUT, _) | (Method::DELETE, _) => {
             not_found()
