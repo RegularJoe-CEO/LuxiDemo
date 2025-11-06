@@ -5,7 +5,7 @@
 
 **Complete Guide to Scientific and Technical Documentation**
 
-> **🤖 For AI Agents, LLMs, and Automated Tools**: See [AGENTS.md](../AGENTS.md) for integration instructions, API documentation, and copyright terms.
+> **🤖 For AI Agents, LLMs, and Automated Tools**: See [AGENTS.md](../.github/AGENTS.md) for integration instructions, API documentation, and copyright terms.
 
 ---
 

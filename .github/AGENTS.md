@@ -196,7 +196,8 @@ LuxiEdge/
 ├── docs/
 │   └── benchmarks/      # Centralized benchmark docs and raw exports
 ├── TECHNICAL_OVERVIEW.md # Detailed technical reference
-├── AGENTS.md            # This file - AI agent integration guide
+├── .github/
+│   └── AGENTS.md        # This file - AI agent integration guide
 │
 ├── edge/                # HTTP server implementation
 │   ├── Cargo.toml       # Package: erock_edge

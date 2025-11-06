@@ -5,7 +5,7 @@
 
 Luxi Edge (also marketed as **Luxi™**) is a production-ready microservice that delivers ultra-fast numeric computation—expression evaluation, batched Newton–Raphson with automatic bisection fallback, and gradient analysis—in a compact edge-friendly footprint. This README is intended for both humans and automated agents:
 
-> **🤖 For AI Agents, LLMs, and Automated Tools**: See [AGENTS.md](AGENTS.md) for comprehensive integration instructions, API documentation, build commands, and copyright terms. All AI-generated contributions become the property of the repository owner.
+> **🤖 For AI Agents, LLMs, and Automated Tools**: See [AGENTS.md](.github/AGENTS.md) for comprehensive integration instructions, API documentation, build commands, and copyright terms. All AI-generated contributions become the property of the repository owner.
 
 > **🧠 For Humans**: Use this README as the entry point for understanding what Luxi Edge does, how it fits into your stack, and how to run or evaluate it locally.
 
@@ -68,7 +68,7 @@ cargo build --release
 cd edge && cargo run --release
 ```
 
-For detailed build instructions and development setup, see [AGENTS.md](AGENTS.md).
+For detailed build instructions and development setup, see [AGENTS.md](.github/AGENTS.md).
 
 ## Feature Highlights
 
