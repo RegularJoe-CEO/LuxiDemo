@@ -1,0 +1,20 @@
+{
+  "framework": "pytorch",
+  "mode": "luxi",
+  "expr": "if x < 0.0 { sin(x) + a*x*x } else { log(1.0 + x) - sqrt(abs(x)) + 0.1*x*x*x }",
+  "a": 0.2,
+  "batch_size": 4096,
+  "batches": 200,
+  "threads": 4,
+  "num_workers": 0,
+  "concurrency": 2,
+  "endpoint": "http://127.0.0.1:8080",
+  "duration_s": 10.0,
+  "platform": {
+    "python": "3.9.6",
+    "machine": "arm64",
+    "processor": "arm",
+    "system": "Darwin",
+    "release": "23.5.0"
+  }
+}

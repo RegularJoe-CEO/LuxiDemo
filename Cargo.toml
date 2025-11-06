@@ -8,15 +8,24 @@ resolver = "2"
 name = "erock"
 version = "0.1.0"
 edition = "2021"
+license = "LicenseRef-Luxi-Business-1.0"
+
+[lib]
+path = "src/lib.rs"
+
+# Optional: if src/bin/erock_client.rs exists, this enables it
+[[bin]]
+name = "erock_client"
+path = "src/bin/erock_client.rs"
 
 [dependencies]
-tokio = { version = "1.40", features = ["full"] }
-reqwest = { version = "0.12", features = ["json"] }
-serde_json = "1.0"
-
-rhai = "1"
-[dev-dependencies]
-criterion = { version = "0.5", features = ["html_reports"] }
+anyhow = "1"
+rhai = { version = "1", features = ["std"] }
+tokio = { version = "1", features = ["rt-multi-thread","macros"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+reqwest = { version = "0.11", default-features = false, features = ["json","rustls-tls"] }
+tracing = "0.1"
 
 [[bench]]
 name = "edge_suite"

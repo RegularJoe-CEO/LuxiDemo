@@ -1,0 +1,47 @@
+=== Timestamp ===
+2025-11-06T03:30:02Z
+
+=== OS & Kernel ===
+Darwin Erics-MacBook-Pro-2.local 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:12:58 PDT 2024; root:xnu-10063.121.3~5/RELEASE_ARM64_T6000 arm64
+ProductName:		macOS
+ProductVersion:		14.5
+BuildVersion:		23F79
+
+=== CPU ===
+Apple M1 Pro
+
+=== Memory ===
+Mach Virtual Memory Statistics: (page size of 16384 bytes)
+Pages free:                                3451.
+Pages active:                            211037.
+Pages inactive:                          209842.
+Pages speculative:                          292.
+Pages throttled:                              0.
+Pages wired down:                        150258.
+Pages purgeable:                            276.
+"Translation faults":                2037476149.
+Pages copy-on-write:                   66574480.
+Pages zero filled:                    721915315.
+Pages reactivated:                    366371614.
+Pages purged:                          67992175.
+File-backed pages:                       122200.
+Anonymous pages:                         298971.
+Pages stored in compressor:             1220307.
+Pages occupied by compressor:            434189.
+Decompressions:                       275441893.
+Compressions:                         313384256.
+Pageins:                               52352991.
+Pageouts:                               2349324.
+Swapins:                                1033948.
+Swapouts:                               1448556.
+
+=== Python/Torch/TF ===
+3.9.6 (default, Nov 11 2024, 03:15:38) 
+[Clang 16.0.0 (clang-1600.0.26.6)]
+torch 2.8.0
+tensorflow 2.16.2
+
+=== Listeners (8080/50051/8081/50052) ===
+sdg-api   49748 ericwaller   10u  IPv4 0xdfa01800f7184dca      0t0  TCP 127.0.0.1:8081 (LISTEN)
+sdg-api   49748 ericwaller   11u  IPv4 0x71845c585e6bcb0e      0t0  TCP 127.0.0.1:50052 (LISTEN)
+erock_edg 86006 ericwaller    9u  IPv4 0x961deee705d147c7      0t0  TCP *:8080 (LISTEN)

@@ -1,0 +1,28 @@
+[package]
+name = "luxi"
+version = "0.1.0"
+edition = "2021"
+default-run = "luxi"
+
+[dependencies]
+actix-web = "4"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+rhai = { version = "1", features = ["decimal"] }
+env_logger = "0.11"
+anyhow = "1"
+thiserror = "1"
+wide = "0.7"
+
+[dev-dependencies]
+reqwest = { version = "0.12", features = ["json"] }
+tokio = { version = "1", features = ["full"] }
+criterion = "0.5"
+
+[[bin]]
+name = "luxi"
+path = "src/main.rs"
+serde = { version = "1", features = ["derive"] }
+tokio = { version = "1", features = ["full"] }
+rhai = { version = "1", features = ["decimal"] }
