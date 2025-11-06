@@ -10,21 +10,21 @@ CONCS="${CONCURRENCY:-1 2 4}"
 echo "sudo may prompt for your password..."
 sudo -v
 
-TUNE_OUT="docs/benchmarks/tuning_results.csv"
+TUNE_OUT="docs/docs/benchmarks/raw/tuning_results.csv"
 rm -f "$TUNE_OUT"
 
 for bs in $BATCHES; do
   for t in $THREADS; do
     for c in $CONCS; do
-      base="docs/benchmarks/torch_luxi_tune_bs${bs}_t${t}_c${c}"
+      base="docs/docs/benchmarks/raw/torch_luxi_tune_bs${bs}_t${t}_c${c}"
       csv="${base}.csv"
       pm="${base}.txt"
       echo "=== bs=${bs} threads=${t} conc=${c} dur=${DUR}s ==="
       scripts/power_macos.sh "$DUR" "$pm" &
       PM_PID=$!
-      python3 benchmarks/torch_pipeline.py --mode luxi --batch-size "$bs" --threads "$t" --concurrency "$c" --duration-s "$DUR" --csv "$csv"
+      python3 docs/benchmarks/raw/torch_pipeline.py --mode luxi --batch-size "$bs" --threads "$t" --concurrency "$c" --duration-s "$DUR" --csv "$csv"
       wait "$PM_PID"
-      python3 benchmarks/aggregate_tuning.py "$csv" "$pm" "$TUNE_OUT"
+      python3 docs/benchmarks/raw/aggregate_tuning.py "$csv" "$pm" "$TUNE_OUT"
     done
   done
 done

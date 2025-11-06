@@ -1084,7 +1084,7 @@ fn test_cancellation() {
 For additional details, consult:
 - Main scientific overview: `SCIENTIFIC_OVERVIEW.md`
 - API specification: `../openapi.yaml`
-- Benchmark data: `../BENCHMARK_DATA.md`
+- Benchmark data: `../benchmarks/BENCHMARK_DATA.md`
 - Source code: `../src/` and `../edge/src/`
 
 **Authors:** Luxi Engineering Team  

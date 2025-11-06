@@ -5,7 +5,7 @@
 
 **Complete Guide to Scientific and Technical Documentation**
 
-> **🤖 For AI Agents, LLMs, and Automated Tools**: See [AGENTS.md](../.github/AGENTS.md) for integration instructions, API documentation, and copyright terms.
+> **🤖 For AI Agents, LLMs, and Automated Tools**: See [agents.md](agents.md) for integration instructions, API documentation, and copyright terms.
 
 ---
 
@@ -23,8 +23,8 @@ This repository contains comprehensive documentation of Luxi Edge, a high-perfor
 
 **Read:**
 - `README.md` (repository root) - Product summary and positioning
-- `docs/HOW_IT_WORKS.md` ⭐ **SIMPLE EXPLANATION FOR EVERYONE**
-- `docs/Luxi_Suite_Overview.md` - Brief overview and metrics
+- `guides/how-it-works.md` ⭐ **SIMPLE EXPLANATION FOR EVERYONE**
+- `guides/overview.md` - Brief overview and metrics
 
 **Key Takeaway:** Luxi Edge is a math service that evaluates expressions, finds roots, and computes derivatives/gradients at high speed. It achieves 13.7× speedup and 18× energy efficiency improvement through SIMD vectorization and optimized algorithms.
 
@@ -35,7 +35,7 @@ This repository contains comprehensive documentation of Luxi Edge, a high-perfor
 **For:** Academic reviewers, researchers preparing citations
 
 **Read:**
-- `docs/SCIENTIFIC_OVERVIEW.md` ⭐ **PRIMARY SCIENTIFIC REFERENCE**
+- `technical/scientific-overview.md` ⭐ **PRIMARY SCIENTIFIC REFERENCE**
 
 **Contents:**
 1. **Abstract** - Research contributions and results summary
@@ -67,7 +67,7 @@ This repository contains comprehensive documentation of Luxi Edge, a high-perfor
 **For:** Computer scientists, algorithm researchers, implementation engineers
 
 **Read:**
-- `docs/ALGORITHM_DETAILS.md` ⭐ **ALGORITHMIC REFERENCE**
+- `technical/algorithms.md` ⭐ **ALGORITHMIC REFERENCE**
 
 **Contents:**
 1. **Lexical Analysis** - Tokenization state machine, number/variable parsing
@@ -93,7 +93,7 @@ This repository contains comprehensive documentation of Luxi Edge, a high-perfor
 **For:** System architects, platform engineers, security researchers
 
 **Read:**
-- `docs/ARCHITECTURE.md` ⭐ **ARCHITECTURAL REFERENCE**
+- `technical/architecture.md` ⭐ **ARCHITECTURAL REFERENCE**
 
 **Contents:**
 1. **System Overview** - Mission, two-tier architecture, design principles
@@ -113,7 +113,22 @@ This repository contains comprehensive documentation of Luxi Edge, a high-perfor
 
 ---
 
-### 5. API Reference (30 minutes)
+### 5. Docker & Deployment (15 minutes)
+
+**For:** DevOps engineers, deployment teams
+
+**Read:**
+- `guides/docker.md` - Quick start with Docker and Docker Compose
+
+**Contents:**
+- Docker image usage
+- Docker Compose setup
+- Environment configuration
+- Production deployment tips
+
+---
+
+### 6. API Reference (30 minutes)
 
 **For:** Software developers building integrations
 
@@ -427,3 +442,30 @@ benches/
 **Contact:** e@ewaller.com
 
 For the latest version of this documentation, visit: https://github.com/RegularJoe-CEO/LuxiEdge
+
+---
+
+## Documentation Directory Structure
+
+```
+docs/
+├── README.md                 # This file - documentation index
+├── agents.md                 # AI agent integration guide
+├── guides/                   # User-focused guides
+│   ├── how-it-works.md      # Simple explanation for everyone
+│   ├── overview.md          # Brief overview and metrics
+│   └── docker.md            # Docker & deployment guide
+├── technical/                # Technical deep-dives
+│   ├── scientific-overview.md   # Primary scientific reference
+│   ├── algorithms.md            # Algorithmic implementation details
+│   └── architecture.md          # System architecture
+├── benchmarks/              # Performance data and analysis
+│   ├── README.md            # Benchmark navigation hub
+│   ├── BENCHMARK_DATA.md    # Latest metrics
+│   └── COMPARATIVE_ANALYSIS.md  # Cross-tool comparisons
+└── legal/                   # Legal and policy documents
+    ├── contributing.md      # Contribution guidelines
+    ├── security.md          # Security policy
+    ├── commercial-license.md   # Commercial licensing
+    └── trademarks.md        # Trademark policy
+```

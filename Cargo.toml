@@ -13,11 +13,6 @@ license = "LicenseRef-Luxi-Business-1.0"
 [lib]
 path = "src/lib.rs"
 
-# Optional: if src/bin/erock_client.rs exists, this enables it
-[[bin]]
-name = "erock_client"
-path = "src/bin/erock_client.rs"
-
 [dependencies]
 anyhow = "1"
 rhai = { version = "1", features = ["std"] }

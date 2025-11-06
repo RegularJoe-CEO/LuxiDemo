@@ -974,7 +974,7 @@ This architecture enables deployment across diverse scales (SMB to data center) 
 - `SCIENTIFIC_OVERVIEW.md` - High-level scientific description
 - `ALGORITHM_DETAILS.md` - Deep algorithmic analysis
 - `../openapi.yaml` - API specification
-- `../BENCHMARK_DATA.md` - Performance measurements
+- `../benchmarks/BENCHMARK_DATA.md` - Performance measurements
 - `benchmarks/README.md` - Benchmark navigation hub and raw exports
 
 **Revision History:**

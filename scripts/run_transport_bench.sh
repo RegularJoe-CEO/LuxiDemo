@@ -42,15 +42,15 @@ mkdir -p docs/benchmarks
 
 # TCP
 export LUXI_URL="http://127.0.0.1:8080"
-CSV_TCP="docs/benchmarks/torch_luxi_tcp_power.csv"
-PM_TCP="docs/benchmarks/torch_luxi_tcp_power.txt"
+CSV_TCP="docs/docs/benchmarks/raw/torch_luxi_tcp_power.csv"
+PM_TCP="docs/docs/benchmarks/raw/torch_luxi_tcp_power.txt"
 scripts/power_macos.sh "$DUR" "$PM_TCP" &
 PM_PID=$!
-python3 benchmarks/torch_pipeline.py --mode luxi --batch-size "$BS" --threads "$THR" --concurrency "$CONC" --duration-s "$DUR" --csv "$CSV_TCP"
+python3 docs/benchmarks/raw/torch_pipeline.py --mode luxi --batch-size "$BS" --threads "$THR" --concurrency "$CONC" --duration-s "$DUR" --csv "$CSV_TCP"
 wait "$PM_PID"
 
 # UDS proxy
-python3 scripts/uds_tcp_proxy.py --uds "$UDS_PATH" --tcp 127.0.0.1:8080 > docs/benchmarks/uds_proxy.log 2>&1 &
+python3 scripts/uds_tcp_proxy.py --uds "$UDS_PATH" --tcp 127.0.0.1:8080 > docs/docs/benchmarks/raw/uds_proxy.log 2>&1 &
 PROXY_PID=$!
 for i in $(seq 1 50); do [ -S "$UDS_PATH" ] && break; sleep 0.1; done
 [ -S "$UDS_PATH" ] || { echo "UDS socket did not appear"; kill "$PROXY_PID" 2>/dev/null || true; exit 1; }
@@ -58,11 +58,11 @@ for i in $(seq 1 50); do [ -S "$UDS_PATH" ] && break; sleep 0.1; done
 # UDS
 ENC_UDS=$(printf "%s" "$UDS_PATH" | sed 's|^/||; s|/|%2F|g')
 export LUXI_URL="http+unix://%2F${ENC_UDS}"
-CSV_UDS="docs/benchmarks/torch_luxi_uds_power.csv"
-PM_UDS="docs/benchmarks/torch_luxi_uds_power.txt"
+CSV_UDS="docs/docs/benchmarks/raw/torch_luxi_uds_power.csv"
+PM_UDS="docs/docs/benchmarks/raw/torch_luxi_uds_power.txt"
 scripts/power_macos.sh "$DUR" "$PM_UDS" &
 PM_PID=$!
-python3 benchmarks/torch_pipeline.py --mode luxi --batch-size "$BS" --threads "$THR" --concurrency "$CONC" --duration-s "$DUR" --csv "$CSV_UDS"
+python3 docs/benchmarks/raw/torch_pipeline.py --mode luxi --batch-size "$BS" --threads "$THR" --concurrency "$CONC" --duration-s "$DUR" --csv "$CSV_UDS"
 wait "$PM_PID"
 kill "$PROXY_PID" 2>/dev/null || true
 sleep 0.3; [ -S "$UDS_PATH" ] && rm -f "$UDS_PATH" || true
@@ -77,19 +77,19 @@ echo "Adopting $WIN as canonical torch_luxi_*"
 
 # Adopt winner -> canonical
 if [ "$WIN" = "uds" ]; then
-  cp -f "$CSV_UDS" docs/benchmarks/torch_luxi_power.csv
-  cp -f "$PM_UDS"  docs/benchmarks/torch_luxi_power.txt
+  cp -f "$CSV_UDS" docs/docs/benchmarks/raw/torch_luxi_power.csv
+  cp -f "$PM_UDS"  docs/docs/benchmarks/raw/torch_luxi_power.txt
   export LUXI_URL="http+unix://%2F${ENC_UDS}" # metadata hint
 else
-  cp -f "$CSV_TCP" docs/benchmarks/torch_luxi_power.csv
-  cp -f "$PM_TCP"  docs/benchmarks/torch_luxi_power.txt
+  cp -f "$CSV_TCP" docs/docs/benchmarks/raw/torch_luxi_power.csv
+  cp -f "$PM_TCP"  docs/docs/benchmarks/raw/torch_luxi_power.txt
   export LUXI_URL="http://127.0.0.1:8080"
 fi
 
 # Refresh latency-only canonical at same tuned settings
-python3 benchmarks/torch_pipeline.py --mode luxi --batch-size "$BS" --threads "$THR" --concurrency "$CONC" --batches 200 --csv docs/benchmarks/torch_luxi.csv
+python3 docs/benchmarks/raw/torch_pipeline.py --mode luxi --batch-size "$BS" --threads "$THR" --concurrency "$CONC" --batches 200 --csv docs/docs/benchmarks/raw/torch_luxi.csv
 
 # Rewrite report
-python3 benchmarks/summarize_bench.py
+python3 docs/benchmarks/raw/summarize_bench.py
 echo "Done. Canonical torch_luxi_* set to $WIN."
-ls -l docs/benchmarks/torch_luxi_*_power.csv docs/benchmarks/torch_luxi_*_power.txt docs/benchmarks/torch_luxi_power.csv docs/benchmarks/torch_luxi_power.txt docs/benchmarks/torch_luxi.csv docs/benchmarks/xai_integration.md
+ls -l docs/docs/benchmarks/raw/torch_luxi_*_power.csv docs/docs/benchmarks/raw/torch_luxi_*_power.txt docs/docs/benchmarks/raw/torch_luxi_power.csv docs/docs/benchmarks/raw/torch_luxi_power.txt docs/docs/benchmarks/raw/torch_luxi.csv docs/docs/benchmarks/raw/xai_integration.md

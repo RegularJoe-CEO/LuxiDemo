@@ -196,7 +196,7 @@ Performance metrics based on benchmark suite results:
 - **Precision**: Default float64 (f64), configurable
 - **Concurrency**: Stateless design allows horizontal scaling
 
-See [BENCHMARK_DATA.md](../BENCHMARK_DATA.md) for complete methodology, test conditions, and detailed performance metrics.
+See [BENCHMARK_DATA.md](../benchmarks/BENCHMARK_DATA.md) for complete methodology, test conditions, and detailed performance metrics.
 
 ---
 

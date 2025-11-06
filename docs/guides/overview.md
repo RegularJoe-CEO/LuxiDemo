@@ -20,5 +20,5 @@ High-performance microservice for ultra-fast numeric calculations. One codebase 
 - GPU-to-CPU workload offload
 - Any platform needing rapid calculations
 
-All performance metrics reflect measured results. See [BENCHMARK_DATA.md](../BENCHMARK_DATA.md) for methodology.
+All performance metrics reflect measured results. See [BENCHMARK_DATA.md](../benchmarks/BENCHMARK_DATA.md) for methodology.
 
