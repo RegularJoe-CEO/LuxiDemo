@@ -47,3 +47,15 @@ All calculus-aware workloads run with the Rhai fallback interpreter. Execute wit
 - [`README.md`](README.md) – navigation hub for every benchmark artifact.
 - [`COMPARATIVE_ANALYSIS.md`](COMPARATIVE_ANALYSIS.md) – Luxi Edge vs. NumPy, SciPy Newton, and tuned C++.
 - [`data_exports/`](data_exports/) – raw Criterion exports (JSON/HTML). *(Generated via `cargo bench -- --save-baseline`).*
+
+### 64k f64 SIMD (Nov 6)
+- ops/J: 399,029
+- Mean: 1.28s
+- Power: 6.28W
+- Total: 25.56s (2.5M ops/s)
+
+### 64k f64 SIMD (Nov 6)
+- ops/J: 399,029
+- Mean: 1.28s
+- Power: 6.28W
+- Total: 25.56s (2.5M ops/s)

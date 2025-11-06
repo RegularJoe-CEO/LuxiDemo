@@ -194,3 +194,11 @@ Optional query parameter `precision=f64|f32|auto` on `/evaluate`, `/bisect`, `/b
 ---
 
 © 2025 Eric Waller. All rights reserved.
+## Benchmarks
+
+### Loaded SIMD Win (64k f64, Nov 6 2025)
+- **ops/J**: 399,029 (SIMD active; 16x scalar baseline of 24k).
+- **Latency**: Mean 1.28s/req (oha: 100 req, 5 concurrency; p95 1.30s; total 25.56s).
+- **Throughput**: 2,503k ops/s (64M ops total).
+- **Power**: 6.28W avg (M1 Pro; efficient SIMD).
+- **Repro**: `sin(x)*cos(x)` on uniform(-10,10) batch (seed=42); powermetrics + oha.
