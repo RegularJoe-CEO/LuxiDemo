@@ -115,6 +115,17 @@ AI agents and automated tools should use:
 - **Bootstrap Script**: `bash scripts/agent_bootstrap.sh` - One-command setup and testing
 - **Smoke Tests**: `bash scripts/agent_smoke.sh` - Verify all endpoints
 
+## For Humans
+
+If you are a human user (not an automated agent), start with these resources:
+
+- Quick overview and getting started: [README.md](README.md)
+- Docker setup (recommended): [Docker Setup](#docker-setup)
+- Build from source: [Building from Source](#building-from-source)
+- API overview and example calls: [API Overview](#api-overview) and [openapi.yaml](openapi.yaml)
+- How it works (conceptual guide): [docs/guides/how-it-works.md](docs/guides/how-it-works.md)
+- Benchmarks and performance data: [docs/benchmarks/BENCHMARK_DATA.md](docs/benchmarks/BENCHMARK_DATA.md)
+
 ## Benchmarks
 
 Performance benchmarks are centralized under [`docs/benchmarks/`](docs/benchmarks/):
