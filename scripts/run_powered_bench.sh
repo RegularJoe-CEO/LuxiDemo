@@ -1,40 +1,44 @@
-#!/usr/bin/env bash
-set -euo pipefail
-# Usage: run_powered_bench.sh <framework: torch|tf> <mode: baseline|luxi> <duration_s>
-FW="${1:?torch|tf}"
-MODE="${2:?baseline|luxi}"
-DUR="${3:?seconds}"
+#!/bin/bash
+set -euo pipefail  # Strict mode: exit on error, undefined vars, pipe fail
 
-CSV="docs/docs/benchmarks/raw/${FW}_${MODE}_power.csv"
-PM="docs/docs/benchmarks/raw/${FW}_${MODE}_power.txt"
+MODE="${1:-luxi}"  # Default to luxi if not provided
+DURATION=20  # Steady-state seconds
+OUTPUT_DIR="docs/benchmarks"
+mkdir -p "$OUTPUT_DIR"
 
-echo "sudo may prompt for your password..."
-sudo -v
+case "$MODE" in
+  "baseline")
+    echo "Running baseline (in-process PyTorch) for $DURATION s..."
+    # Run baseline load (adjust path if needed)
+    python3 benchmarks/torch_baseline_bench.py --duration "$DURATION" > "${OUTPUT_DIR}/torch_baseline_${DURATION}s.txt" 2>&1 &
+    BASE_PID=$!
+    ;;
+  "luxi")
+    echo "Running Luxi mode for $DURATION s..."
+    # Ensure server running (kill/restart if needed)
+    lsof -ti:8080 | xargs kill -9 2>/dev/null || true
+    cargo run -p erock_edge --release > /dev/null 2>&1 &
+    SERVER_PID=$!
+    sleep 5  # Wait for server startup
+    # Run Luxi load (via torch_luxi or similar—adjust if path differs)
+    python3 benchmarks/torch_luxi_bench.py --duration "$DURATION" --mode luxi > "${OUTPUT_DIR}/torch_luxi_${DURATION}s.txt" 2>&1 &
+    LUXI_PID=$!
+    ;;
+  *)
+    echo "Error: Invalid mode '$MODE'. Use 'baseline' or 'luxi'."
+    exit 1
+    ;;
+esac
 
-# Start powermetrics in background
-scripts/power_macos.sh "$DUR" "$PM" &
-PM_PID=$!
+# Capture power metrics (requires sudo for powermetrics)
+echo "Capturing power metrics for $DURATION s (sudo required)..."
+sudo ./scripts/power_macos.sh "${MODE}" "$DURATION" > "${OUTPUT_DIR}/${MODE}_${DURATION}s_power.txt" 2>&1
 
-# Run the bench for exactly DUR seconds (steady-state mode)
-if [ "$FW" = "torch" ]; then
-  python3 docs/benchmarks/raw/torch_pipeline.py --mode "$MODE" --batch-size 8192 --threads 1 --duration-s "$DUR" --csv "$CSV"
-elif [ "$FW" = "tf" ]; then
-  if python3 - <<'PY' >/dev/null 2>&1
-import tensorflow as tf
-PY
-  then
-    python3 docs/benchmarks/raw/tf_pipeline.py --mode "$MODE" --batch-size 8192 --threads 1 --duration-s "$DUR" --csv "$CSV"
-  else
-    echo "TensorFlow not available; skipping $FW $MODE"
-    kill "$PM_PID" 2>/dev/null || true
-    wait "$PM_PID" 2>/dev/null || true
-    exit 0
-  fi
-else
-  echo "Unknown framework '$FW'"; exit 2
+# Wait for load to finish
+wait $LUXI_PID 2>/dev/null || wait $BASE_PID 2>/dev/null || true
+# Kill server if Luxi mode
+if [ "$MODE" = "luxi" ]; then
+  kill $SERVER_PID 2>/dev/null || true
 fi
 
-# Wait for powermetrics to finish its fixed samples
-wait "$PM_PID"
-
-echo "Wrote $CSV and $PM"
+echo "Benchmark complete. Outputs in $OUTPUT_DIR/ (*_${DURATION}s.txt, *_power.txt)."

@@ -7,7 +7,8 @@ pub use runtime::{HwProbe, OffloadQueue};
 pub use compute::{Dispatcher, ComputeOp, Precision};
 pub use security::Enclave;
 
-pub mod luxi_eval;
 
 #[allow(dead_code)]
 pub fn health_fields() -> (bool, bool, &'static str) { (false, false, "jit_disabled") }
+pub mod luxi_eval;
+// // pub use luxi_eval::simd_eval_over_x_inplace;
