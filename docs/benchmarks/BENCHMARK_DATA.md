@@ -59,3 +59,12 @@ All calculus-aware workloads run with the Rhai fallback interpreter. Execute wit
 - Mean: 1.28s
 - Power: 6.28W
 - Total: 25.56s (2.5M ops/s)
+
+## Recent SIMD & Tuning (M1 Pro, 16GB, macOS 14.5)
+- Loaded float64 SIMD: 399,029 ops/J, 2.5M ops/s (6.275W avg, 25.56s; 16x scalar).
+- Best tuning (PyTorch): batch=16384, threads=2, concurrency=4 (aggregate_tuning.py).
+- Repro bench (fb7356f): 100k sin(x)*cos(x) SIMD timings for xAI.
+
+## GPU T4 Baseline (Colab, Pending)
+- PyTorch scalar: [Paste ops/J from above].
+- Luxi TCP: [Pending; expect 100-500k ops/J vs. M1 399k].
