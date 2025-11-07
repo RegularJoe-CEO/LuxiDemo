@@ -66,5 +66,6 @@ All calculus-aware workloads run with the Rhai fallback interpreter. Execute wit
 - Repro bench (fb7356f): 100k sin(x)*cos(x) SIMD timings for xAI.
 
 ## GPU T4 Baseline (Colab, Pending)
-- PyTorch scalar: [Paste ops/J from above].
+- PyTorch baseline: 294k ops/J, 498M ops/s (27.05W, 159M ops; 0.20ms/100k).
+- Luxi TCP: 30k ops/J, 200 req/s (32.82W, 20M ops; 100ms/100k; 0.1x baseline, vs M1 399k).- PyTorch scalar: [Paste ops/J from above].
 - Luxi TCP: [Pending; expect 100-500k ops/J vs. M1 399k].
