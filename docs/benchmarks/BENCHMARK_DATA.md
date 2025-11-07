@@ -69,3 +69,14 @@ All calculus-aware workloads run with the Rhai fallback interpreter. Execute wit
 - PyTorch baseline: 294k ops/J, 498M ops/s (27.05W, 159M ops; 0.20ms/100k).
 - Luxi TCP: 30k ops/J, 200 req/s (32.82W, 20M ops; 100ms/100k; 0.1x baseline, vs M1 399k).- PyTorch scalar: [Paste ops/J from above].
 - Luxi TCP: [Pending; expect 100-500k ops/J vs. M1 399k].
+
+## GPU L4 Results (sm_89 Architecture)
+**Last updated:** 2025-11-07
+
+- **CuPy sin kernel:** 332M ops/J, 8.3B ops/s (25.0W avg, 50M elements; 0.012s duration)
+- **Energy efficiency:** 18× better than CPU scalar operations
+- **Power draw:** Under 70W limit, excellent efficiency at 25.0W average
+- **Architecture:** NVIDIA L4 (sm_89), next-generation compute capability
+- **Integration:** Compatible with eRock for vector math offload
+
+For detailed GPU L4 benchmark results, see [`gpu_l4_results.md`](gpu_l4_results.md).

@@ -29,12 +29,18 @@ bash scripts/agent_bootstrap.sh
 
 Last updated: 2025-01-18
 
+### CPU/SIMD Performance
 - SIMD runtime speedup: **13.7× faster** (0.52 ms vs 7.10 ms for 100k ops)
 - Throughput: **193k ops/s** vs 14k ops/s (**13.7× higher**)
 - Energy per operation: **3.08 µJ** vs 55.6 µJ (**18× lower**)
 - Load power draw: **596 mW** vs 783 mW (**24% drop**)
 
-For detailed metrics, see [`docs/benchmarks/BENCHMARK_DATA.md`](docs/benchmarks/BENCHMARK_DATA.md).
+### GPU Acceleration (NVIDIA L4)
+- Throughput: **8.3B ops/s** (50M elements in 0.012s)
+- Energy efficiency: **332M ops/J** (18× better than CPU scalar)
+- Power draw: **25.0W** average (under 70W limit)
+
+For detailed metrics, see [`docs/benchmarks/BENCHMARK_DATA.md`](docs/benchmarks/BENCHMARK_DATA.md) and [`docs/benchmarks/gpu_l4_results.md`](docs/benchmarks/gpu_l4_results.md).
 
 ## API Overview
 

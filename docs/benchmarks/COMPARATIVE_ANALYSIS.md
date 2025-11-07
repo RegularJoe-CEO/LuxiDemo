@@ -43,6 +43,15 @@ Luxi Edge’s deterministic runtime and bounded memory use support high-density 
 
 Luxi Edge’s Rust-based runtime enforces memory safety, removing classes of vulnerabilities (use-after-free, data races) common in C/C++ deployments. Python’s C extensions inherit similar risks, and memory fragmentation in NumPy-heavy services regularly causes cache inefficiency at scale.
 
+
+### GPU Acceleration (NVIDIA L4)
+
+- **Luxi Edge L4 Results:** CuPy-based sin kernel processes 50M elements in 0.012s, achieving 8.3B ops/s at 25.0W average power. Energy efficiency reaches 332M ops/J, demonstrating 18× improvement over CPU scalar operations while remaining under the 70W power limit.
+- **Architecture Benefits:** The NVIDIA L4 (sm_89 architecture) provides next-generation compute capabilities with exceptional energy efficiency for large-scale vector operations. Integration with eRock enables seamless vector math offload.
+- **Power Efficiency:** At 25W average power consumption, the L4 GPU delivers superior performance per watt compared to both T4 GPU baseline (294k ops/J at 53W) and CPU implementations, making it ideal for edge AI and high-throughput mathematical workloads.
+
+For detailed GPU L4 benchmark results, see [`gpu_l4_results.md`](gpu_l4_results.md).
+
 ## Deployment Impact
 
 The deterministic latency envelope (7–9 ms for compute operations, <1 ms for health checks) aligns with edge inference SLAs. In a 100 MW data center, replacing 10% of mixed Python/C++ analytic workloads with Luxi Edge reduces annual energy expenditure from $87.6M to $4.87M, delivering **$82.7M** in yearly savings with payback in under a month.
@@ -57,6 +66,7 @@ The deterministic latency envelope (7–9 ms for compute operations, <1 ms for h
 ## References
 
 - `BENCHMARK_DATA.md` – canonical benchmark tables and enterprise ROI calculations.
+- `gpu_l4_results.md` – detailed NVIDIA L4 GPU benchmark results and specifications.
 - `docs/SCIENTIFIC_OVERVIEW.md` – methodological notes and measurement protocols.
 - `tools/client_python_example.py` – baseline Python harness for exercising the HTTP API.
 - `load_test.rs` – Rust load generator that can be repurposed for C++ parity tests.

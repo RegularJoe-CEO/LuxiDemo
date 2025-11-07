@@ -1,2 +1,0 @@
-# Luxi Edge GPU Benchmark Results (L4/sm_89)\n\n**Run Date:** $(date)\n\n## Key Metrics\n- Elements: 50M\n- Duration: 0.012s\n- ops/s: 8.3e+09\n- Avg Power: 25.0W\n- ops/J: 332M\n\n## Full Output\n\`\`\`\n$(cat gpu_l4_results.md)\n\`\`\`\n\n**Notes:** CuPy sin kernel under 70W limit. 18x more efficient than CPU scalar. Integrates with eRock for vector math offload.
-root@9fc93d126661:~/bench/eRock#

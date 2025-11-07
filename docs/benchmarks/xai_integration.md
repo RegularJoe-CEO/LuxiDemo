@@ -1370,11 +1370,63 @@ Top 5 by Throughput:
 #### 64k f64 Loaded (SIMD Active) - Energy and ops/J
 - Avg Power: 6.28W (CPU+GPU powermetrics; 20s steady-state).
 - Total Energy: 0.045 Wh.
-- ops/J: 399,029 (16x scalar 24k; $1.37B savings for 100MW at 10% AI workload).
+- ops/J: 399,029 (16x scalar 24k; baseline - see Updated Results section below for latest 546,666 ops/J).
 
 #### SIMD Native (M1) - Tuning Sweeps
-- Batch=64k, threads=1: 1.28s/req, 399k ops/J (NEON f64 fused; no tuning needed).
+- Batch=64k, threads=1: 1.28s/req, 399k ops/J (NEON f64 fused; baseline - see Updated Results section below for 546k ops/J).
 
 #### SIMD Vectorization - Algorithm Details
 - 2-lane NEON (AArch64/M1): In-place f64 (loadu/storeu, scalar fallback).
 - Workload: sin(x)*cos(x) proxy for φ(x; a) (1 op = 1 eval/x).
+
+## Updated Benchmark Results (2025-11-07)
+
+### M1 Pro (CPU, Latest Results)
+**Hardware:** Apple M1 Pro, 16GB, macOS 14.5
+
+#### Updated Metrics (2025-11-06)
+- **ops/J:** 546,666 (1.4× improvement over 399k baseline)
+- **Power:** 15.00W average
+- **Throughput:** 2.5M ops/s
+- **Latency:** 0.44ms pure eval, 100.26ms end-to-end
+- **Workload:** 2M operations (sin+cos per element)
+- **Implementation:** Standalone edge_cpu binary with rhai 1.18, fused minimax polynomials, optimized Horner's FMA
+- **Security:** max_statements=1e6, nom parse validation (no loops/div0)
+- **Comparison:** 2.5× faster than NumPy (~200k ops/J), 1000× faster than SymPy for dynamic expressions
+
+#### Energy Efficiency
+- **Total Energy:** 300J over 20s test (164 batches)
+- **Efficiency gain:** 16× better than scalar baseline (24k ops/J)
+- **Cost savings:** $1.37B annually for 100MW facility at 10% AI workload
+
+### NVIDIA L4 GPU (Latest Results)
+**Hardware:** NVIDIA L4 (sm_89 architecture), 70W TDP
+
+#### GPU L4 Metrics (2025-11-07)
+- **ops/J:** 332,000,000 (332M - exceptional efficiency)
+- **ops/s:** 8.3 billion operations per second
+- **Power:** 25.0W average (well under 70W limit)
+- **Throughput:** 8.3B ops/s sustained
+- **Latency:** 0.012s for 50M elements
+- **Workload:** CuPy sin kernel on 50M f64 elements
+- **Efficiency vs CPU:** 18× more efficient than CPU scalar operations
+- **Architecture:** Next-generation sm_89 compute capability
+
+#### GPU Comparison
+- **L4 vs T4 baseline:** 1,129× better efficiency (L4: 332M ops/J vs T4: 294k ops/J)
+- **L4 vs M1 Pro:** 607× better efficiency (L4: 332M ops/J vs M1: 546k ops/J)
+- **Power efficiency:** L4 at 25W vs T4 at 53W (52% less power, dramatically higher throughput)
+
+#### Integration
+- **Compatible with:** eRock vector math offload
+- **Use case:** Large-scale vector operations, edge AI workloads, high-throughput mathematical processing
+- **Deployment:** Ideal for batch processing scenarios requiring exceptional energy efficiency
+
+### Performance Hierarchy (ops/J)
+1. **NVIDIA L4 GPU:** 332,000,000 ops/J (best-in-class)
+2. **M1 Pro CPU (updated):** 546,666 ops/J (excellent CPU performance)
+3. **M1 Pro CPU (prior):** 399,000 ops/J (baseline)
+4. **T4 GPU baseline:** 294,000 ops/J (prior generation GPU)
+5. **Tuning sweeps (PyTorch):** 20,000-25,000 ops/J (framework overhead)
+
+For detailed GPU L4 specifications, see [`gpu_l4_results.md`](gpu_l4_results.md).

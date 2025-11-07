@@ -9,6 +9,7 @@ Luxi Edge benchmarks measure performance across multiple dimensions:
 - **SIMD Runtime**: Vectorized expression evaluation using hardware acceleration
 - **Fallback Calculus**: Derivative, gradient, and root-finding operations
 - **Power Efficiency**: Energy consumption under various workloads
+- **GPU Acceleration**: NVIDIA L4 and T4 GPU performance for large-scale vector operations
 - **Cross-Platform Comparisons**: Performance against Python/NumPy, SciPy, and optimized C++
 
 For detailed methodology and test environment specifications, see [`BENCHMARK_DATA.md`](BENCHMARK_DATA.md).
@@ -27,6 +28,7 @@ See [`BENCHMARK_DATA.md`](BENCHMARK_DATA.md) for specific hardware configuration
 Latest performance metrics are maintained in [`BENCHMARK_DATA.md`](BENCHMARK_DATA.md). Key highlights:
 - 13.7× faster than baseline for SIMD operations
 - 18× lower energy per operation
+- GPU L4: 332M ops/J at 8.3B ops/s (see [`gpu_l4_results.md`](gpu_l4_results.md))
 - Detailed comparative analysis available in [`COMPARATIVE_ANALYSIS.md`](COMPARATIVE_ANALYSIS.md)
 
 ## Data Inventory
@@ -43,6 +45,7 @@ All benchmark data and artifacts are organized within this directory:
 |----------|---------|
 | [`BENCHMARK_DATA.md`](BENCHMARK_DATA.md) | Executive summary of the latest Luxi Edge results |
 | [`COMPARATIVE_ANALYSIS.md`](COMPARATIVE_ANALYSIS.md) | Cross-tool study vs. Python/NumPy, SciPy Newton, and tuned C++ |
+| [`gpu_l4_results.md`](gpu_l4_results.md) | NVIDIA L4 GPU benchmark results (sm_89 architecture) |
 | [`data_exports/`](data_exports/) | Raw Criterion baselines and HTML reports (`cargo bench -- --save-baseline`) |
 | [`raw/`](raw/) | Python benchmark scripts and client utilities |
 | [`FINDING_DATA.md`](FINDING_DATA.md) | Step-by-step guide for locating the refreshed benchmark files |
