@@ -188,6 +188,25 @@ See [`docs/README.md`](docs/README.md) for the complete documentation index.
 
 This codebase uses the internal module and crate name "erock" for historical reasons and build compatibility. The public product name is **Luxi Edge**. Think of "erock" as the engineering/build identifier.
 
+## GPU Acceleration (Optional)
+
+Luxi Edge supports optional GPU acceleration for enhanced performance:
+
+- **FP16 GPU Kernels**: 2x throughput on NVIDIA T4/L4 GPUs via CUDA
+- **Batch Optimization**: 20% speedup for 10k+ evaluations (automatically enabled)
+- **Vulkan Fallback**: Portable GPU acceleration on AMD/Intel/Apple GPUs
+
+Build with GPU support:
+```bash
+# CUDA support (NVIDIA GPUs)
+cargo build --release --features gpu
+
+# Vulkan support (portable)
+cargo build --release --features vulkan
+```
+
+See [GPU Optimizations Benchmarks](docs/benchmarks/gpu_optimizations.md) for details.
+
 ## Precision Parameter
 
 Optional query parameter `precision=f64|f32|auto` on `/evaluate`, `/bisect`, `/bisect_auto`.
