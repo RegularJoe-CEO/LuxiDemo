@@ -1,20 +1,15 @@
 [package]
-name = "erock_edge"
+name = "luxi_cpu"
 version = "0.1.0"
 edition = "2021"
 
 [[bin]]
-name = "erock_edge"
+name = "luxi_cpu"
 path = "src/main.rs"
 
 [dependencies]
-erock = { path = "../" }
+rhai = "1.18"
 tokio = { version = "1", features = ["full"] }
 warp = "0.3"
-serde_json = "1"
-tracing = "0.1"
-hyper = "0.14"
 serde = { version = "1", features = ["derive"] }
-cudarc = "0.9"
-rhai = "1.18"
-nom = "7.1"
+serde_json = "1"

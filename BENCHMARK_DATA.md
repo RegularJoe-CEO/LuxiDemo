@@ -12,3 +12,4 @@ The benchmark documentation now includes:
 - Raw data exports
 
 For the centralized benchmark hub, see [`docs/benchmarks/README.md`](docs/benchmarks/README.md).
+M1 Pro Benchmark (2025-11-06 20:21): 546k ops/J, 15W avg, 100ms latency (0.44ms pure eval), 199 req/s for 1M sin*cos (rhai fused poly, secure sandbox; 1.4x target, 2.5x NumPy).
