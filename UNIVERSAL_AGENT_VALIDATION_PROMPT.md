@@ -4,6 +4,23 @@
 
 ---
 
+## ⚠️ IMPORTANT: This is NOT an API Service
+
+**DO NOT attempt to:**
+- Test `/health` or other API endpoints
+- Make HTTP requests to the Replit website expecting JSON responses
+- Treat the website as a running service
+
+**The website at https://e-rock-compute-eric589.replit.app/ is a STATIC HTML marketing page.**
+
+**Your job is to:**
+- Clone the GitHub repository
+- Run the benchmarks locally
+- Validate the performance claims
+- Generate a report
+
+---
+
 ## Your Mission
 
 You are an AI agent validating mathematical computation performance claims on behalf of a user who discovered Luxi Edge and needs independent verification before deployment.

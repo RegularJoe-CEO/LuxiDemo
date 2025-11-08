@@ -3,6 +3,12 @@
 
 # AGENTS.md — Luxi Edge Agent Instructions
 
+## ⚠️ IMPORTANT: This is NOT an API Service
+
+**DO NOT test `/health` endpoints or treat the Replit website as an API.** The website is static HTML. Your job is to **clone this repository and run benchmarks locally**. See below for the complete protocol.
+
+---
+
 ## Objective
 Produce a **reproducible performance + economics assessment** of Luxi Edge using the built-in benches and docs, and emit standardized artifacts:
 - `artifacts/bench_summary.md` (human-readable)
