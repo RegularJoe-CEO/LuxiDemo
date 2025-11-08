@@ -1,66 +1,206 @@
 # Replit Agent: Website Update Instructions
 
-## Objective
-Update the Luxi Edge marketing website (https://e-rock-compute-eric589.replit.app/) to align with the newly redesigned GitHub landing page.
+## ⚠️ IMPORTANT: Replit Site is NOT Auto-Synced with GitHub
+
+The live website at https://e-rock-compute-eric589.replit.app/ is **NOT automatically connected** to the GitHub repository. You need to **manually copy** the updated HTML content to the Replit project.
 
 ---
 
-## Context
-The GitHub repository README has been completely rewritten to present Luxi Edge as a professional, enterprise-ready product. The marketing website needs to match this new positioning.
+## Objective
+Update the Luxi Edge marketing website to match the newly redesigned GitHub landing page.
 
 **GitHub Repository:** https://github.com/RegularJoe-CEO/LuxiEdge  
-**Current Website:** https://e-rock-compute-eric589.replit.app/
+**Live Website:** https://e-rock-compute-eric589.replit.app/  
+**Updated HTML Source:** https://github.com/RegularJoe-CEO/LuxiEdge/blob/main/holding/marketing-site/index.html
 
 ---
 
-## Tasks
+## Option 1: Manual Copy (Recommended if Replit is not git-connected)
 
-### 1. Pull Latest Changes from GitHub
+### Step 1: Get the Updated HTML
+Visit: https://raw.githubusercontent.com/RegularJoe-CEO/LuxiEdge/main/holding/marketing-site/index.html
+
+Copy the entire raw HTML content.
+
+### Step 2: Update Replit's index.html
+In your Replit project:
+1. Open the `index.html` file (or whatever file serves the homepage)
+2. **Replace all content** with the copied HTML
+3. Save the file
+
+### Step 3: Verify the Update
+The new HTML should start with:
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Luxi Edge — Ultra-Efficient Mathematical Computation</title>
+```
+
+NOT:
+```html
+<title>Luxi Edge — Engineer Preview</title>
+```
+
+---
+
+## Option 2: Git Clone (If Replit supports git)
+
+### Step 1: Check if Replit has Git Access
+### Step 1: Check if Replit has Git Access
+In the Replit shell, run:
+```bash
+git status
+```
+
+**If you get a repository status:** Replit is connected to git. Proceed to Step 2.  
+**If you get "not a git repository":** Use Option 1 (Manual Copy) instead.
+
+### Step 2: Pull Latest Changes
+
+### Step 2: Pull Latest Changes
 ```bash
 git pull origin main
 ```
 
-This will bring in the updated `holding/marketing-site/index.html` file (commit 672dfde).
-
-### 2. Verify Updated Content
-The new `index.html` should include:
-- **New title:** "Luxi Edge — Ultra-Efficient Mathematical Computation"
-- **Updated tagline:** "Energy-first compute platform delivering >10× performance and >5× energy efficiency"
-- **Use case sections:** Industrial Control, AI/ML Pipelines, Autonomous Systems, Energy-Critical Infrastructure
-- **Updated metrics:**
-  - GPU: 72.7M ops/sec (NVIDIA L4)
-  - CPU: 1.6ms for 100K elements
-  - Platform support matrix (x86_64, ARM64, NVIDIA GPU)
-- **Enterprise section:** White-label licensing, NDA partner program
-- **Resources section:** Links to GitHub, docs, benchmarks, xAI guide
-
-### 3. Deploy Updated Website
-Ensure the Replit app serves the updated `index.html` file from `holding/marketing-site/`.
-
-If the site uses a static file server, restart it:
+### Step 3: Copy Files to Web Root
+The updated HTML is in `holding/marketing-site/index.html`. Copy it to your web root:
 ```bash
-# Example commands (adjust based on your Replit setup)
-killall python3  # or node, or whatever serves the site
-python3 -m http.server 8080 --directory holding/marketing-site &
+# If Replit serves from root directory:
+cp holding/marketing-site/index.html ./index.html
+
+# Or if Replit has a public/www directory:
+cp holding/marketing-site/index.html ./public/index.html
 ```
 
-Or if using Node.js:
+### Step 4: Copy Styles (if needed)
 ```bash
-cd holding/marketing-site
-npx serve -p 8080
+cp holding/marketing-site/styles.css ./styles.css
+# Or: cp holding/marketing-site/styles.css ./public/styles.css
 ```
-
-### 4. Verify Deployment
-Visit https://e-rock-compute-eric589.replit.app/ and confirm:
-- ✅ Page title is "Luxi Edge — Ultra-Efficient Mathematical Computation"
-- ✅ GPU metrics show "72.7M ops/sec"
-- ✅ Platform support table is present
-- ✅ Enterprise partnership section is visible
-- ✅ Links to GitHub repository work correctly
 
 ---
 
-## Key Changes Summary
+## What Changed in the HTML
+
+### OLD Content (Currently Live)
+### OLD Content (Currently Live)
+```html
+<title>Luxi Edge — Engineer Preview</title>
+<div class="tag">World's fastest edge numerical microservice</div>
+```
+- Metrics: "13.7× faster", "193k ops/sec", "596mW under load"
+- Positioning: "Engineer Preview"
+- Links to: readme.html, iot.html, ml.html, data.html, edge.html, musk.html
+
+### NEW Content (Should Be Updated To)
+```html
+<title>Luxi Edge — Ultra-Efficient Mathematical Computation</title>
+<div class="tag">Ultra-Efficient Mathematical Computation at Scale</div>
+<p class="subtitle">Energy-first compute platform delivering >10× performance and >5× energy efficiency</p>
+```
+- Metrics: "72.7M ops/sec" (GPU), "1.6ms for 100K elements" (CPU)
+- Positioning: "Production-ready computational acceleration platform"
+- Links to: GitHub repository, docs, benchmarks, xAI integration guide
+
+---
+
+## How to Verify the Update Worked
+
+### Method 1: View Page Source
+Visit https://e-rock-compute-eric589.replit.app/ and view source (Ctrl+U or Cmd+Option+U).
+
+**Search for:** `72.7M ops/sec`  
+- ✅ **Found:** Update successful!  
+- ❌ **Not found:** Update failed, HTML wasn't copied correctly
+
+**Search for:** `193k ops/sec`  
+- ❌ **Found:** Still showing old content  
+- ✅ **Not found:** Old content removed successfully
+
+### Method 2: Check Page Title
+Browser tab should show: **"Luxi Edge — Ultra-Efficient Mathematical Computation"**  
+NOT: "Luxi Edge — Engineer Preview"
+
+### Method 3: Visual Check
+The page should have:
+- ✅ Four use case cards (Industrial, AI/ML, Autonomous, Energy-Critical)
+- ✅ GPU performance table showing 72.7M ops/sec
+- ✅ Platform support matrix (x86_64, ARM64, NVIDIA GPU)
+- ✅ Enterprise & Strategic Partnerships section
+- ✅ Links to GitHub (not to readme.html, iot.html, etc.)
+
+---
+
+## Common Issues & Solutions
+
+### Issue 1: "I copied the HTML but the site looks broken"
+**Cause:** Missing `styles.css` file  
+**Solution:** Copy the CSS from the GitHub repo or use the template below
+
+### Issue 2: "Links to readme.html, iot.html still appear"
+**Cause:** Wrong HTML file was updated  
+**Solution:** 
+1. Find which file Replit is actually serving (check Replit config)
+2. Update THAT file, not just any index.html
+3. Check if Replit uses `public/index.html` or root `index.html`
+
+### Issue 3: "Changes don't appear after refresh"
+**Cause:** Browser cache or CDN cache  
+**Solution:**
+1. Hard refresh: Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac)
+2. Open incognito/private window
+3. Check Replit deployment status (may need to restart Repl)
+
+### Issue 4: "Git pull says 'not a git repository'"
+**Cause:** Replit is not connected to GitHub  
+**Solution:** Use Option 1 (Manual Copy) instead
+
+---
+
+## Quick Checklist for Replit Agent
+
+Before you report "done", verify ALL of these:
+
+- [ ] Opened https://e-rock-compute-eric589.replit.app/ in browser
+- [ ] Page title is "Luxi Edge — Ultra-Efficient Mathematical Computation" (NOT "Engineer Preview")
+- [ ] Searched page source for "72.7M ops/sec" — FOUND
+- [ ] Searched page source for "193k ops/sec" — NOT FOUND
+- [ ] Searched page source for "596mW" — NOT FOUND  
+- [ ] Searched page source for "13.7×" — NOT FOUND
+- [ ] GPU performance table is visible on page
+- [ ] Platform support matrix is visible on page
+- [ ] "Enterprise & Strategic Partnerships" section exists
+- [ ] Links point to GitHub (https://github.com/RegularJoe-CEO/LuxiEdge)
+- [ ] NO links to "readme.html", "iot.html", "ml.html" on the homepage
+- [ ] Tested on mobile/narrow viewport (responsive design works)
+
+---
+
+## Why This Happened
+
+The Replit website is **separate** from the GitHub repository. When we updated `holding/marketing-site/index.html` in GitHub, it didn't automatically update the live Replit site.
+
+**Two separate things:**
+1. **GitHub repo** (`/holding/marketing-site/index.html`) — Updated ✅
+2. **Replit website** (live at replit.app URL) — Needs manual update ❌
+
+This prompt helps you sync them.
+
+---
+
+## Direct Link to Updated HTML
+
+**Raw file URL:**  
+https://raw.githubusercontent.com/RegularJoe-CEO/LuxiEdge/main/holding/marketing-site/index.html
+
+**Formatted view:**  
+https://github.com/RegularJoe-CEO/LuxiEdge/blob/main/holding/marketing-site/index.html
+
+Copy the raw version and paste it into Replit's HTML file.
+
+---
 
 ### REMOVED (Old Metrics)
 - ❌ "13.7× faster" (outdated CPU-only comparison)
