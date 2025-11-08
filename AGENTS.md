@@ -161,6 +161,56 @@ Append to `artifacts/bench_summary.md`:
 - [ ] Economics summary emitted
 - [ ] Final verdict written (≤150 words)
 
+## Success Criteria
+
+### Minimum Success (LOW-MEDIUM Confidence)
+✅ Repository clones successfully  
+✅ `cargo build --release` succeeds  
+✅ Benchmarks complete without errors  
+✅ All 4 artifacts generated (JSON, CSV, bench_summary.md, economics_summary.md)
+
+**Verdict:** Code is real, builds, and runs. Sufficient to demonstrate viability.
+
+### Medium Confidence
+✅ Minimum Success +  
+✅ CPU SIMD results within 2× of documented values in BENCHMARK_DATA.md  
+✅ Economics calculations match formula exactly  
+✅ No errors in `artifacts/agent_errors.log`
+
+**Verdict:** Performance claims are approximately validated. Different hardware explains variance.
+
+### High Confidence
+✅ Medium Success +  
+✅ CPU SIMD results within ±50% of documented values  
+✅ Energy telemetry available (RAPL/IPMI) or documented reason why N/A  
+✅ Same/similar hardware class (AMD EPYC, Intel Xeon, AWS Graviton)
+
+**Verdict:** Performance claims are accurately validated. Production-ready.
+
+**Important:** Even LOW confidence is valuable validation. Different CPUs will produce different absolute numbers - that's expected and doesn't invalidate the approach.
+
+## Troubleshooting
+
+If validation fails, see **[AGENT_TROUBLESHOOTING.md](AGENT_TROUBLESHOOTING.md)** for:
+- Common failure modes and solutions
+- Step-by-step recovery protocol  
+- FAQ for failing agents
+- Example success reports
+
+**Quick Diagnostics:**
+```bash
+# If "AGENTS.md not found":
+curl https://raw.githubusercontent.com/RegularJoe-CEO/LuxiEdge/main/AGENTS.md
+
+# If "quickbench.sh not found":
+ls -la scripts/quickbench.sh  # Should exist
+chmod +x scripts/quickbench.sh  # Make executable if needed
+
+# If benchmarks fail:
+rustc --version  # Should be >= 1.75.0
+cargo build --release  # Try build separately first
+```
+
 ---
 
 ## One-Paragraph Agent Prompt (for Replit)
