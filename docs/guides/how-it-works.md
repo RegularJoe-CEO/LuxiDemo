@@ -165,8 +165,36 @@ When you send an expression like `x*x + 2*x + 1`, Luxi Edge:
 2. **Parses** it into an Abstract Syntax Tree (AST)
 3. **Evaluates** the AST for your input values
 
-### SIMD Acceleration
-For `/evaluate`, the service processes multiple x values in parallel using SIMD (Single Instruction, Multiple Data) instructions. On modern CPUs, this means computing 2-8 results simultaneously, making it much faster than computing one at a time.
+### CPU SIMD Acceleration (Edge Devices)
+For `/evaluate` on CPU, the service processes multiple x values in parallel using SIMD (Single Instruction, Multiple Data) instructions. On modern CPUs, this means computing 2-8 results simultaneously, making it much faster than computing one at a time.
+
+**CPU Performance:** 193,000 ops/sec with ultra-low power (596mW) — ideal for:
+- Edge devices and IoT
+- Battery-powered systems
+- Low-latency local computation
+- Cost-sensitive deployments
+
+### GPU Acceleration (Data Center Workloads)
+For massive throughput requirements, Luxi Edge can leverage **NVIDIA GPUs** to achieve data-center-scale performance:
+
+**GPU Performance (NVIDIA L4, validated November 8, 2025):**
+- **72,727,273 ops/sec** — 377× faster than CPU SIMD
+- **55ms latency** for 4M element evaluation
+- **16.4W power draw** (GPU at idle-level consumption)
+- **4.44M ops/sec/W** energy efficiency
+
+**How GPU Execution Works:**
+1. **Expression parsed once** on CPU (same AST as CPU path)
+2. **Data transferred** to GPU memory (input arrays)
+3. **Parallel kernel execution** across thousands of CUDA cores
+4. **Results transferred back** to CPU for response
+5. **Pipeline optimization** minimizes transfer overhead for large batches
+
+**When to Use GPU vs CPU:**
+- **GPU:** Large batch sizes (100k+ elements), data center deployments, maximum throughput needed
+- **CPU SIMD:** Edge devices, real-time responses, low power requirements, small to medium batches
+
+See [../benchmarks/GPU_L4_RESULTS.md](../benchmarks/GPU_L4_RESULTS.md) for detailed GPU architecture and performance analysis.
 
 ### Numerical Derivatives
 For `/evaluate_derivative` and `/gradient`, derivatives are computed numerically using finite differences:

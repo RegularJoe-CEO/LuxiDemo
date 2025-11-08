@@ -25,40 +25,45 @@ This validates GPU acceleration as a viable path for high-throughput numeric com
 
 ### 1.1 Mission Statement
 
-Provide ultra-fast numeric computation at the edge through:
-- **SIMD-accelerated evaluation** for vectorized operations
+Provide ultra-fast numeric computation for **edge devices and data center workloads** through:
+- **CPU SIMD-accelerated evaluation** for low-latency, energy-efficient edge computation
+- **GPU-accelerated massively parallel evaluation** for data-center-scale throughput
 - **Deterministic root-finding** with auto-bracketing algorithms
-- **Edge-optimized design** with minimal resource footprint
-- **Stateless API** enabling horizontal scaling
+- **Unified API** enabling deployment across heterogeneous hardware (ARM/x86 CPUs, NVIDIA GPUs)
+- **Stateless design** enabling horizontal scaling and simplified deployment
 
-### 1.2 Two-Tier Architecture
+### 1.2 Dual-Platform Architecture
 
 ```
 ┌───────────────────────────────────────────────────────────────┐
-│                     Luxi Core™                                │
-│           Portfolio Optimization & Market Integration          │
-│              (Optional multi-site orchestration)               │
-│                                                                 │
-│  • API Adapters for external systems                           │
-│  • Fleet-wide optimization with risk controls                  │
-│  • Real-time telemetry aggregation                            │
-│  • Revenue: Enterprise SaaS + analytics services               │
-└───────────────┬────────────────────────────┬──────────────────┘
-                │                            │
-    ┌───────────▼──────────┐     ┌──────────▼───────────┐
-    │   Luxi Edge™        │     │   Luxi Edge™        │
-    │  (Compute Layer)     │ ... │  (Compute Layer)     │
-    │                      │     │                      │
-    │ • Expression eval    │     │ • Expression eval    │
-    │ • Root-finding       │     │ • Root-finding       │
-    │ • SIMD acceleration  │     │ • SIMD acceleration  │
-    │ • HTTP API           │     │ • HTTP API           │
-    │                      │     │                      │
-    │ Hardware: ARM64/x86  │     │ Hardware: ARM64/x86  │
-    └──────────────────────┘     └──────────────────────┘
+│                   Client Application Layer                    │
+│               (HTTP/JSON API - Unified Interface)             │
+└──────────────┬────────────────────────────────┬───────────────┘
+               │                                │
+   ┌───────────▼──────────┐      ┌─────────────▼──────────────┐
+   │  Edge Deployment     │      │  Data Center Deployment   │
+   │  (CPU SIMD)          │      │  (GPU Acceleration)        │
+   ├──────────────────────┤      ├────────────────────────────┤
+   │ • ARM64/x86_64       │      │ • NVIDIA CUDA GPUs         │
+   │ • NEON/AVX2 SIMD     │      │ • 7,424+ CUDA cores (L4)   │
+   │ • 193k ops/sec       │      │ • 72.7M ops/sec            │
+   │ • 596mW power        │      │ • 16.4W power              │
+   │ • <1ms latency       │      │ • 55ms latency (4M batch)  │
+   │                      │      │                            │
+   │ Use Cases:           │      │ Use Cases:                 │
+   │ • IoT devices        │      │ • Batch analytics          │
+   │ • Real-time control  │      │ • Large-scale simulation   │
+   │ • Battery powered    │      │ • Data pipelines           │
+   └──────────────────────┘      └────────────────────────────┘
+
+               ┌─────────────────────────────┐
+               │   Optional: Luxi Core™      │
+               │   Multi-site Orchestration   │
+               │   (Enterprise SaaS Product)  │
+               └─────────────────────────────┘
 ```
 
-> **Note:** Luxi SDG™ is a separate product maintained in a private repository and not covered here.
+> **Note:** Luxi Core™ is an optional orchestration layer for multi-site deployments. This document focuses on the Luxi Edge compute layer.
 
 ### 1.3 Design Principles
 
