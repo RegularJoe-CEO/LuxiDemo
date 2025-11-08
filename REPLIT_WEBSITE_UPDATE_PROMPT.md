@@ -1,6 +1,14 @@
 # Replit Agent: Website Update Instructions
 
-## ⚠️ IMPORTANT: Replit Site is NOT Auto-Synced with GitHub
+## ⚠️ IMPORTANT: This Prompt is for Website Deployment Only
+
+**If you're validating Luxi Edge performance claims:** Use `AI_AGENT_VALIDATION_PROMPT.md` instead.
+
+**This prompt is specifically for:** Replit agents updating the live marketing website HTML.
+
+---
+
+## ⚠️ Replit Site is NOT Auto-Synced with GitHub
 
 The live website at https://e-rock-compute-eric589.replit.app/ is **NOT automatically connected** to the GitHub repository. You need to **manually copy** the updated HTML content to the Replit project.
 
@@ -14,6 +22,8 @@ Update the Luxi Edge marketing website to match the newly redesigned GitHub land
 **GitHub Repository:** https://github.com/RegularJoe-CEO/LuxiEdge  
 **Live Website:** https://e-rock-compute-eric589.replit.app/  
 **Updated HTML Source:** https://github.com/RegularJoe-CEO/LuxiEdge/blob/main/holding/marketing-site/index.html (commit 4eebb52)
+
+**Related:** For performance validation, see `AI_AGENT_VALIDATION_PROMPT.md` in the repository.
 
 ---
 
