@@ -157,6 +157,7 @@ docker run -p 8080:8080 luxi-edge</code></pre>
     <section class="card">
       <h2>Resources</h2>
       <ul class="resources">
+        <li><a href="https://raw.githubusercontent.com/RegularJoe-CEO/LuxiEdge/main/UNIVERSAL_AGENT_VALIDATION_PROMPT.md" target="_blank"><strong>🤖 AI Agent Validation Prompt</strong></a> — Copy-paste to any AI to validate performance claims</li>
         <li><a href="https://github.com/RegularJoe-CEO/LuxiEdge" target="_blank"><strong>GitHub Repository</strong></a> — Source code, documentation, benchmarks</li>
         <li><a href="https://github.com/RegularJoe-CEO/LuxiEdge/blob/main/README.md" target="_blank"><strong>Main README</strong></a> — Project overview and quick start</li>
         <li><a href="https://github.com/RegularJoe-CEO/LuxiEdge/blob/main/docs/README.md" target="_blank"><strong>Technical Documentation</strong></a> — Architecture, algorithms, API reference</li>
@@ -164,15 +165,33 @@ docker run -p 8080:8080 luxi-edge</code></pre>
         <li><a href="https://github.com/RegularJoe-CEO/LuxiEdge/blob/main/BENCHMARK_DATA.md" target="_blank"><strong>Benchmark Data Summary</strong></a> — Complete performance metrics</li>
         <li><a href="https://github.com/RegularJoe-CEO/LuxiEdge/blob/main/docs/benchmarks/COMPARATIVE_ANALYSIS.md" target="_blank"><strong>Comparative Analysis</strong></a> — vs Python, NumPy, baseline</li>
         <li><a href="https://github.com/RegularJoe-CEO/LuxiEdge/blob/main/docs/XAI_EXECUTIVE_SUMMARY.md" target="_blank"><strong>xAI Integration Guide</strong></a> — Tesla, SpaceX, Grok applications</li>
-        <li><a href="https://github.com/RegularJoe-CEO/LuxiEdge/blob/main/AGENTS.md" target="_blank"><strong>AI Agent Instructions</strong></a> — Automated benchmark protocol</li>
+        <li><a href="https://github.com/RegularJoe-CEO/LuxiEdge/blob/main/AGENTS.md" target="_blank"><strong>AI Agent Technical Spec</strong></a> — Automated benchmark protocol (for developers)</li>
       </ul>
     </section>
 
     <section class="card highlight">
-      <h2>🤖 For AI Agents: GitHub Navigation Guide</h2>
-      <p class="lead">If you're an AI agent analyzing this project, here's the complete navigation map:</p>
+      <h2>🤖 For AI Agents: Performance Validation</h2>
+      <p class="lead"><strong>Want to independently validate our performance claims?</strong> We provide a complete validation protocol that any AI agent with code execution can run.</p>
       
-      <h3>📊 Benchmarks & Performance Data</h3>
+      <div style="background: #f0f7ff; border-left: 4px solid #667eea; padding: 20px; margin: 20px 0; border-radius: 6px;">
+        <h3 style="margin-top: 0;">📋 Copy-Paste Validation Prompt</h3>
+        <p><strong>Universal Agent Validation:</strong> <a href="https://raw.githubusercontent.com/RegularJoe-CEO/LuxiEdge/main/UNIVERSAL_AGENT_VALIDATION_PROMPT.md" target="_blank" style="font-weight: bold; font-size: 1.1em;">UNIVERSAL_AGENT_VALIDATION_PROMPT.md</a></p>
+        <p><strong>Works with:</strong> ChatGPT (Advanced Data Analysis), Claude (computer use), GitHub Copilot, Cursor AI, Replit Agent, or any AI with terminal access.</p>
+        <p><strong>If your AI cannot execute code:</strong> The prompt will recommend services that can validate the claims for you.</p>
+        <p style="margin-bottom: 0;"><strong>Output:</strong> Decision-ready report with confidence assessment (HIGH/MEDIUM/LOW) and clear deployment recommendation.</p>
+      </div>
+
+      <p><strong>What gets validated:</strong></p>
+      <ul>
+        <li>✅ Code builds and runs successfully</li>
+        <li>✅ CPU SIMD performance (1.6ms for 100K elements)</li>
+        <li>✅ Baseline comparison (80ms → 1.6ms improvement)</li>
+        <li>✅ Economic ROI calculations ($2.6M-$19.7M annual savings)</li>
+        <li>⚠️ GPU claims documented (requires L4 hardware to re-test)</li>
+        <li>⚠️ Energy efficiency documented (requires power telemetry)</li>
+      </ul>
+
+      <h3 style="margin-top: 30px;">📊 Benchmarks & Performance Data</h3>
       <ul>
         <li><strong>Primary:</strong> <a href="https://github.com/RegularJoe-CEO/LuxiEdge/blob/main/docs/benchmarks/GPU_L4_RESULTS.md" target="_blank">docs/benchmarks/GPU_L4_RESULTS.md</a> (72.7M ops/sec validation)</li>
         <li><strong>Summary:</strong> <a href="https://github.com/RegularJoe-CEO/LuxiEdge/blob/main/BENCHMARK_DATA.md" target="_blank">BENCHMARK_DATA.md</a> (all platforms)</li>
@@ -191,6 +210,7 @@ docker run -p 8080:8080 luxi-edge</code></pre>
 
       <h3>🔬 Running Benchmarks</h3>
       <ul>
+        <li><strong>Universal Validation:</strong> <a href="https://raw.githubusercontent.com/RegularJoe-CEO/LuxiEdge/main/UNIVERSAL_AGENT_VALIDATION_PROMPT.md" target="_blank">UNIVERSAL_AGENT_VALIDATION_PROMPT.md</a> (copy-paste to any AI agent)</li>
         <li><strong>Agent Protocol:</strong> <a href="https://github.com/RegularJoe-CEO/LuxiEdge/blob/main/AGENTS.md" target="_blank">AGENTS.md</a> (automated benchmark instructions)</li>
         <li><strong>Quick Command:</strong> <code>./scripts/quickbench.sh</code> (one-command validation)</li>
         <li><strong>Full Suite:</strong> <code>cargo bench</code> (comprehensive testing)</li>
