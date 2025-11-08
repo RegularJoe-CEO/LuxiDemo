@@ -7,18 +7,35 @@
 
 ## Which Prompt Do I Need?
 
-### 🤖 I want to validate performance claims from the website
-**Use:** `AI_AGENT_VALIDATION_PROMPT.md`
+### ⭐ **RECOMMENDED:** Universal Copy-Paste Validation (Start Here)
+**Use:** `UNIVERSAL_AGENT_VALIDATION_PROMPT.md`
 
-**Purpose:** Complete validation of Luxi Edge performance claims for users who discovered the tool online and need independent verification before deployment.
+**Purpose:** Self-contained prompt that works with ANY AI agent service. Copy and paste the entire file into ChatGPT, Claude, Copilot, Cursor, or any AI with code execution.
 
-**User Journey:** Website discovery → Repository validation → Benchmark execution → Decision support
+**Key Features:**
+- ✅ Works regardless of which AI service you use
+- ✅ Checks agent capabilities upfront (can you run code?)
+- ✅ Recommends alternative services if current agent cannot execute validation
+- ✅ Complete validation protocol included in single document
+- ✅ Template responses for all scenarios (success/partial/failure)
+- ✅ No GitHub access required (user can copy-paste the prompt directly)
+
+**User Journey:** Copy prompt → Paste to any AI → Get validation report
 
 **Outputs:**
 - Website claims verification (GPU 72.7M ops/sec, CPU 1.6ms)
 - Confidence assessment (HIGH/MEDIUM/LOW)
 - Clear deployment recommendation
-- Economic ROI validation
+- Transparent about what agent can/cannot validate
+
+---
+
+### 🤖 Alternative: Technical Validation (GitHub-Integrated)
+**Use:** `AI_AGENT_VALIDATION_PROMPT.md`
+
+**Purpose:** For agents already operating within a development environment with GitHub access.
+
+**User Journey:** Website discovery → Repository validation → Benchmark execution → Decision support
 
 ---
 
