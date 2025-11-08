@@ -1,317 +1,631 @@
-<!-- SPDX-FileCopyrightText: 2025 Eric Waller -->
-<!-- SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0 -->
+<!-- SPDX-FileCopyrightText: 2025 Eric Waller --><!-- SPDX-FileCopyrightText: 2025 Eric Waller -->
 
-# Luxi Algorithm Implementation Details
+<!-- SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0 --><!-- SPDX-License-Identifier: LicenseRef-Luxi-Business-1.0 -->
 
-**Technical Reference for Researchers and Engineers**
 
-## GPU Acceleration Validated — November 8, 2025
 
-Production deployment on **NVIDIA L4 GPU (RunPod)** achieved:
+# Computational Algorithms — Conceptual Overview# Luxi Algorithm Implementation Details
+
+
+
+This document describes the high-level algorithmic approaches used in Luxi Edge for efficient mathematical expression evaluation on edge devices. **For detailed implementation, see internal documentation (NDA partners only).****Technical Reference for Researchers and Engineers**
+
+
+
+---## GPU Acceleration Validated — November 8, 2025
+
+
+
+## 1. OverviewProduction deployment on **NVIDIA L4 GPU (RunPod)** achieved:
+
 - **72,727,273 ops/sec** throughput (377× faster than CPU SIMD)
-- **55ms latency** for 4,000,000 element evaluation
-- **16.4W power** measured via NVML
-- **4.44M ops/sec/W** energy efficiency
 
-This validates GPU acceleration for high-throughput numeric computation. See [../benchmarks/GPU_L4_RESULTS.md](../benchmarks/GPU_L4_RESULTS.md) for implementation details and optimization roadmap.
+Luxi Edge achieves substantial performance and energy efficiency improvements through:- **55ms latency** for 4,000,000 element evaluation
+
+- **16.4W power** measured via NVML
+
+1. **Hardware-Aware Computation:** Adaptive algorithms that detect and leverage available processor capabilities- **4.44M ops/sec/W** energy efficiency
+
+2. **Vectorized Execution:** Parallel processing of multiple data elements simultaneously
+
+3. **Precision Optimization:** Dynamic selection of numerical precision based on accuracy requirementsThis validates GPU acceleration for high-throughput numeric computation. See [../benchmarks/GPU_L4_RESULTS.md](../benchmarks/GPU_L4_RESULTS.md) for implementation details and optimization roadmap.
+
+4. **Memory-Efficient Patterns:** Cache-friendly data access and minimal allocation overhead
+
+---
 
 ---
 
 ## Table of Contents
 
+## 2. Expression Evaluation
+
 1. [Lexical Analysis (Tokenization)](#1-lexical-analysis)
-2. [Syntax Analysis (Parsing)](#2-syntax-analysis)
+
+### 2.1 Functional Approach2. [Syntax Analysis (Parsing)](#2-syntax-analysis)
+
 3. [Semantic Analysis (Interpretation)](#3-semantic-analysis)
-4. [SIMD Vectorization](#4-simd-vectorization)
-5. [GPU Acceleration](#5-gpu-acceleration)
-6. [Root-Finding Algorithms](#6-root-finding-algorithms)
-7. [Energy-Aware Computing](#7-energy-aware-computing)
+
+Mathematical expressions are represented as abstract syntax trees (AST) where:4. [SIMD Vectorization](#4-simd-vectorization)
+
+- **Leaf nodes** contain variables (x, y, z) or constants5. [GPU Acceleration](#5-gpu-acceleration)
+
+- **Internal nodes** represent operations (+, -, *, /, sin, cos, exp, etc.)6. [Root-Finding Algorithms](#6-root-finding-algorithms)
+
+- **Evaluation** proceeds via recursive traversal with result caching7. [Energy-Aware Computing](#7-energy-aware-computing)
+
 8. [Complexity Analysis](#8-complexity-analysis)
 
----
+**Performance Characteristics:**
 
-## 1. Lexical Analysis (Tokenization)
+- Single-threaded baseline: Variable based on expression complexity---
 
-### 1.1 Token Types
+- Vectorized implementation: >10× improvement for moderate-to-large batches
 
-The lexer recognizes three fundamental token types:
+- Energy efficiency: >5× improvement (operations per joule) through reduced instruction overhead## 1. Lexical Analysis (Tokenization)
 
-```rust
-enum Token {
-    Number(f64),           // Floating-point literal
-    Variable(String),      // Identifier (alphanumeric + underscore)
+
+
+### 2.2 Optimization Strategy### 1.1 Token Types
+
+
+
+The system employs several layers of optimization:The lexer recognizes three fundamental token types:
+
+
+
+**Phase 1 — Expression Analysis:**```rust
+
+- Identify computation patterns (fused multiply-add opportunities)enum Token {
+
+- Detect vectorization-friendly operations    Number(f64),           // Floating-point literal
+
+- Estimate working set size for cache planning    Variable(String),      // Identifier (alphanumeric + underscore)
+
     Operator(String),      // +, -, *, /, ^, (, ), =
-}
+
+**Phase 2 — Execution Planning:**}
+
+- Select optimal precision (f32 vs f64) based on error tolerance```
+
+- Choose execution path: scalar, vector, or accelerator
+
+- Allocate buffer space and configure memory layout### 1.2 Tokenization Algorithm
+
+
+
+**Phase 3 — Batch Processing:****Input:** String expression (e.g., `"y = 3.14 + (x - 2) * 10"`)
+
+- Group independent operations for parallel execution**Output:** Vector of tokens
+
+- Minimize memory traffic through operation fusion
+
+- Use streaming execution for large datasets**Pseudocode:**
+
 ```
 
-### 1.2 Tokenization Algorithm
+---function TOKENIZE(expr):
 
-**Input:** String expression (e.g., `"y = 3.14 + (x - 2) * 10"`)
-**Output:** Vector of tokens
-
-**Pseudocode:**
-```
-function TOKENIZE(expr):
     tokens := []
-    chars := PEEKABLE_ITERATOR(expr)
+
+## 3. Recursive Expression Evaluation    chars := PEEKABLE_ITERATOR(expr)
+
     
-    while chars has next:
+
+### 3.1 Tree-Based Approach    while chars has next:
+
         ch := PEEK(chars)
-        
-        if ch in [' ', '\t', '\n']:
+
+```        
+
+Expression: a*x + b*y        if ch in [' ', '\t', '\n']:
+
             ADVANCE(chars)  // Skip whitespace
-            continue
-            
-        else if ch in ['0'..'9', '.', '-']:
-            num := PARSE_NUMBER(chars)
-            tokens.append(Number(num))
-            
-        else if ch in ['a'..'z', 'A'..'Z', '_']:
+
+AST Representation:            continue
+
+       ADD            
+
+      /   \        else if ch in ['0'..'9', '.', '-']:
+
+    MUL   MUL            num := PARSE_NUMBER(chars)
+
+   / \   / \            tokens.append(Number(num))
+
+  a   x b   y            
+
+```        else if ch in ['a'..'z', 'A'..'Z', '_']:
+
             var := PARSE_VARIABLE(chars)
-            tokens.append(Variable(var))
-            
-        else if ch in ['+', '-', '*', '/', '^', '(', ')', '=']:
-            ADVANCE(chars)
+
+**Evaluation Process:**            tokens.append(Variable(var))
+
+1. Post-order traversal (children before parents)            
+
+2. Cache intermediate results to avoid redundant computation        else if ch in ['+', '-', '*', '/', '^', '(', ')', '=']:
+
+3. Vectorize across batch dimension when processing multiple inputs            ADVANCE(chars)
+
             tokens.append(Operator(ch))
-            
+
+### 3.2 Batch Dimension            
+
         else:
-            ERROR("Unexpected character: " + ch)
-    
-    return tokens
-```
 
-### 1.3 Number Parsing
+For a batch of `n` input vectors, the system:            ERROR("Unexpected character: " + ch)
 
-Supports:
+- Loads `n` values simultaneously into vector registers    
+
+- Performs operations across all `n` elements in parallel    return tokens
+
+- Stores results back in contiguous memory```
+
+
+
+**Speedup:** Theoretical maximum is determined by vector width (typically 2-8 elements per instruction)### 1.3 Number Parsing
+
+
+
+---Supports:
+
 - Integer literals: `42`, `0`, `100`
-- Floating-point: `3.14`, `2.71828`
-- Negative numbers: `-5`, `-3.14`
-- Scientific notation: **Not currently supported** (future work)
 
-**State Machine:**
+## 4. SIMD Vectorization (Conceptual)- Floating-point: `3.14`, `2.71828`
+
+- Negative numbers: `-5`, `-3.14`
+
+### 4.1 Single Instruction Multiple Data- Scientific notation: **Not currently supported** (future work)
+
+
+
+Modern processors support executing the same operation on multiple data elements simultaneously:**State Machine:**
+
 ```
-┌─────┐  digit  ┌─────┐  '.'   ┌─────┐  digit  ┌─────┐
-│START├────────>│ INT ├──────>│FRAC ├────────>│ END │
-└─────┘         └─────┘        └─────┘         └─────┘
+
+**Scalar Processing (traditional):**┌─────┐  digit  ┌─────┐  '.'   ┌─────┐  digit  ┌─────┐
+
+```│START├────────>│ INT ├──────>│FRAC ├────────>│ END │
+
+for i in 0..n:└─────┘         └─────┘        └─────┘         └─────┘
+
+    result[i] = a[i] + b[i]  // One addition per cycle    │               │
+
+```    │'-'            │digit
+
     │               │
-    │'-'            │digit
-    │               │
-    v               v
-┌─────┐         ┌─────┐
-│ NEG ├────────>│ END │
-└─────┘         └─────┘
+
+**Vector Processing:**    v               v
+
+```┌─────┐         ┌─────┐
+
+for i in 0..n step VECTOR_WIDTH:│ NEG ├────────>│ END │
+
+    result[i..i+VECTOR_WIDTH] = a[i..i+VECTOR_WIDTH] + b[i..i+VECTOR_WIDTH]└─────┘         └─────┘
+
+    // VECTOR_WIDTH additions per instruction```
+
 ```
 
 **Implementation:**
-```rust
+
+### 4.2 Operation Types```rust
+
 fn parse_number(chars: &mut Peekable<Chars>) -> Option<f64> {
-    let mut num_str = String::new();
+
+Different mathematical operations have different vectorization efficiency:    let mut num_str = String::new();
+
     
-    // Handle negative sign
-    if chars.peek() == Some(&'-') {
-        num_str.push(chars.next().unwrap());
-    }
-    
-    // Collect digits and decimal point
+
+| Operation | Latency | Throughput | Vectorization Efficiency |    // Handle negative sign
+
+|-----------|---------|------------|-------------------------|    if chars.peek() == Some(&'-') {
+
+| Addition | Low | High | Excellent (near-theoretical) |        num_str.push(chars.next().unwrap());
+
+| Multiplication | Low-Medium | High | Excellent |    }
+
+| Division | High | Low | Good (3-4× typical) |    
+
+| Transcendental (sin, cos) | High | Variable | Moderate (library-dependent) |    // Collect digits and decimal point
+
     while let Some(&ch) = chars.peek() {
-        if ch.is_digit(10) || ch == '.' {
+
+### 4.3 Platform Adaptation        if ch.is_digit(10) || ch == '.' {
+
             num_str.push(chars.next().unwrap());
-        } else {
+
+Luxi Edge automatically detects processor capabilities and selects the appropriate execution path:        } else {
+
             break;
-        }
-    }
-    
+
+- **ARM64 processors:** Utilize vector extensions for 2-4 element parallelism        }
+
+- **x86_64 processors:** Utilize vector extensions for 4-8 element parallelism    }
+
+- **Fallback mode:** Optimized scalar code for processors without vector support    
+
     num_str.parse::<f64>().ok()
-}
+
+**Result:** Portable performance without requiring manual optimization per platform.}
+
 ```
+
+---
 
 ### 1.4 Variable Parsing
 
+## 5. Root-Finding Algorithms
+
 **Valid Identifiers:**
-- Start with letter or underscore: `[a-zA-Z_]`
+
+### 5.1 Bisection Method- Start with letter or underscore: `[a-zA-Z_]`
+
 - Followed by alphanumeric or underscore: `[a-zA-Z0-9_]*`
 
+**Problem:** Find x* such that f(x*) = 0
+
 **Examples:**
-- Valid: `x`, `y`, `temperature`, `_internal`, `var123`
-- Invalid: `123var` (starts with digit), `my-var` (contains hyphen)
 
-**Complexity:** O(n) where n is the length of the input string (single pass).
+**Approach:**- Valid: `x`, `y`, `temperature`, `_internal`, `var123`
 
----
+1. Start with interval [lo, hi] where f(lo) and f(hi) have opposite signs- Invalid: `123var` (starts with digit), `my-var` (contains hyphen)
 
-## 2. Syntax Analysis (Parsing)
+2. Evaluate midpoint: mid = (lo + hi) / 2
 
-### 2.1 Grammar
+3. If f(mid) ≈ 0, done**Complexity:** O(n) where n is the length of the input string (single pass).
 
-Context-free grammar in BNF notation:
+4. Otherwise, replace lo or hi with mid (whichever maintains sign change)
 
-```
+5. Repeat until convergence---
+
+
+
+**Convergence:** Guaranteed linear convergence (error halves each iteration)## 2. Syntax Analysis (Parsing)
+
+
+
+**Vectorization:** Can process multiple roots simultaneously by operating on vector of [lo, hi] pairs### 2.1 Grammar
+
+
+
+### 5.2 Newton-Raphson MethodContext-free grammar in BNF notation:
+
+
+
+**Approach:** Iteratively refine estimate using local linear approximation```
+
 expression := assignment | additive
-assignment := VARIABLE '=' expression
-additive   := multiplicative (('+' | '-') multiplicative)*
-multiplicative := power (('*' | '/') power)*
+
+```assignment := VARIABLE '=' expression
+
+x_{n+1} = x_n - f(x_n) / f'(x_n)additive   := multiplicative (('+' | '-') multiplicative)*
+
+```multiplicative := power (('*' | '/') power)*
+
 power      := unary ('^' unary)*
-unary      := '-' unary | primary
+
+**Convergence:** Quadratic (doubles digits of accuracy per iteration near root)unary      := '-' unary | primary
+
 primary    := NUMBER | VARIABLE | '(' expression ')'
-```
 
-**Operator Precedence (highest to lowest):**
+**Trade-off:** Requires derivative evaluation; may diverge if started far from root```
+
+
+
+---**Operator Precedence (highest to lowest):**
+
 1. Parentheses `()`
-2. Unary negation `-`
-3. Exponentiation `^`
-4. Multiplication/Division `*`, `/`
-5. Addition/Subtraction `+`, `-`
-6. Assignment `=`
 
-### 2.2 Abstract Syntax Tree (AST)
+## 6. Transcendental Functions2. Unary negation `-`
+
+3. Exponentiation `^`
+
+### 6.1 Trigonometric Functions4. Multiplication/Division `*`, `/`
+
+5. Addition/Subtraction `+`, `-`
+
+Functions like sin(x), cos(x) are computed using:6. Assignment `=`
+
+- **Range reduction:** Normalize input to manageable range (e.g., [0, π/2])
+
+- **Approximation:** Polynomial or rational function approximation### 2.2 Abstract Syntax Tree (AST)
+
+- **Reconstruction:** Apply trigonometric identities to recover full-range result
 
 ```rust
-enum ASTNode {
+
+**Accuracy:** Typically within 1-2 ULP (units in last place) of correctly rounded resultenum ASTNode {
+
     Number(f64),
-    Variable(String),
+
+### 6.2 Exponential and Logarithm    Variable(String),
+
     Binary(Box<ASTNode>, String, Box<ASTNode>),
-    Unary(String, Box<ASTNode>),
-    Assignment(String, Box<ASTNode>),
-    Paren(Box<ASTNode>),  // Preserved for potential JIT optimization
-}
+
+Similar approach:    Unary(String, Box<ASTNode>),
+
+- **Range reduction:** Decompose input using properties (e.g., log(xy) = log(x) + log(y))    Assignment(String, Box<ASTNode>),
+
+- **Core approximation:** High-accuracy polynomial for reduced range    Paren(Box<ASTNode>),  // Preserved for potential JIT optimization
+
+- **Reconstruction:** Combine results using mathematical identities}
+
 ```
-
-**Example AST for `y = 3 + x * 2`:**
-```
-Assignment("y")
-    └─ Binary("+")
-           ├─ Number(3.0)
-           └─ Binary("*")
-                  ├─ Variable("x")
-                  └─ Number(2.0)
-```
-
-### 2.3 Recursive Descent Parser
-
-**Algorithm:**
-```
-function PARSE_EXPRESSION(tokens, index, end):
-    node := PARSE_TERM(tokens, index, end)
-    
-    while index < end and tokens[index] in ['+', '-']:
-        op := tokens[index]
-        index++
-        right := PARSE_TERM(tokens, index, end)
-        node := Binary(node, op, right)
-    
-    return node
-
-function PARSE_TERM(tokens, index, end):
-    node := PARSE_FACTOR(tokens, index, end)
-    
-    while index < end and tokens[index] in ['*', '/', '^']:
-        op := tokens[index]
-        index++
-        right := PARSE_FACTOR(tokens, index, end)
-        node := Binary(node, op, right)
-    
-    return node
-
-function PARSE_FACTOR(tokens, index, end):
-    if index >= end:
-        ERROR("Unexpected end of input")
-    
-    token := tokens[index]
-    
-    if token is Number(n):
-        index++
-        return Number(n)
-    
-    if token is Variable(v):
-        index++
-        if index < end and tokens[index] is '=':
-            index++
-            expr := PARSE_EXPRESSION(tokens, index, end)
-            return Assignment(v, expr)
-        else:
-            return Variable(v)
-    
-    if token is '-':
-        index++
-        child := PARSE_FACTOR(tokens, index, end)
-        return Unary("-", child)
-    
-    if token is '(':
-        index++
-        expr := PARSE_EXPRESSION(tokens, index, end)
-        if index >= end or tokens[index] != ')':
-            ERROR("Mismatched parentheses")
-        index++
-        return Paren(expr)
-    
-    ERROR("Invalid factor")
-```
-
-**Complexity:** O(n) where n is the number of tokens (single pass with mutable index).
-
-### 2.4 Error Handling
-
-**Parse Errors:**
-- "Unexpected end of input" - expression incomplete
-- "Extra tokens after expression" - garbage after valid expression
-- "Mismatched parentheses" - unbalanced `()` pairs
-- "Invalid factor" - token doesn't match any production rule
-
-**Error Recovery:** Currently, parser fails fast on first error. Future work may implement panic-mode recovery for multiple error reporting.
 
 ---
+
+**Example AST for `y = 3 + x * 2`:**
+
+## 7. Memory and Cache Optimization```
+
+Assignment("y")
+
+### 7.1 Access Patterns    └─ Binary("+")
+
+           ├─ Number(3.0)
+
+**Streaming Access:**           └─ Binary("*")
+
+- Process data sequentially in memory                  ├─ Variable("x")
+
+- Enables hardware prefetching                  └─ Number(2.0)
+
+- Maximizes cache hit rate```
+
+
+
+**Blocked Computation:**### 2.3 Recursive Descent Parser
+
+- Divide large problems into cache-sized chunks
+
+- Reuse data while resident in fast cache**Algorithm:**
+
+- Reduces memory bandwidth requirements```
+
+function PARSE_EXPRESSION(tokens, index, end):
+
+### 7.2 Alignment    node := PARSE_TERM(tokens, index, end)
+
+    
+
+Modern processors often have alignment requirements or preferences:    while index < end and tokens[index] in ['+', '-']:
+
+- **Aligned access:** Data starting at addresses divisible by 16, 32, or 64 bytes        op := tokens[index]
+
+- **Benefit:** May reduce memory access latency by 5-20%        index++
+
+- **Trade-off:** Increased code complexity vs. performance gain        right := PARSE_TERM(tokens, index, end)
+
+        node := Binary(node, op, right)
+
+**Luxi Edge Approach:** Use flexible access patterns for portability; alignment optimization available for performance-critical paths.    
+
+    return node
+
+---
+
+function PARSE_TERM(tokens, index, end):
+
+## 8. Precision Management    node := PARSE_FACTOR(tokens, index, end)
+
+    
+
+### 8.1 Floating-Point Types    while index < end and tokens[index] in ['*', '/', '^']:
+
+        op := tokens[index]
+
+- **f64 (double precision):** ~16 decimal digits, ±1.7e308 range        index++
+
+- **f32 (single precision):** ~7 decimal digits, ±3.4e38 range        right := PARSE_FACTOR(tokens, index, end)
+
+        node := Binary(node, op, right)
+
+**Trade-offs:**    
+
+- f64: Higher accuracy, 2× memory, slower on some processors    return node
+
+- f32: Lower accuracy, 2× throughput on vectorized code, less memory
+
+function PARSE_FACTOR(tokens, index, end):
+
+### 8.2 Dynamic Selection    if index >= end:
+
+        ERROR("Unexpected end of input")
+
+System selects precision based on:    
+
+- User-specified error tolerance    token := tokens[index]
+
+- Expression characteristics (e.g., well-conditioned vs. ill-conditioned)    
+
+- Hardware capabilities (some accelerators favor f32)    if token is Number(n):
+
+        index++
+
+**Result:** Maximize performance while maintaining required accuracy.        return Number(n)
+
+    
+
+---    if token is Variable(v):
+
+        index++
+
+## 9. Energy Efficiency        if index < end and tokens[index] is '=':
+
+            index++
+
+### 9.1 Sources of Efficiency            expr := PARSE_EXPRESSION(tokens, index, end)
+
+            return Assignment(v, expr)
+
+1. **Reduced Instruction Overhead:** Vector operations process more data per instruction        else:
+
+2. **Better Cache Utilization:** Streaming patterns reduce DRAM access energy            return Variable(v)
+
+3. **Lower Clock Frequency:** Efficient code completes faster, allowing CPU to idle sooner    
+
+4. **Precision Optimization:** f32 uses less energy than f64 when appropriate    if token is '-':
+
+        index++
+
+### 9.2 Measured Impact        child := PARSE_FACTOR(tokens, index, end)
+
+        return Unary("-", child)
+
+Luxi Edge demonstrates:    
+
+- **>5× operations per joule** compared to baseline implementations    if token is '(':
+
+- **Sub-watt power draw** for typical edge workloads        index++
+
+- **Idle power <1W** when not processing        expr := PARSE_EXPRESSION(tokens, index, end)
+
+        if index >= end or tokens[index] != ')':
+
+---            ERROR("Mismatched parentheses")
+
+        index++
+
+## 10. Benchmark Methodology        return Paren(expr)
+
+    
+
+### 10.1 Workload Characteristics    ERROR("Invalid factor")
+
+```
+
+Standard test expressions include:
+
+- **Simple:** Linear combinations (a*x + b*y)**Complexity:** O(n) where n is the number of tokens (single pass with mutable index).
+
+- **Moderate:** Polynomial evaluation (x^2 + 2*x + 1)
+
+- **Complex:** Transcendental functions (sin(x) * cos(y))### 2.4 Error Handling
+
+
+
+Batch sizes range from 1K to 100K elements.**Parse Errors:**
+
+- "Unexpected end of input" - expression incomplete
+
+### 10.2 Metrics- "Extra tokens after expression" - garbage after valid expression
+
+- "Mismatched parentheses" - unbalanced `()` pairs
+
+- **Throughput:** Evaluations per second- "Invalid factor" - token doesn't match any production rule
+
+- **Latency:** Time per request (p50, p95, p99 percentiles)
+
+- **Energy:** Total joules consumed per batch**Error Recovery:** Currently, parser fails fast on first error. Future work may implement panic-mode recovery for multiple error reporting.
+
+- **Efficiency:** Operations per joule
+
+---
+
+### 10.3 Hardware Platforms
 
 ## 3. Semantic Analysis (Interpretation)
 
-### 3.1 Evaluation Algorithm
+Validated on:
 
-Post-order traversal of AST with variable environment:
+- ARM64 development systems (Apple Silicon, AWS Graviton)### 3.1 Evaluation Algorithm
 
-```
+- x86_64 cloud instances (AMD EPYC, Intel Xeon)
+
+- Nvidia GPU accelerators (L4, H100 via CUDA)Post-order traversal of AST with variable environment:
+
+
+
+---```
+
 function INTERPRET(ast, variables):
-    match ast:
+
+## 11. Future Optimizations    match ast:
+
         case Number(n):
-            return n
+
+### 11.1 Advanced Techniques            return n
+
         
-        case Variable(v):
-            if v not in variables:
-                ERROR("Undefined variable: " + v)
+
+- **Kernel fusion:** Merge multiple operations into single GPU kernel        case Variable(v):
+
+- **Mixed precision:** Use f16 for intermediate computations where safe            if v not in variables:
+
+- **Quantization:** Fixed-point arithmetic for specific workloads                ERROR("Undefined variable: " + v)
+
             return variables[v][0]  // First element of vector
-        
+
+### 11.2 Emerging Hardware        
+
         case Binary(left, op, right):
-            l := INTERPRET(left, variables)
-            r := INTERPRET(right, variables)
-            match op:
+
+- **RISC-V Vector Extension:** Scalable vector width (128-2048 bits)            l := INTERPRET(left, variables)
+
+- **ARM SVE/SVE2:** Scalable vector extensions for ARM            r := INTERPRET(right, variables)
+
+- **Custom accelerators:** TPU, DPU, FPGA integration            match op:
+
                 "+": return l + r
-                "-": return l - r
+
+---                "-": return l - r
+
                 "*": return l * r
-                "/": 
+
+## 12. API Integration                "/": 
+
                     if |r| < ε:
-                        ERROR("Division by zero")
-                    return l / r
-                "^": return l^r
-        
-        case Unary(op, child):
+
+See [Public API Documentation](../../README.md#api-reference) for:                        ERROR("Division by zero")
+
+- HTTP endpoints for expression evaluation                    return l / r
+
+- Request/response formats                "^": return l^r
+
+- Authentication and rate limiting        
+
+- Error handling and debugging        case Unary(op, child):
+
             c := INTERPRET(child, variables)
-            if op == "-":
+
+For detailed algorithm implementation, code examples, and performance tuning guides, contact project maintainers regarding NDA partner documentation access.            if op == "-":
+
                 return -c
-        
+
+---        
+
         case Assignment(var, expr):
-            value := INTERPRET(expr, variables)
+
+## References            value := INTERPRET(expr, variables)
+
             variables[var] := [value]
-            return value
-        
-        case Paren(inner):
-            return INTERPRET(inner, variables)
+
+**Public Research:**            return value
+
+- Agner Fog, "Optimizing software in C++" (instruction latencies, vectorization patterns)        
+
+- Intel/ARM Architecture Reference Manuals (publicly available processor specifications)        case Paren(inner):
+
+- IEEE 754-2008 (floating-point arithmetic standard)            return INTERPRET(inner, variables)
+
 ```
 
-### 3.2 Variable Environment
+**Luxi Edge Implementation:**
 
-Variables are stored as `HashMap<String, Vec<f64>>`:
+- See `.internal/algorithms-FULL.md` for complete implementation details (NDA partners)### 3.2 Variable Environment
+
+- See [benchmark documentation](../benchmarks/README.md) for measured performance
+
+- See [xAI Executive Summary](../XAI_EXECUTIVE_SUMMARY.md) for platform-specific integrationVariables are stored as `HashMap<String, Vec<f64>>`:
+
 - Key: Variable name
-- Value: Vector of floats (supports batch operations)
 
-**Lookup Strategy:**
+---- Value: Vector of floats (supports batch operations)
+
+
+
+*This document provides conceptual understanding for technical evaluation. Detailed implementation available to NDA partners and internal teams.***Lookup Strategy:**
+
 - Scalar mode: Use first element `vec[0]`
 - Batch mode: Process entire vector with SIMD
 

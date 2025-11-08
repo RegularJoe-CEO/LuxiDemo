@@ -27,3 +27,5 @@ payload_64k_f64.json
 artifacts/
 telemetry/
 docs/technical/scientific-overview-INTERNAL-NDA-ONLY.md
+docs/technical/INTERNAL-DOCS-README.md
+.internal/
