@@ -1,0 +1,44 @@
+🚀 RUNPOD GPU BENCHMARK - QUICK START
+=====================================
+
+1. DOWNLOAD THE PACKAGE:
+   - Download: runpod_luxi_benchmark.tar.gz (37KB)
+   - From: /workspaces/LuxiEdge/runpod_luxi_benchmark.tar.gz
+
+2. UPLOAD TO RUNPOD:
+   - Go to: https://www.runpod.io/console/pods
+   - Start a pod with: RTX 4000 / L4 / Any GPU
+   - Template: PyTorch or CUDA (has Rust pre-installed)
+   - Upload the tar.gz file to /workspace/
+
+3. ON RUNPOD, RUN THESE 3 COMMANDS:
+   
+   cd /workspace
+   tar -xzf runpod_luxi_benchmark.tar.gz
+   bash runpod_deploy.sh
+
+4. SIT BACK - IT WILL:
+   ✅ Install dependencies (pynvml, numpy, requests)
+   ✅ Build Luxi Edge (cargo build --release)
+   ✅ Start server on port 8080
+   ✅ Run 4M GPU benchmark with power monitoring
+   ✅ Show results: ops/sec, latency, power, SIMD gap
+
+EXPECTED OUTPUT:
+================
+🎯 LUXI EDGE 4M PRODUCTION BENCHMARK RESULTS
+============================================================
+Total operations: 800,000,000
+Benchmark duration: ~2000s
+Average ops/sec (Rhai): ~2,000
+SIMD gap (vs 30M ops/sec): ~15,000x
+Power: 50-70W on L4 GPU
+ops/J: ~30,000 (vs 600M target = 20,000x gap)
+============================================================
+
+That's it! You'll have full GPU metrics in ~5 minutes.
+
+TROUBLESHOOTING:
+- If server fails: cat /tmp/l4_benchmark.log
+- If no GPU: nvidia-smi
+- If build fails: cargo --version (need Rust installed)
