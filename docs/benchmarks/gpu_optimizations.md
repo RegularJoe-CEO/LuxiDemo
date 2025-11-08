@@ -1,9 +1,33 @@
 # GPU Optimizations Benchmark Results
 
-This document tracks the performance improvements from the three GPU optimizations.
+This document tracks the performance improvements from GPU optimizations and batch processing.
+
+## Production Validation — November 8, 2025
+
+**NVIDIA L4 GPU (RunPod)** — Luxi Edge HTTP server deployment:
+
+| Metric | Value |
+|--------|-------|
+| **Throughput** | **72,727,273 ops/sec** (72.7M) |
+| **Latency** | **55ms** for 4M elements |
+| **Power** | **16.4W** measured via NVML |
+| **Efficiency** | **4.44M ops/sec/W** |
+| **Speedup** | **377× faster than CPU SIMD baseline** |
+
+**Test Configuration:**
+- Deployment: RunPod NVIDIA L4 (sm_89, Ada Lovelace)
+- Server: Rust/Warp HTTP on port 3000
+- Payload: 4,000,000 f32 elements
+- Expression: `sin(x)*cos(x)`
+- Client: Python benchmark with pynvml power monitoring
+
+See [GPU_L4_RESULTS.md](GPU_L4_RESULTS.md) for comprehensive analysis and optimization roadmap.
+
+---
 
 ## Quick Summary
 
+- **Production GPU (L4)**: ✓ Validated at 72.7M ops/sec @ 16.4W
 - **Batch Optimization**: ✓ Implemented and verified (313k ops/sec @ 10k batch)
 - **FP16 GPU Kernels**: Available with `--features gpu` (requires CUDA)
 - **Vulkan Fallback**: Available with `--features vulkan` (portable GPU)

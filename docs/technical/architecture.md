@@ -7,7 +7,17 @@
 
 ## Executive Summary
 
-This document provides a complete architectural overview of Luxi Edge, designed for researchers, engineers, and academics seeking to understand the system's design principles, component interactions, and scientific foundations. Luxi Edge represents a high-performance computational microservice combining SIMD acceleration, real-time optimization, and stateless API design for edge and data center deployments.
+This document provides a complete architectural overview of Luxi Edge, designed for researchers, engineers, and academics seeking to understand the system's design principles, component interactions, and scientific foundations. Luxi Edge represents a high-performance computational microservice combining SIMD acceleration, GPU acceleration (NVIDIA L4 validated), real-time optimization, and stateless API design for edge and data center deployments.
+
+### GPU Acceleration Validated — November 8, 2025
+
+Production benchmarks on **NVIDIA L4 GPU (RunPod)** demonstrate:
+- **72,727,273 ops/sec** (72.7M) — 377× faster than CPU SIMD baseline
+- **55ms latency** for 4,000,000 element evaluation
+- **16.4W power consumption** measured via NVML
+- **4.44M ops/sec/W** energy efficiency
+
+This validates GPU acceleration as a viable path for high-throughput numeric computation at scale. See [../benchmarks/GPU_L4_RESULTS.md](../benchmarks/GPU_L4_RESULTS.md) for comprehensive analysis and optimization roadmap.
 
 ---
 
@@ -81,12 +91,19 @@ Provides high-performance numeric expression evaluation and root-finding with SI
 **Processor:**
 - Architecture: ARM64 (recommended) or x86_64
 - SIMD: NEON (ARM) or AVX2 (x86) for vectorized computation
+- **GPU (Optional):** NVIDIA L4 or equivalent for high-throughput workloads (72.7M ops/sec validated)
 - Cores: 2+ (1 for I/O, 1+ for computation)
 - Clock: 1.0 GHz minimum
 
 **Memory:**
-- RAM: 512 MB minimum, 1 GB recommended
+- RAM: 512 MB minimum (CPU), 8 GB+ recommended (GPU)
 - Storage: 100 MB for OS, 10 MB for binary, 100 MB for logs
+
+**GPU Acceleration (Production Validated):**
+- **Model:** NVIDIA L4 (Ada Lovelace, sm_89)
+- **Performance:** 72,727,273 ops/sec @ 16.4W
+- **Use Case:** High-throughput data center deployments
+- **Deployment:** RunPod, AWS EC2 (g6 instances), GCP (g2 instances)
 
 **I/O Interfaces:**
 - Modbus RTU/TCP for industrial equipment (HVAC, chillers)

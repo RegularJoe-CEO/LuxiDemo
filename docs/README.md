@@ -9,6 +9,18 @@
 
 ---
 
+## 🚀 GPU Acceleration Validated — November 8, 2025
+
+**Production GPU benchmarks on NVIDIA L4 (RunPod) achieved:**
+- **Throughput:** 72,727,273 operations/second (72.7M ops/sec)
+- **Latency:** 55ms for 4,000,000 element evaluation
+- **Power:** 16.4W measured via NVML
+- **Efficiency:** 4.44M ops/sec/W (2.4× faster than SIMD baseline)
+
+This represents a major milestone validating GPU acceleration in production environments. See [benchmarks/GPU_L4_RESULTS.md](benchmarks/GPU_L4_RESULTS.md) for comprehensive analysis.
+
+---
+
 ## Welcome
 
 This repository contains comprehensive documentation of Luxi Edge, a high-performance computational microservice designed for scientific review, academic discourse, and technical implementation. The documentation is structured to support different levels of engagement, from high-level architectural understanding to detailed algorithmic analysis.
@@ -182,10 +194,12 @@ curl -X POST http://localhost:8080/evaluate \
 **Key Results:**
 | Metric | Improvement |
 |--------|-------------|
-| Speed | 13.7× faster |
-| Energy | 18× more efficient |
+| Speed (SIMD vs Scalar) | 13.7× faster |
+| Energy (SIMD vs Scalar) | 18× more efficient |
 | Power under load | 24% less than idle |
-| Throughput | 193k ops/sec |
+| CPU Throughput | 193k ops/sec |
+| **GPU Throughput (L4)** | **72.7M ops/sec** |
+| **GPU Efficiency** | **4.44M ops/sec/W** |
 
 **How to Use:**
 - Review `BENCHMARK_DATA.md` for the executive summary.

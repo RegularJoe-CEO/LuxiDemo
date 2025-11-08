@@ -4,14 +4,14 @@
 # Luxi Edge: A Scientific Overview
 
 **Authors:** Luxi Engineering Team  
-**Date:** October 2025  
-**Version:** 1.0
+**Date:** October 2025 (Updated November 8, 2025)  
+**Version:** 1.1
 
 ## Abstract
 
-Luxi Edge represents a high-performance computational microservice that provides ultra-fast numeric expression evaluation and root-finding through advanced SIMD acceleration and deterministic algorithms. This document provides a detailed technical analysis of the system architecture, mathematical models, algorithmic implementations, and performance characteristics suitable for peer review and academic discourse.
+Luxi Edge represents a high-performance computational microservice that provides ultra-fast numeric expression evaluation and root-finding through advanced SIMD acceleration, GPU acceleration, and deterministic algorithms. This document provides a detailed technical analysis of the system architecture, mathematical models, algorithmic implementations, and performance characteristics suitable for peer review and academic discourse.
 
-The platform achieves 13.7× speedup and 18× energy efficiency improvement over conventional implementations through SIMD vectorization, stateless API design, and optimized root-finding algorithms with auto-bracketing.
+The platform achieves 13.7× CPU speedup and 18× energy efficiency improvement through SIMD vectorization. **GPU acceleration on NVIDIA L4 (validated November 8, 2025) achieves 72,727,273 ops/sec (72.7M), representing a 377× speedup over CPU SIMD baseline**, with 4.44M ops/sec/W energy efficiency at 16.4W power consumption.
 
 ## 1. Introduction
 

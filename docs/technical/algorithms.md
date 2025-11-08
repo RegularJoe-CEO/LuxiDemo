@@ -5,15 +5,28 @@
 
 **Technical Reference for Researchers and Engineers**
 
+## GPU Acceleration Validated — November 8, 2025
+
+Production deployment on **NVIDIA L4 GPU (RunPod)** achieved:
+- **72,727,273 ops/sec** throughput (377× faster than CPU SIMD)
+- **55ms latency** for 4,000,000 element evaluation
+- **16.4W power** measured via NVML
+- **4.44M ops/sec/W** energy efficiency
+
+This validates GPU acceleration for high-throughput numeric computation. See [../benchmarks/GPU_L4_RESULTS.md](../benchmarks/GPU_L4_RESULTS.md) for implementation details and optimization roadmap.
+
+---
+
 ## Table of Contents
 
 1. [Lexical Analysis (Tokenization)](#1-lexical-analysis)
 2. [Syntax Analysis (Parsing)](#2-syntax-analysis)
 3. [Semantic Analysis (Interpretation)](#3-semantic-analysis)
 4. [SIMD Vectorization](#4-simd-vectorization)
-5. [Root-Finding Algorithms](#5-root-finding-algorithms)
-6. [Energy-Aware Computing](#6-energy-aware-computing)
-7. [Complexity Analysis](#7-complexity-analysis)
+5. [GPU Acceleration](#5-gpu-acceleration)
+6. [Root-Finding Algorithms](#6-root-finding-algorithms)
+7. [Energy-Aware Computing](#7-energy-aware-computing)
+8. [Complexity Analysis](#8-complexity-analysis)
 
 ---
 

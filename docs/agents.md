@@ -24,9 +24,18 @@ This document provides comprehensive instructions for AI agents, LLMs, and autom
 **Product**: Luxi Edge — High-performance numeric computation microservice  
 **Internal Crate Name**: `erock` (for build compatibility)  
 **Public Brand**: Luxi Edge  
-**Technology Stack**: Rust, Axum, Tokio, SIMD acceleration  
+**Technology Stack**: Rust, Axum, Tokio, SIMD acceleration, GPU acceleration (NVIDIA L4 validated)  
 **API Type**: Deterministic, stateless JSON REST API  
 **Default Port**: 8080
+
+### Performance Highlights (November 8, 2025)
+
+- **CPU (SIMD):** 193,000 ops/sec baseline
+- **GPU (NVIDIA L4):** 72,727,273 ops/sec validated on RunPod
+- **GPU Efficiency:** 4.44M ops/sec/W @ 16.4W power
+- **Latency:** 55ms for 4M element evaluation on L4
+
+See [docs/benchmarks/GPU_L4_RESULTS.md](benchmarks/GPU_L4_RESULTS.md) for comprehensive GPU analysis.
 
 ## Quick Start for AI Agents
 

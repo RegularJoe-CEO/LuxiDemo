@@ -5,6 +5,7 @@
 
 ## Pull and Run
 
+**CPU-Optimized (Default):**
 ```bash
 # Pull the latest image
 docker pull ghcr.io/regularjoe-ceo/luxi-edge:latest
@@ -15,6 +16,17 @@ docker run -d -p 8080:8080 --name luxi-edge ghcr.io/regularjoe-ceo/luxi-edge:lat
 # Or run with automatic restart
 docker run -d -p 8080:8080 --name luxi-edge --restart unless-stopped \
   ghcr.io/regularjoe-ceo/luxi-edge:latest
+```
+
+**GPU-Accelerated (NVIDIA L4 Validated - November 8, 2025):**
+```bash
+# Run with GPU support (requires NVIDIA Container Toolkit)
+docker run -d -p 3000:3000 --gpus all --name luxi-edge-gpu \
+  ghcr.io/regularjoe-ceo/luxi-edge:gpu-latest
+
+# Verified on: RunPod NVIDIA L4
+# Performance: 72.7M ops/sec @ 16.4W power
+# See docs/benchmarks/GPU_L4_RESULTS.md for details
 ```
 
 ## Verify It's Running

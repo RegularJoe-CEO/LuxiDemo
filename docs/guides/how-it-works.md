@@ -7,6 +7,18 @@
 
 Luxi Edge is a math service that runs on a server and answers math questions over HTTP. Think of it like a super-fast calculator that can handle complex mathematical expressions, find where functions cross zero, and calculate slopes and gradients.
 
+It runs on both **CPUs** (optimized with SIMD for edge devices) and **GPUs** (validated on NVIDIA L4 for data center throughput: 72.7M operations/second).
+
+---
+
+## Performance Overview
+
+- **CPU (SIMD):** 193,000 ops/sec — optimized for edge devices, low power (596mW)
+- **GPU (NVIDIA L4):** 72,727,273 ops/sec — validated November 8, 2025 for data center workloads
+- **Efficiency:** GPU achieves 4.44M ops/sec/W @ 16.4W power consumption
+
+See [../benchmarks/GPU_L4_RESULTS.md](../benchmarks/GPU_L4_RESULTS.md) for detailed GPU analysis.
+
 ---
 
 ## What Can It Do?
