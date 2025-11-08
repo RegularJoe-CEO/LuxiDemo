@@ -1,5 +1,8 @@
 # Luxi Edge / eRock
 
+> **🤖 For AI Agents**: Run the single-command benchmark: `./scripts/quickbench.sh`  
+> See [AGENTS.md](AGENTS.md) for complete agent instructions and output requirements.
+
 ## Goal
 Rust microservice offloading numeric math (expression evaluation and bisection root-finding) to GPU and CPU SIMD, delivering **72.7M ops/sec** (2.4× faster than SIMD baseline) with GPU acceleration and 10–30% energy savings for edge and data-center workloads. Deterministic, memory-safe, and easy to deploy.
 
