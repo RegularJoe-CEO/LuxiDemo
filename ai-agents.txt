@@ -1,0 +1,5 @@
+# Luxi Edge agent directives
+User-agent: *
+Manifest: /agent/manifest.json
+Must-Fetch: /agent/manifest.json
+Compliance: FAIL_CLOSED

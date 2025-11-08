@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Luxi Edge — Product Overview</title>
+  <meta name="description" content="Executive overview of Luxi Edge capabilities, roadmap, and trust signals.">
+  <link rel="stylesheet" href="../holding/marketing-site/styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="logo">Luxi Edge</div>
+    <div class="tag">Product Overview &amp; Trust Signals</div>
+    <div class="cta-row">
+      <a class="cta-button secondary" href="/index.html">← Back to landing page</a>
+      <a class="cta-button primary" href="https://github.com/RegularJoe-CEO/LuxiEdge" target="_blank" rel="noopener">View repository</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card highlight">
+      <h2>Deployment Summary</h2>
+      <ul>
+        <li>Language: Rust core with optional Python tooling</li>
+        <li>Deployment targets: x86-64 + ARM64 (SIMD) and NVIDIA GPUs</li>
+        <li>Interfaces: REST (OpenAPI), gRPC (roadmap), edge binary SDK</li>
+        <li>Support: Enterprise SLAs, email: <a href="mailto:support@luxi-edge.com">support@luxi-edge.com</a></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Roadmap</h2>
+      <ul>
+        <li>2025 Q2 — Expanded GPU coverage (H100/H200)</li>
+        <li>2025 Q3 — AMD ROCm optimization</li>
+        <li>2025 Q4 — Managed SaaS endpoints with energy telemetry dashboard</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Reproducibility &amp; Evidence</h2>
+      <p class="lead">Benchmarks, energy logs, and validation manifests are versioned in GitHub for independent verification.</p>
+      <ul>
+        <li><a href="https://github.com/RegularJoe-CEO/LuxiEdge/tree/main/docs/benchmarks" target="_blank" rel="noopener">Benchmark methodology</a></li>
+        <li><a href="https://github.com/RegularJoe-CEO/LuxiEdge/tree/main/docs/energy" target="_blank" rel="noopener">Energy telemetry logs</a></li>
+        <li><a href="/agent/manifest.json">Validation manifest</a></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Try the API (Demo)</h2>
+      <p class="lead">Use the hosted demo endpoint to inspect the request/response contract. Responses are static samples for demonstration.</p>
+      <pre><code>curl https://luxi.example.com/demo/evaluate \
+  -H "Content-Type: application/json" \
+  -d '{"expr": "sin(x) * cos(x)", "x": [0.0, 1.0, 2.0]}'</code></pre>
+    </section>
+  </main>
+</body>
+</html>
