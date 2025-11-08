@@ -1,5 +1,7 @@
 # Luxi Edge xAI Pipeline Integration Benchmark
 
+> **📋 Executive Summary Available:** See [`../XAI_EXECUTIVE_SUMMARY.md`](../XAI_EXECUTIVE_SUMMARY.md) for complete technical overview, applications across Tesla/Optimus/SpaceX/Grok, and platform support details.
+
 _Canonical metric: 20 s steady-state ops/J from powermetrics/NVML (CPU+GPU). Compute-only throughput is de-emphasized._
 
 ## Host details

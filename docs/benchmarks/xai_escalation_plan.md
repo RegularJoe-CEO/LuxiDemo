@@ -95,8 +95,9 @@ Owner: Eric. Reviewer: xAI (Grok team).
 - All targets for Drop A and Drop B exceeded
 
 ### Documentation
+- **Executive Summary:** [`../XAI_EXECUTIVE_SUMMARY.md`](../XAI_EXECUTIVE_SUMMARY.md) - **START HERE** for complete overview
 - Full results: [`xai_integration.md`](xai_integration.md) (Updated with 2025-11-07 results)
-- GPU L4 details: [`gpu_l4_results.md`](gpu_l4_results.md)
+- GPU L4 details: [`GPU_L4_RESULTS.md`](GPU_L4_RESULTS.md)
 - Comparative analysis: [`COMPARATIVE_ANALYSIS.md`](COMPARATIVE_ANALYSIS.md)
 
 Owner: Eric. Reviewer: xAI (Grok team). Status: Drop A & B Complete, Drop C Pending.
