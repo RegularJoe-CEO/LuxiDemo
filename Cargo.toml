@@ -1,43 +1,27 @@
-[workspace]
-members = [
-    "edge",
-]
-resolver = "2"
-
 [package]
 name = "erock"
 version = "0.1.0"
 edition = "2021"
-license = "LicenseRef-Luxi-Business-1.0"
-
-[lib]
-path = "src/lib.rs"
-
-[[bin]]
-name = "quick_bench"
-path = "benches/quick_bench.rs"
 
 [dependencies]
-anyhow = "1"
-rhai = "1.18"
-tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
+rhai = "=1.18.0"
+warp = "0.3"
+nom = "7.1"
+tokio = { version = "1", features = ["full"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-reqwest = { version = "0.11", default-features = false, features = ["json", "rustls-tls"] }
-tracing = "0.1"
-cudarc = { version = "0.9", optional = true }
+anyhow = "1"
+faer = "0.18"
+nalgebra = "0.32"
+cudarc = { version = "0.17.7", optional = true }
 wgpu = { version = "0.19", optional = true }
-bytemuck = { version = "1.14", optional = true, features = ["derive"] }
-futures = { version = "0.3", optional = true }
-half = { version = "2.4", optional = true }
-quote = "1.0"
-syn = "2.0"
-nom = "7.1"
 
 [features]
 default = []
-gpu = ["cudarc", "half"]
-vulkan = ["wgpu", "bytemuck", "futures"]
+gpu = ["cudarc", "wgpu"]
+
+[dev-dependencies]
+criterion = "0.7.0"
 
 [[bench]]
 name = "edge_suite"
@@ -52,8 +36,5 @@ name = "simd_vs_scalar"
 harness = false
 
 [[bench]]
-name = "gpu_optimizations"
+name = "repro"
 harness = false
-
-[dev-dependencies]
-criterion = { version = "0.5", features = ["html_reports"] }

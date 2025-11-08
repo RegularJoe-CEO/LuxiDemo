@@ -1,25 +1,39 @@
-# LuxiEdge Benchmarks
+# Luxi Edge Benchmark Data — 2025‑11‑06
 
-LuxiEdge provides secure, low-energy dynamic math evaluation (rhai sandboxed expressions, fused minimax polynomials for ops like sin*cos). Benchmarks focus on ops/J (operations per joule) for 1M f32 batches (uniform(-10,10), seed=42), measuring end-to-end latency (warp server + eval) and power (M1 Pro ~15W avg, T4 ~40-50W target). Efficiency: 30-50% savings vs PyTorch/NumPy baselines via custom fusion/SIMD (no vendor lock-in, portable to Vulkan/WGSL fallback).
+All measurements produced with Criterion.rs (`--sample-size 100`, harness disabled).
 
-## Key Metrics Table
-| Platform | Date | Ops/J | Power (W) | Latency (ms, end-to-end / pure eval) | Req/s | Ops Type | Notes |
-|----------|------|-------|-----------|--------------------------------------|-------|----------|-------|
-| M1 Pro (CPU, rhai fused poly) | 2025-11-06 20:21 | 546666 | 15.00 | 100.26 / 0.44 | 199.5 | 2M (sin+cos per elem) | Standalone edge_cpu bin; 1.4x 399k target, 2.5x NumPy (~200k), secure (max_statements=1e6, nom parse no loops/div0); 164 batches in 20s, energy 300J. Beats SymPy 1000x for dynamic expr. |
-| M1 Pro (Prior CPU baseline) | Pre-2025-11-06 | 399000 | ~15 | ~5 / <1 | ~200 | 2M (sin+cos) | Initial rhai SIMD approx; target met, now surpassed 1.4x with optimized Horner's FMA. |
-| T4 GPU (PyTorch baseline) | Pre-2025-11-06 | 294000 | 53 | N/A | N/A | 1M (sin*cos f64) | Vanilla torch.sin * torch.cos; Luxi target 600k+ <40W (2x gain via cudarc PTX fusion, FP16 tune for 800k). |
-| T4 GPU (Luxi target) | Pending | 600000+ | <40 | <10 / <1 | >100 | 2M (fused FP32/16) | cudarc 0.17.7 PTX (sm_75, FMA/select.f32); stretch 800k-1M with half precision, unified memory, 4-thread tokio. 1.5-2x PyTorch, 50% cost savings for edge AI eval. Vulkan fallback ~80% perf (wgpu-rs WGSL). |
-| L4 GPU (CuPy sin kernel) | 2025-11-07 | 332000000 | 25.0 | 0.012 / 0.012 | 8.3B | 50M (sin f64) | NVIDIA L4 (sm_89); CuPy sin kernel on 50M elements; 18× more efficient than CPU scalar; under 70W limit. Integrates with eRock for vector math offload. Next-gen compute capability. |
+## evaluate_10k
+- Results: [8.5519 ms, 8.9424 ms, 9.3807 ms]
+- Description: Rhai expression `sin(x)*cos(x)` across 10 000 inputs.
 
-## Setup Notes for Benchmarks
-- **M1 CPU**: Standalone Cargo.toml with [workspace] (bypasses root conflict); rhai 1.18 for expr compile (e.g., 'sin(x)*cos(x)'), warp 0.3 server on 8080. Payload: 1M f32 JSON (~32MB). Benchmark: Python curl loop (temp file for large -d), powermetrics for power. Pure eval ~0.44ms (SIMD Horner's: t = |x| min(pi/2), s/c approx 5th-order poly).
-- **T4 GPU**: Colab/Kaggle with cudarc 0.17.7 (load_ptx bytes, htod_copy, launch_async tuple args); PTX fused kernel (1D threading, fma.f32). Pending quota-free run (Kaggle recommended).
-- **L4 GPU**: NVIDIA L4 (sm_89 architecture); CuPy sin kernel benchmarks on 50M element batches; power monitoring via NVML; demonstrates 332M ops/J at 25W average, 18× more efficient than CPU scalar. Compatible with eRock vector math offload integration.
-- **Efficiency Validation**: 30-50% savings from ACM/NVIDIA papers (custom kernels 2-3x FLOPS/W vs vanilla; e.g., 4.5 GFLOPS effective at 15W on M1). Secure: rhai set_max_call_depth(10), nom validate ops (reject malicious).
+## evaluate_100k
+- Run 1: [84.657 ms, 89.866 ms, 95.395 ms]
+- Run 2: [80.176 ms, 82.312 ms, 84.769 ms] (2–14 % faster after warm-up)
+- Insight: Compared to `simd_inplace_100k` (≈1.63 ms), this demonstrates ≈52× turnaround improvement when skipping parsing.
 
-## Future Targets
-- FP16 M1 tune: 800k ops/J <12W (bfloat16 SIMD).
-- Multi-GPU T4: 4x scale, hybrid CPU fallback.
-- Vulkan portable: wgpu-rs WGSL shaders (80% cudarc perf, zero lock-in).
+## bisect_root
+- Run 1: [231.90 µs, 241.00 µs, 252.16 µs]
+- Run 2: [237.43 µs, 243.64 µs, 251.08 µs]
+- Note: p = 0.11 (> 0.05) — no statistically significant change between runs.
 
-Repo: github.com/erock/LuxiEdge. Contributions: PRs for benchmarks/tunes.
+## simd_inplace_100k
+- Run 1: [1.6239 ms, 1.6485 ms, 1.6761 ms]
+- Run 2: [1.5969 ms, 1.6337 ms, 1.6841 ms]
+
+## scalar_loop_100k
+- Results: [1.6971 ms, 1.7307 ms, 1.7690 ms]
+- Note: Dominated by `f64::sin`/`cos`; loop form adds little overhead.
+
+## simd_loop_100k
+- Results: [1.6058 ms, 1.6324 ms, 1.6637 ms]
+
+## simd_repro_100k
+- Results: [1.6627 ms, 1.7175 ms, 1.7799 ms]
+
+## Criterion Warning Context
+- Message: “Unable to complete 100 samples in 5.0 s.”
+- Action: Increase measurement window (`--measurement-time 10`) or reduce samples (`--sample-size 60`) only if smoother plots are needed; the warning is benign for our fast functions.
+
+## Usage
+- Feed these metrics into the ROI / energy-savings rollups for stakeholders.
+- Schedule longer-measurement reruns only upon request.
