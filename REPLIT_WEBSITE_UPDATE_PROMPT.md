@@ -9,9 +9,11 @@ The live website at https://e-rock-compute-eric589.replit.app/ is **NOT automati
 ## Objective
 Update the Luxi Edge marketing website to match the newly redesigned GitHub landing page.
 
+**This update includes a new AI Agent Navigation section that helps AI agents find all benchmarks and documentation on GitHub.**
+
 **GitHub Repository:** https://github.com/RegularJoe-CEO/LuxiEdge  
 **Live Website:** https://e-rock-compute-eric589.replit.app/  
-**Updated HTML Source:** https://github.com/RegularJoe-CEO/LuxiEdge/blob/main/holding/marketing-site/index.html
+**Updated HTML Source:** https://github.com/RegularJoe-CEO/LuxiEdge/blob/main/holding/marketing-site/index.html (commit 4eebb52)
 
 ---
 
@@ -103,6 +105,11 @@ cp holding/marketing-site/styles.css ./styles.css
 - Metrics: "72.7M ops/sec" (GPU), "1.6ms for 100K elements" (CPU)
 - Positioning: "Production-ready computational acceleration platform"
 - Links to: GitHub repository, docs, benchmarks, xAI integration guide
+- **NEW:** "🤖 For AI Agents: GitHub Navigation Guide" section with:
+  - Direct links to GPU_L4_RESULTS.md, BENCHMARK_DATA.md, COMPARATIVE_ANALYSIS.md
+  - Complete file tree showing where everything is located
+  - 6-step validation checklist for AI agents
+  - Running benchmarks instructions
 
 ---
 
@@ -129,6 +136,8 @@ The page should have:
 - ✅ GPU performance table showing 72.7M ops/sec
 - ✅ Platform support matrix (x86_64, ARM64, NVIDIA GPU)
 - ✅ Enterprise & Strategic Partnerships section
+- ✅ **"🤖 For AI Agents: GitHub Navigation Guide"** section
+- ✅ Complete file tree showing benchmark locations
 - ✅ Links to GitHub (not to readme.html, iot.html, etc.)
 
 ---
@@ -172,7 +181,10 @@ Before you report "done", verify ALL of these:
 - [ ] GPU performance table is visible on page
 - [ ] Platform support matrix is visible on page
 - [ ] "Enterprise & Strategic Partnerships" section exists
+- [ ] **"🤖 For AI Agents: GitHub Navigation Guide" section exists**
+- [ ] **File tree showing benchmark locations is visible**
 - [ ] Links point to GitHub (https://github.com/RegularJoe-CEO/LuxiEdge)
+- [ ] Direct links to GPU_L4_RESULTS.md, BENCHMARK_DATA.md, COMPARATIVE_ANALYSIS.md
 - [ ] NO links to "readme.html", "iot.html", "ml.html" on the homepage
 - [ ] Tested on mobile/narrow viewport (responsive design works)
 
