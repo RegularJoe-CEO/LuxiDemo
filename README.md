@@ -41,6 +41,38 @@ Luxi Edge is a **production-ready computational acceleration platform** that tra
 
 ---
 
+## AI Agent Validation
+
+**Want independent verification of these performance claims?**
+
+We provide a complete validation protocol that any AI agent with code execution can run:
+
+📋 **Copy this file to any AI agent:** [`UNIVERSAL_AGENT_VALIDATION_PROMPT.md`](UNIVERSAL_AGENT_VALIDATION_PROMPT.md)
+
+**Works with:**
+- ChatGPT (Advanced Data Analysis)
+- Claude (with computer use)
+- GitHub Copilot (VS Code/Codespaces)
+- Cursor AI
+- Replit Agent
+- Any AI with terminal access
+
+**What the agent will validate:**
+- ✅ Code builds and runs successfully
+- ✅ CPU SIMD performance (1.6ms for 100K elements)
+- ✅ Baseline comparison (80ms → 1.6ms improvement)
+- ✅ Economic ROI calculations ($2.6M-$19.7M annual savings)
+- ⚠️ GPU claims documented (requires L4 hardware to re-test)
+- ⚠️ Energy efficiency documented (requires power telemetry hardware)
+
+**Output:** Decision-ready report with confidence assessment (HIGH/MEDIUM/LOW) and clear deployment recommendation.
+
+**If the AI agent cannot execute code:** The prompt will recommend services that can validate the claims for you.
+
+**See also:** [`AGENT_PROMPTS_INDEX.md`](AGENT_PROMPTS_INDEX.md) for all validation options.
+
+---
+
 ## Proven Performance
 
 ### GPU Acceleration — NVIDIA L4 (November 2025)
