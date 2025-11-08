@@ -1,6 +1,141 @@
-# Luxi Edge Benchmark Hub
+# Luxi Edge Benchmark Documentation
 
-This directory collects every benchmark-facing artifact in one place so you no longer need to chase outdated files in the repository root.
+**Central navigation for all performance benchmarks and analysis.**
+
+---
+
+## Quick Links
+
+| Document | Purpose | Last Updated |
+|----------|---------|--------------|
+| **[GPU_L4_RESULTS.md](GPU_L4_RESULTS.md)** | NVIDIA L4 GPU validation (72.7M ops/sec) | 2025-11-08 |
+| **[COMPARATIVE_ANALYSIS.md](COMPARATIVE_ANALYSIS.md)** | Cross-tool comparisons (Python, C++, NumPy) | 2025-11-08 |
+| **[../../BENCHMARK_DATA.md](../../BENCHMARK_DATA.md)** | Root-level benchmark summary (CPU + GPU) | 2025-11-08 |
+
+---
+
+## Latest Results (November 8, 2025)
+
+### GPU Acceleration — NVIDIA L4
+- **Throughput:** 72,727,273 ops/sec (72.7M)
+- **Latency:** 55ms for 4M elements
+- **Power:** 16.4W measured via NVML
+- **Efficiency:** 4.44M ops/sec/W
+- **Speedup:** 377× faster than CPU SIMD
+
+**See:** [GPU_L4_RESULTS.md](GPU_L4_RESULTS.md) for comprehensive analysis
+
+### CPU SIMD Baseline
+- **Throughput:** 193,421 ops/sec
+- **Power:** 596mW under load
+- **Speedup:** 13.7× vs scalar baseline
+- **Efficiency:** 18× better energy efficiency
+
+**See:** [../../BENCHMARK_DATA.md](../../BENCHMARK_DATA.md) for detailed CPU metrics
+
+---
+
+## Document Structure
+
+### Primary Benchmark Documents
+
+1. **GPU_L4_RESULTS.md** — Comprehensive GPU Analysis
+   - Production validation results (RunPod NVIDIA L4)
+   - Performance breakdown (throughput, latency, power)
+   - Optimization roadmap (PTX kernels, FP16, multi-GPU)
+   - Bottleneck analysis and future targets
+
+2. **COMPARATIVE_ANALYSIS.md** — Cross-Tool Performance
+   - Luxi vs Python/NumPy
+   - Luxi vs C++ stdlib
+   - Luxi vs SciPy Newton solver
+   - Methodology and reproducibility
+
+3. **../../BENCHMARK_DATA.md** (Root Level) — Executive Summary
+   - Latest CPU and GPU results
+   - Performance comparison tables
+   - Deployment guidance (when to use CPU vs GPU)
+   - Quick reference metrics
+
+### Historical Data
+
+- **data_exports/** — Raw benchmark data exports (CSV, JSON)
+- **raw/** — Criterion.rs output and measurement data
+
+---
+
+## Running Benchmarks
+
+### CPU Benchmarks
+```bash
+# Standard Criterion benchmarks
+cargo bench
+
+# Specific benchmark suites
+cargo bench --bench edge_suite
+cargo bench --bench simd_vs_scalar
+```
+
+### GPU Benchmarks
+```bash
+# Build GPU-enabled server
+cargo build --release --bin l4_benchmark
+
+# Run server
+./target/release/l4_benchmark &
+
+# Execute GPU benchmark from Python
+python3 gpu_bench.py
+```
+
+### Full Methodology
+See individual documents for complete reproduction instructions:
+- **GPU methodology:** [GPU_L4_RESULTS.md](GPU_L4_RESULTS.md#methodology)
+- **CPU methodology:** [../../BENCHMARK_DATA.md](../../BENCHMARK_DATA.md#methodology)
+- **Comparative methodology:** [COMPARATIVE_ANALYSIS.md](COMPARATIVE_ANALYSIS.md)
+
+---
+
+## Key Findings
+
+### GPU Validation Success ✅
+- **72.7M ops/sec** throughput exceeds 30M SIMD target by 2.4×
+- **377× speedup** over CPU SIMD baseline
+- **Production-ready** HTTP server deployment validated
+- **16.4W power** — GPU at idle-level consumption
+
+### CPU SIMD Performance ✅
+- **193k ops/sec** throughput on ARM64/x86_64
+- **13.7× speedup** over scalar baseline
+- **596mW power** — suitable for battery-powered edge devices
+- **18× energy efficiency** improvement
+
+### Deployment Guidance
+| Factor | Use CPU SIMD | Use GPU |
+|--------|--------------|---------|
+| Batch Size | <10k elements | >10k elements |
+| Latency | <10ms required | 50ms+ acceptable |
+| Power Budget | <1W | 10-50W |
+| Deployment | Edge/IoT | Data center |
+
+---
+
+## Archive / Deprecated
+
+The following documents have been consolidated:
+- ~~`gpu_l4_results.md`~~ → Merged into `GPU_L4_RESULTS.md`
+- ~~`gpu_optimizations.md`~~ → Merged into `GPU_L4_RESULTS.md`
+- ~~`criterion_simd.md`~~ → Outdated (replaced by latest results)
+- ~~`BENCHMARK_DATA.md`~~ → Duplicate (use root-level version)
+- ~~`FINDING_DATA.md`~~ → Unnecessary meta-documentation
+- ~~`SYNCING_MAIN.md`~~ → Unnecessary meta-documentation
+- ~~`repro.md`~~ → Consolidated into individual benchmark docs
+
+---
+
+**Last Updated:** 2025-11-08  
+**Maintained By:** Luxi Engineering Team  
+**Questions:** See repository README or open an issue
 
 ## 🎉 Latest: GPU Acceleration Validated (November 8, 2025)
 
