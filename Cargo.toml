@@ -59,5 +59,9 @@ harness = false
 name = "orbit_ensemble_benchmark"
 harness = false
 
+[[bench]]
+name = "dojo_tensor_benchmark"
+harness = false
+
 [[bin]]
 name = "l4_benchmark"

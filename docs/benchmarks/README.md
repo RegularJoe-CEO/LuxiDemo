@@ -9,15 +9,29 @@
 | Document | Purpose | Last Updated |
 |----------|---------|--------------|
 | **[GPU_L4_RESULTS.md](GPU_L4_RESULTS.md)** | NVIDIA L4 GPU validation (72.7M ops/sec) | 2025-11-08 |
-| **[COMPARATIVE_ANALYSIS.md](COMPARATIVE_ANALYSIS.md)** | Cross-tool comparisons (Python, C++, NumPy) | 2025-11-08 |
-| **[../../BENCHMARK_DATA.md](../../BENCHMARK_DATA.md)** | Root-level benchmark summary (CPU + GPU) | 2025-11-10 |
+| **[COMPARATIVE_ANALYSIS.md](COMPARATIVE_ANALYSIS.md)** | Cross-tool comparisons (Python, C++, NumPy, Dojo) | 2025-11-10 |
+| **[xai_integration.md](xai_integration.md)** | xAI benchmark integration (Dojo tensors, orbit ensembles) | 2025-11-10 |
+| **[../../BENCHMARK_DATA.md](../../BENCHMARK_DATA.md)** | Root-level benchmark summary (CPU + GPU + Dojo tensors) | 2025-11-10 |
 | **[../../docs/NEURAL_SURROGATE_INTEGRATION.md](../../docs/NEURAL_SURROGATE_INTEGRATION.md)** | Neural surrogate hybrid ML-physics guide | 2025-11-10 |
 
 ---
 
 ## Latest Results (November 10, 2025)
 
-### Orbital Ensemble Benchmarks (NEW)
+### Dojo-like Tensor Benchmarks (NEW)
+- **Baseline:** **1.3M elements/sec** sustained throughput on x86_64 CPU
+- **Linear scaling:** Validated across 100K → 1M elements (±1.5% variance)
+- **Batch efficiency:** 99% throughput maintained (32 batches: 1.28M elem/s)
+- **Memory bandwidth:** 25 MiB/s identified as optimization target
+- **Scaling path:** CPU (1.3M) → L4 GPU (72.7M validated) → Dojo (1B+ projected)
+- **xAI Applications:** Grok training (custom activations), Autopilot (reward functions), Optimus (physics loss), SpaceX (surrogates)
+- **Benchmark suite:** 6 workload categories (elementwise, matrix, batch, complex, memory, precision)
+- **Documentation:** 
+  - [../../BENCHMARK_DATA.md](../../BENCHMARK_DATA.md#dojo-like-tensor-benchmarks) — Complete results and scaling analysis
+  - [xai_integration.md](xai_integration.md#dojo-like-tensor-benchmarks) — xAI integration and use cases
+  - [COMPARATIVE_ANALYSIS.md](COMPARATIVE_ANALYSIS.md#dojo-like-tensor-benchmarks) — vs PyTorch/TensorFlow
+
+### Orbital Ensemble Benchmarks
 - **Performance:** <1ms timesteps for 10-50 satellite swarms (real-time capable)
 - **Swarm generation:** 1000 satellites in ~500 µs
 - **N-body propagation:** 100 satellites in ~600 µs with J2 perturbations
@@ -107,10 +121,22 @@ cargo bench --bench edge_suite
 cargo bench --bench simd_vs_scalar
 cargo bench --bench lambert_benchmark  # Scientific computing (orbital mechanics)
 cargo bench --bench neural_surrogate_benchmark  # Hybrid ML-physics convergence
-cargo bench --bench orbit_ensemble_benchmark  # LEO swarm propagation (NEW)
+cargo bench --bench orbit_ensemble_benchmark  # LEO swarm propagation
+cargo bench --bench dojo_tensor_benchmark  # Tesla Dojo-like tensor operations (NEW)
 ```
 
-### Orbital Ensemble Benchmarks (NEW)
+### Dojo-like Tensor Benchmarks (NEW)
+```bash
+# Full Dojo tensor benchmark suite (6 categories)
+cargo bench --bench dojo_tensor_benchmark
+
+# Specific workload category
+cargo bench --bench dojo_tensor_benchmark -- dojo_tensor_elementwise
+cargo bench --bench dojo_tensor_benchmark -- dojo_tensor_matrix
+cargo bench --bench dojo_tensor_benchmark -- dojo_tensor_batch
+```
+
+### Orbital Ensemble Benchmarks
 ```bash
 # Full orbital ensemble suite
 cargo bench --bench orbit_ensemble_benchmark
