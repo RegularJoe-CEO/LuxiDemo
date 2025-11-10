@@ -43,5 +43,9 @@ harness = false
 name = "lambert_benchmark"
 harness = false
 
+[[bench]]
+name = "neon_benchmark"
+harness = false
+
 [[bin]]
 name = "l4_benchmark"

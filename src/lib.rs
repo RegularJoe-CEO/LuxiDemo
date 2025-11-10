@@ -2,6 +2,7 @@ use anyhow::{anyhow, Result};
 use rhai::{Engine, Scope};
 
 pub mod lambert;
+pub mod luxi_eval;
 
 pub fn evaluate(expr: &str, x: &[f64]) -> Result<Vec<f64>> {
     let mut engine = Engine::new();
