@@ -1,5 +1,6 @@
 use anyhow::{anyhow, Result};
 use rhai::{Engine, Scope};
+use std::collections::HashMap;
 
 pub mod luxi_eval;
 pub mod energy;
@@ -56,10 +57,14 @@ pub fn bisect_root(expr: &str, a: f64, b: f64, tol: f64) -> Result<f64> {
     Ok((low + high) / 2.0)
 }
 
-pub fn simd_eval_over_x_inplace(_expr: &str, x: &mut [f64]) -> Result<()> {
-    for xi in x.iter_mut() {
-        *xi = xi.sin() * xi.cos();
-    }
+pub fn simd_eval_over_x_inplace(expr: &str, x: &mut [f64]) -> Result<()> {
+    let tokens = luxi_eval::lexer::tokenize(expr);
+    let (arena, root) = luxi_eval::parser::parse(tokens)
+        .map_err(|e| anyhow!("Parse: {}", e))?;
+    let fixed = HashMap::new();
+    let xs = x.to_vec();
+    let results = luxi_eval::interpreter::simd_eval_over_x_inplace(root, &arena, &fixed, xs);
+    x.copy_from_slice(&results);
     Ok(())
 }
 
@@ -155,5 +160,20 @@ mod tests {
         // Should be approximately 1800 seconds
         assert!((tof - 1800.0).abs() < 10.0,
                 "TOF calculation should be accurate, got {} instead of ~1800", tof);
+    }
+
+    #[test]
+    fn test_simd_eval_over_x_inplace_custom_expr() {
+        let expr = "x * x + 1.0";
+        let original = vec![0.0, 1.0, -2.0, 3.5];
+        let mut values = original.clone();
+        simd_eval_over_x_inplace(expr, &mut values).expect("expression should parse");
+        for (result, input) in values.iter().zip(original.iter()) {
+            let expected = input * input + 1.0;
+            assert!(
+                (result - expected).abs() < 1e-9,
+                "expected {expected} for input {input}, got {result}"
+            );
+        }
     }
 }
