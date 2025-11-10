@@ -63,5 +63,9 @@ harness = false
 name = "dojo_tensor_benchmark"
 harness = false
 
+[[bench]]
+name = "cross_platform_simd"
+harness = false
+
 [[bin]]
 name = "l4_benchmark"

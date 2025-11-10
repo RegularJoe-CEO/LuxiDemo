@@ -7,6 +7,7 @@ pub mod luxi_eval;
 pub mod nbody;
 pub mod neural_surrogate;
 pub mod orbit_ensemble;
+pub mod simd_ops;
 
 pub fn evaluate(expr: &str, x: &[f64]) -> Result<Vec<f64>> {
     let mut engine = Engine::new();
