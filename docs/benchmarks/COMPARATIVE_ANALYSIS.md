@@ -34,9 +34,9 @@ Luxi Edge delivers production-grade GPU acceleration, eliminating the 15,000× p
 
 **GPU Performance:** Luxi Edge on NVIDIA L4 GPU delivers **72,727,273 operations per second** at 16.4W power consumption, achieving 4.4M ops/J efficiency. This represents a **36,363× improvement over dynamic Rhai evaluation** and **2.4× better than the 30M ops/sec SIMD baseline target**.
 
-Luxi Edge's deterministic runtime, bounded memory use, and GPU acceleration support high-density deployment scenarios, translating into a projected **$82.7M annual savings** for a 100 MW facility when the service handles just 10% of the workload.
+Luxi Edge can cut up to 16 % of the annual electricity bill in a 100 MW GPU-ready data center—worth ~$13 M/yr at typical hyperscaler rates—while delivering deterministic sub-10 ms latency.
 
-Luxi Edge’s deterministic runtime and bounded memory use support high-density deployment scenarios, translating into a projected **$82.7M annual savings** for a 100 MW facility when the service handles just 10% of the workload.
+Luxi Edge can cut up to 16 % of the annual electricity bill in a 100 MW GPU-ready data center—worth ~$13 M/yr at typical hyperscaler rates—while delivering deterministic sub-10 ms latency.
 
 ## Detailed Comparison
 
@@ -171,7 +171,7 @@ For complete results and xAI integration analysis, see [`BENCHMARK_DATA.md`](../
 
 ## Deployment Impact
 
-The deterministic latency envelope (7–9 ms for compute operations, <1 ms for health checks) aligns with edge inference SLAs. In a 100 MW data center, replacing 10% of mixed Python/C++ analytic workloads with Luxi Edge reduces annual energy expenditure from $87.6M to $4.87M, delivering **$82.7M** in yearly savings with payback in under a month.
+The deterministic latency envelope (7–9 ms for compute operations, <1 ms for health checks) aligns with edge inference SLAs. Luxi Edge can cut up to 16 % of the annual electricity bill in a 100 MW GPU-ready data center—worth ~$13 M/yr at typical hyperscaler rates—while delivering deterministic sub-10 ms latency.
 
 ## Validation Checklist
 
