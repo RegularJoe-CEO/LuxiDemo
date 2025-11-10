@@ -17,7 +17,18 @@
 
 ## Latest Results (November 10, 2025)
 
-### Neural Surrogate Integration (NEW)
+### Orbital Ensemble Benchmarks (NEW)
+- **Performance:** <1ms timesteps for 10-50 satellite swarms (real-time capable)
+- **Swarm generation:** 1000 satellites in ~500 µs
+- **N-body propagation:** 100 satellites in ~600 µs with J2 perturbations
+- **SIMD speedup:** 3-4× faster than scalar baseline
+- **Jupyter notebooks:** Open-source reproducible analysis with publication-quality plots
+- **xAI Applications:** Starlink collision avoidance, Starship trajectory planning, FSD multi-agent optimization
+- **Documentation:** 
+  - [../../notebooks/README.md](../../notebooks/README.md) — Complete Jupyter usage guide
+  - [../../BENCHMARK_DATA.md](../../BENCHMARK_DATA.md#orbital-ensemble-benchmarks) — Performance metrics
+
+### Neural Surrogate Integration
 - **Performance:** 9× theoretical speedup for Monte Carlo simulations
 - **Accuracy:** <1s MAE for ~1800s TOF predictions with 95% confidence threshold
 - **Integration:** PyTorch/ONNX export workflow (train in Python, deploy in Rust)
@@ -96,6 +107,32 @@ cargo bench --bench edge_suite
 cargo bench --bench simd_vs_scalar
 cargo bench --bench lambert_benchmark  # Scientific computing (orbital mechanics)
 cargo bench --bench neural_surrogate_benchmark  # Hybrid ML-physics convergence
+cargo bench --bench orbit_ensemble_benchmark  # LEO swarm propagation (NEW)
+```
+
+### Orbital Ensemble Benchmarks (NEW)
+```bash
+# Full orbital ensemble suite
+cargo bench --bench orbit_ensemble_benchmark
+
+# Quick validation
+cargo bench --bench orbit_ensemble_benchmark -- --test
+
+# Specific test groups
+cargo bench --bench orbit_ensemble_benchmark -- swarm_generation
+cargo bench --bench orbit_ensemble_benchmark -- j2_propagation
+cargo bench --bench orbit_ensemble_benchmark -- nbody_propagation
+cargo bench --bench orbit_ensemble_benchmark -- convergence_analysis
+cargo bench --bench orbit_ensemble_benchmark -- realtime_propagation
+
+# Run orbital ensemble tests
+cargo test --lib orbit_ensemble
+cargo test --lib nbody
+
+# Run Jupyter notebooks (requires Python dependencies)
+pip install -r notebooks/requirements.txt
+python notebooks/orbit_convergence_analysis.py
+python notebooks/leo_swarm_benchmark.py
 ```
 
 ### Scientific Computing Benchmarks

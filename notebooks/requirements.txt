@@ -1,0 +1,23 @@
+# Python dependencies for Luxi Edge Jupyter notebooks
+# Install with: pip install -r requirements.txt
+
+# Core scientific computing
+numpy>=1.24.0
+pandas>=2.0.0
+matplotlib>=3.7.0
+scipy>=1.10.0
+
+# Jupyter notebook support
+jupyter>=1.0.0
+jupyterlab>=4.0.0
+notebook>=7.0.0
+
+# For converting Python scripts to notebooks
+jupytext>=1.15.0
+
+# Performance and plotting
+seaborn>=0.12.0
+plotly>=5.14.0
+
+# JSON and data handling
+python-json-logger>=2.0.0

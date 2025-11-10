@@ -55,5 +55,9 @@ harness = false
 name = "neural_surrogate_benchmark"
 harness = false
 
+[[bench]]
+name = "orbit_ensemble_benchmark"
+harness = false
+
 [[bin]]
 name = "l4_benchmark"

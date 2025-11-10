@@ -835,6 +835,41 @@ If current L4 performance (72.7M ops/sec @ 16.4W) scales to 600M ops/J target:
 
 **Documentation:** See [`BENCHMARK_DATA.md`](../../BENCHMARK_DATA.md#lamberts-problem-benchmark-november-10-2025) for performance details and [`NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md`](NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md) for probabilistic analysis examples.
 
+### Orbital Ensemble Generation with J2 Perturbations (2025-11-10)
+
+**Synthetic Benchmarks for LEO Swarm Propagation with Open-Source Reproducibility**
+
+- **New capability:** Diverse LEO swarm generation for reproducible performance testing
+- **Swarm sizes:** 10-5000 satellites with realistic orbital distributions
+- **J2 perturbations:** Earth oblateness effects for accurate long-term propagation
+- **Performance:** <1ms timesteps achieved for 10-20 satellite swarms (real-time capable)
+- **N-body propagator:** Vectorized multi-satellite gravitational interactions with SIMD optimization
+- **Benchmark suite:** Convergence curves showing 3-4× SIMD speedup vs scalar baseline
+- **Jupyter notebooks:** Open-source reproducible analysis with publication-quality plots
+
+**Implementation Details:**
+- **Orbital parameters:** Altitude 200-2000 km, inclination 0-100°, near-circular orbits (e<0.05)
+- **J2 acceleration:** Earth oblateness perturbation with ~20% computational overhead
+- **RK4 integration:** 4th-order Runge-Kutta for accurate state propagation
+- **SIMD forces:** Vectorized pairwise gravitational calculations (x86_64 + ARM64)
+- **Real-time target:** <1ms for control loops (achieved for 10-20 sat formations)
+
+**xAI Use Cases:**
+- **Starlink collision avoidance:** Propagate 5000+ satellite constellation with J2 effects
+- **SpaceX Starship:** Multi-revolution trajectory planning with perturbation analysis
+- **Tesla FSD:** Multi-agent swarm trajectory optimization (drone/vehicle formations)
+- **Optimus:** Robot formation control with 1kHz update rates (<1ms timesteps)
+- **Mission planning:** Monte Carlo uncertainty propagation for stochastic orbital analysis
+
+**Jupyter Notebooks (Open-Source):**
+- **[notebooks/orbit_convergence_analysis.py](../../notebooks/orbit_convergence_analysis.py)** — SIMD vs scalar performance plots
+- **[notebooks/leo_swarm_benchmark.py](../../notebooks/leo_swarm_benchmark.py)** — 3D visualization and J2 analysis
+- **[notebooks/README.md](../../notebooks/README.md)** — Complete usage guide and reproducibility instructions
+
+**Key Innovation:** First open-source orbital mechanics benchmark with SIMD optimization metrics, enabling transparent performance validation for xAI mission planning applications. Synthetic ensembles provide reproducible baselines without proprietary orbital data.
+
+**Documentation:** See [`BENCHMARK_DATA.md`](../../BENCHMARK_DATA.md#orbital-ensemble-benchmarks) for performance results and [`IMPLEMENTATION_SUMMARY.md`](../../IMPLEMENTATION_SUMMARY.md#orbital-ensemble-and-n-body-propagation) for technical implementation.
+
 ---
 
 **Document Status:** Executive Summary for xAI Engineering Teams  
