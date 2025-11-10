@@ -215,6 +215,155 @@ pub fn batch_tof_scalar(a_values: &[f64], r1: f64, r2: f64, c: f64, s: f64, mu: 
         .collect()
 }
 
+/// Statistical summary for probabilistic TOF analysis
+#[derive(Debug, Clone)]
+pub struct TofStatistics {
+    pub mean: f64,
+    pub std_dev: f64,
+    pub min: f64,
+    pub max: f64,
+    pub p50: f64,  // median
+    pub p95: f64,
+    pub p99: f64,
+    pub confidence_95_lower: f64,
+    pub confidence_95_upper: f64,
+}
+
+/// Calculate probabilistic TOF bounds for stochastic simulations
+/// 
+/// Used for Monte Carlo trajectory analysis where input parameters (r1, r2, mu)
+/// have uncertainty. Critical for xAI's stochastic simulations and rad-hard
+/// spacecraft mission planning where sensor noise and measurement errors must
+/// be quantified.
+///
+/// Parameters:
+/// - a_samples: Monte Carlo samples of semi-major axis (km)
+/// - r1, r2, c, s, mu: nominal orbit parameters
+/// - n_rev: number of revolutions
+///
+/// Returns: Statistical summary including mean, std dev, and confidence bounds
+pub fn tof_probabilistic_bounds(
+    a_samples: &[f64],
+    r1: f64,
+    r2: f64,
+    c: f64,
+    s: f64,
+    mu: f64,
+    n_rev: i32,
+) -> TofStatistics {
+    if a_samples.is_empty() {
+        return TofStatistics {
+            mean: f64::NAN,
+            std_dev: f64::NAN,
+            min: f64::NAN,
+            max: f64::NAN,
+            p50: f64::NAN,
+            p95: f64::NAN,
+            p99: f64::NAN,
+            confidence_95_lower: f64::NAN,
+            confidence_95_upper: f64::NAN,
+        };
+    }
+
+    // Calculate TOF for all samples
+    let mut tof_values: Vec<f64> = a_samples
+        .iter()
+        .map(|&a| lambert_tof_multirev(a, r1, r2, c, s, mu, n_rev))
+        .filter(|&tof| tof.is_finite())
+        .collect();
+
+    if tof_values.is_empty() {
+        return TofStatistics {
+            mean: f64::NAN,
+            std_dev: f64::NAN,
+            min: f64::NAN,
+            max: f64::NAN,
+            p50: f64::NAN,
+            p95: f64::NAN,
+            p99: f64::NAN,
+            confidence_95_lower: f64::NAN,
+            confidence_95_upper: f64::NAN,
+        };
+    }
+
+    // Sort for percentile calculations
+    tof_values.sort_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal));
+
+    let n = tof_values.len();
+    let mean = tof_values.iter().sum::<f64>() / (n as f64);
+    
+    // Calculate standard deviation
+    let variance = tof_values.iter()
+        .map(|&x| (x - mean).powi(2))
+        .sum::<f64>() / (n as f64);
+    let std_dev = variance.sqrt();
+
+    // Calculate percentiles
+    let p50_idx = n / 2;
+    let p95_idx = (n as f64 * 0.95) as usize;
+    let p99_idx = (n as f64 * 0.99) as usize;
+
+    let p50 = tof_values[p50_idx];
+    let p95 = tof_values[p95_idx.min(n - 1)];
+    let p99 = tof_values[p99_idx.min(n - 1)];
+
+    // 95% confidence interval (assuming normal distribution)
+    // CI = mean ± 1.96 * (std_dev / sqrt(n))
+    let margin = 1.96 * std_dev / (n as f64).sqrt();
+
+    TofStatistics {
+        mean,
+        std_dev,
+        min: tof_values[0],
+        max: tof_values[n - 1],
+        p50,
+        p95,
+        p99,
+        confidence_95_lower: mean - margin,
+        confidence_95_upper: mean + margin,
+    }
+}
+
+/// Monte Carlo TOF simulation with parameter uncertainty
+/// 
+/// Simulates TOF distribution when orbit parameters have uncertainty.
+/// Essential for rad-hard spacecraft applications where radiation-induced
+/// sensor errors and orbital perturbations must be accounted for.
+///
+/// Parameters:
+/// - a_nominal: nominal semi-major axis (km)
+/// - a_std_dev: standard deviation of semi-major axis uncertainty
+/// - r1, r2, c, s, mu: orbit parameters
+/// - n_rev: number of revolutions
+/// - n_samples: number of Monte Carlo samples
+///
+/// Returns: Vector of (a_sample, tof_sample) pairs
+pub fn monte_carlo_tof(
+    a_nominal: f64,
+    a_std_dev: f64,
+    r1: f64,
+    r2: f64,
+    c: f64,
+    s: f64,
+    mu: f64,
+    n_rev: i32,
+    n_samples: usize,
+) -> Vec<(f64, f64)> {
+    use rand::thread_rng;
+    use rand_distr::{Distribution, Normal};
+
+    let normal = Normal::new(a_nominal, a_std_dev).unwrap();
+    let mut rng = thread_rng();
+
+    (0..n_samples)
+        .map(|_| {
+            let a_sample = normal.sample(&mut rng);
+            let tof_sample = lambert_tof_multirev(a_sample, r1, r2, c, s, mu, n_rev);
+            (a_sample, tof_sample)
+        })
+        .collect()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -310,5 +459,55 @@ mod tests {
         let tof_check = lambert_tof(a_solution, r1, r2, c, s, mu);
         assert!((tof_check - target_tof).abs() < 10.0,
                 "Solution TOF should match target");
+    }
+    
+    #[test]
+    fn test_probabilistic_tof_bounds() {
+        let r1 = 6980.0;
+        let r2 = 10520.0;
+        let c = 6655.0;
+        let s = 12078.0;
+        let mu = 398600.0;
+        
+        // Generate sample semi-major axes with small variation
+        let a_nominal = 6066.0;
+        let a_samples: Vec<f64> = (0..1000)
+            .map(|i| a_nominal + (i as f64 - 500.0) * 0.1)
+            .collect();
+        
+        let stats = tof_probabilistic_bounds(&a_samples, r1, r2, c, s, mu, 0);
+        
+        // Verify statistics are reasonable
+        assert!(stats.mean.is_finite(), "Mean should be finite");
+        assert!(stats.std_dev > 0.0, "Std dev should be positive");
+        assert!(stats.min <= stats.p50, "Min should be <= median");
+        assert!(stats.p50 <= stats.max, "Median should be <= max");
+        assert!(stats.p50 <= stats.p95, "Median should be <= p95");
+        assert!(stats.p95 <= stats.p99, "p95 should be <= p99");
+        assert!(stats.confidence_95_lower <= stats.mean, "Lower bound should be <= mean");
+        assert!(stats.mean <= stats.confidence_95_upper, "Mean should be <= upper bound");
+    }
+    
+    #[test]
+    fn test_monte_carlo_tof() {
+        let r1 = 6980.0;
+        let r2 = 10520.0;
+        let c = 6655.0;
+        let s = 12078.0;
+        let mu = 398600.0;
+        let a_nominal = 6066.0;
+        let a_std_dev = 10.0;  // 10 km uncertainty
+        
+        let samples = monte_carlo_tof(a_nominal, a_std_dev, r1, r2, c, s, mu, 0, 100);
+        
+        assert_eq!(samples.len(), 100, "Should generate 100 samples");
+        
+        // Verify all samples have finite TOF
+        let finite_count = samples.iter().filter(|(_, tof)| tof.is_finite()).count();
+        assert!(finite_count > 90, "Most samples should have finite TOF");
+        
+        // Verify samples are distributed around nominal
+        let mean_a: f64 = samples.iter().map(|(a, _)| a).sum::<f64>() / samples.len() as f64;
+        assert!((mean_a - a_nominal).abs() < 5.0, "Mean should be close to nominal");
     }
 }

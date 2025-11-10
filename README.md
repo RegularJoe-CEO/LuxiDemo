@@ -179,13 +179,15 @@ Battery-powered deployments requiring minimal energy footprint. Sub-watt operati
 
 ## Platform Support
 
-| Platform | Status | Throughput | Notes |
-|----------|--------|------------|-------|
-| **x86_64 CPU** | ✅ Production | >30M ops/sec | Intel, AMD with AVX2/AVX-512 |
-| **ARM64 CPU** | ✅ Production | >20M ops/sec | Apple Silicon, AWS Graviton, Jetson |
-| **NVIDIA GPU** | ✅ Validated | >70M ops/sec | L4, H100, H200 (CUDA 11/12) |
-| **AMD GPU** | 🔄 Planned | TBD | ROCm integration roadmap |
-| **Intel GPU** | 🔄 Planned | TBD | Level Zero backend |
+| Platform | Status | Throughput | Energy Efficiency | Notes |
+|----------|--------|------------|-------------------|-------|
+| **x86_64 CPU** | ✅ Production | >30M ops/sec | 100-500M ops/J | Intel, AMD with AVX2/AVX-512 |
+| **ARM64 CPU** | ✅ Production | >20M ops/sec | **1-2.5B ops/J** | Apple Silicon, AWS Graviton, Jetson, **Pi5** |
+| **NVIDIA GPU** | ✅ Validated | >70M ops/sec | 4.4M ops/J | L4, H100, H200 (CUDA 11/12) |
+| **AMD GPU** | 🔄 Planned | TBD | TBD | ROCm integration roadmap |
+| **Intel GPU** | 🔄 Planned | TBD | TBD | Level Zero backend |
+
+**ARM Neon Energy Leadership:** Raspberry Pi 5 achieves 2.67B ops/J theoretical peak (1.33B realistic), making it ideal for edge/space deployments.
 
 **Custom hardware integration available for strategic partners.** Contact for Tesla Dojo, BlueField DPU, or specialized accelerator support.
 
@@ -196,6 +198,8 @@ Battery-powered deployments requiring minimal energy footprint. Sub-watt operati
 - **[Technical Documentation](docs/README.md)** — Architecture, algorithms, API reference
 - **[Benchmark Analysis](docs/benchmarks/)** — Performance data, energy measurements, comparative studies
 - **[xAI Integration Guide](docs/XAI_EXECUTIVE_SUMMARY.md)** — Tesla, SpaceX, Grok, Optimus applications
+- **[Rad-Hard Space Applications](docs/RAD_HARD_SPACE_APPLICATIONS.md)** — **NEW**: Spacecraft navigation, probabilistic trajectory planning
+- **[Neon Energy & Probabilistic TOF Quickstart](docs/NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md)** — **NEW**: ARM efficiency metrics, stochastic simulations
 - **[Agent Instructions](AGENTS.md)** — AI agent benchmark protocol and output formats
 
 ---
@@ -207,6 +211,9 @@ Battery-powered deployments requiring minimal energy footprint. Sub-watt operati
 - CPU SIMD production-hardened (ARM64, x86_64)
 - Energy efficiency baseline established
 - Docker/container deployment validated
+- **NEW: ARM Neon ops/joule quantification** (Pi5: 2.67B ops/J peak)
+- **NEW: Probabilistic TOF bounds** for stochastic mission planning
+- **NEW: Rad-hard space application documentation** and examples
 
 ### 🔄 In Progress (Q4 2025)
 - **PTX kernel generation:** Convert expression AST to native CUDA kernels (target: 10-100× GPU speedup)
@@ -218,6 +225,7 @@ Battery-powered deployments requiring minimal energy footprint. Sub-watt operati
 - Kubernetes operator (automated scaling and resource management)
 - Persistent caching layer (reduce redundant parsing overhead)
 - Multi-GPU support (distributed batch evaluation)
+- **Multi-parameter Monte Carlo:** Extend probabilistic analysis to all orbital elements
 
 ---
 

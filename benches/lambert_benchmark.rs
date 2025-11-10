@@ -149,6 +149,79 @@ fn bench_multirev_batch_solver(c: &mut Criterion) {
     group.finish();
 }
 
+/// Benchmark probabilistic TOF bounds calculation
+fn bench_probabilistic_tof(c: &mut Criterion) {
+    use erock::lambert::tof_probabilistic_bounds;
+    
+    let r1 = 6980.0;
+    let r2 = 10520.0;
+    let c_chord = 6655.0;
+    let s = 12078.0;
+    let mu = 398600.0;
+    
+    let mut group = c.benchmark_group("probabilistic_tof");
+    
+    for n_samples in [100, 1000, 10000].iter() {
+        let a_nominal = 6066.0;
+        let a_samples: Vec<f64> = (0..*n_samples)
+            .map(|i| a_nominal + (i as f64 - (*n_samples as f64) / 2.0) * 0.1)
+            .collect();
+        
+        group.bench_with_input(BenchmarkId::new("bounds", n_samples), n_samples, |b, _| {
+            b.iter(|| {
+                let stats = tof_probabilistic_bounds(
+                    black_box(&a_samples),
+                    black_box(r1),
+                    black_box(r2),
+                    black_box(c_chord),
+                    black_box(s),
+                    black_box(mu),
+                    black_box(0),
+                );
+                hint_black_box(&stats);
+            })
+        });
+    }
+    
+    group.finish();
+}
+
+/// Benchmark Monte Carlo TOF simulation
+fn bench_monte_carlo_tof(c: &mut Criterion) {
+    use erock::lambert::monte_carlo_tof;
+    
+    let r1 = 6980.0;
+    let r2 = 10520.0;
+    let c_chord = 6655.0;
+    let s = 12078.0;
+    let mu = 398600.0;
+    let a_nominal = 6066.0;
+    let a_std_dev = 10.0;
+    
+    let mut group = c.benchmark_group("monte_carlo_tof");
+    
+    for n_samples in [100, 1000].iter() {
+        group.bench_with_input(BenchmarkId::new("simulation", n_samples), n_samples, |b, &n_samples| {
+            b.iter(|| {
+                let samples = monte_carlo_tof(
+                    black_box(a_nominal),
+                    black_box(a_std_dev),
+                    black_box(r1),
+                    black_box(r2),
+                    black_box(c_chord),
+                    black_box(s),
+                    black_box(mu),
+                    black_box(0),
+                    black_box(n_samples),
+                );
+                hint_black_box(&samples);
+            })
+        });
+    }
+    
+    group.finish();
+}
+
 /// Benchmark Lambert problem solving using bisection
 fn bench_lambert_bisect(c: &mut Criterion) {
     let r1 = 6980.0;
@@ -194,6 +267,8 @@ criterion_group!(
     bench_lambert_tof_multirev,
     bench_batch_tof,
     bench_multirev_batch_solver,
+    bench_probabilistic_tof,
+    bench_monte_carlo_tof,
     bench_lambert_bisect,
     bench_lambert_bisect_tight
 );

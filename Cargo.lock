@@ -633,6 +633,7 @@ dependencies = [
  "nalgebra",
  "nom",
  "rand",
+ "rand_distr",
  "reqwest",
  "rhai",
  "serde",

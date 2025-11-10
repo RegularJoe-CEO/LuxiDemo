@@ -288,11 +288,57 @@ fn bench_memory_bandwidth(c: &mut Criterion) {
     group.finish();
 }
 
+/// Benchmark Neon energy efficiency (ops/joule calculation)
+fn bench_neon_energy_efficiency(c: &mut Criterion) {
+    use erock::energy::{neon_profiles, theoretical_peak_ops_per_joule, 
+                        energy_efficiency_bounds};
+    
+    let mut group = c.benchmark_group("neon_energy_efficiency");
+    
+    // Benchmark with energy awareness for different platforms
+    let platforms = vec![
+        ("pi5", neon_profiles::raspberry_pi5()),
+        ("jetson_orin", neon_profiles::jetson_orin_nano()),
+        ("graviton3", neon_profiles::aws_graviton3()),
+        ("m2", neon_profiles::apple_m2()),
+    ];
+    
+    for (name, profile) in platforms {
+        // Calculate theoretical bounds
+        let peak_ops_per_joule = theoretical_peak_ops_per_joule(&profile);
+        let (pessimistic, realistic, optimistic) = energy_efficiency_bounds(&profile);
+        
+        println!("\n{} Energy Profile:", profile.platform);
+        println!("  Power: {:.1}W (compute: {:.1}W)", 
+                 profile.power_watts, 
+                 profile.power_watts - profile.idle_power_watts);
+        println!("  Peak theoretical: {:.2}M ops/J", peak_ops_per_joule / 1e6);
+        println!("  Realistic (50% util): {:.2}M ops/J", realistic / 1e6);
+        println!("  Bounds: [{:.2}M, {:.2}M, {:.2}M] ops/J", 
+                 pessimistic / 1e6, realistic / 1e6, optimistic / 1e6);
+        
+        // Benchmark polynomial evaluation (representative SIMD workload)
+        let size = 100_000;
+        let base: Vec<f64> = (0..size).map(|i| i as f64 * 0.001).collect();
+        
+        group.bench_function(format!("polynomial_{}", name), |b| {
+            b.iter(|| {
+                let mut data = base.clone();
+                neon_polynomial(black_box(&mut data));
+                black_box(&data);
+            });
+        });
+    }
+    
+    group.finish();
+}
+
 criterion_group!(
     neon_benches,
     bench_sin_cos,
     bench_polynomial,
     bench_fma,
-    bench_memory_bandwidth
+    bench_memory_bandwidth,
+    bench_neon_energy_efficiency
 );
 criterion_main!(neon_benches);
