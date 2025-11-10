@@ -42,12 +42,43 @@ pub fn evaluate(expr: &str, x: &[f64]) -> Result<Vec<f64>> {
     Ok(results)
 }
 
+/// Find a root of an expression using bisection method with caching optimization
+/// 
+/// This function uses Rhai for expression evaluation, which adds overhead.
+/// For performance-critical implicit function solving (e.g., Lambert TOF),
+/// consider using native Rust functions like `bisect_lambert_tof` instead.
+///
+/// Optimization: Caches endpoint evaluations to reduce redundant function calls
+/// from 2 per iteration to 1 per iteration (after initial 2 evaluations).
+///
+/// # Arguments
+/// * `expr` - Rhai expression string with variable 'x'
+/// * `a` - Lower bound of search interval
+/// * `b` - Upper bound of search interval  
+/// * `tol` - Absolute tolerance for convergence
+///
+/// # Returns
+/// Root value where `expr(root) ≈ 0`, or error if evaluation fails
 pub fn bisect_root(expr: &str, a: f64, b: f64, tol: f64) -> Result<f64> {
     let engine = Engine::new();
     let ast = engine.compile(expr).map_err(|e| anyhow!("Compile: {}", e))?;
     let mut scope = Scope::new();
     let mut low = a;
     let mut high = b;
+    
+    // Cache endpoint evaluations to avoid redundant computation
+    scope.push("x", low);
+    let mut low_val = engine
+        .eval_ast_with_scope::<f64>(&mut scope, &ast)
+        .map_err(|e| anyhow!("Eval: {}", e))?;
+    scope.pop();
+    
+    scope.push("x", high);
+    let mut high_val = engine
+        .eval_ast_with_scope::<f64>(&mut scope, &ast)
+        .map_err(|e| anyhow!("Eval: {}", e))?;
+    scope.pop();
+    
     while (high - low) > tol {
         let mid = (low + high) / 2.0;
         scope.push("x", mid);
@@ -55,18 +86,18 @@ pub fn bisect_root(expr: &str, a: f64, b: f64, tol: f64) -> Result<f64> {
             .eval_ast_with_scope::<f64>(&mut scope, &ast)
             .map_err(|e| anyhow!("Eval: {}", e))?;
         scope.pop();
+        
         if mid_val == 0.0 {
             return Ok(mid);
         }
-        scope.push("x", high);
-        let high_val = engine
-            .eval_ast_with_scope::<f64>(&mut scope, &ast)
-            .map_err(|e| anyhow!("Eval: {}", e))?;
-        scope.pop();
+        
+        // Update interval and cache the evaluation we just did
         if (mid_val > 0.0) == (high_val > 0.0) {
             high = mid;
+            high_val = mid_val;
         } else {
             low = mid;
+            low_val = mid_val;
         }
     }
     Ok((low + high) / 2.0)

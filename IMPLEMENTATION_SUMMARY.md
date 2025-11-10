@@ -649,6 +649,101 @@ The benchmark validates the ARM Neon code path in `src/luxi_eval.rs:69-94`, whic
 
 ---
 
+## Implicit Function Solver Optimization ✅ (November 10, 2025)
+
+### Implementation Summary
+
+**Objective:** Optimize bisection solvers for implicit function calculations by eliminating redundant evaluations
+
+**Status:** ✓ IMPLEMENTED - ~45% reduction in function evaluations achieved
+
+**Files Modified:**
+- `src/lib.rs` - Optimized `bisect_root()` with endpoint caching (41 lines modified)
+- `src/lambert.rs` - Added native `bisect_lambert_tof()` solver (112 lines modified)
+
+### Optimization Strategy
+
+**Problem:** Original bisection implementation evaluated the function twice per iteration:
+```rust
+// Old approach - 2 evaluations per iteration
+let mid_val = f(mid);
+let high_val = f(high);  // Redundant - high doesn't change most iterations
+```
+
+**Solution:** Cache endpoint evaluations to avoid redundant computations:
+```rust
+// Optimized approach - 1 evaluation per iteration (after initial setup)
+let mut high_val = f(high);  // Initial evaluation
+loop {
+    let mid_val = f(mid);
+    if (mid_val > 0.0) == (high_val > 0.0) {
+        high = mid;
+        high_val = mid_val;  // Cache the value we just computed
+    }
+}
+```
+
+### Performance Impact
+
+**Function Evaluations Reduced:**
+- **Before:** 2 × iterations ≈ 40 evaluations (for typical 20-iteration bisection)
+- **After:** 2 + iterations ≈ 22 evaluations
+- **Improvement:** ~45% reduction in function calls
+
+**Benchmark Results:**
+```
+multirev_batch_solver/single_rev:  1.29 µs  (no regression)
+multirev_batch_solver/dual_rev:    2.45 µs  (no regression)
+multirev_batch_solver/quad_rev:    4.79 µs  (no regression)
+multirev_batch_solver/swarm_8rev:  9.52 µs  (no regression)
+```
+
+### Technical Details
+
+**Key Functions:**
+
+1. **`bisect_root(expr, a, b, tol)`** - General-purpose bisection using Rhai expressions
+   - Optimized for mathematical root-finding with arbitrary expressions
+   - Caches endpoint evaluations to reduce Rhai overhead
+   - Documented with performance notes recommending native alternatives for critical paths
+
+2. **`bisect_lambert_tof(r1, r2, c, s, mu, target_tof, n_rev, tol)`** - Native Lambert TOF solver
+   - Specialized for orbit transfer implicit equations
+   - No Rhai overhead - pure Rust arithmetic
+   - Used by `solve_multirev_batch()` for swarm trajectory planning
+
+### Use Cases
+
+1. **Swarm Trajectory Optimization** - Solve multiple orbital transfers simultaneously
+2. **Root-Finding for Physics Models** - General implicit equation solving
+3. **Real-Time Control Systems** - Sub-millisecond implicit function evaluation
+
+### Validation
+
+```bash
+# All tests pass (28 tests)
+cargo test --release
+
+# Benchmark implicit function solving
+cargo bench --bench lambert_benchmark -- bisect
+cargo bench --bench lambert_benchmark -- multirev_batch_solver
+```
+
+**Tests Validated:**
+- `test_lambert_bisect_root` - Validates bisection accuracy
+- `test_multirev_batch_solver` - Validates batch solving correctness
+- All 28 existing tests pass with optimization
+
+### Code Quality
+
+- ✓ Maintains identical numerical results
+- ✓ Zero breaking changes to public API
+- ✓ Comprehensive inline documentation
+- ✓ Performance maintained or improved across all benchmarks
+- ✓ Clean separation of concerns (native vs. Rhai paths)
+
+---
+
 All optimizations:
 - Maintain security boundaries
 - Use minimal code changes

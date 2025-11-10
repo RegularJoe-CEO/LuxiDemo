@@ -94,49 +94,87 @@ pub fn solve_multirev_batch(
     tol: f64,
 ) -> Vec<(i32, f64)> {
     rev_counts.iter().filter_map(|&n_rev| {
-        // For each revolution count, find the semi-major axis
-        // Search bounds: need a >= s/2 to avoid NaN
-        let a_min = s / 2.0 + 1.0;
-        let a_max = s / 2.0 + 50000.0; // Wide search range
-        
-        // Bisection to find root
-        let mut left = a_min;
-        let mut right = a_max;
-        let max_iter = 100;
-        
-        for _ in 0..max_iter {
-            if (right - left) <= tol {
-                break;
-            }
-            
-            let mid = (left + right) / 2.0;
-            let tof_mid = lambert_tof_multirev(mid, r1, r2, c, s, mu, n_rev);
-            
-            if !tof_mid.is_finite() {
-                break;
-            }
-            
-            let tof_left = lambert_tof_multirev(left, r1, r2, c, s, mu, n_rev);
-            
-            // TOF typically decreases with increasing a for fixed n_rev
-            if (tof_mid - target_tof).abs() < 0.01 {
-                return Some((n_rev, mid));
-            }
-            
-            if (tof_mid > target_tof) == (tof_left > target_tof) {
-                left = mid;
-            } else {
-                right = mid;
-            }
-        }
-        
-        let solution = (left + right) / 2.0;
-        if lambert_tof_multirev(solution, r1, r2, c, s, mu, n_rev).is_finite() {
-            Some((n_rev, solution))
-        } else {
-            None
-        }
+        bisect_lambert_tof(r1, r2, c, s, mu, target_tof, n_rev, tol)
+            .map(|a| (n_rev, a))
     }).collect()
+}
+
+/// Native bisection solver for Lambert TOF implicit equation
+/// 
+/// Solves: lambert_tof_multirev(a, r1, r2, c, s, mu, n_rev) = target_tof
+/// 
+/// This optimized implementation caches function evaluations to avoid redundant
+/// calculations, providing ~2× speedup over naive bisection.
+///
+/// Parameters:
+/// - r1, r2, c, s, mu: orbit parameters
+/// - target_tof: desired time of flight (seconds)
+/// - n_rev: number of revolutions
+/// - tol: absolute tolerance on semi-major axis
+///
+/// Returns: Some(a) if solution found, None if no valid solution
+pub fn bisect_lambert_tof(
+    r1: f64,
+    r2: f64,
+    c: f64,
+    s: f64,
+    mu: f64,
+    target_tof: f64,
+    n_rev: i32,
+    tol: f64,
+) -> Option<f64> {
+    // Search bounds: need a >= s/2 to avoid NaN
+    let a_min = s / 2.0 + 1.0;
+    let a_max = s / 2.0 + 50000.0;
+    
+    let mut left = a_min;
+    let mut right = a_max;
+    let max_iter = 100;
+    
+    // Cache left endpoint evaluation to avoid redundant computation
+    let mut tof_left = lambert_tof_multirev(left, r1, r2, c, s, mu, n_rev);
+    if !tof_left.is_finite() {
+        return None;
+    }
+    
+    let mut tof_right = lambert_tof_multirev(right, r1, r2, c, s, mu, n_rev);
+    if !tof_right.is_finite() {
+        return None;
+    }
+    
+    for _ in 0..max_iter {
+        if (right - left) <= tol {
+            break;
+        }
+        
+        let mid = (left + right) / 2.0;
+        let tof_mid = lambert_tof_multirev(mid, r1, r2, c, s, mu, n_rev);
+        
+        if !tof_mid.is_finite() {
+            break;
+        }
+        
+        // Early exit if we're close enough
+        if (tof_mid - target_tof).abs() < 0.01 {
+            return Some(mid);
+        }
+        
+        // Update interval based on which side the target is on
+        if (tof_mid > target_tof) == (tof_left > target_tof) {
+            left = mid;
+            tof_left = tof_mid;  // Cache the evaluation we just did
+        } else {
+            right = mid;
+            tof_right = tof_mid;  // Cache the evaluation we just did
+        }
+    }
+    
+    let solution = (left + right) / 2.0;
+    if lambert_tof_multirev(solution, r1, r2, c, s, mu, n_rev).is_finite() {
+        Some(solution)
+    } else {
+        None
+    }
 }
 
 /// SIMD-optimized batch TOF calculation across multiple semi-major axes

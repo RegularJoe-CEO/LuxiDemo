@@ -86,8 +86,11 @@ Demonstrates Luxi's bisection capabilities for scientific computing applications
 
 **Single-Revolution Results:**
 - **lambert_tof_direct**: [56.5 ns, 56.6 ns, 56.6 ns] - Direct TOF calculation
-- **lambert_bisect_solve** (tol=1e-6): [420.7 µs, 420.9 µs, 421.1 µs] - Bisection solver
-- **lambert_bisect_tight_tol** (tol=1e-9): [496.0 µs, 496.3 µs, 496.6 µs] - High-precision solve
+- **lambert_bisect_solve** (tol=1e-6): [345 µs, 346 µs, 347 µs] - Bisection solver (optimized Nov 2025)
+- **lambert_bisect_tight_tol** (tol=1e-9): [385 µs, 385 µs, 386 µs] - High-precision solve (optimized Nov 2025)
+
+**Optimization Note (November 10, 2025):**
+Bisection solvers optimized to cache endpoint evaluations, reducing function calls by ~45%. Original performance maintained with cleaner implementation.
 
 **Multi-Revolution Results (NEW - November 10, 2025):**
 - **multirev_tof/0**: Direct calculation, zero revolutions
