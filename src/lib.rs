@@ -1,9 +1,9 @@
 use anyhow::{anyhow, Result};
 use rhai::{Engine, Scope};
 
+pub mod luxi_eval;
 pub mod energy;
 pub mod lambert;
-pub mod luxi_eval;
 pub mod nbody;
 pub mod neural_surrogate;
 pub mod orbit_ensemble;
