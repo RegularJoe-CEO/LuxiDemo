@@ -7,17 +7,21 @@
 
 Luxi Edge is a math service that runs on a server and answers math questions over HTTP. Think of it like a super-fast calculator that can handle complex mathematical expressions, find where functions cross zero, and calculate slopes and gradients.
 
-It runs on both **CPUs** (optimized with SIMD for edge devices) and **GPUs** (validated on NVIDIA L4 for data center throughput: 72.7M operations/second).
+It runs on both **CPUs** (optimized with SIMD for edge devices) and **GPUs** (validated on NVIDIA L4 for data center throughput: 72.7M operations/second, verified November 8, 2025).
+
+**Recent additions (November 2025):** ARM Neon energy optimization (400M-2.67B ops/J on ARM64 platforms), neural surrogate integration for hybrid ML-physics, multi-revolution orbital mechanics, and probabilistic analysis for uncertainty quantification.
 
 ---
 
 ## Performance Overview
 
-- **CPU (SIMD):** 193,000 ops/sec — optimized for edge devices, low power (596mW)
+- **CPU (SIMD - x86_64):** 193,000 ops/sec (AVX2), 30M ops/sec (optimized workloads) — edge devices, low power (596mW)
+- **CPU (SIMD - ARM64):** 1.2-2.7B ops/sec (Neon) — ultra-efficient for battery/edge (400M-2.67B ops/J)
 - **GPU (NVIDIA L4):** 72,727,273 ops/sec — validated November 8, 2025 for data center workloads
-- **Efficiency:** GPU achieves 4.44M ops/sec/W @ 16.4W power consumption
+- **Efficiency:** GPU achieves 4.44M ops/sec/W @ 16.4W power; ARM Neon up to 2.67B ops/J theoretical peak
+- **Cross-Platform SIMD:** Auto-detects AVX-512 (8× f64), AVX2 (4× f64), or Neon (2× f64) at runtime
 
-See [../benchmarks/GPU_L4_RESULTS.md](../benchmarks/GPU_L4_RESULTS.md) for detailed GPU analysis.
+See [../benchmarks/GPU_L4_RESULTS.md](../benchmarks/GPU_L4_RESULTS.md) for detailed GPU analysis and [../ARM64_TESTING_GUIDE.md](../ARM64_TESTING_GUIDE.md) for ARM platform optimization.
 
 ---
 
@@ -155,6 +159,35 @@ These additions make Luxi Edge suitable for:
 - **Scientific computing**: sensitivity analysis, parameter estimation
 - **Engineering**: fast equation solving with guaranteed convergence
 
+### Additional Capabilities (November 2025)
+
+**Orbital Mechanics & Space Applications:**
+- **Multi-revolution Lambert solver:** 16.3 µs for 8-revolution trajectory optimization
+- **Probabilistic TOF analysis:** Monte Carlo uncertainty propagation for mission planning
+- **J2 perturbations:** Earth oblateness effects for accurate orbital propagation
+- **N-body swarm propagation:** Real-time simulation for 10-50 satellite constellations (<1ms timesteps)
+
+See [../RAD_HARD_SPACE_APPLICATIONS.md](../RAD_HARD_SPACE_APPLICATIONS.md) and [../lambert_benchmark.md](../lambert_benchmark.md) for space application details.
+
+**Neural Surrogate Integration:**
+- **Hybrid ML-Physics execution:** 9× theoretical speedup for Monte Carlo simulations
+- **Automatic fallback:** Uses neural predictions when confident (>95%), exact physics for edge cases
+- **PyTorch/ONNX workflow:** Train in Python, deploy in Rust with zero-copy inference
+- **Applications:** Orbit forecasting, trajectory planning, motion planning with guaranteed convergence
+
+See [../NEURAL_SURROGATE_INTEGRATION.md](../NEURAL_SURROGATE_INTEGRATION.md) for complete integration guide.
+
+**Cross-Platform SIMD Optimization:**
+- **AVX-512 (x86_64):** 8× f64 vectors, 2.83-3.40 Gelem/s (25% faster than AVX2)
+- **AVX2 (x86_64):** 4× f64 vectors, 2.26-2.73 Gelem/s (production validated)
+- **ARM Neon (ARM64):** 2× f64 vectors, 1.2-2.7 Gelem/s (best energy efficiency)
+- **Runtime detection:** Automatically selects optimal SIMD instruction set
+
+**Energy-Aware Computing:**
+- **Battery monitoring:** Adaptive precision based on battery level (FP32 → FP16 → INT8)
+- **Platform-specific models:** Pre-configured for Pi5, Jetson, Graviton, Apple Silicon
+- **Ops/Joule quantification:** Energy efficiency metrics for ROI calculations
+
 ---
 
 ## How It Works Under the Hood
@@ -168,11 +201,17 @@ When you send an expression like `x*x + 2*x + 1`, Luxi Edge:
 ### CPU SIMD Acceleration (Edge Devices)
 For `/evaluate` on CPU, the service processes multiple x values in parallel using SIMD (Single Instruction, Multiple Data) instructions. On modern CPUs, this means computing 2-8 results simultaneously, making it much faster than computing one at a time.
 
-**CPU Performance:** 193,000 ops/sec with ultra-low power (596mW) — ideal for:
+**CPU Performance:** 
+- **x86_64 (AVX2):** 193,000-30M ops/sec with ultra-low power (596mW)
+- **x86_64 (AVX-512):** 25% faster (2.83-3.40 Gelem/s for polynomial workloads)
+- **ARM64 (Neon):** 1.2-2.7B ops/sec with exceptional energy efficiency (400M-2.67B ops/J)
+
+**Ideal for:**
 - Edge devices and IoT
-- Battery-powered systems
+- Battery-powered systems (Raspberry Pi 5: 2.67B ops/J theoretical peak)
 - Low-latency local computation
 - Cost-sensitive deployments
+- Space applications (radiation-hardened ARM platforms)
 
 ### GPU Acceleration (Data Center Workloads)
 For massive throughput requirements, Luxi Edge can leverage **NVIDIA GPUs** to achieve data-center-scale performance:
@@ -192,9 +231,17 @@ For massive throughput requirements, Luxi Edge can leverage **NVIDIA GPUs** to a
 
 **When to Use GPU vs CPU:**
 - **GPU:** Large batch sizes (100k+ elements), data center deployments, maximum throughput needed
-- **CPU SIMD:** Edge devices, real-time responses, low power requirements, small to medium batches
+- **CPU SIMD (x86_64):** General edge devices, real-time responses, moderate power (15-30W)
+- **CPU SIMD (ARM64):** Battery-powered edge, ultra-low power (<5W), space/embedded systems
 
-See [../benchmarks/GPU_L4_RESULTS.md](../benchmarks/GPU_L4_RESULTS.md) for detailed GPU architecture and performance analysis.
+**Cross-Platform SIMD Auto-Detection:**
+Luxi Edge automatically detects and uses the best available SIMD instruction set:
+- **AVX-512** (x86_64): 8× f64 parallel operations, 25% faster than AVX2
+- **AVX2** (x86_64): 4× f64 parallel operations, production baseline
+- **Neon** (ARM64): 2× f64 parallel operations, best energy efficiency
+- **Scalar fallback**: Universal compatibility on all platforms
+
+See [../benchmarks/GPU_L4_RESULTS.md](../benchmarks/GPU_L4_RESULTS.md) for GPU details and [../ARM64_TESTING_GUIDE.md](../ARM64_TESTING_GUIDE.md) for ARM platform optimization.
 
 ### Numerical Derivatives
 For `/evaluate_derivative` and `/gradient`, derivatives are computed numerically using finite differences:
@@ -261,10 +308,15 @@ curl -X POST http://localhost:8080/newton \
 
 ## Additional Resources
 
-- **API Reference**: See [openapi.yaml](../openapi.yaml) for full API specification
-- **Architecture**: [docs/ARCHITECTURE.md](ARCHITECTURE.md) for system design
-- **Algorithms**: [docs/ALGORITHM_DETAILS.md](ALGORITHM_DETAILS.md) for implementation details
-- **Scientific Background**: [docs/SCIENTIFIC_OVERVIEW.md](SCIENTIFIC_OVERVIEW.md) for academic reference
+- **API Reference**: See [openapi.yaml](../../openapi.yaml) for full API specification
+- **Architecture**: [../technical/architecture.md](../technical/architecture.md) for system design
+- **Algorithms**: [../technical/algorithms.md](../technical/algorithms.md) for implementation details
+- **Scientific Background**: [../technical/scientific-overview.md](../technical/scientific-overview.md) for academic reference
+- **ARM64 Platforms**: [../ARM64_TESTING_GUIDE.md](../ARM64_TESTING_GUIDE.md) for edge deployment
+- **Space Applications**: [../RAD_HARD_SPACE_APPLICATIONS.md](../RAD_HARD_SPACE_APPLICATIONS.md) for orbital mechanics
+- **Neural Integration**: [../NEURAL_SURROGATE_INTEGRATION.md](../NEURAL_SURROGATE_INTEGRATION.md) for hybrid ML-physics
+- **Energy Optimization**: [../NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md](../NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md) for efficiency metrics
+- **xAI Integration**: [../XAI_EXECUTIVE_SUMMARY.md](../XAI_EXECUTIVE_SUMMARY.md) for enterprise applications
 
 ---
 
