@@ -24,6 +24,7 @@ cargo bench
 cargo bench --bench edge_suite
 cargo bench --bench my_benchmark
 cargo bench --bench simd_vs_scalar
+cargo bench --bench lambert_benchmark  # Orbital mechanics root-finding
 cargo bench --bench gpu_optimizations  # CPU-only batch tests
 ```
 
@@ -62,7 +63,14 @@ For comprehensive benchmark documentation, results, and analysis, see:
 - **edge_suite.rs**: SIMD-accelerated expression evaluation benchmarks
 - **my_benchmark.rs**: Fallback calculus workload benchmarks
 - **simd_vs_scalar.rs**: Comparative analysis of SIMD vs scalar implementations
+- **lambert_benchmark.rs**: Lambert's problem orbital mechanics benchmark (bisection root-finding)
 
 **GPU-Focused:**
 - **gpu_optimizations.rs**: Batch evaluation, FP16 GPU kernels, Vulkan fallback
 - **../src/bin/l4_benchmark.rs**: Production GPU server for RunPod deployment
+
+**Scientific Computing:**
+- **lambert_benchmark.rs**: Demonstrates root-finding for orbital mechanics (TOF calculations)
+  - Direct Lambert TOF: ~56.5 ns
+  - Bisection solve (tol=1e-6): ~421 µs
+  - Bisection solve (tol=1e-9): ~496 µs

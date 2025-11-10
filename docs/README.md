@@ -200,6 +200,8 @@ curl -X POST http://localhost:8080/evaluate \
 | CPU Throughput | 193k ops/sec |
 | **GPU Throughput (L4)** | **72.7M ops/sec** |
 | **GPU Efficiency** | **4.44M ops/sec/W** |
+| **Lambert Bisection** | **421 µs** (tol=1e-6) |
+| **Scientific Computing** | **17.7M direct evals/sec** |
 
 **How to Use:**
 - Review `BENCHMARK_DATA.md` for the executive summary.

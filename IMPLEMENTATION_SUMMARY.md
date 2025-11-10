@@ -337,6 +337,48 @@ Python client for GPU performance testing:
 - RunPod GPU pods
 - Docker containers with GPU passthrough
 
+
+---
+
+## Scientific Computing Benchmarks (November 10, 2025)
+
+### Lambert's Problem Implementation ✅
+
+**Status**: Fully implemented and validated
+
+**Implementation:**
+- Created `src/lambert.rs` (~75 lines)
+- Lambert Time of Flight (TOF) calculation for elliptical orbits
+- Rhai expression generator for bisection root-finding
+- Feature: Demonstrates Luxi's bisection capabilities for orbital mechanics
+
+**Performance Results:**
+```
+Direct TOF Calculation:    ~56.5 ns     (17.7M evals/sec)
+Bisection (tol=1e-6):      ~421 µs      (2,375 solves/sec)
+Bisection (tol=1e-9):      ~496 µs      (2,016 solves/sec)
+```
+
+**Accuracy:**
+- Test: Find semi-major axis where TOF = 1800s
+- Expected: a ≈ 6066 km
+- Result: a = 6065.83 km
+- Error: 0.2 km (0.003%)
+
+**Key Features:**
+- Uses Battin's formulation for elliptical orbits
+- Demonstrates sub-millisecond root-finding
+- Minimal code addition (75 lines core + 70 lines benchmark + 50 lines tests)
+- Validates Luxi's applicability to scientific computing beyond expression evaluation
+
+**Applications:**
+- Orbit transfer planning
+- Trajectory optimization
+- Mission planning for satellites and spacecraft
+- Demonstrates potential for GPU-accelerated batch solving
+
+See [docs/lambert_benchmark.md](docs/lambert_benchmark.md) for complete implementation details.
+
 ## Conclusion
 
 This implementation successfully delivers GPU acceleration for Luxi Edge:

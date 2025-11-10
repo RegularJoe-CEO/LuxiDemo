@@ -74,6 +74,16 @@ cargo bench
 # Specific benchmark suites
 cargo bench --bench edge_suite
 cargo bench --bench simd_vs_scalar
+cargo bench --bench lambert_benchmark  # Scientific computing (orbital mechanics)
+```
+
+### Scientific Computing Benchmarks
+```bash
+# Lambert's problem (orbital mechanics)
+cargo bench --bench lambert_benchmark
+
+# Specific Lambert tests
+cargo test --lib lambert
 ```
 
 ### GPU Benchmarks
@@ -109,6 +119,14 @@ See individual documents for complete reproduction instructions:
 - **13.7× speedup** over scalar baseline
 - **596mW power** — suitable for battery-powered edge devices
 - **18× energy efficiency** improvement
+
+### Scientific Computing Benchmarks ✅
+- **Lambert's problem** orbital mechanics solver
+- **Sub-millisecond root-finding** (~421 µs for bisection)
+- **High accuracy** — result within 0.003% of expected value
+- **17.7M direct evaluations/sec** — demonstrating Luxi's computational efficiency
+
+See [../../docs/lambert_benchmark.md](../../docs/lambert_benchmark.md) for details on the orbital mechanics implementation.
 
 ### Deployment Guidance
 | Factor | Use CPU SIMD | Use GPU |

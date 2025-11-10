@@ -72,6 +72,33 @@ All measurements produced with Criterion.rs (`--sample-size 100`, harness disabl
 
 ---
 
+## Lambert's Problem Benchmark (November 10, 2025)
+
+**Orbital Mechanics Root-Finding using Bisection**
+
+Demonstrates Luxi's bisection capabilities for scientific computing applications. Solves Lambert's problem to find semi-major axis where Time of Flight (TOF) = 1800 seconds.
+
+**Test Vector:**
+- r₁ = 6980 km, r₂ = 10520 km, c = 6655 km, s = 12078 km
+- μ = 398600 km³/s² (Earth gravitational parameter)
+- Target: Find a where TOF(a) = 1800s
+- Expected result: a ≈ 6066 km
+
+**Results:**
+- **lambert_tof_direct**: [56.5 ns, 56.6 ns, 56.6 ns] - Direct TOF calculation
+- **lambert_bisect_solve** (tol=1e-6): [420.7 µs, 420.9 µs, 421.1 µs] - Bisection solver
+- **lambert_bisect_tight_tol** (tol=1e-9): [496.0 µs, 496.3 µs, 496.6 µs] - High-precision solve
+
+**Analysis:**
+- Direct calculation: 17.7M evaluations/second
+- Bisection solving: ~2,375 solves/second (tol=1e-6)
+- Tolerance improvement (1000×): Only 18% time increase
+- Accuracy: Result within 0.2 km (~0.003% error) of expected value
+- Demonstrates sub-millisecond root-finding for orbital mechanics
+
+See [docs/lambert_benchmark.md](docs/lambert_benchmark.md) for detailed implementation and usage.
+---
+
 ## Performance Comparison Table
 
 | Platform | Throughput | Latency (4M) | Power | Efficiency | Deployment |
