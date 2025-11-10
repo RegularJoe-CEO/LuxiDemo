@@ -209,6 +209,11 @@ Post-Pi5 quantification of operations per joule for edge deployments:
 - **Realistic bounds:** [20%, 50%, 80%] for pessimistic/realistic/optimistic scenarios
 - **Rad-hard space applications:** Lower power budget favors ARM platforms for satellite/spacecraft computing
 
+**Documentation:**
+- **Quick Start:** [docs/NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md](docs/NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md) — Energy calculations and probabilistic TOF examples
+- **Testing Guide:** [docs/ARM64_TESTING_GUIDE.md](docs/ARM64_TESTING_GUIDE.md) — Comprehensive ARM64 testing procedures
+- **Space Applications:** [docs/RAD_HARD_SPACE_APPLICATIONS.md](docs/RAD_HARD_SPACE_APPLICATIONS.md) — Space-qualified computing use cases
+
 **Running the Benchmark:**
 ```bash
 # Full suite with energy efficiency
@@ -279,6 +284,10 @@ let samples = monte_carlo_tof(a_nominal, a_std_dev, r1, r2, c, s, mu, n_rev, 100
 - **Sensor noise:** GPS/IMU errors in space environment
 - **Actuator uncertainty:** Thruster performance degradation over mission lifetime
 - **Multi-scenario planning:** Evaluate hundreds of trajectory options in microseconds
+
+**Documentation:**
+- **Quick Start:** [docs/NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md](docs/NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md) — Complete examples and usage patterns
+- **Space Applications:** [docs/RAD_HARD_SPACE_APPLICATIONS.md](docs/RAD_HARD_SPACE_APPLICATIONS.md) — Radiation-hardened computing use cases
 
 Run benchmarks:
 ```bash

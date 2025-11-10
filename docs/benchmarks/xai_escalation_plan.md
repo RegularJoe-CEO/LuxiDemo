@@ -101,6 +101,43 @@ Owner: Eric. Reviewer: xAI (Grok team).
 
 ## Latest Updates (2025-11-10)
 
+### ARM Neon Energy Efficiency Quantification ✅
+
+**Objective:** Quantify energy efficiency for ARM64 edge deployments with platform-specific models
+
+**Status:** Implemented, ready for hardware validation
+
+**Implementation:**
+- Platform energy profiles: `neon_profiles` module with pre-configured models
+- Supported platforms: Raspberry Pi 5, Jetson Orin Nano, AWS Graviton3, Apple M2
+- Theoretical peak calculations: `theoretical_peak_ops_per_joule()`
+- Realistic efficiency bounds: `energy_efficiency_bounds()` (pessimistic/realistic/optimistic)
+
+**Energy Efficiency Targets:**
+```
+Platform         | Theoretical Peak | Realistic (50%) | Power
+Raspberry Pi 5   | 2.67B ops/J      | 1.33B ops/J     | 15W
+Jetson Orin Nano | 1.33B ops/J      | 667M ops/J      | 15W
+AWS Graviton3    | 2.00B ops/J      | 1.00B ops/J     | 20W
+Apple M2         | 3.33B ops/J      | 1.67B ops/J     | 15W
+```
+
+**Relevance to xAI:**
+- Accurate TCO modeling for battery-powered edge AI deployments
+- Energy budget planning for Tesla/Optimus embedded systems
+- Power efficiency validation for SpaceX space-rated computing
+- Enables ops/J-driven hardware selection and procurement
+
+**Documentation:**
+- Quick start: [`../../docs/NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md`](../../docs/NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md)
+- Testing guide: [`../../docs/ARM64_TESTING_GUIDE.md`](../../docs/ARM64_TESTING_GUIDE.md)
+- Space applications: [`../../docs/RAD_HARD_SPACE_APPLICATIONS.md`](../../docs/RAD_HARD_SPACE_APPLICATIONS.md)
+
+**Next Steps:**
+- Validate energy measurements on ARM64 hardware with RAPL/powermetrics
+- Integrate energy profiling into xAI deployment pipeline
+- Benchmark on target platforms (Graviton, Jetson, Pi5)
+
 ### ARM Neon SIMD Benchmarking ✅
 
 **Objective:** Validate ARM64 deployment path for edge/IoT devices (Apple Silicon, AWS Graviton, Jetson)
@@ -128,9 +165,9 @@ Owner: Eric. Reviewer: xAI (Grok team).
 - Integrate into xAI deployment pipeline if edge compute is required
 - Benchmark on Jetson platforms for robotics applications
 
-### Multi-Revolution Lambert TOF (November 10, 2025)
+### Multi-Revolution Lambert TOF with Probabilistic Bounds (November 10, 2025)
 
-**Objective:** Enable swarm trajectory optimization with sub-ms multi-revolution orbital transfer solving
+**Objective:** Enable swarm trajectory optimization with sub-ms multi-revolution orbital transfer solving and stochastic analysis
 
 **Status:** Implemented, validated on x86_64
 
@@ -138,6 +175,7 @@ Owner: Eric. Reviewer: xAI (Grok team).
 - Multi-revolution TOF: `lambert_tof_multirev(a, r1, r2, c, s, mu, n_rev)`
 - Vectorized batch solver: `solve_multirev_batch()` - solves across N revolution counts
 - SIMD-optimized batch TOF evaluation with ARM Neon intrinsics
+- Probabilistic TOF bounds: Monte Carlo uncertainty propagation for thrust/drag variations
 
 **Performance (x86_64 scalar fallback):**
 ```
@@ -147,11 +185,19 @@ Quad rev (N=4):      8.31 µs
 Swarm 8-rev (N=8):  16.30 µs  ✅ SUB-MS achieved
 ```
 
+**Probabilistic Analysis Features:**
+- Monte Carlo sampling for TOF uncertainty quantification
+- Thrust variation modeling (±5% typical)
+- Atmospheric drag uncertainty propagation
+- Navigation error confidence intervals
+- Robustness analysis for mission planning
+
 **Relevance to xAI:**
-- **SpaceX mission planning:** Multi-rev lunar/Mars transfers with time constraints
-- **Starship guidance:** Real-time trajectory optimization (1kHz loop compatible)
+- **SpaceX mission planning:** Multi-rev lunar/Mars transfers with time constraints and uncertainty bounds
+- **Starship guidance:** Real-time trajectory optimization (1kHz loop compatible) with statistical confidence
 - **Swarm coordination:** Drone/satellite formations requiring simultaneous multi-option solves
-- **Optimus navigation:** Complex multi-waypoint path planning with timing constraints
+- **Optimus navigation:** Complex multi-waypoint path planning with timing constraints and error propagation
+- **Robust control:** Safety-critical applications requiring uncertainty quantification
 
 **ARM64 Optimization:**
 - Neon SIMD batch evaluation expected 1.5-2× speedup on Graviton/Jetson
@@ -160,6 +206,7 @@ Swarm 8-rev (N=8):  16.30 µs  ✅ SUB-MS achieved
 **Documentation:**
 - Implementation: `src/lambert.rs` (multi-rev functions)
 - Benchmarks: `benches/lambert_benchmark.rs` (4 new benchmarks)
+- Quick start: [`../../docs/NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md`](../../docs/NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md)
 - Results: [`../../BENCHMARK_DATA.md`](../../BENCHMARK_DATA.md#lamberts-problem-benchmark-november-10-2025)
 - Comparative analysis: [`COMPARATIVE_ANALYSIS.md`](COMPARATIVE_ANALYSIS.md)
 

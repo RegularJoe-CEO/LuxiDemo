@@ -21,6 +21,21 @@ This represents a major milestone validating GPU acceleration in production envi
 
 ---
 
+## 🔋 ARM Neon Energy Efficiency & Probabilistic TOF — November 10, 2025
+
+**New ARM64 capabilities for edge deployment and scientific computing:**
+- **Energy efficiency quantification:** Platform-specific ops/J models (533M-2.67B ops/J theoretical peaks)
+- **Supported platforms:** Raspberry Pi 5, Jetson Orin Nano, AWS Graviton3, Apple M2
+- **Probabilistic TOF analysis:** Monte Carlo uncertainty propagation for orbital mechanics
+- **Multi-revolution Lambert solver:** 16.3 µs for 8-revolution swarm trajectory optimization
+
+**New Documentation:**
+- **[NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md](NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md)** — Quick start for energy calculations and probabilistic bounds
+- **[ARM64_TESTING_GUIDE.md](ARM64_TESTING_GUIDE.md)** — Comprehensive ARM64 testing procedures
+- **[RAD_HARD_SPACE_APPLICATIONS.md](RAD_HARD_SPACE_APPLICATIONS.md)** — Space-qualified computing applications
+
+---
+
 ## Welcome
 
 This repository contains comprehensive documentation of Luxi Edge, a high-performance computational microservice designed for scientific review, academic discourse, and technical implementation. The documentation is structured to support different levels of engagement, from high-level architectural understanding to detailed algorithmic analysis.

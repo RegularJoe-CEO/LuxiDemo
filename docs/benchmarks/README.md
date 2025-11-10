@@ -14,7 +14,19 @@
 
 ---
 
-## Latest Results (November 8, 2025)
+## Latest Results (November 10, 2025)
+
+### ARM Neon Energy Efficiency Quantification
+- **Platform profiles:** Pre-configured energy models for Pi5, Jetson, Graviton3, Apple M2
+- **Theoretical peaks:** 533M ops/J (pessimistic) to 2.67B ops/J (optimistic)
+- **Use case:** Battery-powered edge AI, robotics, space-rated computing
+- **Documentation:** [../../docs/NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md](../../docs/NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md)
+
+### Probabilistic TOF Analysis
+- **Capability:** Monte Carlo uncertainty propagation for orbital mechanics
+- **Performance:** 16.3 µs for 8-revolution swarm solve
+- **Applications:** SpaceX mission planning, satellite swarms, navigation under uncertainty
+- **Documentation:** [../../docs/NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md](../../docs/NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md)
 
 ### GPU Acceleration — NVIDIA L4
 - **Throughput:** 72,727,273 ops/sec (72.7M)

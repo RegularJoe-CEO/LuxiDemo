@@ -568,6 +568,14 @@ The benchmark validates the ARM Neon code path in `src/luxi_eval.rs:69-94`, whic
 - ✓ Comprehensive documentation provided
 - ✓ Integration with existing Luxi Edge code validated
 - ✓ Expected 1.5-2× speedup on ARM64 hardware
+- ✓ **Energy efficiency quantification** - Platform-specific ops/J models (533M-2.67B ops/J)
+- ✓ **Probabilistic TOF bounds** - Monte Carlo uncertainty propagation for stochastic analysis
+
+### New Documentation (November 10, 2025)
+
+- **[docs/NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md](docs/NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md)** - Quick start for ARM Neon energy calculations and probabilistic TOF bounds
+- **[docs/ARM64_TESTING_GUIDE.md](docs/ARM64_TESTING_GUIDE.md)** - Comprehensive ARM64 testing procedures and platform-specific optimizations
+- **[docs/RAD_HARD_SPACE_APPLICATIONS.md](docs/RAD_HARD_SPACE_APPLICATIONS.md)** - Space-qualified computing applications and radiation-hardened deployment
 
 ---
 

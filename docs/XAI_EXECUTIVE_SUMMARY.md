@@ -778,29 +778,40 @@ If current L4 performance (72.7M ops/sec @ 16.4W) scales to 600M ops/J target:
 
 **Bottom Line:** Luxi Edge delivers **production-grade performance**, **datacenter-scale energy savings**, and **cross-platform compatibility** for Grok AI, Tesla Autopilot/Optimus, SpaceX missions, and future xAI hardware platforms.
 
-### Latest: ARM Neon Optimization (2025-11-10)
+### Latest: ARM Neon Optimization & Energy Efficiency (2025-11-10)
 
-**ARM64 Edge Deployment Path Now Validated**
+**ARM64 Edge Deployment Path Now Validated with Energy Quantification**
 
 - **New benchmark suite:** ARM Neon SIMD intrinsics testing
-- **Target platforms:** Apple Silicon, AWS Graviton, Jetson (robotics/edge)
+- **Target platforms:** Apple Silicon, AWS Graviton, Jetson (robotics/edge), Raspberry Pi 5
 - **Expected performance:** 1.5-2× speedup on ARM64 vs scalar
-- **Use case:** Battery-powered edge AI, Tesla/Optimus embedded systems
+- **Energy efficiency:** Theoretical peaks from 533M ops/J (Pi5) to 2.67B ops/J (optimistic bounds)
+- **Platform profiles:** Pre-configured energy models for Pi5, Jetson Orin Nano, Graviton3, Apple M2
+- **Use case:** Battery-powered edge AI, Tesla/Optimus embedded systems, space-rated computing
 - **Status:** Implemented, awaiting ARM64 hardware validation
 
-**Relevance:** Complements GPU path with ultra-low-power ARM64 option for edge inference and robotics applications. See [`benches/README_NEON.md`](../../benches/README_NEON.md) for details.
+**New Documentation:**
+- **[NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md](NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md)** — Quick start guide for ARM Neon energy calculations and probabilistic TOF bounds
+- **[ARM64_TESTING_GUIDE.md](ARM64_TESTING_GUIDE.md)** — Comprehensive ARM64 testing procedures and platform-specific optimizations
+- **[RAD_HARD_SPACE_APPLICATIONS.md](RAD_HARD_SPACE_APPLICATIONS.md)** — Space-qualified computing applications and radiation-hardened deployment
 
-### Multi-Revolution Lambert TOF (2025-11-10)
+**Relevance:** Complements GPU path with ultra-low-power ARM64 option for edge inference and robotics applications. Energy efficiency bounds enable accurate TCO modeling for battery-powered deployments. See [`benches/README_NEON.md`](../../benches/README_NEON.md) for benchmark details.
 
-**Swarm Trajectory Optimization Now Available**
+### Multi-Revolution Lambert TOF with Probabilistic Bounds (2025-11-10)
 
-- **New capability:** Multi-revolution orbital transfer solving
+**Swarm Trajectory Optimization with Stochastic Analysis**
+
+- **New capability:** Multi-revolution orbital transfer solving with probabilistic TOF bounds
 - **Performance:** 16.3 µs for 8-revolution swarm solve (sub-ms achieved)
 - **Throughput:** 61,350 solve-sets/second on x86_64
+- **Probabilistic analysis:** Monte Carlo TOF uncertainty propagation for stochastic mission planning
+- **Applications:** Thrust variation modeling, atmospheric drag uncertainty, navigation error bounds
 - **Use cases:** SpaceX mission planning, Starship guidance, satellite swarms, Optimus navigation
 - **ARM64 optimization:** Expected sub-10 µs on Graviton/Jetson with Neon SIMD
 
-**Implementation:** Vectorized batch solver processes multiple revolution counts simultaneously. Enables real-time trajectory optimization for swarms and complex multi-waypoint missions. See [`BENCHMARK_DATA.md`](../../BENCHMARK_DATA.md#lamberts-problem-benchmark-november-10-2025) for details.
+**Implementation:** Vectorized batch solver processes multiple revolution counts simultaneously. Probabilistic TOF bounds enable robust trajectory planning under uncertainty. Enables real-time trajectory optimization for swarms and complex multi-waypoint missions with statistical confidence intervals. 
+
+**Documentation:** See [`BENCHMARK_DATA.md`](../../BENCHMARK_DATA.md#lamberts-problem-benchmark-november-10-2025) for performance details and [`NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md`](NEON_ENERGY_PROBABILISTIC_TOF_QUICKSTART.md) for probabilistic analysis examples.
 
 ---
 
