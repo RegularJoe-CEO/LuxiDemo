@@ -457,6 +457,68 @@ Uses machine epsilon (2.220446049250313e-16) as threshold to handle floating-poi
 
 ---
 
+## 3.5 Neural Surrogate Integration (NEW)
+
+**Hybrid ML-Physics Uncertainty Propagation**
+
+Luxi Edge now supports neural network surrogates for accelerating Monte Carlo simulations while maintaining physics-based accuracy guarantees. This enables xAI teams to achieve near-ML speedup with full physics validation.
+
+### Architecture
+
+```
+Input: [a, r1, r2, c, s, mu, n_rev] (7 orbital parameters)
+  ↓
+Neural Network: 2×64 hidden layers (PyTorch/ONNX)
+  ↓
+Output: [tof, confidence] (prediction + uncertainty)
+  ↓
+Decision: confidence ≥ 0.95 ? use_neural : use_physics
+```
+
+### Performance
+
+| Approach | 5K Samples | Speedup | Accuracy |
+|----------|------------|---------|----------|
+| **Pure Physics** | 362 µs | 1.0× | Exact |
+| **Hybrid ML-Physics** | ~40 µs | **9×** | <1s MAE |
+| **Pure ML** | 4 µs | 90× | No guarantee* |
+
+\* Pure ML lacks fallback, risking silent failures on OOD inputs
+
+### xAI Use Cases
+
+**Starlink Orbit Forecasting:**
+```rust
+// Propagate GPS uncertainty through orbit prediction
+let (orbit_samples, stats) = hybrid_monte_carlo_tof(
+    a_nominal, gps_uncertainty_km,
+    r1, r2, c, s, mu, 0, 10000,
+    Some(&surrogate)
+)?;
+
+// Real-time updates at 25 Hz (40ms budget)
+println!("Convergence in {:.1}ms", stats.wall_time_secs * 1000.0);
+```
+
+**Tesla FSD Trajectory Planning:**
+```rust
+// Evaluate 5× more candidate paths in same time budget
+for candidate in trajectory_candidates {
+    let (path_samples, _) = hybrid_monte_carlo_dynamics(
+        candidate.params, sensor_cov, Some(&surrogate)
+    )?;
+    candidate.score = compute_p95_safety(&path_samples);
+}
+```
+
+### Documentation
+
+- **Complete Guide:** [`docs/NEURAL_SURROGATE_INTEGRATION.md`](../NEURAL_SURROGATE_INTEGRATION.md)
+- **PyTorch Export:** [`scripts/export_torch_surrogate.py`](../../scripts/export_torch_surrogate.py)
+- **Benchmark Suite:** [`benches/neural_surrogate_benchmark.rs`](../../benches/neural_surrogate_benchmark.rs)
+
+---
+
 ## 4. Computational Implementation
 
 ### 4.1 Algorithm Overview

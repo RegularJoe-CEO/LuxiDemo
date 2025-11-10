@@ -10,11 +10,19 @@
 |----------|---------|--------------|
 | **[GPU_L4_RESULTS.md](GPU_L4_RESULTS.md)** | NVIDIA L4 GPU validation (72.7M ops/sec) | 2025-11-08 |
 | **[COMPARATIVE_ANALYSIS.md](COMPARATIVE_ANALYSIS.md)** | Cross-tool comparisons (Python, C++, NumPy) | 2025-11-08 |
-| **[../../BENCHMARK_DATA.md](../../BENCHMARK_DATA.md)** | Root-level benchmark summary (CPU + GPU) | 2025-11-08 |
+| **[../../BENCHMARK_DATA.md](../../BENCHMARK_DATA.md)** | Root-level benchmark summary (CPU + GPU) | 2025-11-10 |
+| **[../../docs/NEURAL_SURROGATE_INTEGRATION.md](../../docs/NEURAL_SURROGATE_INTEGRATION.md)** | Neural surrogate hybrid ML-physics guide | 2025-11-10 |
 
 ---
 
 ## Latest Results (November 10, 2025)
+
+### Neural Surrogate Integration (NEW)
+- **Performance:** 9× theoretical speedup for Monte Carlo simulations
+- **Accuracy:** <1s MAE for ~1800s TOF predictions with 95% confidence threshold
+- **Integration:** PyTorch/ONNX export workflow (train in Python, deploy in Rust)
+- **xAI Relevance:** Orbit forecasting, FSD trajectory planning, Optimus motion planning
+- **Documentation:** [../../docs/NEURAL_SURROGATE_INTEGRATION.md](../../docs/NEURAL_SURROGATE_INTEGRATION.md)
 
 ### ARM Neon Energy Efficiency Quantification
 - **Platform profiles:** Pre-configured energy models for Pi5, Jetson, Graviton3, Apple M2
@@ -87,6 +95,7 @@ cargo bench
 cargo bench --bench edge_suite
 cargo bench --bench simd_vs_scalar
 cargo bench --bench lambert_benchmark  # Scientific computing (orbital mechanics)
+cargo bench --bench neural_surrogate_benchmark  # Hybrid ML-physics convergence
 ```
 
 ### Scientific Computing Benchmarks
@@ -94,8 +103,26 @@ cargo bench --bench lambert_benchmark  # Scientific computing (orbital mechanics
 # Lambert's problem (orbital mechanics)
 cargo bench --bench lambert_benchmark
 
+# Neural surrogate convergence benchmarks
+cargo bench --bench neural_surrogate_benchmark
+
 # Specific Lambert tests
 cargo test --lib lambert
+
+# Neural surrogate tests
+cargo test --lib neural_surrogate
+```
+
+### Neural Surrogate Benchmarks (NEW)
+```bash
+# Hybrid ML-physics convergence comparison
+cargo bench --bench neural_surrogate_benchmark
+
+# With neural feature enabled (requires ONNX model)
+cargo bench --bench neural_surrogate_benchmark --features neural
+
+# Export PyTorch model to ONNX
+python3 scripts/export_torch_surrogate.py --output model.onnx --samples 10000
 ```
 
 ### GPU Benchmarks

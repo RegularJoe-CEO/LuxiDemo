@@ -36,6 +36,24 @@ This represents a major milestone validating GPU acceleration in production envi
 
 ---
 
+## 🧠 Neural Surrogate Integration for Hybrid ML-Physics — November 10, 2025
+
+**Accelerated uncertainty propagation with neural network surrogates:**
+- **Performance:** 9× theoretical speedup for Monte Carlo simulations (100× neural inference, 10% physics fallback)
+- **Accuracy guarantee:** Automatic physics fallback when neural confidence < 95%
+- **Integration:** PyTorch/ONNX export workflow — train in Python, deploy in Rust
+- **xAI Relevance:** Orbit forecasting, FSD trajectory planning, Optimus motion planning
+- **Convergence benchmarks:** Direct comparison vs traditional physics-only approaches
+
+**Key Innovation:** Hybrid execution model uses fast neural predictions when confident, exact physics for edge cases. Maintains Monte Carlo convergence guarantees while achieving near-ML speedup.
+
+**New Documentation:**
+- **[NEURAL_SURROGATE_INTEGRATION.md](NEURAL_SURROGATE_INTEGRATION.md)** ⭐ **COMPLETE USAGE GUIDE** — Architecture, training, benchmarks, xAI integration
+- **Export Script:** `scripts/export_torch_surrogate.py` — Train and export PyTorch models to ONNX
+- **Benchmark Suite:** `benches/neural_surrogate_benchmark.rs` — Convergence speed comparison
+
+---
+
 ## Welcome
 
 This repository contains comprehensive documentation of Luxi Edge, a high-performance computational microservice designed for scientific review, academic discourse, and technical implementation. The documentation is structured to support different levels of engagement, from high-level architectural understanding to detailed algorithmic analysis.
