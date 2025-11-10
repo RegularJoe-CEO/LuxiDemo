@@ -11,20 +11,35 @@ pub mod orbit_ensemble;
 pub mod simd_ops;
 
 pub fn evaluate(expr: &str, x: &[f64]) -> Result<Vec<f64>> {
-    let mut engine = Engine::new();
-    engine.set_max_call_levels(10);
-    let ast = engine.compile(expr).map_err(|e| anyhow!("Compile: {}", e))?;
-    let mut scope = Scope::new();
-    let mut y = Vec::with_capacity(x.len());
-    for xi in x {
-        scope.push("x", *xi);
-        let yi = engine
-            .eval_ast_with_scope::<f64>(&mut scope, &ast)
-            .map_err(|e| anyhow!("Eval: {}", e))?;
-        scope.pop();
-        y.push(yi);
+    use luxi_eval::{interpreter, lexer, parser};
+
+    let tokens = lexer::tokenize(expr);
+    let (arena, _root) = parser::parse(tokens).map_err(|e| anyhow!("Parse: {}", e))?;
+
+    let fixed = HashMap::new();
+    let mut results = interpreter::batch_eval_optimized(&arena, &fixed, x);
+
+    if results.iter().any(|value| value.is_nan()) {
+        let mut engine = Engine::new();
+        engine.set_max_call_levels(10);
+        let ast = engine
+            .compile(expr)
+            .map_err(|e| anyhow!("Compile: {}", e))?;
+        let mut scope = Scope::new();
+
+        for (idx, xi) in x.iter().enumerate() {
+            if results[idx].is_nan() {
+                scope.push("x", *xi);
+                let yi = engine
+                    .eval_ast_with_scope::<f64>(&mut scope, &ast)
+                    .map_err(|e| anyhow!("Eval: {}", e))?;
+                scope.pop();
+                results[idx] = yi;
+            }
+        }
     }
-    Ok(y)
+
+    Ok(results)
 }
 
 pub fn bisect_root(expr: &str, a: f64, b: f64, tol: f64) -> Result<f64> {
