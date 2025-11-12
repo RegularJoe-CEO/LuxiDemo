@@ -4,6 +4,37 @@
 
 **Ultra-efficient mathematical computation platform delivering >10× performance and >5× energy efficiency.**
 
+---
+
+## ⚠️ IMPORTANT: LICENSE AND USAGE NOTICE
+
+**This is PROPRIETARY SOFTWARE under a commercial license.**
+
+### What You CAN Do:
+- ✅ View and study the source code for evaluation purposes
+- ✅ Run benchmarks and tests in non-production environments
+- ✅ Test and evaluate for potential commercial licensing
+- ✅ Academic research with proper attribution
+
+### What You CANNOT Do Without a Commercial License:
+- ❌ Use in commercial products or services
+- ❌ Create derivative works for commercial purposes
+- ❌ Deploy in production environments
+- ❌ Modify and redistribute
+- ❌ Remove or modify copyright notices
+- ❌ Provide commercial services using this code
+
+### Getting a Commercial License:
+For production use, commercial licensing, or enterprise support, contact: **e@ewaller.com**
+
+**License violations are actively monitored and will be legally enforced.**
+
+📄 See [LICENSE](LICENSE) for complete terms  
+🔒 See [SECURITY_ASSESSMENT_REPORT.md](SECURITY_ASSESSMENT_REPORT.md) for security analysis  
+📋 See [SECURITY_RECOMMENDATIONS.md](SECURITY_RECOMMENDATIONS.md) for implementation guidance
+
+---
+
 ## 🤖 AI Agents: Validation Instructions
 
 **Are you an AI agent validating performance claims?**
