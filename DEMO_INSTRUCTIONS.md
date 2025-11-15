@@ -1,143 +1,162 @@
-# DEMO INSTRUCTIONS – Luxi / eRock Engine
+# eRock Demo Instructions (Local Engine, Single Machine)
 
-This file is the primary guide for running the engine and benchmarks.
-It lives at the top of the repo:
+This file is the **start here** guide for running the eRock engine on your own machine.
 
-- **Mac path:** `~/eRock/DEMO_INSTRUCTIONS.md`
+It assumes:
 
----
+- You are on a Mac with a local clone of this repo at `~/eRock`
+- Rust toolchain is installed (`rustup` + `cargo`)
+- You want a simple, repeatable way to:
+  - Start the engine
+  - Run a quick smoke test
+  - Run the CPU benchmark demo
 
-## 1. Open the Project (MacBook Pro)
-
-1. Open a new Terminal.
-2. Go to the repo:
-
-   ```bash
-   cd ~/eRock
-   ls
-   ```
-
-   You should see `Cargo.toml`, `src/`, `tools/`, and this file `DEMO_INSTRUCTIONS.md`.
+For deeper detail, see `RUN_ENGINE.md` in this same directory.
 
 ---
 
-## 2. Run CPU Benchmarks on the Mac (M1 Pro)
+## 1. Confirm you are in the right place
 
-These commands use **only the Mac CPU**. They do **not** touch RunPod or GPUs.
-
-From `~/eRock`:
+In Terminal:
 
 ```bash
 cd ~/eRock
-
-# Build in release mode (do this once before benchmarks)
-cargo build --release
-
-# 10k element evaluation
-cargo bench evaluate_10k
-
-# 100k element evaluation
-cargo bench evaluate_100k
-
-# Root-finding benchmark
-cargo bench bisect_root
-
-# SIMD inplace evaluation over 100k elements
-cargo bench simd_inplace_100k
+pwd
+ls
 ```
 
-If you have the helper script `scripts/run_cpu_suite.sh`, you can run them all in one shot:
+You should see something like:
+
+- `Cargo.toml`
+- `src/`
+- `RUN_ENGINE.md`
+- `DEMO_INSTRUCTIONS.md` (this file)
+- `scripts/`
+
+If that’s not what you see, stop and correct the path before proceeding.
+
+---
+
+## 2. Build the project (one-time per code change)
+
+From the repo root:
+
+```bash
+cd ~/eRock
+cargo build --release
+```
+
+- This compiles the engine in release mode.
+- You only need to repeat this after code changes or dependency updates.
+
+If this fails, do **not** guess; fix the build first before trying to run anything.
+
+---
+
+## 3. Run the engine (follow the authoritative details)
+
+The **authoritative, low-level run instructions** live in `RUN_ENGINE.md`.
+
+From repo root:
+
+```bash
+cd ~/eRock
+open RUN_ENGINE.md
+```
+
+Follow the “Start the server” / “Run the engine” section in that file exactly.
+
+> **Important:**  
+> `RUN_ENGINE.md` is the source of truth for:
+> - The exact `cargo run` command
+> - The correct binary name
+> - The correct port and HTTP endpoints  
+> This `DEMO_INSTRUCTIONS.md` is the quick index that always points you there.
+
+Once the engine is running in one Terminal window, leave it running.
+
+---
+
+## 4. Smoke-test the running engine
+
+After the server is started (per `RUN_ENGINE.md`), use the smoke test described there.
+
+Typical pattern (for reference only; the exact endpoint is defined in `RUN_ENGINE.md`):
+
+- A `/health` or `/ping` endpoint to confirm the process is alive
+- An `/evaluate` endpoint to send a small math expression and get a numeric result
+
+Run the exact test commands from `RUN_ENGINE.md`.  
+If those succeed, the engine is ready for demo.
+
+---
+
+## 5. Run the CPU benchmark demo (automated script)
+
+This uses the preconfigured CPU benchmark script in `scripts/`.
+
+From a **new Terminal window** (with the server **stopped** unless `RUN_ENGINE.md` says otherwise):
 
 ```bash
 cd ~/eRock
 ./scripts/run_cpu_suite.sh
 ```
 
-This script (if present) runs the four benchmarks above and writes logs into:
+What this script does:
 
-- `benchmark_logs/evaluate_10k.log`
-- `benchmark_logs/evaluate_100k.log`
-- `benchmark_logs/bisect_root.log`
-- `benchmark_logs/simd_inplace_100k.log`
+- Runs `cargo build --release` (if needed)
+- Runs a series of `cargo bench` benchmarks (e.g. evaluate_10k, evaluate_100k, bisect_root, simd_inplace_100k)
+- Captures logs into `benchmark_logs/` for later review
+
+Notes:
+
+- Expect this to be **CPU-heavy** and take on the order of **40–60 minutes** on a Mac, depending on configuration.
+- Criterion may print warnings like “Unable to complete 100 samples” when the tests are very heavy; that is expected in this setup.
+
+When it finishes, you should see log files under:
+
+```bash
+cd ~/eRock
+ls benchmark_logs
+```
 
 ---
 
-## 3. Run the NVIDIA L4 GPU Throughput & Energy Benchmark (RunPod)
+## 6. Stop the engine cleanly
 
-This requires a **RunPod L4 endpoint** (e.g., `local_crimson_hamster`) and will incur GPU cost
-while the pod is running. It measures throughput (ops/sec) and energy efficiency (ops/J)
-using CuPy and NVML [L4 harness lives in `tools/gpu_l4_benchmark.py`].
+If you have the engine running in a Terminal window (from `RUN_ENGINE.md`):
 
-### 3.1 Start the L4 container
+- Focus that window
+- Press `Ctrl+C` to stop the server
 
-1. In RunPod, go to **Home → Serverless → Endpoints**.
-2. Start the endpoint that uses:
-   - Container image: `runpod/pytorch:...`
-   - GPU: NVIDIA L4 (24 GB).
-3. Open a **terminal/shell** into the running pod.
-
-### 3.2 Find the eRock repo inside the container
-
-In the container shell:
-
-```bash
-ls
-```
-
-Look for a folder containing `Cargo.toml` and `DEMO_INSTRUCTIONS.md`, e.g.:
-
-```bash
-cd /workspace/eRock    # adjust if needed
-ls Cargo.toml DEMO_INSTRUCTIONS.md
-```
-
-### 3.3 Install Python dependencies
-
-```bash
-pip install "cupy-cuda11x" pynvml
-```
-
-(You usually do this once per container.)
-
-### 3.4 Run the L4 GPU benchmark
-
-From the repo root in the container:
-
-```bash
-cd /path/to/eRock
-
-python tools/gpu_l4_benchmark.py \
-  --elements 50000000 \
-  --duration 20 \
-  --dtype fp16 \
-  --op fma
-```
-
-This will:
-
-- Warm up the GPU.
-- Run a 50M-element kernel in a loop for about 20 seconds.
-- Sample GPU power via NVML.
-- Print:
-  - Total element-wise operations.
-  - Throughput (ops/sec).
-  - Average power (W).
-  - Energy efficiency (ops/J).
-
-If you later create `scripts/run_l4_gpu_benchmark.sh`, you can instead run:
-
-```bash
-./scripts/run_l4_gpu_benchmark.sh
-```
-
-which wraps the command above and saves the output to `benchmark_logs/gpu_l4_benchmark.log`.
+Confirm in `top` or `ps` that the server process is no longer running if you’re unsure.
 
 ---
 
-## 4. Where to Find Things
+## 7. Optional: Desktop copy of these directions
 
-- **Repo root on this Mac:** `~/eRock`
-- **This instructions file:** `~/eRock/DEMO_INSTRUCTIONS.md`
-- **GPU benchmark harness:** `~/eRock/tools/gpu_l4_benchmark.py`
-- **CPU benchmark logs (if scripts are used):** `~/eRock/benchmark_logs/`
-- **GPU L4 benchmark log (if wrapper script is used):** `benchmark_logs/gpu_l4_benchmark.log`
+If you want a desktop copy named “directions to run this engine.md”:
+
+From repo root:
+
+```bash
+cd ~/eRock
+cp DEMO_INSTRUCTIONS.md ~/Desktop/"directions to run this engine.md"
+```
+
+Note:
+
+- `~` is **outside** the quotes so it expands to your home directory.
+- This just copies the file; it does **not** run any code or tests.
+
+---
+
+## 8. What to trust
+
+- **Trust:** `DEMO_INSTRUCTIONS.md` (this file) + `RUN_ENGINE.md` at repo root.
+- Ignore the branch jungle for demo purposes. As long as you are in `~/eRock` and these two files exist at the top level, you have what you need to:
+  - Build
+  - Run
+  - Smoke-test
+  - Benchmark
+the eRock engine on your Mac.
