@@ -4,6 +4,7 @@ use tokio::io::{AsyncReadExt, AsyncWriteExt};
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
+    // Evaluate
     let mut stream = TcpStream::connect("127.0.0.1:50051").await?;
     let request = json!({
         "type": "evaluate",
@@ -19,6 +20,8 @@ async fn main() -> std::io::Result<()> {
     let response: serde_json::Value = serde_json::from_slice(&buffer[..n]).unwrap();
     println!("Evaluate: {:?}", response["y"]);
 
+    // Root finding (new connection)
+    let mut stream = TcpStream::connect("127.0.0.1:50051").await?;
     let root_request = json!({
         "type": "bisect",
         "expr": "x^2 - 4",
@@ -36,4 +39,3 @@ async fn main() -> std::io::Result<()> {
 
     Ok(())
 }
-
