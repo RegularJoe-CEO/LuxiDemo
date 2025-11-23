@@ -223,3 +223,7 @@ mod tests {
         }
     }
 }
+
+// GPU kernels (FP16 optimized for L4/T4)
+#[cfg(feature = "gpu")]
+pub mod gpu_kernels;

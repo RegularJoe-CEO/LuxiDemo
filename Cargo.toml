@@ -69,3 +69,8 @@ harness = false
 
 [[bin]]
 name = "l4_benchmark"
+
+[[bin]]
+name = "gpu_benchmark"
+path = "src/bin/gpu_benchmark.rs"
+required-features = ["gpu"]
