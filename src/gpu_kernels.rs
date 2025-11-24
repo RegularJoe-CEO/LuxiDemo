@@ -3,7 +3,5 @@ use cudarc::driver::{CudaDevice, CudaSlice, CudaModule, CudaFunction, LaunchConf
 use half::f16;
 use std::sync::Arc;
 
-#[cfg(feature = "gpu")]
-pub struct Fp16SincosModule {
-    device:
+#[cfg
 
