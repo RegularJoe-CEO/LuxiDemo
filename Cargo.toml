@@ -1,76 +1,28 @@
 [package]
-name = "erock"
+name = "luxiedge"
 version = "0.1.0"
 edition = "2021"
 
-[dependencies]
-reqwest = { version = "0.11", features = ["json"] }
-rand = { version = "0.8", features = ["std_rng"] }
-rand_distr = "0.4"
-serde = { version = "1.0", features = ["derive"] }
-serde_json = "1.0"
-anyhow = "1.0"
-tokio = { version = "1", features = ["full"] }
-warp = "0.3"
-nom = "7.1"
-faer = "0.18"
-nalgebra = "0.32"
-cudarc = { version = "0.17.7", optional = true }
-wgpu = { version = "0.19", optional = true }
-log = "0.4"
-env_logger = "0.11"
-rhai = "1.17"
-tract-onnx = { version = "0.21", optional = true }
-ndarray = { version = "0.16", optional = true }
-
-[features]
-default = []
-gpu = ["cudarc", "wgpu"]
-neural = ["tract-onnx", "ndarray"]
-
-[dev-dependencies]
-criterion = "0.7.0"
-
-[[bench]]
-name = "my_benchmark"
-harness = false
-
-[[bench]]
-name = "simd_vs_scalar"
-harness = false
-
-[[bench]]
-name = "repro"
-harness = false
-
-[[bench]]
-name = "lambert_benchmark"
-harness = false
-
-[[bench]]
-name = "neon_benchmark"
-harness = false
-
-[[bench]]
-name = "neural_surrogate_benchmark"
-harness = false
-
-[[bench]]
-name = "orbit_ensemble_benchmark"
-harness = false
-
-[[bench]]
-name = "dojo_tensor_benchmark"
-harness = false
-
-[[bench]]
-name = "cross_platform_simd"
-harness = false
-
-[[bin]]
-name = "l4_benchmark"
+[lib]
+name = "erock"
+path = "src/lib.rs"
 
 [[bin]]
 name = "gpu_benchmark"
 path = "src/bin/gpu_benchmark.rs"
-required-features = ["gpu"]
+
+[dependencies]
+anyhow = "1.0"
+clap = { version = "4.5", features = ["derive"] }
+half = "2.4"
+rhai = "1.16"
+rand = "0.8"
+rand_distr = "0.4"
+serde = { version = "1.0", features = ["derive"] }
+
+cudarc = { version = "0.17", default-features = false, optional = true, features = ["f16", "dynamic-loading"] }
+
+[features]
+gpu = ["cudarc"]
+neural = []
+

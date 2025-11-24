@@ -1,17 +1,15 @@
-use anyhow: :Result;
-use cudarc::driver:{CudaDevice, CudaSlice, CudaModule, CudaFunction, LaunchConfig};
+use anyhow::Result;
+use cudarc::driver::*;
 use half::f16;
-use std::sync::Arc;
 
-#cfg(feature = "gpu")
+#[cfg(feature = "gpu")]
 pub struct Fp16SincosModule {
-    device: Arc<CudaDevice>,
+    ctx: CudaContext,
     module: CudaModule,
     func: CudaFunction,
 }
 
-#cfg(feature = "gpu")
-imp Fp16SincosModule {
-    pub fn new() -> Result<Self> {
-+        let device = Arc::new(CudaDevice::new(0)?);
-        let ptx_src = include_str("
+#[cfg(feature = "gpu")]
+impl Fp16SincosModule {
+    pub fn new()
+

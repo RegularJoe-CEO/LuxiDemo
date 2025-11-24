@@ -1,0 +1,36 @@
+config:
+  target: "http://localhost:8080"
+  phases:
+    - duration: 300
+      arrivalRate: 242  # 72,700 requests / 300 seconds = 242 req/s
+      rampTo: 242
+      name: "LuxiEdge Matrix Multiply Load Test"
+  engines:
+    http:
+      maxSockets: 50  # Concurrency limit
+  processor: "./scripts/artillery_processor.js"  # Optional: Custom metrics
+
+scenarios:
+  - name: "Matrix Multiply Benchmark"
+    flow:
+      - post:
+          url: "/evaluate"
+          headers:
+            "Content-Type": "application/json"
+          json:
+            operation: "matrix_multiply"
+            size: 1000
+            iterations: 72700
+            duration_seconds: 300
+            power_monitoring: true
+            hardware_target: "nvidia_l4"
+            precision: "f64"
+          capture:
+            json: "$.result"
+            as: "matrix_result"
+      - think: 0.004  # 242 req/s = 4ms between requests
+
+reporting:
+  - module: artillery-reporting
+    report: ./reports/luxiedge_report.html
+
