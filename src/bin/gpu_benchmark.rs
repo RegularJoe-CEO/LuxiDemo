@@ -1,50 +1,56 @@
-// GPU benchmark for L4 FP16 sin*cos evaluation
-// Measures throughput in ops/sec for energy comparison
-
-use erock::gpu_kernels::GpuKernels;
-use std::time::Instant;
+// src/bin/gpu_benchmark.rs (entire file)
+use anyhow::Result;
+use half::f16;
 use std::env;
+use std::time::Instant;
 
-fn main() -> Result<(), Box<dyn std::error::Error>> {
-    env_logger::init();
-    
-    // Parse batch size from args (default 10M for L4 saturation)
-    let batch_size: usize = env::args()
-        .nth(1)
-        .and_then(|s| s.parse().ok())
-        .unwrap_or(10_000_000);
-    
-    println!("Initializing GPU kernels...");
-    let kernels = GpuKernels::new()?;
-    
-    // Generate test data
-    println!("Generating {} test values...", batch_size);
-    let input: Vec<f32> = (0..batch_size)
-        .map(|i| (i as f32) * 0.001)
-        .collect();
-    
-    // Warmup run
-    println!("Warmup run...");
-    let _ = kernels.eval_sincos_fp16(&input)?;
-    
-    // Benchmark run
-    println!("Running GPU benchmark...");
+// Use the new GPU module type
+use erock::gpu_kernels::Fp16SincosModule;
+
+fn parse_arg(name: &str, default: usize) -> usize {
+    let mut args = env::args().collect::<Vec<_>>();
+    let mut i = 0;
+    while i + 1 < args.len() {
+        if args[i] == format!("--{name}") {
+            if let Ok(v) = args[i + 1].parse::<usize>() {
+                return v;
+            }
+        }
+        i += 1;
+    }
+    default
+}
+
+fn main() -> Result<()> {
+    // Defaults (adjust via flags: --elements N --iters K)
+    let elements = parse_arg("elements", 1_000_000);
+    let iters = parse_arg("iters", 10);
+
+    println!("gpu_benchmark: elements={}, iters={}", elements, iters);
+
+    // Prepare input
+    let input = vec![f16::from_f32(1.0); elements];
+
+    // Initialize GPU module
+    let module = Fp16SincosModule::new()?;
+
+    // Warmup
+    let _ = module.launch(&input, elements)?;
+
+    // Timed runs
     let start = Instant::now();
-    let results = kernels.eval_sincos_fp16(&input)?;
-    let elapsed = start.elapsed();
-    
-    // Calculate metrics
-    let ops = input.len() as f64;
-    let ops_per_sec = ops / elapsed.as_secs_f64();
-    let gops_per_sec = ops_per_sec / 1e9;
-    
-    println!("\n=== GPU FP16 Benchmark Results ===");
-    println!("Operations:      {:>15}", input.len());
-    println!("Time:            {:>12.3} s", elapsed.as_secs_f64());
-    println!("Throughput:      {:>12.2} B ops/sec", gops_per_sec);
-    println!("First result:    {:>12.6}", results[0]);
-    println!("Last result:     {:>12.6}", results[results.len()-1]);
-    println!("==================================\n");
-    
+    for _ in 0..iters {
+        let _out = module.launch(&input, elements)?;
+    }
+    let elapsed = start.elapsed().as_secs_f64();
+
+    // Very simple ops estimate: 2 results (sin, cos) per element per iter
+    let total_outputs = (elements as f64) * (iters as f64) * 2.0;
+    let ops_per_sec = total_outputs / elapsed.max(1e-9);
+
+    println!("elapsed_sec={:.6}", elapsed);
+    println!("outputs={} (sin+cos per element per iter)", total_outputs as u64);
+    println!("throughput_ops_per_sec={:.3}", ops_per_sec);
+
     Ok(())
 }
