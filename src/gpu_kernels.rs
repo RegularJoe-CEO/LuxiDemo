@@ -1,15 +1,12 @@
 use anyhow::Result;
-use cudarc::driver::*;
-use half::f16;
+use cudarc::driver::{safe::{CudaModule, CudaFunction}, CudaContext, LaunchConfig};
+use cudarc::nvrtc::Ptx;
+use cudarc::driver::safe::PushKernelArg;
+use std::sync::Arc;
+use std::fs;
 
-#[cfg(feature = "gpu")]
-pub struct Fp16SincosModule {
-    ctx: CudaContext,
-    module: CudaModule,
-    func: CudaFunction,
-}
+const PTX_PATH: &str = "src/ptx/f32_sincos_kernel.ptx";
 
-#[cfg(feature = "gpu")]
-impl Fp16SincosModule {
-    pub fn new()
+pub struct F32SincosModule {
+    ctx:
 
