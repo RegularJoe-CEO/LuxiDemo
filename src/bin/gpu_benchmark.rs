@@ -5,7 +5,7 @@ use std::env;
 use std::time::Instant;
 
 // Use the new GPU module type
-use erock::gpu_kernels::Fp16SincosModule;
+use crate::gpu_kernels::Fp16SincosModule;
 
 fn parse_arg(name: &str, default: usize) -> usize {
     let mut args = env::args().collect::<Vec<_>>();
