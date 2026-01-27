@@ -116,3 +116,88 @@ Copyright 2026 Eric Waller. All rights reserved.
 ## Contact
 
 e@ewaller.com
+
+## Expression Syntax
+
+LuxiEdge parses mathematical expressions and applies them element-wise across your input array. You can combine built-in functions with arithmetic operators to create complex expressions.
+
+### Operators
+
+    +    Addition
+    -    Subtraction
+    *    Multiplication
+    /    Division
+    ^    Exponentiation
+
+### Combining Functions
+
+Chain multiple functions together:
+
+    sin(x)*cos(x)       Multiply sine and cosine
+    exp(x)+ln(x)        Add exponential and natural log
+    x^2-sqrt(x)         Square minus square root
+    sin(x)/cos(x)       Equivalent to tangent
+    normcdf(x)*2.0      Scale CDF output by constant
+    x^3+x^2+x           Polynomial combination
+
+### Constants
+
+Use numeric constants anywhere:
+
+    x*2.5               Scale input by 2.5
+    x^2+1.0             Add offset to squared values
+    sin(x)*3.14159      Multiply by pi
+
+### Parentheses
+
+Group operations to control evaluation order:
+
+    (sin(x)+cos(x))*2.0
+    exp(x^2)
+    sqrt(x^2+1.0)
+
+### Example Payloads
+
+Simple function:
+
+    curl -X POST http://localhost:9090/evaluate \
+      -H "Content-Type: application/json" \
+      -d '{"expr":"sin(x)","values":[0.0,0.5,1.0,1.57,3.14],"precision":"f64"}'
+
+Chained expression:
+
+    curl -X POST http://localhost:9090/evaluate \
+      -H "Content-Type: application/json" \
+      -d '{"expr":"sin(x)*cos(x)","values":[0.5,1.0,1.57,2.0,3.14],"precision":"f64"}'
+
+Polynomial:
+
+    curl -X POST http://localhost:9090/evaluate \
+      -H "Content-Type: application/json" \
+      -d '{"expr":"x^3+x^2+x","values":[1,2,3,4,5],"precision":"f64"}'
+
+With constants:
+
+    curl -X POST http://localhost:9090/evaluate \
+      -H "Content-Type: application/json" \
+      -d '{"expr":"exp(x)*2.5+1.0","values":[0.0,0.5,1.0],"precision":"f32"}'
+
+Large payload (4 million elements):
+
+    python3 -c "import json; print(json.dumps({'expr':'sin(x)*cos(x)','values':list(range(4000000)),'precision':'f64'}))" | \
+      curl -X POST http://localhost:9090/evaluate \
+        -H "Content-Type: application/json" \
+        -d @-
+
+### Response Format
+
+Every response includes:
+
+    {
+      "results": [0.4207, 0.4546, 0.0007, ...],
+      "hash": "415...de85",
+      "elapsed_ms": 1732,
+      "count": 4000000
+    }
+
+The SHA-256 hash verifies determinism. Same input and expression always produces the same hash, regardless of platform (CPU or GPU, x86 or ARM).
