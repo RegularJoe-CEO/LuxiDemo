@@ -59,7 +59,7 @@ Independent verification available:
 
 30-day evaluation available.
 
-eric@luxiedge.com
+e@ewaller.com
 
 luxiedge.com
 
