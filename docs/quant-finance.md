@@ -19,7 +19,9 @@ The hash matches. Bit-for-bit.
 
 ## Example: Option Pricing Components
 
+```bash
 curl -X POST http://localhost:10000/evaluate -H "Content-Type: application/json" -d '{"expr":"normcdf(x)","values":[-2.0,-1.0,0.0,1.0,2.0],"precision":"f32"}'
+```
 
 Response includes a SHA256 hash you can store with your trade records.
 

@@ -34,7 +34,9 @@ No runtime. No JIT warmup. No garbage collection pauses.
 
 ## Example: Batch Processing at Scale
 
+```bash
 curl -X POST http://localhost:10000/evaluate -H "Content-Type: application/json" -d '{"expr":"exp(x)*sin(x)","values":[0.001,0.002,0.003],"precision":"f32"}'
+```
 
 Pass millions of values. Get results back with a SHA256 hash for verification.
 

@@ -19,7 +19,9 @@ Same input, same output, same SHA256 hash. Always.
 
 ## Example: Sensor Fusion
 
+```bash
 curl -X POST http://localhost:10000/evaluate -H "Content-Type: application/json" -d '{"expr":"sin(x)*cos(x)","values":[0.1,0.2,0.3,0.4,0.5],"precision":"f32"}'
+```
 
 That SHA256 hash in the response? It's identical on your test bench and in the field.
 
