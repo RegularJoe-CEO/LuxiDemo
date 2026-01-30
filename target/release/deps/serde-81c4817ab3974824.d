@@ -1,0 +1,14 @@
+/Users/ericwaller/Desktop/eRock/Luxi-full/LuxiDemo/target/release/deps/serde-81c4817ab3974824.d: /Users/ericwaller/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /Users/ericwaller/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /Users/ericwaller/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /Users/ericwaller/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /Users/ericwaller/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /Users/ericwaller/Desktop/eRock/Luxi-full/LuxiDemo/target/release/build/serde-1271ce5b4ecddfd5/out/private.rs
+
+/Users/ericwaller/Desktop/eRock/Luxi-full/LuxiDemo/target/release/deps/libserde-81c4817ab3974824.rlib: /Users/ericwaller/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /Users/ericwaller/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /Users/ericwaller/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /Users/ericwaller/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /Users/ericwaller/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /Users/ericwaller/Desktop/eRock/Luxi-full/LuxiDemo/target/release/build/serde-1271ce5b4ecddfd5/out/private.rs
+
+/Users/ericwaller/Desktop/eRock/Luxi-full/LuxiDemo/target/release/deps/libserde-81c4817ab3974824.rmeta: /Users/ericwaller/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /Users/ericwaller/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /Users/ericwaller/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /Users/ericwaller/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /Users/ericwaller/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /Users/ericwaller/Desktop/eRock/Luxi-full/LuxiDemo/target/release/build/serde-1271ce5b4ecddfd5/out/private.rs
+
+/Users/ericwaller/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs:
+/Users/ericwaller/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs:
+/Users/ericwaller/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs:
+/Users/ericwaller/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs:
+/Users/ericwaller/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs:
+/Users/ericwaller/Desktop/eRock/Luxi-full/LuxiDemo/target/release/build/serde-1271ce5b4ecddfd5/out/private.rs:
+
+# env-dep:OUT_DIR=/Users/ericwaller/Desktop/eRock/Luxi-full/LuxiDemo/target/release/build/serde-1271ce5b4ecddfd5/out
