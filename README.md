@@ -123,3 +123,8 @@ These hashes verify your binary is working correctly. Run the test script or com
 ## Support
 
 e@ewaller.com
+## Gold Checksums
+| Platform | Binary | Size | SHA256 |
+|----------|--------|------|--------|
+| linux-x86_64-gpu | luxiedge-linux-x86_64-gpu | 1.8M | ed45907f3a3cdf1c03ef114fd231d1da84148b6484dadd49b836ffade591e249 |
+| macos-arm64 | luxiedge-macos-arm64 | 2.1M | $(shasum -a 256 binaries/luxiedge-macos-arm64 | cut -d' ' -f1) |
