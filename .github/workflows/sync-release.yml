@@ -1,33 +1,39 @@
-name: Sync Release from LuxiEdge-v2
+name: Sync Release Binaries
 
 on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Release tag to sync'
+        description: 'Release tag to publish'
         required: true
-        default: 'v2.0.0'
+        default: 'v3.0'
 
 jobs:
   sync:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - name: Download binaries from LuxiEdge-v2
+      - name: Download binaries from private build repo
         env:
           GH_TOKEN: ${{ secrets.LUXIEDGE_V2_TOKEN }}
         run: |
+          mkdir -p ./binaries
           gh release download ${{ github.event.inputs.tag }} \
             --repo RegularJoe-CEO/LuxiEdge-v2 \
             --pattern 'luxiedge-*' \
-            --dir ./binaries
+            --pattern 'luxi-tools-*' \
+            --dir ./binaries || true
 
-      - name: Upload to LuxiDemo release
+      - name: Upload binaries only to LuxiDemo release
         env:
-          GH_TOKEN: ${{ secrets.LUXIEDGE_V2_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release delete ${{ github.event.inputs.tag }} --repo RegularJoe-CEO/LuxiDemo --yes || true
-          gh release create ${{ github.event.inputs.tag }} \
+          if [ -z "$(ls -A ./binaries 2>/dev/null)" ]; then
+            echo "No binaries found. Upload manually or check LuxiEdge-v2 release."
+            exit 1
+          fi
+          gh release upload ${{ github.event.inputs.tag }} \
             --repo RegularJoe-CEO/LuxiDemo \
-            --title "LuxiEdge ${{ github.event.inputs.tag }}" \
-            --notes "Synced from LuxiEdge-v2" \
-            ./binaries/*
+            ./binaries/* \
+            --clobber

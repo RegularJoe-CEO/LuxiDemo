@@ -1,7 +1,0 @@
-/target
-/draft_head.bin
-*.bin
-scaling.csv
-energy.csv
-runpod_cuda_check_*.log
-test_logs/

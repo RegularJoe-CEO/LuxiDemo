@@ -1,5 +1,7 @@
 .DS_Store
-build/target/
+build/
 target/
 release-assets/
 *.tar.gz
+*.zip
+binaries/
