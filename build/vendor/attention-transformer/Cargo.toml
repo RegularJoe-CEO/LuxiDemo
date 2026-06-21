@@ -1,0 +1,130 @@
+[package]
+name = "attention-transformer"
+version = "0.2.0"
+edition = "2021"
+authors = ["Eric Waller <e@ewaller.com>"]
+description = "Production-ready deterministic fused attention transformer with Waller Null-Space Multiplexing (WNSM), cryptographic receipts, and energy-aware execution."
+license = "Proprietary"
+readme = "README.md"
+repository = "https://github.com/RegularJoe-CEO/attention-transformer"
+
+[lib]
+name = "attention_transformer"
+crate-type = ["lib", "cdylib"]
+
+[features]
+default = ["std"]
+std = []
+rayon = ["dep:rayon"]
+simd = []
+cuda = ["dep:cc", "dep:rayon"] # CUDA kernels + parallel CPU QKV/post on split path
+cuda-quant = []                # Lane B: CUDA INT8 GEMM (separate receipt contract from f32 gold)
+gpt2 = ["dep:safetensors", "dep:memmap2", "dep:tokenizers"]  # Optional: real GPT-2 124M model loading + inference (CPU only)
+
+[dependencies]
+sha2 = { version = "0.10", default-features = false, features = ["std"] }
+rayon = { version = "1.10", optional = true }
+
+# gpt2 feature dependencies (CPU-only GPT-2 runner)
+safetensors = { version = "0.4", optional = true }
+memmap2 = { version = "0.9", optional = true }
+tokenizers = { version = "0.15", optional = true, default-features = false, features = ["onig"] }
+
+[build-dependencies]
+cc = { version = "1.0", optional = true }
+
+[dev-dependencies]
+criterion = "0.5"
+approx = "0.5"
+
+[[example]]
+name = "production_demo"
+path = "examples/production_demo.rs"
+
+[[example]]
+name = "energy_benchmark"
+path = "examples/energy_benchmark.rs"
+
+[[example]]
+name = "cuda_verify"
+path = "examples/cuda_verify.rs"
+required-features = ["cuda"]
+
+[[example]]
+name = "cuda_bench"
+path = "examples/cuda_bench.rs"
+required-features = ["cuda"]
+
+[[example]]
+name = "cuda_layer_bench"
+path = "examples/cuda_layer_bench.rs"
+required-features = ["cuda"]
+
+[[example]]
+name = "cuda_quant_bench"
+path = "examples/cuda_quant_bench.rs"
+required-features = ["cuda"]
+
+[[example]]
+name = "cuda_quant_stack"
+path = "examples/cuda_quant_stack.rs"
+required-features = ["cuda"]
+[[example]]
+name = "gpu_quantum_trader"
+path = "examples/gpu_quantum_trader.rs"
+required-features = ["cuda"]
+
+[[example]]
+name = "gpt2_demo"
+path = "examples/gpt2_demo.rs"
+required-features = ["gpt2"]
+
+[[example]]
+name = "train_draft_head"
+path = "examples/train_draft_head.rs"
+required-features = ["gpt2"]
+
+[[example]]
+name = "perf_bench"
+path = "examples/perf_bench.rs"
+required-features = ["gpt2"]
+
+[[example]]
+name = "kv_speedup"
+path = "examples/kv_speedup.rs"
+required-features = ["gpt2"]
+
+[[example]]
+name = "turbo_bench"
+path = "examples/turbo_bench.rs"
+required-features = ["gpt2"]
+
+[[example]]
+name = "gpt2_speculative"
+path = "examples/gpt2_speculative.rs"
+required-features = ["gpt2"]
+
+[[example]]
+name = "receipt_backtest"
+path = "examples/receipt_backtest.rs"
+
+[[example]]
+name = "fp8_parity_gate"
+path = "examples/fp8_parity_gate.rs"
+
+[[example]]
+name = "npow_scaling_proof"
+path = "examples/npow_scaling_proof.rs"
+
+[[bench]]
+name = "transformer_forward"
+harness = false
+
+[[bench]]
+name = "packed_vs_standard_matmul"
+harness = false
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3

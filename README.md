@@ -175,3 +175,96 @@ pkill -f luxiedge
 For questions, licensing, or source code access: e@ewaller.com
 
 © 2025 Eric Waller. All rights reserved.
+
+## Demo Site
+
+Live page: https://regularjoe-ceo.github.io/LuxiDemo/
+
+Download v3.0 binaries from [Releases](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/v3.0).
+
+## LuxiEdge Lite vs Demo
+
+**LuxiEdge Lite** works like the existing public build. Twelve core operators. Same API. If you already use LuxiEdge, nothing changes.
+
+**LuxiEdge Demo** unlocks thirty operators for testing. It is clearly labeled demo only. The full build with all thirty plus operators stays private.
+
+Both print a demo warning on startup and stop working after ten days.
+
+## Luxi Tools
+
+`luxi-tools` is a CLI for the other demo categories:
+
+```bash
+./luxi-tools-macos-arm64 validate   # full test suite
+./luxi-tools-macos-arm64 ate        # Waller geodesic attention / ATE
+./luxi-tools-macos-arm64 orbital    # Kepler, Lambert, Vis-Viva
+./luxi-tools-macos-arm64 robotics   # FSD edge math
+./luxi-tools-macos-arm64 energy     # transformer energy reporting
+```
+
+## Run Validation
+
+Every binary supports a `validate` command (or use `luxi-tools validate`):
+
+```bash
+chmod +x luxiedge-demo-macos-arm64
+./luxiedge-demo-macos-arm64 validate
+```
+
+You should see output like this:
+
+```
+Luxi Validation Suite
+============================================================
+LuxiEdge lite: sin(x)                PASS  0243d52127de37af...
+Welford mean/variance                PASS  c08effeb10f47f00...
+Online softmax                       PASS  c0616b101953d55e...
+GELU activation                      PASS  487fac792ee74114...
+LayerNorm                            PASS  f8ad7abeee60cb1e...
+Waller geodesic operator             PASS  cda74ea31bec03a1...
+Transformer block (WNSM)             PASS  e1980a6fa77252dc...
+GPT-2 124M config preset             PASS  52cb6d0334f2
+Llama2 7B config preset              PASS  568f2a897fed
+------------------------------------------------------------
+PASSED: 25   FAILED: 0
+```
+
+The transformer block hash should match `e1980a6fa77252dcab86e48aa7aa8ab2a6d3c5639789d0917e7efa1a7bb37628` on the reference build.
+
+## ATE / Waller Geodesic Attention
+
+```bash
+./luxi-tools-macos-arm64 ate
+```
+
+```
+NORMAL receipt: e1980a6fa77252dcab86e48aa7aa8ab2a6d3c5639789d0917e7efa1a7bb37628
+WNSM   receipt: e1980a6fa77252dcab86e48aa7aa8ab2a6d3c5639789d0917e7efa1a7bb37628
+Max output diff: 0.00e0
+```
+
+## Orbital and Robotics
+
+Orbital solves cover Kepler, Vis-Viva, Hohmann, drag decay, J2, and Lambert approximations.
+
+```bash
+./luxi-tools-macos-arm64 orbital
+```
+
+Robotics covers IK, Kalman weighting, tire slip, motor torque, clothoid curvature, and lidar distance.
+
+```bash
+./luxi-tools-macos-arm64 robotics
+```
+
+## v3.0 Downloads
+
+| Platform | Lite | Demo | Tools |
+|----------|------|------|-------|
+| macOS ARM64 | luxiedge-lite-macos-arm64 | luxiedge-demo-macos-arm64 | luxi-tools-macos-arm64 |
+| Linux x86_64 | luxiedge-lite-linux-x86_64 | luxiedge-demo-linux-x86_64 | luxi-tools-linux-x86_64 |
+| Linux x86_64 GPU | luxiedge-lite-linux-x86_64-gpu | luxiedge-demo-linux-x86_64-gpu | (same as x86) |
+| Linux ARM64 | luxiedge-lite-linux-arm64 | luxiedge-demo-linux-arm64 | luxi-tools-linux-arm64 |
+| Windows x86_64 | luxiedge-lite-windows-x86_64.exe | luxiedge-demo-windows-x86_64.exe | luxi-tools-windows-x86_64.exe |
+
+Each file has a matching `.sha256` checksum.
