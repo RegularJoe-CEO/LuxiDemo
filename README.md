@@ -75,31 +75,63 @@ That SHA256 hash is identical on every platform: macOS, Linux, CPU, GPU, ARM, x8
 
 ## Available Functions
 
-LuxiEdge supports 15 deterministic mathematical functions:
+LuxiEdge supports 22 core deterministic mathematical functions:
+
+### Trigonometric Functions
 
 | Function | Description |
 |----------|-------------|
 | sin(x) | Sine |
 | cos(x) | Cosine |
 | tan(x) | Tangent |
+| asin(x) | Inverse sine (arcsine) |
+| acos(x) | Inverse cosine (arccosine) |
+| atan(x) | Inverse tangent (arctangent) |
+
+### Hyperbolic Functions
+
+| Function | Description |
+|----------|-------------|
+| sinh(x) | Hyperbolic sine |
+| cosh(x) | Hyperbolic cosine |
+| tanh(x) | Hyperbolic tangent |
+| asinh(x) | Inverse hyperbolic sine |
+| acosh(x) | Inverse hyperbolic cosine |
+| atanh(x) | Inverse hyperbolic tangent |
+
+### Exponential and Logarithmic Functions
+
+| Function | Description |
+|----------|-------------|
 | exp(x) | Exponential (e^x) |
+| exp2(x) | Base-2 exponential (2^x) |
 | ln(x) | Natural logarithm |
+| log2(x) | Base-2 logarithm |
 | log10(x) | Base-10 logarithm |
+
+### Power and Root Functions
+
+| Function | Description |
+|----------|-------------|
 | sqrt(x) | Square root |
 | cbrt(x) | Cube root |
 | x^2 | Square |
 | x^3 | Cube |
+
+### Statistical Functions
+
+| Function | Description |
+|----------|-------------|
 | erf(x) | Error function |
-| normcdf(x) | Normal CDF |
-| normpdf(x) | Normal PDF |
+| normcdf(x) | Normal cumulative distribution function |
+| normpdf(x) | Normal probability density function |
 | gamma(x) | Gamma function |
-| sin(x)*cos(x) | Compound expressions |
 
-## Chaining Expressions
+## Expression Combinations
 
-You can combine operations in a single expression. The engine parses with standard operator precedence.
+LuxiEdge supports over 1,800 expression combinations using standard operator precedence. Functions can be chained, nested, and combined with arithmetic operators.
 
-Compound trig:
+### Compound Expressions
 curl -X POST http://localhost:9090/evaluate
 \
 -H "Content-Type: application/json"
@@ -109,12 +141,42 @@ curl -X POST http://localhost:9090/evaluate
 
 
 
-Polynomial:
+### Nested Functions
+curl -X POST http://localhost:9090/evaluate
+\
+-H "Content-Type: application/json"
+\
+-d '{"expr":"exp(sin(x))","values":[0.5,1.0,1.57,2.0,3.14],"precision":"f32"}'
+
+
+
+
+### Polynomial Expressions
 curl -X POST http://localhost:9090/evaluate
 \
 -H "Content-Type: application/json"
 \
 -d '{"expr":"x^2 + 3*x + 2","values":[0,1,2,3],"precision":"f32"}'
+
+
+
+
+### Hyperbolic and Inverse Combinations
+curl -X POST http://localhost:9090/evaluate
+\
+-H "Content-Type: application/json"
+\
+-d '{"expr":"tanh(x) + atanh(x*0.5)","values":[0.1,0.2,0.3,0.4],"precision":"f32"}'
+
+
+
+
+### Financial and Statistical Expressions
+curl -X POST http://localhost:9090/evaluate
+\
+-H "Content-Type: application/json"
+\
+-d '{"expr":"normcdf(x) * exp(-x^2/2)","values":[0.5,1.0,1.5,2.0],"precision":"f32"}'
 
 
 
@@ -144,37 +206,37 @@ If your binary produces these exact hashes, it is operating correctly and determ
 | gamma(x) | e2da3a67e3dbeadaeee51b2d6f45b5497fb789b6dbe910cb53ddfc0dd8a007a5 |
 
 ## Python Example
+
+```python
 import requests
 
 response = requests.post(
-"http://localhost:9090/evaluate",
-json={
-"expr": "sin(x)",
-"values": [0.5, 1.0, 1.57, 2.0, 3.14],
-"precision": "f32"
-}
+    "http://localhost:9090/evaluate",
+    json={
+        "expr": "sin(x)",
+        "values": [0.5, 1.0, 1.57, 2.0, 3.14],
+        "precision": "f32"
+    }
 )
 
 data = response.json()
 print(f"Results: {data['results']}")
 print(f"SHA256: {data['sha256']}")
-
-
-
+```
 
 ## Stopping the Server
 
 Press Ctrl+C in the terminal where the server is running, or:
+
+```bash
 pkill -f luxiedge
-
-
-
+```
 
 ## Support
 
 For questions, licensing, or source code access: e@ewaller.com
 
-© 2025 Eric Waller. All rights reserved.
+© 2026 Eric Waller. All rights reserved.
 
 ## Demo Site
 
