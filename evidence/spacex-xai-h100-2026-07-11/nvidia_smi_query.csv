@@ -1,0 +1,2 @@
+timestamp, name, uuid, pci.bus_id, driver_version, pstate, temperature.gpu, utilization.gpu [%], utilization.memory [%], memory.total [MiB], memory.used [MiB], power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]
+2026/07/11 03:05:01.498, NVIDIA H100 NVL, GPU-66f4edbd-61e6-9d1c-2690-11a0f3c11c3f, 00000000:04:00.0, 580.159.03, P0, 35, 0 %, 0 %, 95830 MiB, 0 MiB, 63.65 W, 310.00 W, 345 MHz, 2619 MHz

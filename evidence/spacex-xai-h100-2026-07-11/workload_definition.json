@@ -1,0 +1,28 @@
+{
+  "run": "serve_sustain_30m",
+  "wall_s": 1800.0850654810201,
+  "concurrency": 32,
+  "ctx_ladder_tokens": [
+    512,
+    1024,
+    2048,
+    4096
+  ],
+  "max_tokens_decode": 32,
+  "ok_requests": 679684,
+  "fail_requests": 21,
+  "req_per_s": 377.58437811291674,
+  "client_latency_p50_s": 0.08399786101654172,
+  "client_latency_p99_s": 0.16322468896396458,
+  "server_latency_p50_ms_from_metrics_end": 2.476806,
+  "server_latency_p99_ms_from_metrics_end": 4.472683,
+  "lifetime_prefill_tokens_counter": 1307573248,
+  "lifetime_decode_tokens_counter": 21795936,
+  "avg_prefill_tokens_per_ok_req_approx": 1915.7431538911217,
+  "avg_decode_tokens_per_ok_req_approx": 31.933519012044698,
+  "city_block_j_per_prefill_token": 0.0125,
+  "city_block_j_per_decode_token": 0.0075,
+  "blend_j_per_token_from_counters": 0.012418021508700737,
+  "power_definition": "GPU board instantaneous power.draw via nvidia-smi (not whole-pod wall plug; not delta-above-idle)",
+  "idle_board_power_note": "H100 idle/board ~63-64W observed throughout; serve is CPU toy so GPU not heavily utilized"
+}

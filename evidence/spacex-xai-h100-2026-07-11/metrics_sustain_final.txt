@@ -1,0 +1,36 @@
+# HELP luxi_requests_total Completed generation requests
+# TYPE luxi_requests_total counter
+luxi_requests_total {status="ok"} 682541
+luxi_requests_total {status="failed"} 0
+# HELP luxi_tokens_total Prefill/decode tokens
+# TYPE luxi_tokens_total counter
+luxi_tokens_total {phase="prefill"} 1307573248
+luxi_tokens_total {phase="decode"} 21795936
+# HELP luxi_energy_joules_total Estimated joules (city-block constants)
+# TYPE luxi_energy_joules_total counter
+luxi_energy_joules_total 16508135.11991595
+# HELP luxi_latency_ms Latency quantiles
+# TYPE luxi_latency_ms gauge
+luxi_latency_ms {quantile="0.5"} 2.476806
+luxi_latency_ms {quantile="0.99"} 4.472683
+# HELP luxi_audit_failures Determinism audit failures
+# TYPE luxi_audit_failures counter
+luxi_audit_failures 0
+# HELP luxi_waiting Waiting queue depth
+# TYPE luxi_waiting gauge
+luxi_waiting 0
+# HELP luxi_gpu_power_watts Live GPU board power (sum), watts via nvidia-smi
+# TYPE luxi_gpu_power_watts gauge
+luxi_gpu_power_watts 63.84
+# HELP luxi_gpu_power_median_watts Median GPU board power, watts
+# TYPE luxi_gpu_power_median_watts gauge
+luxi_gpu_power_median_watts 63.84
+# HELP luxi_gpu_count Visible GPU count from power sampler
+# TYPE luxi_gpu_count gauge
+luxi_gpu_count 1
+# HELP luxi_gpu_power_samples Number of successful power samples
+# TYPE luxi_gpu_power_samples counter
+luxi_gpu_power_samples 3446
+# HELP luxi_gpu_power_available 1 if live power path is sampling
+# TYPE luxi_gpu_power_available gauge
+luxi_gpu_power_available 1

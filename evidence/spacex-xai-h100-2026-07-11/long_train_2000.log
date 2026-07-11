@@ -1,0 +1,105 @@
+/workspace/attention-transformer-v2/scripts/scale_train_joules_pod.py:22: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml
+═══════════════════════════════════════════════════════════════
+  Luxi v2 scale train — GPT-2-small width + AdamW + corpus
+═══════════════════════════════════════════════════════════════
+  shape: layers=12 h=768 heads=12 mlp=3072 out=768
+  steps=2000 seed=42 rows=4 seq=64 corpus=corpus.txt
+  adamw: lr=0.00003 wd=0.01 beta1=0.9 beta2=0.999
+  LUXI_RECEIPT_AUDIT=1 LUXI_TRADE_ENERGY=1
+
+
+DONE steps=2000 wall_s=7068.378
+  corpus=corpus.txt bytes=738046
+  recompute_audit_ok=true
+  loss0=3.895728e1 loss_final=1.240136e-4
+  losses_receipt=195fe628f2da60f108cd2f906054c59125263a0b2f535d8b5f3dd3b2b1fa1957
+  final_weight_receipt=1576b060bc21a4e9252923f69f07b784e315ceb0d3c211a089e8a9249681eea8
+  first energy step=0 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+  last  energy step=1999 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+  ENERGY_TOTAL mat_J=4.177920e-2 recompute_J=3.735552e-2 saved_J=4.423680e-3
+SCALE_JSON {"mode":"sustain","steps":2000,"layers":12,"hidden":768,"heads":12,"mlp":3072,"wall_s":7068.378,"loss0":3.895728e1,"loss_final":1.240136e-4,"mat_J":4.177920e-2,"recompute_J":3.735552e-2,"saved_J":4.423680e-3,"weight_receipt":"1576b060bc21a4e9252923f69f07b784e315ceb0d3c211a089e8a9249681eea8","corpus_bytes":738046}
+SCALE_STEP step=0 loss=3.895728e1 energy step=0 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=25 loss=3.677807e1 energy step=25 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=50 loss=3.533912e1 energy step=50 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=75 loss=1.381764e0 energy step=75 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=100 loss=1.463109e-1 energy step=100 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=125 loss=7.423071e-2 energy step=125 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=150 loss=1.188768e-2 energy step=150 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=175 loss=3.054229e-2 energy step=175 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=200 loss=8.168778e-3 energy step=200 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=225 loss=7.133901e-3 energy step=225 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=250 loss=7.350684e-3 energy step=250 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=275 loss=2.434900e-4 energy step=275 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=300 loss=8.676117e-4 energy step=300 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=325 loss=1.838136e-3 energy step=325 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=350 loss=4.464254e-4 energy step=350 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=375 loss=1.522680e-4 energy step=375 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=400 loss=5.917901e-4 energy step=400 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=425 loss=2.073416e-4 energy step=425 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=450 loss=1.624902e-3 energy step=450 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=475 loss=2.200509e-3 energy step=475 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=500 loss=5.144739e-5 energy step=500 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=525 loss=1.154176e-2 energy step=525 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=550 loss=5.719367e-3 energy step=550 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=575 loss=1.083775e-3 energy step=575 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=600 loss=2.650738e-2 energy step=600 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=625 loss=4.668701e-3 energy step=625 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=650 loss=8.453357e-4 energy step=650 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=675 loss=7.384183e-3 energy step=675 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=700 loss=6.999318e-3 energy step=700 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=725 loss=1.036548e-2 energy step=725 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=750 loss=3.801854e-1 energy step=750 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=775 loss=3.568592e-2 energy step=775 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=800 loss=3.502656e-4 energy step=800 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=825 loss=3.083692e-3 energy step=825 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=850 loss=1.102277e-3 energy step=850 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=875 loss=1.830611e-4 energy step=875 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=900 loss=8.814252e-3 energy step=900 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=925 loss=2.976302e-3 energy step=925 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=950 loss=2.353936e-4 energy step=950 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=975 loss=2.837952e-3 energy step=975 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1000 loss=6.890670e-4 energy step=1000 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1025 loss=2.584727e-4 energy step=1025 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1050 loss=1.053041e-3 energy step=1050 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1075 loss=4.229113e-4 energy step=1075 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1100 loss=1.665649e-5 energy step=1100 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1125 loss=2.286050e-3 energy step=1125 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1150 loss=1.447908e-4 energy step=1150 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1175 loss=1.190423e-4 energy step=1175 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1200 loss=1.557130e-3 energy step=1200 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1225 loss=4.665498e-5 energy step=1225 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1250 loss=2.936446e-5 energy step=1250 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1275 loss=2.482036e-4 energy step=1275 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1300 loss=7.918717e-5 energy step=1300 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1325 loss=2.200644e-5 energy step=1325 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1350 loss=7.045134e-4 energy step=1350 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1375 loss=1.860346e-4 energy step=1375 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1400 loss=2.094126e-4 energy step=1400 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1425 loss=1.031328e-2 energy step=1425 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1450 loss=1.077868e-3 energy step=1450 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1475 loss=3.834943e-4 energy step=1475 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1500 loss=3.021681e-3 energy step=1500 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1525 loss=4.244477e-4 energy step=1525 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1550 loss=3.094746e-4 energy step=1550 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1575 loss=4.601855e-3 energy step=1575 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1600 loss=1.304797e-2 energy step=1600 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1625 loss=7.850477e-4 energy step=1625 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1650 loss=2.346148e-3 energy step=1650 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1675 loss=1.517908e-2 energy step=1675 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1700 loss=7.424415e-4 energy step=1700 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1725 loss=1.142806e-2 energy step=1725 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1750 loss=3.201603e-3 energy step=1750 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1775 loss=2.109950e-3 energy step=1775 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1800 loss=1.991406e-2 energy step=1800 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1825 loss=1.276578e-2 energy step=1825 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1850 loss=1.577754e-3 energy step=1850 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1875 loss=2.416636e-3 energy step=1875 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1900 loss=1.497024e-3 energy step=1900 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1925 loss=5.689615e-4 energy step=1925 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1950 loss=2.479201e-2 energy step=1950 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1975 loss=2.962027e-4 energy step=1975 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=1999 loss=1.240136e-4 energy step=1999 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+
+JOULES_TRAIN_JSON {"wall_s": 7068.517949593952, "median_W": 64.041, "power_samples": 140918, "J_wall_nvml": 452674.9580099463, "J_per_step_nvml": 226.33747900497315, "scale": {"mode": "sustain", "steps": 2000, "layers": 12, "hidden": 768, "heads": 12, "mlp": 3072, "wall_s": 7068.378, "loss0": 38.95728, "loss_final": 0.0001240136, "mat_J": 0.0417792, "recompute_J": 0.03735552, "saved_J": 0.00442368, "weight_receipt": "1576b060bc21a4e9252923f69f07b784e315ceb0d3c211a089e8a9249681eea8", "corpus_bytes": 738046}, "has_nvml": true}
+MODEL_ENERGY saved_J=0.00442368 mat_J=0.0417792 recompute_J=0.03735552

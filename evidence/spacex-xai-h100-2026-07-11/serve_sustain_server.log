@@ -1,0 +1,36 @@
+═══════════════════════════════════════════════════════════
+  Luxi attention-transformer-v2 — v0.5 Usable Server
+  Deterministic · Continuous batching · Paged KV · Energy
+═══════════════════════════════════════════════════════════
+  LuxiEdge attention-transformer-v2 · license=AGPL-3.0-or-later · enterprise=false · spdx=AGPL-3.0-or-later OR LicenseRef-Luxi-Commercial
+  bind:        0.0.0.0:8787
+  speculative: false
+  energy:      0.0125 J/tok prefill · 0.0075 J/tok decode
+  auth:        open (set LUXI_API_KEY for enterprise gate)
+
+  boot AUDIT:    deterministic generate OK
+luxi-v05 listening on http://0.0.0.0:8787
+  GET  /dashboard  /health  /metrics  /v1/models
+  POST /v1/completions  /v1/chat/completions  /generate  /v1/audit
+  live power:   63.6 W across 1 GPU(s) (nvidia-smi)
+luxi-v05 connection error: scheduler: request 41541 not found after drain
+luxi-v05 connection error: scheduler: request 48168 not found after drain
+luxi-v05 connection error: scheduler: request 54394 not found after drain
+luxi-v05 connection error: scheduler: request 66710 not found after drain
+luxi-v05 connection error: scheduler: request 78024 not found after drain
+luxi-v05 connection error: scheduler: request 128002 not found after drain
+luxi-v05 connection error: scheduler: request 183649 not found after drain
+luxi-v05 connection error: scheduler: request 251670 not found after drain
+luxi-v05 connection error: scheduler: request 255538 not found after drain
+luxi-v05 connection error: scheduler: request 297870 not found after drain
+luxi-v05 connection error: scheduler: request 319842 not found after drain
+luxi-v05 connection error: scheduler: request 327621 not found after drain
+luxi-v05 connection error: scheduler: request 388486 not found after drain
+luxi-v05 connection error: scheduler: request 465430 not found after drain
+luxi-v05 connection error: scheduler: request 487165 not found after drain
+luxi-v05 connection error: scheduler: request 495115 not found after drain
+luxi-v05 connection error: scheduler: request 529825 not found after drain
+luxi-v05 connection error: scheduler: request 541046 not found after drain
+luxi-v05 connection error: scheduler: request 559582 not found after drain
+luxi-v05 connection error: scheduler: request 565417 not found after drain
+luxi-v05 connection error: scheduler: request 668366 not found after drain

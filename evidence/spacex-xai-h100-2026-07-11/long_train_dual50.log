@@ -1,0 +1,26 @@
+═══════════════════════════════════════════════════════════════
+  Luxi v2 scale train — GPT-2-small width + AdamW + corpus
+═══════════════════════════════════════════════════════════════
+  shape: layers=12 h=768 heads=12 mlp=3072 out=768
+  steps=50 seed=42 rows=4 seq=64 corpus=corpus.txt
+  adamw: lr=0.00003 wd=0.01 beta1=0.9 beta2=0.999
+  LUXI_RECEIPT_AUDIT=1 LUXI_TRADE_ENERGY=1
+
+SCALE_STEP step=0 loss=3.895728e1 energy step=0 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=10 loss=8.721576e0 energy step=10 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=20 loss=3.545158e1 energy step=20 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=30 loss=3.670350e1 energy step=30 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=40 loss=3.480293e1 energy step=40 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=49 loss=2.628426e1 energy step=49 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=0 loss=3.895728e1 energy step=0 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=10 loss=8.721576e0 energy step=10 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=20 loss=3.545158e1 energy step=20 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=30 loss=3.670350e1 energy step=30 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=40 loss=3.480293e1 energy step=40 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_STEP step=49 loss=2.628426e1 energy step=49 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+DUAL_RUN match_losses=true match_weight_receipt=true
+  losses_receipt=548e1981e85523b42017722bf7e9be0cb1ef6c6b5880bcc9af86daae1c86c2da
+  final_weight_receipt=cc4586af37530e5a83d2e8d10d36a360674627d4c51d15259366dbdd37d83ece
+  wall_s_run1=180.607 wall_s_run2=180.342
+  energy step=0 mat_J=2.088960e-5 recompute_J=1.867776e-5 saved_J=2.211840e-6 city_prefill_J=5.000000e-2 act_bytes_mat=159744 act_bytes_ckpt=49152
+SCALE_JSON {"mode":"dual","steps":50,"match":true,"saved_j":0.0000022118399999999974}
