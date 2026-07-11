@@ -1,0 +1,85 @@
+{
+  "schema": "luxiedge.stack12_h2h.v1",
+  "device": "NVIDIA H100 NVL",
+  "shape": {
+    "layers": 12,
+    "seq": 1024,
+    "hidden": 768,
+    "heads": 12,
+    "mlp": 3072
+  },
+  "sustain_sec": 10.0,
+  "method": "J = median_board_W * wall_s; J/token = J / tokens_prefill (iters*seq)",
+  "power_source": "pynvml",
+  "trade": {
+    "label": "trade_device_resident_12L_stack",
+    "cmd": [
+      "/workspace/attention-transformer-v2/target/release/examples/cuda_stack_device_resident_audit",
+      "12",
+      "1024",
+      "768",
+      "12",
+      "3072",
+      "3"
+    ],
+    "wall_s": 10.0334,
+    "wall_s_outer": 12.073552161920816,
+    "iters": 135,
+    "seq": 1024,
+    "layers": 12,
+    "tokens_prefill": 138240,
+    "ms_per_iter": 74.32171,
+    "median_W": 177.2,
+    "mean_W": 161.52486782608696,
+    "min_W": 63.66,
+    "max_W": 178.541,
+    "power_samples": 600,
+    "J_total_nvml": 1777.91848,
+    "J_per_token_nvml": 0.01286110011574074,
+    "tok_per_s": 13777.981541650886,
+    "sustain": {
+      "mode": "stack_resident",
+      "wall_s": 10.0334,
+      "iters": 135,
+      "seq": 1024,
+      "layers": 12,
+      "hidden": 768,
+      "ms_per_iter": 74.32171,
+      "tokens_prefill": 138240
+    }
+  },
+  "pytorch_flash": {
+    "label": "pytorch_12L_prenorm_sdpa_flash_fp16",
+    "wall_s": 10.00396948796697,
+    "iters": 2568,
+    "seq": 1024,
+    "layers": 12,
+    "tokens_prefill": 2629632,
+    "ms_per_iter": 3.8956267476506894,
+    "median_W": 176.36,
+    "mean_W": 174.93887048832272,
+    "min_W": 126.762,
+    "max_W": 176.903,
+    "power_samples": 496,
+    "J_total_nvml": 1764.3000588978548,
+    "J_per_token_nvml": 0.0006709304035309332,
+    "tok_per_s": 262858.8584924203,
+    "dtype": "fp16",
+    "attention": "scaled_dot_product_attention(is_causal=True) \u2014 Flash when enabled"
+  },
+  "trade_over_pytorch_J_per_token_ratio": 19.169052480042783,
+  "ratio_note": ">1 means TRADE uses more J/token than PyTorch; <1 means TRADE wins",
+  "throughput": {
+    "trade_tok_per_s": 13777.981541650886,
+    "pytorch_tok_per_s": 262858.8584924203,
+    "trade_ms_per_iter": 74.32171,
+    "pytorch_ms_per_iter": 3.8956267476506894
+  },
+  "idle_after_median_W": 100.7225,
+  "honest_scope": [
+    "Same 12L / 768 / 12 / 3072 / seq=1024 on one H100 NVL",
+    "TRADE = device-resident residual stack CUDA path (not HF GPT-2 124M weights)",
+    "PyTorch = 12\u00d7 pre-norm LN+QKV+SDPA(causal Flash)+GELU MLP fp16",
+    "Board power only (not AC wall plug)"
+  ]
+}

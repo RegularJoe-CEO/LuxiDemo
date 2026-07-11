@@ -21,3 +21,11 @@ Prefill median ~177 W · decode ~169 W · J/token re-measured with pynvml under 
 **→ [evidence/spacex-xai-h100-BASELINE-vs-geo/START_HERE.md](evidence/spacex-xai-h100-BASELINE-vs-geo/START_HERE.md)**
 
 Head-to-head single-layer J/token: geodesic TRADE vs PyTorch unfused FP16 + Flash SDPA + morph wedges.
+
+---
+
+## 12L stack H2H — TRADE vs PyTorch+Flash (2026-07-11)
+
+**→ [evidence/spacex-xai-h100-STACK12-H2H/START_HERE.md](evidence/spacex-xai-h100-STACK12-H2H/START_HERE.md)**
+
+Multi-layer prefill H2H on same H100 NVL. PT+Flash wins on thr and J/token; TRADE GPU is loaded (~177 W). Published honestly.
