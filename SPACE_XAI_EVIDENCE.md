@@ -37,3 +37,11 @@ Multi-layer prefill H2H on same H100 NVL. PT+Flash wins on thr and J/token; TRAD
 **→ [evidence/spacex-xai-h100-WNSM-free-ride/START_HERE.md](evidence/spacex-xai-h100-WNSM-free-ride/START_HERE.md)**
 
 Null-space payload bus on H100 TRADE: ~1% free-ride tax (1L), free-ride beats side-channel on 12L, AUDIT 0.00e0 + NPOW O(N) witness.
+
+---
+
+## Long-context / scaling (2026-07-11)
+
+**→ [evidence/spacex-xai-h100-LONGCTX-scaling/START_HERE.md](evidence/spacex-xai-h100-LONGCTX-scaling/START_HERE.md)**
+
+O(N) vs O(N²) memory slopes; ladder to 32k/131k; CUDA longctx @32k with ~228 W board power and contact-bytes avoided.

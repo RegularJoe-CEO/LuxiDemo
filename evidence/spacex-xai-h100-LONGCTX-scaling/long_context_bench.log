@@ -1,0 +1,6 @@
+long_context_bench head_dim=64
+seq	waller_ms	std_ms	waller_mem_mb	std_mem_mb	energy_ratio
+256	3.5	3.0	0.13	0.52	4.0
+1024	54.4	48.3	0.52	8.39	16.0
+4096	867.9	769.5	2.10	134.22	64.0
+8192	3463.2	3085.9	4.19	536.87	128.0

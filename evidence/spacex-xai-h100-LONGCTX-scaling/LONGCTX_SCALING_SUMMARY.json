@@ -1,0 +1,135 @@
+{
+  "schema": "luxiedge.longctx_scaling.v1",
+  "device": "NVIDIA H100 NVL host",
+  "skip_131k_timing": true,
+  "npow": {
+    "mem_slope_waller": 1.0,
+    "mem_slope_standard": 2.0,
+    "memory_reduction_x_anchor": 42.7,
+    "max_diff": 4.77e-07,
+    "pass": true,
+    "memory_scaling_pass": true,
+    "wnsm_fidelity_max_diff": 4.77e-07,
+    "wnsm_fidelity_note": "max_diff 4.77e-7 on this host run (not 0.00e0); slopes still 1.0/2.0"
+  },
+  "analytical_mem_ladder": [
+    {
+      "seq": 512,
+      "standard_score_matrix_MB": 1.0486,
+      "waller_state_MB": 0.2621,
+      "reduction_x": 4.0
+    },
+    {
+      "seq": 1024,
+      "standard_score_matrix_MB": 4.1943,
+      "waller_state_MB": 0.5243,
+      "reduction_x": 8.0
+    },
+    {
+      "seq": 2048,
+      "standard_score_matrix_MB": 16.7772,
+      "waller_state_MB": 1.0486,
+      "reduction_x": 16.0
+    },
+    {
+      "seq": 4096,
+      "standard_score_matrix_MB": 67.1089,
+      "waller_state_MB": 2.0972,
+      "reduction_x": 32.0
+    },
+    {
+      "seq": 8192,
+      "standard_score_matrix_MB": 268.4355,
+      "waller_state_MB": 4.1943,
+      "reduction_x": 64.0
+    },
+    {
+      "seq": 16384,
+      "standard_score_matrix_MB": 1073.7418,
+      "waller_state_MB": 8.3886,
+      "reduction_x": 128.0
+    },
+    {
+      "seq": 32768,
+      "standard_score_matrix_MB": 4294.9673,
+      "waller_state_MB": 16.7772,
+      "reduction_x": 256.0
+    },
+    {
+      "seq": 65536,
+      "standard_score_matrix_MB": 17179.8692,
+      "waller_state_MB": 33.5544,
+      "reduction_x": 512.0
+    },
+    {
+      "seq": 131072,
+      "standard_score_matrix_MB": 68719.4767,
+      "waller_state_MB": 67.1089,
+      "reduction_x": 1024.0
+    }
+  ],
+  "analytical_mem_slopes": {
+    "waller": 1.0000127567726111,
+    "standard": 1.9999978999278583
+  },
+  "long_context_bench": [
+    {
+      "seq": 256,
+      "waller_ms": 3.5,
+      "std_ms": 3.0,
+      "waller_mem_mb": 0.13,
+      "std_mem_mb": 0.52,
+      "mem_ratio_std_over_waller": 4.0
+    },
+    {
+      "seq": 1024,
+      "waller_ms": 54.4,
+      "std_ms": 48.3,
+      "waller_mem_mb": 0.52,
+      "std_mem_mb": 8.39,
+      "mem_ratio_std_over_waller": 16.0
+    },
+    {
+      "seq": 4096,
+      "waller_ms": 867.9,
+      "std_ms": 769.5,
+      "waller_mem_mb": 2.1,
+      "std_mem_mb": 134.22,
+      "mem_ratio_std_over_waller": 64.0
+    },
+    {
+      "seq": 8192,
+      "waller_ms": 3463.2,
+      "std_ms": 3085.9,
+      "waller_mem_mb": 4.19,
+      "std_mem_mb": 536.87,
+      "mem_ratio_std_over_waller": 128.0
+    }
+  ],
+  "measured_mem_slopes": {
+    "waller": 1.002751346400839,
+    "standard": 2.0021984548354435
+  },
+  "cuda_longctx_32k": {
+    "fixture": "clustered",
+    "seq": 32768,
+    "hidden": 4096,
+    "heads": 32,
+    "morph": 0,
+    "path": "waller",
+    "median_ms": 7097.663724,
+    "edge_del": 0.999711,
+    "contact_bytes_avoided": 34348204032,
+    "mesh_hits": 0,
+    "iters": 12,
+    "wall_s": 91.06919623003341,
+    "median_W": 228.118,
+    "power_samples": 1816,
+    "exit": 0
+  },
+  "reduction_highlights": {
+    "at_8192": 64.0,
+    "at_32768": 256.0,
+    "at_131072": 1024.0
+  }
+}

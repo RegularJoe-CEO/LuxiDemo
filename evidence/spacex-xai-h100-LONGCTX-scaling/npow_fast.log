@@ -1,0 +1,17 @@
+═══════════════════════════════════════════════════════════
+ NPOW — N-power scaling witness (WNSM payload bus)
+═══════════════════════════════════════════════════════════
+
+LUXI_NPOW_FAST=1 — analytical mem only (no 131k Waller timing)
+NPOW seq=8192 mem_slope_waller=1.000 mem_slope_std=2.000 time_slope=1.000 reduction=42.7x receipt=890be8096ff1e596d32440466e1e55caa5d25ada98a3f4dba079e3884d4cc619
+Power-law proof (mem): Waller slope 1.000 (~1.0 = O(N)), standard 2.000 (~2.0 = O(N²))
+Power-law proof (time): Waller slope 1.000 (informational; full-seq waller_operator is O(N²) FLOPs)
+✅ NPOW memory scaling proof PASS (O(N) Waller vs O(N²) standard)
+
+WNSM fidelity (NPOW payload on bus):
+  max_diff       : 4.77e-7
+  output receipt : 0360f4e7b10e912c655869c8a38bc7591dece0ad4cba2ff5cd9a45dff999e0d1
+  match          : false
+  NPOW recovered : slope_waller=1.000
+  payload receipt: 890be8096ff1e596d32440466e1e55caa5d25ada98a3f4dba079e3884d4cc619
+❌ WNSM fidelity FAIL with NPOW payload

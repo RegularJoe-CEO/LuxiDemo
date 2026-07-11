@@ -1,0 +1,17 @@
+{
+  "fixture": "clustered",
+  "seq": 32768,
+  "hidden": 4096,
+  "heads": 32,
+  "morph": 0,
+  "path": "waller",
+  "median_ms": 7097.663724,
+  "edge_del": 0.999711,
+  "contact_bytes_avoided": 34348204032,
+  "mesh_hits": 0,
+  "iters": 12,
+  "wall_s": 91.06919623003341,
+  "median_W": 228.118,
+  "power_samples": 1816,
+  "exit": 0
+}

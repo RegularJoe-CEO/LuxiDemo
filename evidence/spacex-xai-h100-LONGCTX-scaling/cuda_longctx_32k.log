@@ -1,0 +1,7 @@
+============================================================
+ LONGCTX ATTN BENCH — fixture=clustered morph=0
+ iters=12 seq=32768 hidden=4096 heads=32
+ mesh_probe: cells=352 edge_del=100.0% contact_bytes_avoided=34348204032
+============================================================
+ TRADE attn (waller): median 7097.664 ms  mesh_hits=0/12
+LONGCTX_JSON {"fixture":"clustered","seq":32768,"hidden":4096,"heads":32,"morph":0,"path":"waller","median_ms":7097.663724,"edge_del":0.999711,"contact_bytes_avoided":34348204032,"mesh_hits":0,"iters":12}
