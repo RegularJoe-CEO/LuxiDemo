@@ -1,4 +1,4 @@
-# SpaceX / xAI public evidence index
+# public 7b class benchmark pack evidence index
 
 All packs below are **public** under `evidence/`.
 
