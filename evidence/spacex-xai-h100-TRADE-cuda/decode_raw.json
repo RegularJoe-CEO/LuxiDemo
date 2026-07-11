@@ -1,0 +1,35 @@
+{
+  "label": "decode_gen_resident_batch_2048_64",
+  "cmd": [
+    "/workspace/attention-transformer-v2/target/release/examples/cuda_decode_kv_bench",
+    "2048",
+    "64",
+    "768",
+    "12",
+    "3072",
+    "3"
+  ],
+  "wall_s_outer": 10.894622622057796,
+  "wall_s": 10.0,
+  "tokens": 218624,
+  "median_W": 168.979,
+  "mean_W": 163.90025968992248,
+  "min_W": 98.401,
+  "max_W": 170.413,
+  "power_samples": 541,
+  "J_total_nvml": 1689.7900000000002,
+  "J_per_token_nvml": 0.00772920630854801,
+  "sustain": {
+    "mode": "gen_resident_batch",
+    "wall_s": 10.0,
+    "iters": 3416,
+    "tokens": 218624,
+    "prefill_seq": 2048,
+    "decode_steps": 64,
+    "final_seq": 2112,
+    "ms_per_iter": 2.92741
+  },
+  "stack": {},
+  "has_nvml": true,
+  "stdout_tail": "SUSTAIN mode=gen_resident_batch sec=10.000 iters=3416 tokens=218624 ms_per_iter=2.9274\nSUSTAIN_JSON {\"mode\":\"gen_resident_batch\",\"wall_s\":10.0000,\"iters\":3416,\"tokens\":218624,\"prefill_seq\":2048,\"decode_steps\":64,\"final_seq\":2112,\"ms_per_iter\":2.92741}\n"
+}

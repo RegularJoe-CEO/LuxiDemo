@@ -1,0 +1,35 @@
+{
+  "label": "prefill_device_resident_12L_1024",
+  "cmd": [
+    "/workspace/attention-transformer-v2/target/release/examples/cuda_stack_device_resident_audit",
+    "12",
+    "1024",
+    "768",
+    "12",
+    "3072",
+    "3"
+  ],
+  "wall_s_outer": 12.105370393954217,
+  "wall_s": 10.0166,
+  "tokens": 0,
+  "median_W": 177.009,
+  "mean_W": 159.5704045138889,
+  "min_W": 63.622,
+  "max_W": 178.417,
+  "power_samples": 601,
+  "J_total_nvml": 1773.0283494,
+  "J_per_token_nvml": NaN,
+  "sustain": {
+    "mode": "stack_resident",
+    "wall_s": 10.0166,
+    "iters": 132,
+    "seq": 1024,
+    "layers": 12,
+    "hidden": 768,
+    "ms_per_iter": 75.88304,
+    "tokens_prefill": 135168
+  },
+  "stack": {},
+  "has_nvml": true,
+  "stdout_tail": "============================================================\n Device-resident stack AUDIT layers=12 seq=1024 h=768 iters=3\n============================================================\nSUSTAIN mode=stack_resident sec=10.017 iters=132 tokens_prefill=135168 ms_per_iter=75.8830\nSUSTAIN_JSON {\"mode\":\"stack_resident\",\"wall_s\":10.0166,\"iters\":132,\"seq\":1024,\"layers\":12,\"hidden\":768,\"ms_per_iter\":75.88304,\"tokens_prefill\":135168}\n============================================================\n"
+}

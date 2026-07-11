@@ -1,0 +1,102 @@
+{
+  "hardware": "NVIDIA H100 NVL",
+  "lane": "TRADE CUDA (device-resident stack + resident-batch decode)",
+  "shape": "12 layers, h=768, heads=12, mlp=3072",
+  "method": "J \u2248 median_GPU_W \u00d7 wall_s; J/token = J / tokens from sustain loop",
+  "prefill_sec": 10.0,
+  "decode_sec": 10.0,
+  "idle_after": {
+    "median_W": 97.47999999999999,
+    "min_W": 65.001,
+    "max_W": 155.284,
+    "n": 30
+  },
+  "runs": [
+    {
+      "label": "prefill_device_resident_12L_1024",
+      "cmd": [
+        "/workspace/attention-transformer-v2/target/release/examples/cuda_stack_device_resident_audit",
+        "12",
+        "1024",
+        "768",
+        "12",
+        "3072",
+        "3"
+      ],
+      "wall_s_outer": 12.105370393954217,
+      "wall_s": 10.0166,
+      "tokens": 135168,
+      "median_W": 177.009,
+      "mean_W": 159.5704045138889,
+      "min_W": 63.622,
+      "max_W": 178.417,
+      "power_samples": 601,
+      "J_total_nvml": 1773.0283494,
+      "J_per_token_nvml": 0.013117219677734375,
+      "sustain": {
+        "mode": "stack_resident",
+        "wall_s": 10.0166,
+        "iters": 132,
+        "seq": 1024,
+        "layers": 12,
+        "hidden": 768,
+        "ms_per_iter": 75.88304,
+        "tokens_prefill": 135168
+      },
+      "stack": {},
+      "has_nvml": true
+    },
+    {
+      "label": "decode_gen_resident_batch_2048_64",
+      "cmd": [
+        "/workspace/attention-transformer-v2/target/release/examples/cuda_decode_kv_bench",
+        "2048",
+        "64",
+        "768",
+        "12",
+        "3072",
+        "3"
+      ],
+      "wall_s_outer": 10.894622622057796,
+      "wall_s": 10.0,
+      "tokens": 218624,
+      "median_W": 168.979,
+      "mean_W": 163.90025968992248,
+      "min_W": 98.401,
+      "max_W": 170.413,
+      "power_samples": 541,
+      "J_total_nvml": 1689.7900000000002,
+      "J_per_token_nvml": 0.00772920630854801,
+      "sustain": {
+        "mode": "gen_resident_batch",
+        "wall_s": 10.0,
+        "iters": 3416,
+        "tokens": 218624,
+        "prefill_seq": 2048,
+        "decode_steps": 64,
+        "final_seq": 2112,
+        "ms_per_iter": 2.92741
+      },
+      "stack": {},
+      "has_nvml": true
+    }
+  ],
+  "has_nvml": true,
+  "j_per_prefill_token": 0.013117219677734375,
+  "j_per_decode_token": 0.00772920630854801,
+  "job_estimate_1024prefill_64decode_J": 13.926702153747073,
+  "comparison_to_city_block": {
+    "phase1_prefill_J_per_tok": 0.0125,
+    "phase1_decode_J_per_tok": 0.0075,
+    "phase1_job_J": 13.27,
+    "this_run_prefill_J_per_tok": 0.013117219677734375,
+    "this_run_decode_J_per_tok": 0.00772920630854801,
+    "this_run_job_J": 13.926702153747073
+  },
+  "gpu_load_vs_idle": {
+    "cpu_audit_serve_median_W": 63.74,
+    "idle_baseline_median_W": 63.65,
+    "trade_prefill_median_W": 177.009,
+    "trade_decode_median_W": 168.979
+  }
+}
