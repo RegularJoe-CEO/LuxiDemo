@@ -1,0 +1,49 @@
+{
+  "schema": "luxiedge.qwen7b_trade_multirun.v1",
+  "model": "/dev/shm/luxi_models/qwen2-7b-instruct",
+  "runs_requested": 3,
+  "sustain_sec_each": 300.0,
+  "seq": 32,
+  "method": "J = median_board_W_sustain * sustain.wall_s / tokens_prefill; NVML gate=SUSTAIN only",
+  "runs": [
+    {
+      "run": 1,
+      "exit": 0,
+      "wall_s_outer": 384.3405382633209,
+      "J_per_token_nvml": 3.5563170918988236,
+      "median_W": 156.147,
+      "ms_per_iter": 113.8772,
+      "layers": 28,
+      "null_residual": 7.79436e-09
+    },
+    {
+      "run": 2,
+      "exit": 0,
+      "wall_s_outer": 380.98522782325745,
+      "J_per_token_nvml": 3.5655113259996964,
+      "median_W": 156.506,
+      "ms_per_iter": 113.9097,
+      "layers": 28,
+      "null_residual": 7.79436e-09
+    },
+    {
+      "run": 3,
+      "exit": 0,
+      "wall_s_outer": 381.2315237522125,
+      "J_per_token_nvml": 3.5571560819421855,
+      "median_W": 156.222,
+      "ms_per_iter": 113.8494,
+      "layers": 28,
+      "null_residual": 7.79436e-09
+    }
+  ],
+  "aggregate": {
+    "n_ok": 3,
+    "J_per_token_mean": 3.559661499946902,
+    "J_per_token_stdev": 0.0050834363091496445,
+    "median_W_mean": 156.29166666666666,
+    "median_W_stdev": 0.1893682479544394,
+    "ms_per_iter_mean": 113.87876666666666,
+    "ms_per_iter_stdev": 0.030180512476319442
+  }
+}

@@ -1,0 +1,40 @@
+════════════════════════════════════════════════════════════
+  GPU TRADE · Qwen/LLaMA LuxiEdge model
+  model_dir=/dev/shm/luxi_models/qwen2-7b-instruct
+  LUXI_RECEIPT_AUDIT=None
+  LUXI_TRADE_ENERGY=Some("1")
+════════════════════════════════════════════════════════════
+weight_files=4
+config arch=qwen2 L=28 h=3584 heads=28 kv=4 inter=18944 vocab=152064
+load_tensors_s=25.06
+map_layers_s=40.19 n_layers=28
+  uploaded layer 1/28
+  uploaded layer 5/28
+  uploaded layer 9/28
+  uploaded layer 13/28
+  uploaded layer 17/28
+  uploaded layer 21/28
+  uploaded layer 25/28
+  uploaded layer 28/28
+cuda_upload_s=5.95
+prompt="The capital of France is" tokens=5
+TRADE_prefill_ms=135.4 seq=5
+first_token_id=17861 piece=" nonatomic"
+  step=1 id=74705 "gunakan"
+TRADE_decode_ms=235.3 new_tokens=2
+completion_text= nonatomicgunakan
+GEN_JSON {"model":"/dev/shm/luxi_models/qwen2-7b-instruct","completion_tokens":2,"prefill_ms":135.440,"decode_ms":235.263,"text":" nonatomicgunakan"}
+
+── WNSM free-ride (Qwen L0 down_proj principal block) ──
+null_install_s=0.17 h_blk=256 m_blk=512 payload_dim=16 null_residual=7.794e-9
+WNSM_payload_recon_err=3.576279e-7
+WNSM_free_ride_WTp_max_abs=3.379753e-8
+WNSM_JSON {"payload_dim":16,"h_blk":256,"m_blk":512,"null_residual":7.794360e-9,"out_max_abs_on_vs_off":0.000000e0,"payload_recon_err":3.576279e-7,"free_ride_WTp":3.379753e-8,"seq":5,"source":"qwen_L0_down_proj_principal_block"}
+WNSM_out_max_abs_ON_vs_OFF=0.000000e0
+
+── SUSTAIN TRADE stack for 300s (pynvml) ──
+SUSTAIN_BEGIN
+SUSTAIN_END
+SUSTAIN_JSON {"mode":"qwen7b_trade_stack","wall_s":300.107009,"iters":2636,"seq":5,"layers":28,"hidden":3584,"tokens_prefill":13180,"ms_per_iter":113.8494}
+
+OK cuda_qwen7b_trade complete

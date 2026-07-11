@@ -1,47 +1,28 @@
-# SpaceX / xAI evidence
+# SpaceX / xAI public evidence index
 
-H100 NVL continuous-batch power trace + exact commands (2026-07-11):
+All packs below are **public** under `evidence/`.
 
-**→ [evidence/spacex-xai-h100-2026-07-11/START_HERE.md](evidence/spacex-xai-h100-2026-07-11/START_HERE.md)**
+## Primary (7B-class)
 
-Direct CSV: [power_trace_sustain_30m.csv](evidence/spacex-xai-h100-2026-07-11/power_trace_sustain_30m.csv)
+| Pack | What it shows |
+|------|----------------|
+| **[spacex-xai-h100-QWEN7B-TRADE](evidence/spacex-xai-h100-QWEN7B-TRADE/)** | Full Qwen2-7B TRADE stack on H100: multi-run thr + **sustain-only NVML J/tok** (~0.63 @ seq=128) |
 
----
+Open `evidence/spacex-xai-h100-QWEN7B-TRADE/START_HERE.md` first.
 
-## TRADE CUDA (GPU under load) — 2026-07-11
+## Supporting (earlier H100 diligence)
 
-**→ [evidence/spacex-xai-h100-TRADE-cuda/START_HERE.md](evidence/spacex-xai-h100-TRADE-cuda/START_HERE.md)**
+| Pack | What it shows |
+|------|----------------|
+| [spacex-xai-h100-TRADE-cuda](evidence/spacex-xai-h100-TRADE-cuda/) | Device-resident 12L stack energy (GPT-2 width) |
+| [spacex-xai-h100-STACK12-H2H](evidence/spacex-xai-h100-STACK12-H2H/) | 12L TRADE vs PyTorch Flash H2H |
+| [spacex-xai-h100-WNSM-free-ride](evidence/spacex-xai-h100-WNSM-free-ride/) | WNSM free-ride under load |
+| [spacex-xai-h100-LONGCTX-scaling](evidence/spacex-xai-h100-LONGCTX-scaling/) | O(N) vs O(N²) memory + CUDA 32k |
+| [spacex-xai-h100-BASELINE-vs-geo](evidence/spacex-xai-h100-BASELINE-vs-geo/) | Single-layer baseline + morph/mesh wedges |
+| [spacex-xai-h100-2026-07-11](evidence/spacex-xai-h100-2026-07-11/) | Continuous-batch serve sustain (CPU path) |
 
-Prefill median ~177 W · decode ~169 W · J/token re-measured with pynvml under CUDA load.
+## Honest non-claims
 
----
-
-## Baseline vs geodesic (same H100, same width) — 2026-07-11
-
-**→ [evidence/spacex-xai-h100-BASELINE-vs-geo/START_HERE.md](evidence/spacex-xai-h100-BASELINE-vs-geo/START_HERE.md)**
-
-Head-to-head single-layer J/token: geodesic TRADE vs PyTorch unfused FP16 + Flash SDPA + morph wedges.
-
----
-
-## 12L stack H2H — TRADE vs PyTorch+Flash (2026-07-11)
-
-**→ [evidence/spacex-xai-h100-STACK12-H2H/START_HERE.md](evidence/spacex-xai-h100-STACK12-H2H/START_HERE.md)**
-
-Multi-layer prefill H2H on same H100 NVL. PT+Flash wins on thr and J/token; TRADE GPU is loaded (~177 W). Published honestly.
-
----
-
-## WNSM free-ride under load (2026-07-11)
-
-**→ [evidence/spacex-xai-h100-WNSM-free-ride/START_HERE.md](evidence/spacex-xai-h100-WNSM-free-ride/START_HERE.md)**
-
-Null-space payload bus on H100 TRADE: ~1% free-ride tax (1L), free-ride beats side-channel on 12L, AUDIT 0.00e0 + NPOW O(N) witness.
-
----
-
-## Long-context / scaling (2026-07-11)
-
-**→ [evidence/spacex-xai-h100-LONGCTX-scaling/START_HERE.md](evidence/spacex-xai-h100-LONGCTX-scaling/START_HERE.md)**
-
-O(N) vs O(N²) memory slopes; ladder to 32k/131k; CUDA longctx @32k with ~228 W board power and contact-bytes avoided.
+- TRADE 7B path is **not** HF chat-quality (architecture map into TRADE kernels).
+- Flash may win short-seq thr/J/tok; differentiated axes: free-ride/AUDIT, O(N) mem, measured board energy on real 7B-scale weights.
+- Power is **GPU board** (pynvml), not wall-plug AC.

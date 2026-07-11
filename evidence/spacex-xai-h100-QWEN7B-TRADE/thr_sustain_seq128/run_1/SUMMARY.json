@@ -1,0 +1,67 @@
+{
+  "schema": "luxiedge.qwen7b_trade_nvml.v2_sustain_only",
+  "model": "/dev/shm/luxi_models/qwen2-7b-instruct",
+  "exit": 0,
+  "wall_s_outer": 147.2624043149408,
+  "has_nvml": true,
+  "sampling": {
+    "mode": "sustain_only",
+    "sample_hz": 50.0,
+    "interval_s": 0.02,
+    "gate_open_unix": 1783750594.5474634,
+    "gate_close_unix": 1783750654.6629002,
+    "nvml_window_s": 60.11543679237366,
+    "ramp_drop_samples": 5,
+    "samples_raw": 2984,
+    "samples_used": 2979
+  },
+  "power_sustain": {
+    "median_W": 252.939,
+    "mean_W": 252.09033736153071,
+    "min_W": 227.494,
+    "max_W": 259.412,
+    "samples": 2979,
+    "note": "board power via pynvml during SUSTAIN only (not outer wall, not \u0394-idle)"
+  },
+  "sustain": {
+    "mode": "qwen7b_trade_stack",
+    "path": "device_resident",
+    "wall_s": 60.115368,
+    "iters": 189,
+    "seq": 128,
+    "layers": 28,
+    "hidden": 3584,
+    "tokens_prefill": 24192,
+    "ms_per_iter": 318.0707,
+    "stack_per_s": 3.144,
+    "tok_per_s": 402.4262,
+    "prompt_seq": 5
+  },
+  "wnsm": {
+    "payload_dim": 16,
+    "h_blk": 256,
+    "m_blk": 512,
+    "null_residual": 7.79436e-09,
+    "out_max_abs_on_vs_off": 0.0,
+    "payload_recon_err": 3.576279e-07,
+    "free_ride_WTp": 3.379753e-08,
+    "seq": 5,
+    "source": "qwen_L0_down_proj_principal_block"
+  },
+  "gen": {
+    "model": "/dev/shm/luxi_models/qwen2-7b-instruct",
+    "completion_tokens": 1,
+    "prefill_ms": 132.521,
+    "decode_ms": 0.0,
+    "text": " nonatomic"
+  },
+  "J_total_nvml": 15205.521066551999,
+  "J_per_token_nvml": 0.6285350969970238,
+  "J_total_nvml_meanW": 15154.503399732566,
+  "J_per_token_nvml_meanW": 0.6264262318011147,
+  "method": "J = power_W * sustain.wall_s; J/tok = J / sustain.tokens_prefill",
+  "env": {
+    "LUXI_RECEIPT_AUDIT": null,
+    "LUXI_TRADE_ENERGY": "1"
+  }
+}
