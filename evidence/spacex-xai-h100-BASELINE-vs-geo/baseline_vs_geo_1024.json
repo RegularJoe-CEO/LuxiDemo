@@ -1,0 +1,51 @@
+{
+  "schema": "luxiedge.gpu_inference_energy.v1",
+  "snapshot": "2026-07-11",
+  "device": "NVIDIA H100 NVL",
+  "driver": "580.159.03",
+  "cuda": "12.4",
+  "git_sha": "5994f14",
+  "profile": "custom",
+  "seq": 1024,
+  "hidden": 768,
+  "heads": 12,
+  "mlp": 3072,
+  "iters": 40,
+  "method": "benchmark_joules.py \u2014 median_power_W * median_ms / seq (power_source=pynvml)",
+  "power_source": "pynvml",
+  "publishable": true,
+  "comparison_fair": true,
+  "baseline": "pytorch_unfused_full_layer_fp16",
+  "geodesic_layer": {
+    "median_ms": 5.303917,
+    "joules_per_token": 0.00037531946263378907,
+    "power_w": 72.461
+  },
+  "pytorch_full_layer": {
+    "median_ms": 0.4137190990149975,
+    "joules_per_token": 3.977763688908453e-05,
+    "power_w": 98.454
+  },
+  "pytorch_full_layer_ms": 0.4137190990149975,
+  "pytorch_full_joules_per_token": 3.977763688908453e-05,
+  "geodesic_vs_pytorch_joules_ratio": 0.10598341106519385,
+  "sdpa_flash_attn_only_ms": 0.046740053221583366,
+  "sdpa_math_attn_only_ms": 0.1546689309179783,
+  "full_layer_morph_wedge": {
+    "seq": 8192,
+    "hidden": 64,
+    "energy_median_ms": 13.825775,
+    "morph_median_ms": 6.620683,
+    "speedup_vs_energy": 2.08827,
+    "energy_ratio_energy_over_morph": 2.0882701981049387
+  },
+  "mesh_void_wedge": {
+    "seq": 8192,
+    "edge_deletion_ratio": 0.9507,
+    "waller_ms": 1.229,
+    "mesh_ms": 0.163,
+    "speedup_vs_waller": 7.529,
+    "energy_ratio_waller_over_mesh": 7.539877300613497
+  },
+  "notes": "Money claim = geodesic_vs_pytorch_joules_ratio (>1 means TRADE uses less J/token than unfused PyTorch full layer). Re-run after engine changes."
+}

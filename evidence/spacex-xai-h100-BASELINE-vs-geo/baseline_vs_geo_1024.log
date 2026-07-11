@@ -1,0 +1,54 @@
+/usr/local/lib/python3.11/dist-packages/torch/cuda/__init__.py:58: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/usr/lib/python3.11/contextlib.py:105: FutureWarning: `torch.backends.cuda.sdp_kernel()` is deprecated. In the future, this context manager will be removed. Please see `torch.nn.attention.sdpa_kernel()` for the new context manager, with updated signature.
+  self.gen = func(*args, **kwds)
+========================================================================
+ JOULES BENCHMARK — measured power × time / tokens
+========================================================================
+ device: NVIDIA H100 NVL
+ shape: seq=1024 hidden=768 heads=12 mlp=3072
+ geodesic: TRADE ENERGY (P3 split + Flash attn + FP16 MLP)
+ pytorch_full: unfused pre-norm layer fp16 (fair baseline)
+ sdpa: attention-only fp16
+------------------------------------------------------------------------
+
+[A] TRADE ENERGY fused LAYER
+    median_ms=5.304  wall_s=0.963
+    power_median_W=72.5  source=pynvml
+    joules_per_run=15.3731  joules_per_token=3.753195e-04
+
+[B] PyTorch FULL layer (unfused, fp16)
+    median_ms=0.414
+    joules_per_token=3.977764e-05
+
+[C] PyTorch SDPA attention-only (Flash allowed)
+    median_ms=0.047
+    joules_per_attn_pass=0.0044
+
+[D] PyTorch SDPA math-only (Flash OFF)
+    median_ms=0.155
+    joules_per_attn_pass=0.0149
+
+[F] FULL LAYER MORPH @ seq=8192 clustered KV (LN+QKV+attn+MLP)
+    v7 layer (no morph): 13.8 ms  joules/iter=1.0018e+00
+    v7 + void morph:     6.62 ms  joules/iter=4.7974e-01
+    Full-layer speedup: 2.1x  Energy ratio (no-morph/morph): 2.1x
+
+[E] MESH VOID WEDGE @ seq=8192 clustered KV (edge-del=95.1%)
+    Waller attn kernel: 1.23 ms
+    Mesh void kernel:   0.163 ms
+    Speedup: 7.5x  Energy ratio (Waller/Mesh): 7.5x
+
+========================================================================
+ INTERPRETATION
+  - Fair GPT-2 money claim: [A] TRADE ENERGY vs [B] PyTorch full layer.
+  - PyTorch/geodesic joules-per-token ratio: 0.106x (>1 = TRADE wins @ this shape)
+  - [F] = full fused layer with morph wired (v7 attn, clustered KV).
+  - [F] full-layer energy ratio 2.1x vs no-morph layer.
+  - [E] = attn kernel only (scoped compressible KV).
+  - [E] attn energy ratio 7.5x on compressible geometry.
+  - [C]/[D] are attention-only (not full layer).
+========================================================================
+
+RESULT_JSON {"schema": "luxiedge.gpu_inference_energy.v1", "snapshot": "2026-07-11", "device": "NVIDIA H100 NVL", "driver": "580.159.03", "cuda": "12.4", "git_sha": "5994f14", "profile": "custom", "seq": 1024, "hidden": 768, "heads": 12, "mlp": 3072, "iters": 40, "method": "benchmark_joules.py \u2014 median_power_W * median_ms / seq (power_source=pynvml)", "power_source": "pynvml", "publishable": true, "comparison_fair": true, "baseline": "pytorch_unfused_full_layer_fp16", "geodesic_layer": {"median_ms": 5.303917, "joules_per_token": 0.00037531946263378907, "power_w": 72.461}, "pytorch_full_layer": {"median_ms": 0.4137190990149975, "joules_per_token": 3.977763688908453e-05, "power_w": 98.454}, "pytorch_full_layer_ms": 0.4137190990149975, "pytorch_full_joules_per_token": 3.977763688908453e-05, "geodesic_vs_pytorch_joules_ratio": 0.10598341106519385, "sdpa_flash_attn_only_ms": 0.046740053221583366, "sdpa_math_attn_only_ms": 0.1546689309179783, "full_layer_morph_wedge": {"seq": 8192, "hidden": 64, "energy_median_ms": 13.825775, "morph_median_ms": 6.620683, "speedup_vs_energy": 2.08827, "energy_ratio_energy_over_morph": 2.0882701981049387}, "mesh_void_wedge": {"seq": 8192, "edge_deletion_ratio": 0.9507, "waller_ms": 1.229, "mesh_ms": 0.163, "speedup_vs_waller": 7.529, "energy_ratio_waller_over_mesh": 7.539877300613497}, "notes": "Money claim = geodesic_vs_pytorch_joules_ratio (>1 means TRADE uses less J/token than unfused PyTorch full layer). Re-run after engine changes."}
+WROTE /workspace/baseline_vs_geo_1024.json

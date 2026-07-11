@@ -13,3 +13,11 @@ Direct CSV: [power_trace_sustain_30m.csv](evidence/spacex-xai-h100-2026-07-11/po
 **→ [evidence/spacex-xai-h100-TRADE-cuda/START_HERE.md](evidence/spacex-xai-h100-TRADE-cuda/START_HERE.md)**
 
 Prefill median ~177 W · decode ~169 W · J/token re-measured with pynvml under CUDA load.
+
+---
+
+## Baseline vs geodesic (same H100, same width) — 2026-07-11
+
+**→ [evidence/spacex-xai-h100-BASELINE-vs-geo/START_HERE.md](evidence/spacex-xai-h100-BASELINE-vs-geo/START_HERE.md)**
+
+Head-to-head single-layer J/token: geodesic TRADE vs PyTorch unfused FP16 + Flash SDPA + morph wedges.

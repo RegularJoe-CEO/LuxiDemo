@@ -1,0 +1,58 @@
+{
+  "schema": "luxiedge.baseline_vs_geo.v1",
+  "device": "NVIDIA H100 NVL",
+  "shape": {
+    "seq": 1024,
+    "hidden": 768,
+    "heads": 12,
+    "mlp": 3072,
+    "unit": "single_layer_forward"
+  },
+  "method": "benchmark_joules.py \u2014 median_power_W * median_ms / seq (power_source=pynvml)",
+  "power_source": "pynvml",
+  "publishable": true,
+  "A_geodesic_TRADE_layer": {
+    "median_ms": 5.303917,
+    "joules_per_token": 0.00037531946263378907,
+    "power_w": 72.461
+  },
+  "B_pytorch_unfused_full_layer_fp16": {
+    "median_ms": 0.4137190990149975,
+    "joules_per_token": 3.977763688908453e-05,
+    "power_w": 98.454
+  },
+  "C_sdpa_flash_attn_only_ms": 0.046740053221583366,
+  "D_sdpa_math_attn_only_ms": 0.1546689309179783,
+  "geodesic_vs_pytorch_joules_ratio": 0.10598341106519385,
+  "ratio_interpretation": ">1 means geodesic uses LESS J/token than unfused PyTorch; measured ratio=0.10598341106519385 so at THIS single-layer microbench PyTorch is lower J/token",
+  "F_full_layer_morph_wedge_seq8192_h64": {
+    "seq": 8192,
+    "hidden": 64,
+    "energy_median_ms": 13.825775,
+    "morph_median_ms": 6.620683,
+    "speedup_vs_energy": 2.08827,
+    "energy_ratio_energy_over_morph": 2.0882701981049387
+  },
+  "E_mesh_void_attn_wedge_seq8192": {
+    "seq": 8192,
+    "edge_deletion_ratio": 0.9507,
+    "waller_ms": 1.229,
+    "mesh_ms": 0.163,
+    "speedup_vs_waller": 7.529,
+    "energy_ratio_waller_over_mesh": 7.539877300613497
+  },
+  "dmon": {
+    "dmon_samples": 8,
+    "power_W_min": 63.0,
+    "power_W_max": 108.0,
+    "power_W_median": 93.5,
+    "sm_util_max_pct": 1.0,
+    "sm_util_median_pct": 0.0,
+    "note": "1Hz nvidia-smi dmon during short layer microbench; SM% can under-sample short kernels"
+  },
+  "honest_scope": [
+    "Single-layer microbench at GPT-2-small width \u2014 not 12-layer stack job energy (see TRADE pack for 12L stack J/token).",
+    "PyTorch baseline is highly optimized FP16 SDPA/Flash on H100; fair for layer-level comparison.",
+    "Morph/mesh wedges at seq=8192 show energy wins on compressible/clustered KV paths (different regime)."
+  ]
+}
