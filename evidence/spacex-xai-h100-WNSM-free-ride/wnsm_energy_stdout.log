@@ -1,0 +1,16 @@
+============================================================
+ WNSM null-space GPU TRADE energy bench (true null free-ride)
+ iters=40 seq=1024 h=768 heads=12 mlp=3072 payload_dim=64
+============================================================
+ OFF warmup checksum: -0.002653
+ ON: true null free-ride pd=64 null_residual≈4.167e-2
+ ON warmup checksum: -0.006929
+ payload inject→extract max_abs_err: 7.450581e-8 (identity bus; not exact null of random w_proj)
+------------------------------------------------------------
+ OFF (no v_null, batched MLP)  median_ms=7.185
+ ON  (v_null + payload bus)    median_ms=7.253
+ speed ratio OFF/ON ( >1 means ON slower): 0.991
+ max |out_ON - out_OFF|: 1.068652e-2
+ modeled HBM bytes avoided (1 layer): 524288 → 1.049e-5 J @ 20pJ/byte
+BENCH_JSON {"bench":"cuda_wnsm_energy","seq":1024,"hidden":768,"heads":12,"mlp":3072,"payload_dim":64,"off_median_ms":7.184872,"on_median_ms":7.253352,"checksum_off":-0.002653,"checksum_on":-0.006929,"payload_max_abs_err":7.450581e-8,"out_max_abs_drift":1.068652e-2,"wnsm_bytes_avoided":524288,"wnsm_model_joules":1.048576e-5}
+============================================================

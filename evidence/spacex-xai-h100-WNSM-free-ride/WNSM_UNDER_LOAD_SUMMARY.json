@@ -1,0 +1,116 @@
+{
+  "schema": "luxiedge.wnsm_under_load.v1",
+  "hardware": "NVIDIA H100 NVL",
+  "lane": "TRADE CUDA geodesic + WNSM null free-ride",
+  "shape": {
+    "seq": 1024,
+    "hidden": 768,
+    "heads": 12,
+    "mlp": 3072,
+    "payload_dim": 64,
+    "layers_stack": 12
+  },
+  "layer1_bench": {
+    "bench": "cuda_wnsm_energy",
+    "seq": 1024,
+    "hidden": 768,
+    "heads": 12,
+    "mlp": 3072,
+    "payload_dim": 64,
+    "off_median_ms": 7.184872,
+    "on_median_ms": 7.253352,
+    "checksum_off": -0.002653,
+    "checksum_on": -0.006929,
+    "payload_max_abs_err": 7.450581e-08,
+    "out_max_abs_drift": 0.01068652,
+    "wnsm_bytes_avoided": 524288,
+    "wnsm_model_joules": 1.048576e-05
+  },
+  "layer1_power": {
+    "median_W": 92.702,
+    "mean_W": 93.07359435626103,
+    "min_W": 63.701,
+    "max_W": 114.246,
+    "samples": 1149
+  },
+  "overhead_on_over_off": 1.0095311370891504,
+  "payload_max_abs_err": 7.450581e-08,
+  "out_max_abs_drift_on_vs_off": 0.01068652,
+  "wnsm_bytes_avoided_modeled": 524288,
+  "wnsm_model_joules": 1.048576e-05,
+  "fidelity_note": "GPU TRADE ON vs OFF primary-output max abs is reported honestly; CPU AUDIT free-ride path targets 0.00e0 + identical receipts (see audit pack). Payload inject\u2192extract max abs is separate from primary-output drift.",
+  "results": {
+    "layer1": {
+      "label": "wnsm_energy_1layer_OFF_vs_ON",
+      "cmd": [
+        "/workspace/attention-transformer-v2/target/release/examples/cuda_wnsm_energy_bench",
+        "40",
+        "1024",
+        "768",
+        "12",
+        "3072",
+        "64"
+      ],
+      "wall_s": 23.12667075707577,
+      "exit": 0,
+      "median_W": 92.702,
+      "mean_W": 93.07359435626103,
+      "min_W": 63.701,
+      "max_W": 114.246,
+      "power_samples": 1149,
+      "bench": {
+        "bench": "cuda_wnsm_energy",
+        "seq": 1024,
+        "hidden": 768,
+        "heads": 12,
+        "mlp": 3072,
+        "payload_dim": 64,
+        "off_median_ms": 7.184872,
+        "on_median_ms": 7.253352,
+        "checksum_off": -0.002653,
+        "checksum_on": -0.006929,
+        "payload_max_abs_err": 7.450581e-08,
+        "out_max_abs_drift": 0.01068652,
+        "wnsm_bytes_avoided": 524288,
+        "wnsm_model_joules": 1.048576e-05
+      }
+    },
+    "stack12": {
+      "label": "wnsm_stack_12L_free_ride",
+      "cmd": [
+        "/workspace/attention-transformer-v2/target/release/examples/cuda_wnsm_stack_bench",
+        "20",
+        "1024",
+        "768",
+        "12",
+        "3072",
+        "12",
+        "64"
+      ],
+      "wall_s": 211.2657703801524,
+      "exit": 0,
+      "median_W": 63.663,
+      "mean_W": 68.002814153376,
+      "min_W": 63.659,
+      "max_W": 179.37,
+      "power_samples": 10486,
+      "bench": {
+        "bench": "cuda_wnsm_stack",
+        "seq": 1024,
+        "layers": 12,
+        "payload_dim": 64,
+        "off_ms": 75.6536,
+        "on_ms": 75.1378,
+        "side_h2d_ms": 0.2664,
+        "off_plus_side_ms": 75.92,
+        "free_ride_vs_side": 1.0104,
+        "null_residual": 2.503e-08,
+        "payload_err": 8.121e-07,
+        "out_drift": 0.0,
+        "wnsm_bytes": 6291456,
+        "wnsm_model_j": 0.0001258
+      }
+    }
+  },
+  "has_nvml": true
+}

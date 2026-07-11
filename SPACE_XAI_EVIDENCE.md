@@ -29,3 +29,11 @@ Head-to-head single-layer J/token: geodesic TRADE vs PyTorch unfused FP16 + Flas
 **→ [evidence/spacex-xai-h100-STACK12-H2H/START_HERE.md](evidence/spacex-xai-h100-STACK12-H2H/START_HERE.md)**
 
 Multi-layer prefill H2H on same H100 NVL. PT+Flash wins on thr and J/token; TRADE GPU is loaded (~177 W). Published honestly.
+
+---
+
+## WNSM free-ride under load (2026-07-11)
+
+**→ [evidence/spacex-xai-h100-WNSM-free-ride/START_HERE.md](evidence/spacex-xai-h100-WNSM-free-ride/START_HERE.md)**
+
+Null-space payload bus on H100 TRADE: ~1% free-ride tax (1L), free-ride beats side-channel on 12L, AUDIT 0.00e0 + NPOW O(N) witness.

@@ -1,0 +1,16 @@
+============================================================
+ WNSM multi-layer free-ride + side-channel elimination
+ iters=20 seq=1024 h=768 layers=12 payload_dim=64 null_residual≈2.503e-8
+============================================================
+ TRAFFIC h2d=1 d2h=1 d2d_residual=0 layers=12  (expect 1/1/0)
+ OFF stack (no WNSM)           median_ms=75.654
+ ON  stack (true null free-ride) median_ms=75.138
+ side-channel H2D tax alone    median_ms=0.266
+ OFF + side-channel            median_ms=75.920
+ free-ride vs OFF+side ( >1 free-ride wins): 1.010
+ null residual max ||W^T v||/||v||: 2.503e-8
+ payload extract max err (last layer): 8.121e-7
+ single-layer out drift (null inject): 0.000e0
+ modeled bytes avoided (12 layers): 6291456 → 1.258e-4 J
+BENCH_JSON {"bench":"cuda_wnsm_stack","seq":1024,"layers":12,"payload_dim":64,"off_ms":75.6536,"on_ms":75.1378,"side_h2d_ms":0.2664,"off_plus_side_ms":75.9200,"free_ride_vs_side":1.0104,"null_residual":2.503e-8,"payload_err":8.121e-7,"out_drift":0.000e0,"wnsm_bytes":6291456,"wnsm_model_j":1.258e-4}
+============================================================

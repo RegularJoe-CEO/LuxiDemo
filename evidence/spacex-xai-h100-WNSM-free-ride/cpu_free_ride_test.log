@@ -1,0 +1,9 @@
+   Compiling attention-transformer-v2 v2.0.0 (/Users/ericwaller/attention-transformer-v2)
+    Finished `release` profile [optimized] target(s) in 15.09s
+     Running unittests src/lib.rs (target/release/deps/attention_transformer-8c9db9d9c2624a85)
+
+running 1 test
+test speculative::tests::wnsm_free_ride_does_not_change_greedy_tokens ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 114 filtered out; finished in 0.01s
+
