@@ -56,21 +56,21 @@ Legend: **KEEP** · **REFRAME** · **DELETE** · **ADD**
 2. Flash-class kernels may **win short-seq thr/J/tok**; differentiated axes: AUDIT/free-ride, O(N) memory, measured board energy on real 7B-scale weights.  
 3. Power = **GPU board (pynvml)**, not wall-plug AC.  
 4. Small-stack residual-MLP numbers ≠ 7B J/tok without clear labels.  
-5. **No company diligence codenames** (no SpaceX, xAI, etc.) on public pages or pack titles.
+5. **No company diligence codenames** on public pages or pack titles.
 
 ---
 
-## Evidence path renames (this rebuild)
+## Public evidence packs (neutral names only)
 
-| Legacy folder | Neutral name |
-|---------------|--------------|
-| `spacex-xai-h100-QWEN7B-TRADE` | `h100-7b-class-TRADE` |
-| `spacex-xai-h100-TRADE-cuda` | `h100-stack12-TRADE-cuda` |
-| `spacex-xai-h100-STACK12-H2H` | `h100-stack12-H2H` |
-| `spacex-xai-h100-WNSM-free-ride` | `h100-WNSM-free-ride` |
-| `spacex-xai-h100-LONGCTX-scaling` | `h100-LONGCTX-scaling` |
-| `spacex-xai-h100-BASELINE-vs-geo` | `h100-BASELINE-vs-geo` |
-| `spacex-xai-h100-2026-07-11` | `h100-serve-sustain-2026-07-11` |
+| Folder | Role |
+|--------|------|
+| `h100-7b-class-TRADE` | Primary 7B-class thr + J/token |
+| `h100-stack12-TRADE-cuda` | 12L device-resident energy |
+| `h100-stack12-H2H` | TRADE vs Flash honesty |
+| `h100-WNSM-free-ride` | Free-ride under load |
+| `h100-LONGCTX-scaling` | O(N) memory scaling |
+| `h100-BASELINE-vs-geo` | Single-layer baseline wedges |
+| `h100-serve-sustain-2026-07-11` | Serve sustain traces |
 
 GitHub URLs: `https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/<name>`
 
@@ -98,7 +98,7 @@ GitHub URLs: `https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/<nam
 ## Verification checklist
 
 - [ ] Every hero number links to a public pack  
-- [ ] Zero SpaceX/xAI/company codenames on site + pack titles  
+- [ ] Zero company diligence codenames on site + pack titles  
 - [ ] Seq=5 ~3.56 J/tok never leads  
 - [ ] Flash honesty visible on product/benchmarks  
 - [ ] Board ≠ wall plug stated  

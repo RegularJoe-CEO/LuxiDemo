@@ -16,8 +16,8 @@ Run this with **only** public LuxiDemo (no private repo access).
 
 ## Hard constraints
 
-- [ ] No SpaceX / xAI / diligence company names on site pages  
-- [ ] Evidence folder names are neutral (`h100-…`)  
+- [ ] No company diligence codenames on site pages or pack titles  
+- [ ] Evidence folder names are neutral (`h100-…` only)  
 - [ ] No raw H100 TFLOPS / 286B ops/sec as product heroes  
 - [ ] Board power ≠ wall plug stated on home + energy  
 - [ ] Every hero metric has a public pack link  
