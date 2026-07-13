@@ -1,4 +1,4 @@
-# SpaceX / xAI — TRADE CUDA H100 energy pack (2026-07-11)
+#TRADE CUDA H100 energy pack (2026-07-11)
 
 **Public:** https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/spacex-xai-h100-TRADE-cuda
 
