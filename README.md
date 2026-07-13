@@ -1,6 +1,6 @@
 # LuxiEdge (public demo + evidence)
 
-**Website (git-owned static rebuild):** [`site/`](site/) — human-readable pages for quant AI / data centers and a public energy story.  
+**Website (git-owned static rebuild):** [`site/`](site/) human-readable pages for quant AI / data centers and a public energy story.  
 **Preview:** `cd site && python3 -m http.server 8080` · see [`PUBLISH.md`](PUBLISH.md) for cutover notes (DNS deferred).  
 **Claims log:** [`CLAIMS_REGISTER.md`](CLAIMS_REGISTER.md)  
 **Public energy/thr packs:** [`Public 7B class Benchmark.md`](Public%207B%20class%20Benchmark.md) · `evidence/`
