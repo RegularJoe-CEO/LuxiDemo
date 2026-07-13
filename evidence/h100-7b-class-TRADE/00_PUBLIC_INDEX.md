@@ -1,4 +1,4 @@
-# Public: Qwen2-7B TRADE on H100 NVL
+# Public: 7B-class TRADE on H100 NVL (public)
 
 This pack is on **public** [LuxiDemo](https://github.com/RegularJoe-CEO/LuxiDemo) so external evaluators can open it without private-repo access.
 

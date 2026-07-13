@@ -1,7 +1,7 @@
-# SpaceX / xAI — H100 NVL evidence pack (public)
+# H100 NVL evidence pack (public)
 
 **Public repo:** https://github.com/RegularJoe-CEO/LuxiDemo  
-**Folder:** `evidence/spacex-xai-h100-2026-07-11/`
+**Folder:** `evidence/h100-serve-sustain-2026-07-11/`
 
 ## Open these first
 

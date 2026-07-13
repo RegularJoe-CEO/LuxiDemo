@@ -3,125 +3,148 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Luxi Demo</title>
-  <link rel="stylesheet" href="style.css">
+  <title>LuxiEdge — AI that uses less electricity</title>
+  <meta name="description" content="LuxiEdge: energy-aware AI for quant research, data centers, and the public. Measured savings. Share the story. Demand better from AI providers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-  <header>
-    <h1>Luxi Demo</h1>
-    <p class="lead">
-      Public demo builds for LuxiEdge math, Waller geodesic attention, orbital solves,
-      edge robotics, and energy-aware transformers. Same inputs give the same SHA256
-      hash across platforms. These binaries expire after 10 days.
-    </p>
-    <p class="note">Demo only. Not for production. Full operator sets require a license.</p>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">Lu(x)i<span>Edge</span></a>
+      <ul class="nav-links">
+        <li><a href="quant-research.html">Quant &amp; research</a></li>
+        <li><a href="data-centers.html">AI &amp; data centers</a></li>
+        <li><a href="help.html">We need your help</a></li>
+        <li><a href="proof.html">Proof</a></li>
+        <li><a class="cta-nav" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
   </header>
 
-  <nav class="tabs">
-    <button class="tab active" data-tab="luxiedge">LuxiEdge</button>
-    <button class="tab" data-tab="ate">ATE / Transformers</button>
-    <button class="tab" data-tab="orbital">Orbital</button>
-    <button class="tab" data-tab="robotics">Robotics</button>
-    <button class="tab" data-tab="energy">Energy</button>
-  </nav>
-
   <main>
-    <section id="luxiedge" class="panel active">
-      <h2>LuxiEdge Math Engine</h2>
-      <p>Deterministic vector math over HTTP. JSON in, results and SHA256 out.</p>
-
-      <div class="cards">
-        <div class="card">
-          <h3>LuxiEdge Lite</h3>
-          <p>12 core operators. Same API as the existing public build. Nothing breaks if you already use it.</p>
-          <a class="btn" href="https://github.com/RegularJoe-CEO/LuxiDemo/releases/latest/download/luxiedge-lite-macos-arm64">macOS ARM</a>
-          <a class="btn" href="https://github.com/RegularJoe-CEO/LuxiDemo/releases/latest/download/luxiedge-lite-linux-x86_64">Linux x86</a>
-          <a class="btn" href="https://github.com/RegularJoe-CEO/LuxiDemo/releases/latest/download/luxiedge-lite-linux-x86_64-gpu">Linux x86 GPU</a>
-          <a class="btn" href="https://github.com/RegularJoe-CEO/LuxiDemo/releases/latest/download/luxiedge-lite-linux-arm64">Linux ARM</a>
-          <a class="btn" href="https://github.com/RegularJoe-CEO/LuxiDemo/releases/latest/download/luxiedge-lite-windows-x86_64.exe">Windows</a>
+    <div class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Three audiences · one mission</p>
+        <h1>AI that uses less electricity — and proves it.</h1>
+        <p class="lede">
+          LuxiEdge is built for <strong>quant research</strong>, <strong>AI data centers</strong>,
+          and a <strong>public that can drive change</strong> by sharing the energy story
+          and asking providers why they are not measuring and cutting waste.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="help.html">We need your help →</a>
+          <a class="btn btn-secondary" href="data-centers.html">AI &amp; data centers</a>
+          <a class="btn btn-ghost" href="quant-research.html">Quant &amp; research</a>
         </div>
-        <div class="card highlight">
-          <h3>LuxiEdge Demo</h3>
-          <p>30 operators unlocked for testing. Clearly labeled demo only. The full 30+ operator build stays private.</p>
-          <a class="btn" href="https://github.com/RegularJoe-CEO/LuxiDemo/releases/latest/download/luxiedge-demo-macos-arm64">macOS ARM</a>
-          <a class="btn" href="https://github.com/RegularJoe-CEO/LuxiDemo/releases/latest/download/luxiedge-demo-linux-x86_64">Linux x86</a>
-          <a class="btn" href="https://github.com/RegularJoe-CEO/LuxiDemo/releases/latest/download/luxiedge-demo-linux-x86_64-gpu">Linux x86 GPU</a>
-          <a class="btn" href="https://github.com/RegularJoe-CEO/LuxiDemo/releases/latest/download/luxiedge-demo-linux-arm64">Linux ARM</a>
-          <a class="btn" href="https://github.com/RegularJoe-CEO/LuxiDemo/releases/latest/download/luxiedge-demo-windows-x86_64.exe">Windows</a>
+        <div class="metrics">
+          <div class="metric">
+            <div class="val">~403</div>
+            <div class="label">Tokens per second</div>
+            <div class="src"><a href="proof.html#benchmarks">Public measurement</a></div>
+          </div>
+          <div class="metric">
+            <div class="val">0.63</div>
+            <div class="label">Joules per token</div>
+            <div class="src"><a href="proof.html#benchmarks">Under sustained load</a></div>
+          </div>
+          <div class="metric">
+            <div class="val">~254 W</div>
+            <div class="label">Power during the work</div>
+            <div class="src">Full 28-layer stack</div>
+          </div>
+          <div class="metric">
+            <div class="val">O(N)</div>
+            <div class="label">Long-context memory scaling</div>
+            <div class="src"><a href="proof.html#benchmarks">vs dense O(N²)</a></div>
+          </div>
+        </div>
+        <p class="method">
+          Numbers from public multi-run benchmarks.
+          Full methods and downloads: <a href="proof.html">Proof</a>.
+        </p>
+      </div>
+    </div>
+
+    <section>
+      <div class="wrap">
+        <h2>A three-legged stool</h2>
+        <p class="sub">Pick the path that fits you. Every path can end in shareable proof.</p>
+        <div class="two-path" style="grid-template-columns: 1fr 1fr 1fr;">
+          <div class="card">
+            <h3>Quant &amp; research</h3>
+            <p>Determinism, audit trails, free-ride paths, long-context memory — for people who need methods, not slogans.</p>
+            <p style="margin-top:1rem"><a class="btn btn-secondary" href="quant-research.html">Science path →</a></p>
+          </div>
+          <div class="card accent">
+            <h3>AI &amp; data centers</h3>
+            <p>Power caps, density, measured joules-per-token under load, and a commercial path to evaluation.</p>
+            <p style="margin-top:1rem"><a class="btn btn-primary" href="data-centers.html">Operator path →</a></p>
+          </div>
+          <div class="card">
+            <h3>We need your help</h3>
+            <p>You don’t need a PhD. Share the energy story. Ask AI providers and data centers why they aren’t cutting waste.</p>
+            <p style="margin-top:1rem"><a class="btn btn-secondary" href="help.html">Public path →</a></p>
+          </div>
         </div>
       </div>
-
-      <h3>Quick start</h3>
-      <pre><code>chmod +x luxiedge-lite-macos-arm64
-./luxiedge-lite-macos-arm64 --port 9090</code></pre>
-      <pre><code>curl -X POST http://localhost:9090/evaluate \
-  -H "Content-Type: application/json" \
-  -d '{"expr":"sin(x)","values":[0.5,1.0,1.57,2.0,3.14],"precision":"f32"}'</code></pre>
-      <p>Run validation:</p>
-      <pre><code>./luxiedge-demo-macos-arm64 validate</code></pre>
     </section>
 
-    <section id="ate" class="panel">
-      <h2>Waller Geodesic Attention / ATE</h2>
-      <p>Deterministic transformer blocks with cryptographic receipts and energy reporting.</p>
-      <a class="btn" href="https://github.com/RegularJoe-CEO/LuxiDemo/releases/latest/download/luxi-tools-macos-arm64">Download luxi-tools</a>
-      <pre><code>./luxi-tools-macos-arm64 ate</code></pre>
-      <div class="screenshot">
-        <pre>NORMAL receipt: e1980a6fa77252dcab86e48aa7aa8ab2a6d3c5639789d0917e7efa1a7bb37628
-WNSM   receipt: e1980a6fa77252dcab86e48aa7aa8ab2a6d3c5639789d0917e7efa1a7bb37628
-Max output diff: 0.00e0
-Payload bytes avoided: 12288
-Est. joules saved: 2.20e-7
-Reference receipt match: YES</pre>
+    <section>
+      <div class="wrap">
+        <h2>What we measure — honestly</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>On the public record</h3>
+            <ul>
+              <li>Full <strong>28-layer 7B-class</strong> stack on H100</li>
+              <li>Multi-run throughput and energy per token</li>
+              <li>Supporting stack energy and free-ride tests</li>
+              <li>Long-context memory scaling (O(N) vs O(N²))</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>What we do not claim</h3>
+            <ul>
+              <li>Not a claim of chat-quality superiority over every model</li>
+              <li>Some standard stacks still win raw short-sequence speed</li>
+              <li>We differentiate on audit, memory scaling, and measured energy</li>
+              <li>Facility wall-plug power needs separate metering</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout">
+          <strong>We publish comparisons both ways.</strong>
+          See the <a href="proof.html">Proof</a> page for packs, tables, and downloads.
+        </div>
       </div>
     </section>
 
-    <section id="orbital" class="panel">
-      <h2>Orbital Solves</h2>
-      <p>Kepler, Vis-Viva, Hohmann, drag decay, J2 harmonics, Lambert approximations.</p>
-      <pre><code>./luxi-tools-macos-arm64 orbital</code></pre>
-      <div class="screenshot">
-        <pre>Kepler (E - e*sin(E))        SHA256: f9031616cf52afe1...
-Vis-Viva velocity            SHA256: 2d241f5fcfe0dab2...
-Hohmann transfer dV          SHA256: ...
-Lambert TOF approx           SHA256: ...</pre>
+    <section>
+      <div class="wrap">
+        <h2>Ready to act?</h2>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="help.html">Share the energy story</a>
+          <a class="btn btn-secondary" href="proof.html">See the proof</a>
+          <a class="btn btn-ghost" href="contact.html">Contact</a>
+        </div>
       </div>
-    </section>
-
-    <section id="robotics" class="panel">
-      <h2>Edge Robotics FSD</h2>
-      <p>Inverse kinematics, Kalman weighting, tire slip, motor torque, clothoid steering, lidar distance.</p>
-      <pre><code>./luxi-tools-macos-arm64 robotics</code></pre>
-    </section>
-
-    <section id="energy" class="panel">
-      <h2>Physics and Energy</h2>
-      <p>Energy savings from WNSM null-space payload transport. Tied to transformer and orbital workloads.</p>
-      <pre><code>./luxi-tools-macos-arm64 energy</code></pre>
-    </section>
-
-    <section class="validation-block">
-      <h2>Validation output</h2>
-      <p>Every binary can run the full validation suite. You get PASS/FAIL and matching SHA hashes.</p>
-      <pre><code>./luxi-tools-macos-arm64 validate</code></pre>
-      <div class="screenshot">
-        <pre>LuxiEdge lite: sin(x)                PASS  0243d52127de37af...
-Transformer block (WNSM)             PASS  e1980a6fa77252dc...
-GPT-2 124M config preset             PASS  52cb6d0334f2
-Llama2 7B config preset              PASS  568f2a897fed
-------------------------------------------------------------
-PASSED: 25   FAILED: 0</pre>
-      </div>
-      <p>Each download includes a <code>.sha256</code> checksum file. Verify before you run:</p>
-      <pre><code>shasum -a 256 -c luxiedge-demo-macos-arm64.sha256</code></pre>
     </section>
   </main>
 
-  <footer>
-    <p>Questions or licensing: <a href="mailto:e@ewaller.com">e@ewaller.com</a></p>
-    <p><a href="https://github.com/RegularJoe-CEO/LuxiDemo">GitHub repo</a> · <a href="https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/v3.0">v3.0 release</a></p>
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <strong style="color:var(--text)">LuxiEdge</strong><br>
+        Eric Waller · <a href="mailto:e@ewaller.com">e@ewaller.com</a>
+      </div>
+      <div>
+        Public proof:
+        <a href="https://github.com/RegularJoe-CEO/LuxiDemo">github.com/RegularJoe-CEO/LuxiDemo</a>
+      </div>
+    </div>
   </footer>
-
-  <script src="tabs.js"></script>
 </body>
 </html>

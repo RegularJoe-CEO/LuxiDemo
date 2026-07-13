@@ -1,6 +1,6 @@
-# SpaceX / xAI — WNSM free-ride under GPU load (2026-07-11)
+# WNSM free-ride under GPU load (2026-07-11)
 
-**Public:** https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/spacex-xai-h100-WNSM-free-ride
+**Public:** https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-WNSM-free-ride
 
 This pack targets the **differentiated thesis**: null-space payload bus (WNSM) under real CUDA load — not short-seq thr vs Flash.
 

@@ -1,6 +1,6 @@
-# SpaceX / xAI — TRADE CUDA H100 energy pack (2026-07-11)
+# TRADE CUDA H100 energy pack (2026-07-11)
 
-**Public:** https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/spacex-xai-h100-TRADE-cuda
+**Public:** https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-stack12-TRADE-cuda
 
 ## Headline (pynvml while CUDA is loaded)
 
@@ -53,6 +53,6 @@ LUXI_DECODE_SUSTAIN=gen_resident_batch LUXI_SUSTAIN_SEC=10 \
 - GPT-2-small **width** residual stack (12/768/12/3072), not full HF GPT-2 124M.
 - Power = single GPU board power.draw (pynvml), not whole-pod AC wall.
 - J/token = median_W × wall_s / tokens in sustain loop.
-- CPU AUDIT pack (GPU idle): `evidence/spacex-xai-h100-2026-07-11/`
+- CPU AUDIT pack (GPU idle): `evidence/h100-serve-sustain-2026-07-11/`
 
 Contact: Eric Waller · e@ewaller.com

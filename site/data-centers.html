@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI & data centers — LuxiEdge</title>
+  <meta name="description" content="LuxiEdge for AI data centers: measured energy savings under load, deterministic audited compute, honest throughput. Public packs.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">Lu(x)i<span>Edge</span></a>
+      <ul class="nav-links">
+        <li><a href="quant-research.html">Quant &amp; research</a></li>
+        <li><a href="data-centers.html" aria-current="page">AI &amp; data centers</a></li>
+        <li><a href="help.html">We need your help</a></li>
+        <li><a href="proof.html">Proof</a></li>
+        <li><a class="cta-nav" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">AI &amp; data centers</p>
+        <h1>Save energy. Keep determinism. Ship thr you can defend.</h1>
+        <p class="lede">
+          The story for operators is not “we won a FLOPS contest.”
+          It is <strong>measured electricity cost per unit of AI work</strong>, plus
+          <strong>deterministic, auditable compute</strong> for multi-tenant and regulated paths —
+          with <strong>honest throughput</strong>, not thr-only marketing.
+        </p>
+      </div>
+    </div>
+
+    <section>
+      <div class="wrap">
+        <h2>The headline for your power budget</h2>
+        <p class="sub">
+          Facilities pay for watts and cooling. If your stack cannot show
+          <strong>joules per token under sustained load</strong>, you are flying blind on the bill
+          that actually constrains capacity.
+        </p>
+        <div class="metrics">
+          <div class="metric">
+            <div class="val">0.63</div>
+            <div class="label">Joules per token</div>
+            <div class="src">7B-class · multi-run · public pack</div>
+          </div>
+          <div class="metric">
+            <div class="val">~403</div>
+            <div class="label">Tokens per second</div>
+            <div class="src">Same protocol · seq=128</div>
+          </div>
+          <div class="metric">
+            <div class="val">~254 W</div>
+            <div class="label">Power while work runs</div>
+            <div class="src">Full 28-layer stack</div>
+          </div>
+          <div class="metric">
+            <div class="val">Public</div>
+            <div class="label">Methods + traces</div>
+            <div class="src"><a href="proof.html">Open Proof →</a></div>
+          </div>
+        </div>
+        <div class="callout" style="margin-top:1.25rem">
+          <strong>Energy is the product story for data centers.</strong>
+          Determinism is how you trust the result across tenants, re-runs, and audits.
+          Throughput matters — but thr without a joule number is only half a dashboard.
+        </div>
+        <p class="method">
+          H100 NVL · full stack under sustained load · energy from measured power × time / tokens.
+          <a href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-7b-class-TRADE">Pack →</a>
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>Two pillars (not a thr-only pitch)</h2>
+        <div class="grid-2">
+          <div class="card accent">
+            <h3>1. Energy under load</h3>
+            <ul>
+              <li>Joules per token you can open in a public pack</li>
+              <li>Sustained work — not launch-tax microbenches as the hero</li>
+              <li>Power while the stack is actually running</li>
+              <li>Same method language the public uses to pressure providers</li>
+            </ul>
+          </div>
+          <div class="card accent">
+            <h3>2. Determinism &amp; audit</h3>
+            <ul>
+              <li>Receipt-oriented paths where trust matters</li>
+              <li>Free-ride / residual checks under load</li>
+              <li>Reproducible story for multi-tenant and regulated AI</li>
+              <li>Methods you can re-run — not “it looked about the same”</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>Where speed fits (honestly)</h2>
+        <p class="sub">
+          LuxiEdge is <strong>not</strong> “ignore thr.” Product measurements show solid prefill thr at realistic sequence lengths
+          (~400 tok/s class on the public 7B-class pack). The positioning is:
+        </p>
+        <div class="grid-2">
+          <div class="card">
+            <h3>What we optimize for</h3>
+            <p>
+              <strong>Energy cost of work</strong> + <strong>deterministic trust</strong>,
+              with thr that holds up under the protocols we publish.
+              Long-context <strong>memory scaling (O(N) vs O(N²))</strong> when context is the silent capacity killer.
+            </p>
+          </div>
+          <div class="card">
+            <h3>What we do not pretend</h3>
+            <p>
+              We do <strong>not</strong> claim we always beat Flash-class kernels on every short-seq thr race.
+              On a published 12-layer head-to-head, a PyTorch + Flash baseline can win thr and J/token on that shape —
+              and we <a href="proof.html#benchmarks">show that loss</a>.
+              Differentiated axes: audit paths, memory scaling, and full-stack energy you can verify.
+            </p>
+          </div>
+        </div>
+        <div class="callout warn" style="margin-top:1.25rem">
+          <strong>Operator takeaway:</strong> choose LuxiEdge when the bill and the audit trail matter as much as the leaderboard.
+          If pure short-seq thr is the only KPI, say so in diligence — we will not invent a thr win we did not measure.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>Why operators evaluate us</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Power caps are real</h3>
+            <p>Rack and site power — not TFLOPS slides — decide how much AI you can sell. J/token is how you plan.</p>
+          </div>
+          <div class="card">
+            <h3>Trust is multi-tenant</h3>
+            <p>Deterministic paths and receipts reduce “it drifted” incidents across customers and re-runs.</p>
+          </div>
+          <div class="card">
+            <h3>Public pressure is coming</h3>
+            <p>
+              Communities and customers are asking about AI electricity.
+              See <a href="help.html">We need your help</a> — the same numbers work for operators and the public.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Proof before NDA</h3>
+            <p>Headline metrics link to public packs. Commercial depth and source under NDA when you are ready.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>Next step</h2>
+        <ol style="color:var(--muted); padding-left:1.25rem; max-width:60ch">
+          <li style="margin:0.4rem 0">Read <a href="proof.html">Proof</a> — energy tables and packs first.</li>
+          <li style="margin:0.4rem 0">Map your power cap and thr SLO to the public ladder (seq≥128 as product thr/energy).</li>
+          <li style="margin:0.4rem 0">Technical discussion for on-prem / cloud evaluation and joint metering.</li>
+        </ol>
+        <div class="cta-row" style="margin-top:1.5rem">
+          <a class="btn btn-primary" href="contact.html">Request technical discussion</a>
+          <a class="btn btn-secondary" href="proof.html">See the energy numbers</a>
+          <a class="btn btn-ghost" href="help.html">Public energy campaign</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>Eric Waller · <a href="mailto:e@ewaller.com">e@ewaller.com</a></div>
+      <div>Energy + determinism. Honest thr. Public packs.</div>
+    </div>
+  </footer>
+</body>
+</html>

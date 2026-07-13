@@ -1,6 +1,6 @@
-# SpaceX / xAI — Long-context / scaling pack (H100 NVL host, 2026-07-11)
+# Long-context / scaling pack (H100 NVL host, 2026-07-11)
 
-**Public:** https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/spacex-xai-h100-LONGCTX-scaling
+**Public:** https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-LONGCTX-scaling
 
 Closes the remaining diligence gap: **O(N) vs O(N²) memory behavior** at multi-k / 32k context — without a 30+ min 131k CPU timing slog.
 

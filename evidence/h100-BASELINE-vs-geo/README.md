@@ -1,6 +1,6 @@
-# SpaceX / xAI — Baseline comparison pack (H100 NVL, 2026-07-11)
+# Baseline comparison pack (H100 NVL, 2026-07-11)
 
-**Public:** https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/spacex-xai-h100-BASELINE-vs-geo
+**Public:** https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-BASELINE-vs-geo
 
 Same hardware, same width (h=768, heads=12, mlp=3072), seq=1024 — **single-layer** energy microbench via `benchmarks/benchmark_joules.py`.
 
@@ -35,7 +35,7 @@ Attention-only (not full layer): Flash SDPA 0.047 ms · math SDPA 0.155 ms.
 
 | Pack | What it measures |
 |------|------------------|
-| `spacex-xai-h100-TRADE-cuda` | **12-layer device-resident stack** prefill + decode sustain → ~0.0131 / 0.0077 J/tok, GPU ~170–177 W |
+| `h100-stack12-TRADE-cuda` | **12-layer device-resident stack** prefill + decode sustain → ~0.0131 / 0.0077 J/tok, GPU ~170–177 W |
 | **This pack** | **Single-layer** geodesic vs PyTorch/Flash head-to-head + morph wedges |
 
 They answer different diligence questions. Both are needed.

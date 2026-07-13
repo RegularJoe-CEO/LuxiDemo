@@ -1,6 +1,6 @@
-# SpaceX / xAI — 12-layer stack H2H (TRADE vs PyTorch+Flash)
+# 12-layer stack H2H (TRADE vs PyTorch+Flash)
 
-**Public:** https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/spacex-xai-h100-STACK12-H2H  
+**Public:** https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-stack12-H2H  
 **Date:** 2026-07-11 · **GPU:** NVIDIA H100 NVL · **Method:** pynvml board power, J = median_W × wall_s
 
 ## Shape (identical both sides)

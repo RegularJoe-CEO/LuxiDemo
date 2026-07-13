@@ -1,4 +1,4 @@
-# Qwen2-7B TRADE — H100 NVL diligence pack
+# 7B-class TRADE — H100 NVL public benchmark pack
 
 **Hardware:** 1× NVIDIA H100 NVL (RunPod)  
 **Model:** `Qwen/Qwen2-7B-Instruct` → LuxiEdge native (**28L × h=3584**)  

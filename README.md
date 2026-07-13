@@ -1,8 +1,26 @@
-# LuxiEdge
+# LuxiEdge (public demo + evidence)
 
-Deterministic vector math. JSON in, results out, SHA256 hash on every response.
+**Website (git-owned static rebuild):** [`site/`](site/) — human-readable pages for quant AI / data centers and a public energy story.  
+**Preview:** `cd site && python3 -m http.server 8080` · see [`PUBLISH.md`](PUBLISH.md) for cutover notes (DNS deferred).  
+**Claims log:** [`CLAIMS_REGISTER.md`](CLAIMS_REGISTER.md)  
+**Public energy/thr packs:** [`Public 7B class Benchmark.md`](Public%207B%20class%20Benchmark.md) · `evidence/`
 
-Same input gives identical output across CPU, GPU, ARM, x86. Bit-for-bit. No floating point drift between platforms.
+### Product headline (public 7B-class TRADE on H100 NVL)
+
+| Metric | Value | Protocol |
+|--------|------:|----------|
+| Prefill thr | **~403 tok/s** | sustain_seq=128, multi-run |
+| J/token | **0.630 ± 0.002** | sustain-only NVML board W |
+| Median board W | **~254 W** | same |
+
+Lead with seq≥128. Seq=5 ~3.56 J/tok is launch-tax microbench only.  
+Board power ≠ wall-plug AC. Flash may win short thr — see `evidence/h100-stack12-H2H`.
+
+---
+
+## Deterministic math demo
+
+JSON in, results out, SHA256 hash on every response. Same input gives identical output across CPU, GPU, ARM, x86 on the demo path.
 
 ## Download
 

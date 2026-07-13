@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quant & research — LuxiEdge</title>
+  <meta name="description" content="LuxiEdge for quant and research: TRADE stacks, AUDIT/receipts, WNSM free-ride, O(N) long-context memory, convert+serve.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">Lu(x)i<span>Edge</span></a>
+            <ul class="nav-links">
+        <li><a href="quant-research.html" aria-current="page">Quant &amp; research</a></li>
+        <li><a href="data-centers.html">AI &amp; data centers</a></li>
+        <li><a href="help.html">We need your help</a></li>
+        <li><a href="proof.html">Proof</a></li>
+        <li><a class="cta-nav" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Quant &amp; research</p>
+        <h1>Auditable attention paths. Measured energy. Public packs.</h1>
+        <p class="lede">
+          Infrastructure for deterministic, receipt-attested, energy-aware AI compute —
+          with numbers you can open on GitHub.
+        </p>
+      </div>
+    </div>
+
+    <section>
+      <div class="wrap">
+        <h2>Core capabilities</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>TRADE residual stacks</h3>
+            <p>Device-resident GPU stacks for multi-layer residual compute. Public 7B-class path: <strong style="color:var(--text)">28 layers × h=3584</strong> on H100 NVL with multi-run thr and sustain-only J/token.</p>
+          </div>
+          <div class="card">
+            <h3>AUDIT &amp; receipts</h3>
+            <p>Where the product lane demands it: cryptographic receipts, free-ride residual checks, and null-space behavior under load — not just marketing “determinism.”</p>
+          </div>
+          <div class="card">
+            <h3>WNSM free-ride</h3>
+            <p>Null-space payload bus under real CUDA load. Public pack: free-ride vs side-channel H2D, null residual ~1e-8 class, single-layer null-inject drift 0 in the stack test path.</p>
+          </div>
+          <div class="card">
+            <h3>Long-context O(N) memory</h3>
+            <p>Waller streaming state scales ~O(N) in memory vs dense scores ~O(N²). Public ladder through 32k (and analytical 131k memory reduction).</p>
+          </div>
+          <div class="card">
+            <h3>Convert + serve path</h3>
+            <p>HF → Luxi native convert for 7B-class weights; serve and TRADE examples for operator evaluation. Implementation lives in the engineering repo; <strong style="color:var(--text)">proof is public on LuxiDemo</strong>.</p>
+          </div>
+          <div class="card">
+            <h3>Deterministic math demo</h3>
+            <p>Standalone binary: JSON expressions in, results + SHA256 out. Useful for integration smoke tests — secondary to the inference-energy thesis on this site.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>Where we win vs where we are honest</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Axis</th><th>Status</th><th>Public proof</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>7B-class board J/token @ seq≥128</td>
+                <td>~0.63 J/tok · ~403 tok/s</td>
+                <td><a href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-7b-class-TRADE">h100-7b-class-TRADE</a></td>
+              </tr>
+              <tr>
+                <td>Short-seq thr vs Flash</td>
+                <td>Flash-class may win (published H2H loss)</td>
+                <td><a href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-stack12-H2H">h100-stack12-H2H</a></td>
+              </tr>
+              <tr>
+                <td>Free-ride / AUDIT under load</td>
+                <td>Differentiated thesis</td>
+                <td><a href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-WNSM-free-ride">h100-WNSM-free-ride</a></td>
+              </tr>
+              <tr>
+                <td>Long-ctx memory scaling</td>
+                <td>O(N) vs O(N²)</td>
+                <td><a href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-LONGCTX-scaling">h100-LONGCTX-scaling</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout">
+          <strong>Not HF chat SOTA.</strong> The 7B-class TRADE path maps architecture into TRADE kernels (e.g. GQA/SwiGLU into the GELU-MHA TRADE path). Use it for energy / stack evaluation, not as a drop-in chat quality claim.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>Next steps</h2>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="proof.html#benchmarks">See the proof</a>
+          <a class="btn btn-secondary" href="data-centers.html">Data-center buyer page</a>
+          <a class="btn btn-ghost" href="contact.html">Talk to us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>Eric Waller · <a href="mailto:e@ewaller.com">e@ewaller.com</a></div>
+      <div><a href="https://github.com/RegularJoe-CEO/LuxiDemo">Public LuxiDemo</a></div>
+    </div>
+  </footer>
+</body>
+</html>

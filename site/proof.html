@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Proof — LuxiEdge</title>
+  <meta name="description" content="Public evidence packs, benchmarks, and demo downloads for LuxiEdge.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">Lu(x)i<span>Edge</span></a>
+      <ul class="nav-links">
+        <li><a href="quant-research.html">Quant &amp; research</a></li>
+        <li><a href="data-centers.html">AI &amp; data centers</a></li>
+        <li><a href="help.html">We need your help</a></li>
+        <li><a href="proof.html" aria-current="page">Proof</a></li>
+        <li><a class="cta-nav" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Evidence · benchmarks · download</p>
+        <h1>Proof you can open — no NDA required for the headlines.</h1>
+        <p class="lede">
+          Every material number on this site points here: public packs, measured tables, and demo binaries.
+        </p>
+        <div class="cta-row" style="margin-top:1rem">
+          <a class="btn btn-primary" href="#benchmarks">Benchmarks</a>
+          <a class="btn btn-secondary" href="#packs">Evidence packs</a>
+          <a class="btn btn-ghost" href="#download">Download</a>
+        </div>
+      </div>
+    </div>
+
+    <section id="benchmarks">
+      <div class="wrap">
+        <h2>Benchmarks</h2>
+        <p class="sub">
+          Results from public LuxiDemo evidence on H100 hardware (2026-07-11).
+          Open any pack to inspect methods and raw traces.
+        </p>
+        <h3 style="font-family:var(--display);color:var(--text);margin:1.25rem 0 0.5rem;font-size:1.1rem">7B-class TRADE — energy &amp; throughput</h3>
+        <p class="sub" style="margin-bottom:0.75rem">
+          Hardware: 1× NVIDIA H100 NVL · 28-layer stack ·
+          <a href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-7b-class-TRADE">public pack</a>.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Sequence length</th>
+                <th>Tokens / sec</th>
+                <th>Joules / token</th>
+                <th>Median power (W)</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>5</td><td>~44</td><td>3.560 ± 0.005</td><td>~156</td><td>Short-burst reference</td></tr>
+              <tr><td>32</td><td>~221</td><td>—</td><td>—</td><td>Throughput sweep</td></tr>
+              <tr><td>64</td><td>~359</td><td>—</td><td>—</td><td>Throughput sweep</td></tr>
+              <tr class="row-highlight"><td>128</td><td>~403</td><td>0.630 ± 0.002</td><td>~254</td><td>Primary result</td></tr>
+              <tr><td>256</td><td>~464</td><td>~0.604</td><td>~280</td><td>Longer context</td></tr>
+              <tr><td>512</td><td>~493</td><td>—</td><td>—</td><td>Throughput sweep</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="method">Primary multi-run at sequence length 128. Source: <code>evidence/h100-7b-class-TRADE/</code></p>
+
+        <h3 style="font-family:var(--display);color:var(--text);margin:2rem 0 0.5rem;font-size:1.1rem">Head-to-head with a Flash baseline</h3>
+        <p class="sub">12 layers · sequence 1024 · h=768 · ~10 s each side.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Metric</th><th>TRADE 12L</th><th>PyTorch + Flash 12L</th><th>Ratio</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Median power (W)</td><td>177.2</td><td>176.4</td><td>~1.0×</td></tr>
+              <tr><td>ms / stack forward</td><td>74.32</td><td>3.90</td><td>TRADE 19.1× slower</td></tr>
+              <tr><td>Prefill tok/s</td><td>13778</td><td>262859</td><td>PT 19.1× higher</td></tr>
+              <tr><td>Joules / token</td><td>0.0129</td><td>0.0007</td><td>TRADE 19.2× higher</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="footnote">
+          <a href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-stack12-H2H">h100-stack12-H2H</a> —
+          we publish where a standard baseline wins on this shape.
+        </p>
+
+        <h3 style="font-family:var(--display);color:var(--text);margin:2rem 0 0.5rem;font-size:1.1rem">Long-context memory</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Sequence length</th><th>Waller state (MB)</th><th>Dense scores (MB)</th><th>Reduction</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1,024</td><td>0.52</td><td>8.4</td><td>16×</td></tr>
+              <tr><td>4,096</td><td>2.1</td><td>134</td><td>64×</td></tr>
+              <tr><td>8,192</td><td>4.2</td><td>537</td><td>128×</td></tr>
+              <tr><td>32,768</td><td>16.8</td><td>4,295</td><td>256×</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="method">
+          Memory scales near-linearly vs dense O(N²).
+          <a href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-LONGCTX-scaling">Pack →</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="packs">
+      <div class="wrap">
+        <h2>Evidence packs</h2>
+        <p class="sub">Open on GitHub. Read methods. Check traces.</p>
+        <a class="pack" href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-7b-class-TRADE">
+          <span class="tag">Lead pack</span>
+          <h3>h100-7b-class-TRADE</h3>
+          <p>Full 28-layer 7B-class TRADE stack. Multi-run thr + energy (~0.63 J/tok @ seq=128, ~403 tok/s).</p>
+        </a>
+        <a class="pack" href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-stack12-TRADE-cuda">
+          <span class="tag">Energy</span>
+          <h3>h100-stack12-TRADE-cuda</h3>
+          <p>Device-resident 12-layer stack energy (GPT-2 width).</p>
+        </a>
+        <a class="pack" href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-stack12-H2H">
+          <span class="tag">Honesty</span>
+          <h3>h100-stack12-H2H</h3>
+          <p>TRADE vs PyTorch Flash — we publish the loss on this shape.</p>
+        </a>
+        <a class="pack" href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-WNSM-free-ride">
+          <span class="tag">AUDIT</span>
+          <h3>h100-WNSM-free-ride</h3>
+          <p>Null-space free-ride under GPU load.</p>
+        </a>
+        <a class="pack" href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-LONGCTX-scaling">
+          <span class="tag">Memory</span>
+          <h3>h100-LONGCTX-scaling</h3>
+          <p>O(N) vs O(N²) memory ladder + CUDA 32k.</p>
+        </a>
+        <a class="pack" href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-BASELINE-vs-geo">
+          <span class="tag">Micro</span>
+          <h3>h100-BASELINE-vs-geo</h3>
+          <p>Single-layer baseline wedges — not a 7B thr claim.</p>
+        </a>
+        <a class="pack" href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-serve-sustain-2026-07-11">
+          <span class="tag">Serve</span>
+          <h3>h100-serve-sustain-2026-07-11</h3>
+          <p>Continuous-batch serve sustain with power traces.</p>
+        </a>
+        <p style="margin-top:1rem">
+          <a class="btn btn-secondary" href="https://github.com/RegularJoe-CEO/LuxiDemo">Open LuxiDemo on GitHub</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="download">
+      <div class="wrap">
+        <h2>Download</h2>
+        <p class="sub">
+          Public demo builds for the expression/receipt path. Demo only — not production inference.
+          Energy claims live in the packs above, not only inside these binaries.
+        </p>
+        <a class="btn btn-primary" href="https://github.com/RegularJoe-CEO/LuxiDemo/releases/latest">Open latest release →</a>
+        <div class="grid-2" style="margin-top:1.5rem">
+          <div class="card">
+            <h3>LuxiEdge Lite / Demo</h3>
+            <p>macOS ARM, Linux x86 (CPU/GPU), Linux ARM, Windows — from the public release channel.</p>
+          </div>
+          <div class="card">
+            <h3>Quick start</h3>
+<pre>chmod +x luxiedge-*-macos-arm64
+./luxiedge-*-macos-arm64 --port 9090
+
+curl -X POST http://localhost:9090/evaluate \
+  -H "Content-Type: application/json" \
+  -d '{"expr":"sin(x)","values":[0.5,1.0],"precision":"f32"}'</pre>
+          </div>
+        </div>
+        <div class="callout">
+          <strong>Demo binaries may expire.</strong> Full operator sets require a license —
+          <a href="contact.html">contact</a>.
+        </div>
+        <div class="cta-row" style="margin-top:1.25rem">
+          <a class="btn btn-secondary" href="help.html">We need your help</a>
+          <a class="btn btn-ghost" href="data-centers.html">AI &amp; data centers</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>Eric Waller · <a href="mailto:e@ewaller.com">e@ewaller.com</a></div>
+      <div><a href="https://github.com/RegularJoe-CEO/LuxiDemo">github.com/RegularJoe-CEO/LuxiDemo</a></div>
+    </div>
+  </footer>
+</body>
+</html>
