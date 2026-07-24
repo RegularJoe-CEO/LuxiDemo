@@ -1,0 +1,32 @@
+{
+  "runs": [
+    {
+      "file": "RUN_1.log",
+      "first_token": "first_token_id=17861 piece=\" nonatomic\"",
+      "text": " nonatomic",
+      "completion_tokens": 1,
+      "backend_lines": [
+        "ATTN_BACKEND_USED=flash ATTN_FALLBACK_COUNT=0"
+      ]
+    },
+    {
+      "file": "RUN_2.log",
+      "first_token": "first_token_id=17861 piece=\" nonatomic\"",
+      "text": " nonatomic",
+      "completion_tokens": 1,
+      "backend_lines": [
+        "ATTN_BACKEND_USED=flash ATTN_FALLBACK_COUNT=0"
+      ]
+    },
+    {
+      "file": "RUN_3.log",
+      "first_token": "first_token_id=17861 piece=\" nonatomic\"",
+      "text": " nonatomic",
+      "completion_tokens": 1,
+      "backend_lines": [
+        "ATTN_BACKEND_USED=flash ATTN_FALLBACK_COUNT=0"
+      ]
+    }
+  ],
+  "stable": true
+}

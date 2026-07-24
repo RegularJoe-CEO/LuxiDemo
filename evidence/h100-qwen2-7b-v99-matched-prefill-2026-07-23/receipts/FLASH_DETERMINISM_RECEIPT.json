@@ -1,0 +1,50 @@
+{
+  "flash_attn_version": "2.8.3.post1",
+  "torch_version": "2.4.1+cu124",
+  "cuda": "12.4",
+  "device": "NVIDIA H100 80GB HBM3",
+  "checks": {
+    "B1": {
+      "batch": 1,
+      "seq": 128,
+      "heads": 28,
+      "head_dim": 128,
+      "max_abs_vs_serial_oracle": 2.837926149368286e-05,
+      "mean_abs_vs_serial_oracle": 8.150556141117704e-07,
+      "numerical_contract": "max_abs < 0.05 vs f32 serial online-softmax (not bit-exact)",
+      "numerical_pass": true,
+      "cross_seq_contam_seq0_vs_solo": 0.0,
+      "cross_seq_other_abs_max": 0.0,
+      "cross_seq_pass": true,
+      "hashes": [
+        "e95bf53229a86ed6",
+        "e95bf53229a86ed6",
+        "e95bf53229a86ed6"
+      ],
+      "hash_stable": true,
+      "hash_contract": "stable preferred; if unstable document FA nondeterminism"
+    },
+    "B32": {
+      "batch": 32,
+      "seq": 128,
+      "heads": 28,
+      "head_dim": 128,
+      "max_abs_vs_serial_oracle": 2.8595328330993652e-05,
+      "mean_abs_vs_serial_oracle": 8.149397103807132e-07,
+      "numerical_contract": "max_abs < 0.05 vs f32 serial online-softmax (not bit-exact)",
+      "numerical_pass": true,
+      "cross_seq_contam_seq0_vs_solo": 0.0,
+      "cross_seq_other_abs_max": 0.0,
+      "cross_seq_pass": true,
+      "hashes": [
+        "ef003a51775472e0",
+        "ef003a51775472e0",
+        "ef003a51775472e0"
+      ],
+      "hash_stable": true,
+      "hash_contract": "stable preferred; if unstable document FA nondeterminism"
+    }
+  },
+  "overall_pass": true,
+  "hash_all_stable": true
+}

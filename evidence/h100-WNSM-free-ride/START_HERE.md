@@ -2,7 +2,7 @@
 
 **Public:** https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-WNSM-free-ride
 
-This pack targets the **differentiated thesis**: null-space payload bus (WNSM) under real CUDA load — not short-seq thr vs Flash.
+This pack targets the **differentiated thesis**: null-space payload bus (WNSM) under real CUDA load  -  not short-seq thr vs Flash.
 
 ## Headline
 
@@ -20,7 +20,7 @@ This pack targets the **differentiated thesis**: null-space payload bus (WNSM) u
 
 **Honest:** Layer-1 ON vs OFF primary-output drift is **not** 0.00e0 in this TRADE bench path (~1e-2). Payload recovery is ~1e-7. GPU is active (~93 W median).
 
-### B) 12-layer stack free-ride vs side-channel (seq=1024, pd=64) — **key result**
+### B) 12-layer stack free-ride vs side-channel (seq=1024, pd=64)  -  **key result**
 
 | Metric | Value |
 |--------|------:|
@@ -84,7 +84,7 @@ LUXI_NPOW_FAST=1 cargo run --release --example npow_scaling_proof
 
 ## Honest gaps remaining
 
-- Layer-1 TRADE OFF vs ON **full output drift ~1e-2** (not bit-exact across that comparison) — stack inject path reports **0.000e0**.
+- Layer-1 TRADE OFF vs ON **full output drift ~1e-2** (not bit-exact across that comparison)  -  stack inject path reports **0.000e0**.
 - Not a vLLM/TRT baseline; not 7B model.
 - Modeled HBM joules are **model** (20 pJ/byte), separate from pynvml board W.
 

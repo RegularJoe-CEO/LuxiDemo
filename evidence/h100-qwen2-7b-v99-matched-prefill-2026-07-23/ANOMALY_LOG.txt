@@ -1,0 +1,16 @@
+Anomaly and deviation log
+Started: 2026-07-23T15:04:42+00:00
+
+2026-07-23T15:15:14+00:00 T0 / protocol 6.1
+nvidia-smi -q -d MIG returns non-zero on this GPU (MIG not supported).
+Query split into two commands; MIG section captured separately with
+exit code suppressed. MIG state also recorded via mig.mode.current
+in T0_IDENTITY.txt. No data lost, no blocker under section 6.4.
+
+2026-07-23T18:25:17+00:00 T0 / protocol 6.3
+Clean rebuild SHA256 differs from both reference values in the protocol.
+Obtained:  ed828a908a6f20b5e4645c19497a1948ffd805d546dc5ab4a4a3e10166287c92
+Protocol clean-clone reference: ea4b6f8ac2e8b40bbd65903c8c6d00d7f8202ed17caee98a7bdeae433a0c0f6b
+Protocol champion reference:    cce7928038daa9248ffc989e0a4dbe04a2c5b93c0cc1829260ff278219003480
+Commit pin exact, working tree clean, build succeeded, Flash backend
+active, fallback count zero on every run. Permitted by section 6.3.

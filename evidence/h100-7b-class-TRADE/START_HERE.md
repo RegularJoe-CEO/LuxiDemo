@@ -1,4 +1,4 @@
-# 7B-class TRADE — H100 NVL public benchmark pack
+# 7B-class TRADE  -  H100 NVL public benchmark pack
 
 **Hardware:** 1× NVIDIA H100 NVL (RunPod)  
 **Model:** `Qwen/Qwen2-7B-Instruct` → LuxiEdge native (**28L × h=3584**)  
@@ -28,11 +28,11 @@ That number is from **sustain_seq=5** (3×5 min multirun in this pack root). At 
 | sustain_seq | tok/s (approx) | J/tok (NVML) | Notes |
 |------------:|---------------:|-------------:|-------|
 | 5 | ~44 | **3.560 ± 0.005** | original 3×300s pack (root `run_1..3`) |
-| 32 | ~221 | — | thr sweep |
-| 64 | ~359 | — | thr sweep |
+| 32 | ~221 |  -  | thr sweep |
+| 64 | ~359 |  -  | thr sweep |
 | **128** | **~403** | **0.630** | **lead with this** (`thr_sustain_seq128/`) |
 | 256 | ~464 | **~0.604** | `thr_sustain_seq256/` |
-| 512 | ~493 | — | thr sweep |
+| 512 | ~493 |  -  | thr sweep |
 
 Full ladder: `thr_sweep/LADDER.json`.
 
@@ -57,8 +57,8 @@ Full ladder: `thr_sweep/LADDER.json`.
 | Path | Purpose |
 |------|---------|
 | `START_HERE.md` | This file |
-| `thr_sustain_seq128/` | **Product thr/energy** — 2×60s @ seq=128 |
-| `thr_sustain_seq256/` | Longer-ctx thr/energy — 30s @ seq=256 |
+| `thr_sustain_seq128/` | **Product thr/energy**  -  2×60s @ seq=128 |
+| `thr_sustain_seq256/` | Longer-ctx thr/energy  -  30s @ seq=256 |
 | `thr_sweep/LADDER.json` | Seq ladder + framing |
 | `AGGREGATE.json` + `run_1..3/` | Original 3×300s @ **seq=5** (microbench) |
 | `SHA256SUMS` | Integrity (regenerated) |

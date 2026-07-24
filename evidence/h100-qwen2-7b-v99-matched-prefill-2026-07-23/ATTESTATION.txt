@@ -1,0 +1,8 @@
+No LuxiEdge or vLLM source code was modified during this engagement.
+Repository checked out detached at commit
+d9ad7e06ff727440a1237e9fbb709d8bad0ba452 with a clean working tree.
+No packages were installed, removed, upgraded, or downgraded.
+No run was omitted, discarded, or substituted. All executed runs appear
+in the delivered evidence tree.
+
+Date: 2026-07-23T18:27:11+00:00

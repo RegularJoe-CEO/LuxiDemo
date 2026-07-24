@@ -11,11 +11,11 @@
 4. **Idle baseline (~63.65 W):** [idle_power_30s.txt](./idle_power_30s.txt)
 5. **GPU inventory / power limit:** [nvidia_smi_power.txt](./nvidia_smi_power.txt)
 
-## One-line honesty
+## Measurement scope
 
 Live power = **single-GPU board `power.draw` via nvidia-smi** (absolute watts, not whole-pod wall plug, not Δ-idle).  
 Median under continuous-batch load ≈ **63.74 W** ≈ idle board (~63.65 W) because this serve path is **CPU continuous-batch**, not full CUDA FLOPs.  
-City-block **0.0125 / 0.0075 J/token** are **constants** from Phase-1 H100 measurements applied in software — not ∫P dt from this serve run.
+City-block **0.0125 / 0.0075 J/token** are **constants** from Phase-1 H100 measurements applied in software  -  not ∫P dt from this serve run.
 
 ## Contact
 

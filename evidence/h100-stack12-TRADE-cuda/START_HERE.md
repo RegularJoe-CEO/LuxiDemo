@@ -8,7 +8,7 @@
 |-------|---------------:|---------------:|------------------:|
 | Prefill 12L @1024 device-resident | **177.0 W** | **0.0131** | 135168 |
 | Decode gen_resident_batch (2048 + 64) | **169.0 W** | **0.0077** | 218624 |
-| Job estimate 1024 prefill + 64 decode | — | — | **13.93 J** |
+| Job estimate 1024 prefill + 64 decode |  -  |  -  | **13.93 J** |
 
 | Comparison | Value |
 |------------|------:|
