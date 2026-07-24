@@ -1,4 +1,4 @@
-# H100 NVL continuous-batch sustain — power trace + exact commands
+# H100 NVL continuous-batch sustain  -  power trace + exact commands
 
 **Date:** 2026-07-11 (UTC)  
 **Host GPU:** 1× NVIDIA H100 NVL (UUID `GPU-66f4edbd-61e6-9d1c-2690-11a0f3c11c3f`)  
@@ -12,15 +12,19 @@
 
 | Question | Answer |
 |----------|--------|
-| Source | `nvidia-smi --query-gpu=power.draw --format=csv,noheader,nounits` every ~500 ms inside the server (`src/serve/power.rs`) |
+| Source | `nvidia-smi --query-gpu=power.draw --format=csv,noheader,nounits` every approximately 500 ms |
 | Scope | **Single GPU board instantaneous power.draw** (NVML path via nvidia-smi CLI) |
 | Whole pod / wall plug? | **No** |
-| Delta above idle? | **No** — absolute board watts, not subtracted |
-| During this serve run | GPU **not** heavily utilized (serve path is **CPU toy continuous-batch**, not CUDA kernels) — board sits ~**63.5–64.1 W**, similar to idle sample |
+| Delta above idle? | **No**  -  absolute board watts, not subtracted |
+| During this serve run | The GPU was **not heavily utilized**. This was a CPU continuous-batch path, not a CUDA inference path. Board power remained approximately **63.5 to 64.1 W**, similar to the idle sample. |
 
-**Idle baseline (post-run, 30 s, 0.5 s sample):** median **63.65 W** (min 63.63 / max 63.67) — see `idle_power_30s.txt`.
+**Idle baseline (post-run, 30 s, 0.5 s sample):** median **63.65 W** (min 63.63 / max 63.67)  -  see `idle_power_30s.txt`.
 
-**Implication for diligence:** the **63.74 W median under “load” is board-idle-class power**, not a claim of full-H100 FLOPs energy. City-block **0.0125 / 0.0075 J/token** on responses are **constants from Phase-1 H100 measurements**, applied in software — **not** `∫ power dt` from this serve run.
+**Measurement note:** the **63.74 W median under load is board-idle-class
+power**, not a measurement of a fully utilized H100. The **0.0125 / 0.0075
+J/token** values in responses are constants from earlier H100 measurements
+applied in software. They are not calculated from `∫ power dt` during this
+serve run.
 
 ---
 
@@ -35,7 +39,7 @@ export PATH=$HOME/.cargo/bin:/usr/local/cuda/bin:$PATH
 export LUXI_SERVE_THREADS=64
 export LUXI_RECEIPT_AUDIT=1
 export LUXI_TRADE_ENERGY=1
-# (CUDA_ARCH not set for this serve binary — serve_v05 is CPU continuous-batch + nvidia-smi power sampling)
+# (CUDA_ARCH not set for this serve binary  -  serve_v05 is CPU continuous-batch + nvidia-smi power sampling)
 
 # Build / run server
 cargo build --release --example serve_v05
@@ -62,7 +66,7 @@ python3 scripts/serve_sustain_load.py \
 - Server p50/p99 latency (Prometheus): **2.48 / 4.47 ms**  
 - Avg prefill ≈ **1916** tokens/req · avg decode ≈ **32** tokens/req (from lifetime counters)
 
-**Model under this serve path (critical honesty):**
+**Model used by this serve path:**
 - **Not** GPT-2 124M weights  
 - Deterministic **toy** continuous-batch engine (`ServeEngine` / toy chat) for AUDIT + serving shape  
 - Energy fields on responses use **city-block constants**, not live ∫P  
@@ -73,7 +77,7 @@ python3 scripts/serve_sustain_load.py \
 
 | File | Contents |
 |------|----------|
-| **`power_trace_sustain_30m.csv`** | **Primary power trace** — 180 rows, ~every 10 s over 30 min (`luxi_gpu_power_watts`) |
+| **`power_trace_sustain_30m.csv`** | **Primary power trace**  -  180 rows, ~every 10 s over 30 min (`luxi_gpu_power_watts`) |
 | `serve_sustain_30m.json` | Full summary + raw `metrics_series` (same power samples as JSON) |
 | `metrics_sustain_final.txt` | Final Prometheus `/metrics` scrape after sustain |
 | `serve_sustain_server.log` | Server boot log (includes `live power: … nvidia-smi`) |
@@ -91,7 +95,7 @@ python3 scripts/serve_sustain_load.py \
 
 ```bash
 export LUXI_RECEIPT_AUDIT=1 LUXI_TRADE_ENERGY=1
-# 12L / h=768 / heads=12 / mlp=3072 residual-MLP + AdamW + corpus.txt — NOT full GPT-2 124M
+# 12L / h=768 / heads=12 / mlp=3072 residual-MLP + AdamW + corpus.txt  -  NOT full GPT-2 124M
 python3 scripts/scale_train_joules_pod.py 2000
 ```
 

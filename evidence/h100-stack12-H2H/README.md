@@ -9,7 +9,7 @@
 
 | Side | Implementation |
 |------|----------------|
-| **TRADE** | `cuda_stack_device_resident_audit` — device-resident residual stack (CUDA) |
+| **TRADE** | `cuda_stack_device_resident_audit`  -  device-resident residual stack (CUDA) |
 | **Baseline** | PyTorch 12× pre-norm LN+QKV+**Flash SDPA** (causal)+GELU MLP **fp16** |
 
 ## Head-to-head results
@@ -21,7 +21,10 @@
 | Prefill tokens / s | **13778** | **262859** | PT **19.1×** higher thr |
 | **J / token (board)** | **0.0129** | **0.0007** | **19.2×** (TRADE higher) |
 
-**Bottom line:** On this multi-layer prefill workload, **highly optimized PyTorch FP16 + FlashAttention beats the current TRADE stack** on both throughput and board J/token. GPU power is similar (~176–177 W) — TRADE loses on **work per joule / wall time**, not on “GPU idle.”
+**Result:** On this multi-layer prefill workload, **PyTorch FP16 with
+FlashAttention is faster and uses less board energy per token than the tested
+TRADE stack**. GPU power is similar at approximately 176 to 177 W. The
+difference is work completed per unit of time and energy.
 
 We publish this **without spin**. It is the multi-layer baseline comparison requested after the single-layer microbench.
 
@@ -44,9 +47,9 @@ python3 scripts/stack12_h2h_baseline.py --sec 10 --out-dir stack12_h2h
 
 ## Files
 
-- `STACK12_H2H_SUMMARY.json` — full numbers
+- `STACK12_H2H_SUMMARY.json`  -  full numbers
 - `power_trace_trade_12L.csv` / `power_trace_pytorch_12L.csv`
-- `dmon.csv` — SM util / power @ 1 Hz
+- `dmon.csv`  -  SM util / power @ 1 Hz
 - `run.log`
 
 ## Honest scope

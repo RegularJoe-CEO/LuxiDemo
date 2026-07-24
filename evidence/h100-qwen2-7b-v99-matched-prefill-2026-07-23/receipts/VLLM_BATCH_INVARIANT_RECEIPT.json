@@ -1,0 +1,329 @@
+{
+  "vllm_version": "0.25.1",
+  "torch_version": "2.11.0+cu130",
+  "torch_cuda": "13.0",
+  "device": "NVIDIA H100 80GB HBM3",
+  "model": "/workspace/hf/qwen2-7b-instruct-luxi",
+  "batch_invariant_env": "1",
+  "batch_invariant_runtime": true,
+  "dtype": "float16",
+  "prefix_cache": false,
+  "batch": 16,
+  "seq": 128,
+  "max_new_tokens": 1,
+  "repeat_hashes": [
+    "691c07bfa577413827319499602f975a4f5fe0cc0869e16a0079fab28cf7eb8b",
+    "691c07bfa577413827319499602f975a4f5fe0cc0869e16a0079fab28cf7eb8b",
+    "691c07bfa577413827319499602f975a4f5fe0cc0869e16a0079fab28cf7eb8b"
+  ],
+  "repeat_hash_stable": true,
+  "batch_composition_stable": true,
+  "batch_order_stable": true,
+  "solo_target": {
+    "token_ids": [
+      9625
+    ],
+    "text": " France"
+  },
+  "batch_target": {
+    "token_ids": [
+      9625
+    ],
+    "text": " France"
+  },
+  "reference_map": {
+    "target": {
+      "token_ids": [
+        9625
+      ],
+      "text": " France"
+    },
+    "companion_00": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_01": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_02": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_03": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_04": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_05": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_06": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_07": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_08": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_09": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_10": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_11": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_12": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_13": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_14": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    }
+  },
+  "reversed_map": {
+    "companion_14": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_13": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_12": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_11": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_10": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_09": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_08": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_07": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_06": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_05": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_04": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_03": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_02": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_01": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_00": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "target": {
+      "token_ids": [
+        9625
+      ],
+      "text": " France"
+    }
+  },
+  "shuffled_map": {
+    "companion_06": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_04": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_10": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_01": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_09": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_07": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_03": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_12": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_14": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_13": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_02": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "target": {
+      "token_ids": [
+        9625
+      ],
+      "text": " France"
+    },
+    "companion_08": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_05": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_00": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    },
+    "companion_11": {
+      "token_ids": [
+        576
+      ],
+      "text": " The"
+    }
+  },
+  "overall_pass": true
+}

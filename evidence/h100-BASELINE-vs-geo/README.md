@@ -2,7 +2,7 @@
 
 **Public:** https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-BASELINE-vs-geo
 
-Same hardware, same width (h=768, heads=12, mlp=3072), seq=1024 — **single-layer** energy microbench via `benchmarks/benchmark_joules.py`.
+Same hardware, same width (h=768, heads=12, mlp=3072), seq=1024  -  **single-layer** energy microbench via `benchmarks/benchmark_joules.py`.
 
 ## Head-to-head (layer forward, pynvml)
 
@@ -10,13 +10,15 @@ Same hardware, same width (h=768, heads=12, mlp=3072), seq=1024 — **single-lay
 |------|----------:|---------------:|--------:|
 | **[A] Geodesic TRADE fused layer** | 5.304 | 72.5 | **3.753e-04** |
 | **[B] PyTorch unfused full layer (fp16)** | 0.414 | 98.5 | **3.978e-05** |
-| **[A]/[B] J/token ratio** | — | — | **0.106** |
+| **[A]/[B] J/token ratio** |  -  |  -  | **0.106** |
 
-**Interpretation:** ratio **0.106 < 1** ⇒ at this **single-layer** microbench, unfused PyTorch FP16 uses **less** board J/token than the current geodesic fused layer path. We publish that honestly.
+**Interpretation:** ratio **0.106 < 1**. In this **single-layer**
+microbenchmark, unfused PyTorch FP16 uses less board J/token than the tested
+geodesic fused-layer path.
 
 Attention-only (not full layer): Flash SDPA 0.047 ms · math SDPA 0.155 ms.
 
-## Where TRADE shows wins (different regime — same run)
+## Where TRADE shows wins (different regime  -  same run)
 
 | Wedge | Result |
 |-------|--------|
@@ -27,7 +29,7 @@ Attention-only (not full layer): Flash SDPA 0.047 ms · math SDPA 0.155 ms.
 
 | Metric | Value |
 |--------|------:|
-| Power range (dmon) | 63–108 W |
+| Power range (dmon) | 63-108 W |
 | SM util max % (1 Hz) | 1.0 |
 | Note | Short kernels under-sample at 1 Hz; prefer pynvml power samples in JSON |
 
@@ -35,10 +37,10 @@ Attention-only (not full layer): Flash SDPA 0.047 ms · math SDPA 0.155 ms.
 
 | Pack | What it measures |
 |------|------------------|
-| `h100-stack12-TRADE-cuda` | **12-layer device-resident stack** prefill + decode sustain → ~0.0131 / 0.0077 J/tok, GPU ~170–177 W |
+| `h100-stack12-TRADE-cuda` | **12-layer device-resident stack** prefill + decode sustain → ~0.0131 / 0.0077 J/tok, GPU ~170-177 W |
 | **This pack** | **Single-layer** geodesic vs PyTorch/Flash head-to-head + morph wedges |
 
-They answer different diligence questions. Both are needed.
+Each pack covers a different workload and measurement boundary.
 
 ## Exact command
 

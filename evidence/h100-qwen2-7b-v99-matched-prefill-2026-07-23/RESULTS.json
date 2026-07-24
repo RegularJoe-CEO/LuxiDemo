@@ -1,0 +1,59 @@
+{
+  "schema": "luxi.public_evidence.v1",
+  "date": "2026-07-23",
+  "validation": {
+    "operator": "TESTfort technician",
+    "technician_attestation_present": true,
+    "formal_signed_narrative": "pending"
+  },
+  "source_commit": "d9ad7e06ff727440a1237e9fbb709d8bad0ba452",
+  "hardware": {
+    "gpu": "NVIDIA H100 80GB HBM3",
+    "count": 1,
+    "power_limit_W": 700
+  },
+  "workload": {
+    "model": "Qwen2-7B-Instruct",
+    "batch": 16,
+    "sequence_length": 128,
+    "work_unit": "prefill positions",
+    "prefix_cache": false,
+    "vllm_max_new_tokens": 1,
+    "energy_boundary": "NVML cumulative GPU-board energy over hot window"
+  },
+  "medians": {
+    "luxiedge": {
+      "positions_per_s": 28374.6687,
+      "J_per_position": 0.01871770568555622
+    },
+    "vllm_default": {
+      "positions_per_s": 35203.09034370681,
+      "J_per_position": 0.019315997929536095
+    },
+    "vllm_batch_invariant": {
+      "positions_per_s": 30914.33946565446,
+      "J_per_position": 0.02060387478298611
+    }
+  },
+  "comparisons": {
+    "luxi_vs_vllm_default": {
+      "throughput_ratio": 0.8060,
+      "luxi_energy_advantage_pct": 3.10
+    },
+    "luxi_vs_vllm_batch_invariant": {
+      "throughput_ratio": 0.9178,
+      "luxi_energy_advantage_pct": 9.15
+    },
+    "vllm_batch_invariant_cost_vs_default": {
+      "throughput_loss_pct": 12.18,
+      "J_per_position_increase_pct": 6.67
+    }
+  },
+  "scope": [
+    "prefill positions, not generated serving tokens",
+    "GPU-board energy, not facility or wall-plug electricity",
+    "no LuxiEdge throughput win",
+    "no independent reverse-order T1 arm in retained third-party tree"
+  ]
+}
+

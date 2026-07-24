@@ -2,7 +2,8 @@
 
 **Public:** https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-LONGCTX-scaling
 
-Closes the remaining diligence gap: **O(N) vs O(N²) memory behavior** at multi-k / 32k context — without a 30+ min 131k CPU timing slog.
+This pack measures **O(N) versus O(N²) memory behavior** at multi-k and 32k
+context lengths.
 
 ## Headline
 
@@ -10,7 +11,7 @@ Closes the remaining diligence gap: **O(N) vs O(N²) memory behavior** at multi-
 
 | Model | Log-log slope | Interpretation |
 |-------|--------------:|----------------|
-| **Waller streaming state** | **~1.000** (analytical) / **~1.003** (measured 256–8192) | **O(N)** |
+| **Waller streaming state** | **~1.000** (analytical) / **~1.003** (measured 256-8192) | **O(N)** |
 | **Dense N×N score matrix** | **~2.000** / **~2.002** | **O(N²)** |
 
 | seq | Waller state MB | Dense scores MB | Reduction |
@@ -22,7 +23,8 @@ Closes the remaining diligence gap: **O(N) vs O(N²) memory behavior** at multi-
 | 131 072 | 67.1 | 68 719 | **1024.0×** (analytical; 131k *timing* skipped) |
 
 NPOW witness (fast gate): mem slopes **1.000 / 2.000**, reduction **42.7×** @ 8192 anchor.  
-WNSM bus recovery of NPOW: max_diff **4.77e-07** this host (honest; not bit-zero here).
+WNSM bus recovery of NPOW: max_diff **4.77e-07** on this host. This result is
+not bit-zero.
 
 ### Measured CPU long_context_bench (head_dim=64)
 
@@ -58,20 +60,21 @@ LUXI_NPOW_FAST=1 ./target/release/examples/npow_scaling_proof
 ./target/release/examples/cuda_longctx_attn_bench
 ```
 
-**Skipped on purpose:** full NPOW 131k wall-clock timing (~15–45 min CPU). Analytical ladder still includes 131k memory reduction.
+The full NPOW 131k wall-clock timing was not run. The analytical ladder
+includes the 131k memory estimate.
 
 ## Files
 
 - `LONGCTX_SCALING_SUMMARY.json`
-- `mem_ladder.csv` — 512 → 131072 memory table
-- `long_context_bench.log` — measured 256–8192
-- `npow_fast.log` — O(N)/O(N²) witness
-- `cuda_longctx_32k.json` + `.log` — 32k GPU run + pynvml
+- `mem_ladder.csv`  -  512 → 131072 memory table
+- `long_context_bench.log`  -  measured 256-8192
+- `npow_fast.log`  -  O(N)/O(N²) witness
+- `cuda_longctx_32k.json` + `.log`  -  32k GPU run + pynvml
 
 ## Honest bounds
 
 - Memory O(N) vs O(N²) is the primary long-ctx claim; **time** is not claimed O(N) for full-seq recompute.
-- 131k **memory** reduction is analytical/extrapolated from the same formulas validated at 256–8192.
-- CUDA 32k run is clustered long-ctx path with mesh contact-byte accounting — not a full HF 7B model.
+- 131k **memory** reduction is analytical/extrapolated from the same formulas validated at 256-8192.
+- CUDA 32k run is clustered long-ctx path with mesh contact-byte accounting  -  not a full HF 7B model.
 
 Contact: Eric Waller · e@ewaller.com

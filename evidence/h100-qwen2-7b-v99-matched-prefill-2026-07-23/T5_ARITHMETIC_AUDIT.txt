@@ -1,0 +1,81 @@
+=== T1 vLLM default: 5 run(s) ===
+  run 1: positions=2117632 [OK] pos/s=35280.8 (reported 35280.8) J/pos=0.019193 (reported 0.019193) pos/J=52.1 meanW=677.1
+  run 2: positions=2101248 [OK] pos/s=35020.7 (reported 35020.7) J/pos=0.019323 (reported 0.019323) pos/J=51.8 meanW=676.7
+  run 3: positions=2107392 [OK] pos/s=35100.4 (reported 35100.4) J/pos=0.019338 (reported 0.019338) pos/J=51.7 meanW=678.8
+  run 4: positions=2125824 [OK] pos/s=35404.0 (reported 35404.0) J/pos=0.019194 (reported 0.019194) pos/J=52.1 meanW=679.5
+  run 5: positions=2113536 [OK] pos/s=35203.1 (reported 35203.1) J/pos=0.019316 (reported 0.019316) pos/J=51.8 meanW=680.0
+  MEDIAN pos/s = 35203.1
+  MEDIAN J/pos = 0.019316
+  MEDIAN pos/J = 51.8
+
+=== T2 vLLM batch-invariant: 3 run(s) ===
+  run 1: positions=931840 [OK] pos/s=31054.8 (reported 31054.8) J/pos=0.020433 (reported 0.020433) pos/J=48.9 meanW=634.5
+  run 2: positions=921600 [OK] pos/s=30713.3 (reported 30713.3) J/pos=0.020604 (reported 0.020604) pos/J=48.5 meanW=632.8
+  run 3: positions=927744 [OK] pos/s=30914.3 (reported 30914.3) J/pos=0.020660 (reported 0.020660) pos/J=48.4 meanW=638.7
+  MEDIAN pos/s = 30914.3
+  MEDIAN J/pos = 0.020604
+  MEDIAN pos/J = 48.5
+
+=== T4 vLLM default soak: 1 run(s) ===
+  run 1: positions=21321728 [OK] pos/s=35533.9 (reported 35533.9) J/pos=0.019180 (reported 0.019180) pos/J=52.1 meanW=681.5
+  MEDIAN pos/s = 35533.9
+  MEDIAN J/pos = 0.019180
+  MEDIAN pos/J = 52.1
+
+=== T1 LuxiEdge: 5 run(s) ===
+  run 1: positions=1658880 [OK] pos/s=27646.9 (reported 27646.9) J/pos=0.018810 (reported 0.018810) pos/J=53.2 meanW=520.0
+  run 2: positions=1669120 [OK] pos/s=27656.4 (reported 27656.4) J/pos=0.018923 (reported 0.018923) pos/J=52.8 meanW=523.3
+  run 3: positions=1705984 [OK] pos/s=28431.0 (reported 28431.0) J/pos=0.018672 (reported 0.018672) pos/J=53.6 meanW=530.9
+  run 4: positions=1712128 [OK] pos/s=28408.8 (reported 28408.8) J/pos=0.018718 (reported 0.018718) pos/J=53.4 meanW=531.7
+  run 5: positions=1708032 [OK] pos/s=28374.7 (reported 28374.7) J/pos=0.018701 (reported 0.018701) pos/J=53.5 meanW=530.6
+  MEDIAN pos/s = 28374.7
+  MEDIAN J/pos = 0.018718
+  MEDIAN pos/J = 53.4
+
+=== T4 LuxiEdge soak: 1 run(s) ===
+  run 1: positions=16887808 [OK] pos/s=28145.1 (reported 28145.1) J/pos=0.018851 (reported 0.018851) pos/J=53.0 meanW=530.6
+  MEDIAN pos/s = 28145.1
+  MEDIAN J/pos = 0.018851
+  MEDIAN pos/J = 53.0
+
+============================================================
+TABLE A - vLLM mode cost (protocol 8.4)
+  default vLLM median pos/s        = 35203.1
+  batch-invariant median pos/s     = 30914.3
+  throughput loss %                = 12.18
+  default vLLM median J/pos        = 0.019316
+  batch-invariant median J/pos     = 0.020604
+  J/position increase %            = 6.67
+
+TABLE B - LuxiEdge vs batch-invariant vLLM (protocol 8.4)
+  Luxi median pos/s                = 28374.7
+  batch-invariant median pos/s     = 30914.3
+  Luxi speed ratio                 = 0.9178
+  Luxi median J/pos                = 0.018718
+  batch-invariant median J/pos     = 0.020604
+  Luxi energy advantage %          = 9.15
+
+PRIMARY GATE (protocol 7.4)
+  Luxi/default speed ratio         = 0.8060  [PASS vs >= 0.75]
+  Luxi J/pos <= default vLLM J/pos = 0.018718 vs 0.019316  [PASS]
+  Luxi energy advantage vs default = 3.10%
+
+STRONG-SIGNAL THRESHOLDS (protocol 8.4, reported independently)
+  BI throughput loss >= 10%        = 12.18%  [PASS]
+  BI J/position increase >= 5%     = 6.67%  [PASS]
+  Luxi ratio vs BI >= 0.85         = 0.9178  [PASS]
+  Luxi J/pos >= 5% lower than BI   = 9.15%  [PASS]
+
+SOAK STABILITY (protocol 10.2, threshold +/-3%)
+  LuxiEdge: throughput drift = -0.81%  [PASS]
+  LuxiEdge: J/position drift = +0.71%  [PASS]
+  vLLM default: throughput drift = +0.94%  [PASS]
+  vLLM default: J/position drift = -0.71%  [PASS]
+
+LOCAL ANOMALY-DETECTION RANGE (protocol 11, +/-5%)
+  vLLM default pos/s: 35203.1 vs local 35000.5 = +0.58% [within 5%]
+  vLLM default J/pos: 0.019316 vs local 0.019265 = +0.26% [within 5%]
+  Luxi pos/s: 28374.7 vs local 27132.8 = +4.58% [within 5%]
+  Luxi J/pos: 0.0187177 vs local 0.018975 = -1.36% [within 5%]
+  vLLM BI pos/s: 30914.3 vs local 30686.6 = +0.74% [within 5%]
+  vLLM BI J/pos: 0.0206039 vs local 0.020487 = +0.57% [within 5%]
