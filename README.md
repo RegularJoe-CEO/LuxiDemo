@@ -22,54 +22,61 @@ This repository has two jobs:
 2. Publish evidence packs that show exactly what was measured, including
    historical experiments that remain important to the development record.
 
-## Current measured result
+## Current measured result (version-100 GTM)
 
-TESTfort-operated Version 99 measurement, 2026-07-23:
+**Progress after TESTfort Version 99:** Flash-class attention + device-resident stack + FP16 on the TRADE energy path. On the same prefill protocol class (Qwen2-7B, S=128, H100 board joules), LuxiEdge now **wins thr and board energy** vs vLLM.
 
-| Configuration | Prefill positions/s | GPU-board J/position | LuxiEdge comparison |
-|---|---:|---:|---|
-| **LuxiEdge Version 99** | **28,374.7** | **0.018718** | n/a |
-| vLLM 0.25.1, default | 35,203.1 | 0.019316 | **80.60%** throughput; **3.10% lower** board energy |
-| vLLM 0.25.1, batch-invariant | 30,914.3 | 0.020604 | **91.78%** throughput; **9.15% lower** board energy |
+Multi-run lock (5×15 s sustains · NVML board joules · det score = multi-run token agreement):
 
-**Measured scope:** Qwen2-7B-Instruct, batch 16, sequence length 128,
-packed-prefill positions, one NVIDIA H100 80GB, prefix caching off, cumulative
-NVML GPU-board energy. These are not decode tokens, full-serving throughput, or
-facility/wall-plug electricity. LuxiEdge did not win throughput in either
-comparison.
+| Batch | Thr median (pos/s) | Board J/pos | Det | vs vLLM thr | vs vLLM J/pos |
+|------:|-------------------:|------------:|----:|------------:|--------------:|
+| **16** | **~39,865** | **~0.0168** | **1.0** | **~1.17×** | **~10% lower** |
+| **32** | **~42,967** | **~0.0160** | **1.0** | **~1.18×** | **~14% lower** |
 
-Open the claim-bearing pack:
-[`h100-qwen2-7b-v99-matched-prefill-2026-07-23`](evidence/h100-qwen2-7b-v99-matched-prefill-2026-07-23/).
-The technician attestation and selected raw arithmetic/receipt files are
-included. The formal signed TESTfort narrative remains pending.
+**Pack:** [`evidence/version-100-h100-gtm/`](evidence/version-100-h100-gtm/)  
+**One-pager:** [`PUBLIC_GTM_ONE_PAGER.md`](evidence/version-100-h100-gtm/PUBLIC_GTM_ONE_PAGER.md)  
+**H2H brief:** [`PUBLIC_H2H_PREFILL_ENERGY_BRIEF.md`](evidence/version-100-h100-gtm/PUBLIC_H2H_PREFILL_ENERGY_BRIEF.md)
 
-## Run the public demos
+Scope: prefill positions (iters × batch × seq), single GPU board energy — not decode-only, not multi-tenant full-server leadership, not wall-plug.
 
-The v3.0 release contains compiled evaluation binaries for macOS ARM64, Linux
-x86-64, Linux ARM64, Windows x86-64, and a Linux GPU-labelled build.
+### Prior third-party baseline (TESTfort Version 99, 2026-07-23)
+
+Independent evaluation of the **earlier** stack: thr still trailed vLLM; board energy slightly better; det + soak held. Kept for honesty and lineage:
+
+[`h100-qwen2-7b-v99-matched-prefill-2026-07-23`](evidence/h100-qwen2-7b-v99-matched-prefill-2026-07-23/) — LuxiEdge ~28,374.7 pos/s @ 0.018718 J/pos (B16); ~80.6% of default vLLM thr with ~3.1% lower board J/pos.
+
+## Run the public demos (no source)
+
+### A) Commercial serve + locked scoreboard (version-100)
+
+Stripped binary — OpenAI-shaped HTTP + `GET /v1/gtm` embeds the multi-run lock. **No engine source.**
+
+```bash
+# From repo (or GitHub release assets)
+chmod +x site/downloads/luxiedge-serve-macos-arm64   # or linux-x86_64
+./site/downloads/luxiedge-serve-macos-arm64 --bind 127.0.0.1:8787
+
+curl -s http://127.0.0.1:8787/v1/gtm | python3 -m json.tool
+curl -s -X POST http://127.0.0.1:8787/v1/completions \
+  -H 'content-type: application/json' \
+  -d '{"prompt":"Why measure joules per token?","max_tokens":24}'
+curl -s -X POST http://127.0.0.1:8787/v1/audit -d '{}'
+```
+
+- Site page: [`site/demo.html`](site/demo.html) · live: https://luxiedge.com/demo.html (after Replit publish)
+- Package: [`demo/luxiedge-yc-demo/`](demo/luxiedge-yc-demo/)
+- Release: [version-100-serve](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/version-100-serve) (when published)
+
+### B) Numerical / quant demos (v3.0)
 
 ```bash
 # Linux x86-64 example
 chmod +x luxiedge-demo-linux-x86_64 luxi-tools-linux-x86_64
-
 ./luxiedge-demo-linux-x86_64 validate
-./luxiedge-demo-linux-x86_64 list
-
-./luxi-tools-linux-x86_64 validate
-./luxi-tools-linux-x86_64 ate
-./luxi-tools-linux-x86_64 orbital
-./luxi-tools-linux-x86_64 robotics
 ./luxi-tools-linux-x86_64 energy
 ```
 
-The public Linux x86-64 v3.0 binaries were downloaded, checksum-matched, and
-smoke-tested on 2026-07-23. Both validation entrypoints reported **25 passed,
-0 failed**. See
-[`docs/demo-receipts/v3.0-linux-x86_64-2026-07-23.md`](docs/demo-receipts/v3.0-linux-x86_64-2026-07-23.md).
-
-Download: [v3.0 release](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/v3.0)
-
-Full instructions: [`DEMOS.md`](DEMOS.md)
+Download: [v3.0 release](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/v3.0) · Full catalog: [`DEMOS.md`](DEMOS.md)
 
 ## Demo and product map
 
@@ -79,7 +86,9 @@ Full instructions: [`DEMOS.md`](DEMOS.md)
 | ATE / Waller / WNSM primitives | `luxi-tools ate` and `energy` | **Working binary demo** |
 | Quant/statistical operators | `validate`, `quant_chain`, Welford, normalization operators | **Working binary demo** |
 | Scientific and edge examples | Orbital and robotics commands | **Working binary demo** |
-| LuxiEdge Version 99 inference | Public evidence verifier; full engine remains private | **Third-party measured evidence** |
+| LuxiEdge serve scoreboard (v100) | Stripped HTTP binary + `/v1/gtm` lock | **Working binary demo (no source)** |
+| LuxiEdge Version 100 TRADE thr/J | Multi-run H100 pack; engine private | **Measured evidence (wins thr+J vs vLLM)** |
+| LuxiEdge Version 99 inference | TESTfort prior baseline; thr trailed vLLM | **Third-party measured lineage** |
 | Faithful Qwen2-7B CUDA | Website reports current acceptance result | **Raw public correctness pack pending** |
 | Llama 3.1 resident inference | No public performance binary or energy pack | **Internal milestone** |
 | LuxiPack | Public demo not yet published | **In development** |
@@ -95,8 +104,9 @@ measurement boundary.
 
 The historical work has **not** been deleted or hidden.
 
-- **Current third-party measurement:** Version 99 matched-prefill pack.
-- **Current runnable demonstrations:** v3.0 binary receipt and commands.
+- **Current GTM measurement:** version-100 multi-run thr+J+det + H2H vs vLLM.
+- **Prior third-party measurement:** Version 99 TESTfort matched-prefill pack.
+- **Current runnable demonstrations:** version-100 serve binary + v3.0 numerical tools.
 - **Independent numerical-engine evaluation:** linked and separately scoped.
 - **Historical transformer research:** July 2026 TRADE, Flash comparison,
   WNSM, long-context, and sustain packs, preserved under `evidence/`.

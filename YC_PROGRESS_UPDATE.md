@@ -46,14 +46,15 @@ TESTfort independently measured an earlier LuxiEdge stack at ~28.4k prefill posi
 
 | Item | URL |
 |------|-----|
-| **Demo (primary)** | https://luxiedge.com/demo.html |
-| macOS binary | https://luxiedge.com/downloads/luxiedge-serve-macos-arm64 |
-| Linux binary | https://luxiedge.com/downloads/luxiedge-serve-linux-x86_64 |
-| Evidence | https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/version-100-h100-gtm |
-| Site proof | https://luxiedge.com/proof.html#v100 |
+| **Evidence (primary, always live)** | https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/version-100-h100-gtm |
+| **Demo package (binary, no source)** | https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/demo/luxiedge-yc-demo |
+| **macOS binary (raw)** | https://github.com/RegularJoe-CEO/LuxiDemo/raw/main/site/downloads/luxiedge-serve-macos-arm64 |
+| **Linux binary (raw)** | https://github.com/RegularJoe-CEO/LuxiDemo/raw/main/site/downloads/luxiedge-serve-linux-x86_64 |
+| **Release assets** | https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/version-100-serve |
+| **Site demo page** | https://luxiedge.com/demo.html *(after you publish `site/` to Replit)* |
 | Contact | e@ewaller.com |
 
-*If Replit deploy lags GitHub, use the GitHub evidence URL immediately and the demo.html URL after you publish `site/`.*
+*YC can use the GitHub evidence + raw binary links immediately. Replit is only needed for the pretty luxiedge.com/demo.html page.*
 
 ---
 

@@ -4,7 +4,27 @@ Luxi demos are distributed as **compiled evaluation binaries**. Evaluators can
 run the tools, supply inputs, inspect outputs, and compare SHA-256 receipts
 without receiving the private implementation source.
 
-## Download and verify
+## Demo 0: version-100 commercial serve + GTM scoreboard (current)
+
+**Binary only — no engine source.** OpenAI-shaped HTTP API with locked H100 thr/J/det on `GET /v1/gtm`.
+
+| Platform | Binary in repo |
+|----------|----------------|
+| macOS ARM64 | [`site/downloads/luxiedge-serve-macos-arm64`](site/downloads/luxiedge-serve-macos-arm64) |
+| Linux x86_64 | [`site/downloads/luxiedge-serve-linux-x86_64`](site/downloads/luxiedge-serve-linux-x86_64) |
+
+```bash
+chmod +x luxiedge-serve-macos-arm64
+./luxiedge-serve-macos-arm64 --bind 127.0.0.1:8787
+curl -s http://127.0.0.1:8787/v1/gtm | python3 -m json.tool
+curl -s -X POST http://127.0.0.1:8787/v1/audit -d '{}'
+```
+
+- Page: [`site/demo.html`](site/demo.html) · package: [`demo/luxiedge-yc-demo/`](demo/luxiedge-yc-demo/)
+- Evidence: [`evidence/version-100-h100-gtm/`](evidence/version-100-h100-gtm/)
+- Local generate path is a toy engine for instant API demos; thr/J numbers on `/v1/gtm` are the **measured H100 multi-run lock**.
+
+## Download and verify (numerical v3.0)
 
 Download the matching files from the
 [v3.0 release](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/v3.0):

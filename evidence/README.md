@@ -4,19 +4,24 @@ This index separates **current claims**, **working demonstrations**, and
 **historical research**. Historical packs remain available because they explain
 the development path and preserve both wins and losses.
 
-## Current third-party-operated transformer measurement
+## Current GTM transformer measurement (version-100)
 
-### Version 99 matched prefill, 2026-07-23
+[`version-100-h100-gtm/`](version-100-h100-gtm/)
+
+- Qwen2-7B-Instruct class · S=128 · B=16/32
+- Flash + device-resident + FP16 TRADE path
+- Multi-run 5×15 s thr + NVML board J/pos + det=1.0
+- Matched H2H vs vLLM: **~1.17–1.18× thr**, **~10–14% lower** board J/pos
+- Authoritative: `MULTI_RUN_LOCK_SLIM.json` · buyer: `PUBLIC_GTM_ONE_PAGER.md`
+
+## Prior third-party-operated transformer measurement
+
+### Version 99 matched prefill, 2026-07-23 (TESTfort)
 
 [`h100-qwen2-7b-v99-matched-prefill-2026-07-23/`](h100-qwen2-7b-v99-matched-prefill-2026-07-23/)
 
-- Qwen2-7B-Instruct
-- B16, S128 packed-prefill positions
-- one NVIDIA H100 80GB
-- cumulative NVML GPU-board energy
-- LuxiEdge, default vLLM, and batch-invariant vLLM
-- technician attestation, per-run CSV, arithmetic audit, anomaly log, and
-  selected receipts
+- Earlier stack: thr trailed vLLM; modest board-energy edge; det + soak held
+- Kept as independent lineage — **not** the version-100 thr claim
 
 Formal signed narrative: pending.
 
