@@ -1,0 +1,104 @@
+{
+  "pack": "h100-v100-vllm-prefill-H2H",
+  "date_utc": "2026-07-31",
+  "status": "measured_same_hardware_same_shape",
+  "protocol": {
+    "gpu": "NVIDIA H100 80GB HBM3",
+    "model_class": "Qwen2-7B-Instruct",
+    "dtype": "FP16",
+    "sequence_length": 128,
+    "batches": [
+      16,
+      32
+    ],
+    "tensor_parallelism": 1,
+    "prefix_cache": false,
+    "max_new_tokens": 1,
+    "token_definition": "completed_iterations * batch * 128 prompt positions",
+    "comparison_order": "sequential_arms_same_gpu",
+    "sustain_runs_per_engine_batch": 2,
+    "sustain_seconds_per_run": 20,
+    "energy_scope": "NVML_GPU_board_energy",
+    "luxi_recipe": "flash_attention_device_resident_fp16_weights_mlp",
+    "peer": "vLLM 0.25.1"
+  },
+  "results": {
+    "batch_16": {
+      "luxiedge": {
+        "positions_per_second_runs": [
+          41737.052,
+          34845.8981
+        ],
+        "board_joules_per_position_runs": [
+          0.016413375555300248,
+          0.01713418999725073
+        ],
+        "reported_throughput": 41737.052,
+        "reported_board_joules_per_position": 0.01713418999725073,
+        "determinism_score": 1.0,
+        "attention_backend": "flash",
+        "fallback_count": 0
+      },
+      "vllm": {
+        "positions_per_second_runs": [
+          35798.839865848764,
+          35594.78282162496
+        ],
+        "board_joules_per_position_runs": [
+          0.019029257812500002,
+          0.0190462716639727
+        ],
+        "reported_throughput": 35798.839865848764,
+        "reported_board_joules_per_position": 0.0190462716639727,
+        "determinism_score": 1.0
+      },
+      "ratios": {
+        "luxiedge_over_vllm_throughput": 1.1658772227369343,
+        "luxiedge_over_vllm_board_joules_per_position": 0.8996086110470219
+      }
+    },
+    "batch_32": {
+      "luxiedge": {
+        "positions_per_second_runs": [
+          43934.0875,
+          43572.7395
+        ],
+        "board_joules_per_position_runs": [
+          0.015649516260901164,
+          0.015757451446963028
+        ],
+        "reported_throughput": 43934.0875,
+        "reported_board_joules_per_position": 0.015757451446963028,
+        "determinism_score": 1.0,
+        "attention_backend": "flash",
+        "fallback_count": 0
+      },
+      "vllm": {
+        "positions_per_second_runs": [
+          36522.45361346327,
+          37104.55561686242
+        ],
+        "board_joules_per_position_runs": [
+          0.018248812030813546,
+          0.018120044750171704
+        ],
+        "reported_throughput": 37104.55561686242,
+        "reported_board_joules_per_position": 0.018248812030813546,
+        "determinism_score": 1.0
+      },
+      "ratios": {
+        "luxiedge_over_vllm_throughput": 1.1840618158497458,
+        "luxiedge_over_vllm_board_joules_per_position": 0.8634782045185299
+      }
+    }
+  },
+  "determinism_note": "Score 1.0 is agreement on the measured fixed-input path, not bit-exact identity to the separate AUDIT lane.",
+  "non_claims": [
+    "full_multi_tenant_serving_stack_parity",
+    "continuous_batching_or_decode_only_leadership",
+    "multi_gpu_tensor_or_pipeline_parallelism",
+    "facility_wall_plug_energy_or_PUE",
+    "all_models_batches_sequences_or_recipes",
+    "higher_open_chat_quality"
+  ]
+}
