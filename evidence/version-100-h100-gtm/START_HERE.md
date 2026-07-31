@@ -21,7 +21,7 @@
 | `MULTI_RUN_LOCK_SLIM.json` | Authoritative 5×15s medians |
 | `MULTI_RUN_LOCK.json` | Full multi-run detail |
 | `PUBLIC_GTM_ONE_PAGER.md` | Buyer one-pager |
-| `PUBLIC_H2H_PREFILL_ENERGY_BRIEF.md` | Shareable H2H brief |
+| `H2H_ANSWER.json` | Matched-peer H2H summary and run medians |
 | `DETERMINISM_FORMAL.md` | Det definition |
 | `luxi_results.json` / `vllm_results.json` | H2H raw |
 
