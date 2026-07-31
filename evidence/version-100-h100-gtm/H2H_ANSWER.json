@@ -1,0 +1,95 @@
+{
+  "protocol": "matched prefill-heavy S=128 max_new=1 TP=1 FP16",
+  "answers": {
+    "16": {
+      "faster": "Luxi",
+      "thr_ratio_luxi_over_vllm": 1.1658772227369343,
+      "j_ratio_luxi_over_vllm": 0.8996086110470219,
+      "better_j_per_token": "Luxi",
+      "luxi_thr": 41737.052,
+      "vllm_thr": 35798.839865848764,
+      "luxi_j": 0.01713418999725073,
+      "vllm_j": 0.0190462716639727,
+      "luxi_W": 680.76575,
+      "vllm_W": 681.6890000000001,
+      "luxi_flash": true,
+      "luxi_det": 1.0,
+      "vllm_det": 1.0
+    },
+    "32": {
+      "faster": "Luxi",
+      "thr_ratio_luxi_over_vllm": 1.1840618158497458,
+      "j_ratio_luxi_over_vllm": 0.8634782045185299,
+      "better_j_per_token": "Luxi",
+      "luxi_thr": 43934.0875,
+      "vllm_thr": 37104.55561686242,
+      "luxi_j": 0.015757451446963028,
+      "vllm_j": 0.018248812030813546,
+      "luxi_W": 687.918,
+      "vllm_W": 669.5435,
+      "luxi_flash": true,
+      "luxi_det": 1.0,
+      "vllm_det": 1.0
+    }
+  },
+  "luxi_medians": {
+    "16": {
+      "positions_per_s_median": 41737.052,
+      "positions_per_s_all": [
+        41737.052,
+        34845.8981
+      ],
+      "J_per_position_cum_median": 0.01713418999725073,
+      "J_per_position_cum_all": [
+        0.016413375555300248,
+        0.01713418999725073
+      ],
+      "median_W_median": 680.76575,
+      "backend_all_flash": true,
+      "fallback_all_zero": true
+    },
+    "32": {
+      "positions_per_s_median": 43934.0875,
+      "positions_per_s_all": [
+        43934.0875,
+        43572.7395
+      ],
+      "J_per_position_cum_median": 0.015757451446963028,
+      "J_per_position_cum_all": [
+        0.015649516260901164,
+        0.015757451446963028
+      ],
+      "median_W_median": 687.918,
+      "backend_all_flash": true,
+      "fallback_all_zero": true
+    }
+  },
+  "vllm_medians": {
+    "16": {
+      "positions_per_s_median": 35798.839865848764,
+      "positions_per_s_all": [
+        35798.839865848764,
+        35594.78282162496
+      ],
+      "J_per_position_cum_median": 0.0190462716639727,
+      "J_per_position_cum_all": [
+        0.019029257812500002,
+        0.0190462716639727
+      ],
+      "median_W_median": 681.6890000000001
+    },
+    "32": {
+      "positions_per_s_median": 37104.55561686242,
+      "positions_per_s_all": [
+        36522.45361346327,
+        37104.55561686242
+      ],
+      "J_per_position_cum_median": 0.018248812030813546,
+      "J_per_position_cum_all": [
+        0.018248812030813546,
+        0.018120044750171704
+      ],
+      "median_W_median": 669.5435
+    }
+  }
+}

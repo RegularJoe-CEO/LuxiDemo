@@ -1,0 +1,40 @@
+{
+  "campaign": "gtm_hour_multirun",
+  "gpu": "H100_80GB_HBM3",
+  "model": "qwen2-7b-instruct-luxi",
+  "seq": 128,
+  "sustain_s": 15,
+  "recipe": "flash+device_resident+fp16_weights",
+  "B16": {
+    "n": 5,
+    "thr_median": 39865.3177,
+    "thr_mean": 40138.67698,
+    "thr_min": 39504.0267,
+    "thr_max": 41049.8247,
+    "thr_stdev": 671.4458353034518,
+    "j_median": 0.01678852802520334,
+    "j_mean": 0.01680023654482211,
+    "j_min": 0.016577172126959614,
+    "j_max": 0.01699059429883819,
+    "median_w_median": 673.495,
+    "determinism_score": 1.0,
+    "first_token_id": 17861,
+    "all_flash": true
+  },
+  "B32": {
+    "n": 5,
+    "thr_median": 42966.9101,
+    "thr_mean": 43085.49422,
+    "thr_min": 42635.072,
+    "thr_max": 43570.1443,
+    "thr_stdev": 386.81954618838404,
+    "j_median": 0.015967519754800916,
+    "j_mean": 0.015959793922924112,
+    "j_min": 0.015809679600814815,
+    "j_max": 0.01614210938927523,
+    "median_w_median": 688.22,
+    "determinism_score": 1.0,
+    "first_token_id": 17861,
+    "all_flash": true
+  }
+}
