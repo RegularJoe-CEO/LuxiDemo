@@ -175,7 +175,7 @@ proprietary engine source.
 
 | Luxi layer | Public demo today | Next validation step |
 |---|---|---|
-| LuxiRisk | Offline risk CLI + macOS/Linux/Windows binaries + public formulas/vectors | Publish GitHub release `luxirisk-v0.1` assets |
+| LuxiRisk | Offline risk CLI + macOS/Linux/Windows binaries + public formulas/vectors | Release [luxirisk-v0.1](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.1) published |
 | LuxiQuant | Binary validation + REST + receipts | Publish platform-by-platform receipt matrix |
 | LuxiEdge | Primitives + Version 99 evidence verifier | Controlled downloadable inference evaluation package |
 | LuxiPack | None | Admission/placement trace versus a baseline |
