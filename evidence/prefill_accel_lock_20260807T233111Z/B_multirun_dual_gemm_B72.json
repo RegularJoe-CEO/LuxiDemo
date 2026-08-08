@@ -1,0 +1,25 @@
+{
+  "name": "B_multirun_dual_gemm_B72",
+  "B": 72,
+  "exit": 0,
+  "thr_median": 44859.9,
+  "thr_runs": [
+    45116.1,
+    44704.2,
+    44859.9,
+    44921.2,
+    44295.4
+  ],
+  "ms_median": 205.4395,
+  "backend": "flash",
+  "fallback": 0,
+  "all_flash": true,
+  "tokens_total": 3391488.0,
+  "wall_sum_s": 75.73803199999999,
+  "nvml_energy_J": 51964.788,
+  "median_W": 687.54,
+  "n_power_samples": 3773,
+  "J_per_position_nvml_energy": 0.015322120555932971,
+  "J_per_position_medianW": 0.015354005829087405,
+  "n_windows": 5
+}

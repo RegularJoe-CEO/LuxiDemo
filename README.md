@@ -22,20 +22,29 @@ This repository has two jobs:
 2. Publish evidence packs that show exactly what was measured, including
    historical experiments that remain important to the development record.
 
-## Current measured result (version-100 GTM)
+## Current measured result (two facts — do not blend)
 
-**Progress after TESTfort Version 99:** Flash-class attention + device-resident stack + FP16 on the TRADE energy path. On the same prefill protocol class (Qwen2-7B, S=128, H100 board joules), LuxiEdge now **wins thr and board energy** vs vLLM.
+### Fact A — Best Luxi absolute prefill (dual_gemm @ B72)
 
-Multi-run lock (5×15 s sustains · NVML board joules · det score = multi-run token agreement):
+| Operating point | Thr median (pos/s) | Board J/pos |
+|-----------------|-------------------:|------------:|
+| **B72 dual_gemm** (`LUXI_GEMM_DUAL_STREAM=1`) | **~44,860** | **~0.0153** |
 
-| Batch | Thr median (pos/s) | Board J/pos | Det | vs vLLM thr | vs vLLM J/pos |
-|------:|-------------------:|------------:|----:|------------:|--------------:|
-| **16** | **~39,865** | **~0.0168** | **1.0** | **~1.17×** | **~10% lower** |
-| **32** | **~42,967** | **~0.0160** | **1.0** | **~1.18×** | **~14% lower** |
+5×15s multi-run · flash + device-resident + FP16 · S=128 · H100 NVML board joules.  
+Replaces prior Luxi absolute B16 freeze (~41.2k / 0.0169): ~**1.09× thr**, ~**9% lower J/pos**.
 
-**Pack:** [`evidence/version-100-h100-gtm/`](evidence/version-100-h100-gtm/)  
-**One-pager:** [`PUBLIC_GTM_ONE_PAGER.md`](evidence/version-100-h100-gtm/PUBLIC_GTM_ONE_PAGER.md)  
-**H2H brief:** [`PUBLIC_H2H_PREFILL_ENERGY_BRIEF.md`](evidence/version-100-h100-gtm/PUBLIC_H2H_PREFILL_ENERGY_BRIEF.md)
+**Pack:** [`evidence/prefill_accel_lock_20260807T233111Z/`](evidence/prefill_accel_lock_20260807T233111Z/) · [`CHAMPION_LOCK.json`](evidence/prefill_accel_lock_20260807T233111Z/CHAMPION_LOCK.json) · [`PUBLIC_CHAMPION_BRIEF.md`](evidence/prefill_accel_lock_20260807T233111Z/PUBLIC_CHAMPION_BRIEF.md)
+
+### Fact B — Matched vLLM H2H (B16 / B32 only)
+
+| Batch | Luxi thr | Board J/pos | vs vLLM thr | vs vLLM J/pos |
+|------:|---------:|------------:|------------:|--------------:|
+| **16** | **~41,221** | **~0.0169** | **~1.18×** | **~12% lower** |
+| **32** | **~43,464** | **~0.0158** | **~1.19×** | **~14% lower** |
+
+**Pack:** [`evidence/prefill_freeze_matched_20260807T210749Z/`](evidence/prefill_freeze_matched_20260807T210749Z/)  
+
+**Rule:** Absolute B72 is **not** claimed as 1.18× vLLM until a matched B72 vLLM arm exists. Single-shot thr (e.g. 45,986) is not a product headline.
 
 Scope: prefill positions (iters × batch × seq), single GPU board energy — not decode-only, not multi-tenant full-server leadership, not wall-plug.
 

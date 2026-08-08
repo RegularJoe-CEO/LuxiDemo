@@ -1,0 +1,93 @@
+{
+  "campaign": "prefill_freeze_matched_rerun",
+  "status": "AUTHORITATIVE_REPLACEMENT",
+  "timestamp_utc": "2026-08-07T21:30:38.592378+00:00",
+  "purpose": "Replace withdrawn website prefill headlines. Internal multi-run + same-session matched vLLM. Not blended with TESTfort v99.",
+  "hardware": "NVIDIA H100 80GB HBM3",
+  "model": "Qwen2-7B-Instruct class (luxi weights for Luxi; HF for vLLM)",
+  "protocol": {
+    "seq": 128,
+    "batches": [
+      16,
+      32
+    ],
+    "token_def": "prefill positions = iters * batch * seq",
+    "luxi_multirun": "5x15s thr (single-process sustain-runs), flash+device_resident+fp16",
+    "luxi_energy": "NVML cumulative energy over 3x15s sustain window",
+    "vllm": "matched prefill max_new_tokens=1, prefix cache off, 3x20s sustain after 8s smoke",
+    "vllm_version": "0.25.1",
+    "rules": [
+      "Internal and independent numbers never blended",
+      "Sequential arms on same GPU only",
+      "Board joules only (NVML), not wall-plug"
+    ]
+  },
+  "luxi": {
+    "16": {
+      "thr_median_pos_s": 41220.6,
+      "thr_min": 40805.2,
+      "thr_max": 41389.4,
+      "thr_stdev": 246.64635006421778,
+      "n_thr": 5,
+      "J_per_position": 0.01687986921629086,
+      "median_W": 681.299,
+      "all_flash": true,
+      "attn_backend": "flash"
+    },
+    "32": {
+      "thr_median_pos_s": 43464.5,
+      "thr_min": 43118.7,
+      "thr_max": 43721.1,
+      "thr_stdev": 240.9675434576205,
+      "n_thr": 5,
+      "J_per_position": 0.015831579308339887,
+      "median_W": 688.829,
+      "all_flash": true,
+      "attn_backend": "flash"
+    }
+  },
+  "vllm": {
+    "16": {
+      "thr_median_pos_s": 35043.27304019648,
+      "J_per_position": 0.019115650054664722
+    },
+    "32": {
+      "thr_median_pos_s": 36556.65963931309,
+      "J_per_position": 0.018367602129888267
+    },
+    "raw_path": "matched_h2h/vllm_results.json"
+  },
+  "h2h": {
+    "16": {
+      "luxi_thr": 41220.6,
+      "vllm_thr": 35043.27304019648,
+      "thr_ratio_luxi_over_vllm": 1.1762771118073874,
+      "luxi_J_pos": 0.01687986921629086,
+      "vllm_J_pos": 0.019115650054664722,
+      "energy_ratio_luxi_over_vllm": 0.8830392462730675,
+      "energy_savings_pct": 11.69607537269325
+    },
+    "32": {
+      "luxi_thr": 43464.5,
+      "vllm_thr": 36556.65963931309,
+      "thr_ratio_luxi_over_vllm": 1.1889625701265716,
+      "luxi_J_pos": 0.015831579308339887,
+      "vllm_J_pos": 0.018367602129888267,
+      "energy_ratio_luxi_over_vllm": 0.8619295646968694,
+      "energy_savings_pct": 13.807043530313056
+    }
+  },
+  "website_replacement_copy": {
+    "headline_B16_thr": 41221,
+    "headline_B16_J": 0.0169,
+    "headline_vs_vllm_thr": "1.18x",
+    "headline_vs_vllm_energy_lower_pct": "12%"
+  },
+  "gates": {
+    "all_flash": true,
+    "thr_stable_B16_stdev_pct": 0.5983570109707714,
+    "thr_stable_B32_stdev_pct": 0.5544008178113645,
+    "beats_vllm_thr_B16": true,
+    "beats_vllm_energy_B16": true
+  }
+}

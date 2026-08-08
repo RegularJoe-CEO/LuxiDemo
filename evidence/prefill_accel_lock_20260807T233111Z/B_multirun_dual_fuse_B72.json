@@ -1,0 +1,25 @@
+{
+  "name": "B_multirun_dual_fuse_B72",
+  "B": 72,
+  "exit": 0,
+  "thr_median": 44907.4,
+  "thr_runs": [
+    44907.4,
+    44640.3,
+    45225.2,
+    45255.4,
+    36783.4
+  ],
+  "ms_median": 205.2223,
+  "backend": "flash",
+  "fallback": 0,
+  "all_flash": true,
+  "tokens_total": 3271680.0,
+  "wall_sum_s": 75.439565,
+  "nvml_energy_J": 50656.843,
+  "median_W": 688.768,
+  "n_power_samples": 3759,
+  "J_per_position_nvml_energy": 0.015483434504597026,
+  "J_per_position_medianW": 0.015881858343701098,
+  "n_windows": 5
+}

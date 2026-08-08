@@ -1,0 +1,36 @@
+{
+  "campaign": "prefill_freeze_matched_rerun",
+  "timestamp_utc": "2026-08-07T21:12:30.508269+00:00",
+  "gpu": "H100_80GB_HBM3",
+  "model": "qwen2-7b-instruct-luxi",
+  "seq": 128,
+  "sustain_s": 15,
+  "recipe": "flash+device_resident+fp16_weights",
+  "token_def": "iters*batch*seq prefill positions",
+  "B16": {
+    "n": 5,
+    "thr_median": 41220.6,
+    "thr_mean": 41123.38,
+    "thr_min": 40805.2,
+    "thr_max": 41389.4,
+    "thr_stdev": 246.64635006421778,
+    "ms_median": 49.6839,
+    "attn_backend": "flash",
+    "all_flash": true,
+    "first_token_id": 17861,
+    "exit": 0
+  },
+  "B32": {
+    "n": 5,
+    "thr_median": 43464.5,
+    "thr_mean": 43490.58,
+    "thr_min": 43118.7,
+    "thr_max": 43721.1,
+    "thr_stdev": 240.9675434576205,
+    "ms_median": 94.2377,
+    "attn_backend": "flash",
+    "all_flash": true,
+    "first_token_id": 17861,
+    "exit": 0
+  }
+}

@@ -52,35 +52,36 @@
         </p>
         <div class="cta-row">
           <a class="btn btn-primary" href="demo.html">Run the demo →</a>
-          <a class="btn btn-secondary" href="proof.html#v100">version-100 proof</a>
+          <a class="btn btn-secondary" href="proof.html#absolute">prefill proof</a>
           <a class="btn btn-ghost" href="data-centers.html">AI &amp; data centers</a>
         </div>
         <div class="metrics">
           <div class="metric">
-            <div class="val">~39.9k</div>
-            <div class="label">Prefill pos/s (B16 median)</div>
-            <div class="src"><a href="proof.html#v100">H100 multi-run lock</a></div>
+            <div class="val">~44.9k</div>
+            <div class="label">Prefill pos/s (B72 absolute)</div>
+            <div class="src"><a href="proof.html#absolute">dual_gemm multi-run</a></div>
           </div>
           <div class="metric">
-            <div class="val">0.0168</div>
-            <div class="label">Board J per position</div>
-            <div class="src"><a href="proof.html#v100">NVML under load</a></div>
+            <div class="val">0.0153</div>
+            <div class="label">Board J/pos (B72 absolute)</div>
+            <div class="src"><a href="proof.html#absolute">NVML under load</a></div>
           </div>
           <div class="metric">
-            <div class="val">~1.17×</div>
-            <div class="label">Thr vs vLLM (matched)</div>
-            <div class="src"><a href="proof.html#v100">Also ~10% lower J/pos</a></div>
+            <div class="val">~1.18×</div>
+            <div class="label">Thr vs vLLM (matched B16)</div>
+            <div class="src"><a href="proof.html#matched-vllm">Separate H2H pack</a></div>
           </div>
           <div class="metric">
-            <div class="val">1.0</div>
-            <div class="label">Multi-run determinism</div>
-            <div class="src">TRADE path · det score</div>
+            <div class="val">~12%</div>
+            <div class="label">Lower J vs vLLM (B16)</div>
+            <div class="src"><a href="proof.html#matched-vllm">Matched prefill only</a></div>
           </div>
         </div>
         <p class="method">
-          version-100 H100 multi-run lock (prefill positions · B16 primary). Board ≠ wall-plug.
-          <a href="proof.html#v100">Methods</a> · <a href="demo.html">demo binary</a>.
-          Full methods and downloads: <a href="proof.html">Proof</a>.
+          <strong>Two facts:</strong> (1) best Luxi absolute prefill ~44.9k pos/s · 0.0153 board J/pos @ B72 dual_gemm;
+          (2) matched vLLM H2H remains B16 (~1.18× thr · ~12% lower J) until a B72 vLLM arm is measured.
+          Absolute batch ≠ H2H batch. Board ≠ wall-plug.
+          <a href="proof.html#absolute">Methods</a> · <a href="demo.html">demo binary</a>.
         </p>
       </div>
     </div>

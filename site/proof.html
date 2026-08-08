@@ -56,14 +56,103 @@
       </div>
     </div>
 
-    <section id="v100">
+    <section id="absolute">
       <div class="wrap">
-        <h2>version-100 — prefill thr + board energy vs vLLM</h2>
+        <h2>Best Luxi absolute prefill — dual_gemm @ B72</h2>
         <p class="sub">
           Authoritative multi-run lock (5×15 s) · Qwen2-7B-Instruct class · sequence 128 ·
-          Flash + device-resident + FP16 · single NVIDIA H100 80GB · NVML board joules.
-          Matched token definition: prefill positions = iters × batch × seq.
-          Public pack:
+          Flash + device-resident + FP16 · <code>LUXI_GEMM_DUAL_STREAM=1</code> ·
+          single NVIDIA H100 80GB · NVML board joules.
+          Token definition: prefill positions = iters × batch × seq.
+          Pack:
+          <a href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/prefill_accel_lock_20260807T233111Z">evidence/prefill_accel_lock_20260807T233111Z</a>
+          · <a href="https://github.com/RegularJoe-CEO/LuxiDemo/blob/main/evidence/prefill_accel_lock_20260807T233111Z/CHAMPION_LOCK.json">CHAMPION_LOCK.json</a>.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Operating point</th>
+                <th>Thr median (pos/s)</th>
+                <th>Board J/pos</th>
+                <th>Median W</th>
+                <th>Backend</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="row-highlight">
+                <td><strong>B72 dual_gemm (champion)</strong></td>
+                <td><strong>~44,860</strong></td>
+                <td><strong>~0.0153</strong></td>
+                <td>~688</td>
+                <td>flash</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="method">
+          Multi-run thr runs (pos/s): 45,116 · 44,704 · 44,860 · 44,921 · 44,295.
+          Replaces prior Luxi absolute B16 freeze (~41.2k / 0.0169) as best internal peak:
+          ~1.09× thr and ~9% lower board J/pos. Dual_fuse is not crowned (+0.1% thr, worse energy, outlier).
+          Single-shot peaks are not product thr. Board ≠ wall-plug. Not a multi-tenant serving claim.
+        </p>
+      </div>
+    </section>
+
+    <section id="matched-vllm">
+      <div class="wrap">
+        <h2>Matched vLLM comparison (B16 / B32 only)</h2>
+        <p class="sub">
+          Separate fact from the B72 absolute champion. Same-session sequential H2H ·
+          Qwen2-7B · S=128 · flash TRADE · NVML board joules · prefix cache off on vLLM.
+          Pack:
+          <a href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/prefill_freeze_matched_20260807T210749Z">evidence/prefill_freeze_matched_20260807T210749Z</a>.
+          <strong>No matched B72 vLLM arm yet</strong> — do not attach 1.18× to the B72 absolute number.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Batch</th>
+                <th>Luxi thr (pos/s)</th>
+                <th>Luxi J/pos</th>
+                <th>vs vLLM thr</th>
+                <th>vs vLLM J/pos</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="row-highlight">
+                <td><strong>16</strong></td>
+                <td><strong>~41,221</strong></td>
+                <td><strong>~0.0169</strong></td>
+                <td><strong>~1.18× faster</strong></td>
+                <td><strong>~12% lower</strong></td>
+              </tr>
+              <tr>
+                <td>32</td>
+                <td>~43,464</td>
+                <td>~0.0158</td>
+                <td>~1.19× faster</td>
+                <td>~14% lower</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="method">
+          Absolute B72 thr/J and matched B16 H2H are both true; they answer different questions.
+          High-batch dual GEMM is a prefill operating regime, not an M=1 decode claim.
+        </p>
+      </div>
+    </section>
+
+    <section id="v100">
+      <div class="wrap">
+        <h2>version-100 GTM (lineage)</h2>
+        <p class="sub">
+          Earlier multi-run lock (B16/B32). Superseded for absolute thr/J by
+          <a href="#absolute">dual_gemm B72</a>; matched H2H authority is
+          <a href="#matched-vllm">prefill_freeze_matched</a>.
+          Pack:
           <a href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/version-100-h100-gtm">evidence/version-100-h100-gtm</a>.
         </p>
         <div class="table-wrap">
@@ -73,37 +162,22 @@
                 <th>Batch</th>
                 <th>Luxi thr (pos/s)</th>
                 <th>Luxi J/pos</th>
-                <th>Det</th>
-                <th>vs vLLM thr</th>
-                <th>vs vLLM J/pos</th>
               </tr>
             </thead>
             <tbody>
-              <tr class="row-highlight">
-                <td><strong>16</strong></td>
-                <td><strong>~39,865</strong></td>
-                <td><strong>~0.0168</strong></td>
-                <td><strong>1.0</strong></td>
-                <td><strong>~1.17× faster</strong></td>
-                <td><strong>~10% lower</strong></td>
+              <tr>
+                <td>16</td>
+                <td>~39,865</td>
+                <td>~0.0168</td>
               </tr>
               <tr>
                 <td>32</td>
                 <td>~42,967</td>
                 <td>~0.0160</td>
-                <td>1.0</td>
-                <td>~1.18× faster</td>
-                <td>~14% lower</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="method">
-          Progress beyond independent TESTfort (earlier stack: energy edge with thr still trailing vLLM).
-          version-100 wins thr <em>and</em> board energy on this protocol. Board ≠ wall-plug.
-          Not a full multi-tenant serving claim. Demo (no source):
-          <a href="demo.html">demo.html</a>.
-        </p>
       </div>
     </section>
 

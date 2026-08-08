@@ -1,0 +1,25 @@
+{
+  "name": "B_multirun_base_B32",
+  "B": 32,
+  "exit": 0,
+  "thr_median": 42764.4,
+  "thr_runs": [
+    42764.4,
+    42476.2,
+    42972.4,
+    42203.7,
+    42818.5
+  ],
+  "ms_median": 95.7805,
+  "backend": "flash",
+  "fallback": 0,
+  "all_flash": true,
+  "tokens_total": 3207168.0,
+  "wall_sum_s": 75.202571,
+  "nvml_energy_J": 51642.600000000006,
+  "median_W": 687.99,
+  "n_power_samples": 3747,
+  "J_per_position_nvml_energy": 0.01610224347461686,
+  "J_per_position_medianW": 0.01613218167002477,
+  "n_windows": 5
+}

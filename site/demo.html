@@ -52,7 +52,7 @@
 
     <section>
       <div class="wrap">
-        <h2>Locked H100 metrics (version-100 GTM)</h2>
+        <h2>Locked H100 metrics</h2>
         <p class="sub">
           Multi-run sustain · 5×15s · Qwen2-7B-Instruct class · sequence 128 · Flash + device-resident + FP16 ·
           single NVIDIA H100 80GB. Token definition: prefill positions = iters × batch × seq.
@@ -61,37 +61,43 @@
           <table>
             <thead>
               <tr>
-                <th>Batch</th>
+                <th>Fact</th>
+                <th>Operating point</th>
                 <th>Thr median (pos/s)</th>
                 <th>Board J / pos</th>
-                <th>Determinism</th>
-                <th>vs vLLM thr</th>
-                <th>vs vLLM J/pos</th>
+                <th>vs vLLM</th>
               </tr>
             </thead>
             <tbody>
               <tr class="row-highlight">
-                <td><strong>16</strong> (primary)</td>
-                <td><strong>~39,865</strong></td>
-                <td><strong>~0.0168</strong></td>
-                <td><strong>1.0</strong></td>
-                <td><strong>~1.17×</strong></td>
-                <td><strong>~10% lower</strong></td>
+                <td><strong>Absolute Luxi peak</strong></td>
+                <td><strong>B72 dual_gemm</strong></td>
+                <td><strong>~44,860</strong></td>
+                <td><strong>~0.0153</strong></td>
+                <td>not matched at B72</td>
               </tr>
               <tr>
-                <td>32 (scale)</td>
-                <td>~42,967</td>
-                <td>~0.0160</td>
-                <td>1.0</td>
-                <td>~1.18×</td>
-                <td>~14% lower</td>
+                <td>Matched H2H</td>
+                <td>B16 (matched pack)</td>
+                <td>~41,221</td>
+                <td>~0.0169</td>
+                <td><strong>~1.18× thr · ~12% lower J</strong></td>
+              </tr>
+              <tr>
+                <td>Matched H2H</td>
+                <td>B32 (matched pack)</td>
+                <td>~43,464</td>
+                <td>~0.0158</td>
+                <td>~1.19× thr · ~14% lower J</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p class="method">
-          Money path measured on GPU TRADE sustain (NVML board joules). Local demo binary serves the API + embeds this lock on
-          <code>GET /v1/gtm</code>. Board power ≠ wall-plug AC. Not a full multi-tenant server bake-off claim.
+          Absolute champion pack: <code>evidence/prefill_accel_lock_20260807T233111Z</code>.
+          Matched vLLM pack: <code>evidence/prefill_freeze_matched_20260807T210749Z</code>.
+          Do not attach 1.18× to the B72 absolute number. Board power ≠ wall-plug AC.
+          Not a full multi-tenant server bake-off claim.
         </p>
       </div>
     </section>

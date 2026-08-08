@@ -1,0 +1,25 @@
+{
+  "name": "B_multirun_pair_B68",
+  "B": 68,
+  "exit": 0,
+  "thr_median": 44404.4,
+  "thr_runs": [
+    44397.5,
+    44562.2,
+    44542.6,
+    44404.4,
+    44289.9
+  ],
+  "ms_median": 196.0165,
+  "backend": "flash",
+  "fallback": 0,
+  "all_flash": true,
+  "tokens_total": 3351040.0,
+  "wall_sum_s": 75.40749600000001,
+  "nvml_energy_J": 51603.30100000001,
+  "median_W": 685.6285,
+  "n_power_samples": 3756,
+  "J_per_position_nvml_energy": 0.015399189803762417,
+  "J_per_position_medianW": 0.015428502307115406,
+  "n_windows": 5
+}

@@ -1,0 +1,25 @@
+{
+  "name": "B_multirun_dual_mlp_B64",
+  "B": 64,
+  "exit": 0,
+  "thr_median": 44805.1,
+  "thr_runs": [
+    44978.7,
+    44889.4,
+    43590.9,
+    44617.0,
+    44805.1
+  ],
+  "ms_median": 182.8362,
+  "backend": "flash",
+  "fallback": 0,
+  "all_flash": true,
+  "tokens_total": 3366912.0,
+  "wall_sum_s": 75.529299,
+  "nvml_energy_J": 51891.439,
+  "median_W": 687.9575,
+  "n_power_samples": 3764,
+  "J_per_position_nvml_energy": 0.015412175607797294,
+  "J_per_position_medianW": 0.015432820256897862,
+  "n_windows": 5
+}

@@ -1,0 +1,25 @@
+{
+  "name": "B_multirun_base_B16",
+  "B": 16,
+  "exit": 0,
+  "thr_median": 39985.0,
+  "thr_runs": [
+    39581.6,
+    39712.9,
+    39985.0,
+    40652.2,
+    40511.9
+  ],
+  "ms_median": 51.2193,
+  "backend": "flash",
+  "fallback": 0,
+  "all_flash": true,
+  "tokens_total": 3008512.0,
+  "wall_sum_s": 75.046162,
+  "nvml_energy_J": 50673.886,
+  "median_W": 675.651,
+  "n_power_samples": 3740,
+  "J_per_position_nvml_energy": 0.01684350469600919,
+  "J_per_position_medianW": 0.01685385147257581,
+  "n_windows": 5
+}

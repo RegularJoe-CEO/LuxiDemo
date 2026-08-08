@@ -35,14 +35,33 @@ Legend: **KEEP** · **REFRAME** · **DELETE** · **ADD**
 
 ## Public measured truth → site heroes (**ADD**)
 
-### version-100 GTM lock (**current lead** — 2026-07)
+### Absolute prefill champion (**current lead thr+J** — 2026-08-07)
 
 | Claim | Numbers | Public pack | Site placement |
 |-------|---------|-------------|----------------|
-| Prefill thr B16 / B32 | **~39.9k / ~43.0k pos/s** | `evidence/version-100-h100-gtm` | Home, proof#v100, demo |
-| Board J/pos B16 / B32 | **~0.0168 / ~0.0160** | same | Home, proof, demo |
-| vs vLLM thr / J | **~1.17–1.18×** thr · **~10–14%** lower J | same + H2H JSON | proof#v100 |
-| Multi-run det | **1.0** | same | Home, demo |
+| **Best Luxi absolute prefill thr** | **~44.9k pos/s @ B72** dual_gemm multi-run | `evidence/prefill_accel_lock_20260807T233111Z` | Home hero, proof#absolute, demo |
+| **Best Luxi absolute board J/pos** | **~0.0153** @ B72 dual_gemm | same | Home, proof, demo |
+| Recipe | `LUXI_GEMM_DUAL_STREAM=1` · flash+device_resident+FP16 · S=128 | `CHAMPION_LOCK.json` | Method footnotes |
+| **Do not** crown dual_fuse / single-shot 45,986 | thr edge +0.1% / engineering peak only | same | Internal only |
+
+**Rule:** Absolute B72 numbers are **not** a matched vLLM claim. Never write “44.9k = 1.18× vLLM.”
+
+### Matched vLLM H2H (**separate fact** — B16/B32 only)
+
+| Claim | Numbers | Public pack | Site placement |
+|-------|---------|-------------|----------------|
+| vs vLLM thr / J @ **B16** | **~1.18× thr · ~12% lower J** | `evidence/prefill_freeze_matched_20260807T210749Z` | Home secondary, proof#matched-vllm |
+| vs vLLM thr / J @ **B32** | **~1.19× thr · ~14% lower J** | same | proof#matched-vllm |
+| B72 vLLM matched | **false** until re-run | — | Non-claim |
+
+### version-100 GTM lock (lineage — 2026-07)
+
+| Claim | Numbers | Public pack | Site placement |
+|-------|---------|-------------|----------------|
+| Prefill thr B16 / B32 | **~39.9k / ~43.0k pos/s** | `evidence/version-100-h100-gtm` | proof lineage |
+| Board J/pos B16 / B32 | **~0.0168 / ~0.0160** | same | proof lineage |
+| vs vLLM thr / J | **~1.17–1.18×** thr · **~10–14%** lower J | same + H2H JSON | superseded by matched freeze pack for H2H |
+| Multi-run det | **1.0** | same | lineage; B72 det pending receipt pack |
 
 ### Prior packs (lineage — do not mix protocols without labels)
 
@@ -67,7 +86,10 @@ Legend: **KEEP** · **REFRAME** · **DELETE** · **ADD**
 2. Flash-class kernels may **win short-seq thr/J/tok**; differentiated axes: AUDIT/free-ride, O(N) memory, measured board energy on real 7B-scale weights.  
 3. Power = **GPU board (pynvml)**, not wall-plug AC.  
 4. Small-stack residual-MLP numbers ≠ 7B J/tok without clear labels.  
-5. **No company diligence codenames** on public pages or pack titles.
+5. **No company diligence codenames** on public pages or pack titles.  
+6. **Absolute B72 thr/J is not matched vLLM H2H** — different batch/shape unless a matched B72 vLLM arm is published.  
+7. **Do not headline single-shot thr** (e.g. 45,986); multi-run median only.  
+8. **B72 dual_gemm receipt equality** required before bit-exact / full det hero on that recipe.
 
 ---
 

@@ -1,0 +1,104 @@
+{
+  "schema": "luxiedge.prefill_champion_lock.v1",
+  "status": "AUTHORITATIVE_ABSOLUTE_PREFILL",
+  "timestamp_utc": "2026-08-07T23:31:11Z",
+  "pack": "prefill_accel_lock_20260807T233111Z",
+  "hardware": "NVIDIA H100 80GB HBM3",
+  "model": "Qwen2-7B-Instruct class (luxi weights)",
+  "token_def": "prefill positions = iters * batch * seq",
+  "protocol": {
+    "seq": 128,
+    "sustain": "5x15s multi-run thr + NVML cumulative energy",
+    "recipe_family": "flash + device_resident + FP16 TRADE",
+    "rules": [
+      "Absolute Luxi peak is dual_gemm B72 multi-run median",
+      "Matched vLLM comparison is a separate fact (B16/B32 only until B72 vLLM arm)",
+      "Do not headline single-shot thr",
+      "Do not crown dual_fuse",
+      "Do not attach 1.18x vLLM ratio to B72"
+    ]
+  },
+  "champion": {
+    "name": "dual_gemm",
+    "env": {
+      "LUXI_TRADE_JOULE": "1",
+      "LUXI_TRADE_ENERGY": "1",
+      "LUXI_ATTN_SERIAL_BATCH": "0",
+      "LUXI_CUDA_FP16_MLP": "1",
+      "LUXI_CUDA_FP16_WEIGHTS": "1",
+      "LUXI_CUDA_FP16_GEMM": "1",
+      "LUXI_CUDA_QUANT_STACK": "1",
+      "LUXI_GEODESIC_P3": "1",
+      "LUXI_TRADE_ATTN": "flash",
+      "LUXI_FLASH_BRIDGE": "1",
+      "LUXI_ATTN_BACKEND": "flash",
+      "LUXI_KERNEL_MORPH": "0",
+      "LUXI_CUDA_PHASE_TIMING": "0",
+      "LUXI_GEMM_DUAL_STREAM": "1"
+    },
+    "batch": 72,
+    "sustain_seq": 128,
+    "thr_median_pos_s": 44859.9,
+    "thr_runs": [45116.1, 44704.2, 44859.9, 44921.2, 44295.4],
+    "thr_min": 44295.4,
+    "thr_max": 45116.1,
+    "ms_median": 205.4395,
+    "J_per_position_nvml_energy": 0.015322120555932971,
+    "median_W": 687.54,
+    "all_flash": true,
+    "attn_backend": "flash",
+    "attn_fallback_count": 0,
+    "why_champion": "Best energy + near-best thr; five-run stable (no thermal outlier); simpler than dual_fuse; more defensible product recipe"
+  },
+  "not_champion": {
+    "name": "dual_fuse",
+    "batch": 72,
+    "thr_median_pos_s": 44907.4,
+    "thr_delta_vs_champion": 47.5,
+    "thr_delta_pct": 0.106,
+    "J_per_position_nvml_energy": 0.015483434504597026,
+    "thr_runs": [44907.4, 44640.3, 45225.2, 45255.4, 36783.4],
+    "why_not": "Only +0.1% thr vs dual_gemm, slightly worse J/pos, thermal outlier 36783.4; not product crown"
+  },
+  "vs_prior_absolute_B16_freeze": {
+    "pack": "prefill_freeze_matched_20260807T210749Z",
+    "prior_thr_B16": 41220.6,
+    "prior_J_pos_B16": 0.01687986921629086,
+    "champion_thr": 44859.9,
+    "champion_J_pos": 0.015322120555932971,
+    "thr_ratio_champion_over_prior": 1.088289,
+    "energy_ratio_champion_over_prior": 0.907714,
+    "energy_savings_pct": 9.2286,
+    "note": "Absolute Luxi peak vs prior Luxi B16 lock — not a vLLM comparison"
+  },
+  "matched_vllm_status": {
+    "authority_pack": "prefill_freeze_matched_20260807T210749Z",
+    "b16_thr_ratio_luxi_over_vllm": 1.1762771118073874,
+    "b16_energy_savings_pct": 11.69607537269325,
+    "b32_thr_ratio_luxi_over_vllm": 1.1889625701265716,
+    "b32_energy_savings_pct": 13.807043530313056,
+    "b72_vllm_matched": false,
+    "rule": "Do not imply B72 absolute thr is 1.18x vLLM until matched B72 vLLM arm is measured"
+  },
+  "single_shot_peak_nonclaim": {
+    "thr": 45985.9,
+    "recipe": "dual_gemm B72 wave3 1x10s",
+    "use": "engineering peak only — never product headline"
+  },
+  "receipt_equality_b72": {
+    "status": "PASS",
+    "path": "B72_DUAL_GEMM_RECEIPT.json",
+    "contract": "stack_fingerprint_hash_equal_independent_process",
+    "scope": "Door_B stack fingerprint under dual_gemm env: B1/B16/B32 hash_stable=true, max_abs_vs_run0=0, cross-process hash equal; thr-shape B72 dual-run thr_rel~0.6% flash fb=0",
+    "note": "Fingerprint exercises same TRADE dual_gemm stack path at multiple M; thr loop at B72 does not emit hashes. Door B not Door A bit-exact AUDIT.",
+    "rule": "May claim Door-B numeric receipt stability under dual_gemm fingerprint contract; not AUDIT bit-exact hero"
+  },
+  "website_copy": {
+    "absolute_hero_thr": 44860,
+    "absolute_hero_J": 0.0153,
+    "absolute_label": "B72 dual_gemm multi-run",
+    "matched_vllm_thr_ratio": "1.18x",
+    "matched_vllm_energy_lower_pct": "12%",
+    "matched_vllm_batch": 16
+  }
+}

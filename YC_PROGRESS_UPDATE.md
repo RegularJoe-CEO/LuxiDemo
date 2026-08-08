@@ -1,7 +1,7 @@
 # Y Combinator — LuxiEdge progress update (copy-paste)
 
 **Use this to replace / supersede the TESTfort-era note.**  
-TESTfort remains valid independent validation of the earlier stack; this update reports the **newer version-100 configuration** that **wins on both throughput and board energy** vs vLLM on the matched prefill protocol.
+TESTfort remains valid independent validation of the earlier stack. Report **two separate facts**: absolute Luxi prefill peak (dual_gemm B72) and matched vLLM H2H (B16/B32 only).
 
 ---
 
@@ -9,28 +9,23 @@ TESTfort remains valid independent validation of the earlier stack; this update 
 
 LuxiEdge is a working deterministic GPU inference engine, not a research concept. I built and measured the Rust/CUDA execution path, full-model transformer prefill, dual-lane AUDIT vs TRADE, and board-level energy metering myself.
 
-**Progress since the independent TESTfort evaluation:** TESTfort validated an earlier configuration on H100 (packed batch-16 Qwen2-7B prefill) with strong determinism, soak stability, and a modest board-energy edge while still trailing vLLM on throughput. Since then I shipped a new energy/throughput configuration (**version-100**): Flash-class attention control, device-resident multi-layer stack, and FP16 weight residency on the TRADE path.
+**Progress since the independent TESTfort evaluation:** TESTfort validated an earlier configuration on H100 with strong determinism and a modest board-energy edge while still trailing vLLM on throughput. Since then Flash-class attention, device-resident stack, FP16 TRADE residency, and dual-stream GEMM at high batch raised the **absolute** prefill operating point.
 
-On a matched **prefill-heavy** protocol (Qwen2-7B-Instruct class, sequence 128, batches 16 and 32, single NVIDIA H100 80GB, NVML board joules, same token definition for both arms), LuxiEdge is now:
+**Two facts (do not blend batches):**
 
-- **~1.17–1.18× faster** than default vLLM on prefill throughput, and  
-- **~10–14% lower** board joules per prompt position, with  
-- **multi-run determinism score 1.0** (5×15 s campaign; token agreement).
+1. **Best measured Luxi absolute prefill:** multi-run **~44.9k pos/s** and **~0.0153 board J/pos** at **B72 dual_gemm** (flash + device-resident + FP16, S=128, H100 NVML). About **9% more thr and ~9% less energy per position** than the prior Luxi B16 lock (~41.2k / 0.0169).  
+2. **Matched vLLM H2H (B16 only, separate pack):** **~1.18× thr** and **~12% lower board J/pos** vs default vLLM. Not yet matched at B72 — so the 44.9k absolute number is **not** claimed as 1.18× vLLM.
 
-Authoritative multi-run lock (5×15 s sustains):
+| Fact | Operating point | Thr median | Board J/pos |
+|------|-----------------|----------:|------------:|
+| Absolute champion | B72 dual_gemm | ~44,860 | ~0.0153 |
+| Matched H2H | B16 vs vLLM | ~41,221 | ~0.0169 (~1.18× thr / ~12% lower J) |
 
-| Batch | Thr median (pos/s) | Board J/pos | Det |
-|------:|-------------------:|------------:|----:|
-| 16 | ~39,865 | ~0.0168 | 1.0 |
-| 32 | ~42,967 | ~0.0160 | 1.0 |
+This remains a **measured prefill executor** advantage on a defined workload—not multi-tenant serving leadership, decode crown, or wall-plug power. Dual lanes: **TRADE** = thr + joules; **AUDIT** = trust/receipts.
 
-This remains a **measured prefill executor** advantage on a defined workload—not a claim of overall multi-tenant serving leadership, decode crown, or facility wall-plug power. Dual product lanes are explicit: **TRADE** = thr + joules; **AUDIT** = trust/receipts (separate contract).
-
-**Demo (binary only, no source):** https://luxiedge.com/demo.html  
-**Public evidence pack:** https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/version-100-h100-gtm  
-**Technical one-pager:** in that pack (`PUBLIC_GTM_ONE_PAGER.md`)
-
-Commercial serve surface is live (OpenAI-shaped HTTP + locked scoreboard on `GET /v1/gtm` + dual-run audit). Next: continuous batching, decode, multi-GPU, and energy against useful work per GPU and per unit of facility power with infrastructure partners.
+**Demo:** https://luxiedge.com/demo.html  
+**Absolute pack:** https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/prefill_accel_lock_20260807T233111Z  
+**Matched vLLM pack:** https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/prefill_freeze_matched_20260807T210749Z  
 
 Contact: e@ewaller.com
 
@@ -38,7 +33,7 @@ Contact: e@ewaller.com
 
 ## One-paragraph “what changed vs TESTfort”
 
-TESTfort independently measured an earlier LuxiEdge stack at ~28.4k prefill positions/s and ~0.0187 J/pos on H100 batch-16, with energy slightly better than vLLM but throughput still below vLLM. The version-100 TRADE configuration reverses the throughput story while widening the energy win: multi-run medians ~39.9k pos/s at ~0.0168 J/pos (B16) and ~43.0k at ~0.0160 J/pos (B32), with matched H2H ~1.17–1.18× thr and ~10–14% lower board J/pos vs vLLM, det=1.0. Demo and public JSON/lock files are linked above without releasing engine source.
+TESTfort independently measured an earlier LuxiEdge stack at ~28.4k prefill positions/s and ~0.0187 J/pos on H100 batch-16, with energy slightly better than vLLM but throughput still below vLLM. Matched H2H later showed ~1.18× thr and ~12% lower board J at B16. The absolute product operating point is now dual_gemm at B72 (~44.9k pos/s, ~0.0153 J/pos multi-run)—higher thr and lower energy than the prior Luxi B16 freeze—without claiming that B72 figure is 1.18× vLLM until a matched B72 vLLM arm exists.
 
 ---
 
@@ -46,7 +41,8 @@ TESTfort independently measured an earlier LuxiEdge stack at ~28.4k prefill posi
 
 | Item | URL |
 |------|-----|
-| **Evidence (primary, always live)** | https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/version-100-h100-gtm |
+| **Evidence (absolute champion)** | https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/prefill_accel_lock_20260807T233111Z |
+| **Evidence (matched vLLM)** | https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/prefill_freeze_matched_20260807T210749Z |
 | **Demo package (binary, no source)** | https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/demo/luxiedge-yc-demo |
 | **macOS binary (raw)** | https://github.com/RegularJoe-CEO/LuxiDemo/raw/main/site/downloads/luxiedge-serve-macos-arm64 |
 | **Linux binary (raw)** | https://github.com/RegularJoe-CEO/LuxiDemo/raw/main/site/downloads/luxiedge-serve-linux-x86_64 |
