@@ -58,12 +58,12 @@
         <div class="metrics">
           <div class="metric">
             <div class="val">~44.9k</div>
-            <div class="label">Prefill pos/s (B72 absolute)</div>
+            <div class="label">Prefill pos/s (B72 internal)</div>
             <div class="src"><a href="proof.html#absolute">dual_gemm multi-run</a></div>
           </div>
           <div class="metric">
             <div class="val">0.0153</div>
-            <div class="label">Board J/pos (B72 absolute)</div>
+            <div class="label">Board J/pos (B72 internal)</div>
             <div class="src"><a href="proof.html#absolute">NVML under load</a></div>
           </div>
           <div class="metric">
@@ -78,9 +78,9 @@
           </div>
         </div>
         <p class="method">
-          <strong>Two facts:</strong> (1) best Luxi absolute prefill ~44.9k pos/s · 0.0153 board J/pos @ B72 dual_gemm;
+          <strong>Two facts (do not blend):</strong> (1) best <em>internal</em> Luxi absolute prefill ~44.9k pos/s · 0.0153 board J/pos @ B72 dual_gemm;
           (2) matched vLLM H2H remains B16 (~1.18× thr · ~12% lower J) until a B72 vLLM arm is measured.
-          Absolute batch ≠ H2H batch. Board ≠ wall-plug.
+          Absolute batch ≠ H2H batch. Board ≠ wall-plug. Independent TestFort baseline is separate on Proof.
           <a href="proof.html#absolute">Methods</a> · <a href="demo.html">demo binary</a>.
         </p>
       </div>
@@ -98,7 +98,7 @@
           </div>
           <div class="card accent">
             <h3>AI &amp; data centers</h3>
-            <p>Power caps, density, measured joules-per-token under load, and a commercial path to evaluation.</p>
+            <p>Power caps, density, measured board joules per prefill position under load, and a commercial path to evaluation.</p>
             <p style="margin-top:1rem"><a class="btn btn-primary" href="data-centers.html">Operator path →</a></p>
           </div>
           <div class="card">
