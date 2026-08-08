@@ -1,0 +1,97 @@
+{
+  "tool": "luxirisk",
+  "version": "0.1.0",
+  "receipt_scheme": "luxirisk-receipt-v1",
+  "description": "Public input → expected output + receipt vectors for LuxiRisk v0.1. Re-run with the matching binary to confirm bit-identical results.",
+  "vectors": [
+    {
+      "id": "liq_long_10x",
+      "op": "liq",
+      "cli": "luxirisk liq --side long --entry 65000 --leverage 10",
+      "inputs": {
+        "side": "long",
+        "entry": "65000",
+        "leverage": "10",
+        "mmr": "0.005"
+      },
+      "outputs": {
+        "liq_price": "58825"
+      },
+      "canonical_payload": "luxirisk-receipt-v1\nentry=65000\nleverage=10\nliq_price=58825\nmmr=0.005\nop=liq\nside=long\ntool=luxirisk\nversion=0.1.0\n",
+      "receipt_full": "a896b6f35054bd83e82693308c6ad591699cd11ea8bcc69725d3d5fde80eeddc",
+      "receipt_short": "a896b6f35054"
+    },
+    {
+      "id": "liq_short_10x",
+      "op": "liq",
+      "cli": "luxirisk liq --side short --entry 65000 --leverage 10",
+      "inputs": {
+        "side": "short",
+        "entry": "65000",
+        "leverage": "10",
+        "mmr": "0.005"
+      },
+      "outputs": {
+        "liq_price": "71175"
+      },
+      "canonical_payload": "luxirisk-receipt-v1\nentry=65000\nleverage=10\nliq_price=71175\nmmr=0.005\nop=liq\nside=short\ntool=luxirisk\nversion=0.1.0\n",
+      "receipt_full": "0be523ebd6c557546b3427ff291d6226e88e5ae93fac56133157b395dcee2c92",
+      "receipt_short": "0be523ebd6c5"
+    },
+    {
+      "id": "size_1pct",
+      "op": "size",
+      "cli": "luxirisk size --balance 10000 --risk 1 --entry 65000 --stop 63000",
+      "inputs": {
+        "balance": "10000",
+        "risk_pct": "1",
+        "entry": "65000",
+        "stop": "63000"
+      },
+      "outputs": {
+        "risk_amount": "100",
+        "stop_distance": "2000",
+        "position_size": "0.05",
+        "notional": "3250"
+      },
+      "canonical_payload": "luxirisk-receipt-v1\nbalance=10000\nentry=65000\nnotional=3250\nop=size\nposition_size=0.05\nrisk_amount=100\nrisk_pct=1\nstop=63000\nstop_distance=2000\ntool=luxirisk\nversion=0.1.0\n",
+      "receipt_full": "213f564c3c5027744f7bc7d38098777c66cdb0173097e6d468fcc329916917e2",
+      "receipt_short": "213f564c3c50"
+    },
+    {
+      "id": "risk_matches_size",
+      "op": "risk",
+      "cli": "luxirisk risk --size 0.05 --entry 65000 --stop 63000",
+      "inputs": {
+        "size": "0.05",
+        "entry": "65000",
+        "stop": "63000"
+      },
+      "outputs": {
+        "stop_distance": "2000",
+        "max_loss": "100"
+      },
+      "notes": "Max loss equals risk_amount from size_1pct — formulas are consistent.",
+      "canonical_payload": "luxirisk-receipt-v1\nentry=65000\nmax_loss=100\nop=risk\nsize=0.05\nstop=63000\nstop_distance=2000\ntool=luxirisk\nversion=0.1.0\n",
+      "receipt_full": "e3b1b30a823add3f8ee4d20916bc2f43e69b3d86f1d4fc554f3c714d5efe866c",
+      "receipt_short": "e3b1b30a823a"
+    },
+    {
+      "id": "risk_size_half",
+      "op": "risk",
+      "cli": "luxirisk risk --size 0.5 --entry 65000 --stop 63000",
+      "inputs": {
+        "size": "0.5",
+        "entry": "65000",
+        "stop": "63000"
+      },
+      "outputs": {
+        "stop_distance": "2000",
+        "max_loss": "1000"
+      },
+      "canonical_payload": "luxirisk-receipt-v1\nentry=65000\nmax_loss=1000\nop=risk\nsize=0.5\nstop=63000\nstop_distance=2000\ntool=luxirisk\nversion=0.1.0\n",
+      "receipt_full": "45ec38b1a4e915b2b4e051d7db1518f7c299ca02ed90c5163f93a11b78a965a4",
+      "receipt_short": "45ec38b1a4e9"
+    }
+  ]
+}

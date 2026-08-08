@@ -87,10 +87,27 @@ chmod +x luxiedge-demo-linux-x86_64 luxi-tools-linux-x86_64
 
 Download: [v3.0 release](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/v3.0) · Full catalog: [`DEMOS.md`](DEMOS.md)
 
+### C) LuxiRisk — offline trader risk CLI (v0.1)
+
+Free closed binary: liquidation price, position size from risk %, max $ loss at
+stop — each with a short SHA-256 receipt for Discord / Telegram / X.
+
+```bash
+chmod +x luxirisk/dist/luxirisk-macos-arm64   # or linux-x86_64
+./luxirisk/dist/luxirisk-macos-arm64 liq --side long --entry 65000 --leverage 10
+# → Liquidation price: 58825 · Receipt (short): a896b6f35054
+python3 luxirisk/test-vectors/verify_receipts.py
+```
+
+- Docs + formulas + vectors: [`luxirisk/`](luxirisk/)
+- Release tag: [luxirisk-v0.1](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.1)
+- Catalog row: [`DEMOS.md`](DEMOS.md)
+
 ## Demo and product map
 
 | Surface | What can be run publicly today | Status |
 |---|---|---|
+| **LuxiRisk** trader risk CLI | Liq / size / max loss + SHA-256 receipts (offline) | **Working closed binary (v0.1)** |
 | LuxiQuant numerical engine | REST evaluation, operator list, receipt validation | **Working binary demo** |
 | ATE / Waller / WNSM primitives | `luxi-tools ate` and `energy` | **Working binary demo** |
 | Quant/statistical operators | `validate`, `quant_chain`, Welford, normalization operators | **Working binary demo** |
