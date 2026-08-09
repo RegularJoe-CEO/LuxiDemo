@@ -35,8 +35,8 @@ pip install cryptography && python3 luxirisk/test-vectors/verify_receipts.py
 - Home: [`luxirisk/`](luxirisk/) · formulas: [`luxirisk/FORMULAS.md`](luxirisk/FORMULAS.md)
 - Test vectors: [`luxirisk/test-vectors/`](luxirisk/test-vectors/)
 - Signing / CI: [`luxirisk/SIGNING.md`](luxirisk/SIGNING.md)
-- Release: [luxirisk-v0.2](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2)
-- Offline by default · optional `--stamp` (drand) · CLI only (no UI)
+- Planned release tag: `luxirisk-v0.2` (published only after Developer ID + Authenticode signing)
+- CI: [luxirisk-release workflow](https://github.com/RegularJoe-CEO/LuxiDemo/actions/workflows/luxirisk-release.yml) · offline by default · optional `--stamp` (drand) · CLI only
 
 ## Demo 0: version-100 commercial serve + GTM scoreboard (current)
 
@@ -178,7 +178,7 @@ proprietary engine source.
 
 | Luxi layer | Public demo today | Next validation step |
 |---|---|---|
-| LuxiRisk | Offline risk CLI + Ed25519 `lxr1_` receipts + verify + public vectors | v0.2 ready; release when signed/CI secrets configured |
+| LuxiRisk | Offline risk CLI + Ed25519 `lxr1_` receipts + verify + public vectors | v0.2 on main + CI provenance; **signed GitHub release waits on Apple/Windows certs** |
 | LuxiQuant | Binary validation + REST + receipts | Publish platform-by-platform receipt matrix |
 | LuxiEdge | Primitives + Version 99 evidence verifier | Controlled downloadable inference evaluation package |
 | LuxiPack | None | Admission/placement trace versus a baseline |

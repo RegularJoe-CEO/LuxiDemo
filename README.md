@@ -100,7 +100,7 @@ pip install cryptography && python3 luxirisk/test-vectors/verify_receipts.py
 ```
 
 - Docs + formulas + vectors: [`luxirisk/`](luxirisk/)
-- Release tag: [luxirisk-v0.2](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2)
+- Planned release: `luxirisk-v0.2` after Apple/Windows code-signing certs (see [`luxirisk/SIGNING.md`](luxirisk/SIGNING.md))
 - Catalog row: [`DEMOS.md`](DEMOS.md)
 
 ## Demo and product map
