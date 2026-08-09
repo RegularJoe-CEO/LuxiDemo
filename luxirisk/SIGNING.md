@@ -93,9 +93,11 @@ export WINDOWS_CERT_P12_BASE64=… WINDOWS_CERT_PASSWORD=…
 gh workflow run luxirisk-release.yml -R RegularJoe-CEO/LuxiDemo \
   -f engine_ref=v0.2.0 -f tag=luxirisk-v0.2 -f publish_release=false
 
-# After signed builds verified on clean machines:
-gh workflow run luxirisk-release.yml -R RegularJoe-CEO/LuxiDemo \
-  -f engine_ref=v0.2.0 -f tag=luxirisk-v0.2 -f publish_release=true
+# After ALL signing secrets are set — one-shot publish (checks secret names, runs CI, waits):
+./luxirisk/scripts/publish_signed_release.sh
+# equivalent:
+# gh workflow run luxirisk-release.yml -R RegularJoe-CEO/LuxiDemo \
+#   -f engine_ref=v0.2.0 -f tag=luxirisk-v0.2 -f publish_release=true
 ```
 
 Provenance: each platform job runs `actions/attest-build-provenance` on the binary.
