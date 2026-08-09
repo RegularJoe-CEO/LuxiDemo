@@ -17,8 +17,6 @@ documented in the [README trust model](README.md#trust-model-honest) and in the
 GitHub Release notes. It is the residual risk of a free closed binary without
 paid certificates.
 
-**Do not claim v0.2 binaries are signed or notarized.**
-
 ---
 
 ## Private engine & CI (used for builds)
