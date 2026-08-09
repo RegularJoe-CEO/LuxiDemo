@@ -88,7 +88,7 @@ luxirisk vectors            # formula + signature self-test
 `--stamp` is the **only** network call LuxiRisk ever makes. Endpoint:
 
 ```text
-https://api.drand.sh/v2/beacons/default/latest
+https://api.drand.sh/public/latest
 ```
 
 Beginner tip: risk only **1% of your account** per trade.

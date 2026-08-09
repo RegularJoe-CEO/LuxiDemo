@@ -145,7 +145,7 @@ install. It is **not** a global vendor key — each user (machine) has their own
 Endpoint (only with `--stamp`):
 
 ```text
-https://api.drand.sh/v2/beacons/default/latest
+https://api.drand.sh/public/latest
 ```
 
 Source label in payload: `drand/default`. Fields: `beacon_source`,
