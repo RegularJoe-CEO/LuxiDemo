@@ -1,6 +1,27 @@
-# Binary signing, CI secrets & provenance (v0.2)
+# Binary signing & provenance (v0.2)
 
-## Private engine
+## v0.2 release policy: **unsigned by design**
+
+**LuxiRisk v0.2 ships without Apple Developer ID signing, notarization, or
+Windows Authenticode.**
+
+| Topic | v0.2 status |
+|-------|-------------|
+| macOS Developer ID + notarize + staple | **Not applied** |
+| Windows Authenticode | **Not applied** |
+| SHA-256 checksums | **Published** (`.sha256` + `SHA256SUMS`) |
+| GitHub Actions build provenance | **Available** on CI runs that built the assets |
+
+Users will hit first-run OS friction (Gatekeeper / SmartScreen). That is
+documented in the [README trust model](README.md#trust-model-honest) and in the
+GitHub Release notes. It is the residual risk of a free closed binary without
+paid certificates.
+
+**Do not claim v0.2 binaries are signed or notarized.**
+
+---
+
+## Private engine & CI (used for builds)
 
 | Item | Value |
 |------|--------|
@@ -9,24 +30,23 @@
 | Public demo repo | `RegularJoe-CEO/LuxiDemo` |
 | Workflow | [`.github/workflows/luxirisk-release.yml`](../.github/workflows/luxirisk-release.yml) |
 
-## Secrets on LuxiDemo (exact names)
-
-### Required for CI engine checkout
+### Secrets used for v0.2 CI (engine checkout only)
 
 | Secret | Purpose |
 |--------|---------|
 | `LUXIRISK_ENGINE_REPO` | `RegularJoe-CEO/luxirisk-engine` |
-| `LUXIRISK_ENGINE_DEPLOY_KEY` | Read-only SSH **private** key (PEM) for a deploy key on the engine repo |
+| `LUXIRISK_ENGINE_DEPLOY_KEY` | Read-only SSH deploy key for the private engine |
 
-**Optional HTTPS alternative** (if not using deploy key):
+Optional alternative: `LUXIRISK_ENGINE_TOKEN` (PAT with `contents:read`).
 
-| Secret | Purpose |
-|--------|---------|
-| `LUXIRISK_ENGINE_TOKEN` | PAT with `contents:read` on `luxirisk-engine` |
+---
 
-### Required for Gatekeeper / SmartScreen-clean release
+## Optional / future: paid code-signing (not used in v0.2)
 
-**Apple (Developer ID Application + notarization)**
+Scripts and secret names below are **kept for a future release**. They are
+**not** required for v0.2 and were **not** applied to the published assets.
+
+### Apple (Developer ID Application + notarization)
 
 | Secret | Purpose |
 |--------|---------|
@@ -37,88 +57,40 @@
 | `APPLE_API_ISSUER` | App Store Connect issuer UUID |
 | `APPLE_API_KEY_P8` | Full `.p8` private key PEM text |
 
-**Windows (Authenticode — OV minimum, EV preferred)**
+Engine scripts (private repo): `scripts/macos_sign_notarize.sh`
+
+Post-sign checks (when used):
+
+```bash
+codesign --verify --verbose=2 luxirisk-macos-arm64
+xcrun stapler validate luxirisk-macos-arm64
+spctl --assess --type execute --verbose=4 luxirisk-macos-arm64
+```
+
+### Windows (Authenticode — OV min, EV preferred)
 
 | Secret | Purpose |
 |--------|---------|
 | `WINDOWS_CERT_P12_BASE64` | Base64 of code-signing `.p12` / `.pfx` |
 | `WINDOWS_CERT_PASSWORD` | P12 password |
 
-### Set secrets with `gh`
+Engine script: `scripts/windows_sign.sh`
 
-```bash
-# Engine (already usable once deploy key exists)
-gh secret set LUXIRISK_ENGINE_REPO -R RegularJoe-CEO/LuxiDemo -b 'RegularJoe-CEO/luxirisk-engine'
-gh secret set LUXIRISK_ENGINE_DEPLOY_KEY -R RegularJoe-CEO/LuxiDemo < deploy_key_private
+### Future publish helper
 
-# Apple (when certs issued)
-base64 -i DeveloperID.p12 | gh secret set APPLE_CERTIFICATE_P12_BASE64 -R RegularJoe-CEO/LuxiDemo
-gh secret set APPLE_CERTIFICATE_PASSWORD -R RegularJoe-CEO/LuxiDemo -b '…'
-gh secret set APPLE_SIGNING_IDENTITY -R RegularJoe-CEO/LuxiDemo -b 'Developer ID Application: …'
-gh secret set APPLE_API_KEY_ID -R RegularJoe-CEO/LuxiDemo -b '…'
-gh secret set APPLE_API_ISSUER -R RegularJoe-CEO/LuxiDemo -b '…'
-gh secret set APPLE_API_KEY_P8 -R RegularJoe-CEO/LuxiDemo < AuthKey_XXX.p8
+[`scripts/publish_signed_release.sh`](scripts/publish_signed_release.sh) checks
+for the optional signing secrets and can dispatch CI with `publish_release=true`.
+**Not used for the honest unsigned v0.2 ship.**
 
-# Windows
-base64 -i codesign.pfx | gh secret set WINDOWS_CERT_P12_BASE64 -R RegularJoe-CEO/LuxiDemo
-gh secret set WINDOWS_CERT_PASSWORD -R RegularJoe-CEO/LuxiDemo -b '…'
-```
+---
 
-## Local signing scripts (private engine)
+## Provenance without code-signing
 
-```bash
-# macOS Developer ID + notarytool + staple
-export APPLE_CERTIFICATE_P12_BASE64=…
-export APPLE_CERTIFICATE_PASSWORD=…
-export APPLE_SIGNING_IDENTITY='Developer ID Application: …'
-export APPLE_API_KEY_ID=… APPLE_API_ISSUER=… APPLE_API_KEY_P8="$(cat AuthKey.p8)"
-./scripts/macos_sign_notarize.sh dist/luxirisk-macos-arm64
+For v0.2, trust the download chain as:
 
-# Verify macOS
-codesign --verify --verbose=2 dist/luxirisk-macos-arm64
-xcrun stapler validate dist/luxirisk-macos-arm64
-spctl --assess --type execute --verbose=4 dist/luxirisk-macos-arm64
+1. Download binary + `.sha256` / `SHA256SUMS` from the GitHub Release  
+2. Verify the digest matches  
+3. Optionally inspect GitHub Actions build provenance for the CI run that produced the artifact  
 
-# Windows Authenticode
-export WINDOWS_CERT_P12_BASE64=… WINDOWS_CERT_PASSWORD=…
-./scripts/windows_sign.sh dist/luxirisk-windows-x86_64.exe
-# Verify (Windows): Get-AuthenticodeSignature .\luxirisk-windows-x86_64.exe
-# or: osslsigncode verify -in luxirisk-windows-x86_64.exe
-```
-
-## CI usage
-
-```bash
-# Build + attest only (no GitHub Release) — safe without signing certs
-gh workflow run luxirisk-release.yml -R RegularJoe-CEO/LuxiDemo \
-  -f engine_ref=v0.2.0 -f tag=luxirisk-v0.2 -f publish_release=false
-
-# After ALL signing secrets are set — one-shot publish (checks secret names, runs CI, waits):
-./luxirisk/scripts/publish_signed_release.sh
-# equivalent:
-# gh workflow run luxirisk-release.yml -R RegularJoe-CEO/LuxiDemo \
-#   -f engine_ref=v0.2.0 -f tag=luxirisk-v0.2 -f publish_release=true
-```
-
-Provenance: each platform job runs `actions/attest-build-provenance` on the binary.
-Inspect under the Actions run → **Attestations**, or:
-
-```bash
-gh attestation verify luxirisk-macos-arm64 -R RegularJoe-CEO/LuxiDemo
-```
-
-## Release policy (hard)
-
-Do **not** publish tag/release `luxirisk-v0.2` until:
-
-1. macOS binary is Developer ID signed, notarized, and stapled (`spctl --assess` clean)
-2. Windows binary is Authenticode-signed (SmartScreen-trusted path for OV/EV)
-3. SHA256SUMS + provenance attestations exist
-
-Until Apple + Windows cert secrets are present, CI still builds **unsigned** hash-verified binaries with provenance. Those are **not** a public release.
-
-## Current environment (as of v0.2 engineering)
-
-- Private engine repo + deploy key + `LUXIRISK_ENGINE_REPO` secret: **wired**
-- Developer ID / Authenticode material on the build Mac: **not present** (`security find-identity -p codesigning` → 0 identities)
-- Therefore: public tree + CI may land; **signed release waits on cert handoff**
+Receipt trust (`lxr1_…`) is independent of OS code-signing: it is Ed25519 over
+the calculation payload with a **per-install** key.

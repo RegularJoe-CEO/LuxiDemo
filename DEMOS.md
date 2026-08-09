@@ -4,11 +4,12 @@ Luxi demos are distributed as **compiled evaluation binaries**. Evaluators can
 run the tools, supply inputs, inspect outputs, and compare SHA-256 receipts
 without receiving the private implementation source.
 
-## Demo −1: LuxiRisk v0.2 — offline trader risk calculator (signed receipts)
+## Demo −1: LuxiRisk v0.2 — offline trader risk calculator (`lxr1_` receipts)
 
-**Closed binary only — no engine source.** Three calculations for leveraged
-crypto / retail traders, each with an **Ed25519-signed** `lxr1_…` receipt
-(per-install identity) for posting in Discord, Telegram, and X.
+**Closed binary only — no engine source. OS code-signing is not applied (unsigned
+download; expect Gatekeeper / SmartScreen friction).** Three calculations for
+leveraged crypto / retail traders, each with an **Ed25519-signed** `lxr1_…`
+**calculation receipt** (per-install identity) for Discord, Telegram, and X.
 
 | Calculation | Example |
 |-------------|---------|
@@ -25,6 +26,7 @@ crypto / retail traders, each with an **Ed25519-signed** `lxr1_…` receipt
 ```bash
 chmod +x luxirisk/dist/luxirisk-macos-arm64
 shasum -a 256 -c luxirisk/dist/luxirisk-macos-arm64.sha256
+# macOS first run: right-click → Open (binary is unsigned)
 ./luxirisk/dist/luxirisk-macos-arm64 liq --side long --entry 65000 --leverage 10
 # receipt starts with lxr1_  ·  fingerprint is per-install
 ./luxirisk/dist/luxirisk-macos-arm64 verify 'lxr1_…' liq \
@@ -34,10 +36,8 @@ pip install cryptography && python3 luxirisk/test-vectors/verify_receipts.py
 
 - Home: [`luxirisk/`](luxirisk/) · formulas: [`luxirisk/FORMULAS.md`](luxirisk/FORMULAS.md)
 - Test vectors: [`luxirisk/test-vectors/`](luxirisk/test-vectors/)
-- Signing / CI: [`luxirisk/SIGNING.md`](luxirisk/SIGNING.md)
-- Planned release tag: `luxirisk-v0.2` (published only after Developer ID + Authenticode signing)
-- CI: [luxirisk-release workflow](https://github.com/RegularJoe-CEO/LuxiDemo/actions/workflows/luxirisk-release.yml) · offline by default · optional `--stamp` (drand) · CLI only
-
+- Release: [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2) (**unsigned** binaries + checksums)
+- Offline by default · optional `--stamp` / `--beacon` · CLI only · Built by the team behind LuxiEdge — luxiedge.com
 ## Demo 0: version-100 commercial serve + GTM scoreboard (current)
 
 **Binary only — no engine source.** OpenAI-shaped HTTP API with locked H100 thr/J/det on `GET /v1/gtm`.
@@ -178,7 +178,7 @@ proprietary engine source.
 
 | Luxi layer | Public demo today | Next validation step |
 |---|---|---|
-| LuxiRisk | Offline risk CLI + Ed25519 `lxr1_` receipts + verify + public vectors | v0.2 on main + CI provenance; **signed GitHub release waits on Apple/Windows certs** |
+| LuxiRisk | Offline risk CLI + Ed25519 `lxr1_` receipts + verify + public vectors | [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2) (**unsigned** binaries; honest Gatekeeper/SmartScreen friction) |
 | LuxiQuant | Binary validation + REST + receipts | Publish platform-by-platform receipt matrix |
 | LuxiEdge | Primitives + Version 99 evidence verifier | Controlled downloadable inference evaluation package |
 | LuxiPack | None | Admission/placement trace versus a baseline |

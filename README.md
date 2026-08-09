@@ -90,24 +90,30 @@ Download: [v3.0 release](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag
 ### C) LuxiRisk — offline trader risk CLI (v0.2)
 
 Free closed binary: liquidation price, position size from risk %, max $ loss at
-stop — each with an **Ed25519-signed** `lxr1_…` receipt (per-install identity).
+stop — each with an **Ed25519-signed** `lxr1_…` **calculation receipt**
+(per-install identity). Offline by default; optional `--stamp` / `--beacon`.
+
+**OS binaries are unsigned** (no Apple notarization / Authenticode). On first
+run: macOS right-click → Open; Windows SmartScreen → More info → Run anyway.
+Always verify the published SHA-256.
 
 ```bash
 chmod +x luxirisk/dist/luxirisk-macos-arm64   # or linux-x86_64
+shasum -a 256 -c luxirisk/dist/luxirisk-macos-arm64.sha256
 ./luxirisk/dist/luxirisk-macos-arm64 liq --side long --entry 65000 --leverage 10
 # → Liquidation price: 58825 · Receipt: lxr1_…
 pip install cryptography && python3 luxirisk/test-vectors/verify_receipts.py
 ```
 
 - Docs + formulas + vectors: [`luxirisk/`](luxirisk/)
-- Planned release: `luxirisk-v0.2` after Apple/Windows code-signing certs (see [`luxirisk/SIGNING.md`](luxirisk/SIGNING.md))
-- Catalog row: [`DEMOS.md`](DEMOS.md)
+- Release: [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2)
+- Catalog: [`DEMOS.md`](DEMOS.md) · Built by the team behind LuxiEdge — [luxiedge.com](https://luxiedge.com)
 
 ## Demo and product map
 
 | Surface | What can be run publicly today | Status |
 |---|---|---|
-| **LuxiRisk** trader risk CLI | Liq / size / max loss + Ed25519 `lxr1_` receipts (offline) | **Working closed binary (v0.2)** |
+| **LuxiRisk** trader risk CLI | Liq / size / max loss + Ed25519 `lxr1_` receipts (offline; **unsigned** OS binary) | **[v0.2 release](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2)** |
 | LuxiQuant numerical engine | REST evaluation, operator list, receipt validation | **Working binary demo** |
 | ATE / Waller / WNSM primitives | `luxi-tools ate` and `energy` | **Working binary demo** |
 | Quant/statistical operators | `validate`, `quant_chain`, Welford, normalization operators | **Working binary demo** |

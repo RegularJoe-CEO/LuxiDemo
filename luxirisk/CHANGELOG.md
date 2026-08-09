@@ -10,10 +10,16 @@
   `test-vectors/verify_receipts.py`.
 - **Optional time binding:** `--stamp` (drand HTTPS, opt-in) or offline
   `--beacon VALUE`.
-- **Runnable / trust surface (Defect 2):** CLI-only (removed `ui`). Public CI
-  workflow with build provenance attestation. Signing/notarization scripts for
-  Developer ID + Authenticode when credentials are available. Honest residual
-  risk table in README.
+- **Trust surface:** CLI-only (removed `ui`). Public CI workflow with build
+  provenance. Honest residual-risk table (unsigned OS binary + extractable
+  install key).
+
+### Distribution (honest)
+
+- **v0.2 OS binaries are unsigned** (no Apple Developer ID / notarization, no
+  Windows Authenticode). Expect Gatekeeper / SmartScreen friction on first run.
+- Checksums + CI provenance published; paid code-signing deferred (scripts kept
+  for a future optional release).
 
 ### Changed
 

@@ -1,6 +1,6 @@
 # LuxiRisk v0.2
 
-**Free · closed-source · tiny offline CLI**
+**Free · closed-source · tiny offline CLI · unsigned binaries**
 
 Three high-frequency risk calculations for crypto / retail traders, each with a
 **greppable Ed25519-signed receipt** (`lxr1_…`) so numbers posted in Discord,
@@ -12,6 +12,7 @@ Telegram, and X can be checked by third parties.
 | **Signed receipts** | Per-install Ed25519 key; cannot mint a valid `lxr1_` without the private key. |
 | **Deterministic math** | Same inputs → same numbers on macOS, Linux, Windows. |
 | **Closed binary** | Engine source is not distributed. Formulas + vectors are public. |
+| **OS code-signing** | **Not applied in v0.2** — see [Trust model](#trust-model-honest). |
 
 Built by the team behind LuxiEdge — [luxiedge.com](https://luxiedge.com)
 
@@ -38,8 +39,8 @@ From [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag
 | Linux x86_64 | `luxirisk-linux-x86_64` |
 | Windows x86_64 | `luxirisk-windows-x86_64.exe` |
 
-Each ships with a matching `.sha256`. Prefer also checking **GitHub Actions
-provenance attestation** on the release (see Trust model).
+Each ships with a matching `.sha256`. Also compare against `SHA256SUMS`.
+CI build provenance (unsigned binaries) is available on the release workflow run.
 
 ### 2. Verify the binary hash
 
@@ -48,7 +49,21 @@ shasum -a 256 -c luxirisk-macos-arm64.sha256   # macOS
 sha256sum -c luxirisk-linux-x86_64.sha256      # Linux
 ```
 
-### 3. Run
+### 3. First run (unsigned binaries — expect OS friction)
+
+**These binaries are not Apple-notarized and not Authenticode-signed.**
+
+| OS | What you will see | What to do |
+|----|-------------------|------------|
+| **macOS** | Gatekeeper blocks an unidentified developer | **Right-click** the binary → **Open** → **Open**. Or: System Settings → **Privacy & Security** → allow LuxiRisk. |
+| **Windows** | SmartScreen: “Windows protected your PC” | Click **More info** → **Run anyway**. |
+| **Linux** | Usually no signature gate | `chmod +x` and run. |
+
+This friction is the residual risk of distributing a **free closed binary without
+paid code-signing certificates**. It does **not** mean the file failed its
+SHA-256 check.
+
+### 4. Run
 
 ```bash
 chmod +x luxirisk-macos-arm64
@@ -115,27 +130,27 @@ python3 test-vectors/verify_receipts.py
 |-------|--------|----------------|
 | Formulas are public | Yes | [`FORMULAS.md`](FORMULAS.md) |
 | Outputs match formulas | Yes | [`test-vectors/`](test-vectors/) |
-| Receipts are Ed25519-signed | Yes | `verify` / `verify_receipts.py` |
-| Randoms cannot mint valid `lxr1_` | Yes | Needs install private key (or RE) |
+| **Calculation receipts** are Ed25519-signed (`lxr1_…`) | Yes | `verify` / `verify_receipts.py` |
+| Randoms cannot mint valid `lxr1_` without a private key | Yes | Needs install key (or serious RE) |
 | Default fully offline | Yes | No sockets unless `--stamp` |
 | Per-install stable fingerprint | Yes | `luxirisk id` |
-| Binary hash published | Yes | `.sha256` + `SHA256SUMS` |
-| Build provenance (CI attestation) | When released via GHA | GitHub Attestations on the release |
-| Apple notarization / Windows Authenticode | **When signing credentials available** | See residual risks |
+| Binary **file** hash published | Yes | `.sha256` + `SHA256SUMS` |
+| Build provenance (CI) | Yes when built via GHA | GitHub Actions attestations |
+| **OS code-signed / notarized binary** | **No (v0.2)** | Expect Gatekeeper / SmartScreen friction |
 
 ### Residual risks (do not overclaim)
 
-1. **Per-install private key lives on the user's disk.** Malware with file
+1. **The distributed binaries are unsigned.** macOS Gatekeeper and Windows
+   SmartScreen will warn. That is expected for a free closed tool without paid
+   Apple Developer ID + Authenticode certificates. Always verify the SHA-256
+   before first run.
+2. **Per-install private key lives on the user's disk.** Malware with file
    access can steal it and forge receipts *as that install*. Protect the config
    directory; treat fingerprints like pseudonyms, not hardware roots of trust.
-2. **A reverse-engineered binary can still sign.** Closed source raises the
+3. **A reverse-engineered binary can still sign.** Closed source raises the
    cost; it does not create cryptographic impossibility for a determined
    attacker who extracts or reimplements the signer. What it *does* stop is the
    v0.1 failure mode: casual minting of “valid” hashes with no key material.
-3. **Unsigned / un-notarized downloads** may trigger OS warnings on stock
-   macOS/Windows until Developer ID + notarization (macOS) and Authenticode
-   (Windows) are applied for a given release. Prefer hashes + provenance even
-   when OS SmartScreen/Gatekeeper is green.
 4. **`--stamp` trusts the drand HTTPS endpoint** for that moment. Prefer
    offline `--beacon` or verify the round against an independent archive.
 5. **Social trust ≠ market truth.** A verified receipt proves “this install
@@ -154,13 +169,15 @@ python3 test-vectors/verify_receipts.py
 ## Non-goals (v0.2)
 
 No funding rates, Kelly, Monte Carlo, prop-firm modes, exchange connections,
-website, open-sourced engine, or local UI (removed; CLI only).
+website, open-sourced engine, local UI, or paid OS code-signing for this release.
 
 ## Release
 
-- Tag: **`luxirisk-v0.2`**
+- Tag: **[`luxirisk-v0.2`](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2)**
 - Product version: **0.2.0**
+- Binaries: **unsigned** (hash-verified + CI provenance)
 - Parent catalog: [DEMOS.md](../DEMOS.md)
+- Future signing notes: [SIGNING.md](SIGNING.md)
 
 ## License / distribution
 
