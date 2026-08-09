@@ -1,0 +1,233 @@
+# Build LuxiRisk closed binaries from the private engine and attach
+# build-provenance attestations. Optional Apple/Windows signing when secrets exist.
+#
+# Required secrets (LuxiDemo):
+#   LUXIRISK_ENGINE_REPO          e.g. RegularJoe-CEO/luxirisk-engine
+#   LUXIRISK_ENGINE_DEPLOY_KEY    read-only SSH deploy key (private key PEM)
+#
+# Optional signing secrets (required for Gatekeeper/SmartScreen-clean release):
+#   APPLE_CERTIFICATE_P12_BASE64, APPLE_CERTIFICATE_PASSWORD,
+#   APPLE_SIGNING_IDENTITY, APPLE_API_KEY_ID, APPLE_API_ISSUER, APPLE_API_KEY_P8
+#   WINDOWS_CERT_P12_BASE64, WINDOWS_CERT_PASSWORD
+#
+# Publish a GitHub Release only when publish_release=true (after signed builds verified).
+# See luxirisk/SIGNING.md for exact secret setup and verification commands.
+
+name: luxirisk-release
+
+on:
+  workflow_dispatch:
+    inputs:
+      engine_ref:
+        description: "Git ref of private engine to build"
+        required: true
+        default: "v0.2.0"
+      tag:
+        description: "Release tag name if publishing (e.g. luxirisk-v0.2)"
+        required: true
+        default: "luxirisk-v0.2"
+      publish_release:
+        description: "Create/update GitHub Release with built assets (only after signed builds)"
+        required: true
+        type: boolean
+        default: false
+  push:
+    tags:
+      - "luxirisk-v*"
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+env:
+  ENGINE_REF: ${{ github.event.inputs.engine_ref || 'v0.2.0' }}
+
+jobs:
+  build-macos:
+    runs-on: macos-14
+    steps:
+      - name: Checkout LuxiDemo
+        uses: actions/checkout@v4
+
+      - name: Checkout private engine
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ secrets.LUXIRISK_ENGINE_REPO }}
+          ssh-key: ${{ secrets.LUXIRISK_ENGINE_DEPLOY_KEY }}
+          ref: ${{ env.ENGINE_REF }}
+          path: engine
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-darwin
+
+      - name: Build release (macOS ARM64)
+        working-directory: engine
+        run: |
+          cargo build --release --target aarch64-apple-darwin
+          mkdir -p dist
+          cp target/aarch64-apple-darwin/release/luxirisk dist/luxirisk-macos-arm64
+          shasum -a 256 dist/luxirisk-macos-arm64 | tee dist/luxirisk-macos-arm64.sha256
+
+      - name: Optional Apple codesign + notarize
+        working-directory: engine
+        env:
+          APPLE_CERTIFICATE_P12_BASE64: ${{ secrets.APPLE_CERTIFICATE_P12_BASE64 }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+          APPLE_API_KEY_P8: ${{ secrets.APPLE_API_KEY_P8 }}
+          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
+        run: |
+          if [ -z "${APPLE_CERTIFICATE_P12_BASE64:-}" ]; then
+            echo "No Apple signing secrets — binary remains hash-only (see luxirisk/SIGNING.md)"
+            exit 0
+          fi
+          bash scripts/macos_sign_notarize.sh dist/luxirisk-macos-arm64
+          codesign --verify --verbose=2 dist/luxirisk-macos-arm64
+          shasum -a 256 dist/luxirisk-macos-arm64 | tee dist/luxirisk-macos-arm64.sha256
+
+      - name: Upload macOS artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: luxirisk-macos-arm64
+          path: engine/dist/*
+
+      - name: Attest macOS binary
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: engine/dist/luxirisk-macos-arm64
+
+  build-linux:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout LuxiDemo
+        uses: actions/checkout@v4
+
+      - name: Checkout private engine
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ secrets.LUXIRISK_ENGINE_REPO }}
+          ssh-key: ${{ secrets.LUXIRISK_ENGINE_DEPLOY_KEY }}
+          ref: ${{ env.ENGINE_REF }}
+          path: engine
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build release (Linux x86_64)
+        working-directory: engine
+        run: |
+          cargo build --release
+          mkdir -p dist
+          cp target/release/luxirisk dist/luxirisk-linux-x86_64
+          sha256sum dist/luxirisk-linux-x86_64 | tee dist/luxirisk-linux-x86_64.sha256
+
+      - name: Upload Linux artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: luxirisk-linux-x86_64
+          path: engine/dist/*
+
+      - name: Attest Linux binary
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: engine/dist/luxirisk-linux-x86_64
+
+  build-windows:
+    runs-on: windows-2022
+    steps:
+      - name: Checkout LuxiDemo
+        uses: actions/checkout@v4
+
+      - name: Checkout private engine
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ secrets.LUXIRISK_ENGINE_REPO }}
+          ssh-key: ${{ secrets.LUXIRISK_ENGINE_DEPLOY_KEY }}
+          ref: ${{ env.ENGINE_REF }}
+          path: engine
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build release (Windows x86_64)
+        working-directory: engine
+        shell: bash
+        run: |
+          cargo build --release
+          mkdir -p dist
+          cp target/release/luxirisk.exe dist/luxirisk-windows-x86_64.exe
+          sha256sum dist/luxirisk-windows-x86_64.exe | tee dist/luxirisk-windows-x86_64.exe.sha256
+
+      - name: Optional Authenticode sign
+        working-directory: engine
+        shell: bash
+        env:
+          WINDOWS_CERT_P12_BASE64: ${{ secrets.WINDOWS_CERT_P12_BASE64 }}
+          WINDOWS_CERT_PASSWORD: ${{ secrets.WINDOWS_CERT_PASSWORD }}
+        run: |
+          if [ -z "${WINDOWS_CERT_P12_BASE64:-}" ]; then
+            echo "No Windows signing secrets — binary remains hash-only (see luxirisk/SIGNING.md)"
+            exit 0
+          fi
+          bash scripts/windows_sign.sh dist/luxirisk-windows-x86_64.exe
+          sha256sum dist/luxirisk-windows-x86_64.exe | tee dist/luxirisk-windows-x86_64.exe.sha256
+
+      - name: Upload Windows artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: luxirisk-windows-x86_64
+          path: engine/dist/*
+
+      - name: Attest Windows binary
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: engine/dist/luxirisk-windows-x86_64.exe
+
+  package:
+    needs: [build-macos, build-linux, build-windows]
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Assemble dist
+        run: |
+          mkdir -p dist
+          find artifacts -type f -exec cp {} dist/ \;
+          cd dist
+          sha256sum luxirisk-macos-arm64 luxirisk-linux-x86_64 luxirisk-windows-x86_64.exe > SHA256SUMS
+          ls -la
+          cat SHA256SUMS
+
+      - name: Upload combined dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: luxirisk-dist
+          path: dist/*
+
+      - name: Create GitHub Release (gated — only when explicitly requested or tag push)
+        if: |
+          (github.event_name == 'workflow_dispatch' && inputs.publish_release == true) ||
+          startsWith(github.ref, 'refs/tags/luxirisk-v')
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.inputs.tag || github.ref_name }}
+          name: LuxiRisk ${{ github.event.inputs.tag || github.ref_name }}
+          body: |
+            Closed-source offline trader risk CLI with **Ed25519-signed** `lxr1_` receipts.
+
+            - Offline by default; optional `--stamp` (drand) time binding
+            - Per-install identity · `luxirisk verify` · public test vectors
+            - Built by the team behind LuxiEdge — https://luxiedge.com
+
+            **Verify hashes** with `SHA256SUMS`. Check **GitHub Attestations** for build provenance.
+
+            Trust materials: `luxirisk/` in this repository.
+          files: dist/*
+          generate_release_notes: true

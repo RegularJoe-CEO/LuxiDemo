@@ -1,7 +1,7 @@
-# LuxiRisk v0.1 — exact formulas
+# LuxiRisk v0.2 — exact formulas & receipt scheme
 
-These are the **only** calculations performed by LuxiRisk v0.1. Anyone can
-re-implement them and compare outputs (and receipts) against the published
+These are the **only** calculations performed by LuxiRisk v0.2. Anyone can
+re-implement them and compare outputs against the published
 [test vectors](test-vectors/).
 
 All arithmetic uses a **deterministic fixed-point decimal** path (scale
@@ -42,32 +42,20 @@ P_{\text{liq}} = 65000 \times (1 - 0.1 + 0.005) = 65000 \times 0.905 = 58825
 P_{\text{liq}} = 65000 \times (1 + 0.1 - 0.005) = 65000 \times 1.095 = 71175
 \]
 
-> This is a simplified isolated-margin approximation used by many educational
-> and retail tools. Live exchange liquidation engines may include fees, funding,
-> and tiered maintenance margin schedules. LuxiRisk does **not** call exchanges.
+> Simplified isolated-margin approximation. Live exchange engines may include
+> fees, funding, and tiered MMR. LuxiRisk does **not** call exchanges.
 
 ---
 
 ## 2. Position size from risk %
-
-**Inputs**
-
-| Name | Symbol | Notes |
-|------|--------|--------|
-| Account balance | \(B\) | \(B > 0\) |
-| Risk percentage | \(r\) | e.g. `1` means 1% of account |
-| Entry price | \(E\) | \(E > 0\) |
-| Stop price **or** stop distance % | \(S\) or \(d\%\) | Exactly one |
-
-**Formulas**
 
 \[
 \begin{aligned}
 \text{Risk amount} &= B \times \frac{r}{100} \\
 \text{Stop distance} &=
 \begin{cases}
-|E - S| & \text{if absolute stop price } S \\
-E \times \dfrac{d}{100} & \text{if stop distance \% } d
+|E - S| & \text{absolute stop } S \\
+E \times \dfrac{d}{100} & \text{stop distance \% } d
 \end{cases} \\
 \text{Position size (base)} &= \frac{\text{Risk amount}}{\text{Stop distance}} \\
 \text{Notional} &= \text{Position size} \times E
@@ -76,105 +64,126 @@ E \times \dfrac{d}{100} & \text{if stop distance \% } d
 
 **Example** — \(B = 10000\), \(r = 1\), \(E = 65000\), \(S = 63000\):
 
-\[
-\begin{aligned}
-\text{Risk amount} &= 100 \\
-\text{Stop distance} &= 2000 \\
-\text{Position size} &= 0.05 \\
-\text{Notional} &= 3250
-\end{aligned}
-\]
-
-Beginner tip: risk only **1% of your account** per trade.
+risk amount \(= 100\), size \(= 0.05\), notional \(= 3250\).
 
 ---
 
 ## 3. Max dollar loss / risk at stop
 
-**Inputs:** position size \(Q\) (base units), entry \(E\), stop \(S\).
-
 \[
 \text{Max \$ loss} = Q \times |E - S|
 \]
 
-**Consistency check:** for the position-size example above,
-\(Q = 0.05\), \(E = 65000\), \(S = 63000\) ⇒ max loss \(= 100\), which equals
-the risk amount from formula 2.
-
-**Example** — \(Q = 0.5\), \(E = 65000\), \(S = 63000\):
-
-\[
-\text{Max \$ loss} = 0.5 \times 2000 = 1000
-\]
+Consistent with formula 2: size \(0.05\) → loss \(100\).
 
 ---
 
-## Receipt algorithm
+## Receipt scheme v2 (Ed25519, non-forgeable without the private key)
 
-Every successful calculation emits a **short receipt** (first 12 hex characters
-of SHA-256) and can emit the **full** SHA-256 with `--full-receipt`.
+v0.1 used a truncated public SHA-256. **Anyone could mint a valid-looking
+receipt without the binary.** v0.2 replaces that with an **Ed25519 signature**
+over a canonical payload, produced by a **per-install private key**.
 
-### Canonical payload
-
-UTF-8 text, one field per line, keys sorted lexicographically **after** a fixed
-header line:
+### Share form (branded, greppable)
 
 ```text
-luxirisk-receipt-v1
+lxr1_<base64url(blob)>
+```
+
+| Field | Size | Content |
+|-------|-----:|---------|
+| magic | 3 | `LXR` |
+| version | 1 | `2` |
+| flags | 1 | bit0 = beacon present in payload |
+| pubkey | 32 | Ed25519 public key (this install) |
+| signature | 64 | Ed25519 signature over canonical payload |
+
+Total blob = **101 bytes**. Prefix `lxr1_` makes receipts greppable in Discord / X.
+
+### Canonical signed payload
+
+UTF-8, line-oriented:
+
+```text
+luxirisk-receipt-v2
 <entry_key>=<canonical_value>
 ...
 ```
 
 Rules:
 
-1. First line is exactly `luxirisk-receipt-v1`.
-2. Remaining lines are `key=value`, sorted by `key` (byte order).
-3. Decimal values use **canonical form**: no scientific notation, no leading
-   `+`, no trailing fractional zeros (`1.2500` → `1.25`), no thousands
-   separators, `.` as the decimal separator.
-4. Enum-like strings are lowercase (`long`, `short`, `liq`, `size`, `risk`).
-5. Payload always ends with a trailing newline after the last line.
-6. Hash: `SHA-256` over the exact UTF-8 bytes of that payload.
-7. Short receipt: first **12** hex characters of the lowercase hex digest.
+1. First line is exactly `luxirisk-receipt-v2`.
+2. Remaining lines are `key=value`, sorted by key (byte order).
+3. Decimal values use canonical fixed-point form (same as v0.1).
+4. Always includes: `tool=luxirisk`, `version=0.2.0`, `pubkey=<64 hex>`, `fp=<16 hex>`.
+5. Payload ends with a trailing newline.
+6. Signature = Ed25519.Sign(private_key, payload_utf8_bytes).
 
-### Common fields
+### Per-install identity
 
-| Field | Present on |
-|-------|------------|
-| `tool` | always (`luxirisk`) |
-| `version` | always (`0.1.0`) |
-| `op` | `liq` \| `size` \| `risk` |
+On first successful calculation (or `luxirisk id`):
 
-Plus operation-specific inputs and outputs (see [test-vectors/](test-vectors/)).
+1. Generate a random Ed25519 keypair.
+2. Store the secret key under the platform config dir (mode `0600` on Unix):
+   - macOS: `~/Library/Application Support/LuxiRisk/`
+   - Linux: `~/.config/luxirisk/` (or `$XDG_CONFIG_HOME/luxirisk/`)
+   - Windows: `%APPDATA%\LuxiRisk\`
+   - Override: `LUXIRISK_HOME`
+3. Fingerprint = first 8 bytes of SHA-256(pubkey), hex (16 chars).
+
+The fingerprint is a **stable pseudonymous identity** across receipts from that
+install. It is **not** a global vendor key — each user (machine) has their own.
+
+### Optional time binding
+
+| Flag | Behavior | Network |
+|------|----------|---------|
+| *(none)* | No beacon fields | Offline |
+| `--beacon VALUE` | Include user-supplied beacon | Offline |
+| `--stamp` | Fetch latest [drand](https://drand.love) randomness | **One HTTPS GET** |
+
+Endpoint (only with `--stamp`):
+
+```text
+https://api.drand.sh/v2/beacons/default/latest
+```
+
+Source label in payload: `drand/default`. Fields: `beacon_source`,
+`beacon_round`, `beacon_value`.
+
+Offline third parties can re-check the round against a public drand archive.
 
 ### Independent verification
 
-1. Build the canonical payload from known inputs/outputs using the rules above.
-2. Compute SHA-256 (any standard tool, e.g. `sha256sum`, Python `hashlib`).
-3. Compare the full digest (or first 12 chars) to the receipt from the binary.
+**With the binary (offline):**
 
-Example (Python):
-
-```python
-import hashlib
-payload = """luxirisk-receipt-v1
-entry=65000
-leverage=10
-liq_price=58825
-mmr=0.005
-op=liq
-side=long
-tool=luxirisk
-version=0.1.0
-"""
-print(hashlib.sha256(payload.encode()).hexdigest())
-# → a896b6f35054bd83e82693308c6ad591699cd11ea8bcc69725d3d5fde80eeddc
-# short → a896b6f35054
+```bash
+luxirisk verify lxr1_… --payload-file claim.txt
+luxirisk verify lxr1_… liq --side long --entry 65000 --leverage 10 --expect-liq 58825
 ```
+
+**Without the binary (Python, offline):**
+
+```bash
+pip install cryptography   # or pynacl
+python3 test-vectors/verify_receipts.py
+python3 test-vectors/verify_receipts.py --receipt 'lxr1_…' --payload-file claim.txt
+```
+
+### Test-vector identity (documentation only)
+
+Public vectors are signed with a **fixed deterministic seed**:
+
+```text
+seed = SHA-256(utf8("luxirisk-v0.2-test-vector-identity"))
+```
+
+Fingerprint and public key are published in `test-vectors/vectors.json`.
+This is **not** used for real user receipts.
 
 ---
 
-## Non-goals (v0.1)
+## Non-goals (v0.2)
 
-Not computed: funding rates, full Kelly criterion, Monte Carlo scenarios,
-prop-firm consistency modes, exchange API lookups.
+Not computed: funding rates, Kelly, Monte Carlo, prop-firm modes, exchange APIs.
+Local UI removed (CLI only).

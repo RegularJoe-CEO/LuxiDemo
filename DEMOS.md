@@ -4,11 +4,11 @@ Luxi demos are distributed as **compiled evaluation binaries**. Evaluators can
 run the tools, supply inputs, inspect outputs, and compare SHA-256 receipts
 without receiving the private implementation source.
 
-## Demo −1: LuxiRisk v0.1 — offline trader risk calculator
+## Demo −1: LuxiRisk v0.2 — offline trader risk calculator (signed receipts)
 
 **Closed binary only — no engine source.** Three calculations for leveraged
-crypto / retail traders, each with a short independently verifiable SHA-256
-receipt for posting in Discord, Telegram, and X.
+crypto / retail traders, each with an **Ed25519-signed** `lxr1_…` receipt
+(per-install identity) for posting in Discord, Telegram, and X.
 
 | Calculation | Example |
 |-------------|---------|
@@ -26,14 +26,17 @@ receipt for posting in Discord, Telegram, and X.
 chmod +x luxirisk/dist/luxirisk-macos-arm64
 shasum -a 256 -c luxirisk/dist/luxirisk-macos-arm64.sha256
 ./luxirisk/dist/luxirisk-macos-arm64 liq --side long --entry 65000 --leverage 10
-# short receipt: a896b6f35054
-python3 luxirisk/test-vectors/verify_receipts.py
+# receipt starts with lxr1_  ·  fingerprint is per-install
+./luxirisk/dist/luxirisk-macos-arm64 verify 'lxr1_…' liq \
+  --side long --entry 65000 --leverage 10 --expect-liq 58825
+pip install cryptography && python3 luxirisk/test-vectors/verify_receipts.py
 ```
 
 - Home: [`luxirisk/`](luxirisk/) · formulas: [`luxirisk/FORMULAS.md`](luxirisk/FORMULAS.md)
 - Test vectors: [`luxirisk/test-vectors/`](luxirisk/test-vectors/)
-- Release: [luxirisk-v0.1](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.1)
-- 100% offline · deterministic fixed-point path · optional `luxirisk ui` localhost page
+- Signing / CI: [`luxirisk/SIGNING.md`](luxirisk/SIGNING.md)
+- Release: [luxirisk-v0.2](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2)
+- Offline by default · optional `--stamp` (drand) · CLI only (no UI)
 
 ## Demo 0: version-100 commercial serve + GTM scoreboard (current)
 
@@ -175,7 +178,7 @@ proprietary engine source.
 
 | Luxi layer | Public demo today | Next validation step |
 |---|---|---|
-| LuxiRisk | Offline risk CLI + macOS/Linux/Windows binaries + public formulas/vectors | Release [luxirisk-v0.1](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.1) published |
+| LuxiRisk | Offline risk CLI + Ed25519 `lxr1_` receipts + verify + public vectors | v0.2 ready; release when signed/CI secrets configured |
 | LuxiQuant | Binary validation + REST + receipts | Publish platform-by-platform receipt matrix |
 | LuxiEdge | Primitives + Version 99 evidence verifier | Controlled downloadable inference evaluation package |
 | LuxiPack | None | Admission/placement trace versus a baseline |

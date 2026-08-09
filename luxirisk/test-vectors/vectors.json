@@ -1,8 +1,14 @@
 {
   "tool": "luxirisk",
-  "version": "0.1.0",
-  "receipt_scheme": "luxirisk-receipt-v1",
-  "description": "Public input → expected output + receipt vectors for LuxiRisk v0.1. Re-run with the matching binary to confirm bit-identical results.",
+  "version": "0.2.0",
+  "receipt_scheme": "luxirisk-receipt-v2",
+  "receipt_prefix": "lxr1_",
+  "description": "Public input \u2192 expected output + Ed25519-signed lxr1_ receipt vectors for LuxiRisk v0.2. Signatures use the fixed test-vector identity (NOT an install key).",
+  "test_vector_identity": {
+    "seed_material": "SHA256(utf8('luxirisk-v0.2-test-vector-identity')) as Ed25519 seed",
+    "fingerprint": "9e53c8756c83c875",
+    "pubkey_hex": "78203b34565efae1239d879b7735e2744e4759df7a96287a76ff74eb70486c21"
+  },
   "vectors": [
     {
       "id": "liq_long_10x",
@@ -17,9 +23,13 @@
       "outputs": {
         "liq_price": "58825"
       },
-      "canonical_payload": "luxirisk-receipt-v1\nentry=65000\nleverage=10\nliq_price=58825\nmmr=0.005\nop=liq\nside=long\ntool=luxirisk\nversion=0.1.0\n",
-      "receipt_full": "a896b6f35054bd83e82693308c6ad591699cd11ea8bcc69725d3d5fde80eeddc",
-      "receipt_short": "a896b6f35054"
+      "identity": "test-vector",
+      "fingerprint": "9e53c8756c83c875",
+      "pubkey": "78203b34565efae1239d879b7735e2744e4759df7a96287a76ff74eb70486c21",
+      "canonical_payload": "luxirisk-receipt-v2\nentry=65000\nfp=9e53c8756c83c875\nleverage=10\nliq_price=58825\nmmr=0.005\nop=liq\npubkey=78203b34565efae1239d879b7735e2744e4759df7a96287a76ff74eb70486c21\nside=long\ntool=luxirisk\nversion=0.2.0\n",
+      "receipt": "lxr1_TFhSAgB4IDs0Vl764SOdh5t3NeJ0TkdZ33qWKHp2_3TrcEhsITrksLcqrpfwFEujdyBpWKSQXhAc3Ys4XzDEaj5znucZeCZBXIYRgvXCt4bRIBeSxUK17I7FIqXtIamL7CGaZAM",
+      "signature_hex": "3ae4b0b72aae97f0144ba377206958a4905e101cdd8b385f30c46a3e739ee7197826415c861182f5c2b786d1201792c542b5ec8ec522a5ed21a98bec219a6403",
+      "payload_sha256": "a48a8c70c4dc860cfa97df23a6d9128ca8ea934631e8c6aeee1cc914506d4a3f"
     },
     {
       "id": "liq_short_10x",
@@ -34,9 +44,13 @@
       "outputs": {
         "liq_price": "71175"
       },
-      "canonical_payload": "luxirisk-receipt-v1\nentry=65000\nleverage=10\nliq_price=71175\nmmr=0.005\nop=liq\nside=short\ntool=luxirisk\nversion=0.1.0\n",
-      "receipt_full": "0be523ebd6c557546b3427ff291d6226e88e5ae93fac56133157b395dcee2c92",
-      "receipt_short": "0be523ebd6c5"
+      "identity": "test-vector",
+      "fingerprint": "9e53c8756c83c875",
+      "pubkey": "78203b34565efae1239d879b7735e2744e4759df7a96287a76ff74eb70486c21",
+      "canonical_payload": "luxirisk-receipt-v2\nentry=65000\nfp=9e53c8756c83c875\nleverage=10\nliq_price=71175\nmmr=0.005\nop=liq\npubkey=78203b34565efae1239d879b7735e2744e4759df7a96287a76ff74eb70486c21\nside=short\ntool=luxirisk\nversion=0.2.0\n",
+      "receipt": "lxr1_TFhSAgB4IDs0Vl764SOdh5t3NeJ0TkdZ33qWKHp2_3TrcEhsIU4ohJbOUlS2ONYW1F1Nhmb4-r8SWVOtuIFum2IwKOIoA5G7o8WUtzEWJQLPaHL9N-Z7SvTdyt961ms9Ap5H2AU",
+      "signature_hex": "4e288496ce5254b638d616d45d4d8666f8fabf125953adb8816e9b623028e2280391bba3c594b731162502cf6872fd37e67b4af4ddcadf7ad66b3d029e47d805",
+      "payload_sha256": "e6b8b42c76313c6d1c90124fae01d7d68e4e5bb0c407de1ee2623dd5ae3223d2"
     },
     {
       "id": "size_1pct",
@@ -50,13 +64,16 @@
       },
       "outputs": {
         "risk_amount": "100",
-        "stop_distance": "2000",
         "position_size": "0.05",
         "notional": "3250"
       },
-      "canonical_payload": "luxirisk-receipt-v1\nbalance=10000\nentry=65000\nnotional=3250\nop=size\nposition_size=0.05\nrisk_amount=100\nrisk_pct=1\nstop=63000\nstop_distance=2000\ntool=luxirisk\nversion=0.1.0\n",
-      "receipt_full": "213f564c3c5027744f7bc7d38098777c66cdb0173097e6d468fcc329916917e2",
-      "receipt_short": "213f564c3c50"
+      "identity": "test-vector",
+      "fingerprint": "9e53c8756c83c875",
+      "pubkey": "78203b34565efae1239d879b7735e2744e4759df7a96287a76ff74eb70486c21",
+      "canonical_payload": "luxirisk-receipt-v2\nbalance=10000\nentry=65000\nfp=9e53c8756c83c875\nnotional=3250\nop=size\nposition_size=0.05\npubkey=78203b34565efae1239d879b7735e2744e4759df7a96287a76ff74eb70486c21\nrisk_amount=100\nrisk_pct=1\nstop=63000\nstop_distance=2000\ntool=luxirisk\nversion=0.2.0\n",
+      "receipt": "lxr1_TFhSAgB4IDs0Vl764SOdh5t3NeJ0TkdZ33qWKHp2_3TrcEhsISfanrn_Gsysp2RI7OhSPhgxnlb7XoeO-hmI13gyoW7bOL1zoBU7grP2kZ2jlifGbXFjV4qUequqjeRdVld9ZgU",
+      "signature_hex": "27da9eb9ff1accaca76448ece8523e18319e56fb5e878efa1988d77832a16edb38bd73a0153b82b3f6919da39627c66d7163578a947aabaa8de45d56577d6605",
+      "payload_sha256": "e8ffaa6c18142ac915e7041b0152b051083f640f1b232a3155fe87be53184680"
     },
     {
       "id": "risk_matches_size",
@@ -68,13 +85,16 @@
         "stop": "63000"
       },
       "outputs": {
-        "stop_distance": "2000",
         "max_loss": "100"
       },
-      "notes": "Max loss equals risk_amount from size_1pct — formulas are consistent.",
-      "canonical_payload": "luxirisk-receipt-v1\nentry=65000\nmax_loss=100\nop=risk\nsize=0.05\nstop=63000\nstop_distance=2000\ntool=luxirisk\nversion=0.1.0\n",
-      "receipt_full": "e3b1b30a823add3f8ee4d20916bc2f43e69b3d86f1d4fc554f3c714d5efe866c",
-      "receipt_short": "e3b1b30a823a"
+      "notes": "Max loss equals risk_amount from size_1pct \u2014 formulas are consistent.",
+      "identity": "test-vector",
+      "fingerprint": "9e53c8756c83c875",
+      "pubkey": "78203b34565efae1239d879b7735e2744e4759df7a96287a76ff74eb70486c21",
+      "canonical_payload": "luxirisk-receipt-v2\nentry=65000\nfp=9e53c8756c83c875\nmax_loss=100\nop=risk\npubkey=78203b34565efae1239d879b7735e2744e4759df7a96287a76ff74eb70486c21\nsize=0.05\nstop=63000\nstop_distance=2000\ntool=luxirisk\nversion=0.2.0\n",
+      "receipt": "lxr1_TFhSAgB4IDs0Vl764SOdh5t3NeJ0TkdZ33qWKHp2_3TrcEhsISvfQShrMJPFrQmtpjZCg3Ljie1nq0pPQ-Q-gOV9aYvty7albysEEE5Qfzg6-K_yqXL7JuW8lLpDKN6PDUgdZAM",
+      "signature_hex": "2bdf41286b3093c5ad09ada636428372e389ed67ab4a4f43e43e80e57d698bedcbb6a56f2b04104e507f383af8aff2a972fb26e5bc94ba4328de8f0d481d6403",
+      "payload_sha256": "4fb6e89621d216e083e445266fdb8fdddf8fd8f044b44df433b5bd50a000f40d"
     },
     {
       "id": "risk_size_half",
@@ -86,12 +106,37 @@
         "stop": "63000"
       },
       "outputs": {
-        "stop_distance": "2000",
         "max_loss": "1000"
       },
-      "canonical_payload": "luxirisk-receipt-v1\nentry=65000\nmax_loss=1000\nop=risk\nsize=0.5\nstop=63000\nstop_distance=2000\ntool=luxirisk\nversion=0.1.0\n",
-      "receipt_full": "45ec38b1a4e915b2b4e051d7db1518f7c299ca02ed90c5163f93a11b78a965a4",
-      "receipt_short": "45ec38b1a4e9"
+      "identity": "test-vector",
+      "fingerprint": "9e53c8756c83c875",
+      "pubkey": "78203b34565efae1239d879b7735e2744e4759df7a96287a76ff74eb70486c21",
+      "canonical_payload": "luxirisk-receipt-v2\nentry=65000\nfp=9e53c8756c83c875\nmax_loss=1000\nop=risk\npubkey=78203b34565efae1239d879b7735e2744e4759df7a96287a76ff74eb70486c21\nsize=0.5\nstop=63000\nstop_distance=2000\ntool=luxirisk\nversion=0.2.0\n",
+      "receipt": "lxr1_TFhSAgB4IDs0Vl764SOdh5t3NeJ0TkdZ33qWKHp2_3TrcEhsISwjfjsZLmNzgGJ90955paW2VJro_dC9lJBesFCZwcLiwxvdL7_ONeLiYhnIa4D4EDxRax5vSJwPrZ6CcDXkqgU",
+      "signature_hex": "2c237e3b192e637380627dd3de79a5a5b6549ae8fdd0bd94905eb05099c1c2e2c31bdd2fbfce35e2e26219c86b80f8103c516b1e6f489c0fad9e827035e4aa05",
+      "payload_sha256": "0a24029a719dbebde90db6ccac1646f49424f3f36916893325c36afa04da820b"
+    },
+    {
+      "id": "liq_long_with_user_beacon",
+      "op": "liq",
+      "cli": "luxirisk liq --side long --entry 65000 --leverage 10 --beacon deadbeefcafebabe",
+      "inputs": {
+        "side": "long",
+        "entry": "65000",
+        "leverage": "10",
+        "mmr": "0.005",
+        "beacon": "deadbeefcafebabe"
+      },
+      "outputs": {
+        "liq_price": "58825"
+      },
+      "identity": "test-vector",
+      "fingerprint": "9e53c8756c83c875",
+      "pubkey": "78203b34565efae1239d879b7735e2744e4759df7a96287a76ff74eb70486c21",
+      "canonical_payload": "luxirisk-receipt-v2\nbeacon_round=none\nbeacon_source=user\nbeacon_value=deadbeefcafebabe\nentry=65000\nfp=9e53c8756c83c875\nleverage=10\nliq_price=58825\nmmr=0.005\nop=liq\npubkey=78203b34565efae1239d879b7735e2744e4759df7a96287a76ff74eb70486c21\nside=long\ntool=luxirisk\nversion=0.2.0\n",
+      "receipt": "lxr1_TFhSAgF4IDs0Vl764SOdh5t3NeJ0TkdZ33qWKHp2_3TrcEhsIS5nA6zmC86ol9T7FaaQRsnbat81XXVhltKvvVOrjMiSdvhEexz6_jKO3nP4JgQczTMQf7khCa4bmjdkYdvQxAg",
+      "signature_hex": "2e6703ace60bcea897d4fb15a69046c9db6adf355d756196d2afbd53ab8cc89276f8447b1cfafe328ede73f826041ccd33107fb92109ae1b9a376461dbd0c408",
+      "payload_sha256": "94ee0efa3a848b2829c669e3eed031ba01aef6aa278f1b89bc60b67fc043fc57"
     }
   ]
 }

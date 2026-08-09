@@ -1,0 +1,8 @@
+# LuxiRisk v0.2 documentation / test-vector Ed25519 public key
+# Seed material: SHA-256(utf8("luxirisk-v0.2-test-vector-identity"))
+# NOT used for real user install identities.
+
+fingerprint=9e53c8756c83c875
+pubkey_hex=78203b34565efae1239d879b7735e2744e4759df7a96287a76ff74eb70486c21
+scheme=luxirisk-receipt-v2
+prefix=lxr1_
