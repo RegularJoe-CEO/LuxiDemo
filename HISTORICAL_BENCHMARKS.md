@@ -7,7 +7,7 @@ configurations. They are **not** the current public headline.
 
 | Surface | Where |
 |---------|--------|
-| Luxi Book receipt matrix | [`RESULTS.md`](RESULTS.md) · [`site/downloads/luxibook/`](site/downloads/luxibook/) |
+| Luxi Book receipt matrix | [`RESULTS.md`](RESULTS.md) · [`downloads/luxibook/`](downloads/luxibook/) |
 | Prefill thr/J (absolute + matched vLLM) | [`evidence/README.md`](evidence/README.md) |
 | Full measured tables | [`RESULTS.md`](RESULTS.md) |
 | Chronology | [`HISTORY.md`](HISTORY.md) |

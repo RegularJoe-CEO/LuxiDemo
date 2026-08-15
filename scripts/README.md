@@ -15,8 +15,8 @@ python3 scripts/verify_v99_pack.py
 
 | Check | How |
 |-------|-----|
-| Luxi Book receipt | Run a `luxi-book` binary on `site/downloads/luxibook/example_book.csv`; expect receipt `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a` (see [`RESULTS.md`](../RESULTS.md)) |
-| Book binary digests | `shasum -a 256 -c site/downloads/luxibook/*.sha256` |
+| Luxi Book receipt | Run a `luxi-book` binary on `downloads/luxibook/example_book.csv`; expect receipt `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a` (see [`RESULTS.md`](../RESULTS.md)) |
+| Book binary digests | `shasum -a 256 -c downloads/luxibook/*.sha256` |
 | LuxiRisk vectors | `python3 luxirisk/test-vectors/verify_receipts.py` |
 | LuxiRisk binary digests | `shasum -a 256 -c luxirisk/dist/*.sha256` |
 

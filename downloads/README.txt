@@ -17,8 +17,11 @@ Layout
 
   README.txt                    this file
 
-LuxiRisk freebie binaries live under ../../luxirisk/dist/ (not this folder).
+LuxiRisk freebie binaries live under ../luxirisk/dist/ (not this folder).
 Numerical v3.0 demos (luxiedge-demo, luxi-tools) are on the GitHub v3.0 release.
+
+This repository is binaries + evidence + markdown only.
+The marketing website https://luxiedge.com is deployed from Replit — not from this repo.
 
 ----------------------------------------------------------------------------
 A) Luxi Book (sale / professional try)

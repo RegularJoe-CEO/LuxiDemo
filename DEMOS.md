@@ -4,7 +4,8 @@ Luxi demos are distributed as **compiled evaluation binaries**. Evaluators can
 run the tools, supply inputs, inspect outputs, and compare SHA-256 receipts
 without receiving the private implementation source.
 
-**Homepage order:** Luxi **Book** (sale) → Luxi**Risk** (freebie) → everything else demoted.
+**Portfolio order:** Luxi **Book** (sale) → Luxi**Risk** (freebie) → everything else demoted.  
+This repo ships **binaries + markdown only** — marketing HTML lives on Replit (luxiedge.com), not here.
 
 ## Demo 0: Luxi Book — CSV European options + SHA-256 (the Quant try)
 
@@ -16,23 +17,23 @@ no IV, no VaR, not a fund desk. Not `risk-pipeline`.
 
 | Platform | Binary |
 |----------|--------|
-| macOS ARM64 (CPU) | [`site/downloads/luxibook/luxi-book-macos-arm64`](site/downloads/luxibook/luxi-book-macos-arm64) |
-| Linux x86_64 (CPU) | [`site/downloads/luxibook/luxi-book-linux-x86_64`](site/downloads/luxibook/luxi-book-linux-x86_64) |
-| Linux x86_64 (CUDA / NVIDIA) | [`site/downloads/luxibook/luxi-book-linux-x86_64-cuda`](site/downloads/luxibook/luxi-book-linux-x86_64-cuda) |
-| Example CSV | [`site/downloads/luxibook/example_book.csv`](site/downloads/luxibook/example_book.csv) |
+| macOS ARM64 (CPU) | [`downloads/luxibook/luxi-book-macos-arm64`](downloads/luxibook/luxi-book-macos-arm64) |
+| Linux x86_64 (CPU) | [`downloads/luxibook/luxi-book-linux-x86_64`](downloads/luxibook/luxi-book-linux-x86_64) |
+| Linux x86_64 (CUDA / NVIDIA) | [`downloads/luxibook/luxi-book-linux-x86_64-cuda`](downloads/luxibook/luxi-book-linux-x86_64-cuda) |
+| Example CSV | [`downloads/luxibook/example_book.csv`](downloads/luxibook/example_book.csv) |
 
 No macOS GPU binary. CUDA binary needs a live NVIDIA driver at runtime.
 
 ```bash
-chmod +x site/downloads/luxibook/luxi-book-macos-arm64
-shasum -a 256 -c site/downloads/luxibook/luxi-book-macos-arm64.sha256
-./site/downloads/luxibook/luxi-book-macos-arm64 price \
-  --book site/downloads/luxibook/example_book.csv \
+chmod +x downloads/luxibook/luxi-book-macos-arm64
+shasum -a 256 -c downloads/luxibook/luxi-book-macos-arm64.sha256
+./downloads/luxibook/luxi-book-macos-arm64 price \
+  --book downloads/luxibook/example_book.csv \
   --out report.csv --receipt receipt.json
 
 # Linux NVIDIA:
-./site/downloads/luxibook/luxi-book-linux-x86_64-cuda price \
-  --book site/downloads/luxibook/example_book.csv \
+./downloads/luxibook/luxi-book-linux-x86_64-cuda price \
+  --book downloads/luxibook/example_book.csv \
   --out report.csv --receipt receipt.json --mode gpu
 ```
 
@@ -42,7 +43,7 @@ on Mac Mini CPU, RunPod x86 CPU, A100-SXM4-80GB, H100 80GB HBM3, H200 (two GPU r
 ATM_CALL `10.4505835721856215`. Kernel `black_scholes_book_kernel`.  
 **Non-claim:** this book, these boxes, this kernel — not all GPUs always match.
 
-Page: [`site/demo.html`](site/demo.html) · engine: [luxi-quant-engine](https://github.com/RegularJoe-CEO/luxi-quant-engine)
+Docs: this file · binaries: [`downloads/luxibook/`](downloads/luxibook/) · engine source: **private** (not in this repo)
 
 ## Demo 1: LuxiRisk v0.2 — free retail / crypto risk CLI (`lxr1_` receipts)
 
@@ -85,8 +86,8 @@ pip install cryptography && python3 luxirisk/test-vectors/verify_receipts.py
 
 | Platform | Binary in repo |
 |----------|----------------|
-| macOS ARM64 | [`site/downloads/luxiedge-serve-macos-arm64`](site/downloads/luxiedge-serve-macos-arm64) |
-| Linux x86_64 | [`site/downloads/luxiedge-serve-linux-x86_64`](site/downloads/luxiedge-serve-linux-x86_64) |
+| macOS ARM64 | [`downloads/luxiedge-serve-macos-arm64`](downloads/luxiedge-serve-macos-arm64) |
+| Linux x86_64 | [`downloads/luxiedge-serve-linux-x86_64`](downloads/luxiedge-serve-linux-x86_64) |
 
 ```bash
 chmod +x luxiedge-serve-macos-arm64
@@ -95,9 +96,9 @@ curl -s http://127.0.0.1:8787/v1/gtm | python3 -m json.tool
 curl -s -X POST http://127.0.0.1:8787/v1/audit -d '{}'
 ```
 
-- Page: [`site/demo.html`](site/demo.html) · package: [`demo/luxiedge-yc-demo/`](demo/luxiedge-yc-demo/)
+- Package (binaries + lock docs): [`demo/luxiedge-yc-demo/`](demo/luxiedge-yc-demo/) · also [`downloads/`](downloads/)
 - Evidence: [`evidence/version-100-h100-gtm/`](evidence/version-100-h100-gtm/)
-- Local generate path is a toy engine for instant API demos; thr/J numbers on `/v1/gtm` are the **measured H100 multi-run lock**.
+- Local generate path is a toy path for instant API demos; thr/J numbers on `/v1/gtm` are the **measured H100 multi-run lock**.
 
 ## Download and verify (numerical v3.0)
 

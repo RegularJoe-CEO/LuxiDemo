@@ -27,7 +27,8 @@
 
 ## Demo (binary, no source)
 
-https://luxiedge.com/demo.html
+Serve binaries: [`../../downloads/`](../../downloads/) · catalog: [`../../DEMOS.md`](../../DEMOS.md)  
+Marketing site (Replit, not this repo): https://luxiedge.com
 
 ## Method footnotes
 
