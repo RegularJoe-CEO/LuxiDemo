@@ -7,13 +7,11 @@
 **Runnable binary demos:** [`DEMOS.md`](DEMOS.md)
 **Luxi product architecture:** [`LUXI_SYSTEM.md`](LUXI_SYSTEM.md)
 
-Luxi is building the energy architecture for AI compute: deterministic numerical
-execution, energy-aware GPU execution, scheduling, load shaping, and power
-coordination.
+**Try without an NDA:** [**Luxi Book**](site/demo.html) (CSV European options + SHA-256 receipts — the professional Quant try)
+and [**LuxiRisk**](luxirisk/) (free crypto/retail risk CLI). Inference serve and numerical toys stay on the site below those two.
 
-**LuxiEdge** is the first public AI product. **LuxiQuant** is the working
-deterministic numerical foundation. Other Luxi layers are clearly marked as in
-development, prototype, or concept.
+Luxi also builds energy-aware AI compute (prefill thr/J evidence on H100). **LuxiEdge** is the inference surface.
+**Luxi Book** is the runnable Quant path that can become a design-partner conversation. Other layers are labeled prototype or concept.
 
 This repository has two jobs:
 
@@ -56,45 +54,28 @@ Independent evaluation of the **earlier** stack: thr still trailed vLLM; board e
 
 ## Run the public demos (no source)
 
-### A) Commercial serve + locked scoreboard (version-100)
-
-Stripped binary — OpenAI-shaped HTTP + `GET /v1/gtm` embeds the multi-run lock. **No engine source.**
+### A) Luxi Book — CSV European options (the Quant sale)
 
 ```bash
-# From repo (or GitHub release assets)
-chmod +x site/downloads/luxiedge-serve-macos-arm64   # or linux-x86_64
-./site/downloads/luxiedge-serve-macos-arm64 --bind 127.0.0.1:8787
-
-curl -s http://127.0.0.1:8787/v1/gtm | python3 -m json.tool
-curl -s -X POST http://127.0.0.1:8787/v1/completions \
-  -H 'content-type: application/json' \
-  -d '{"prompt":"Why measure joules per token?","max_tokens":24}'
-curl -s -X POST http://127.0.0.1:8787/v1/audit -d '{}'
+chmod +x site/downloads/luxibook/luxi-book-macos-arm64
+shasum -a 256 -c site/downloads/luxibook/luxi-book-macos-arm64.sha256
+./site/downloads/luxibook/luxi-book-macos-arm64 price \
+  --book site/downloads/luxibook/example_book.csv \
+  --out report.csv --receipt receipt.json
 ```
 
-- Site page: [`site/demo.html`](site/demo.html) · live: https://luxiedge.com/demo.html (after Replit publish)
-- Package: [`demo/luxiedge-yc-demo/`](demo/luxiedge-yc-demo/)
-- Release: [version-100-serve](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/version-100-serve) (when published)
+Measured receipt (`example_book.csv` only):  
+`4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a`  
+(Mini CPU · Linux CPU · A100 · H100 · H200). Not a universal GPU claim.  
+Page: [`site/demo.html`](site/demo.html) · engine: [luxi-quant-engine](https://github.com/RegularJoe-CEO/luxi-quant-engine)
 
-### B) Numerical / quant demos (v3.0)
+### B) LuxiRisk — free crypto / retail risk CLI (v0.2)
 
-```bash
-# Linux x86-64 example
-chmod +x luxiedge-demo-linux-x86_64 luxi-tools-linux-x86_64
-./luxiedge-demo-linux-x86_64 validate
-./luxi-tools-linux-x86_64 energy
-```
+Freebie closed binary: liquidation price, position size from risk %, max $ loss at
+stop — each with an **Ed25519-signed** `lxr1_…` **calculation receipt**.
+**Not** the Quant book. Offline by default.
 
-Download: [v3.0 release](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/v3.0) · Full catalog: [`DEMOS.md`](DEMOS.md)
-
-### C) LuxiRisk — offline trader risk CLI (v0.2)
-
-Free closed binary: liquidation price, position size from risk %, max $ loss at
-stop — each with an **Ed25519-signed** `lxr1_…` **calculation receipt**
-(per-install identity). Offline by default; optional `--stamp` / `--beacon`.
-
-**OS binaries are unsigned** (no Apple notarization / Authenticode). On first
-run: macOS right-click → Open; Windows SmartScreen → More info → Run anyway.
+**OS binaries are unsigned.** macOS right-click → Open; Windows SmartScreen → Run anyway.
 Always verify the published SHA-256.
 
 ```bash
@@ -109,12 +90,23 @@ pip install cryptography && python3 luxirisk/test-vectors/verify_receipts.py
 - Release: [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2)
 - Catalog: [`DEMOS.md`](DEMOS.md) · Built by the team behind LuxiEdge — [luxiedge.com](https://luxiedge.com)
 
+### C) Inference serve + locked scoreboard (demoted)
+
+```bash
+chmod +x site/downloads/luxiedge-serve-macos-arm64
+./site/downloads/luxiedge-serve-macos-arm64 --bind 127.0.0.1:8787
+curl -s http://127.0.0.1:8787/v1/gtm | python3 -m json.tool
+```
+
+Not Luxi Book. Page section: [`site/demo.html#also`](site/demo.html#also).
+
 ## Demo and product map
 
 | Surface | What can be run publicly today | Status |
 |---|---|---|
-| **LuxiRisk** trader risk CLI | Liq / size / max loss + Ed25519 `lxr1_` receipts (offline; **unsigned** OS binary) | **[v0.2 release](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2)** |
-| LuxiQuant numerical engine | REST evaluation, operator list, receipt validation | **Working binary demo** |
+| **Luxi Book** | CSV BS/Black-76 + SHA-256; macOS binary + example CSV | **Primary Quant try** ([demo](site/demo.html)) |
+| **LuxiRisk** freebie | Liq / size / max loss + `lxr1_` receipts (**unsigned**) | **[v0.2 freebie](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2)** |
+| LuxiEdge numerical engine | REST evaluation, operator list, receipt validation | **Working binary demo** |
 | ATE / Waller / WNSM primitives | `luxi-tools ate` and `energy` | **Working binary demo** |
 | Quant/statistical operators | `validate`, `quant_chain`, Welford, normalization operators | **Working binary demo** |
 | Scientific and edge examples | Orbital and robotics commands | **Working binary demo** |
@@ -138,7 +130,7 @@ The historical work has **not** been deleted or hidden.
 
 - **Current GTM measurement:** version-100 multi-run thr+J+det + H2H vs vLLM.
 - **Prior third-party measurement:** Version 99 TESTfort matched-prefill pack.
-- **Current runnable demonstrations:** version-100 serve binary + v3.0 numerical tools.
+- **Current runnable demonstrations:** Luxi Book (macOS) + LuxiRisk freebie + version-100 serve + v3.0 numerical tools.
 - **Independent numerical-engine evaluation:** linked and separately scoped.
 - **Historical transformer research:** July 2026 TRADE, Flash comparison,
   WNSM, long-context, and sustain packs, preserved under `evidence/`.
