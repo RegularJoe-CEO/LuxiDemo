@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Demo — LuxiEdge</title>
-  <meta name="description" content="Run the LuxiEdge commercial demo binary. Locked H100 thr/J scoreboard. No source required.">
+  <title>Demo — Luxi Book &amp; LuxiRisk</title>
+  <meta name="description" content="Try Luxi Book (CSV → Black-Scholes / Black-76 + SHA-256 receipt) and LuxiRisk (free crypto risk CLI). No NDA. No source.">
   <link rel="canonical" href="https://luxiedge.com/demo.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="LuxiEdge">
-  <meta property="og:title" content="Demo — LuxiEdge">
-  <meta property="og:description" content="Commercial demo binary + locked H100 prefill thr/J scoreboard. No engine source.">
+  <meta property="og:title" content="Demo — Luxi Book &amp; LuxiRisk">
+  <meta property="og:description" content="Luxi Book: professional CSV option books with receipts. LuxiRisk: free retail risk CLI. Inference demos also on this site.">
   <meta property="og:url" content="https://luxiedge.com/demo.html">
   <meta property="og:image" content="https://luxiedge.com/share-card-v2.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -36,90 +36,172 @@
   <main>
     <div class="page-hero">
       <div class="wrap">
-        <p class="eyebrow">YC / partners · binary-only demo</p>
-        <h1>Run the product surface. Inspect the locked scoreboard.</h1>
+        <p class="eyebrow">No NDA · closed binaries · you bring the numbers</p>
+        <h1>Download something you can run tonight.</h1>
         <p class="lede">
-          Download a <strong>stripped binary</strong> (no engine source). Spin up an OpenAI-shaped HTTP API,
-          hit <code>/v1/gtm</code> for the measured H100 multi-run lock, and verify dual-run audit on the serve path.
+          <strong>Luxi Book</strong> is the professional try: drop a CSV option book, get European Black-Scholes / Black-76 prices, five Greeks, and a SHA-256 receipt.
+          <strong>LuxiRisk</strong> is the free lightweight CLI for crypto / retail traders.
+          Inference and numerical toys stay on this site — below.
         </p>
-        <div class="cta-row" style="margin-top:1rem">
-          <a class="btn btn-primary" href="downloads/luxiedge-serve-macos-arm64">Download macOS ARM64</a>
-          <a class="btn btn-secondary" href="downloads/luxiedge-serve-linux-x86_64">Download Linux x86_64</a>
-          <a class="btn btn-ghost" href="proof.html#v100">Read v100 proof</a>
-        </div>
       </div>
     </div>
 
+    <!-- Row 1: the sale + the freebie -->
     <section>
       <div class="wrap">
-        <h2>Locked H100 metrics</h2>
-        <p class="sub">
-          Multi-run sustain · 5×15s · Qwen2-7B-Instruct class · sequence 128 · Flash + device-resident + FP16 ·
-          single NVIDIA H100 80GB. Token definition: prefill positions = iters × batch × seq.
-        </p>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Fact</th>
-                <th>Operating point</th>
-                <th>Thr median (pos/s)</th>
-                <th>Board J / pos</th>
-                <th>vs vLLM</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="row-highlight">
-                <td><strong>Absolute Luxi peak</strong></td>
-                <td><strong>B72 dual_gemm</strong></td>
-                <td><strong>~44,860</strong></td>
-                <td><strong>~0.0153</strong></td>
-                <td>not matched at B72</td>
-              </tr>
-              <tr>
-                <td>Matched H2H</td>
-                <td>B16 (matched pack)</td>
-                <td>~41,221</td>
-                <td>~0.0169</td>
-                <td><strong>~1.18× thr · ~12% lower J</strong></td>
-              </tr>
-              <tr>
-                <td>Matched H2H</td>
-                <td>B32 (matched pack)</td>
-                <td>~43,464</td>
-                <td>~0.0158</td>
-                <td>~1.19× thr · ~14% lower J</td>
-              </tr>
-            </tbody>
-          </table>
+        <h2>What you can try</h2>
+        <p class="sub">Two downloads without an NDA. Book is the sale. Risk is the freebie.</p>
+        <div class="two-path">
+          <div class="card accent">
+            <h3>Luxi Book <span class="tag">primary</span></h3>
+            <p>
+              CSV position book → European <strong>Black-Scholes / Black-76</strong> → five Greeks →
+              <strong>SHA-256</strong> receipt. You bring <code>T</code>, <code>r</code>, and <code>σ</code>.
+              No live feed. No IV. No VaR. Not a fund desk.
+            </p>
+            <p>
+              CPU is default. On Linux with NVIDIA you can build CUDA and run <code>--mode gpu</code>
+              (no silent CPU fallback). Mac is CPU-only.
+            </p>
+            <p class="method">
+              <strong>Measured on <code>example_book.csv</code> only</strong> (2026-08-15): the same receipt
+              <code style="font-size:0.75rem;word-break:break-all">4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a</code>
+              on Mac Mini CPU, RunPod x86 CPU, A100-SXM4-80GB, H100 80GB HBM3, and H200 (two GPU runs each).
+              ATM_CALL <code>10.4505835721856215</code>. Kernel <code>black_scholes_book_kernel</code>.
+              Device Φ is the same series as CPU (not CUDA libm for those five).
+            </p>
+            <p class="method">
+              <strong>Non-claim:</strong> this book, these boxes, this kernel — not “all GPUs always match.”
+            </p>
+            <div class="cta-row" style="margin-top:1rem;flex-wrap:wrap">
+              <a class="btn btn-primary" href="downloads/luxibook/luxi-book-macos-arm64">macOS ARM64 (CPU)</a>
+              <a class="btn btn-secondary" href="downloads/luxibook/example_book.csv">example_book.csv</a>
+              <a class="btn btn-ghost" href="downloads/luxibook/luxi-book-macos-arm64.sha256">.sha256</a>
+            </div>
+            <p class="sub" style="margin-top:0.75rem">
+              Linux x86_64 CPU and CUDA builds: build from
+              <a href="https://github.com/RegularJoe-CEO/luxi-quant-engine">luxi-quant-engine</a>
+              (<code>cargo build --release --bin luxi-book</code>
+              · GPU: <code>cargo build --release --features cuda --bin luxi-book</code>
+              (needs <code>nvcc</code> + live NVIDIA). We do not ship a Mac “GPU binary.”
+            </p>
+            <pre class="code-block" style="background:#0f172a;color:#e2e8f0;padding:1rem;border-radius:12px;overflow:auto;font-family:var(--mono);font-size:0.85rem;margin-top:1rem"><code>chmod +x luxi-book-macos-arm64
+shasum -a 256 -c luxi-book-macos-arm64.sha256
+# macOS first run: right-click → Open (unsigned)
+./luxi-book-macos-arm64 price \
+  --book example_book.csv --out report.csv --receipt receipt.json
+
+# Linux + NVIDIA (after CUDA build):
+./luxi-book price --book example_book.csv --out report.csv --receipt receipt.json --mode gpu</code></pre>
+            <p class="sub" style="margin-top:0.75rem">
+              Want your book on this path? Design partners:
+              <a href="mailto:e@ewaller.com">e@ewaller.com</a> · luxiedge.com
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>LuxiRisk <span class="tag">freebie</span></h3>
+            <p>
+              Free offline CLI for leveraged crypto / retail traders — not the Quant book, not institutional.
+              Three formulas: <strong>liq</strong>, <strong>size</strong>, <strong>risk</strong>.
+              Each answer gets an Ed25519 <code>lxr1_</code> calculation receipt.
+            </p>
+            <div class="cta-row" style="margin-top:1rem;flex-wrap:wrap">
+              <a class="btn btn-secondary" href="../luxirisk/dist/luxirisk-macos-arm64">macOS ARM64</a>
+              <a class="btn btn-secondary" href="../luxirisk/dist/luxirisk-linux-x86_64">Linux x86_64</a>
+              <a class="btn btn-ghost" href="../luxirisk/dist/luxirisk-windows-x86_64.exe">Windows</a>
+            </div>
+            <pre class="code-block" style="background:#0f172a;color:#e2e8f0;padding:1rem;border-radius:12px;overflow:auto;font-family:var(--mono);font-size:0.85rem;margin-top:1rem"><code>chmod +x luxirisk-macos-arm64
+shasum -a 256 -c luxirisk-macos-arm64.sha256
+./luxirisk-macos-arm64 liq --side long --entry 65000 --leverage 10
+# → liquidation price + lxr1_ receipt</code></pre>
+            <p class="sub" style="margin-top:0.75rem">
+              <a href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/luxirisk">luxirisk/</a>
+              · release
+              <a href="https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2">luxirisk-v0.2</a>
+              (unsigned).
+            </p>
+          </div>
         </div>
-        <p class="method">
-          Absolute champion pack: <code>evidence/prefill_accel_lock_20260807T233111Z</code>.
-          Matched vLLM pack: <code>evidence/prefill_freeze_matched_20260807T210749Z</code>.
-          Do not attach 1.18× to the B72 absolute number. Board power ≠ wall-plug AC.
-          Not a full multi-tenant server bake-off claim.
-        </p>
       </div>
     </section>
 
-    <section>
+    <!-- Row 2: everything else demoted -->
+    <section id="also">
       <div class="wrap">
-        <h2>60-second start</h2>
-        <pre class="code-block" style="background:#0f172a;color:#e2e8f0;padding:1.25rem;border-radius:12px;overflow:auto;font-family:var(--mono, ui-monospace, monospace);font-size:0.9rem;line-height:1.5"><code>chmod +x luxiedge-serve-macos-arm64
-./luxiedge-serve-macos-arm64 --bind 127.0.0.1:8787
+        <h2>Also on this site</h2>
+        <p class="sub">Numerical toys and inference evidence — not the Quant book. Still free to inspect.</p>
 
-curl -s http://127.0.0.1:8787/health | python3 -m json.tool
+        <div class="card" style="margin-bottom:1.25rem">
+          <h3>Inference serve · locked H100 scoreboard</h3>
+          <p>
+            Stripped OpenAI-shaped HTTP server. Hit <code>/v1/gtm</code> for the measured multi-run prefill lock.
+            Local generate is a toy path for API demos; thr/J on the board are H100 measurements.
+          </p>
+          <div class="table-wrap" style="margin:1rem 0">
+            <table>
+              <thead>
+                <tr>
+                  <th>Fact</th>
+                  <th>Operating point</th>
+                  <th>Thr median (pos/s)</th>
+                  <th>Board J / pos</th>
+                  <th>vs vLLM</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="row-highlight">
+                  <td><strong>Absolute Luxi peak</strong></td>
+                  <td><strong>B72 dual_gemm</strong></td>
+                  <td><strong>~44,860</strong></td>
+                  <td><strong>~0.0153</strong></td>
+                  <td>not matched at B72</td>
+                </tr>
+                <tr>
+                  <td>Matched H2H</td>
+                  <td>B16 (matched pack)</td>
+                  <td>~41,221</td>
+                  <td>~0.0169</td>
+                  <td><strong>~1.18× thr · ~12% lower J</strong></td>
+                </tr>
+                <tr>
+                  <td>Matched H2H</td>
+                  <td>B32 (matched pack)</td>
+                  <td>~43,464</td>
+                  <td>~0.0158</td>
+                  <td>~1.19× thr · ~14% lower J</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="method">
+            Absolute champion pack: <code>evidence/prefill_accel_lock_20260807T233111Z</code>.
+            Matched vLLM pack: <code>evidence/prefill_freeze_matched_20260807T210749Z</code>.
+            Do not attach 1.18× to the B72 absolute number. Board power ≠ wall-plug AC.
+          </p>
+          <div class="cta-row" style="margin-top:1rem;flex-wrap:wrap">
+            <a class="btn btn-secondary" href="downloads/luxiedge-serve-macos-arm64">serve macOS ARM64</a>
+            <a class="btn btn-secondary" href="downloads/luxiedge-serve-linux-x86_64">serve Linux x86_64</a>
+            <a class="btn btn-ghost" href="proof.html#v100">v100 / proof</a>
+          </div>
+          <pre class="code-block" style="background:#0f172a;color:#e2e8f0;padding:1rem;border-radius:12px;overflow:auto;font-family:var(--mono);font-size:0.85rem;margin-top:1rem"><code>chmod +x luxiedge-serve-macos-arm64
+./luxiedge-serve-macos-arm64 --bind 127.0.0.1:8787
 curl -s http://127.0.0.1:8787/v1/gtm | python3 -m json.tool
-curl -s -X POST http://127.0.0.1:8787/v1/completions \
-  -H 'content-type: application/json' \
-  -d '{"prompt":"Why measure joules per token?","max_tokens":24}'
-curl -s -X POST http://127.0.0.1:8787/v1/audit -d '{}'
-# open http://127.0.0.1:8787/dashboard</code></pre>
-        <p class="sub" style="margin-top:1rem">
-          Checksums:
-          <a href="downloads/luxiedge-serve-macos-arm64.sha256">macOS .sha256</a> ·
-          <a href="downloads/luxiedge-serve-linux-x86_64.sha256">Linux .sha256</a>
-        </p>
+curl -s -X POST http://127.0.0.1:8787/v1/audit -d '{}'</code></pre>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Numerical v3.0 · /evaluate</h3>
+            <p class="sub">30-operator demo, <code>validate</code>, REST <code>sin(x)</code>. Not Luxi Book.</p>
+            <p class="sub"><a href="https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/v3.0">v3.0 release</a> · <a href="https://github.com/RegularJoe-CEO/LuxiDemo/blob/main/DEMOS.md">DEMOS.md</a></p>
+          </div>
+          <div class="card">
+            <h3>luxi-tools · v99 verifier</h3>
+            <p class="sub">ATE, energy, orbital, robotics demos; Version 99 evidence verifier. Measurement toys, not the book sale.</p>
+            <p class="sub"><a href="proof.html">Proof</a> · <a href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence">evidence/</a></p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -128,18 +210,17 @@ curl -s -X POST http://127.0.0.1:8787/v1/audit -d '{}'
         <h2>What you get / what you do not</h2>
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Included</th><th>Not included</th></tr></thead>
+            <thead><tr><th>Included without NDA</th><th>Not included</th></tr></thead>
             <tbody>
               <tr>
-                <td>Stripped serve binary · OpenAI-shaped routes · energy receipts · <code>/v1/gtm</code> lock · audit endpoint · dashboard</td>
-                <td>Engine source · CUDA TRADE kernels · model weights · claim that laptop thr = H100 thr</td>
+                <td>Unsigned <strong>luxi-book</strong> / <strong>luxirisk</strong> binaries · example CSV · checksums · measured Book receipt string · serve + evidence packs</td>
+                <td>Engine source · desk VaR · live market data · “quant risk engine” as a fund product · CPU=GPU for all hardware · risk-pipeline on this page</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p class="sub">
-          Full public write-up:
-          <a href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/version-100-h100-gtm">evidence pack</a>
+          Engine source (private): <a href="https://github.com/RegularJoe-CEO/luxi-quant-engine">luxi-quant-engine</a>
           · contact <a href="mailto:e@ewaller.com">e@ewaller.com</a>
         </p>
       </div>

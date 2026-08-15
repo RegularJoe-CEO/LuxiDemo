@@ -4,8 +4,43 @@ Luxi demos are distributed as **compiled evaluation binaries**. Evaluators can
 run the tools, supply inputs, inspect outputs, and compare SHA-256 receipts
 without receiving the private implementation source.
 
-## Demo −1: LuxiRisk v0.2 — offline trader risk calculator (`lxr1_` receipts)
+**Homepage order:** Luxi **Book** (sale) → Luxi**Risk** (freebie) → everything else demoted.
 
+## Demo 0: Luxi Book — CSV European options + SHA-256 (the Quant try)
+
+**Primary public Quant artifact. Closed binary only — no engine source. Unsigned.**
+
+CSV position book → European **Black-Scholes / Black-76** → five Greeks → SHA-256
+receipt on the canonical f64 LE vector. You bring `T`, `r`, and `σ`. No live feed,
+no IV, no VaR, not a fund desk. Not `risk-pipeline`.
+
+| Platform | Binary |
+|----------|--------|
+| macOS ARM64 (CPU) | [`site/downloads/luxibook/luxi-book-macos-arm64`](site/downloads/luxibook/luxi-book-macos-arm64) |
+| Example CSV | [`site/downloads/luxibook/example_book.csv`](site/downloads/luxibook/example_book.csv) |
+| Linux x86_64 / CUDA | Build from [luxi-quant-engine](https://github.com/RegularJoe-CEO/luxi-quant-engine) (`cargo build --release --bin luxi-book`; GPU needs `--features cuda`) |
+
+```bash
+chmod +x site/downloads/luxibook/luxi-book-macos-arm64
+shasum -a 256 -c site/downloads/luxibook/luxi-book-macos-arm64.sha256
+./site/downloads/luxibook/luxi-book-macos-arm64 price \
+  --book site/downloads/luxibook/example_book.csv \
+  --out report.csv --receipt receipt.json
+# Linux NVIDIA only (after CUDA build):
+# ./luxi-book price --book example_book.csv --out report.csv --receipt receipt.json --mode gpu
+```
+
+**Measured on `example_book.csv` only (2026-08-15):** receipt  
+`4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a`  
+on Mac Mini CPU, RunPod x86 CPU, A100-SXM4-80GB, H100 80GB HBM3, H200 (two GPU runs each).  
+ATM_CALL `10.4505835721856215`. Kernel `black_scholes_book_kernel`.  
+**Non-claim:** this book, these boxes, this kernel — not all GPUs always match.
+
+Page: [`site/demo.html`](site/demo.html) · engine: [luxi-quant-engine](https://github.com/RegularJoe-CEO/luxi-quant-engine)
+
+## Demo 1: LuxiRisk v0.2 — free retail / crypto risk CLI (`lxr1_` receipts)
+
+**Freebie for crypto / retail position traders — not the Quant book, not institutional.**
 **Closed binary only — no engine source. OS code-signing is not applied (unsigned
 download; expect Gatekeeper / SmartScreen friction).** Three calculations for
 leveraged crypto / retail traders, each with an **Ed25519-signed** `lxr1_…`
@@ -38,9 +73,9 @@ pip install cryptography && python3 luxirisk/test-vectors/verify_receipts.py
 - Test vectors: [`luxirisk/test-vectors/`](luxirisk/test-vectors/)
 - Release: [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2) (**unsigned** binaries + checksums)
 - Offline by default · optional `--stamp` / `--beacon` · CLI only · Built by the team behind LuxiEdge — luxiedge.com
-## Demo 0: version-100 commercial serve + GTM scoreboard (current)
+## Demo 2: version-100 commercial serve + GTM scoreboard (inference)
 
-**Binary only — no engine source.** OpenAI-shaped HTTP API with locked H100 thr/J/det on `GET /v1/gtm`.
+**Binary only — no engine source. Not Luxi Book.** OpenAI-shaped HTTP API with locked H100 thr/J/det on `GET /v1/gtm`.
 
 | Platform | Binary in repo |
 |----------|----------------|
@@ -81,7 +116,7 @@ The checksum files retain their release-build path prefix, so compare the digest
 rather than assuming `sha256sum -c` will resolve that path from every download
 directory.
 
-## Demo 1: numerical and quant validation
+## Demo 3: numerical validation (not the option book)
 
 ```bash
 ./luxiedge-demo-linux-x86_64 validate
@@ -95,7 +130,7 @@ The validation suite also exercises Welford mean/variance, online softmax,
 LayerNorm, Waller attention, a WNSM transformer block, and model-configuration
 presets.
 
-## Demo 2: local REST evaluation
+## Demo 4: local REST evaluation
 
 Start the compiled service:
 

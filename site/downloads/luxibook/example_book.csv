@@ -1,0 +1,12 @@
+# EXAMPLE DATA ONLY — not a client book. Labels for unit tests and demos.
+id,S,K,T,r,sigma,qty,cp,q,model
+ATM_CALL,100,100,1.0,0.05,0.20,1,C,0,bs
+ATM_PUT,100,100,1.0,0.05,0.20,1,P,0,bs
+ITM_CALL,110,100,0.5,0.03,0.25,2,C,0,bs
+OTM_PUT,90,100,0.5,0.03,0.25,-1,P,0,bs
+DIV_CALL,100,95,0.75,0.04,0.18,10,call,0.02,bs
+SHORT_CALL,105,110,0.25,0.05,0.30,-5,C,0,bs
+LONG_PUT,95,100,1.25,0.02,0.22,3,put,0,bs
+FWD_CALL,100,100,1.0,0.05,0.20,1,C,0,black76
+FWD_PUT,120,100,0.5,0.01,0.15,2,P,0,black76
+MIX_OTM,80,100,2.0,0.06,0.35,0.5,C,0.01,bs
