@@ -1,7 +1,7 @@
 # LuxiRisk v0.2 binaries (unsigned)
 
 **Freebie** retail/crypto risk CLI — not Luxi Book (CSV options). Book lives at
-`../../site/downloads/luxibook/`.
+`../../downloads/luxibook/`.
 
 Closed-source evaluation binaries. Matching `.sha256` files ship beside each
 binary. **These files are not Apple-notarized and not Authenticode-signed.**

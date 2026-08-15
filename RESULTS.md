@@ -23,9 +23,8 @@ Greeks · SHA-256 over the canonical f64 little-endian price+Greeks vector.
 **Non-claims:** this book, these boxes, this kernel — not “all GPUs always
 match,” not desk VaR, not live market data, not `risk-pipeline`.
 
-- Binaries: [`site/downloads/luxibook/`](site/downloads/luxibook/)
-- Page: [`site/demo.html`](site/demo.html)
-- Catalog: [`DEMOS.md`](DEMOS.md)
+- Binaries: [`downloads/luxibook/`](downloads/luxibook/)
+- How to run: [`DEMOS.md`](DEMOS.md)
 
 ## LuxiEdge absolute prefill (internal multi-run champion)
 

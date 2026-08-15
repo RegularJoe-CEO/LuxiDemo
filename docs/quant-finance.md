@@ -21,19 +21,19 @@ still ship as supporting math surfaces. They are **not** Luxi Book.
 
 ```bash
 # Mac CPU
-chmod +x site/downloads/luxibook/luxi-book-macos-arm64
-./site/downloads/luxibook/luxi-book-macos-arm64 price \
-  --book site/downloads/luxibook/example_book.csv \
+chmod +x downloads/luxibook/luxi-book-macos-arm64
+./downloads/luxibook/luxi-book-macos-arm64 price \
+  --book downloads/luxibook/example_book.csv \
   --out report.csv --receipt receipt.json
 
 # Linux CPU
-./site/downloads/luxibook/luxi-book-linux-x86_64 price \
-  --book site/downloads/luxibook/example_book.csv \
+./downloads/luxibook/luxi-book-linux-x86_64 price \
+  --book downloads/luxibook/example_book.csv \
   --out report.csv --receipt receipt.json
 
 # Linux CUDA (NVIDIA driver required; no silent CPU fallback)
-./site/downloads/luxibook/luxi-book-linux-x86_64-cuda price \
-  --book site/downloads/luxibook/example_book.csv \
+./downloads/luxibook/luxi-book-linux-x86_64-cuda price \
+  --book downloads/luxibook/example_book.csv \
   --out report.csv --receipt receipt.json --mode gpu
 ```
 
@@ -47,9 +47,8 @@ Measured on **`example_book.csv` only** (2026-08-15):
 
 **Non-claim:** this book, these boxes, this kernel — not “all GPUs always match.”
 
-Downloads: [`site/downloads/luxibook/`](../site/downloads/luxibook/)  
-Demo page: [`site/demo.html`](../site/demo.html)  
-Catalog: [`DEMOS.md`](../DEMOS.md)
+Downloads: [`downloads/luxibook/`](../downloads/luxibook/)  
+How to run: [`DEMOS.md`](../DEMOS.md)
 
 ## Why receipts matter
 
@@ -87,7 +86,7 @@ That path is useful for operator smoke and historical numerical receipts. It is
 
 | Goal | Link |
 |------|------|
-| Download Book | [site/downloads/luxibook/](../site/downloads/luxibook/) |
+| Download Book | [`downloads/luxibook/`](../downloads/luxibook/) |
 | Freebie risk CLI | [luxirisk/](../luxirisk/) |
 | Measured tables | [RESULTS.md](../RESULTS.md) |
 | Full catalog | [DEMOS.md](../DEMOS.md) |

@@ -74,7 +74,8 @@ Rule: absolute B72 is not a matched vLLM claim until a B72 vLLM arm exists.
 
 ### Mid August 2026: Luxi Book public Quant surface
 
-Closed `luxi-book` binaries published under `site/downloads/luxibook/`:
+Closed `luxi-book` binaries published under [`downloads/luxibook/`](downloads/luxibook/)
+(marketing HTML for luxiedge.com stays on Replit, not in this repo):
 
 - CSV European Black-Scholes / Black-76 + five Greeks + SHA-256
 - macOS ARM64 CPU, Linux x86_64 CPU, Linux x86_64 CUDA

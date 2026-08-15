@@ -14,12 +14,12 @@ Not a thr/J pack. Closed binaries + measured SHA-256 on one example book:
 | Receipt | `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a` |
 | ATM_CALL | `10.4505835721856215` |
 | Boxes | Mac Mini CPU · RunPod x86 CPU · A100 · H100 · H200 (two GPU runs each) |
-| Binaries | [`../site/downloads/luxibook/`](../site/downloads/luxibook/) |
+| Binaries | [`../downloads/luxibook/`](../downloads/luxibook/) |
 | Date | 2026-08-15 |
 
 **Non-claim:** this book / these boxes / this kernel — not universal CPU↔GPU.
 
-Tables: [`../RESULTS.md`](../RESULTS.md) · page: [`../site/demo.html`](../site/demo.html)
+Tables: [`../RESULTS.md`](../RESULTS.md) · how to run: [`../DEMOS.md`](../DEMOS.md)
 
 ## Current GTM transformer measurement (absolute + matched)
 

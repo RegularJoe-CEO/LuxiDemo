@@ -5,8 +5,8 @@
 > **Portfolio note (2026-08):** On luxiedge.com and this repo, **Luxi Book** is the
 > professional Quant try (CSV European options + SHA-256). **LuxiRisk is the freebie**
 > for crypto / retail traders — not the institutional option book, not desk VaR.
-> Book binaries: [`../site/downloads/luxibook/`](../site/downloads/luxibook/) ·
-> demo: [`../site/demo.html`](../site/demo.html).
+> Book binaries: [`../downloads/luxibook/`](../downloads/luxibook/) ·
+> how to run: [`../DEMOS.md`](../DEMOS.md).
 
 Three high-frequency risk calculations for crypto / retail traders, each with a
 **greppable Ed25519-signed receipt** (`lxr1_…`) so numbers posted in Discord,

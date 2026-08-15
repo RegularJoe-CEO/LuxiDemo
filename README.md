@@ -1,14 +1,15 @@
 # Luxi public demos and evidence
 
-**Website:** [luxiedge.com](https://luxiedge.com)
+**What this repo is:** closed **binaries**, **evidence packs**, and **markdown** run docs.  
+**What this repo is not:** marketing website source, proprietary engine source, or the luxiedge.com deploy tree.
 
-**Current evidence:** [`evidence/README.md`](evidence/README.md)
+**Website (Replit, separate):** [luxiedge.com](https://luxiedge.com) — not published from this repository.  
+**Boundary:** [`REPO_BOUNDARY.md`](REPO_BOUNDARY.md)
 
-**Runnable binary demos:** [`DEMOS.md`](DEMOS.md)
-**Luxi product architecture:** [`LUXI_SYSTEM.md`](LUXI_SYSTEM.md)
+**Runnable demos:** [`DEMOS.md`](DEMOS.md) · **Evidence:** [`evidence/README.md`](evidence/README.md) · **Architecture:** [`LUXI_SYSTEM.md`](LUXI_SYSTEM.md)
 
-**Try without an NDA:** [**Luxi Book**](site/demo.html) (CSV European options + SHA-256 receipts — the professional Quant try)
-and [**LuxiRisk**](luxirisk/) (free crypto/retail risk CLI). Inference serve and numerical toys stay on the site below those two.
+**Try without an NDA:** [**Luxi Book**](downloads/luxibook/) (CSV European options + SHA-256 receipts — the professional Quant try)
+and [**LuxiRisk**](luxirisk/) (free crypto/retail risk CLI). Inference serve binaries and numerical toys are documented in DEMOS below those two.
 
 Luxi also builds energy-aware AI compute (prefill thr/J evidence on H100). **LuxiEdge** is the inference surface.
 **Luxi Book** is the runnable Quant path that can become a design-partner conversation. Other layers are labeled prototype or concept.
@@ -58,26 +59,26 @@ Independent evaluation of the **earlier** stack: thr still trailed vLLM; board e
 
 ```bash
 # Mac CPU
-chmod +x site/downloads/luxibook/luxi-book-macos-arm64
-./site/downloads/luxibook/luxi-book-macos-arm64 price \
-  --book site/downloads/luxibook/example_book.csv \
+chmod +x downloads/luxibook/luxi-book-macos-arm64
+./downloads/luxibook/luxi-book-macos-arm64 price \
+  --book downloads/luxibook/example_book.csv \
   --out report.csv --receipt receipt.json
 
 # Linux CPU
-./site/downloads/luxibook/luxi-book-linux-x86_64 price \
-  --book site/downloads/luxibook/example_book.csv \
+./downloads/luxibook/luxi-book-linux-x86_64 price \
+  --book downloads/luxibook/example_book.csv \
   --out report.csv --receipt receipt.json
 
 # Linux CUDA (NVIDIA required)
-./site/downloads/luxibook/luxi-book-linux-x86_64-cuda price \
-  --book site/downloads/luxibook/example_book.csv \
+./downloads/luxibook/luxi-book-linux-x86_64-cuda price \
+  --book downloads/luxibook/example_book.csv \
   --out report.csv --receipt receipt.json --mode gpu
 ```
 
 Measured receipt (`example_book.csv` only):  
 `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a`  
 (Mini CPU · Linux CPU · A100 · H100 · H200). Not a universal GPU claim.  
-Binaries: [`site/downloads/luxibook/`](site/downloads/luxibook/) · page: [`site/demo.html`](site/demo.html)
+Binaries: [`downloads/luxibook/`](downloads/luxibook/) · how to run: [`DEMOS.md`](DEMOS.md)
 
 ### B) LuxiRisk — free crypto / retail risk CLI (v0.2)
 
@@ -103,18 +104,18 @@ pip install cryptography && python3 luxirisk/test-vectors/verify_receipts.py
 ### C) Inference serve + locked scoreboard (demoted)
 
 ```bash
-chmod +x site/downloads/luxiedge-serve-macos-arm64
-./site/downloads/luxiedge-serve-macos-arm64 --bind 127.0.0.1:8787
+chmod +x downloads/luxiedge-serve-macos-arm64
+./downloads/luxiedge-serve-macos-arm64 --bind 127.0.0.1:8787
 curl -s http://127.0.0.1:8787/v1/gtm | python3 -m json.tool
 ```
 
-Not Luxi Book. Page section: [`site/demo.html#also`](site/demo.html#also).
+Not Luxi Book. Catalog: [`DEMOS.md`](DEMOS.md).
 
 ## Demo and product map
 
 | Surface | What can be run publicly today | Status |
 |---|---|---|
-| **Luxi Book** | CSV BS/Black-76 + SHA-256; macOS + Linux CPU + Linux CUDA binaries | **Primary Quant try** ([demo](site/demo.html)) |
+| **Luxi Book** | CSV BS/Black-76 + SHA-256; macOS + Linux CPU + Linux CUDA binaries | **Primary Quant try** ([downloads](downloads/luxibook/) · [DEMOS](DEMOS.md)) |
 | **LuxiRisk** freebie | Liq / size / max loss + `lxr1_` receipts (**unsigned**) | **[v0.2 freebie](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2)** |
 | LuxiEdge numerical engine | REST evaluation, operator list, receipt validation | **Working binary demo** |
 | ATE / Waller / WNSM primitives | `luxi-tools ate` and `energy` | **Working binary demo** |
@@ -155,7 +156,7 @@ Start at [`evidence/README.md`](evidence/README.md); read
 python3 scripts/verify_v99_pack.py
 
 # Luxi Book binary digests
-shasum -a 256 -c site/downloads/luxibook/luxi-book-macos-arm64.sha256
+shasum -a 256 -c downloads/luxibook/luxi-book-macos-arm64.sha256
 
 # LuxiRisk formula vectors
 pip install cryptography && python3 luxirisk/test-vectors/verify_receipts.py
@@ -178,12 +179,16 @@ or SSH access information belong in this repository.
 
 | Path | Purpose |
 |---|---|
+| [`downloads/`](downloads/) | Closed binaries (Luxi Book, serve) + checksums |
+| [`luxirisk/`](luxirisk/) | Freebie risk CLI binaries + public formulas/vectors |
+| [`evidence/`](evidence/) | Current and historical measurement packs |
 | [`DEMOS.md`](DEMOS.md) | Runnable public demo catalog |
-| [`LUXI_SYSTEM.md`](LUXI_SYSTEM.md) | Product-family architecture and maturity |
-| [`evidence/README.md`](evidence/README.md) | Current and historical evidence index |
 | [`RESULTS.md`](RESULTS.md) | Published results and measurement scope |
-| [`HISTORY.md`](HISTORY.md) | Development chronology and historical pack value |
-| [`docs/`](docs/) | Domain demonstrations and technical notes |
+| [`LUXI_SYSTEM.md`](LUXI_SYSTEM.md) | Product-family architecture and maturity |
+| [`HISTORY.md`](HISTORY.md) | Development chronology |
+| [`REPO_BOUNDARY.md`](REPO_BOUNDARY.md) | What belongs here vs Replit vs private engines |
+| [`docs/`](docs/) | Domain notes (markdown only) |
+| [`scripts/`](scripts/) | Public evidence verifiers (no engine source) |
 
 ## Contact
 

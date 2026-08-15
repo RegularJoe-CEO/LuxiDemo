@@ -1,9 +1,10 @@
 # Claims Register — luxiedge.com rebuild
 
-**Date:** 2026-07-11 (Book section added 2026-08-15; portfolio docs aligned same day)  
-**Sources of truth:** live crawl of https://luxiedge.com + public [RegularJoe-CEO/LuxiDemo](https://github.com/RegularJoe-CEO/LuxiDemo) `evidence/**` + `site/downloads/luxibook/`  
-**Rule:** No unlinked hero metric. Prefer public pack `START_HERE` over private NDA.
-**Public order:** Luxi Book (sale) → LuxiRisk freebie → inference thr/J.
+**Date:** 2026-07-11 (Book section 2026-08-15; marketing HTML removed from this repo later)  
+**Sources of truth:** live [luxiedge.com](https://luxiedge.com) (**Replit**, not this repo) + public [RegularJoe-CEO/LuxiDemo](https://github.com/RegularJoe-CEO/LuxiDemo) `evidence/**` + `downloads/luxibook/`  
+**Rule:** No unlinked hero metric. Prefer public pack `START_HERE` over private NDA.  
+**Public order:** Luxi Book (sale) → LuxiRisk freebie → inference thr/J.  
+**Note:** This claims register guides **website** copy on Replit. LuxiDemo itself is binaries + evidence + markdown only — see [`REPO_BOUNDARY.md`](REPO_BOUNDARY.md).
 
 Legend: **KEEP** · **REFRAME** · **DELETE** · **ADD**
 
