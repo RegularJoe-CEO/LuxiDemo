@@ -1,8 +1,19 @@
 # Historical benchmark index
 
-These July 11 measurements are preserved with their original configurations.
-For the latest results, open the [current evidence index](evidence/README.md)
-or the [Version 99 matched-prefill pack](evidence/h100-qwen2-7b-v99-matched-prefill-2026-07-23/).
+These July 11 (and related) measurements are preserved with their original
+configurations. They are **not** the current public headline.
+
+**Current results (start here):**
+
+| Surface | Where |
+|---------|--------|
+| Luxi Book receipt matrix | [`RESULTS.md`](RESULTS.md) · [`site/downloads/luxibook/`](site/downloads/luxibook/) |
+| Prefill thr/J (absolute + matched vLLM) | [`evidence/README.md`](evidence/README.md) |
+| Full measured tables | [`RESULTS.md`](RESULTS.md) |
+| Chronology | [`HISTORY.md`](HISTORY.md) |
+
+Prior third-party inference baseline:
+[Version 99 matched-prefill](evidence/h100-qwen2-7b-v99-matched-prefill-2026-07-23/).
 
 All packs below are **public** under `evidence/`.  
 Folder names identify the hardware and workload represented by each pack.
@@ -33,3 +44,4 @@ Open `evidence/h100-7b-class-TRADE/START_HERE.md` first.
 - Power is **GPU board** (pynvml), not wall-plug AC.
 - The sequence-length 5 result is a microbenchmark, not a current product
   result.
+- These packs are **not** Luxi Book option-pricing results.

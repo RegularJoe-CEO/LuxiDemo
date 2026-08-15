@@ -1,14 +1,64 @@
 # Published results
 
-Last updated: 2026-07-23
+Last updated: 2026-08-15
 
-This page provides a compact index of Luxi measurements. Each result is limited
-to the workload and hardware described in its evidence.
+This page indexes **measured** public results. Each result is limited to the
+workload and hardware described in its evidence. Do not blend numbers across
+sections.
 
-## LuxiEdge Version 99
+## Luxi Book — CSV European options (primary Quant try)
 
-The table below summarizes a technician-operated matched prefill test on one
-NVIDIA H100 80GB GPU.
+**Workload:** `example_book.csv` only · European Black-Scholes / Black-76 · five
+Greeks · SHA-256 over the canonical f64 little-endian price+Greeks vector.  
+**Kernel:** `black_scholes_book_kernel` (CPU gold; optional CUDA on Linux).  
+**Date:** 2026-08-15.
+
+| Surface | Result |
+|---|---|
+| Receipt SHA-256 | `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a` |
+| ATM_CALL price | `10.4505835721856215` |
+| Boxes agreeing on that receipt | Mac Mini CPU · RunPod x86 CPU · A100-SXM4-80GB · H100 80GB HBM3 · H200 (two GPU runs each) |
+| Public binaries | macOS ARM64 CPU · Linux x86_64 CPU · Linux x86_64 CUDA |
+
+**Non-claims:** this book, these boxes, this kernel — not “all GPUs always
+match,” not desk VaR, not live market data, not `risk-pipeline`.
+
+- Binaries: [`site/downloads/luxibook/`](site/downloads/luxibook/)
+- Page: [`site/demo.html`](site/demo.html)
+- Catalog: [`DEMOS.md`](DEMOS.md)
+
+## LuxiEdge absolute prefill (internal multi-run champion)
+
+**Workload:** Qwen2-7B-Instruct class · S=128 · B72 · dual_gemm  
+(`LUXI_GEMM_DUAL_STREAM=1`) · flash + device-resident + FP16 · one H100 80GB ·
+NVML board joules · 5×15 s multi-run · 2026-08-07.
+
+| Operating point | Thr median (pos/s) | Board J/pos |
+|---|---:|---:|
+| **B72 dual_gemm** | **~44,860** | **~0.0153** |
+
+Pack:
+[`evidence/prefill_accel_lock_20260807T233111Z/`](evidence/prefill_accel_lock_20260807T233111Z/)
+
+**Not** a matched vLLM claim at B72.
+
+## LuxiEdge matched vLLM H2H (B16 / B32 only)
+
+| Batch | Luxi thr (pos/s) | Luxi J/pos | vs vLLM thr | vs vLLM J/pos |
+|------:|-----------------:|-----------:|------------:|--------------:|
+| **16** | **~41,221** | **~0.0169** | **~1.18×** | **~12% lower** |
+| **32** | **~43,464** | **~0.0158** | **~1.19×** | **~14% lower** |
+
+Pack:
+[`evidence/prefill_freeze_matched_20260807T210749Z/`](evidence/prefill_freeze_matched_20260807T210749Z/)
+
+Scope: prefill positions only · GPU board energy · not decode · not wall-plug ·
+not multi-tenant full-server leadership.
+
+## LuxiEdge Version 99 (prior third-party baseline)
+
+Technician-operated matched prefill on one NVIDIA H100 80GB (2026-07-23).
+**Earlier stack** — thr trailed vLLM; kept for lineage.
 
 | Engine | Prefill positions/s | GPU-board J/position |
 |---|---:|---:|
@@ -22,16 +72,12 @@ LuxiEdge reached 91.78% of its throughput and used 9.15% less GPU-board energy
 per position.
 
 Test configuration: Qwen2-7B-Instruct, batch 16, sequence length 128, packed
-prefill, prefix caching disabled, cumulative NVML energy, and one NVIDIA H100
-80GB GPU.
+prefill, prefix caching disabled, cumulative NVML energy, one H100 80GB.
 
 Evidence:
 [`h100-qwen2-7b-v99-matched-prefill-2026-07-23`](evidence/h100-qwen2-7b-v99-matched-prefill-2026-07-23/)
 
-The measurements cover prefill work. They do not measure decode throughput,
-complete serving performance, or facility electricity.
-
-## LuxiQuant numerical engine
+## LuxiQuant numerical engine (microbench / REST — not the option book)
 
 A December 2025 TestFort evaluation reported:
 
@@ -46,11 +92,20 @@ A December 2025 TestFort evaluation reported:
 
 [Open the numerical-engine validation report](https://luxiedge.com/luxiedge-validation-report.pdf)
 
-These measurements apply to the numerical engine and its defined test suite.
-They are not transformer-inference measurements.
+These measurements apply to the **numerical expression engine** and its defined
+test suite. They are **not** transformer-inference measurements and **not**
+Luxi Book option-pricing results.
+
+## LuxiRisk freebie
+
+Retail / crypto liquidation, size, and stop-loss CLI with Ed25519 `lxr1_`
+receipts. Not institutional Quant. See [`luxirisk/`](luxirisk/) and release
+[luxirisk-v0.2](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2).
+No thr/J table — product is signed calculation receipts, not a GPU scoreboard.
 
 ## Historical transformer research
 
 Earlier H100 experiments remain available with their original configurations,
 including TRADE, Flash comparisons, WNSM, long-context scaling, and sustained
-runtime work. See [`evidence/README.md`](evidence/README.md).
+runtime work. See [`evidence/README.md`](evidence/README.md) and
+[`HISTORICAL_BENCHMARKS.md`](HISTORICAL_BENCHMARKS.md).

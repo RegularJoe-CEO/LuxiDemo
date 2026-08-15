@@ -1,5 +1,9 @@
 # LuxiEdge Expression Reference
 
+Supporting numerical REST / operator surface (v3.0 demos). **Not** Luxi Book
+(CSV options). For the Quant try see [`../site/demo.html`](../site/demo.html)
+and [`quant-finance.md`](quant-finance.md).
+
 ## Supported Functions
 
 | Function | Description | Valid Input Range |

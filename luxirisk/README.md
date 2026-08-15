@@ -1,6 +1,12 @@
 # LuxiRisk v0.2
 
-**Free · closed-source · tiny offline CLI · unsigned binaries**
+**Freebie · closed-source · tiny offline CLI · unsigned binaries**
+
+> **Portfolio note (2026-08):** On luxiedge.com and this repo, **Luxi Book** is the
+> professional Quant try (CSV European options + SHA-256). **LuxiRisk is the freebie**
+> for crypto / retail traders — not the institutional option book, not desk VaR.
+> Book binaries: [`../site/downloads/luxibook/`](../site/downloads/luxibook/) ·
+> demo: [`../site/demo.html`](../site/demo.html).
 
 Three high-frequency risk calculations for crypto / retail traders, each with a
 **greppable Ed25519-signed receipt** (`lxr1_…`) so numbers posted in Discord,
@@ -170,6 +176,9 @@ python3 test-vectors/verify_receipts.py
 
 No funding rates, Kelly, Monte Carlo, prop-firm modes, exchange connections,
 website, open-sourced engine, local UI, or paid OS code-signing for this release.
+
+No European option books, Black-Scholes Greeks, or institutional risk — that path
+is **Luxi Book**, not this freebie.
 
 ## Release
 

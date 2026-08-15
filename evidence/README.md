@@ -4,14 +4,47 @@ This index separates **current claims**, **working demonstrations**, and
 **historical research**. Historical packs remain available because they explain
 the development path and preserve both wins and losses.
 
-## Current GTM transformer measurement (version-100)
+## Luxi Book — Quant receipt (public try)
+
+Not a thr/J pack. Closed binaries + measured SHA-256 on one example book:
+
+| Field | Value |
+|-------|--------|
+| Workload | `example_book.csv` · European BS / Black-76 · five Greeks |
+| Receipt | `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a` |
+| ATM_CALL | `10.4505835721856215` |
+| Boxes | Mac Mini CPU · RunPod x86 CPU · A100 · H100 · H200 (two GPU runs each) |
+| Binaries | [`../site/downloads/luxibook/`](../site/downloads/luxibook/) |
+| Date | 2026-08-15 |
+
+**Non-claim:** this book / these boxes / this kernel — not universal CPU↔GPU.
+
+Tables: [`../RESULTS.md`](../RESULTS.md) · page: [`../site/demo.html`](../site/demo.html)
+
+## Current GTM transformer measurement (absolute + matched)
+
+### Absolute prefill champion (B72 dual_gemm) — 2026-08-07
+
+[`prefill_accel_lock_20260807T233111Z/`](prefill_accel_lock_20260807T233111Z/)
+
+- ~44,860 pos/s · ~0.0153 board J/pos · multi-run median
+- **Not** a matched vLLM claim at B72
+
+### Matched vLLM H2H (B16 / B32 only)
+
+[`prefill_freeze_matched_20260807T210749Z/`](prefill_freeze_matched_20260807T210749Z/)
+
+- B16 ~1.18× thr · ~12% lower J/pos vs vLLM
+- B32 ~1.19× thr · ~14% lower J/pos vs vLLM
+
+### version-100 GTM lineage
 
 [`version-100-h100-gtm/`](version-100-h100-gtm/)
 
 - Qwen2-7B-Instruct class · S=128 · B=16/32
 - Flash + device-resident + FP16 TRADE path
 - Multi-run 5×15 s thr + NVML board J/pos + det=1.0
-- Matched H2H vs vLLM: **~1.17–1.18× thr**, **~10–14% lower** board J/pos
+- Matched H2H lineage vs vLLM (~1.17–1.18× thr, ~10–14% lower board J/pos)
 - Authoritative: `MULTI_RUN_LOCK_SLIM.json` · buyer: `PUBLIC_GTM_ONE_PAGER.md`
 
 ## Prior third-party-operated transformer measurement
@@ -21,24 +54,25 @@ the development path and preserve both wins and losses.
 [`h100-qwen2-7b-v99-matched-prefill-2026-07-23/`](h100-qwen2-7b-v99-matched-prefill-2026-07-23/)
 
 - Earlier stack: thr trailed vLLM; modest board-energy edge; det + soak held
-- Kept as independent lineage — **not** the version-100 thr claim
+- Kept as independent lineage — **not** the current thr claim
 
 Formal signed narrative: pending.
 
 ## Independently evaluated numerical engine
 
 TestFort’s December 2025 report covers a defined deterministic numerical
-workload:
+workload (not Luxi Book, not inference thr/J):
 
 [Open the public report](https://luxiedge.com/luxiedge-validation-report.pdf)
 
-This evidence belongs to LuxiQuant/numerical execution and is separate from
-transformer inference.
+This evidence belongs to LuxiQuant numerical execution and is separate from
+transformer inference and from the option book.
 
 ## Current correctness status
 
 | Surface | Public status |
 |---|---|
+| Luxi Book example receipt | Measured on listed boxes; public binaries |
 | Faithful Qwen2-7B CUDA | Website reports current limited acceptance result; raw public pack still required |
 | Llama 3.1 resident inference | Internal correctness milestone; no public performance/energy claim |
 
@@ -57,6 +91,8 @@ transformer inference.
 These packs have not been deleted or reinterpreted. Their numbers remain tied
 to their original model/shape, code, comparator, and measurement method.
 
+See also [`../HISTORICAL_BENCHMARKS.md`](../HISTORICAL_BENCHMARKS.md).
+
 ## Reading rule
 
 For every result, identify:
@@ -70,3 +106,4 @@ For every result, identify:
 7. validation status.
 
 Do not combine throughput from one pack with power from another.
+Do not treat Book receipts as thr/J evidence, or thr/J packs as option pricing.
