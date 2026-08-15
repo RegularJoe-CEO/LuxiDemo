@@ -162,7 +162,7 @@ not a universal cross-version or cross-platform guarantee. This smoke confirms
 execution and repeatability; numerical error bounds require a separate
 operator-accuracy contract.
 
-## Demo 3: ATE / Waller / WNSM
+## Demo 5: ATE / Waller / WNSM
 
 ```bash
 ./luxi-tools-linux-x86_64 ate
@@ -175,7 +175,7 @@ illustrative unless a corresponding measured evidence pack is cited.
 The tested Linux x86-64 build reported identical NORMAL/WNSM receipts and
 `0.00e0` maximum output difference.
 
-## Demo 4: energy-path illustration
+## Demo 6: energy-path illustration
 
 ```bash
 ./luxi-tools-linux-x86_64 energy
@@ -184,7 +184,7 @@ The tested Linux x86-64 build reported identical NORMAL/WNSM receipts and
 This command illustrates payload-avoidance accounting at several shapes. It is
 not the Version 99 H100 measurement and is not facility-energy evidence.
 
-## Demo 5: scientific solvers
+## Demo 7: scientific solvers
 
 ```bash
 ./luxi-tools-linux-x86_64 orbital
@@ -193,7 +193,7 @@ not the Version 99 H100 measurement and is not facility-energy evidence.
 The orbital demonstration emits receipts for Kepler, Vis-Viva, Hohmann,
 drag-decay, J2, and Lambert-style calculations.
 
-## Demo 6: edge and robotics math
+## Demo 8: edge and robotics math
 
 ```bash
 ./luxi-tools-linux-x86_64 robotics
@@ -202,10 +202,10 @@ drag-decay, J2, and Lambert-style calculations.
 The robotics demonstration emits receipts for inverse kinematics, Kalman
 weighting, tire slip, motor torque, clothoid curvature, and lidar distance.
 
-## Demo 7: current inference evidence
+## Demo 9: inference evidence verifier
 
 The full Version 99 Qwen2-7B engine is not distributed from this public demo
-repository. Its current public demonstration is evidence verification:
+repository. Its public arithmetic check is:
 
 ```bash
 python3 scripts/verify_v99_pack.py
@@ -213,15 +213,16 @@ python3 scripts/verify_v99_pack.py
 
 The verifier recomputes the published throughput and GPU-board-energy ratios
 from the retained per-run table. It exposes the evidence contract, not the
-proprietary engine source.
+proprietary engine source. See also [`scripts/README.md`](scripts/README.md).
 
 ## Demo coverage and next gates
 
 | Luxi layer | Public demo today | Next validation step |
 |---|---|---|
-| LuxiRisk | Offline risk CLI + Ed25519 `lxr1_` receipts + verify + public vectors | [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2) (**unsigned** binaries; honest Gatekeeper/SmartScreen friction) |
-| LuxiQuant | Binary validation + REST + receipts | Publish platform-by-platform receipt matrix |
-| LuxiEdge | Primitives + Version 99 evidence verifier | Controlled downloadable inference evaluation package |
+| **Luxi Book** (Quant sale) | CSV BS/Black-76 + Greeks + SHA-256; macOS + Linux CPU + Linux CUDA; measured receipt matrix on `example_book.csv` | Partner books / design-partner path; no universal GPU claim |
+| **LuxiRisk** (freebie) | Offline retail/crypto CLI + Ed25519 `lxr1_` receipts + verify + public vectors | [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2) (**unsigned**; Gatekeeper/SmartScreen friction) |
+| LuxiQuant numerical | v3.0 binary validation + REST + operator receipts | Keep secondary to Book; optional multi-platform numerical matrix |
+| LuxiEdge | Serve scoreboard + thr/J packs + Version 99 verifier | Controlled downloadable inference evaluation package |
 | LuxiPack | None | Admission/placement trace versus a baseline |
 | LuxiPhase | None | Synthetic load-shaping trace with SLO and stability checks |
 | LuxiLoad | None | Controlled compute/power co-simulation or design engagement |

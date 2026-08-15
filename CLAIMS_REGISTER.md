@@ -1,8 +1,9 @@
 # Claims Register — luxiedge.com rebuild
 
-**Date:** 2026-07-11  
-**Sources of truth:** live crawl of https://luxiedge.com + public [RegularJoe-CEO/LuxiDemo](https://github.com/RegularJoe-CEO/LuxiDemo) `evidence/**`  
+**Date:** 2026-07-11 (Book section added 2026-08-15; portfolio docs aligned same day)  
+**Sources of truth:** live crawl of https://luxiedge.com + public [RegularJoe-CEO/LuxiDemo](https://github.com/RegularJoe-CEO/LuxiDemo) `evidence/**` + `site/downloads/luxibook/`  
 **Rule:** No unlinked hero metric. Prefer public pack `START_HERE` over private NDA.
+**Public order:** Luxi Book (sale) → LuxiRisk freebie → inference thr/J.
 
 Legend: **KEEP** · **REFRAME** · **DELETE** · **ADD**
 

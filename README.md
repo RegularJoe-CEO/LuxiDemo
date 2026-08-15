@@ -140,7 +140,7 @@ The historical work has **not** been deleted or hidden.
 
 - **Current GTM measurement:** version-100 multi-run thr+J+det + H2H vs vLLM.
 - **Prior third-party measurement:** Version 99 TESTfort matched-prefill pack.
-- **Current runnable demonstrations:** Luxi Book (macOS) + LuxiRisk freebie + version-100 serve + v3.0 numerical tools.
+- **Current runnable demonstrations:** Luxi Book (macOS + Linux CPU + Linux CUDA) + LuxiRisk freebie + version-100 serve + v3.0 numerical tools.
 - **Independent numerical-engine evaluation:** linked and separately scoped.
 - **Historical transformer research:** July 2026 TRADE, Flash comparison,
   WNSM, long-context, and sustain packs, preserved under `evidence/`.
@@ -148,14 +148,21 @@ The historical work has **not** been deleted or hidden.
 Start at [`evidence/README.md`](evidence/README.md); read
 [`HISTORY.md`](HISTORY.md) for why the older packs still matter.
 
-## Verify the Version 99 arithmetic
-
-This verifier reads the public per-run CSV and recomputes the medians and
-comparative ratios. It does not contain or reveal the inference engine.
+## Verify published numbers
 
 ```bash
+# Version 99 thr/J arithmetic from retained CSV
 python3 scripts/verify_v99_pack.py
+
+# Luxi Book binary digests
+shasum -a 256 -c site/downloads/luxibook/luxi-book-macos-arm64.sha256
+
+# LuxiRisk formula vectors
+pip install cryptography && python3 luxirisk/test-vectors/verify_receipts.py
 ```
+
+Script index: [`scripts/README.md`](scripts/README.md). Book receipt target is in
+[`RESULTS.md`](RESULTS.md).
 
 ## Source and access boundary
 

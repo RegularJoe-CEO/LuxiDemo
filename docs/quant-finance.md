@@ -1,58 +1,98 @@
-# LuxiEdge for Quantitative Finance
+# Luxi for Quantitative Finance
 
-## The Problem
+## What is public today
 
-Monte Carlo simulations run on different machines produce different results. Not by much. A few bits. But when regulators ask you to reproduce a calculation from 6 months ago, "close enough" doesn't work.
+**Luxi Book** is the professional Quant try without an NDA:
 
-Standard math libraries use platform-specific optimizations. sin(x) on an Intel chip gives a slightly different answer than sin(x) on AMD. GPU results drift from CPU results. You end up with audit logs that can't be verified.
+- CSV position book → European **Black-Scholes / Black-76** prices
+- Five Greeks
+- **SHA-256** receipt over the canonical f64 little-endian output vector
+- Closed binaries (macOS ARM64 CPU, Linux x86_64 CPU, Linux x86_64 CUDA)
+- You bring `T`, `r`, and `σ` — no live feed, no IV surface, no VaR, no fund desk
 
-## How LuxiEdge Solves This
+**LuxiRisk** is a separate **freebie**: offline crypto / retail liquidation,
+position size, and stop-loss math with Ed25519 `lxr1_` calculation receipts.
+It is not the institutional option book.
 
-Every calculation returns a SHA256 hash. Same input, same hash, every time. Doesn't matter if you run it on:
+Older **numerical** demos (`luxiedge-demo` REST `/evaluate`, operator validate)
+still ship as supporting math surfaces. They are **not** Luxi Book.
 
-- Linux server in your data center
-- macOS laptop during development
-- GPU cluster for production
-- ARM edge device for low-latency execution
-
-The hash matches. Bit-for-bit.
-
-## Example: Option Pricing Components
+## How to run Luxi Book
 
 ```bash
-curl -X POST http://localhost:10000/evaluate -H "Content-Type: application/json" -d '{"expr":"normcdf(x)","values":[-2.0,-1.0,0.0,1.0,2.0],"precision":"f32"}'
+# Mac CPU
+chmod +x site/downloads/luxibook/luxi-book-macos-arm64
+./site/downloads/luxibook/luxi-book-macos-arm64 price \
+  --book site/downloads/luxibook/example_book.csv \
+  --out report.csv --receipt receipt.json
+
+# Linux CPU
+./site/downloads/luxibook/luxi-book-linux-x86_64 price \
+  --book site/downloads/luxibook/example_book.csv \
+  --out report.csv --receipt receipt.json
+
+# Linux CUDA (NVIDIA driver required; no silent CPU fallback)
+./site/downloads/luxibook/luxi-book-linux-x86_64-cuda price \
+  --book site/downloads/luxibook/example_book.csv \
+  --out report.csv --receipt receipt.json --mode gpu
 ```
 
-Response includes a SHA256 hash you can store with your trade records.
+Measured on **`example_book.csv` only** (2026-08-15):
 
-## Audit Trail
+| Field | Value |
+|-------|--------|
+| Receipt | `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a` |
+| ATM_CALL | `10.4505835721856215` |
+| Boxes | Mac Mini CPU · RunPod x86 CPU · A100 · H100 · H200 |
 
-1. Run your pricing model
-2. Store the SHA256 hash with the trade
-3. Six months later, regulator asks for verification
-4. Re-run the same inputs
-5. Hash matches. Done.
+**Non-claim:** this book, these boxes, this kernel — not “all GPUs always match.”
 
-No arguing about floating point differences. No "well, we upgraded our servers." The math is the math.
+Downloads: [`site/downloads/luxibook/`](../site/downloads/luxibook/)  
+Demo page: [`site/demo.html`](../site/demo.html)  
+Catalog: [`DEMOS.md`](../DEMOS.md)
 
-## Available Functions
+## Why receipts matter
 
-All produce identical hashes across platforms:
+Same inputs → same receipt on the machines you measured. Store the hash with
+the run. Later, re-run the same CSV and contract; if the receipt matches, the
+published vector matches.
 
-| Function | Use Case |
-|----------|----------|
-| normcdf(x) | Cumulative normal distribution |
-| normpdf(x) | Normal probability density |
-| erf(x) | Error function |
-| exp(x) | Exponential |
-| ln(x) | Natural log |
-| sqrt(x) | Square root |
-| gamma(x) | Gamma function |
+That is **scoped reproducibility**, not a guarantee that every future GPU,
+driver, or book shape will hash-match without re-measurement.
 
-## Getting Started
+## What we do not claim on this page
 
-See the main [README](../README.md) for download and setup.
+| Claim | Status |
+|-------|--------|
+| Universal bit-exact results on every CPU and GPU | **No** — only measured boxes for Book |
+| Desk VaR / full risk engine / live market data | **No** |
+| LuxiRisk = institutional Quant | **No** — freebie retail/crypto CLI |
+| TestFort 286B ops/s as option pricing thr | **No** — separate numerical suite |
+| `risk-pipeline --synthetic` as product face | **No** — internal/synthetic only |
+
+## Supporting numerical REST (secondary)
+
+The v3.0 `luxiedge-demo` binary still exposes expression evaluation, e.g.:
+
+```bash
+curl -X POST http://127.0.0.1:9090/evaluate \
+  -H "Content-Type: application/json" \
+  -d '{"expr":"normcdf(x)","values":[-2.0,-1.0,0.0,1.0,2.0],"precision":"f32"}'
+```
+
+That path is useful for operator smoke and historical numerical receipts. It is
+**not** the Luxi Book product surface. See [`DEMOS.md`](../DEMOS.md).
+
+## Getting started
+
+| Goal | Link |
+|------|------|
+| Download Book | [site/downloads/luxibook/](../site/downloads/luxibook/) |
+| Freebie risk CLI | [luxirisk/](../luxirisk/) |
+| Measured tables | [RESULTS.md](../RESULTS.md) |
+| Full catalog | [DEMOS.md](../DEMOS.md) |
+| Architecture | [LUXI_SYSTEM.md](../LUXI_SYSTEM.md) |
 
 ## Contact
 
-e@ewaller.com
+Design partners / commercial: e@ewaller.com · [luxiedge.com](https://luxiedge.com)

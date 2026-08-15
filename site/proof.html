@@ -47,14 +47,63 @@
         <h1>Proof you can open — no NDA required for the headlines.</h1>
         <p class="lede">
           Every material number on this site points here: public packs, measured tables, and demo binaries.
+          Quant try is <strong>Luxi Book</strong>; thr/J tables are inference.
         </p>
         <div class="cta-row" style="margin-top:1rem">
-          <a class="btn btn-primary" href="#v100">version-100 H2H</a>
-          <a class="btn btn-secondary" href="demo.html">Demo binary</a>
+          <a class="btn btn-primary" href="#book">Luxi Book receipt</a>
+          <a class="btn btn-secondary" href="#absolute">Prefill thr/J</a>
+          <a class="btn btn-ghost" href="demo.html">Download demos</a>
           <a class="btn btn-ghost" href="#benchmarks">Prior packs</a>
         </div>
       </div>
     </div>
+
+    <section id="book">
+      <div class="wrap">
+        <h2>Luxi Book — option book receipt (Quant try)</h2>
+        <p class="sub">
+          CSV European Black-Scholes / Black-76 · five Greeks · SHA-256 over the canonical f64 LE vector.
+          Workload: <code>example_book.csv</code> only · 2026-08-15.
+          Binaries: macOS ARM64 CPU · Linux x86_64 CPU · Linux x86_64 CUDA.
+          <a href="demo.html">Demo page →</a> ·
+          <a href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/site/downloads/luxibook">site/downloads/luxibook</a> ·
+          tables in <a href="https://github.com/RegularJoe-CEO/LuxiDemo/blob/main/RESULTS.md">RESULTS.md</a>.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Measured value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="row-highlight">
+                <td><strong>Receipt SHA-256</strong></td>
+                <td style="font-family:var(--mono);font-size:0.8rem;word-break:break-all"><strong>4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a</strong></td>
+              </tr>
+              <tr>
+                <td>ATM_CALL price</td>
+                <td><code>10.4505835721856215</code></td>
+              </tr>
+              <tr>
+                <td>Boxes agreeing</td>
+                <td>Mac Mini CPU · RunPod x86 CPU · A100 · H100 · H200 (two GPU runs each)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="method">
+          Kernel <code>black_scholes_book_kernel</code>. Scoped: this book, these boxes, this kernel —
+          not “all GPUs always match,” not desk VaR, not thr/J. LuxiRisk freebie is separate
+          (<a href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/luxirisk">luxirisk/</a>).
+        </p>
+        <div class="cta-row" style="margin-top:1rem">
+          <a class="btn btn-primary" href="demo.html">Run Luxi Book</a>
+          <a class="btn btn-secondary" href="downloads/luxibook/example_book.csv">example_book.csv</a>
+        </div>
+      </div>
+    </section>
 
     <section id="absolute">
       <div class="wrap">
@@ -261,8 +310,18 @@
       <div class="wrap">
         <h2>Evidence packs</h2>
         <p class="sub">Open on GitHub. Read methods. Check traces.</p>
+        <a class="pack" href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/site/downloads/luxibook">
+          <span class="tag">Quant try</span>
+          <h3>luxibook (Luxi Book)</h3>
+          <p>CSV European options + SHA-256. Receipt 4a21b1e7…c97a on Mini/Linux CPU + A100/H100/H200. Not thr/J.</p>
+        </a>
+        <a class="pack" href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/prefill_accel_lock_20260807T233111Z">
+          <span class="tag">Current thr/J</span>
+          <h3>prefill_accel_lock (B72 dual_gemm)</h3>
+          <p>~44.9k pos/s · ~0.0153 board J/pos multi-run. Not matched vLLM at B72.</p>
+        </a>
         <a class="pack" href="https://github.com/RegularJoe-CEO/LuxiDemo/tree/main/evidence/h100-7b-class-TRADE">
-          <span class="tag">Lead pack</span>
+          <span class="tag">Lineage</span>
           <h3>h100-7b-class-TRADE</h3>
           <p>Full 28-layer 7B-class TRADE stack. Multi-run thr + energy (~0.63 J/tok @ seq=128, ~403 tok/s).</p>
         </a>
