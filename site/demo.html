@@ -75,24 +75,26 @@
             </p>
             <div class="cta-row" style="margin-top:1rem;flex-wrap:wrap">
               <a class="btn btn-primary" href="downloads/luxibook/luxi-book-macos-arm64">macOS ARM64 (CPU)</a>
-              <a class="btn btn-secondary" href="downloads/luxibook/example_book.csv">example_book.csv</a>
-              <a class="btn btn-ghost" href="downloads/luxibook/luxi-book-macos-arm64.sha256">.sha256</a>
+              <a class="btn btn-secondary" href="downloads/luxibook/luxi-book-linux-x86_64">Linux x86_64 (CPU)</a>
+              <a class="btn btn-secondary" href="downloads/luxibook/luxi-book-linux-x86_64-cuda">Linux x86_64 (CUDA)</a>
+              <a class="btn btn-ghost" href="downloads/luxibook/example_book.csv">example_book.csv</a>
             </div>
             <p class="sub" style="margin-top:0.75rem">
-              Linux x86_64 CPU and CUDA builds: build from
-              <a href="https://github.com/RegularJoe-CEO/luxi-quant-engine">luxi-quant-engine</a>
-              (<code>cargo build --release --bin luxi-book</code>
-              · GPU: <code>cargo build --release --features cuda --bin luxi-book</code>
-              (needs <code>nvcc</code> + live NVIDIA). We do not ship a Mac “GPU binary.”
+              Checksums:
+              <a href="downloads/luxibook/luxi-book-macos-arm64.sha256">macOS</a> ·
+              <a href="downloads/luxibook/luxi-book-linux-x86_64.sha256">Linux CPU</a> ·
+              <a href="downloads/luxibook/luxi-book-linux-x86_64-cuda.sha256">Linux CUDA</a>.
+              Mac is CPU-only. CUDA Linux build needs a live NVIDIA driver at runtime. Unsigned.
             </p>
-            <pre class="code-block" style="background:#0f172a;color:#e2e8f0;padding:1rem;border-radius:12px;overflow:auto;font-family:var(--mono);font-size:0.85rem;margin-top:1rem"><code>chmod +x luxi-book-macos-arm64
-shasum -a 256 -c luxi-book-macos-arm64.sha256
-# macOS first run: right-click → Open (unsigned)
-./luxi-book-macos-arm64 price \
-  --book example_book.csv --out report.csv --receipt receipt.json
+            <pre class="code-block" style="background:#0f172a;color:#e2e8f0;padding:1rem;border-radius:12px;overflow:auto;font-family:var(--mono);font-size:0.85rem;margin-top:1rem"><code># Mac (CPU)
+chmod +x luxi-book-macos-arm64
+./luxi-book-macos-arm64 price --book example_book.csv --out report.csv --receipt receipt.json
 
-# Linux + NVIDIA (after CUDA build):
-./luxi-book price --book example_book.csv --out report.csv --receipt receipt.json --mode gpu</code></pre>
+# Linux CPU
+./luxi-book-linux-x86_64 price --book example_book.csv --out report.csv --receipt receipt.json
+
+# Linux + NVIDIA (CUDA binary)
+./luxi-book-linux-x86_64-cuda price --book example_book.csv --out report.csv --receipt receipt.json --mode gpu</code></pre>
             <p class="sub" style="margin-top:0.75rem">
               Want your book on this path? Design partners:
               <a href="mailto:e@ewaller.com">e@ewaller.com</a> · luxiedge.com
