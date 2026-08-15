@@ -57,17 +57,27 @@ Independent evaluation of the **earlier** stack: thr still trailed vLLM; board e
 ### A) Luxi Book — CSV European options (the Quant sale)
 
 ```bash
+# Mac CPU
 chmod +x site/downloads/luxibook/luxi-book-macos-arm64
-shasum -a 256 -c site/downloads/luxibook/luxi-book-macos-arm64.sha256
 ./site/downloads/luxibook/luxi-book-macos-arm64 price \
   --book site/downloads/luxibook/example_book.csv \
   --out report.csv --receipt receipt.json
+
+# Linux CPU
+./site/downloads/luxibook/luxi-book-linux-x86_64 price \
+  --book site/downloads/luxibook/example_book.csv \
+  --out report.csv --receipt receipt.json
+
+# Linux CUDA (NVIDIA required)
+./site/downloads/luxibook/luxi-book-linux-x86_64-cuda price \
+  --book site/downloads/luxibook/example_book.csv \
+  --out report.csv --receipt receipt.json --mode gpu
 ```
 
 Measured receipt (`example_book.csv` only):  
 `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a`  
 (Mini CPU · Linux CPU · A100 · H100 · H200). Not a universal GPU claim.  
-Page: [`site/demo.html`](site/demo.html) · engine: [luxi-quant-engine](https://github.com/RegularJoe-CEO/luxi-quant-engine)
+Binaries: [`site/downloads/luxibook/`](site/downloads/luxibook/) · page: [`site/demo.html`](site/demo.html)
 
 ### B) LuxiRisk — free crypto / retail risk CLI (v0.2)
 
@@ -104,7 +114,7 @@ Not Luxi Book. Page section: [`site/demo.html#also`](site/demo.html#also).
 
 | Surface | What can be run publicly today | Status |
 |---|---|---|
-| **Luxi Book** | CSV BS/Black-76 + SHA-256; macOS binary + example CSV | **Primary Quant try** ([demo](site/demo.html)) |
+| **Luxi Book** | CSV BS/Black-76 + SHA-256; macOS + Linux CPU + Linux CUDA binaries | **Primary Quant try** ([demo](site/demo.html)) |
 | **LuxiRisk** freebie | Liq / size / max loss + `lxr1_` receipts (**unsigned**) | **[v0.2 freebie](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2)** |
 | LuxiEdge numerical engine | REST evaluation, operator list, receipt validation | **Working binary demo** |
 | ATE / Waller / WNSM primitives | `luxi-tools ate` and `energy` | **Working binary demo** |

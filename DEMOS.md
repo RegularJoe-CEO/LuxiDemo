@@ -17,8 +17,11 @@ no IV, no VaR, not a fund desk. Not `risk-pipeline`.
 | Platform | Binary |
 |----------|--------|
 | macOS ARM64 (CPU) | [`site/downloads/luxibook/luxi-book-macos-arm64`](site/downloads/luxibook/luxi-book-macos-arm64) |
+| Linux x86_64 (CPU) | [`site/downloads/luxibook/luxi-book-linux-x86_64`](site/downloads/luxibook/luxi-book-linux-x86_64) |
+| Linux x86_64 (CUDA / NVIDIA) | [`site/downloads/luxibook/luxi-book-linux-x86_64-cuda`](site/downloads/luxibook/luxi-book-linux-x86_64-cuda) |
 | Example CSV | [`site/downloads/luxibook/example_book.csv`](site/downloads/luxibook/example_book.csv) |
-| Linux x86_64 / CUDA | Build from [luxi-quant-engine](https://github.com/RegularJoe-CEO/luxi-quant-engine) (`cargo build --release --bin luxi-book`; GPU needs `--features cuda`) |
+
+No macOS GPU binary. CUDA binary needs a live NVIDIA driver at runtime.
 
 ```bash
 chmod +x site/downloads/luxibook/luxi-book-macos-arm64
@@ -26,8 +29,11 @@ shasum -a 256 -c site/downloads/luxibook/luxi-book-macos-arm64.sha256
 ./site/downloads/luxibook/luxi-book-macos-arm64 price \
   --book site/downloads/luxibook/example_book.csv \
   --out report.csv --receipt receipt.json
-# Linux NVIDIA only (after CUDA build):
-# ./luxi-book price --book example_book.csv --out report.csv --receipt receipt.json --mode gpu
+
+# Linux NVIDIA:
+./site/downloads/luxibook/luxi-book-linux-x86_64-cuda price \
+  --book site/downloads/luxibook/example_book.csv \
+  --out report.csv --receipt receipt.json --mode gpu
 ```
 
 **Measured on `example_book.csv` only (2026-08-15):** receipt  
