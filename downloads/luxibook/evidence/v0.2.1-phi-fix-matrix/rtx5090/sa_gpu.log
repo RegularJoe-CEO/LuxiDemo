@@ -1,0 +1,15 @@
+mode:         gpu
+host_simd:    avx512  (host capability; pricing is scalar det.)
+git_sha:      unknown
+rows:         237
+book_price:   488338590.9188194275
+book_delta:   31.6985469458  (MIXED — see note)
+delta_note:   mixed: BS delta is d/dS, Black-76 delta is d/dF — do not add them as one risk
+output_hash:  902667a1070b83bff57ac642cf16779d998b5a954c046c450b154237e9e196e2
+receipt:      lxq2_TFhRAgAlo3MVK-QzteOcJTCKxXKap8Jv2yD1gCExjazHubxem0lntJaI7NAvWuNsVf_aw5_fhPdZ6lBcmR8YOHcTW4UjLQrYiH7IrCnykrRiSXhYE_egYei4gB1swduN77eY2QQ  fp e79f99f28c81035e  custody file
+cpu_output_hash: 902667a1070b83bff57ac642cf16779d998b5a954c046c450b154237e9e196e2  (observation only; not a gate)
+device:       NVIDIA GeForce RTX 5090
+kernel:      black_scholes_book_kernel
+cpu_gpu_match: YES (measured)
+report:       out/sa_gpu.csv
+receipt_json: out/sa_gpu.json

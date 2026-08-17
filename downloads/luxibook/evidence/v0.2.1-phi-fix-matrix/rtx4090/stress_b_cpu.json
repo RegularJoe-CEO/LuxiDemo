@@ -1,0 +1,92 @@
+[
+  {
+    "id": "BAD_SIGMA_ZERO",
+    "refused": true,
+    "code": 1,
+    "stderr": "error: line 2: sigma must be > 0 (got 0)\n"
+  },
+  {
+    "id": "BAD_SIGMA_NEG",
+    "refused": true,
+    "code": 1,
+    "stderr": "error: line 2: sigma must be > 0 (got -0.2)\n"
+  },
+  {
+    "id": "BAD_T_ZERO",
+    "refused": true,
+    "code": 1,
+    "stderr": "error: line 2: T must be > 0 (got 0)\n"
+  },
+  {
+    "id": "BAD_T_NEG",
+    "refused": true,
+    "code": 1,
+    "stderr": "error: line 2: T must be > 0 (got -1)\n"
+  },
+  {
+    "id": "BAD_S_ZERO",
+    "refused": true,
+    "code": 1,
+    "stderr": "error: line 2: S must be > 0 (got 0); for black76 S is the forward F\n"
+  },
+  {
+    "id": "BAD_S_NEG",
+    "refused": true,
+    "code": 1,
+    "stderr": "error: line 2: S must be > 0 (got -100); for black76 S is the forward F\n"
+  },
+  {
+    "id": "BAD_K_ZERO",
+    "refused": true,
+    "code": 1,
+    "stderr": "error: line 2: K must be > 0 (got 0)\n"
+  },
+  {
+    "id": "BAD_K_NEG",
+    "refused": true,
+    "code": 1,
+    "stderr": "error: line 2: K must be > 0 (got -100)\n"
+  },
+  {
+    "id": "BAD_CP",
+    "refused": true,
+    "code": 1,
+    "stderr": "error: line 2: cp must be C/P/call/put (got 'x')\n"
+  },
+  {
+    "id": "BAD_MODEL",
+    "refused": true,
+    "code": 1,
+    "stderr": "error: line 2: model must be bs or black76 (got 'heston')\n"
+  },
+  {
+    "id": "BAD_NAN_S",
+    "refused": true,
+    "code": 1,
+    "stderr": "error: line 2: non-finite S\n"
+  },
+  {
+    "id": "BAD_INF_S",
+    "refused": true,
+    "code": 1,
+    "stderr": "error: line 2: non-finite S\n"
+  },
+  {
+    "id": "BAD_NAN_SIGMA",
+    "refused": true,
+    "code": 1,
+    "stderr": "error: line 2: non-finite sigma\n"
+  },
+  {
+    "id": "BAD_SIGMA_SUBNORMAL",
+    "refused": false,
+    "code": 0,
+    "stderr": ""
+  },
+  {
+    "id": "BAD_T_SUBNORMAL",
+    "refused": false,
+    "code": 0,
+    "stderr": ""
+  }
+]

@@ -1,0 +1,16 @@
+mode:         gpu
+host_simd:    avx2  (host capability; pricing is scalar det.)
+git_sha:      unknown
+rows:         10
+book_price:   151.7001650784
+book_delta:   6.2871955849  (MIXED — see note)
+delta_note:   mixed: BS delta is d/dS, Black-76 delta is d/dF — do not add them as one risk
+output_hash:  4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a
+receipt:      lxq2_TFhRAgCQH1C0CSS4sx3cj_Kf5QLjQyU5st-dK94FM2DjD-4GyKYb_oSux9vRyR5PgwJQ28dyUQrMMEE4aKtwa-MBpBeLRclazovyzJDlqzvCbx8oAiDI738co3ZzxCbRohcfgwU  fp d80dd94a7bdb02b6  custody file
+cpu_output_hash: 4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a  (observation only; not a gate)
+device:       NVIDIA GeForce RTX 4090
+kernel:      black_scholes_book_kernel
+cpu_gpu_match: YES (measured)
+ATM_CALL price: 1.04505835721856215e1
+report:       out/ex_gpu.csv
+receipt_json: out/ex_gpu.json

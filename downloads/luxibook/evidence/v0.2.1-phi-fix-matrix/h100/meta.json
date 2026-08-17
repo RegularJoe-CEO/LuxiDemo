@@ -1,0 +1,38 @@
+{
+  "hostname": "8be3edec7474",
+  "device_name": "NVIDIA H100 80GB HBM3",
+  "device_uuid": "GPU-226feb23-63ce-a83d-1bd6-b7fcb1fd16cd",
+  "compute_capability": "9.0",
+  "host_simd": "avx512",
+  "signer_fp": "3ad989ab278280eb",
+  "binary_sha256": "8cdebe5e53d464d5a292c71f653ea5ce65fd856e56fd458bafdc633164eedfbb",
+  "git_sha": "unknown",
+  "engine_version": "0.2.0",
+  "example": {
+    "output_vector_sha256_cpu": "4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a",
+    "output_vector_sha256_gpu": "4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a",
+    "book_price": 151.70016507843832,
+    "cpu_gpu_match": true,
+    "verify_cpu": true,
+    "verify_gpu": true
+  },
+  "stress_a": {
+    "output_vector_sha256_cpu": "902667a1070b83bff57ac642cf16779d998b5a954c046c450b154237e9e196e2",
+    "output_vector_sha256_gpu": "902667a1070b83bff57ac642cf16779d998b5a954c046c450b154237e9e196e2",
+    "book_price": 488338590.9188194,
+    "row_count": 237,
+    "cpu_gpu_match": true,
+    "verify_cpu": true,
+    "verify_gpu": true
+  },
+  "stress_b": {
+    "total": 15,
+    "refused": 13,
+    "accepted": [
+      "BAD_SIGMA_SUBNORMAL",
+      "BAD_T_SUBNORMAL"
+    ]
+  },
+  "device_name_gpu_receipt": "NVIDIA H100 80GB HBM3",
+  "cuda_build": "features=cuda; PTX sm_80; -fmad=false"
+}

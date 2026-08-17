@@ -1,0 +1,11 @@
+luxi-book verify
+  book:    stress_book_a.csv
+  receipt: out/sa_gpu.json
+
+  [OK  ] signature: Ed25519 ok · fp e79f99f28c81035e
+  [OK  ] input_sha256: matches receipt
+  [OK  ] output_vector_sha256: re-price matches sealed hash
+  [OK  ] book_price_bits: bits match re-price
+  [OK  ] mode: payload=gpu verify_mode=gpu
+
+RESULT: PASS — seal holds and re-price matches.

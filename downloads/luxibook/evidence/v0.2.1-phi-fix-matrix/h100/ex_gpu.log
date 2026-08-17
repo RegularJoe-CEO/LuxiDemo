@@ -1,0 +1,16 @@
+mode:         gpu
+host_simd:    avx512  (host capability; pricing is scalar det.)
+git_sha:      unknown
+rows:         10
+book_price:   151.7001650784
+book_delta:   6.2871955849  (MIXED — see note)
+delta_note:   mixed: BS delta is d/dS, Black-76 delta is d/dF — do not add them as one risk
+output_hash:  4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a
+receipt:      lxq2_TFhRAgDCBUrr2ByCNTBvzAfWc6DoRTl2EENdNJJffIAXZeAddYa2kjK38zVwFZc-NB58ib-gOfEV9JPrGbejwpfd3vurMOJDqusT8_Aq4ZJjBumj39pLvPY8SYbGYxXMCu8xjQM  fp 3ad989ab278280eb  custody file
+cpu_output_hash: 4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a  (observation only; not a gate)
+device:       NVIDIA H100 80GB HBM3
+kernel:      black_scholes_book_kernel
+cpu_gpu_match: YES (measured)
+ATM_CALL price: 1.04505835721856215e1
+report:       out/ex_gpu.csv
+receipt_json: out/ex_gpu.json
