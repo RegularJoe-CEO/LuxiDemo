@@ -1,0 +1,15 @@
+{
+  "pod": "a100",
+  "hostname": "3bcdef5c3353",
+  "device_name": "NVIDIA A100-SXM4-80GB",
+  "device_uuid": "GPU-b2a79db3-f54e-9527-4aed-3e213068a8d9",
+  "compute_capability": "8.0",
+  "host_simd": "avx2",
+  "signer_fp_cpu": "03692c7a8106df6b",
+  "signer_fp_gpu": "03692c7a8106df6b",
+  "output_vector_sha256": "4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a",
+  "cpu_gpu_hash_match": true,
+  "engine_version": "0.2.0",
+  "git_sha": "4a86d2a8e6a1f612627690e0f5eeb53ba9a4a502",
+  "endpoint": "38.80.152.72:31171"
+}

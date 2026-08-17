@@ -1,0 +1,13 @@
+note: created install signing key at /root/.config/luxiquant (mode 0600, custody=file)
+mode:         cpu
+host_simd:    avx512  (host capability; pricing is scalar det.)
+git_sha:      4a86d2a8e6a1f612627690e0f5eeb53ba9a4a502
+rows:         10
+book_price:   151.7001650784
+book_delta:   6.2871955849  (MIXED — see note)
+delta_note:   mixed: BS delta is d/dS, Black-76 delta is d/dF — do not add them as one risk
+output_hash:  4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a
+receipt:      lxq2_TFhRAgB3L4qLEB5L6Z8WSuCzQe5Rj24InXwFWa-CjIiRm2dCjzXYhx6guRQ2Er-EFKwyfj1ABG0uPg_iPpS5GTlePpG7lXaSSWoP4Q6_naHzovwnow7zbB-TMU_DJd38e9wV4w0  fp bf8c65e4d4eab61a  custody file
+ATM_CALL price: 1.04505835721856215e1
+report:       r_cpu.csv
+receipt_json: r_cpu.json

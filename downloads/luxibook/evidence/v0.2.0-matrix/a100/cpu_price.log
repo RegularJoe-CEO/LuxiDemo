@@ -1,0 +1,12 @@
+mode:         cpu
+host_simd:    avx2  (host capability; pricing is scalar det.)
+git_sha:      4a86d2a8e6a1f612627690e0f5eeb53ba9a4a502
+rows:         10
+book_price:   151.7001650784
+book_delta:   6.2871955849  (MIXED — see note)
+delta_note:   mixed: BS delta is d/dS, Black-76 delta is d/dF — do not add them as one risk
+output_hash:  4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a
+receipt:      lxq2_TFhRAgA_odktXqQPfL31t9Y32wbCM08u7SlwRM9Z4vI8qybwzaIFGoBROCOUrW-1t7b3B0OMb1m6p6zXgYq_Y5g0rcgTrDVqbjZ_8UcuihGVdDIEEylCP0InCBT4KcFIOJQCKgA  fp 03692c7a8106df6b  custody file
+ATM_CALL price: 1.04505835721856215e1
+report:       r_cpu.csv
+receipt_json: r_cpu.json

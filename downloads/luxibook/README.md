@@ -1,6 +1,6 @@
 # Luxi Book — public try
 
-Closed binaries from [luxi-quant-engine](https://github.com/RegularJoe-CEO/luxi-quant-engine) **v0.2.0**, built from engine commit `4a86d2a`— the value each binary reports as `git_sha`. The cross-device matrix under `evidence/v0.2.0-matrix/` was measured on the earlier v0.2.0 commit `b4645c2`; receipts from `b4645c2` verify under the `4a86d2a` download. **No engine source. No NDA.**
+Closed binaries from [luxi-quant-engine](https://github.com/RegularJoe-CEO/luxi-quant-engine) **v0.2.0**, built from engine commit `4a86d2a`— the value each binary reports as `git_sha`. The cross-device matrix under `evidence/v0.2.0-matrix/` was measured on v0.2.0 commits `b4645c2` (first four devices) and `4a86d2a` (A100, RTX 5090); receipts from either verify under the current download. **No engine source. No NDA.**
 
 **“Unsigned” here means the OS binary is not Apple-notarized / code-signed.**  
 It does **not** mean the calculation receipt is unsigned. Receipts are **Ed25519-signed** (`lxq2_…`).
@@ -48,25 +48,34 @@ For **`example_book.csv` only**, the **output vector hash** is:
 
 `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a`
 
-ATM_CALL price: `10.4505835721856215`
+ATM_CALL price: `10.4505835721856215`  
+`book_price` bits: `343698c067f66240` (full decimal `151.70016507843832`)
 
 This hash is **not** the signed receipt string. Two installs can share this hash and still produce **different** `lxq2_…` seals. That is intentional.
 
-### Cross-box matrix (v0.2.0 · build `b4645c2` · same CUDA binary on GPU rows)
+### Cross-box matrix (v0.2.0 · same CUDA binary on GPU rows)
 
-**What this measures:** CPU scalar gold path and the CUDA kernel (device port of `exp`/`ln`/`erf`/`normcdf`/`normpdf`, no vendor `libm` for those five) agree bit for bit on this book — including **Hopper** (H100/H200) and **Ada** (RTX 4090), i.e. different GPU generations.
+Measured on engine commits **`b4645c2`** (RTX 4090, H200, H100 A/B) and **`4a86d2a`** (A100, RTX 5090). Receipts from either verify under the current download.
+
+**What this measures:** CPU scalar gold path and the CUDA kernel (device port of `exp`/`ln`/`erf`/`normcdf`/`normpdf`, no vendor `libm` for those five) agree bit for bit on this book — across **Ampere** (A100), **Ada** (RTX 4090), **Hopper** (H100/H200), and **Blackwell** (RTX 5090).
 
 | Device | Arch | Host CPU | GPU UUID | CPU | GPU | CPU↔GPU |
 |--------|------|----------|----------|-----|-----|---------|
-| **RTX 4090** | Ada sm_89 | EPYC 9254 | `GPU-4c59e6d9-…` | PASS | PASS | agree |
-| H200 | Hopper sm_90 | Xeon 8568Y+ | `GPU-2d296bd2-…` | PASS | PASS | agree |
-| H100 80GB (A) | Hopper sm_90 | Xeon 8462Y+ | `GPU-b3bcc572-…` | PASS | PASS | agree |
-| H100 80GB (B) | Hopper sm_90 | Xeon 8462Y+ | `GPU-d13abf0e-…` | PASS | PASS | agree |
+| **RTX 5090** | Blackwell CC 12.0 · **JIT of sm_80 PTX** (not a baked sm_120 target) | EPYC 9354 · avx512 | `GPU-93ed02cb-…` | PASS | PASS | agree |
+| RTX 4090 | Ada sm_89 | EPYC 9254 · avx512 | `GPU-4c59e6d9-…` | PASS | PASS | agree |
+| **A100-SXM4-80GB** | Ampere sm_80 | EPYC 7543 · **avx2** (first avx2 x86 host in this matrix) | `GPU-b2a79db3-…` | PASS | PASS | agree |
+| H200 | Hopper sm_90 | Xeon 8568Y+ · avx512 | `GPU-2d296bd2-…` | PASS | PASS | agree |
+| H100 80GB (A) | Hopper sm_90 | Xeon 8462Y+ · avx512 | `GPU-b3bcc572-…` | PASS | PASS | agree |
+| H100 80GB (B) | Hopper sm_90 | Xeon 8462Y+ · avx512 | `GPU-d13abf0e-…` | PASS | PASS | agree |
 | Mac Mini (arm64 download) | — | Apple Silicon | — | PASS | n/a | — |
 
-**Scope of the table:** 4 NVIDIA GPUs on **3 RunPod public endpoints** (RTX 4090 on `.248`, H200 on `.249`, both H100 pods on `.148` with different ports) **plus** the published Mac Mini arm64 binary. H100 A and B are **two devices and two installs** (distinct GPU UUIDs and `signer_fp`); they are **not** claimed as separate physical servers.
+**RTX 5090 code path (strongest row — do not blur with offline sm_120 builds):** the published binary embeds **PTX compiled for sm_80** (`cuda_build`: `features=cuda; PTX sm_80; -fmad=false`). On CC 12.0 the driver **JIT-compiles that PTX at runtime**. There is **no** compiled-in sm_120 (or sm_120f) cubin in this binary. A distinct code-generation path, produced at runtime on hardware newer than the kernel’s PTX target, still matched the CPU scalar path bit for bit on `example_book.csv`.
 
-Stored receipts: [`evidence/v0.2.0-matrix/`](evidence/v0.2.0-matrix/) (`r_cpu.json` / `r_gpu.json` per device).
+**A100** is a **measured v0.2.0** row (`4a86d2a`), not a v1-era historical line. Its host reports `host_simd_capability=avx2` (book pricing is still the scalar deterministic path on every host).
+
+**Scope of the table:** 6 NVIDIA GPUs on **5 RunPod public endpoints** — prior three endpoints for 4090 / H200 / both H100 pods, plus **A100** at `38.80.152.72:31171` and **RTX 5090** at `157.157.221.29:54914` — **plus** the published Mac Mini arm64 binary. A100 and 5090 were **not** in the first four-device set; the 5090 endpoint is on a **different public /16** (`157.157` vs `38.80`). No datacenter or region claim is made from the endpoints alone. H100 A and B are **two devices and two installs** (distinct GPU UUIDs and `signer_fp`); they are **not** claimed as separate physical servers.
+
+Stored receipts: [`evidence/v0.2.0-matrix/`](evidence/v0.2.0-matrix/) (`r_cpu.json` / `r_gpu.json` per device; A100 and RTX 5090 also store CSVs and run logs).
 
 #### Same SKU, independent installs (H100 A vs B)
 
@@ -79,15 +88,7 @@ Stored receipts: [`evidence/v0.2.0-matrix/`](evidence/v0.2.0-matrix/) (`r_cpu.js
 
 **The number is install-independent; the receipt is not.** That is the design.
 
-#### Historical A100 (v1-era binary, 2026-08-15)
-
-A100 is **not** re-measured under v0.2.0. Keep this dated line only:
-
-| Device | Build | Result |
-|--------|-------|--------|
-| A100-SXM4-80GB | pre-attestation binary, 2026-08-15 | same **output hash** as above (historical row; not re-asserted for this build) |
-
-Also historical (same date / v1 binary): multi-host RunPod x86 CPU (×3 hosts) + H100/H200 two-run GPU matrix under that older binary.
+Also historical (v1-era binary, 2026-08-15 — separate from the measured A100 row above): multi-host RunPod x86 CPU (×3 hosts) + H100/H200 two-run GPU matrix under that older binary.
 
 **Non-claim:** CPU↔GPU agreement is **measured** on the devices above for **`example_book.csv` only**. It is **not** a universal claim for every book or every SKU.
 

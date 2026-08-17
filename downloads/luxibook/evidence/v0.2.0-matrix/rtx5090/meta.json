@@ -1,0 +1,17 @@
+{
+  "pod": "rtx5090",
+  "hostname": "f1fd0abbf508",
+  "device_name": "NVIDIA GeForce RTX 5090",
+  "device_uuid": "GPU-93ed02cb-0230-1bf1-ace4-66f0bcbc7aca",
+  "compute_capability": "12.0",
+  "host_simd": "avx512",
+  "signer_fp_cpu": "bf8c65e4d4eab61a",
+  "signer_fp_gpu": "bf8c65e4d4eab61a",
+  "output_vector_sha256": "4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a",
+  "cpu_gpu_hash_match": true,
+  "engine_version": "0.2.0",
+  "git_sha": "4a86d2a8e6a1f612627690e0f5eeb53ba9a4a502",
+  "endpoint": "157.157.221.29:54914",
+  "cuda_build": "features=cuda; PTX sm_80; -fmad=false",
+  "device_code_path": "runtime_jit_of_sm80_ptx"
+}
