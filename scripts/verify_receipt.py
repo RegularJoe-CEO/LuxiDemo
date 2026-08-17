@@ -4,7 +4,7 @@ verify_receipt.py — verify a LuxiBook Ed25519 receipt signature
 without needing the luxi-book binary.
 
 Usage:
-    python3 verify_receipt.py path/to/receipt.json [path/to/receipt2.json ...]
+    python3 verify_receipt.py [--expect-pubkey <hex>] [--expect-fp <hex>] path/to/receipt.json [path/to/receipt2.json ...]
 
 Exits 0 if every listed receipt passes, 1 if any fail.
 
@@ -28,6 +28,10 @@ _HEADER_LEN = 5   # magic(3) + version(1) + flags(1)
 _PUBKEY_LEN = 32
 _SIG_LEN    = 64
 _TOTAL_LEN  = _HEADER_LEN + _PUBKEY_LEN + _SIG_LEN  # 101
+
+# Set via --expect-pubkey / --expect-fp. Empty means "no identity check".
+PIN_PUBKEY = ""
+PIN_FP     = ""
 
 
 def _b64url_decode(s: str) -> bytes:
@@ -80,6 +84,11 @@ def verify_receipt(path: str) -> bool:
         print(f"FAIL  {path}: cannot load JSON — {e}")
         return False
 
+    if not isinstance(data, dict):
+        print(f"SKIP  {path}: not a receipt "
+              f"(top-level JSON is {type(data).__name__}, not an object)")
+        return None
+
     scheme = data.get("receipt_scheme", "")
     if not scheme.startswith("luxiquant-receipt-v2"):
         print(f"FAIL  {path}: unrecognised scheme '{scheme}'")
@@ -113,6 +122,16 @@ def verify_receipt(path: str) -> bool:
         print(f"FAIL  {path}: pubkey in receipt does not match signer_pubkey field")
         return False
 
+    if PIN_PUBKEY:
+        if pubkey_bytes.hex() != PIN_PUBKEY.lower():
+            print(f"FAIL  {path}: signer key {pubkey_bytes.hex()[:16]}... "
+                  f"is not the pinned key {PIN_PUBKEY.lower()[:16]}...")
+            return False
+    elif PIN_FP:
+        if fp.lower() != PIN_FP.lower():
+            print(f"FAIL  {path}: signer_fp {fp} is not the pinned fp {PIN_FP}")
+            return False
+
     ok = _verify(pubkey_bytes, sig_bytes, msg_bytes)
 
     if ok:
@@ -123,19 +142,56 @@ def verify_receipt(path: str) -> bool:
 
 
 def main() -> None:
-    if len(sys.argv) < 2 or sys.argv[1] in ("-h", "--help"):
+    global PIN_PUBKEY, PIN_FP
+
+    args = sys.argv[1:]
+    if not args or args[0] in ("-h", "--help"):
         print(__doc__)
         sys.exit(0)
 
-    paths = sys.argv[1:]
+    paths = []
+    i = 0
+    while i < len(args):
+        if args[i] == "--expect-pubkey":
+            if i + 1 >= len(args):
+                print("ERROR: --expect-pubkey requires a hex argument", file=sys.stderr)
+                sys.exit(2)
+            PIN_PUBKEY = args[i + 1]
+            i += 2
+        elif args[i] == "--expect-fp":
+            if i + 1 >= len(args):
+                print("ERROR: --expect-fp requires a hex argument", file=sys.stderr)
+                sys.exit(2)
+            PIN_FP = args[i + 1]
+            i += 2
+        else:
+            paths.append(args[i])
+            i += 1
+
+    if not paths:
+        print(__doc__)
+        sys.exit(0)
+
+    if not PIN_PUBKEY and not PIN_FP:
+        print("WARNING: no --expect-pubkey/--expect-fp given. This checks that each\n"
+              "         receipt is internally consistent, NOT that it came from a\n"
+              "         LuxiEdge install. Pin the key to make it an identity check.")
+
     results = [verify_receipt(p) for p in paths]
-    passed = sum(results)
-    failed = len(results) - passed
+    checked = [r for r in results if r is not None]
+    skipped = len(results) - len(checked)
+    passed  = sum(checked)
+    failed  = len(checked) - passed
 
     if len(paths) > 1:
-        print(f"\n{passed}/{len(paths)} receipts passed" + (f", {failed} failed" if failed else ""))
+        summary = f"\n{passed}/{len(checked)} passed"
+        if skipped:
+            summary += f", {skipped} skipped"
+        if failed:
+            summary += f", {failed} failed"
+        print(summary)
 
-    sys.exit(0 if all(results) else 1)
+    sys.exit(0 if (failed == 0 and passed > 0) else 1)
 
 
 if __name__ == "__main__":
