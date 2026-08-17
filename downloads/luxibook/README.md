@@ -1,6 +1,6 @@
-# Luxi Book — public try
+# Luxi Book - public try
 
-Closed binaries from [luxi-quant-engine](https://github.com/RegularJoe-CEO/luxi-quant-engine) **v0.2.1**, built from engine commit `02388f7`— the value each binary reports as `git_sha` (`git_dirty=false`). **v0.2.1** is the Φ fix (Taylor `|x|≤1.5`; A&S 7.1.14 continued-fraction `erfc` for `|x|>1.5`). Do not use a **v0.2.0** download for accuracy claims outside the acceptance band — that version could return non-probabilities for `|d| ≳ 2.13`. Post-fix matrix: [`evidence/v0.2.1-phi-fix-matrix/`](evidence/v0.2.1-phi-fix-matrix/). Historical v0.2.0 matrix (determinism only): [`evidence/v0.2.0-matrix/`](evidence/v0.2.0-matrix/). **No engine source. No NDA.**
+Closed binaries from [luxi-quant-engine](https://github.com/RegularJoe-CEO/luxi-quant-engine) **v0.2.1**, built from engine commit `02388f7`, the value each binary reports as `git_sha` (`git_dirty=false`). **v0.2.1** corrects an accuracy defect present in **v0.2.0**. Do not use a **v0.2.0** download for any accuracy claim; use it only as the historical determinism record. Post-fix matrix: [`evidence/v0.2.1-phi-fix-matrix/`](evidence/v0.2.1-phi-fix-matrix/). Historical v0.2.0 matrix (determinism only): [`evidence/v0.2.0-matrix/`](evidence/v0.2.0-matrix/). **No engine source. No NDA.**
 
 **“Unsigned” here means the OS binary is not Apple-notarized / code-signed.**  
 It does **not** mean the calculation receipt is unsigned. Receipts are **Ed25519-signed** (`lxq2_…`).
@@ -39,7 +39,7 @@ chmod +x luxi-book-linux-x86_64-cuda
 ./luxi-book-linux-x86_64-cuda verify --book example_book.csv --receipt receipt.json --mode gpu
 ```
 
-Optional: `--stamp` (requires a stamp-enabled build) brackets the run with a public randomness beacon for a **not-before** time bound only — not a two-sided “timestamp.”
+Optional: `--stamp` (requires a stamp-enabled build) brackets the run with a public randomness beacon for a **not-before** time bound only - not a two-sided “timestamp.”
 
 First `price` creates a per-install Ed25519 key (mode `0600`) under the platform config directory (or `LUXIQUANT_HOME`). No setup step is required.
 
@@ -61,7 +61,7 @@ This hash is **not** the signed receipt string. Two installs can share this hash
 
 ### Cross-box matrix after Φ fix (v0.2.1)
 
-See [`evidence/v0.2.1-phi-fix-matrix/`](evidence/v0.2.1-phi-fix-matrix/). Five GPUs (H200, H100, A100, RTX 5090, RTX 4090): example + stress A bit-identical CPU↔GPU. **Those hosts are not the v0.2.0 matrix pods** — do not merge the tables (e.g. the v0.2.1 4090 host reports `avx2`; the v0.2.0 4090 host reported `avx512`).
+See [`evidence/v0.2.1-phi-fix-matrix/`](evidence/v0.2.1-phi-fix-matrix/). Five GPUs (H200, H100, A100, RTX 5090, RTX 4090): example + stress A bit-identical CPU↔GPU. **Those hosts are not the v0.2.0 matrix pods** - do not merge the tables (e.g. the v0.2.1 4090 host reports `avx2`; the v0.2.0 4090 host reported `avx512`).
 
 ### Cross-box matrix (v0.2.0 historical · same CUDA binary on GPU rows)
 
@@ -69,7 +69,7 @@ See [`evidence/v0.2.1-phi-fix-matrix/`](evidence/v0.2.1-phi-fix-matrix/). Five G
 
 Measured on engine commits **`b4645c2`** (RTX 4090, H200, H100 A/B) and **`4a86d2a`** (A100, RTX 5090). Receipts from either verify under the current download.
 
-**What this measures:** CPU scalar gold path and the CUDA kernel (device port of `exp`/`ln`/`erf`/`normcdf`/`normpdf`, no vendor `libm` for those five) agree bit for bit on this book — across **Ampere** (A100), **Ada** (RTX 4090), **Hopper** (H100/H200), and **Blackwell** (RTX 5090).
+**What this measures:** CPU scalar gold path and the CUDA kernel (device port of `exp`/`ln`/`erf`/`normcdf`/`normpdf`, no vendor `libm` for those five) agree bit for bit on this book - across **Ampere** (A100), **Ada** (RTX 4090), **Hopper** (H100/H200), and **Blackwell** (RTX 5090).
 
 | Device | Arch | Host CPU | GPU UUID | CPU | GPU | CPU↔GPU |
 |--------|------|----------|----------|-----|-----|---------|
@@ -79,13 +79,13 @@ Measured on engine commits **`b4645c2`** (RTX 4090, H200, H100 A/B) and **`4a86d
 | H200 | Hopper sm_90 | Xeon 8568Y+ · avx512 | `GPU-2d296bd2-…` | PASS | PASS | agree |
 | H100 80GB (A) | Hopper sm_90 | Xeon 8462Y+ · avx512 | `GPU-b3bcc572-…` | PASS | PASS | agree |
 | H100 80GB (B) | Hopper sm_90 | Xeon 8462Y+ · avx512 | `GPU-d13abf0e-…` | PASS | PASS | agree |
-| Mac Mini (arm64 download) | — | Apple Silicon | — | PASS | n/a | — |
+| Mac Mini (arm64 download) | - | Apple Silicon | - | PASS | n/a | - |
 
-**RTX 5090 code path (strongest row — do not blur with offline sm_120 builds):** the published binary embeds **PTX compiled for sm_80** (`cuda_build`: `features=cuda; PTX sm_80; -fmad=false`). On CC 12.0 the driver **JIT-compiles that PTX at runtime**. There is **no** compiled-in sm_120 (or sm_120f) cubin in this binary. A distinct code-generation path, produced at runtime on hardware newer than the kernel’s PTX target, still matched the CPU scalar path bit for bit on `example_book.csv`.
+**RTX 5090 code path (strongest row - do not blur with offline sm_120 builds):** the published binary embeds **PTX compiled for sm_80** (`cuda_build`: `features=cuda; PTX sm_80; -fmad=false`). On CC 12.0 the driver **JIT-compiles that PTX at runtime**. There is **no** compiled-in sm_120 (or sm_120f) cubin in this binary. A distinct code-generation path, produced at runtime on hardware newer than the kernel’s PTX target, still matched the CPU scalar path bit for bit on `example_book.csv`.
 
 **A100** is a **measured v0.2.0** row (`4a86d2a`), not a v1-era historical line. Its host reports `host_simd_capability=avx2` (book pricing is still the scalar deterministic path on every host).
 
-**Scope of the table:** 6 NVIDIA GPUs on **5 RunPod public endpoints** — prior three endpoints for 4090 / H200 / both H100 pods, plus **A100** at `38.80.152.72:31171` and **RTX 5090** at `157.157.221.29:54914` — **plus** the published Mac Mini arm64 binary. A100 and 5090 were **not** in the first four-device set; the 5090 endpoint is on a **different public /16** (`157.157` vs `38.80`). No datacenter or region claim is made from the endpoints alone. H100 A and B are **two devices and two installs** (distinct GPU UUIDs and `signer_fp`); they are **not** claimed as separate physical servers.
+**Scope of the table:** 6 NVIDIA GPUs on **5 RunPod public endpoints** - prior three endpoints for 4090 / H200 / both H100 pods, plus **A100** at `38.80.152.72:31171` and **RTX 5090** at `157.157.221.29:54914` - **plus** the published Mac Mini arm64 binary. A100 and 5090 were **not** in the first four-device set; the 5090 endpoint is on a **different public /16** (`157.157` vs `38.80`). No datacenter or region claim is made from the endpoints alone. H100 A and B are **two devices and two installs** (distinct GPU UUIDs and `signer_fp`); they are **not** claimed as separate physical servers.
 
 Stored receipts: [`evidence/v0.2.0-matrix/`](evidence/v0.2.0-matrix/) (`r_cpu.json` / `r_gpu.json` per device; A100 and RTX 5090 also store CSVs and run logs).
 
@@ -100,7 +100,7 @@ Stored receipts: [`evidence/v0.2.0-matrix/`](evidence/v0.2.0-matrix/) (`r_cpu.js
 
 **The number is install-independent; the receipt is not.** That is the design.
 
-Also historical (v1-era binary, 2026-08-15 — separate from the measured A100 row above): multi-host RunPod x86 CPU (×3 hosts) + H100/H200 two-run GPU matrix under that older binary.
+Also historical (v1-era binary, 2026-08-15 - separate from the measured A100 row above): multi-host RunPod x86 CPU (×3 hosts) + H100/H200 two-run GPU matrix under that older binary.
 
 **Non-claim:** CPU↔GPU agreement is **measured** on the devices above for **`example_book.csv` only**. It is **not** a universal claim for every book or every SKU.
 
@@ -108,7 +108,7 @@ Also historical (v1-era binary, 2026-08-15 — separate from the measured A100 r
 
 Scheme: **`luxiquant-receipt-v2`**. Share token prefix: **`lxq2_`**.
 
-The receipt is an Ed25519 seal over a canonical text payload that includes the output vector hash, input hash, build id, device fields (when GPU), and `host_simd_capability` (host CPU feature label — book pricing uses scalar deterministic kernels on every host).
+The receipt is an Ed25519 seal over a canonical text payload that includes the output vector hash, input hash, build id, device fields (when GPU), and `host_simd_capability` (host CPU feature label - book pricing uses scalar deterministic kernels on every host).
 
 **By design the receipt differs on every install and every device.** Do not compare your `lxq2_…` string to someone else’s. Compare **`output_vector_sha256`**.
 
@@ -116,7 +116,7 @@ The receipt is an Ed25519 seal over a canonical text payload that includes the o
 
 What the receipt proves (use these words):
 
-> The receipt proves that the install holding key *K* asserted this output vector hash, from this input hash, on this build, on this device, using this instruction-path label — and that the assertion was made no earlier than `t(beacon_round)`.
+> The receipt proves that the install holding key *K* asserted this output vector hash, from this input hash, on this build, on this device, using this instruction-path label - and that the assertion was made no earlier than `t(beacon_round)`.
 
 It does **not** prove the number is “correct” (that is textbook unit tests in the private engine). It is **tamper-evident**, not tamper-proof.
 

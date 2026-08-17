@@ -3,12 +3,12 @@
 **What this repo is:** closed **binaries**, **evidence packs**, and **markdown** run docs.  
 **What this repo is not:** marketing website source, proprietary engine source, or the luxiedge.com deploy tree.
 
-**Website (Replit, separate):** [luxiedge.com](https://luxiedge.com) — not published from this repository.  
+**Website (Replit, separate):** [luxiedge.com](https://luxiedge.com) - not published from this repository.  
 **Boundary:** [`REPO_BOUNDARY.md`](REPO_BOUNDARY.md)
 
 **Runnable demos:** [`DEMOS.md`](DEMOS.md) · **Evidence:** [`evidence/README.md`](evidence/README.md) · **Architecture:** [`LUXI_SYSTEM.md`](LUXI_SYSTEM.md)
 
-**Try without an NDA:** [**Luxi Book**](downloads/luxibook/) (CSV European options + deterministic output hash + Ed25519 `lxq2_` receipts — the professional Quant try)
+**Try without an NDA:** [**Luxi Book**](downloads/luxibook/) (CSV European options + deterministic output hash + Ed25519 `lxq2_` receipts - the professional Quant try)
 and [**LuxiRisk**](luxirisk/) (free crypto/retail risk CLI). Inference serve binaries and numerical toys are documented in DEMOS below those two.
 
 Luxi also builds energy-aware AI compute (prefill thr/J evidence on H100). **LuxiEdge** is the inference surface.
@@ -21,9 +21,9 @@ This repository has two jobs:
 2. Publish evidence packs that show exactly what was measured, including
    historical experiments that remain important to the development record.
 
-## Current measured result (two facts — do not blend)
+## Current measured result (two facts - do not blend)
 
-### Fact A — Best Luxi absolute prefill (dual_gemm @ B72)
+### Fact A - Best Luxi absolute prefill (dual_gemm @ B72)
 
 | Operating point | Thr median (pos/s) | Board J/pos |
 |-----------------|-------------------:|------------:|
@@ -34,7 +34,7 @@ Replaces prior Luxi absolute B16 freeze (~41.2k / 0.0169): ~**1.09× thr**, ~**9
 
 **Pack:** [`evidence/prefill_accel_lock_20260807T233111Z/`](evidence/prefill_accel_lock_20260807T233111Z/) · [`CHAMPION_LOCK.json`](evidence/prefill_accel_lock_20260807T233111Z/CHAMPION_LOCK.json) · [`PUBLIC_CHAMPION_BRIEF.md`](evidence/prefill_accel_lock_20260807T233111Z/PUBLIC_CHAMPION_BRIEF.md)
 
-### Fact B — Matched vLLM H2H (B16 / B32 only)
+### Fact B - Matched vLLM H2H (B16 / B32 only)
 
 | Batch | Luxi thr | Board J/pos | vs vLLM thr | vs vLLM J/pos |
 |------:|---------:|------------:|------------:|--------------:|
@@ -45,17 +45,17 @@ Replaces prior Luxi absolute B16 freeze (~41.2k / 0.0169): ~**1.09× thr**, ~**9
 
 **Rule:** Absolute B72 is **not** claimed as 1.18× vLLM until a matched B72 vLLM arm exists. Single-shot thr (e.g. 45,986) is not a product headline.
 
-Scope: prefill positions (iters × batch × seq), single GPU board energy — not decode-only, not multi-tenant full-server leadership, not wall-plug.
+Scope: prefill positions (iters × batch × seq), single GPU board energy - not decode-only, not multi-tenant full-server leadership, not wall-plug.
 
 ### Prior third-party baseline (TESTfort Version 99, 2026-07-23)
 
 Independent evaluation of the **earlier** stack: thr still trailed vLLM; board energy slightly better; det + soak held. Kept for honesty and lineage:
 
-[`h100-qwen2-7b-v99-matched-prefill-2026-07-23`](evidence/h100-qwen2-7b-v99-matched-prefill-2026-07-23/) — LuxiEdge ~28,374.7 pos/s @ 0.018718 J/pos (B16); ~80.6% of default vLLM thr with ~3.1% lower board J/pos.
+[`h100-qwen2-7b-v99-matched-prefill-2026-07-23`](evidence/h100-qwen2-7b-v99-matched-prefill-2026-07-23/) - LuxiEdge ~28,374.7 pos/s @ 0.018718 J/pos (B16); ~80.6% of default vLLM thr with ~3.1% lower board J/pos.
 
 ## Run the public demos (no source)
 
-### A) Luxi Book — CSV European options (the Quant sale)
+### A) Luxi Book - CSV European options (the Quant sale)
 
 ```bash
 # Mac CPU
@@ -75,17 +75,17 @@ chmod +x downloads/luxibook/luxi-book-macos-arm64
   --out report.csv --receipt receipt.json --mode gpu
 ```
 
-**Output vector hash** (`example_book.csv` only — the value you compare across machines):  
+**Output vector hash** (`example_book.csv` only - the value you compare across machines):  
 `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a`  
 
 v0.2.0 matrix: Mini arm64 + RTX 4090 / H200 / H100×2 (CPU↔GPU agree on this book); A100 remains a **historical** v1-era line only. Not a universal GPU claim.  
-The signed `lxq2_…` receipt is **per-install** — see [`downloads/luxibook/README.md`](downloads/luxibook/README.md) and [`evidence/v0.2.0-matrix/`](downloads/luxibook/evidence/v0.2.0-matrix/).  
+The signed `lxq2_…` receipt is **per-install** - see [`downloads/luxibook/README.md`](downloads/luxibook/README.md) and [`evidence/v0.2.0-matrix/`](downloads/luxibook/evidence/v0.2.0-matrix/).  
 Binaries: [`downloads/luxibook/`](downloads/luxibook/) · how to run: [`DEMOS.md`](DEMOS.md)
 
-### B) LuxiRisk — free crypto / retail risk CLI (v0.2)
+### B) LuxiRisk - free crypto / retail risk CLI (v0.2)
 
 Freebie closed binary: liquidation price, position size from risk %, max $ loss at
-stop — each with an **Ed25519-signed** `lxr1_…` **calculation receipt**.
+stop - each with an **Ed25519-signed** `lxr1_…` **calculation receipt**.
 **Not** the Quant book. Offline by default.
 
 **OS binaries are not code-signed / notarized.** macOS right-click → Open; Windows SmartScreen → Run anyway.
@@ -101,7 +101,7 @@ pip install cryptography && python3 luxirisk/test-vectors/verify_receipts.py
 
 - Docs + formulas + vectors: [`luxirisk/`](luxirisk/)
 - Release: [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2)
-- Catalog: [`DEMOS.md`](DEMOS.md) · Built by the team behind LuxiEdge — [luxiedge.com](https://luxiedge.com)
+- Catalog: [`DEMOS.md`](DEMOS.md) · Built by the team behind LuxiEdge - [luxiedge.com](https://luxiedge.com)
 
 ### C) Inference serve + locked scoreboard (demoted)
 
@@ -120,8 +120,8 @@ Not Luxi Book. Catalog: [`DEMOS.md`](DEMOS.md).
 | **Luxi Book** | CSV BS/Black-76 + output-vector hash + Ed25519 `lxq2_` receipt; macOS + Linux CPU + Linux CUDA | **Primary Quant try** ([downloads](downloads/luxibook/) · [DEMOS](DEMOS.md)) |
 | **LuxiRisk** freebie | Liq / size / max loss + Ed25519 `lxr1_` receipts (**OS binaries not code-signed**) | **[v0.2 freebie](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2)** |
 | LuxiEdge numerical engine | REST evaluation, operator list, receipt validation | **Working binary demo** |
-| ATE / Waller / WNSM primitives | `luxi-tools ate` and `energy` | **Working binary demo** |
-| Quant/statistical operators | `validate`, `quant_chain`, Welford, normalization operators | **Working binary demo** |
+| Deterministic tensor primitives | `luxi-tools ate` and `energy` | **Working binary demo** |
+| Quant/statistical operators | `validate`, `quant_chain`, normalization operators | **Working binary demo** |
 | Scientific and edge examples | Orbital and robotics commands | **Working binary demo** |
 | LuxiEdge serve scoreboard (v100) | Stripped HTTP binary + `/v1/gtm` lock | **Working binary demo (no source)** |
 | LuxiEdge Version 100 TRADE thr/J | Multi-run H100 pack; engine private | **Measured evidence (wins thr+J vs vLLM)** |
@@ -146,7 +146,7 @@ The historical work has **not** been deleted or hidden.
 - **Current runnable demonstrations:** Luxi Book (macOS + Linux CPU + Linux CUDA) + LuxiRisk freebie + version-100 serve + v3.0 numerical tools.
 - **Independent numerical-engine evaluation:** linked and separately scoped.
 - **Historical transformer research:** July 2026 TRADE, Flash comparison,
-  WNSM, long-context, and sustain packs, preserved under `evidence/`.
+  long-context and sustain packs, preserved under `evidence/`.
 
 Start at [`evidence/README.md`](evidence/README.md); read
 [`HISTORY.md`](HISTORY.md) for why the older packs still matter.
