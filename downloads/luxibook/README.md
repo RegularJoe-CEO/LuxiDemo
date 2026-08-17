@@ -1,6 +1,6 @@
 # Luxi Book — public try
 
-Closed binaries from [luxi-quant-engine](https://github.com/RegularJoe-CEO/luxi-quant-engine) **v0.2.0** (matrix measured on engine commit `b4645c2`). **No engine source. No NDA.**
+Closed binaries from [luxi-quant-engine](https://github.com/RegularJoe-CEO/luxi-quant-engine) **v0.2.0**, built from engine commit `4a86d2a`— the value each binary reports as `git_sha`. The cross-device matrix under `evidence/v0.2.0-matrix/` was measured on the earlier v0.2.0 commit `b4645c2`; receipts from `b4645c2` verify under the `4a86d2a` download. **No engine source. No NDA.**
 
 **“Unsigned” here means the OS binary is not Apple-notarized / code-signed.**  
 It does **not** mean the calculation receipt is unsigned. Receipts are **Ed25519-signed** (`lxq2_…`).
