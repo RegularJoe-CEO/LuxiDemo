@@ -10,13 +10,15 @@ Legend: **KEEP** · **REFRAME** · **DELETE** · **ADD**
 
 ---
 
-## Luxi Book (ADD — 2026-08-15)
+## Luxi Book (ADD — 2026-08-15; receipt split 2026-08-16 v0.2.0)
 
 | Claim | Action | Notes |
 |-------|--------|-------|
-| CSV book → European BS/Black-76 → 5 Greeks → SHA-256 | **KEEP** | Product try without NDA; engine private |
-| Receipt `4a21b1e7…c97a` on Mini CPU + Linux CPU + A100 + H100 + H200 for `example_book.csv` | **KEEP** | Scoped; two GPU runs each |
+| CSV book → European BS/Black-76 → 5 Greeks → output vector SHA-256 | **KEEP** | Product try without NDA; engine private |
+| Output hash `4a21b1e7…c97a` for `example_book.csv` | **KEEP** | Comparable across machines; **not** the `lxq2_` token |
+| Multi-GPU matrix (A100/H100/H200) for that hash | **KEEP as dated historical** (2026-08-15 v1-era binary) until re-measured on v0.2.0 | Do not silently re-label as current |
 | ATM_CALL `10.4505835721856215` | **KEEP** | Engine series Φ; Haug/libm table differs ~5e-14 |
+| Ed25519 `lxq2_` receipt is the same on every box | **DELETE** | Per-install by design; compare the hash, not the seal string |
 | “All GPUs always match” / universal CPU=GPU | **DELETE** | Non-claim required on demo page |
 | Book as “quant risk engine” / desk VaR | **DELETE** | REFRAME: European option book CLI with receipts |
 | LuxiRisk = institutional Quant engine | **DELETE** | Risk is freebie retail/crypto CLI |

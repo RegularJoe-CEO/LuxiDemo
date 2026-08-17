@@ -1,6 +1,6 @@
 # Published results
 
-Last updated: 2026-08-15
+Last updated: 2026-08-16
 
 This page indexes **measured** public results. Each result is limited to the
 workload and hardware described in its evidence. Do not blend numbers across
@@ -11,17 +11,19 @@ sections.
 **Workload:** `example_book.csv` only · European Black-Scholes / Black-76 · five
 Greeks · SHA-256 over the canonical f64 little-endian price+Greeks vector.  
 **Kernel:** `black_scholes_book_kernel` (CPU gold; optional CUDA on Linux).  
-**Date:** 2026-08-15.
+**Engine:** v0.2.0 (`b4645c2`) ships Ed25519 `lxq2_` seals; the **comparable** value across boxes remains the output vector hash below.
 
 | Surface | Result |
 |---|---|
-| Receipt SHA-256 | `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a` |
+| Output vector SHA-256 | `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a` |
 | ATM_CALL price | `10.4505835721856215` |
-| Boxes agreeing on that receipt | Mac Mini CPU · RunPod x86 CPU · A100-SXM4-80GB · H100 80GB HBM3 · H200 (two GPU runs each) |
+| v0.2.0 measured (2026-08-16) | Mac Mini CPU · Linux x86_64 CPU (default + CUDA-linked, CPU mode) |
+| Historical multi-box (2026-08-15, pre-attestation binary) | Mini CPU · RunPod x86 CPU (×3 hosts) · A100 · H100 · H200 (two GPU runs each) — same **output hash** |
 | Public binaries | macOS ARM64 CPU · Linux x86_64 CPU · Linux x86_64 CUDA |
 
 **Non-claims:** this book, these boxes, this kernel — not “all GPUs always
-match,” not desk VaR, not live market data, not `risk-pipeline`.
+match,” not desk VaR, not live market data, not `risk-pipeline`. Do not treat the
+`lxq2_…` string as a published constant (per-install seal).
 
 - Binaries: [`downloads/luxibook/`](downloads/luxibook/)
 - How to run: [`DEMOS.md`](DEMOS.md)

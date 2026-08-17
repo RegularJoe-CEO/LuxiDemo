@@ -8,7 +8,7 @@
 
 **Runnable demos:** [`DEMOS.md`](DEMOS.md) · **Evidence:** [`evidence/README.md`](evidence/README.md) · **Architecture:** [`LUXI_SYSTEM.md`](LUXI_SYSTEM.md)
 
-**Try without an NDA:** [**Luxi Book**](downloads/luxibook/) (CSV European options + SHA-256 receipts — the professional Quant try)
+**Try without an NDA:** [**Luxi Book**](downloads/luxibook/) (CSV European options + deterministic output hash + Ed25519 `lxq2_` receipts — the professional Quant try)
 and [**LuxiRisk**](luxirisk/) (free crypto/retail risk CLI). Inference serve binaries and numerical toys are documented in DEMOS below those two.
 
 Luxi also builds energy-aware AI compute (prefill thr/J evidence on H100). **LuxiEdge** is the inference surface.
@@ -75,9 +75,11 @@ chmod +x downloads/luxibook/luxi-book-macos-arm64
   --out report.csv --receipt receipt.json --mode gpu
 ```
 
-Measured receipt (`example_book.csv` only):  
+**Output vector hash** (`example_book.csv` only — the value you compare across machines):  
 `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a`  
-(Mini CPU · Linux CPU · A100 · H100 · H200). Not a universal GPU claim.  
+
+v0.2.0 measured on Mini CPU + Linux x86_64 CPU; the multi-GPU matrix (A100/H100/H200) is historical (2026-08-15, pre-attestation binary) for that same **hash**. Not a universal GPU claim.  
+The signed `lxq2_…` receipt is **per-install** and deliberately not a published constant — see [`downloads/luxibook/README.md`](downloads/luxibook/README.md).  
 Binaries: [`downloads/luxibook/`](downloads/luxibook/) · how to run: [`DEMOS.md`](DEMOS.md)
 
 ### B) LuxiRisk — free crypto / retail risk CLI (v0.2)
@@ -86,8 +88,8 @@ Freebie closed binary: liquidation price, position size from risk %, max $ loss 
 stop — each with an **Ed25519-signed** `lxr1_…` **calculation receipt**.
 **Not** the Quant book. Offline by default.
 
-**OS binaries are unsigned.** macOS right-click → Open; Windows SmartScreen → Run anyway.
-Always verify the published SHA-256.
+**OS binaries are not code-signed / notarized.** macOS right-click → Open; Windows SmartScreen → Run anyway.
+Always verify the published download checksums (SHA-256 of the binary file).
 
 ```bash
 chmod +x luxirisk/dist/luxirisk-macos-arm64   # or linux-x86_64
@@ -115,8 +117,8 @@ Not Luxi Book. Catalog: [`DEMOS.md`](DEMOS.md).
 
 | Surface | What can be run publicly today | Status |
 |---|---|---|
-| **Luxi Book** | CSV BS/Black-76 + SHA-256; macOS + Linux CPU + Linux CUDA binaries | **Primary Quant try** ([downloads](downloads/luxibook/) · [DEMOS](DEMOS.md)) |
-| **LuxiRisk** freebie | Liq / size / max loss + `lxr1_` receipts (**unsigned**) | **[v0.2 freebie](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2)** |
+| **Luxi Book** | CSV BS/Black-76 + output-vector hash + Ed25519 `lxq2_` receipt; macOS + Linux CPU + Linux CUDA | **Primary Quant try** ([downloads](downloads/luxibook/) · [DEMOS](DEMOS.md)) |
+| **LuxiRisk** freebie | Liq / size / max loss + Ed25519 `lxr1_` receipts (**OS binaries not code-signed**) | **[v0.2 freebie](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2)** |
 | LuxiEdge numerical engine | REST evaluation, operator list, receipt validation | **Working binary demo** |
 | ATE / Waller / WNSM primitives | `luxi-tools ate` and `energy` | **Working binary demo** |
 | Quant/statistical operators | `validate`, `quant_chain`, Welford, normalization operators | **Working binary demo** |

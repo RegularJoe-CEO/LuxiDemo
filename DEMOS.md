@@ -1,19 +1,19 @@
 # Public demo catalog
 
 Luxi demos are distributed as **compiled evaluation binaries**. Evaluators can
-run the tools, supply inputs, inspect outputs, and compare SHA-256 receipts
-without receiving the private implementation source.
+run the tools, supply inputs, inspect outputs, and compare **output vector hashes**
+(and signed calculation receipts) without receiving the private implementation source.
 
 **Portfolio order:** Luxi **Book** (sale) → Luxi**Risk** (freebie) → everything else demoted.  
 This repo ships **binaries + markdown only** — marketing HTML lives on Replit (luxiedge.com), not here.
 
-## Demo 0: Luxi Book — CSV European options + SHA-256 (the Quant try)
+## Demo 0: Luxi Book — CSV European options + attested receipt (the Quant try)
 
-**Primary public Quant artifact. Closed binary only — no engine source. Unsigned.**
+**Primary public Quant artifact. Closed binary only — no engine source.**  
+**OS binary is not Apple-notarized / code-signed** (Gatekeeper friction).  
+**Calculation receipt is Ed25519-signed** (`luxiquant-receipt-v2`, `lxq2_…`) — different from the OS “unsigned” note.
 
-CSV position book → European **Black-Scholes / Black-76** → five Greeks → SHA-256
-receipt on the canonical f64 LE vector. You bring `T`, `r`, and `σ`. No live feed,
-no IV, no VaR, not a fund desk. Not `risk-pipeline`.
+CSV position book → European **Black-Scholes / Black-76** → five Greeks → **output vector SHA-256** on the canonical f64 LE vector → **signed receipt**. You bring `T`, `r`, and `σ`. No live feed, no IV, no VaR, not a fund desk. Not `risk-pipeline`.
 
 | Platform | Binary |
 |----------|--------|
@@ -22,7 +22,7 @@ no IV, no VaR, not a fund desk. Not `risk-pipeline`.
 | Linux x86_64 (CUDA / NVIDIA) | [`downloads/luxibook/luxi-book-linux-x86_64-cuda`](downloads/luxibook/luxi-book-linux-x86_64-cuda) |
 | Example CSV | [`downloads/luxibook/example_book.csv`](downloads/luxibook/example_book.csv) |
 
-No macOS GPU binary. CUDA binary needs a live NVIDIA driver at runtime.
+No macOS GPU binary. CUDA binary needs a live NVIDIA driver at runtime for `--mode gpu`.
 
 ```bash
 chmod +x downloads/luxibook/luxi-book-macos-arm64
@@ -30,6 +30,9 @@ shasum -a 256 -c downloads/luxibook/luxi-book-macos-arm64.sha256
 ./downloads/luxibook/luxi-book-macos-arm64 price \
   --book downloads/luxibook/example_book.csv \
   --out report.csv --receipt receipt.json
+./downloads/luxibook/luxi-book-macos-arm64 verify \
+  --book downloads/luxibook/example_book.csv \
+  --receipt receipt.json
 
 # Linux NVIDIA:
 ./downloads/luxibook/luxi-book-linux-x86_64-cuda price \
@@ -37,11 +40,16 @@ shasum -a 256 -c downloads/luxibook/luxi-book-macos-arm64.sha256
   --out report.csv --receipt receipt.json --mode gpu
 ```
 
-**Measured on `example_book.csv` only (2026-08-15):** receipt  
+**Comparable value on `example_book.csv`:** `output_vector_sha256` =  
 `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a`  
-on Mac Mini CPU, RunPod x86 CPU, A100-SXM4-80GB, H100 80GB HBM3, H200 (two GPU runs each).  
-ATM_CALL `10.4505835721856215`. Kernel `black_scholes_book_kernel`.  
+ATM_CALL `10.4505835721856215`. Kernel `black_scholes_book_kernel`.
+
+**v0.2.0 (this download, engine `b4645c2`):** measured on Mac Mini CPU and Linux x86_64 CPU.  
+**v0.1.x (2026-08-15, pre-attestation):** same **output hash** on Mini CPU, RunPod x86 CPU (×3 hosts), A100 / H100 / H200 (two GPU runs each).  
+The multi-GPU row is **historical** — not re-asserted for every new build until re-run.  
 **Non-claim:** this book, these boxes, this kernel — not all GPUs always match.
+
+The signed `lxq2_…` receipt is **per-install** (not a published constant). Details: [`downloads/luxibook/README.md`](downloads/luxibook/README.md).
 
 Docs: this file · binaries: [`downloads/luxibook/`](downloads/luxibook/) · engine source: **private** (not in this repo)
 
@@ -220,8 +228,8 @@ proprietary engine source. See also [`scripts/README.md`](scripts/README.md).
 
 | Luxi layer | Public demo today | Next validation step |
 |---|---|---|
-| **Luxi Book** (Quant sale) | CSV BS/Black-76 + Greeks + SHA-256; macOS + Linux CPU + Linux CUDA; measured receipt matrix on `example_book.csv` | Partner books / design-partner path; no universal GPU claim |
-| **LuxiRisk** (freebie) | Offline retail/crypto CLI + Ed25519 `lxr1_` receipts + verify + public vectors | [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2) (**unsigned**; Gatekeeper/SmartScreen friction) |
+| **Luxi Book** (Quant sale) | CSV BS/Black-76 + Greeks + output-vector hash + Ed25519 `lxq2_` receipt; macOS + Linux CPU + Linux CUDA | Partner books / design-partner path; no universal GPU claim |
+| **LuxiRisk** (freebie) | Offline retail/crypto CLI + Ed25519 `lxr1_` receipts + verify + public vectors | [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2) (**OS binaries not code-signed**; Gatekeeper/SmartScreen friction) |
 | LuxiQuant numerical | v3.0 binary validation + REST + operator receipts | Keep secondary to Book; optional multi-platform numerical matrix |
 | LuxiEdge | Serve scoreboard + thr/J packs + Version 99 verifier | Controlled downloadable inference evaluation package |
 | LuxiPack | None | Admission/placement trace versus a baseline |

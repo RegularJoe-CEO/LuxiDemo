@@ -37,24 +37,27 @@ chmod +x downloads/luxibook/luxi-book-macos-arm64
   --out report.csv --receipt receipt.json --mode gpu
 ```
 
-Measured on **`example_book.csv` only** (2026-08-15):
+Measured on **`example_book.csv` only**:
 
 | Field | Value |
 |-------|--------|
-| Receipt | `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a` |
+| Output vector SHA-256 | `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a` |
 | ATM_CALL | `10.4505835721856215` |
-| Boxes | Mac Mini CPU · RunPod x86 CPU · A100 · H100 · H200 |
+| v0.2.0 boxes (2026-08-16) | Mac Mini CPU · Linux x86_64 CPU |
+| Historical multi-GPU (2026-08-15) | Mini · RunPod x86 (×3) · A100 · H100 · H200 — same **hash** |
 
-**Non-claim:** this book, these boxes, this kernel — not “all GPUs always match.”
+**Non-claim:** this book, these boxes, this kernel — not “all GPUs always match.”  
+Signed `lxq2_…` receipts are **per-install** (not a constant to publish).
 
 Downloads: [`downloads/luxibook/`](../downloads/luxibook/)  
 How to run: [`DEMOS.md`](../DEMOS.md)
 
-## Why receipts matter
+## Why the output hash matters
 
-Same inputs → same receipt on the machines you measured. Store the hash with
-the run. Later, re-run the same CSV and contract; if the receipt matches, the
-published vector matches.
+Same inputs → same **output vector hash** on the machines you measured. Store the
+hash with the run. Later, re-run the same CSV; if the hash matches, the published
+vector matches. The Ed25519 seal binds that hash to an install and is not itself
+expected to match across machines.
 
 That is **scoped reproducibility**, not a guarantee that every future GPU,
 driver, or book shape will hash-match without re-measurement.

@@ -29,7 +29,7 @@ Public portfolio order (website on Replit; this repo is binaries only): **sale �
 
 | Surface | Role | Where |
 |---|---|---|
-| **Luxi Book** | **Primary Quant try** — CSV European options, five Greeks, SHA-256 receipt; macOS + Linux CPU + Linux CUDA closed binaries | [`DEMOS.md`](DEMOS.md) · [`downloads/luxibook/`](downloads/luxibook/) |
+| **Luxi Book** | **Primary Quant try** — CSV European options, five Greeks, output-vector hash + Ed25519 `lxq2_` receipt; macOS + Linux CPU + Linux CUDA closed binaries | [`DEMOS.md`](DEMOS.md) · [`downloads/luxibook/`](downloads/luxibook/) |
 | **LuxiRisk** | **Freebie** retail / crypto risk CLI + Ed25519 `lxr1_` receipts — not institutional Quant | [`luxirisk/`](luxirisk/) · release `luxirisk-v0.2` |
 | **LuxiEdge serve / thr·J packs** | Inference evidence and stripped serve binary (scoreboard + toy generate path) | [`DEMOS.md`](DEMOS.md) · [`evidence/`](evidence/) |
 | Numerical v3.0 demos | REST `/evaluate`, operators, ATE/tools — supporting quant math, not the option book | GitHub release `v3.0` · [`DEMOS.md`](DEMOS.md) |

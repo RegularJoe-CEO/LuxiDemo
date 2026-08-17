@@ -77,11 +77,12 @@ Rule: absolute B72 is not a matched vLLM claim until a B72 vLLM arm exists.
 Closed `luxi-book` binaries published under [`downloads/luxibook/`](downloads/luxibook/)
 (marketing HTML for luxiedge.com stays on Replit, not in this repo):
 
-- CSV European Black-Scholes / Black-76 + five Greeks + SHA-256
+- CSV European Black-Scholes / Black-76 + five Greeks + output-vector SHA-256
 - macOS ARM64 CPU, Linux x86_64 CPU, Linux x86_64 CUDA
-- Measured receipt on `example_book.csv`:
+- Measured **output hash** on `example_book.csv`:
   `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a`
-  on Mini CPU · Linux CPU · A100 · H100 · H200
+  (2026-08-15 multi-box matrix including A100/H100/H200; 2026-08-16 v0.2.0
+  reconfirmed Mini + Linux CPU with Ed25519 `lxq2_` seals)
 
 Public site order: **Book (sale) → LuxiRisk freebie → inference demoted**.
 LuxiRisk v0.2 remains the free retail/crypto CLI with `lxr1_` receipts — not
