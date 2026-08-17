@@ -85,9 +85,10 @@ def verify_receipt(path: str) -> bool:
         print(f"FAIL  {path}: cannot load JSON — {e}")
         return False
 
-    if not isinstance(data, dict):
-        print(f"SKIP  {path}: not a receipt "
-              f"(top-level JSON is {type(data).__name__}, not an object)")
+    if not isinstance(data, dict) or "receipt" not in data:
+        why = (f"top-level JSON is {type(data).__name__}, not an object"
+               if not isinstance(data, dict) else "no 'receipt' field")
+        print(f"SKIP  {path}: not a receipt ({why})")
         return None
 
     scheme = data.get("receipt_scheme", "")
@@ -190,7 +191,7 @@ def main() -> None:
     failed  = len(checked) - passed
 
     if len(paths) > 1:
-        summary = f"\n{passed}/{len(checked)} passed"
+        summary = f"\n{passed}/{len(checked)} receipts passed"
         if skipped:
             summary += f", {skipped} skipped"
         if failed:
