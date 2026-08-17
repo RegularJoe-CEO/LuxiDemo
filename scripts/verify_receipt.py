@@ -20,6 +20,7 @@ Receipt format (luxiquant-receipt-v2)
 """
 
 import base64
+import hashlib
 import json
 import sys
 
@@ -128,8 +129,13 @@ def verify_receipt(path: str) -> bool:
                   f"is not the pinned key {PIN_PUBKEY.lower()[:16]}...")
             return False
     elif PIN_FP:
-        if fp.lower() != PIN_FP.lower():
-            print(f"FAIL  {path}: signer_fp {fp} is not the pinned fp {PIN_FP}")
+        # Derive the fingerprint from the embedded public key: the signer_fp
+        # field lives in the same file the forger controls, so it must never
+        # be the thing compared against the pin.
+        derived_fp = hashlib.sha256(pubkey_bytes).hexdigest()[:16]
+        if derived_fp != PIN_FP.lower():
+            print(f"FAIL  {path}: signer fp {derived_fp} (derived from embedded key) "
+                  f"is not the pinned fp {PIN_FP}")
             return False
 
     ok = _verify(pubkey_bytes, sig_bytes, msg_bytes)
