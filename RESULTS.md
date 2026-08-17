@@ -17,15 +17,16 @@ Greeks · SHA-256 over the canonical f64 little-endian price+Greeks vector.
 |---|---|
 | Output vector SHA-256 | `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a` |
 | ATM_CALL price | `10.4505835721856215` |
-| v0.2.0 measured (2026-08-16) | Mac Mini CPU · Linux x86_64 CPU (default + CUDA-linked, CPU mode) |
-| Historical multi-box (2026-08-15, pre-attestation binary) | Mini CPU · RunPod x86 CPU (×3 hosts) · A100 · H100 · H200 (two GPU runs each) — same **output hash** |
+| v0.2.0 matrix (engine `b4645c2`) | **RTX 4090 (Ada)** + H200 + H100×2 devices (CPU+GPU agree) + Mac Mini arm64 CPU; receipts under [`downloads/luxibook/evidence/v0.2.0-matrix/`](downloads/luxibook/evidence/v0.2.0-matrix/) |
+| Historical A100 (2026-08-15, pre-attestation binary) | same **output hash** only — not re-measured under v0.2.0 |
 | Public binaries | macOS ARM64 CPU · Linux x86_64 CPU · Linux x86_64 CUDA |
 
-**Non-claims:** this book, these boxes, this kernel — not “all GPUs always
+**Non-claims:** this book, these devices, this kernel — not “all GPUs always
 match,” not desk VaR, not live market data, not `risk-pipeline`. Do not treat the
 `lxq2_…` string as a published constant (per-install seal).
 
 - Binaries: [`downloads/luxibook/`](downloads/luxibook/)
+- Matrix receipts: [`downloads/luxibook/evidence/v0.2.0-matrix/`](downloads/luxibook/evidence/v0.2.0-matrix/)
 - How to run: [`DEMOS.md`](DEMOS.md)
 
 ## LuxiEdge absolute prefill (internal multi-run champion)

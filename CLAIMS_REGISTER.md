@@ -16,7 +16,8 @@ Legend: **KEEP** · **REFRAME** · **DELETE** · **ADD**
 |-------|--------|-------|
 | CSV book → European BS/Black-76 → 5 Greeks → output vector SHA-256 | **KEEP** | Product try without NDA; engine private |
 | Output hash `4a21b1e7…c97a` for `example_book.csv` | **KEEP** | Comparable across machines; **not** the `lxq2_` token |
-| Multi-GPU matrix (A100/H100/H200) for that hash | **KEEP as dated historical** (2026-08-15 v1-era binary) until re-measured on v0.2.0 | Do not silently re-label as current |
+| v0.2.0 matrix: RTX 4090 (Ada) + H200 + H100×2 + Mac Mini arm64 | **KEEP** | Measured CPU↔GPU agree; receipts in `evidence/v0.2.0-matrix/`; H100 A/B = devices+installs, not “servers” |
+| A100 under that hash | **KEEP as dated historical** (2026-08-15 v1-era only) | Not re-measured under v0.2.0 — do not drop silently |
 | ATM_CALL `10.4505835721856215` | **KEEP** | Engine series Φ; Haug/libm table differs ~5e-14 |
 | Ed25519 `lxq2_` receipt is the same on every box | **DELETE** | Per-install by design; compare the hash, not the seal string |
 | “All GPUs always match” / universal CPU=GPU | **DELETE** | Non-claim required on demo page |

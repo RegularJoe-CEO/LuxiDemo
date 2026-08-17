@@ -1,0 +1,13 @@
+{
+  "pod": "h100-b",
+  "hostname": "b34268631505",
+  "device_name": "NVIDIA H100 80GB HBM3",
+  "device_uuid": "GPU-d13abf0e-77f7-fd12-430e-77e6f955f525",
+  "host_simd": "avx512",
+  "signer_fp_cpu": "3896103b6dab7c73",
+  "signer_fp_gpu": "3896103b6dab7c73",
+  "output_vector_sha256": "4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a",
+  "cpu_gpu_hash_match": true,
+  "engine_version": "0.2.0",
+  "git_sha": "b4645c27a07c32bf2622f33d1a8981d50c967a02"
+}

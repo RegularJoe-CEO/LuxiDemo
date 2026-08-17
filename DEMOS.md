@@ -44,10 +44,9 @@ shasum -a 256 -c downloads/luxibook/luxi-book-macos-arm64.sha256
 `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a`  
 ATM_CALL `10.4505835721856215`. Kernel `black_scholes_book_kernel`.
 
-**v0.2.0 (this download, engine `b4645c2`):** measured on Mac Mini CPU and Linux x86_64 CPU.  
-**v0.1.x (2026-08-15, pre-attestation):** same **output hash** on Mini CPU, RunPod x86 CPU (×3 hosts), A100 / H100 / H200 (two GPU runs each).  
-The multi-GPU row is **historical** — not re-asserted for every new build until re-run.  
-**Non-claim:** this book, these boxes, this kernel — not all GPUs always match.
+**v0.2.0 matrix (engine `b4645c2`):** Mac Mini arm64 CPU + four NVIDIA devices (RTX 4090 Ada, H200, H100×2) with CPU↔GPU hash agreement on this book — see [`downloads/luxibook/README.md`](downloads/luxibook/README.md) and stored receipts under [`evidence/v0.2.0-matrix/`](downloads/luxibook/evidence/v0.2.0-matrix/).  
+**A100:** still **historical** only (2026-08-15 pre-attestation binary, same output hash) — not re-measured under v0.2.0.  
+**Non-claim:** this book, these devices, this kernel — not all GPUs always match.
 
 The signed `lxq2_…` receipt is **per-install** (not a published constant). Details: [`downloads/luxibook/README.md`](downloads/luxibook/README.md).
 

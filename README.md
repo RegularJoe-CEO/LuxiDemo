@@ -78,8 +78,8 @@ chmod +x downloads/luxibook/luxi-book-macos-arm64
 **Output vector hash** (`example_book.csv` only — the value you compare across machines):  
 `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a`  
 
-v0.2.0 measured on Mini CPU + Linux x86_64 CPU; the multi-GPU matrix (A100/H100/H200) is historical (2026-08-15, pre-attestation binary) for that same **hash**. Not a universal GPU claim.  
-The signed `lxq2_…` receipt is **per-install** and deliberately not a published constant — see [`downloads/luxibook/README.md`](downloads/luxibook/README.md).  
+v0.2.0 matrix: Mini arm64 + RTX 4090 / H200 / H100×2 (CPU↔GPU agree on this book); A100 remains a **historical** v1-era line only. Not a universal GPU claim.  
+The signed `lxq2_…` receipt is **per-install** — see [`downloads/luxibook/README.md`](downloads/luxibook/README.md) and [`evidence/v0.2.0-matrix/`](downloads/luxibook/evidence/v0.2.0-matrix/).  
 Binaries: [`downloads/luxibook/`](downloads/luxibook/) · how to run: [`DEMOS.md`](DEMOS.md)
 
 ### B) LuxiRisk — free crypto / retail risk CLI (v0.2)
