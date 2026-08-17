@@ -1,6 +1,6 @@
 # Luxi Book — public try
 
-Closed binaries from [luxi-quant-engine](https://github.com/RegularJoe-CEO/luxi-quant-engine) **v0.2.0**, built from engine commit `4a86d2a`— the value each binary reports as `git_sha`. The cross-device matrix under `evidence/v0.2.0-matrix/` was measured on v0.2.0 commits `b4645c2` (first four devices) and `4a86d2a` (A100, RTX 5090); receipts from either verify under the current download. **No engine source. No NDA.**
+Closed binaries from [luxi-quant-engine](https://github.com/RegularJoe-CEO/luxi-quant-engine) **v0.2.1**, built from engine commit `02388f7`— the value each binary reports as `git_sha` (`git_dirty=false`). **v0.2.1** is the Φ fix (Taylor `|x|≤1.5`; A&S 7.1.14 continued-fraction `erfc` for `|x|>1.5`). Do not use a **v0.2.0** download for accuracy claims outside the acceptance band — that version could return non-probabilities for `|d| ≳ 2.13`. Post-fix matrix: [`evidence/v0.2.1-phi-fix-matrix/`](evidence/v0.2.1-phi-fix-matrix/). Historical v0.2.0 matrix (determinism only): [`evidence/v0.2.0-matrix/`](evidence/v0.2.0-matrix/). **No engine source. No NDA.**
 
 **“Unsigned” here means the OS binary is not Apple-notarized / code-signed.**  
 It does **not** mean the calculation receipt is unsigned. Receipts are **Ed25519-signed** (`lxq2_…`).
@@ -14,7 +14,8 @@ It does **not** mean the calculation receipt is unsigned. Receipts are **Ed25519
 | `luxi-book-linux-x86_64-cuda` | Linux x86_64 + NVIDIA | supports `--mode gpu` |
 | `example_book.csv` | all | synthetic example book |
 | `*.sha256` | all | binary checksums (content hash of the download) |
-| [`evidence/v0.2.0-matrix/`](evidence/v0.2.0-matrix/) | all | stored `receipt.json` files behind the matrix |
+| [`evidence/v0.2.1-phi-fix-matrix/`](evidence/v0.2.1-phi-fix-matrix/) | all | post-Φ-fix matrix (example + stress A/B) |
+| [`evidence/v0.2.0-matrix/`](evidence/v0.2.0-matrix/) | all | historical v0.2.0 matrix (do not mix with v0.2.1) |
 
 There is **no** macOS GPU binary. Use the CUDA Linux build only on machines with an NVIDIA driver.
 
@@ -51,9 +52,20 @@ For **`example_book.csv` only**, the **output vector hash** is:
 ATM_CALL price: `10.4505835721856215`  
 `book_price` bits: `343698c067f66240` (full decimal `151.70016507843832`)
 
+Hostile **`stress_book_a.csv`** (237 rows; post-fix constant on v0.2.1):
+
+`902667a1070b83bff57ac642cf16779d998b5a954c046c450b154237e9e196e2`  
+`book_price` = `488338590.9188194`
+
 This hash is **not** the signed receipt string. Two installs can share this hash and still produce **different** `lxq2_…` seals. That is intentional.
 
-### Cross-box matrix (v0.2.0 · same CUDA binary on GPU rows)
+### Cross-box matrix after Φ fix (v0.2.1)
+
+See [`evidence/v0.2.1-phi-fix-matrix/`](evidence/v0.2.1-phi-fix-matrix/). Five GPUs (H200, H100, A100, RTX 5090, RTX 4090): example + stress A bit-identical CPU↔GPU. **Those hosts are not the v0.2.0 matrix pods** — do not merge the tables (e.g. the v0.2.1 4090 host reports `avx2`; the v0.2.0 4090 host reported `avx512`).
+
+### Cross-box matrix (v0.2.0 historical · same CUDA binary on GPU rows)
+
+**Superseded for accuracy.** Kept as determinism evidence on the pre-fix Φ path for `example_book.csv` only.
 
 Measured on engine commits **`b4645c2`** (RTX 4090, H200, H100 A/B) and **`4a86d2a`** (A100, RTX 5090). Receipts from either verify under the current download.
 

@@ -1,10 +1,24 @@
 # Luxi Book matrix — post-Φ fix (v0.2.1 measurement)
 
-**Binary:** same `luxi-book-linux-x86_64-cuda` on every row  
-`sha256 = 8cdebe5e53d464d5a292c71f653ea5ce65fd856e56fd458bafdc633164eedfbb`  
-**Engine:** `0.2.0` with continued-fraction `erfc` for `|x| > 1.5` (Φ cliff fix).  
-`git_sha` in receipts: `unknown` (on-pod build without embedded git).  
-**CUDA build label:** `features=cuda; PTX sm_80; -fmad=false` (5090 runs via runtime JIT of sm_80 PTX).
+**Do not merge this table with `evidence/v0.2.0-matrix/`.** These are **different RunPod hosts** from the v0.2.0 campaign. Example: the v0.2.1 RTX 4090 host reports `host_simd_capability=avx2`; the v0.2.0 4090 host reported `avx512`. Same SKU labels, different installs.
+
+## Published download (authoritative)
+
+Current public binaries are **engine v0.2.1**, `git_sha` **`02388f778d9017d251bb0fc905a82b89a2e94c9a`**, `git_dirty=false`.
+
+| File | sha256 |
+|------|--------|
+| `luxi-book-macos-arm64` | `3564b86f2563265ce7a7211f4513a861c75c07d9841e0503f2f9f359a55def6c` |
+| `luxi-book-linux-x86_64` | `b4c14b9e0ceddf86e7a518d36d9ea48e5d6b07c72c331294a90af2100cc53c29` |
+| `luxi-book-linux-x86_64-cuda` | `ff4dc7b68445f2c653cc8ce746eabc1b81e802036d641228f353ca5e31624a33` |
+
+CUDA binary embeds PTX (self-contained). Label: `features=cuda; PTX sm_80; -fmad=false` (5090 = runtime JIT of sm_80 PTX).
+
+**Φ branch structure (v0.2.1):** Taylor series for `erf` when `|x| ≤ 1.5`; A&S 7.1.14 continued-fraction `erfc` when `|x| > 1.5`; `Φ(x) = ½ erfc(−x/√2)`.
+
+## Measurement note for receipts in this folder
+
+The five-device run stored here was executed with an on-pod build that reported `engine_version=0.2.0` / `git_sha=unknown` while carrying the **same Φ math** as v0.2.1. The **output hashes below match the published v0.2.1 binaries** (re-confirmed on the published downloads). Prefer the published v0.2.1 `engine_version` / `git_sha` for new receipts.
 
 ## Constant hashes
 
@@ -15,7 +29,7 @@
 
 Both hashes are **identical on all five devices, CPU and GPU**. Every `verify` returned PASS.
 
-## Devices
+## Devices (v0.2.1 campaign only)
 
 | Dir | Device | CC | host_simd | Endpoint |
 |-----|--------|----|-----------|----------|
@@ -23,7 +37,7 @@ Both hashes are **identical on all five devices, CPU and GPU**. Every `verify` r
 | `h100/` | H100 80GB HBM3 | 9.0 | avx512 | `38.80.152.148:31978` |
 | `a100/` | A100-SXM4-80GB | 8.0 | avx2 | `195.26.233.55:19592` |
 | `rtx5090/` | GeForce RTX 5090 | 12.0 | avx512 | `213.173.111.147:32868` |
-| `rtx4090/` | GeForce RTX 4090 | 8.9 | avx2 | `213.181.111.2:27577` |
+| `rtx4090/` | GeForce RTX 4090 | 8.9 | **avx2** | `213.181.111.2:27577` |
 
 ## Stress B (validation)
 
