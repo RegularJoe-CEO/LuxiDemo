@@ -8,7 +8,7 @@
 - Five Greeks
 - **SHA-256** receipt over the canonical f64 little-endian output vector
 - Closed binaries (macOS ARM64 CPU, Linux x86_64 CPU, Linux x86_64 CUDA)
-- You bring `T`, `r`, and `σ` — no live feed, no IV surface, no VaR, no fund desk
+- You bring `T`, `r`, and `σ` - no live feed, no IV surface, no VaR, no fund desk
 
 **LuxiRisk** is a separate **freebie**: offline crypto / retail liquidation,
 position size, and stop-loss math with Ed25519 `lxr1_` calculation receipts.
@@ -44,9 +44,9 @@ Measured on **`example_book.csv` only**:
 | Output vector SHA-256 | `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a` |
 | ATM_CALL | `10.4505835721856215` |
 | v0.2.0 boxes (2026-08-16) | Mac Mini CPU · Linux x86_64 CPU |
-| Historical multi-GPU (2026-08-15) | Mini · RunPod x86 (×3) · A100 · H100 · H200 — same **hash** |
+| Historical multi-GPU (2026-08-15) | Mini · RunPod x86 (×3) · A100 · H100 · H200 - same **hash** |
 
-**Non-claim:** this book, these boxes, this kernel — not “all GPUs always match.”  
+**Non-claim:** this book, these boxes, this kernel - not “all GPUs always match.”  
 Signed `lxq2_…` receipts are **per-install** (not a constant to publish).
 
 Downloads: [`downloads/luxibook/`](../downloads/luxibook/)  
@@ -66,11 +66,11 @@ driver, or book shape will hash-match without re-measurement.
 
 | Claim | Status |
 |-------|--------|
-| Universal bit-exact results on every CPU and GPU | **No** — only measured boxes for Book |
+| Universal bit-exact results on every CPU and GPU | **No** - only measured boxes for Book |
 | Desk VaR / full risk engine / live market data | **No** |
-| LuxiRisk = institutional Quant | **No** — freebie retail/crypto CLI |
-| TestFort 286B ops/s as option pricing thr | **No** — separate numerical suite |
-| `risk-pipeline --synthetic` as product face | **No** — internal/synthetic only |
+| LuxiRisk = institutional Quant | **No** - freebie retail/crypto CLI |
+| TestFort 286B ops/s as option pricing thr | **No** - separate numerical suite |
+| `risk-pipeline --synthetic` as product face | **No** - internal/synthetic only |
 
 ## Supporting numerical REST (secondary)
 
