@@ -1,4 +1,4 @@
-# Prefill freeze — matched rerun (replacement pack)
+# Prefill freeze - matched rerun (replacement pack)
 
 **Status:** AUTHORITATIVE for website replacement of withdrawn prefill headlines  
 **Pack:** `prefill_freeze_matched_20260807T210749Z`  
@@ -13,10 +13,10 @@
 
 ## Luxi multi-run thr (5×15s)
 
-| Batch | Median pos/s | Min–Max | Stdev | Backend |
+| Batch | Median pos/s | Min to Max | Stdev | Backend |
 |------:|-------------:|--------:|------:|:--------|
-| 16 | **41,221** | 40,805–41,389 | 247 | flash |
-| 32 | **43,464** | 43,119–43,721 | 241 | flash |
+| 16 | **41,221** | 40,805 to 41,389 | 247 | flash |
+| 32 | **43,464** | 43,119 to 43,721 | 241 | flash |
 
 ## Luxi board energy (NVML, 3×15s window)
 
