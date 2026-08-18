@@ -1,6 +1,6 @@
 # LuxiRisk v0.2 binaries (unsigned)
 
-**Freebie** retail/crypto risk CLI — not Luxi Book (CSV options). Book lives at
+**Freebie** retail/crypto risk CLI - not Luxi Book (CSV options). Book lives at
 `../../downloads/luxibook/`.
 
 Closed-source evaluation binaries. Matching `.sha256` files ship beside each
