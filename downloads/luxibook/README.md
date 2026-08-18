@@ -63,6 +63,8 @@ This hash is **not** the signed receipt string. Two installs can share this hash
 
 See [`evidence/v0.2.1-phi-fix-matrix/`](evidence/v0.2.1-phi-fix-matrix/). Five GPUs (H200, H100, A100, RTX 5090, RTX 4090): example + stress A bit-identical CPU↔GPU. **Those hosts are not the v0.2.0 matrix pods** - do not merge the tables (e.g. the v0.2.1 4090 host reports `avx2`; the v0.2.0 4090 host reported `avx512`).
 
+**Metadata note on this pack.** The receipts here report `engine_version=0.2.0` and `git_sha=unknown`, because they were produced by a build made from the fix branch before the commit that bumped the version and made `git_sha` a build requirement. The numbers in them are the post-fix numbers: every stress A receipt in this pack carries `output_vector_sha256=902667a1070b83bff57ac642cf16779d998b5a954c046c450b154237e9e196e2` and `book_price=488338590.9188194`, which is what the current **v0.2.1** download reproduces. Check it yourself with the commands above. The current downloads report `engine_version=0.2.1` and the full `git_sha`.
+
 ### Cross-box matrix (v0.2.0 historical · same CUDA binary on GPU rows)
 
 **Superseded for accuracy.** Kept as determinism evidence on the pre-fix Φ path for `example_book.csv` only.
