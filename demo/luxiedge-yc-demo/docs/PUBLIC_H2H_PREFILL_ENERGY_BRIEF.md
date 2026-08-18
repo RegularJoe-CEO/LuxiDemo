@@ -1,4 +1,4 @@
-# LuxiEdge vs vLLM — Prefill Throughput & Board Energy
+# LuxiEdge vs vLLM - Prefill Throughput & Board Energy
 
 **Document type:** Shareable technical brief  
 **Status:** Measured head-to-head (same hardware, same shape)  
@@ -12,9 +12,9 @@ On a matched **prefill-heavy** workload, the LuxiEdge energy/throughput path is 
 
 | Question | Answer |
 |----------|--------|
-| Faster? | **Yes** — about **1.17–1.18×** higher throughput |
-| Better or equal energy per token? | **Yes** — about **10–14% lower** board J per position |
-| Determinism held (Luxi TRADE path)? | **Yes** — dual-run score **1.0** |
+| Faster? | **Yes** - about **1.17 to 1.18×** higher throughput |
+| Better or equal energy per token? | **Yes** - about **10 to 14% lower** board J per position |
+| Determinism held (Luxi TRADE path)? | **Yes** - dual-run score **1.0** |
 
 Peer stack used **greedy sampling** (`temperature = 0`), not a separate “deterministic product mode.” Token accounting is matched prefill positions.
 
@@ -63,7 +63,7 @@ Board power was measured under load via standard GPU power/energy interfaces (NV
 - **Throughput** counts **prompt positions** under a fixed sequence length and batch (prefill-oriented), not chat tokens/s under a full OpenAI-compatible server.  
 - **J/position** is board energy per useful position under that same definition.  
 - **Determinism** is dual-run agreement on the measured path (same inputs → same reported behavior).  
-- This is an **absolute, same-day head-to-head** on one GPU class—not a claim against every serving recipe, every model, or every sequence length.
+- This is an **absolute, same-day head-to-head** on one GPU class to not a claim against every serving recipe, every model, or every sequence length.
 
 ---
 

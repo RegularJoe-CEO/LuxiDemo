@@ -1,6 +1,6 @@
 # LuxiEdge GTM baseline lock (version-100)
 
-**Status:** Internal go-to-market lock — measured H100 prefill executor  
+**Status:** Internal go-to-market lock - measured H100 prefill executor  
 **Lane:** TRADE energy/throughput (not AUDIT bit-exact gold)  
 **Date:** 2026-07-31  
 
@@ -23,19 +23,19 @@ This is the configuration to sell and defend until a stronger pack replaces it.
 
 ---
 
-## Locked metrics (multi-run formal pack — **authoritative**)
+## Locked metrics (multi-run formal pack - **authoritative**)
 
 **Campaign:** 5 × 15s sustains each · H100 · Flash + device-resident + FP16  
 **Source:** multi-run lock on version-100 GTM hour pack  
 
-| Batch | Thr median (pos/s) | Thr min–max | Thr stdev | J/pos median | Det (5-run token match) | Flash |
+| Batch | Thr median (pos/s) | Thr min to max | Thr stdev | J/pos median | Det (5-run token match) | Flash |
 |------:|-------------------:|------------:|----------:|-------------:|------------------------:|:-----:|
-| **16** | **39,865** | 39,504–41,050 | ~671 | **0.0168** | **1.0** | yes |
-| **32** | **42,967** | 42,635–43,570 | ~387 | **0.0160** | **1.0** | yes |
+| **16** | **39,865** | 39,504 to 41,050 | ~671 | **0.0168** | **1.0** | yes |
+| **32** | **42,967** | 42,635 to 43,570 | ~387 | **0.0160** | **1.0** | yes |
 
 **Primary sell cell: B=16** (tight variance, commercial batch). **B=32** for scale.
 
-### Peer H2H (matched prefill, same day — supporting)
+### Peer H2H (matched prefill, same day - supporting)
 
 | Batch | Luxi thr | vLLM thr | Luxi/vLLM thr | Luxi J/pos | vLLM J/pos |
 |------:|---------:|---------:|--------------:|-----------:|-----------:|
@@ -67,15 +67,15 @@ This is the configuration to sell and defend until a stronger pack replaces it.
 
 | Surface | Role for GTM |
 |---------|----------------|
-| `cuda_qwen7b_trade` sustain | **Money path** — thr + NVML energy |
-| `serve_v05` HTTP | OpenAI-shaped API + **`GET /v1/gtm` scoreboard** — **do not** quote HTTP thr as TRADE thr |
+| `cuda_qwen7b_trade` sustain | **Money path** - thr + NVML energy |
+| `serve_v05` HTTP | OpenAI-shaped API + **`GET /v1/gtm` scoreboard** - **do not** quote HTTP thr as TRADE thr |
 | AUDIT receipts | Compliance / dual-lane story |
 
 Commercial scripts:
 
-- `scripts/gtm_demo_one_shot.sh` — TRADE sustain (money path)
-- `scripts/gtm_serve_boot.sh` — HTTP + GTM energy mode
-- `scripts/gtm_pod_commercial.sh` — TRADE + serve smoke on pod
+- `scripts/gtm_demo_one_shot.sh` - TRADE sustain (money path)
+- `scripts/gtm_serve_boot.sh` - HTTP + GTM energy mode
+- `scripts/gtm_pod_commercial.sh` - TRADE + serve smoke on pod
 
 Serve doc: [`GTM_COMMERCIAL_SERVE.md`](GTM_COMMERCIAL_SERVE.md).
 
@@ -83,7 +83,7 @@ Serve doc: [`GTM_COMMERCIAL_SERVE.md`](GTM_COMMERCIAL_SERVE.md).
 
 ## One-line pitch
 
-> On H100, LuxiEdge’s energy path moves more prefill work per second than vLLM at commercial batch, uses fewer board joules per position, and keeps dual-run determinism—while a separate AUDIT lane protects bit-exact trust.
+> On H100, LuxiEdge’s energy path moves more prefill work per second than vLLM at commercial batch, uses fewer board joules per position, and keeps dual-run determinism to while a separate AUDIT lane protects bit-exact trust.
 
 ---
 
