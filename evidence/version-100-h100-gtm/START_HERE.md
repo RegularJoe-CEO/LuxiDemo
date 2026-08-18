@@ -12,7 +12,7 @@
 | 16 | ~39,865 | ~0.0168 | 1.0 |
 | 32 | ~42,967 | ~0.0160 | 1.0 |
 
-**vs vLLM (matched prefill, same day):** thr **~1.17–1.18×** · board J/pos **~10–14% lower**
+**vs vLLM (matched prefill, same day):** thr **~1.17 to 1.18×** · board J/pos **~10 to 14% lower**
 
 ## Files
 

@@ -1,4 +1,4 @@
-# Formal determinism — version-100 GTM multi-run
+# Formal determinism - version-100 GTM multi-run
 
 **Lane:** TRADE (Flash + device-resident + FP16)  
 **GPU:** H100 80GB HBM3  

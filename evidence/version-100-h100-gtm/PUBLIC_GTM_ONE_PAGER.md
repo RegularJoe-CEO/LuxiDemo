@@ -1,4 +1,4 @@
-# LuxiEdge — Go-to-Market Technical One-Pager
+# LuxiEdge - Go-to-Market Technical One-Pager
 
 **Product:** Energy-aware, dual-lane AI compute (throughput + board joules + determinism)  
 **Hardware class:** NVIDIA H100 80GB  
