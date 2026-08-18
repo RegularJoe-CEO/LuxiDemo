@@ -4,7 +4,7 @@ This index separates **current claims**, **working demonstrations**, and
 **historical research**. Historical packs remain available because they explain
 the development path and preserve both wins and losses.
 
-## Luxi Book — Quant receipt (public try)
+## Luxi Book - Quant receipt (public try)
 
 Not a thr/J pack. Closed binaries + measured SHA-256 on one example book:
 
@@ -17,13 +17,13 @@ Not a thr/J pack. Closed binaries + measured SHA-256 on one example book:
 | Binaries | [`../downloads/luxibook/`](../downloads/luxibook/) |
 | Date | 2026-08-15 |
 
-**Non-claim:** this book / these boxes / this kernel — not universal CPU↔GPU.
+**Non-claim:** this book / these boxes / this kernel - not universal CPU↔GPU.
 
 Tables: [`../RESULTS.md`](../RESULTS.md) · how to run: [`../DEMOS.md`](../DEMOS.md)
 
 ## Current GTM transformer measurement (absolute + matched)
 
-### Absolute prefill champion (B72 dual_gemm) — 2026-08-07
+### Absolute prefill champion (B72 dual_gemm) - 2026-08-07
 
 [`prefill_accel_lock_20260807T233111Z/`](prefill_accel_lock_20260807T233111Z/)
 
@@ -44,7 +44,7 @@ Tables: [`../RESULTS.md`](../RESULTS.md) · how to run: [`../DEMOS.md`](../DEMOS
 - Qwen2-7B-Instruct class · S=128 · B=16/32
 - Flash + device-resident + FP16 TRADE path
 - Multi-run 5×15 s thr + NVML board J/pos + det=1.0
-- Matched H2H lineage vs vLLM (~1.17–1.18× thr, ~10–14% lower board J/pos)
+- Matched H2H lineage vs vLLM (~1.17 to 1.18× thr, ~10 to 14% lower board J/pos)
 - Authoritative: `MULTI_RUN_LOCK_SLIM.json` · buyer: `PUBLIC_GTM_ONE_PAGER.md`
 
 ## Prior third-party-operated transformer measurement
@@ -54,7 +54,7 @@ Tables: [`../RESULTS.md`](../RESULTS.md) · how to run: [`../DEMOS.md`](../DEMOS
 [`h100-qwen2-7b-v99-matched-prefill-2026-07-23/`](h100-qwen2-7b-v99-matched-prefill-2026-07-23/)
 
 - Earlier stack: thr trailed vLLM; modest board-energy edge; det + soak held
-- Kept as independent lineage — **not** the current thr claim
+- Kept as independent lineage - **not** the current thr claim
 
 Formal signed narrative: pending.
 
