@@ -21,5 +21,5 @@ python3 scripts/verify_v99_pack.py
 | LuxiRisk binary digests | `shasum -a 256 -c luxirisk/dist/*.sha256` |
 
 Prefill thr/J packs under `evidence/prefill_*` and `evidence/version-100-h100-gtm/`
-are JSON/markdown locks — open the pack `START_HERE` or `PUBLIC_*` briefs; no
+are JSON/markdown locks - open the pack `START_HERE` or `PUBLIC_*` briefs; no
 single thr/J recompute script is published yet for those locks.
