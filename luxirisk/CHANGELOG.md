@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.2.0] — luxirisk-v0.2
+## [0.2.0] - luxirisk-v0.2
 
 ### Fixed (blocking)
 
@@ -32,7 +32,7 @@
 - Localhost `ui` subcommand
 - v0.1 short-hash receipts (no longer produced)
 
-## [0.1.0] — luxirisk-v0.1
+## [0.1.0] - luxirisk-v0.1
 
 Initial release: liq / size / risk, SHA-256 short receipts, optional UI,
 macOS/Linux/Windows binaries.

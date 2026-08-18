@@ -65,7 +65,7 @@ xcrun stapler validate luxirisk-macos-arm64
 spctl --assess --type execute --verbose=4 luxirisk-macos-arm64
 ```
 
-### Windows (Authenticode — OV min, EV preferred)
+### Windows (Authenticode - OV min, EV preferred)
 
 | Secret | Purpose |
 |--------|---------|

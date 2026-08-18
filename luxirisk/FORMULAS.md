@@ -1,4 +1,4 @@
-# LuxiRisk v0.2 — exact formulas & receipt scheme
+# LuxiRisk v0.2 - exact formulas & receipt scheme
 
 These are the **only** calculations performed by LuxiRisk v0.2. Anyone can
 re-implement them and compare outputs against the published
@@ -30,13 +30,13 @@ bit-identical across macOS ARM64, Linux x86_64, and Windows x86_64.
 \end{aligned}
 \]
 
-**Example** — long, \(E = 65000\), \(L = 10\), \(m = 0.005\):
+**Example** - long, \(E = 65000\), \(L = 10\), \(m = 0.005\):
 
 \[
 P_{\text{liq}} = 65000 \times (1 - 0.1 + 0.005) = 65000 \times 0.905 = 58825
 \]
 
-**Example** — short, same inputs:
+**Example** - short, same inputs:
 
 \[
 P_{\text{liq}} = 65000 \times (1 + 0.1 - 0.005) = 65000 \times 1.095 = 71175
@@ -62,7 +62,7 @@ E \times \dfrac{d}{100} & \text{stop distance \% } d
 \end{aligned}
 \]
 
-**Example** — \(B = 10000\), \(r = 1\), \(E = 65000\), \(S = 63000\):
+**Example** - \(B = 10000\), \(r = 1\), \(E = 65000\), \(S = 63000\):
 
 risk amount \(= 100\), size \(= 0.05\), notional \(= 3250\).
 
@@ -132,7 +132,7 @@ On first successful calculation (or `luxirisk id`):
 3. Fingerprint = first 8 bytes of SHA-256(pubkey), hex (16 chars).
 
 The fingerprint is a **stable pseudonymous identity** across receipts from that
-install. It is **not** a global vendor key — each user (machine) has their own.
+install. It is **not** a global vendor key - each user (machine) has their own.
 
 ### Optional time binding
 

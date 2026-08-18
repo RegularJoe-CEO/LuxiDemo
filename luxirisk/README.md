@@ -4,7 +4,7 @@
 
 > **Portfolio note (2026-08):** On luxiedge.com and this repo, **Luxi Book** is the
 > professional Quant try (CSV European options + SHA-256). **LuxiRisk is the freebie**
-> for crypto / retail traders — not the institutional option book, not desk VaR.
+> for crypto / retail traders - not the institutional option book, not desk VaR.
 > Book binaries: [`../downloads/luxibook/`](../downloads/luxibook/) ·
 > how to run: [`../DEMOS.md`](../DEMOS.md).
 
@@ -18,9 +18,9 @@ Telegram, and X can be checked by third parties.
 | **Signed receipts** | Per-install Ed25519 key; cannot mint a valid `lxr1_` without the private key. |
 | **Deterministic math** | Same inputs → same numbers on macOS, Linux, Windows. |
 | **Closed binary** | Engine source is not distributed. Formulas + vectors are public. |
-| **OS code-signing** | **Not applied in v0.2** — see [Trust model](#trust-model-honest). |
+| **OS code-signing** | **Not applied in v0.2** - see [Trust model](#trust-model-honest). |
 
-Built by the team behind LuxiEdge — [luxiedge.com](https://luxiedge.com)
+Built by the team behind LuxiEdge - [luxiedge.com](https://luxiedge.com)
 
 ## What it calculates (v0.2)
 
@@ -55,7 +55,7 @@ shasum -a 256 -c luxirisk-macos-arm64.sha256   # macOS
 sha256sum -c luxirisk-linux-x86_64.sha256      # Linux
 ```
 
-### 3. First run (unsigned binaries — expect OS friction)
+### 3. First run (unsigned binaries - expect OS friction)
 
 **These binaries are not Apple-notarized and not Authenticode-signed.**
 
@@ -177,7 +177,7 @@ python3 test-vectors/verify_receipts.py
 No funding rates, Kelly, Monte Carlo, prop-firm modes, exchange connections,
 website, open-sourced engine, local UI, or paid OS code-signing for this release.
 
-No European option books, Black-Scholes Greeks, or institutional risk — that path
+No European option books, Black-Scholes Greeks, or institutional risk - that path
 is **Luxi Book**, not this freebie.
 
 ## Release
@@ -196,4 +196,4 @@ for verification and education.
 
 ---
 
-Built by the team behind LuxiEdge — [luxiedge.com](https://luxiedge.com)
+Built by the team behind LuxiEdge - [luxiedge.com](https://luxiedge.com)
