@@ -6,7 +6,7 @@ This page indexes **measured** public results. Each result is limited to the
 workload and hardware described in its evidence. Do not blend numbers across
 sections.
 
-## Luxi Book — CSV European options (primary Quant try)
+## Luxi Book - CSV European options (primary Quant try)
 
 **Workload:** `example_book.csv` only · European Black-Scholes / Black-76 · five
 Greeks · SHA-256 over the canonical f64 little-endian price+Greeks vector.  
@@ -18,10 +18,10 @@ Greeks · SHA-256 over the canonical f64 little-endian price+Greeks vector.
 | Output vector SHA-256 | `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a` |
 | ATM_CALL price | `10.4505835721856215` |
 | v0.2.0 matrix (engine `b4645c2`) | **RTX 4090 (Ada)** + H200 + H100×2 devices (CPU+GPU agree) + Mac Mini arm64 CPU; receipts under [`downloads/luxibook/evidence/v0.2.0-matrix/`](downloads/luxibook/evidence/v0.2.0-matrix/) |
-| Historical A100 (2026-08-15, pre-attestation binary) | same **output hash** only — not re-measured under v0.2.0 |
+| Historical A100 (2026-08-15, pre-attestation binary) | same **output hash** only - not re-measured under v0.2.0 |
 | Public binaries | macOS ARM64 CPU · Linux x86_64 CPU · Linux x86_64 CUDA |
 
-**Non-claims:** this book, these devices, this kernel — not “all GPUs always
+**Non-claims:** this book, these devices, this kernel - not “all GPUs always
 match,” not desk VaR, not live market data, not `risk-pipeline`. Do not treat the
 `lxq2_…` string as a published constant (per-install seal).
 
@@ -60,7 +60,7 @@ not multi-tenant full-server leadership.
 ## LuxiEdge Version 99 (prior third-party baseline)
 
 Technician-operated matched prefill on one NVIDIA H100 80GB (2026-07-23).
-**Earlier stack** — thr trailed vLLM; kept for lineage.
+**Earlier stack** - thr trailed vLLM; kept for lineage.
 
 | Engine | Prefill positions/s | GPU-board J/position |
 |---|---:|---:|
@@ -79,7 +79,7 @@ prefill, prefix caching disabled, cumulative NVML energy, one H100 80GB.
 Evidence:
 [`h100-qwen2-7b-v99-matched-prefill-2026-07-23`](evidence/h100-qwen2-7b-v99-matched-prefill-2026-07-23/)
 
-## LuxiQuant numerical engine (microbench / REST — not the option book)
+## LuxiQuant numerical engine (microbench / REST - not the option book)
 
 A December 2025 TestFort evaluation reported:
 
@@ -103,7 +103,7 @@ Luxi Book option-pricing results.
 Retail / crypto liquidation, size, and stop-loss CLI with Ed25519 `lxr1_`
 receipts. Not institutional Quant. See [`luxirisk/`](luxirisk/) and release
 [luxirisk-v0.2](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2).
-No thr/J table — product is signed calculation receipts, not a GPU scoreboard.
+No thr/J table - product is signed calculation receipts, not a GPU scoreboard.
 
 ## Historical transformer research
 

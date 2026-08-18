@@ -1,4 +1,4 @@
-# Repository boundary — LuxiDemo
+# Repository boundary - LuxiDemo
 
 This is a **public evaluation** repository. It is deliberately limited.
 
@@ -21,7 +21,7 @@ implementation source.
 | Kind | Where it lives instead |
 |------|------------------------|
 | Marketing website HTML/CSS/assets | **Replit** project that deploys [luxiedge.com](https://luxiedge.com) |
-| GitHub Pages deploy of a site tree | **Removed** — this repo does not host luxiedge.com |
+| GitHub Pages deploy of a site tree | **Removed** - this repo does not host luxiedge.com |
 | Proprietary engine source (quant, risk, inference) | **Private** repos only |
 | Model weights, credentials, SSH/pod addresses | Never |
 | “Universal bit-exact everywhere” claims without measured scope | Do not publish |
@@ -44,9 +44,9 @@ Updating **public binaries and evidence** is a **LuxiDemo / GitHub** job.
 
 ## Product order (for any public surface)
 
-1. **Luxi Book** — Quant sale try (CSV BS/Black-76 + output-vector hash + Ed25519 `lxq2_` receipt)  
-2. **LuxiRisk** — freebie retail/crypto CLI  
-3. **Inference thr/J + serve** — evidence / demoted demos  
+1. **Luxi Book** - Quant sale try (CSV BS/Black-76 + output-vector hash + Ed25519 `lxq2_` receipt)  
+2. **LuxiRisk** - freebie retail/crypto CLI  
+3. **Inference thr/J + serve** - evidence / demoted demos  
 
 ## Link targets from docs
 

@@ -5,13 +5,13 @@ run the tools, supply inputs, inspect outputs, and compare **output vector hashe
 (and signed calculation receipts) without receiving the private implementation source.
 
 **Portfolio order:** Luxi **Book** (sale) → Luxi**Risk** (freebie) → everything else demoted.  
-This repo ships **binaries + markdown only** — marketing HTML lives on Replit (luxiedge.com), not here.
+This repo ships **binaries + markdown only** - marketing HTML lives on Replit (luxiedge.com), not here.
 
-## Demo 0: Luxi Book — CSV European options + attested receipt (the Quant try)
+## Demo 0: Luxi Book - CSV European options + attested receipt (the Quant try)
 
-**Primary public Quant artifact. Closed binary only — no engine source.**  
+**Primary public Quant artifact. Closed binary only - no engine source.**  
 **OS binary is not Apple-notarized / code-signed** (Gatekeeper friction).  
-**Calculation receipt is Ed25519-signed** (`luxiquant-receipt-v2`, `lxq2_…`) — different from the OS “unsigned” note.
+**Calculation receipt is Ed25519-signed** (`luxiquant-receipt-v2`, `lxq2_…`) - different from the OS “unsigned” note.
 
 CSV position book → European **Black-Scholes / Black-76** → five Greeks → **output vector SHA-256** on the canonical f64 LE vector → **signed receipt**. You bring `T`, `r`, and `σ`. No live feed, no IV, no VaR, not a fund desk. Not `risk-pipeline`.
 
@@ -44,18 +44,18 @@ shasum -a 256 -c downloads/luxibook/luxi-book-macos-arm64.sha256
 `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a`  
 ATM_CALL `10.4505835721856215`. Kernel `black_scholes_book_kernel`.
 
-**v0.2.0 matrix (engine `b4645c2`):** Mac Mini arm64 CPU + four NVIDIA devices (RTX 4090 Ada, H200, H100×2) with CPU↔GPU hash agreement on this book — see [`downloads/luxibook/README.md`](downloads/luxibook/README.md) and stored receipts under [`evidence/v0.2.0-matrix/`](downloads/luxibook/evidence/v0.2.0-matrix/).  
-**A100:** still **historical** only (2026-08-15 pre-attestation binary, same output hash) — not re-measured under v0.2.0.  
-**Non-claim:** this book, these devices, this kernel — not all GPUs always match.
+**v0.2.0 matrix (engine `b4645c2`):** Mac Mini arm64 CPU + four NVIDIA devices (RTX 4090 Ada, H200, H100×2) with CPU↔GPU hash agreement on this book - see [`downloads/luxibook/README.md`](downloads/luxibook/README.md) and stored receipts under [`evidence/v0.2.0-matrix/`](downloads/luxibook/evidence/v0.2.0-matrix/).  
+**A100:** still **historical** only (2026-08-15 pre-attestation binary, same output hash) - not re-measured under v0.2.0.  
+**Non-claim:** this book, these devices, this kernel - not all GPUs always match.
 
 The signed `lxq2_…` receipt is **per-install** (not a published constant). Details: [`downloads/luxibook/README.md`](downloads/luxibook/README.md).
 
 Docs: this file · binaries: [`downloads/luxibook/`](downloads/luxibook/) · engine source: **private** (not in this repo)
 
-## Demo 1: LuxiRisk v0.2 — free retail / crypto risk CLI (`lxr1_` receipts)
+## Demo 1: LuxiRisk v0.2 - free retail / crypto risk CLI (`lxr1_` receipts)
 
-**Freebie for crypto / retail position traders — not the Quant book, not institutional.**
-**Closed binary only — no engine source. OS code-signing is not applied (unsigned
+**Freebie for crypto / retail position traders - not the Quant book, not institutional.**
+**Closed binary only - no engine source. OS code-signing is not applied (unsigned
 download; expect Gatekeeper / SmartScreen friction).** Three calculations for
 leveraged crypto / retail traders, each with an **Ed25519-signed** `lxr1_…`
 **calculation receipt** (per-install identity) for Discord, Telegram, and X.
@@ -86,10 +86,10 @@ pip install cryptography && python3 luxirisk/test-vectors/verify_receipts.py
 - Home: [`luxirisk/`](luxirisk/) · formulas: [`luxirisk/FORMULAS.md`](luxirisk/FORMULAS.md)
 - Test vectors: [`luxirisk/test-vectors/`](luxirisk/test-vectors/)
 - Release: [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2) (**unsigned** binaries + checksums)
-- Offline by default · optional `--stamp` / `--beacon` · CLI only · Built by the team behind LuxiEdge — luxiedge.com
+- Offline by default · optional `--stamp` / `--beacon` · CLI only · Built by the team behind LuxiEdge - luxiedge.com
 ## Demo 2: version-100 commercial serve + GTM scoreboard (inference)
 
-**Binary only — no engine source. Not Luxi Book.** OpenAI-shaped HTTP API with locked H100 thr/J/det on `GET /v1/gtm`.
+**Binary only - no engine source. Not Luxi Book.** OpenAI-shaped HTTP API with locked H100 thr/J/det on `GET /v1/gtm`.
 
 | Platform | Binary in repo |
 |----------|----------------|

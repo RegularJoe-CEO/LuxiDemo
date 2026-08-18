@@ -85,7 +85,7 @@ Closed `luxi-book` binaries published under [`downloads/luxibook/`](downloads/lu
   reconfirmed Mini + Linux CPU with Ed25519 `lxq2_` seals)
 
 Public site order: **Book (sale) → LuxiRisk freebie → inference demoted**.
-LuxiRisk v0.2 remains the free retail/crypto CLI with `lxr1_` receipts — not
+LuxiRisk v0.2 remains the free retail/crypto CLI with `lxr1_` receipts - not
 the option book.
 
 ## How to read old packs
