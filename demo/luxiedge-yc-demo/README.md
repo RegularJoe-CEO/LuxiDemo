@@ -1,4 +1,4 @@
-# LuxiEdge commercial demo (binary only — no source)
+# LuxiEdge commercial demo (binary only - no source)
 
 **Product:** LuxiEdge version-100  
 **What this is:** OpenAI-shaped HTTP server + locked GTM scoreboard  
@@ -37,14 +37,14 @@ open http://127.0.0.1:8787/dashboard   # or browser
 | B16 | ~39,865 | ~0.0168 | 1.0 |
 | B32 | ~42,967 | ~0.0160 | 1.0 |
 
-Matched prefill vs vLLM: **~1.17–1.18×** thr · **~10–14%** lower board J/pos.
+Matched prefill vs vLLM: **~1.17 to 1.18×** thr · **~10 to 14%** lower board J/pos.
 
 Details: `docs/PUBLIC_GTM_ONE_PAGER.md` · `docs/PUBLIC_H2H_PREFILL_ENERGY_BRIEF.md` · `evidence/MULTI_RUN_LOCK_SLIM.json`
 
 ## Honest limits
 
 - Local binary uses a **toy generate path** for instant API demos (receipts + energy scale).  
-- **Money thr/J** were measured on NVIDIA H100 with the TRADE executor — see scoreboard + docs.  
+- **Money thr/J** were measured on NVIDIA H100 with the TRADE executor - see scoreboard + docs.  
 - Board joules ≠ facility wall-plug.  
 - Not a claim of full multi-tenant OpenAI-server leadership vs every recipe.
 
