@@ -140,10 +140,6 @@ directory.
 The current demo lists 30 operators, including transcendental functions,
 statistics, activation functions, `quant_chain`, GELU, SiLU, and RMSNorm.
 
-The validation suite also exercises Welford mean/variance, online softmax,
-LayerNorm, Waller attention, a WNSM transformer block, and model-configuration
-presets.
-
 ## Demo 4: local REST evaluation
 
 Start the compiled service:
