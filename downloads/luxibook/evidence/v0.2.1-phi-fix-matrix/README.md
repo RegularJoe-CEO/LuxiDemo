@@ -1,4 +1,4 @@
-# Luxi Book matrix — post-Φ fix (v0.2.1 measurement)
+# Luxi Book matrix - post-Φ fix (v0.2.1 measurement)
 
 **Do not merge this table with `evidence/v0.2.0-matrix/`.** These are **different RunPod hosts** from the v0.2.0 campaign. Example: the v0.2.1 RTX 4090 host reports `host_simd_capability=avx2`; the v0.2.0 4090 host reported `avx512`. Same SKU labels, different installs.
 
@@ -13,8 +13,6 @@ Current public binaries are **engine v0.2.1**, `git_sha` **`02388f778d9017d251bb
 | `luxi-book-linux-x86_64-cuda` | `ff4dc7b68445f2c653cc8ce746eabc1b81e802036d641228f353ca5e31624a33` |
 
 CUDA binary embeds PTX (self-contained). Label: `features=cuda; PTX sm_80; -fmad=false` (5090 = runtime JIT of sm_80 PTX).
-
-**Φ branch structure (v0.2.1):** Taylor series for `erf` when `|x| ≤ 1.5`; A&S 7.1.14 continued-fraction `erfc` when `|x| > 1.5`; `Φ(x) = ½ erfc(−x/√2)`.
 
 ## Measurement note for receipts in this folder
 
@@ -45,7 +43,7 @@ Both hashes are **identical on all five devices, CPU and GPU**. Every `verify` r
 
 ## E3 answer (CPU vs CUDA)
 
-Same defect path was fixed in both. After the fix, **CPU and GPU agree bit-for-bit** on example_book and on the full hostile stress_book_a across all five SKUs — including Blackwell (5090) via JIT of sm_80 PTX.
+Same defect path was fixed in both. After the fix, **CPU and GPU agree bit-for-bit** on example_book and on the full hostile stress_book_a across all five SKUs - including Blackwell (5090) via JIT of sm_80 PTX.
 
 ## Non-claim
 
