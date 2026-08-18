@@ -1,4 +1,4 @@
-# Phase 3 — grow_act_cap (status)
+# Phase 3 - grow_act_cap (status)
 
 **Date:** 2026-08-08  
 
@@ -8,7 +8,7 @@ Replace `next_power_of_two` activation capacity with `grow_act_cap` (need + 12.5
 
 ## Local code
 
-`attention-transformer-v2/src/gpu/cuda.rs` — `grow_act_cap` applied to:
+`attention-transformer-v2/src/gpu/cuda.rs` - `grow_act_cap` applied to:
 
 - `CudaWallerBuffers::ensure_capacity` / MLP scratch / payload  
 - Quant stack layer input  
@@ -29,7 +29,7 @@ Replace `next_power_of_two` activation capacity with `grow_act_cap` (need + 12.5
 
 1. Apply **only** `grow_act_cap` on a clean checkout of the **exact thr-lock tree** (no SwiGLU/true_ar partial merge).  
 2. Rebuild, B72 sanity thr+J must match champion within noise.  
-3. Then ladder B76–B112 dual_gemm; stop when thr flattens or J/pos worsens.  
+3. Then ladder B76 to B112 dual_gemm; stop when thr flattens or J/pos worsens.  
 4. Do not replace product thr binary until B72 multi-run re-locks.
 
 ## Product impact

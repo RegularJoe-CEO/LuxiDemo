@@ -8,11 +8,11 @@
 
 Aggressive thr / energy / determinism campaign after refusing to lock the weak 41.2k B16 headline as a ceiling.
 
-1. **Recipe sweep** — quant, TF32, fusion, dual-stream, pair-fuse, mega, graphs, batch ladder  
-2. **Combo fine ladder** — dual_gemm × pair × mlp_pers × fusion1 @ B64/68/72  
-3. **Multi-run lock** — 5×15s thr + NVML cumulative energy  
-4. **Det dual-run** — independent process thr stability  
-5. **Code path invention** — `grow_act_cap` exact-fit capacity (eliminates 2× HBM cliff at B76+)
+1. **Recipe sweep** - quant, TF32, fusion, dual-stream, pair-fuse, mega, graphs, batch ladder  
+2. **Combo fine ladder** - dual_gemm × pair × mlp_pers × fusion1 @ B64/68/72  
+3. **Multi-run lock** - 5×15s thr + NVML cumulative energy  
+4. **Det dual-run** - independent process thr stability  
+5. **Code path invention** - `grow_act_cap` exact-fit capacity (eliminates 2× HBM cliff at B76+)
 
 ## Eliminated (regress or crash)
 
@@ -42,9 +42,9 @@ Aggressive thr / energy / determinism campaign after refusing to lock the weak 4
 | Compare | Prior freeze | Accel lock winner | Delta |
 |---------|-------------:|------------------:|------:|
 | Multi thr (headline batch) | 41,221 @ B16 | **44,907 @ B72** | **+9% thr** |
-| Board J/pos | 0.0169 | **0.0153–0.0155** | **~8–9% lower energy** |
-| Same-session B16 thr | — | 39,985 | pod thermal lower than prior freeze B16 |
-| Same-session thr ratio | — | 44,907 / 39,985 | **1.12×** vs same-session B16 |
+| Board J/pos | 0.0169 | **0.0153 to 0.0155** | **~8 to 9% lower energy** |
+| Same-session B16 thr | - | 39,985 | pod thermal lower than prior freeze B16 |
+| Same-session thr ratio | - | 44,907 / 39,985 | **1.12×** vs same-session B16 |
 
 ## Recommended product recipe
 
@@ -56,7 +56,7 @@ export LUXI_TRADE_ATTN=flash LUXI_FLASH_BRIDGE=1 LUXI_ATTN_BACKEND=flash
 export LUXI_KERNEL_MORPH=0 LUXI_CUDA_PHASE_TIMING=0
 export LUXI_GEMM_DUAL_STREAM=1
 # optional thr edge:
-# export LUXI_FUSION1=1   # dual_fuse — slight thr↑, energy≈same
+# export LUXI_FUSION1=1   # dual_fuse - slight thr↑, energy≈same
 # batch=72  sustain_seq=128
 ```
 
@@ -67,7 +67,7 @@ export LUXI_GEMM_DUAL_STREAM=1
 
 - All locked arms: `ATTN_BACKEND_USED=flash` fb=0  
 - Pair B64 dual independent process: thr rel_diff **3.5%** (acceptable thr variance)  
-- Dual_gemm B72 dual process: one outlier (37.4k @ 641 W) — thermal/clock dip after multi-hour campaign; multi-run 5× window still stable ~44.7–45.1k  
+- Dual_gemm B72 dual process: one outlier (37.4k @ 641 W) - thermal/clock dip after multi-hour campaign; multi-run 5× window still stable ~44.7 to 45.1k  
 - Numeric receipt det (AUDIT lane) unchanged by these TRADE thr knobs
 
 ## Code invention: kill the power-of-two HBM cliff

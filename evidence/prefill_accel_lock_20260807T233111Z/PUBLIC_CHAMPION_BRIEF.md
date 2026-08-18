@@ -1,4 +1,4 @@
-# Prefill champion — dual_gemm @ B72
+# Prefill champion - dual_gemm @ B72
 
 **Status:** AUTHORITATIVE for Luxi **absolute** prefill thr + board energy  
 **Pack:** `prefill_accel_lock_20260807T233111Z`  
@@ -6,7 +6,7 @@
 
 ## Two facts (never blend)
 
-### Fact A — Best measured Luxi operating point (this pack)
+### Fact A - Best measured Luxi operating point (this pack)
 
 | Metric | Value |
 |--------|------:|
@@ -18,7 +18,7 @@
 
 **vs prior Luxi B16 freeze (41,221 / 0.0169):** ~**1.09× thr**, ~**9% lower J/pos**.
 
-### Fact B — Matched vLLM comparison (separate pack)
+### Fact B - Matched vLLM comparison (separate pack)
 
 Authority: `prefill_freeze_matched_20260807T210749Z` (B16/B32 only).
 
@@ -42,16 +42,16 @@ Dual_gemm is simpler, more efficient, and more defensible.
 
 ## Physics (copy-safe)
 
-High-batch prefill gives dual GEMM streams enough work to overlap and amortize weight movement. Dual-stream failing at M=1 decode is a different execution regime — not a contradiction.
+High-batch prefill gives dual GEMM streams enough work to overlap and amortize weight movement. Dual-stream failing at M=1 decode is a different execution regime - not a contradiction.
 
 ## Receipt equality (publication check)
 
-**Status: PASS** — `B72_DUAL_GEMM_RECEIPT.json`
+**Status: PASS** - `B72_DUAL_GEMM_RECEIPT.json`
 
 - Contract: Door-B stack fingerprint under dual_gemm env, **independent-process hash equality**
 - B1 / B16 / B32: `hash_stable=true`, `max_abs_vs_run0=0`, same hashes across processes
 - B72 thr dual-run: flash fb=0, thr relative spread ~0.6% (performance stability; thr loop does not emit hashes)
-- **Not** Door-A AUDIT bit-exact hero — declared Door-B TRADE train-lane contract
+- **Not** Door-A AUDIT bit-exact hero - declared Door-B TRADE train-lane contract
 
 ## Non-claims
 
