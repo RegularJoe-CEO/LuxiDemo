@@ -16,9 +16,9 @@ Each directory holds `r_cpu.json` and (where GPU) `r_gpu.json` from those runs, 
 
 | Directory | Device | Notes |
 |-----------|--------|--------|
-| `rtx5090/` | GeForce RTX 5090 (Blackwell, compute capability 12.0) | **Strongest row.** Device code is **runtime JIT of embedded PTX built for sm_80** — **not** a compiled-in sm_120 / sm_120f target. Receipt `cuda_build`: `features=cuda; PTX sm_80; -fmad=false`. JIT on hardware newer than the PTX arch produced bit-identical f64 output. Endpoint `157.157.221.29:54914` (not used in the first four-device set; different /16 from A100). |
+| `rtx5090/` | GeForce RTX 5090 (Blackwell, compute capability 12.0) | **Strongest row.** Device code is **runtime JIT of embedded PTX built for sm_80** - **not** a compiled-in sm_120 / sm_120f target. Receipt `cuda_build`: `features=cuda; PTX sm_80; -fmad=false`. JIT on hardware newer than the PTX arch produced bit-identical f64 output. Endpoint `157.157.221.29:54914` (not used in the first four-device set; different /16 from A100). |
 | `rtx4090/` | GeForce RTX 4090 (Ada sm_89) | Different GPU generation from Hopper |
-| `a100/` | A100-SXM4-80GB (Ampere sm_80) | **Measured under v0.2.0** (`4a86d2a`). `host_simd_capability=avx2` — first avx2 x86 host in this matrix (pricing remains scalar-deterministic on every host). Endpoint `38.80.152.72:31171` (not used in the first four-device set). |
+| `a100/` | A100-SXM4-80GB (Ampere sm_80) | **Measured under v0.2.0** (`4a86d2a`). `host_simd_capability=avx2` - first avx2 x86 host in this matrix (pricing remains scalar-deterministic on every host). Endpoint `38.80.152.72:31171` (not used in the first four-device set). |
 | `h200/` | H200 (Hopper sm_90) | |
 | `h100-a/` | H100 80GB HBM3 | UUID `GPU-b3bcc572-…` · install fp in `meta.json` |
 | `h100-b/` | H100 80GB HBM3 | UUID `GPU-d13abf0e-…` · **different device + install**, not claimed as a separate physical host |
