@@ -32,29 +32,6 @@ Tables: [`../RESULTS.md`](../RESULTS.md) · how to run: [`../DEMOS.md`](../DEMOS
 - vs vLLM batch-invariant mode: faster and less energy on every test
 - Bit-identical output at batch sizes 1, 16 and 64
 
-### Absolute prefill champion (B72 dual_gemm) - 2026-08-07
-
-[`prefill_accel_lock_20260807T233111Z/`](prefill_accel_lock_20260807T233111Z/)
-
-- ~44,860 pos/s · ~0.0153 board J/pos · multi-run median
-- **Not** a matched vLLM claim at B72
-
-### B16 / B32 multi-run freeze - 2026-08-07
-
-[`prefill_freeze_matched_20260807T210749Z/`](prefill_freeze_matched_20260807T210749Z/)
-
-- B16 ~41,221 pos/s · ~0.0169 board J/pos (S=128)
-- B32 ~43,464 pos/s · ~0.0158 board J/pos (S=128)
-
-### version-100 GTM lineage
-
-[`version-100-h100-gtm/`](version-100-h100-gtm/)
-
-- Qwen2-7B-Instruct class · S=128 · B=16/32
-- Flash + device-resident + FP16 TRADE path
-- Multi-run 5×15 s thr + NVML board J/pos + det=1.0
-- Authoritative: `MULTI_RUN_LOCK_SLIM.json` · buyer: `PUBLIC_GTM_ONE_PAGER.md`
-
 ## Prior third-party-operated transformer measurement
 
 ### Version 99 matched prefill, 2026-07-23 (TESTfort)
@@ -95,6 +72,9 @@ transformer inference and from the option book.
 | [`h100-LONGCTX-scaling`](h100-LONGCTX-scaling/) | O(N) versus dense O(N²) memory scaling |
 | [`h100-BASELINE-vs-geo`](h100-BASELINE-vs-geo/) | Single-layer baseline and geodesic wedges |
 | [`h100-serve-sustain-2026-07-11`](h100-serve-sustain-2026-07-11/) | Continuous-batch sustain context; CPU-bound serve path on H100 host |
+| [`version-100-h100-gtm`](version-100-h100-gtm/) | Late-July 2026 short-prompt (S=128) B16/B32 multi-run raw files |
+| [`prefill_freeze_matched_20260807T210749Z`](prefill_freeze_matched_20260807T210749Z/) | August 2026 short-prompt (S=128) B16/B32 multi-run raw files |
+| [`prefill_accel_lock_20260807T233111Z`](prefill_accel_lock_20260807T233111Z/) | August 2026 short-prompt (S=128) recipe and batch sweep raw files |
 
 These packs have not been deleted or reinterpreted. Their numbers remain tied
 to their original model/shape, code, comparator, and measurement method.

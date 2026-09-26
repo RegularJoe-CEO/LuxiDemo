@@ -31,7 +31,7 @@ Public portfolio order (website on Replit; this repo is binaries only): **sale �
 |---|---|---|
 | **Luxi Book** | **Primary Quant try** - CSV European options, five Greeks, output-vector hash + Ed25519 `lxq2_` receipt; macOS + Linux CPU + Linux CUDA closed binaries | [`DEMOS.md`](DEMOS.md) · [`downloads/luxibook/`](downloads/luxibook/) |
 | **LuxiRisk** | **Freebie** retail / crypto risk CLI + Ed25519 `lxr1_` receipts - not institutional Quant | [`luxirisk/`](luxirisk/) · release `luxirisk-v0.2` |
-| **LuxiEdge serve / thr·J packs** | Inference evidence and stripped serve binary (scoreboard + toy generate path) | [`DEMOS.md`](DEMOS.md) · [`evidence/`](evidence/) |
+| **LuxiEdge benchmarks + serve demo** | Measured H100 results vs vLLM 0.25.1 and a stripped serve binary (OpenAI-shaped API, toy generate path) | [`BENCHMARKS.md`](BENCHMARKS.md) · [`DEMOS.md`](DEMOS.md) · [`evidence/`](evidence/) |
 | Numerical v3.0 demos | REST `/evaluate`, operators, ATE/tools - supporting quant math, not the option book | GitHub release `v3.0` · [`DEMOS.md`](DEMOS.md) |
 
 LuxiEdge remains the public **AI inference** wedge. Luxi Book is the public

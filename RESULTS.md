@@ -56,21 +56,6 @@ Luxi's own: [`BENCHMARKS.md`](BENCHMARKS.md). Run summary:
 Scope: one H100 SXM · GPU board energy (NVML) · not wall-plug · not
 multi-tenant full-server leadership.
 
-## LuxiEdge absolute prefill (internal multi-run champion)
-
-**Workload:** Qwen2-7B-Instruct class · S=128 · B72 · dual_gemm  
-(`LUXI_GEMM_DUAL_STREAM=1`) · flash + device-resident + FP16 · one H100 80GB ·
-NVML board joules · 5×15 s multi-run · 2026-08-07.
-
-| Operating point | Thr median (pos/s) | Board J/pos |
-|---|---:|---:|
-| **B72 dual_gemm** | **~44,860** | **~0.0153** |
-
-Pack:
-[`evidence/prefill_accel_lock_20260807T233111Z/`](evidence/prefill_accel_lock_20260807T233111Z/)
-
-**Not** a matched vLLM claim at B72.
-
 ## LuxiEdge Version 99 (prior third-party baseline)
 
 Technician-operated matched prefill on one NVIDIA H100 80GB (2026-07-23).

@@ -9,7 +9,6 @@ configurations. They are **not** the current public headline.
 |---------|--------|
 | Luxi Book receipt matrix | [`RESULTS.md`](RESULTS.md) · [`downloads/luxibook/`](downloads/luxibook/) |
 | Qwen2-7B vs vLLM 0.25.1 (H100 prefill + decode) | [`BENCHMARKS.md`](BENCHMARKS.md) |
-| Absolute prefill thr/J | [`evidence/README.md`](evidence/README.md) |
 | Full measured tables | [`RESULTS.md`](RESULTS.md) |
 | Chronology | [`HISTORY.md`](HISTORY.md) |
 
@@ -37,6 +36,9 @@ Open `evidence/h100-7b-class-TRADE/START_HERE.md` first.
 | [h100-LONGCTX-scaling](evidence/h100-LONGCTX-scaling/) | O(N) vs O(N²) memory + CUDA 32k |
 | [h100-BASELINE-vs-geo](evidence/h100-BASELINE-vs-geo/) | Single-layer baseline + morph/mesh wedges |
 | [h100-serve-sustain-2026-07-11](evidence/h100-serve-sustain-2026-07-11/) | Continuous-batch serve sustain (CPU path context) |
+| [version-100-h100-gtm](evidence/version-100-h100-gtm/) | Late-July 2026 short-prompt (S=128) B16/B32 multi-run raw files |
+| [prefill_freeze_matched_20260807T210749Z](evidence/prefill_freeze_matched_20260807T210749Z/) | August 2026 short-prompt (S=128) B16/B32 multi-run raw files |
+| [prefill_accel_lock_20260807T233111Z](evidence/prefill_accel_lock_20260807T233111Z/) | August 2026 short-prompt (S=128) recipe and batch sweep raw files |
 
 ## Measurement boundaries
 

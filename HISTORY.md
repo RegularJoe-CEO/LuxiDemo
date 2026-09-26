@@ -57,17 +57,21 @@ The current public pack preserves the technician attestation, per-run table,
 arithmetic audit, anomaly log, and selected receipts. The signed narrative is
 still pending.
 
-### Late July 2026: version-100 GTM lock
+### Late July 2026: version-100 serve demo
 
-Multi-run H100 thr/J/det lock on B16/B32 (TRADE energy path). Public pack under `evidence/version-100-h100-gtm/`. Local serve
-binary embeds the scoreboard on `GET /v1/gtm`.
+Short-prompt (S=128) B16/B32 multi-run campaign on the TRADE energy path, with
+raw files under `evidence/version-100-h100-gtm/`. The version-100 serve demo
+binary (OpenAI-shaped API, toy generate path) was published in this period.
 
-### Early August 2026: absolute prefill champion + B16/B32 freeze
+### Early August 2026: short-prompt prefill sweeps
 
-- B72 dual_gemm multi-run absolute thr/J lock
+- S=128 recipe and batch sweep
   (`evidence/prefill_accel_lock_20260807T233111Z/`)
-- Separate B16/B32 multi-run freeze
+- S=128 B16/B32 multi-run
   (`evidence/prefill_freeze_matched_20260807T210749Z/`)
+
+Raw files are retained in both folders. Measured results are in
+[`BENCHMARKS.md`](BENCHMARKS.md).
 
 ### Mid August 2026: Luxi Book public Quant surface
 

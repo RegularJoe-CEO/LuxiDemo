@@ -11,7 +11,7 @@ Layout
     *.sha256
     README.md
 
-  luxiedge-serve-macos-arm64    Inference serve + locked GTM scoreboard (demoted)
+  luxiedge-serve-macos-arm64    Inference serve API demo (demoted)
   luxiedge-serve-linux-x86_64
   *.sha256
 
@@ -48,11 +48,11 @@ Measured receipt on example_book.csv only:
 Unsigned binaries: macOS right-click → Open.
 
 ----------------------------------------------------------------------------
-B) LuxiEdge serve (inference scoreboard — not Book)
+B) LuxiEdge serve (inference API demo — not Book)
 ----------------------------------------------------------------------------
 
 Product: LuxiEdge version-100 commercial demo binary
-What this is: OpenAI-shaped HTTP server + locked GTM scoreboard
+What this is: OpenAI-shaped HTTP server (demo build, toy generate path)
 What this is not: Engine source, CUDA TRADE kernels, full model weights, Luxi Book
 
 # macOS Apple Silicon
@@ -64,15 +64,17 @@ chmod +x luxiedge-serve-linux-x86_64
 ./luxiedge-serve-linux-x86_64 --bind 127.0.0.1:8787
 
 Then:
-  curl -s http://127.0.0.1:8787/health | python3 -m json.tool
-  curl -s http://127.0.0.1:8787/v1/gtm | python3 -m json.tool
+  curl -s http://127.0.0.1:8787/v1/models | python3 -m json.tool
   curl -s -X POST http://127.0.0.1:8787/v1/completions \
     -H 'content-type: application/json' \
     -d '{"prompt":"Why measure joules per token?","max_tokens":24}'
   curl -s -X POST http://127.0.0.1:8787/v1/audit -d '{}'
 
-GET /v1/gtm embeds the measured H100 multi-run lock (not live laptop thr).
-Local generate path is a toy for instant API demos. Board joules ≠ wall-plug.
+Local generate path is a toy for instant API demos. Energy fields in completion
+responses are fixed per-token estimates, not live measurements. The /v1/gtm,
+/health and /dashboard routes include static scoreboard fields compiled into
+this demo build, for API integration testing; they are not benchmark results.
+Measured H100 results: ../BENCHMARKS.md. Board joules ≠ wall-plug.
 
 Verify:
   shasum -a 256 -c luxiedge-serve-macos-arm64.sha256

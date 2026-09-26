@@ -11,7 +11,7 @@
 **Try without an NDA:** [**Luxi Book**](downloads/luxibook/) (CSV European options + deterministic output hash + Ed25519 `lxq2_` receipts - the professional Quant try)
 and [**LuxiRisk**](luxirisk/) (free crypto/retail risk CLI). Inference serve binaries and numerical toys are documented in DEMOS below those two.
 
-Luxi also builds energy-aware AI compute (prefill thr/J evidence on H100). **LuxiEdge** is the inference surface.
+Luxi also builds energy-aware AI compute (measured H100 results in [`BENCHMARKS.md`](BENCHMARKS.md)). **LuxiEdge** is the inference surface.
 **Luxi Book** is the runnable Quant path that can become a design-partner conversation. Other layers are labeled prototype or concept.
 
 This repository has two jobs:
@@ -28,21 +28,6 @@ This repository has two jobs:
 Luxi runs Qwen2-7B on an H100 with bit-identical results at any batch size. On long prompts (2k to 32k tokens) it is 3–7% faster than vLLM 0.25.1 and uses 2–5% less energy per token. When generating tokens it matches vLLM's speed but uses 2–7% more energy per token. Against vLLM's own deterministic (batch-invariant) mode, Luxi is faster and uses less energy on every test, including 1.5–2.7× faster token generation with 16–50% less energy.
 
 Full prefill and decode tables, method, determinism, and what is borrowed vs Luxi's own: [`BENCHMARKS.md`](BENCHMARKS.md)
-
-### Luxi absolute prefill (dual_gemm @ B72, S=128)
-
-| Operating point | Thr median (pos/s) | Board J/pos |
-|-----------------|-------------------:|------------:|
-| **B72 dual_gemm** (`LUXI_GEMM_DUAL_STREAM=1`) | **~44,860** | **~0.0153** |
-
-5×15s multi-run · flash + device-resident + FP16 · S=128 · H100 NVML board joules.  
-Replaces prior Luxi absolute B16 freeze (~41.2k / 0.0169): ~**1.09× thr**, ~**9% lower J/pos**.
-
-**Pack:** [`evidence/prefill_accel_lock_20260807T233111Z/`](evidence/prefill_accel_lock_20260807T233111Z/) · [`CHAMPION_LOCK.json`](evidence/prefill_accel_lock_20260807T233111Z/CHAMPION_LOCK.json) · [`PUBLIC_CHAMPION_BRIEF.md`](evidence/prefill_accel_lock_20260807T233111Z/PUBLIC_CHAMPION_BRIEF.md)
-
-Single-shot thr (e.g. 45,986) is not a product headline. No vLLM comparison is claimed for this S=128 operating point.
-
-Scope: prefill positions (iters × batch × seq), single GPU board energy - not decode-only, not multi-tenant full-server leadership, not wall-plug.
 
 ### Prior third-party baseline (TESTfort Version 99, 2026-07-23)
 
@@ -100,15 +85,15 @@ pip install cryptography && python3 luxirisk/test-vectors/verify_receipts.py
 - Release: [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2)
 - Catalog: [`DEMOS.md`](DEMOS.md) · Built by the team behind LuxiEdge - [luxiedge.com](https://luxiedge.com)
 
-### C) Inference serve + locked scoreboard (demoted)
+### C) Inference serve API demo (demoted)
 
 ```bash
 chmod +x downloads/luxiedge-serve-macos-arm64
 ./downloads/luxiedge-serve-macos-arm64 --bind 127.0.0.1:8787
-curl -s http://127.0.0.1:8787/v1/gtm | python3 -m json.tool
+curl -s http://127.0.0.1:8787/v1/models | python3 -m json.tool
 ```
 
-Not Luxi Book. Catalog: [`DEMOS.md`](DEMOS.md).
+Not Luxi Book. OpenAI-shaped API with a toy generate path. The `/v1/gtm`, `/health` and `/dashboard` routes include static scoreboard fields compiled into this demo build, for API integration testing; they are not benchmark results. Measured results: [`BENCHMARKS.md`](BENCHMARKS.md). Catalog: [`DEMOS.md`](DEMOS.md).
 
 ## Demo and product map
 
@@ -120,7 +105,7 @@ Not Luxi Book. Catalog: [`DEMOS.md`](DEMOS.md).
 | Deterministic tensor primitives | `luxi-tools ate` and `energy` | **Working binary demo** |
 | Quant/statistical operators | `validate`, `quant_chain`, normalization operators | **Working binary demo** |
 | Scientific and edge examples | Orbital and robotics commands | **Working binary demo** |
-| LuxiEdge serve scoreboard (v100) | Stripped HTTP binary + `/v1/gtm` lock | **Working binary demo (no source)** |
+| LuxiEdge serve demo (v100) | Stripped HTTP binary: OpenAI-shaped API, toy generate path | **Working binary demo (no source)** |
 | LuxiEdge Qwen2-7B vs vLLM 0.25.1 | H100 prefill + decode thr, J/token, determinism ([`BENCHMARKS.md`](BENCHMARKS.md)); engine private | **Measured evidence** |
 | LuxiEdge Version 99 inference | TESTfort prior baseline; thr trailed vLLM | **Third-party measured lineage** |
 | Faithful Qwen2-7B CUDA | Website reports current acceptance result | **Raw public correctness pack pending** |
