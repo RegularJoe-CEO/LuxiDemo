@@ -100,12 +100,14 @@ pip install cryptography && python3 luxirisk/test-vectors/verify_receipts.py
 chmod +x luxiedge-serve-macos-arm64
 ./luxiedge-serve-macos-arm64 --bind 127.0.0.1:8787
 curl -s http://127.0.0.1:8787/v1/models | python3 -m json.tool
+curl -s http://127.0.0.1:8787/v1/gtm | python3 -m json.tool
 curl -s -X POST http://127.0.0.1:8787/v1/audit -d '{}'
 ```
 
 - Package (binaries + docs): [`demo/luxiedge-yc-demo/`](demo/luxiedge-yc-demo/) · also [`downloads/`](downloads/)
 - Measured H100 results: [`BENCHMARKS.md`](BENCHMARKS.md)
-- Local generate path is a toy path for instant API demos. The `/v1/gtm`, `/health` and `/dashboard` routes include static scoreboard fields compiled into this demo build, for API integration testing; they are not benchmark results.
+- Local generate path is a toy path for instant API demos. Completions return a `token_receipt` and `latency_ms`.
+- `/v1/gtm` returns build info, a determinism note and a link to [`BENCHMARKS.md`](BENCHMARKS.md); `/health` includes `build_version` and the benchmarks link; the `/dashboard` top card links to BENCHMARKS.md.
 
 ## Download and verify (numerical v3.0)
 
