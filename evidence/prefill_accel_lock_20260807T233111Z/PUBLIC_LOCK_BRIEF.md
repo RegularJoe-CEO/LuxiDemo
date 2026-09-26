@@ -1,41 +1,20 @@
-# Prefill aggressive accel lock
-**Pack:** `prefill_accel_lock_20260807T233111Z`
-**GPU:** H100 80GB · flash+device_resident+FP16
+# August 2026 short-prompt prefill sweep
 
-## Phase A top thr (1×10s)
-- 45592.6 pos/s · B=72 · A_dual_fuse_B72
-- 45455.4 pos/s · B=64 · A_dual_mlp_B64
-- 45379.7 pos/s · B=68 · A_pair_B68
-- 45355.6 pos/s · B=68 · A_dual_pair_mlp_B68
-- 45334.5 pos/s · B=72 · A_base_B72
-- 45323.5 pos/s · B=72 · A_dual_mlp_B72
-- 45285.1 pos/s · B=68 · A_dual_pair_B68
-- 45253.8 pos/s · B=64 · A_dual_pair_fuse_B64
+**Pack:** `prefill_accel_lock_20260807T233111Z`  
+**GPU:** H100 80GB HBM3 · flash + device-resident + FP16  
+**Model class:** Qwen2-7B-Instruct · sequence length 128
 
-## Phase B multi-run (5×15s) + energy
-- **B_multirun_dual_fuse_B72**: thr_med=44907.4 (n=5 stdev=3686.4) J/pos=0.015483 W=688.768 flash=True
-- **B_multirun_dual_gemm_B72**: thr_med=44859.9 (n=5 stdev=308.2) J/pos=0.015322 W=687.54 flash=True
-- **B_multirun_dual_mlp_B64**: thr_med=44805.1 (n=5 stdev=566.8) J/pos=0.015412 W=687.9575 flash=True
-- **B_multirun_pair_B68**: thr_med=44404.4 (n=5 stdev=113.0) J/pos=0.015399 W=685.6285 flash=True
-- **B_multirun_base_B32**: thr_med=42764.4 (n=5 stdev=306.1) J/pos=0.016102 W=687.99 flash=True
-- **B_multirun_base_B16**: thr_med=39985.0 (n=5 stdev=475.9) J/pos=0.016844 W=675.651 flash=True
+This folder retains raw run files from an August 2026 short-prompt (S=128) prefill campaign: a recipe sweep (quantization, TF32, fusion, dual-stream GEMM, pair fuse, CUDA graphs, batch ladder up to B72) and 5×15 s multi-run sustains with NVML board energy.
 
-## Det dual-run
-{
-  "dual_gemm_B72": {
-    "run1": 45206.5,
-    "run2": 37401.4,
-    "rel_diff": 0.17265437492396002,
-    "both_flash": true
-  },
-  "pair_B64": {
-    "run1": 45351.7,
-    "run2": 43754.3,
-    "rel_diff": 0.03522249441586521,
-    "both_flash": true
-  }
-}
+For measured Luxi results, including the comparison against vLLM 0.25.1, see [`BENCHMARKS.md`](../../BENCHMARKS.md).
 
-## vs prior freeze B16 thr 41221 / J 0.0169
-- Best multirun thr **44907** vs 41221 → **1.09×**
-- Best J/pos **0.015483** vs 0.0169 → ratio **0.917**
+## Files
+
+| File | Contents |
+|------|----------|
+| `sweep_all.json` | Recipe sweep (raw) |
+| `B_multirun_*.json` | Per-recipe 5×15 s multi-run (raw) |
+| `CHAMPION_LOCK.json` · `FREEZE_PACK.json` · `B72_DUAL_GEMM_RECEIPT.json` | Campaign summary and receipt files (raw) |
+| `PHASE3_GROW_ACT_CAP_NOTE.md` | Engineering note on activation-buffer allocation |
+
+Contact: e@ewaller.com

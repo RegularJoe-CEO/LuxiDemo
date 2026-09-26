@@ -1,29 +1,23 @@
-# version-100 H100 GTM pack (public)
+# version-100 H100 pack (public)
 
-**Status:** Authoritative multi-run thr + board energy + determinism lock  
 **Hardware:** NVIDIA H100 80GB HBM3  
 **Model class:** Qwen2-7B-Instruct (FP16)  
 **Workload:** Prefill-heavy · sequence 128 · batch 16 / 32  
 
-## Headline
+This folder retains raw run files from the version-100 short-prompt (S=128) multi-run campaign on the TRADE energy path.
 
-| Batch | Thr median (pos/s) | J/pos median | Det |
-|------:|-------------------:|-------------:|----:|
-| 16 | ~39,865 | ~0.0168 | 1.0 |
-| 32 | ~42,967 | ~0.0160 | 1.0 |
-
-**vs vLLM 0.25.1 (Qwen2-7B, prefill + decode):** see [`BENCHMARKS.md`](../../BENCHMARKS.md)
+**Measured results, including Luxi vs vLLM 0.25.1 (Qwen2-7B, prefill + decode):** see [`BENCHMARKS.md`](../../BENCHMARKS.md)
 
 ## Files
 
 | File | Role |
 |------|------|
-| `MULTI_RUN_LOCK_SLIM.json` | Authoritative 5×15s medians |
-| `MULTI_RUN_LOCK.json` | Full multi-run detail |
-| `PUBLIC_GTM_ONE_PAGER.md` | Buyer one-pager |
-| `H2H_ANSWER.json` | Matched-peer H2H summary and run medians |
+| `MULTI_RUN_LOCK_SLIM.json` | 5×15s multi-run medians (raw) |
+| `MULTI_RUN_LOCK.json` | Full multi-run detail (raw) |
+| `H2H_ANSWER.json` | Run medians (raw) |
+| `luxi_results.json` / `vllm_results.json` | Per-run raw files |
 | `DETERMINISM_FORMAL.md` | Det definition |
-| `luxi_results.json` / `vllm_results.json` | H2H raw |
+| `PUBLIC_GTM_ONE_PAGER.md` | Buyer one-pager |
 
 ## Demo (binary, no source)
 

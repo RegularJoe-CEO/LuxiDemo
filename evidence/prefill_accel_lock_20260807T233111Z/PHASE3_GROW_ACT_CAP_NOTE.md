@@ -34,4 +34,4 @@ Replace `next_power_of_two` activation capacity with `grow_act_cap` (need + 12.5
 
 ## Product impact
 
-**None yet.** Absolute champion remains dual_gemm B72 multi-run **44,860 / 0.01532** on pre-exactcap thr binary.
+**None.** Measured Luxi results are in [`BENCHMARKS.md`](../../BENCHMARKS.md).

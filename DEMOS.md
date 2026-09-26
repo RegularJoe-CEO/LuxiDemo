@@ -87,9 +87,9 @@ pip install cryptography && python3 luxirisk/test-vectors/verify_receipts.py
 - Test vectors: [`luxirisk/test-vectors/`](luxirisk/test-vectors/)
 - Release: [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2) (**unsigned** binaries + checksums)
 - Offline by default · optional `--stamp` / `--beacon` · CLI only · Built by the team behind LuxiEdge - luxiedge.com
-## Demo 2: version-100 commercial serve + GTM scoreboard (inference)
+## Demo 2: version-100 commercial serve (inference)
 
-**Binary only - no engine source. Not Luxi Book.** OpenAI-shaped HTTP API with locked H100 thr/J/det on `GET /v1/gtm`.
+**Binary only - no engine source. Not Luxi Book.** OpenAI-shaped HTTP API with a toy generate path.
 
 | Platform | Binary in repo |
 |----------|----------------|
@@ -99,13 +99,13 @@ pip install cryptography && python3 luxirisk/test-vectors/verify_receipts.py
 ```bash
 chmod +x luxiedge-serve-macos-arm64
 ./luxiedge-serve-macos-arm64 --bind 127.0.0.1:8787
-curl -s http://127.0.0.1:8787/v1/gtm | python3 -m json.tool
+curl -s http://127.0.0.1:8787/v1/models | python3 -m json.tool
 curl -s -X POST http://127.0.0.1:8787/v1/audit -d '{}'
 ```
 
-- Package (binaries + lock docs): [`demo/luxiedge-yc-demo/`](demo/luxiedge-yc-demo/) · also [`downloads/`](downloads/)
-- Evidence: [`evidence/version-100-h100-gtm/`](evidence/version-100-h100-gtm/)
-- Local generate path is a toy path for instant API demos; thr/J numbers on `/v1/gtm` are the **measured H100 multi-run lock**.
+- Package (binaries + docs): [`demo/luxiedge-yc-demo/`](demo/luxiedge-yc-demo/) · also [`downloads/`](downloads/)
+- Measured H100 results: [`BENCHMARKS.md`](BENCHMARKS.md)
+- Local generate path is a toy path for instant API demos. The `/v1/gtm`, `/health` and `/dashboard` routes include static scoreboard fields compiled into this demo build, for API integration testing; they are not benchmark results.
 
 ## Download and verify (numerical v3.0)
 
@@ -226,7 +226,7 @@ proprietary engine source. See also [`scripts/README.md`](scripts/README.md).
 | **Luxi Book** (Quant sale) | CSV BS/Black-76 + Greeks + output-vector hash + Ed25519 `lxq2_` receipt; macOS + Linux CPU + Linux CUDA | Partner books / design-partner path; no universal GPU claim |
 | **LuxiRisk** (freebie) | Offline retail/crypto CLI + Ed25519 `lxr1_` receipts + verify + public vectors | [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2) (**OS binaries not code-signed**; Gatekeeper/SmartScreen friction) |
 | LuxiQuant numerical | v3.0 binary validation + REST + operator receipts | Keep secondary to Book; optional multi-platform numerical matrix |
-| LuxiEdge | Serve scoreboard + thr/J packs + Version 99 verifier | Controlled downloadable inference evaluation package |
+| LuxiEdge | Serve API demo + H100 benchmarks ([`BENCHMARKS.md`](BENCHMARKS.md)) + Version 99 verifier | Controlled downloadable inference evaluation package |
 | LuxiPack | None | Admission/placement trace versus a baseline |
 | LuxiPhase | None | Synthetic load-shaping trace with SLO and stability checks |
 | LuxiLoad | None | Controlled compute/power co-simulation or design engagement |
