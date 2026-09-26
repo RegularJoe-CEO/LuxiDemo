@@ -6,7 +6,7 @@
 **Website (Replit, separate):** [luxiedge.com](https://luxiedge.com) - not published from this repository.  
 **Boundary:** [`REPO_BOUNDARY.md`](REPO_BOUNDARY.md)
 
-**Runnable demos:** [`DEMOS.md`](DEMOS.md) · **Evidence:** [`evidence/README.md`](evidence/README.md) · **Architecture:** [`LUXI_SYSTEM.md`](LUXI_SYSTEM.md)
+**Benchmarks:** [`BENCHMARKS.md`](BENCHMARKS.md) · **Runnable demos:** [`DEMOS.md`](DEMOS.md) · **Evidence:** [`evidence/README.md`](evidence/README.md) · **Architecture:** [`LUXI_SYSTEM.md`](LUXI_SYSTEM.md)
 
 **Try without an NDA:** [**Luxi Book**](downloads/luxibook/) (CSV European options + deterministic output hash + Ed25519 `lxq2_` receipts - the professional Quant try)
 and [**LuxiRisk**](luxirisk/) (free crypto/retail risk CLI). Inference serve binaries and numerical toys are documented in DEMOS below those two.
@@ -21,9 +21,15 @@ This repository has two jobs:
 2. Publish evidence packs that show exactly what was measured, including
    historical experiments that remain important to the development record.
 
-## Current measured result (two facts - do not blend)
+## Current measured result
 
-### Fact A - Best Luxi absolute prefill (dual_gemm @ B72)
+### LuxiEdge vs vLLM 0.25.1 - Qwen2-7B on H100
+
+Luxi runs Qwen2-7B on an H100 with bit-identical results at any batch size. On long prompts (2k to 32k tokens) it is 3–7% faster than vLLM 0.25.1 and uses 2–5% less energy per token. When generating tokens it matches vLLM's speed but uses 2–7% more energy per token. Against vLLM's own deterministic (batch-invariant) mode, Luxi is faster and uses less energy on every test, including 1.5–2.7× faster token generation with 16–50% less energy.
+
+Full prefill and decode tables, method, determinism, and what is borrowed vs Luxi's own: [`BENCHMARKS.md`](BENCHMARKS.md)
+
+### Luxi absolute prefill (dual_gemm @ B72, S=128)
 
 | Operating point | Thr median (pos/s) | Board J/pos |
 |-----------------|-------------------:|------------:|
@@ -34,16 +40,7 @@ Replaces prior Luxi absolute B16 freeze (~41.2k / 0.0169): ~**1.09× thr**, ~**9
 
 **Pack:** [`evidence/prefill_accel_lock_20260807T233111Z/`](evidence/prefill_accel_lock_20260807T233111Z/) · [`CHAMPION_LOCK.json`](evidence/prefill_accel_lock_20260807T233111Z/CHAMPION_LOCK.json) · [`PUBLIC_CHAMPION_BRIEF.md`](evidence/prefill_accel_lock_20260807T233111Z/PUBLIC_CHAMPION_BRIEF.md)
 
-### Fact B - Matched vLLM H2H (B16 / B32 only)
-
-| Batch | Luxi thr | Board J/pos | vs vLLM thr | vs vLLM J/pos |
-|------:|---------:|------------:|------------:|--------------:|
-| **16** | **~41,221** | **~0.0169** | **~1.18×** | **~12% lower** |
-| **32** | **~43,464** | **~0.0158** | **~1.19×** | **~14% lower** |
-
-**Pack:** [`evidence/prefill_freeze_matched_20260807T210749Z/`](evidence/prefill_freeze_matched_20260807T210749Z/)  
-
-**Rule:** Absolute B72 is **not** claimed as 1.18× vLLM until a matched B72 vLLM arm exists. Single-shot thr (e.g. 45,986) is not a product headline.
+Single-shot thr (e.g. 45,986) is not a product headline. No vLLM comparison is claimed for this S=128 operating point.
 
 Scope: prefill positions (iters × batch × seq), single GPU board energy - not decode-only, not multi-tenant full-server leadership, not wall-plug.
 
@@ -124,7 +121,7 @@ Not Luxi Book. Catalog: [`DEMOS.md`](DEMOS.md).
 | Quant/statistical operators | `validate`, `quant_chain`, normalization operators | **Working binary demo** |
 | Scientific and edge examples | Orbital and robotics commands | **Working binary demo** |
 | LuxiEdge serve scoreboard (v100) | Stripped HTTP binary + `/v1/gtm` lock | **Working binary demo (no source)** |
-| LuxiEdge Version 100 TRADE thr/J | Multi-run H100 pack; engine private | **Measured evidence (wins thr+J vs vLLM)** |
+| LuxiEdge Qwen2-7B vs vLLM 0.25.1 | H100 prefill + decode thr, J/token, determinism ([`BENCHMARKS.md`](BENCHMARKS.md)); engine private | **Measured evidence** |
 | LuxiEdge Version 99 inference | TESTfort prior baseline; thr trailed vLLM | **Third-party measured lineage** |
 | Faithful Qwen2-7B CUDA | Website reports current acceptance result | **Raw public correctness pack pending** |
 | Llama 3.1 resident inference | No public performance binary or energy pack | **Internal milestone** |
@@ -141,7 +138,7 @@ measurement boundary.
 
 The historical work has **not** been deleted or hidden.
 
-- **Current GTM measurement:** version-100 multi-run thr+J+det + H2H vs vLLM.
+- **Current measurement:** Qwen2-7B on H100 vs vLLM 0.25.1 - prefill + decode throughput, energy per token, determinism ([`BENCHMARKS.md`](BENCHMARKS.md)).
 - **Prior third-party measurement:** Version 99 TESTfort matched-prefill pack.
 - **Current runnable demonstrations:** Luxi Book (macOS + Linux CPU + Linux CUDA) + LuxiRisk freebie + version-100 serve + v3.0 numerical tools.
 - **Independent numerical-engine evaluation:** linked and separately scoped.
@@ -185,6 +182,7 @@ or SSH access information belong in this repository.
 | [`luxirisk/`](luxirisk/) | Freebie risk CLI binaries + public formulas/vectors |
 | [`evidence/`](evidence/) | Current and historical measurement packs |
 | [`DEMOS.md`](DEMOS.md) | Runnable public demo catalog |
+| [`BENCHMARKS.md`](BENCHMARKS.md) | Qwen2-7B on H100 vs vLLM 0.25.1 (prefill + decode) |
 | [`RESULTS.md`](RESULTS.md) | Published results and measurement scope |
 | [`LUXI_SYSTEM.md`](LUXI_SYSTEM.md) | Product-family architecture and maturity |
 | [`HISTORY.md`](HISTORY.md) | Development chronology |

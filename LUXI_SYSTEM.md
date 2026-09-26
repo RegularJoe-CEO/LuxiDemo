@@ -13,7 +13,7 @@ or disconnected from the power system supporting it.
 | Layer | Control point | Purpose | Current maturity |
 |---|---|---|---|
 | **LuxiQuant** | Compute | Reproducible numerical and quantitative execution with receipts | **Working engine** · public **Luxi Book** (CSV BS/Black-76 + SHA-256) is the Quant try without NDA; older numerical REST/microbench demos still ship; TestFort Dec 2025 on a defined numerical suite |
-| **LuxiEdge** | Execute | Energy-aware GPU execution for AI inference, with packed work and scoped deterministic receipts | **Public AI wedge** · absolute + matched prefill measured on H100; Version 99 third-party lineage |
+| **LuxiEdge** | Execute | Energy-aware GPU execution for AI inference, with packed work and scoped deterministic receipts | **Public AI wedge** · Qwen2-7B vs vLLM 0.25.1 prefill + decode measured on H100 ([`BENCHMARKS.md`](BENCHMARKS.md)); Version 99 third-party lineage |
 | **LuxiPack** | Schedule | Admit work after dependencies are ready and place it to reduce hold-not-work and repeated preparation | **In development** |
 | **LuxiPhase** | Shape | Shape aggregate compute timing to reduce power swings while respecting throughput and SLOs | **Prototype/local validation** |
 | **LuxiLoad** | Coordinate | Coordinate compute demand with generation, electrical, cooling, and reliability limits | **Early concept** |

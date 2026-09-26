@@ -1,81 +1,47 @@
-# LuxiEdge vs vLLM - Prefill Throughput & Board Energy
+# LuxiEdge vs vLLM 0.25.1 - Throughput & Energy on H100
 
 **Document type:** Shareable technical brief  
-**Status:** Measured head-to-head (same hardware, same shape)  
-**Date:** 2026-07  
+**Status:** Measured on one NVIDIA H100 SXM, Qwen2-7B-Instruct  
+**Date:** 2026-09-25/26  
 
 ---
 
 ## Summary
 
-On a matched **prefill-heavy** workload, the LuxiEdge energy/throughput path is both **faster** and **more energy-efficient** (lower board joules per token position) than a current open serving stack (vLLM), while holding **deterministic** dual-run behavior on the Luxi path.
-
-| Question | Answer |
-|----------|--------|
-| Faster? | **Yes** - about **1.17 to 1.18×** higher throughput |
-| Better or equal energy per token? | **Yes** - about **10 to 14% lower** board J per position |
-| Determinism held (Luxi TRADE path)? | **Yes** - dual-run score **1.0** |
-
-Peer stack used **greedy sampling** (`temperature = 0`), not a separate “deterministic product mode.” Token accounting is matched prefill positions.
+Luxi runs Qwen2-7B on an H100 with bit-identical results at any batch size. On long prompts (2k to 32k tokens) it is 3–7% faster than vLLM 0.25.1 and uses 2–5% less energy per token. When generating tokens it matches vLLM's speed but uses 2–7% more energy per token. Against vLLM's own deterministic (batch-invariant) mode, Luxi is faster and uses less energy on every test, including 1.5–2.7× faster token generation with 16–50% less energy.
 
 ---
 
-## Protocol (what was compared)
+## Prefill (long prompts)
 
-| Setting | Value |
-|---------|--------|
-| Model class | Qwen2-7B-Instruct (FP16) |
-| Sequence length | 128 |
-| Batch sizes | 16 and 32 |
-| Workload | Prefill-heavy (one generated token per iteration; positions = iterations × batch × 128) |
-| Hardware | Single NVIDIA H100 80GB-class GPU |
-| Comparison | Sequential arms (not concurrent on the same GPU) |
-| Metrics | Throughput (positions/s), board energy (NVML joules / position), dual-run determinism |
+Throughput in prompt tokens/s and energy in joules (J) per prompt token.
 
-Peer stack: **vLLM** (current release in test), tensor parallel 1, prefix cache off, same token accounting.
+| Prompt length × batch | vLLM 0.25.1 default | vLLM batch-invariant mode | Luxi (FA3) | Luxi own attention kernel |
+|---|---:|---:|---:|---:|
+| 2048 × 16 | 44,680 tok/s, 0.01543 J | 43,190, 0.01601 | 46,180, 0.01515 | 44,270, 0.01579 |
+| 8192 × 4 | 41,120, 0.01688 | 40,070, 0.01734 | 42,350, 0.01647 | 36,700, 0.01905 |
+| 32767 × 1 | 29,980, 0.02269 | 29,240, 0.02325 | 32,190, 0.02162 | 21,820, 0.03158 |
 
-Luxi path: production **energy/throughput** configuration (Flash-class attention control + device-resident multi-layer stack + FP16 weight residency). Not the high-fidelity AUDIT receipt lane.
+## Decode (token generation)
 
----
+1024-token prompt, 256 greedy generated tokens. Throughput in output tokens/s and energy in joules (J) per output token.
 
-## Results
-
-| Batch | System | Throughput (pos/s) | Board J/position | Determinism |
-|------:|:-------|-------------------:|-----------------:|------------:|
-| 16 | **LuxiEdge** | **~41,700** | **~0.0171** | **1.0** |
-| 16 | vLLM | ~35,800 | ~0.0190 | 1.0 |
-| 32 | **LuxiEdge** | **~43,900** | **~0.0158** | **1.0** |
-| 32 | vLLM | ~37,100 | ~0.0182 | 1.0 |
-
-**Ratios (Luxi / vLLM):**
-
-| Batch | Throughput ratio | Energy ratio (lower is better) |
-|------:|-----------------:|-------------------------------:|
-| 16 | **1.17×** | **0.90×** |
-| 32 | **1.18×** | **0.86×** |
-
-Board power was measured under load via standard GPU power/energy interfaces (NVML). Energy is **board joules**, not facility wall-plug AC.
+| Batch | vLLM default | vLLM batch-invariant mode | Luxi (FA3) | Luxi own attention kernel |
+|---:|---:|---:|---:|---:|
+| 1 | 165.8, 2.645 | 61.69, 5.626 | 165.5, 2.820 | 162.1, 2.784 |
+| 16 | 2078, 0.2558 | 941, 0.4233 | 2111, 0.2672 | 1832, 0.2813 |
+| 64 | 4875, 0.1313 | 3217, 0.1596 | 4898, 0.1338 | 3740, 0.1511 |
 
 ---
 
-## How to read this
+## Method (short)
 
-- **Throughput** counts **prompt positions** under a fixed sequence length and batch (prefill-oriented), not chat tokens/s under a full OpenAI-compatible server.  
-- **J/position** is board energy per useful position under that same definition.  
-- **Determinism** is dual-run agreement on the measured path (same inputs → same reported behavior).  
-- This is an **absolute, same-day head-to-head** on one GPU class to not a claim against every serving recipe, every model, or every sequence length.
+- H100 SXM (RunPod), Qwen2-7B-Instruct, vLLM 0.25.1.
+- Engines alternated in matched blocks on the same GPU, 6 runs per cell.
+- Energy is from the GPU's NVML total-energy counter, with no idle subtraction.
 
----
-
-## Why it matters
-
-For operators, the useful question is rarely “who wins a microkernel.” It is:
-
-1. Do we move more useful work per second at commercial batch?  
-2. Do we spend fewer joules per unit of that work?  
-3. Can we still stand behind reproducible behavior?
-
-On this shape, the answer to all three is **yes** relative to the peer stack tested.
+Full method, determinism results, why generation uses more energy, and what is
+borrowed vs Luxi's own: [BENCHMARKS.md](https://github.com/RegularJoe-CEO/LuxiDemo/blob/main/BENCHMARKS.md)
 
 ---
 
@@ -83,12 +49,10 @@ On this shape, the answer to all three is **yes** relative to the peer stack tes
 
 - Not a full multi-tenant serving stack comparison (scheduling, continuous batching product surface, multi-GPU TP/PP).  
 - Not wall-plug or PUE.  
-- Not bit-exact identity between energy path and high-fidelity audit path (those remain separate product lanes).  
 - Not a claim of higher open-chat quality than the peer model implementation.
 
 ---
 
 ## Contact
 
-**LuxiEdge** · e@ewaller.com  
-For deeper diligence packs (methods, multi-run series, broader shapes), contact for a controlled evaluation.
+**LuxiEdge** · e@ewaller.com · [luxiedge.com](https://luxiedge.com)

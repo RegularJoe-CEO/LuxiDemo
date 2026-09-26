@@ -1,6 +1,6 @@
 # Published results
 
-Last updated: 2026-08-16
+Last updated: 2026-09-26
 
 This page indexes **measured** public results. Each result is limited to the
 workload and hardware described in its evidence. Do not blend numbers across
@@ -29,6 +29,33 @@ match,” not desk VaR, not live market data, not `risk-pipeline`. Do not treat 
 - Matrix receipts: [`downloads/luxibook/evidence/v0.2.0-matrix/`](downloads/luxibook/evidence/v0.2.0-matrix/)
 - How to run: [`DEMOS.md`](DEMOS.md)
 
+## LuxiEdge vs vLLM 0.25.1 - Qwen2-7B on H100 (2026-09-25/26)
+
+Luxi runs Qwen2-7B on an H100 with bit-identical results at any batch size. On long prompts (2k to 32k tokens) it is 3–7% faster than vLLM 0.25.1 and uses 2–5% less energy per token. When generating tokens it matches vLLM's speed but uses 2–7% more energy per token. Against vLLM's own deterministic (batch-invariant) mode, Luxi is faster and uses less energy on every test, including 1.5–2.7× faster token generation with 16–50% less energy.
+
+**Prefill (long prompts)** - throughput tok/s and energy J per token:
+
+| Prompt length × batch | vLLM 0.25.1 default | vLLM batch-invariant mode | Luxi (FA3) | Luxi own attention kernel |
+|---|---:|---:|---:|---:|
+| 2048 × 16 | 44,680 tok/s, 0.01543 J | 43,190, 0.01601 | 46,180, 0.01515 | 44,270, 0.01579 |
+| 8192 × 4 | 41,120, 0.01688 | 40,070, 0.01734 | 42,350, 0.01647 | 36,700, 0.01905 |
+| 32767 × 1 | 29,980, 0.02269 | 29,240, 0.02325 | 32,190, 0.02162 | 21,820, 0.03158 |
+
+**Decode** (1024-token prompt, 256 greedy generated tokens) - throughput tok/s and energy J per output token:
+
+| Batch | vLLM default | vLLM batch-invariant mode | Luxi (FA3) | Luxi own attention kernel |
+|---:|---:|---:|---:|---:|
+| 1 | 165.8, 2.645 | 61.69, 5.626 | 165.5, 2.820 | 162.1, 2.784 |
+| 16 | 2078, 0.2558 | 941, 0.4233 | 2111, 0.2672 | 1832, 0.2813 |
+| 64 | 4875, 0.1313 | 3217, 0.1596 | 4898, 0.1338 | 3740, 0.1511 |
+
+Method, determinism, why generation uses more energy, and what is borrowed vs
+Luxi's own: [`BENCHMARKS.md`](BENCHMARKS.md). Run summary:
+[`evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/`](evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/)
+
+Scope: one H100 SXM · GPU board energy (NVML) · not wall-plug · not
+multi-tenant full-server leadership.
+
 ## LuxiEdge absolute prefill (internal multi-run champion)
 
 **Workload:** Qwen2-7B-Instruct class · S=128 · B72 · dual_gemm  
@@ -43,19 +70,6 @@ Pack:
 [`evidence/prefill_accel_lock_20260807T233111Z/`](evidence/prefill_accel_lock_20260807T233111Z/)
 
 **Not** a matched vLLM claim at B72.
-
-## LuxiEdge matched vLLM H2H (B16 / B32 only)
-
-| Batch | Luxi thr (pos/s) | Luxi J/pos | vs vLLM thr | vs vLLM J/pos |
-|------:|-----------------:|-----------:|------------:|--------------:|
-| **16** | **~41,221** | **~0.0169** | **~1.18×** | **~12% lower** |
-| **32** | **~43,464** | **~0.0158** | **~1.19×** | **~14% lower** |
-
-Pack:
-[`evidence/prefill_freeze_matched_20260807T210749Z/`](evidence/prefill_freeze_matched_20260807T210749Z/)
-
-Scope: prefill positions only · GPU board energy · not decode · not wall-plug ·
-not multi-tenant full-server leadership.
 
 ## LuxiEdge Version 99 (prior third-party baseline)
 

@@ -4,9 +4,7 @@
 **Pack:** `prefill_accel_lock_20260807T233111Z`  
 **Champion:** `LUXI_GEMM_DUAL_STREAM=1` · flash + device-resident + FP16 · **B72** · S=128  
 
-## Two facts (never blend)
-
-### Fact A - Best measured Luxi operating point (this pack)
+## Best measured Luxi operating point (this pack)
 
 | Metric | Value |
 |--------|------:|
@@ -18,16 +16,8 @@
 
 **vs prior Luxi B16 freeze (41,221 / 0.0169):** ~**1.09× thr**, ~**9% lower J/pos**.
 
-### Fact B - Matched vLLM comparison (separate pack)
-
-Authority: `prefill_freeze_matched_20260807T210749Z` (B16/B32 only).
-
-| Batch | Luxi thr | vLLM thr | thr ratio | Luxi J savings |
-|------:|---------:|---------:|----------:|---------------:|
-| 16 | 41,221 | 35,043 | **1.18×** | **~12% lower J/pos** |
-| 32 | 43,464 | 36,557 | **1.19×** | **~14% lower J/pos** |
-
-**`b72_vllm_matched = false`.** Do **not** say the B72 absolute result is 1.18× vLLM until a matched B72 vLLM arm is measured.
+**`b72_vllm_matched = false`.** No vLLM comparison is claimed for this B72 / S=128 operating point.
+For the current Qwen2-7B comparison against vLLM 0.25.1 on H100, see [`../../BENCHMARKS.md`](../../BENCHMARKS.md).
 
 ## Why dual_gemm (not dual_fuse)
 
@@ -63,5 +53,4 @@ High-batch prefill gives dual GEMM streams enough work to overlap and amortize w
 ## Website hero (suggested)
 
 - Absolute: **~44.9k** pos/s · **0.0153** board J/pos · B72 dual_gemm multi-run  
-- Matched H2H (B16): **~1.18× thr** · **~12% lower J** vs vLLM  
-- Method: H100 · flash TRADE · Qwen2-7B · S=128 · board NVML. Absolute batch ≠ H2H batch.
+- Method: H100 · flash TRADE · Qwen2-7B · S=128 · board NVML.

@@ -35,23 +35,19 @@ This is the configuration to sell and defend until a stronger pack replaces it.
 
 **Primary sell cell: B=16** (tight variance, commercial batch). **B=32** for scale.
 
-### Peer H2H (matched prefill, same day - supporting)
+### Comparison against vLLM 0.25.1
 
-| Batch | Luxi thr | vLLM thr | Luxi/vLLM thr | Luxi J/pos | vLLM J/pos |
-|------:|---------:|---------:|--------------:|-----------:|-----------:|
-| 16 | ~41.7k* | ~35.8k | **1.17×** | ~0.0171 | ~0.0190 |
-| 32 | ~43.9k* | ~37.1k | **1.18×** | ~0.0158 | ~0.0182 |
+Luxi runs Qwen2-7B on an H100 with bit-identical results at any batch size. On long prompts (2k to 32k tokens) it is 3–7% faster than vLLM 0.25.1 and uses 2–5% less energy per token. When generating tokens it matches vLLM's speed but uses 2–7% more energy per token. Against vLLM's own deterministic (batch-invariant) mode, Luxi is faster and uses less energy on every test, including 1.5–2.7× faster token generation with 16–50% less energy.
 
-\*H2H used 2×20s medians; multi-run 5×15s above is the thr lock for GTM quotes.
+Tables, method and disclosure: [BENCHMARKS.md](https://github.com/RegularJoe-CEO/LuxiDemo/blob/main/BENCHMARKS.md).
 
 ---
 
 ## GTM claims (allowed)
 
-1. **Faster prefill throughput** than vLLM 0.25.x on H100 at S=128, B=16/32 under matched token accounting.  
-2. **Lower board joules per prompt position** under that same protocol.  
-3. **Deterministic dual-run behavior** on the Luxi TRADE path for fixed prompts (token-id agreement).  
-4. **Batch scale holds efficiency** (thr rises B1→B32; J/pos falls; det stays 1.0).
+1. **vs vLLM 0.25.1:** use only the headline wording in [BENCHMARKS.md](https://github.com/RegularJoe-CEO/LuxiDemo/blob/main/BENCHMARKS.md).  
+2. **Deterministic dual-run behavior** on the Luxi TRADE path for fixed prompts (token-id agreement).  
+3. **Batch scale holds efficiency** (thr rises B1→B32; J/pos falls; det stays 1.0).
 
 ## GTM claims (forbidden until more packs)
 
@@ -83,7 +79,7 @@ Serve doc: [`GTM_COMMERCIAL_SERVE.md`](GTM_COMMERCIAL_SERVE.md).
 
 ## One-line pitch
 
-> On H100, LuxiEdge’s energy path moves more prefill work per second than vLLM at commercial batch, uses fewer board joules per position, and keeps dual-run determinism to while a separate AUDIT lane protects bit-exact trust.
+> Luxi runs Qwen2-7B on an H100 with bit-identical results at any batch size. On long prompts (2k to 32k tokens) it is 3–7% faster than vLLM 0.25.1 and uses 2–5% less energy per token. When generating tokens it matches vLLM's speed but uses 2–7% more energy per token. Against vLLM's own deterministic (batch-invariant) mode, Luxi is faster and uses less energy on every test, including 1.5–2.7× faster token generation with 16–50% less energy.
 
 ---
 

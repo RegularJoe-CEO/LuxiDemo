@@ -21,7 +21,16 @@ Not a thr/J pack. Closed binaries + measured SHA-256 on one example book:
 
 Tables: [`../RESULTS.md`](../RESULTS.md) · how to run: [`../DEMOS.md`](../DEMOS.md)
 
-## Current GTM transformer measurement (absolute + matched)
+## Current transformer measurements
+
+### Qwen2-7B vs vLLM 0.25.1 on H100 - 2026-09-25/26
+
+[`h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/`](h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/) · tables and method: [`../BENCHMARKS.md`](../BENCHMARKS.md)
+
+- Long prompts (2k to 32k tokens): 3–7% faster than vLLM 0.25.1, 2–5% less energy per token
+- Token generation: matches vLLM's speed, 2–7% more energy per token
+- vs vLLM batch-invariant mode: faster and less energy on every test
+- Bit-identical output at batch sizes 1, 16 and 64
 
 ### Absolute prefill champion (B72 dual_gemm) - 2026-08-07
 
@@ -30,12 +39,12 @@ Tables: [`../RESULTS.md`](../RESULTS.md) · how to run: [`../DEMOS.md`](../DEMOS
 - ~44,860 pos/s · ~0.0153 board J/pos · multi-run median
 - **Not** a matched vLLM claim at B72
 
-### Matched vLLM H2H (B16 / B32 only)
+### B16 / B32 multi-run freeze - 2026-08-07
 
 [`prefill_freeze_matched_20260807T210749Z/`](prefill_freeze_matched_20260807T210749Z/)
 
-- B16 ~1.18× thr · ~12% lower J/pos vs vLLM
-- B32 ~1.19× thr · ~14% lower J/pos vs vLLM
+- B16 ~41,221 pos/s · ~0.0169 board J/pos (S=128)
+- B32 ~43,464 pos/s · ~0.0158 board J/pos (S=128)
 
 ### version-100 GTM lineage
 
@@ -44,7 +53,6 @@ Tables: [`../RESULTS.md`](../RESULTS.md) · how to run: [`../DEMOS.md`](../DEMOS
 - Qwen2-7B-Instruct class · S=128 · B=16/32
 - Flash + device-resident + FP16 TRADE path
 - Multi-run 5×15 s thr + NVML board J/pos + det=1.0
-- Matched H2H lineage vs vLLM (~1.17 to 1.18× thr, ~10 to 14% lower board J/pos)
 - Authoritative: `MULTI_RUN_LOCK_SLIM.json` · buyer: `PUBLIC_GTM_ONE_PAGER.md`
 
 ## Prior third-party-operated transformer measurement

@@ -8,7 +8,8 @@ configurations. They are **not** the current public headline.
 | Surface | Where |
 |---------|--------|
 | Luxi Book receipt matrix | [`RESULTS.md`](RESULTS.md) · [`downloads/luxibook/`](downloads/luxibook/) |
-| Prefill thr/J (absolute + matched vLLM) | [`evidence/README.md`](evidence/README.md) |
+| Qwen2-7B vs vLLM 0.25.1 (H100 prefill + decode) | [`BENCHMARKS.md`](BENCHMARKS.md) |
+| Absolute prefill thr/J | [`evidence/README.md`](evidence/README.md) |
 | Full measured tables | [`RESULTS.md`](RESULTS.md) |
 | Chronology | [`HISTORY.md`](HISTORY.md) |
 

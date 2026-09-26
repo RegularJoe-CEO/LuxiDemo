@@ -6,7 +6,7 @@
 **GPU:** H100 80GB HBM3 · **Recipe:** flash + device-resident + FP16  
 
 ## Rules
-- Internal multi-run and matched vLLM were run **on this pod session** (sequential).
+- Internal multi-run was run **on this pod session**.
 - **Not blended** with TESTfort v99 independent numbers.
 - Token def: **prefill positions = iters × batch × seq** (S=128).
 - Energy: **board NVML joules**, not wall-plug.
@@ -25,19 +25,16 @@
 | 16 | **0.0169** | 681.3 |
 | 32 | **0.0158** | 688.8 |
 
-## Matched vLLM (same session, sequential)
+## Comparison against vLLM
 
-| Batch | vLLM pos/s | vLLM J/pos | Luxi/vLLM thr | Luxi energy savings |
-|------:|-----------:|-----------:|--------------:|--------------------:|
-| 16 | 35,043 | 0.0191 | **1.18×** | **12% lower J/pos** |
-| 32 | 36,557 | 0.0184 | **1.19×** | **14% lower J/pos** |
+For the current Qwen2-7B comparison against vLLM 0.25.1 on H100, see
+[`../../BENCHMARKS.md`](../../BENCHMARKS.md).
 
 ## Website replacement copy (delete the “withdrawn / conflicted” paragraph)
 
 **Suggested hero metrics (B16 primary):**
 - Prefill pos/s: **~41.2k**
 - Board J/pos: **0.0169**
-- vs vLLM (matched): **~1.18× thr**, **~12% lower board J/pos**
 
 **Method footnote:** H100 multi-run lock (5×15s thr · NVML energy · flash TRADE path · Qwen2-7B · S=128 · B16 primary). Board ≠ wall-plug. Not blended with prior independent TESTfort pack.
 
@@ -46,10 +43,8 @@
 
 ## Absolute peak moved (2026-08-07)
 
-This pack remains **AUTHORITATIVE for matched vLLM H2H only** (B16/B32).
+This pack remains authoritative for the **B16/B32 multi-run freeze** only.
 
 Luxi **absolute** best prefill thr+J is now **dual_gemm @ B72** (~44,860 pos/s · 0.01532 board J/pos) in:
 
 [`../prefill_accel_lock_20260807T233111Z/`](../prefill_accel_lock_20260807T233111Z/) · `CHAMPION_LOCK.json`
-
-Do **not** attach this pack’s 1.18× vLLM ratio to the B72 absolute number.

@@ -37,9 +37,13 @@ open http://127.0.0.1:8787/dashboard   # or browser
 | B16 | ~39,865 | ~0.0168 | 1.0 |
 | B32 | ~42,967 | ~0.0160 | 1.0 |
 
-Matched prefill vs vLLM: **~1.17 to 1.18×** thr · **~10 to 14%** lower board J/pos.
+Details: `docs/PUBLIC_GTM_ONE_PAGER.md` · `evidence/MULTI_RUN_LOCK_SLIM.json`
 
-Details: `docs/PUBLIC_GTM_ONE_PAGER.md` · `docs/PUBLIC_H2H_PREFILL_ENERGY_BRIEF.md` · `evidence/MULTI_RUN_LOCK_SLIM.json`
+## Comparison against vLLM 0.25.1
+
+Luxi runs Qwen2-7B on an H100 with bit-identical results at any batch size. On long prompts (2k to 32k tokens) it is 3–7% faster than vLLM 0.25.1 and uses 2–5% less energy per token. When generating tokens it matches vLLM's speed but uses 2–7% more energy per token. Against vLLM's own deterministic (batch-invariant) mode, Luxi is faster and uses less energy on every test, including 1.5–2.7× faster token generation with 16–50% less energy.
+
+Tables, method and disclosure: [`BENCHMARKS.md`](../../BENCHMARKS.md) · brief: `docs/PUBLIC_H2H_PREFILL_ENERGY_BRIEF.md`
 
 ## Honest limits
 

@@ -59,18 +59,15 @@ still pending.
 
 ### Late July 2026: version-100 GTM lock
 
-Multi-run H100 thr/J/det lock and matched prefill vs vLLM on B16/B32 (TRADE
-energy path). Public pack under `evidence/version-100-h100-gtm/`. Local serve
+Multi-run H100 thr/J/det lock on B16/B32 (TRADE energy path). Public pack under `evidence/version-100-h100-gtm/`. Local serve
 binary embeds the scoreboard on `GET /v1/gtm`.
 
-### Early August 2026: absolute prefill champion + matched freeze
+### Early August 2026: absolute prefill champion + B16/B32 freeze
 
 - B72 dual_gemm multi-run absolute thr/J lock
   (`evidence/prefill_accel_lock_20260807T233111Z/`)
-- Separate matched vLLM H2H freeze at B16/B32
+- Separate B16/B32 multi-run freeze
   (`evidence/prefill_freeze_matched_20260807T210749Z/`)
-
-Rule: absolute B72 is not a matched vLLM claim until a B72 vLLM arm exists.
 
 ### Mid August 2026: Luxi Book public Quant surface
 
@@ -87,6 +84,13 @@ Closed `luxi-book` binaries published under [`downloads/luxibook/`](downloads/lu
 Public site order: **Book (sale) → LuxiRisk freebie → inference demoted**.
 LuxiRisk v0.2 remains the free retail/crypto CLI with `lxr1_` receipts - not
 the option book.
+
+### September 25 to 26, 2026: Qwen2-7B vs vLLM 0.25.1 on H100
+
+Prefill (2k to 32k-token prompts) and decode measured against vLLM 0.25.1
+default and batch-invariant modes on one H100 SXM, with engines alternated in
+matched blocks, 6 runs per cell, and NVML energy. Tables, method, determinism
+and disclosure: [`BENCHMARKS.md`](BENCHMARKS.md).
 
 ## How to read old packs
 
