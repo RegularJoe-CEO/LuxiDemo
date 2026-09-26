@@ -31,7 +31,7 @@ Throughput in prompt tokens/s and energy in joules (J) per prompt token.
 - H100 SXM (RunPod), Qwen2-7B-Instruct, vLLM 0.25.1.
 - Engines alternated in matched blocks on the same GPU, 6 runs per cell.
 - Energy is from the GPU's NVML total-energy counter, with no idle subtraction.
-- CPU pinned with taskset. Run-to-run standard deviation ≤0.7%.
+- CPU pinned with taskset. Run-to-run standard deviation under 1%.
 - The one-token last-layer trim optimization is excluded from these numbers.
 
 ## Determinism
