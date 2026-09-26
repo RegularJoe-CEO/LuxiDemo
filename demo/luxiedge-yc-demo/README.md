@@ -20,15 +20,24 @@ Then:
 
 ```bash
 curl -s http://127.0.0.1:8787/v1/models | python3 -m json.tool
+curl -s http://127.0.0.1:8787/v1/gtm | python3 -m json.tool
 curl -s -X POST http://127.0.0.1:8787/v1/completions \
   -H 'content-type: application/json' \
   -d '{"prompt":"Why measure joules per token?","max_tokens":24}'
 curl -s -X POST http://127.0.0.1:8787/v1/audit -d '{}'
 ```
 
-## Scoreboard routes
+## Routes
 
-The `/v1/gtm`, `/health` and `/dashboard` routes include static scoreboard fields compiled into this demo build, for API integration testing; they are not benchmark results. Measured results are in [`BENCHMARKS.md`](../../BENCHMARKS.md).
+| Route | Returns |
+|-------|---------|
+| `GET /v1/gtm` | Build info (crate, version, target), determinism note, link to BENCHMARKS.md |
+| `GET /health` | Liveness, `build_version`, `benchmarks` link |
+| `GET /dashboard` | Live counters for this process; top card links to BENCHMARKS.md |
+| `POST /v1/completions` · `/v1/chat/completions` | OpenAI-shaped completion plus a `luxi` block with `token_receipt` (SHA-256 of the generated tokens) and `latency_ms` |
+| `POST /v1/audit` | Dual-run determinism self-check |
+
+Measured results are in [`BENCHMARKS.md`](../../BENCHMARKS.md).
 
 ## Comparison against vLLM 0.25.1
 
@@ -38,8 +47,7 @@ Tables, method and disclosure: [`BENCHMARKS.md`](../../BENCHMARKS.md) · brief: 
 
 ## Honest limits
 
-- Local binary uses a **toy generate path** for instant API demos (receipts + energy scale).  
-- Energy fields in completion responses are fixed per-token estimates, not live measurements.  
+- Local binary uses a **toy generate path** for instant API demos (token receipts + latency).  
 - Measured H100 results: [`BENCHMARKS.md`](../../BENCHMARKS.md).  
 - Board joules ≠ facility wall-plug.  
 - Not a claim of full multi-tenant OpenAI-server leadership vs every recipe.

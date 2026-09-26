@@ -65,15 +65,17 @@ chmod +x luxiedge-serve-linux-x86_64
 
 Then:
   curl -s http://127.0.0.1:8787/v1/models | python3 -m json.tool
+  curl -s http://127.0.0.1:8787/v1/gtm | python3 -m json.tool
   curl -s -X POST http://127.0.0.1:8787/v1/completions \
     -H 'content-type: application/json' \
     -d '{"prompt":"Why measure joules per token?","max_tokens":24}'
   curl -s -X POST http://127.0.0.1:8787/v1/audit -d '{}'
 
-Local generate path is a toy for instant API demos. Energy fields in completion
-responses are fixed per-token estimates, not live measurements. The /v1/gtm,
-/health and /dashboard routes include static scoreboard fields compiled into
-this demo build, for API integration testing; they are not benchmark results.
+Local generate path is a toy for instant API demos. Completion responses carry
+a luxi block with the SHA-256 token_receipt of the generated tokens and the
+request latency_ms. /v1/gtm returns build info, a determinism note and a link
+to BENCHMARKS.md; /health includes build_version and the benchmarks link; the
+/dashboard top card links to BENCHMARKS.md.
 Measured H100 results: ../BENCHMARKS.md. Board joules ≠ wall-plug.
 
 Verify:

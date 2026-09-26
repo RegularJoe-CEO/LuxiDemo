@@ -49,13 +49,13 @@ Tables, method and disclosure: [BENCHMARKS.md](https://github.com/RegularJoe-CEO
 | Surface | Role for GTM |
 |---------|----------------|
 | `cuda_qwen7b_trade` sustain | TRADE executor - thr + NVML energy |
-| `serve_v05` HTTP | OpenAI-shaped API. `GET /v1/gtm` returns static scoreboard fields compiled into the demo build, for API integration testing; not a benchmark result. **Do not** quote HTTP thr as TRADE thr |
+| `serve_v05` HTTP | OpenAI-shaped API. `GET /v1/gtm` returns build info, a determinism note and a link to BENCHMARKS.md; completions carry a `token_receipt` and `latency_ms`. **Do not** quote HTTP thr as TRADE thr |
 | AUDIT receipts | Compliance / dual-lane story |
 
 Commercial scripts:
 
 - `scripts/gtm_demo_one_shot.sh` - TRADE sustain
-- `scripts/gtm_serve_boot.sh` - HTTP + GTM energy mode
+- `scripts/gtm_serve_boot.sh` - HTTP serve boot
 - `scripts/gtm_pod_commercial.sh` - TRADE + serve smoke on pod
 
 Demo package: [`../README.md`](../README.md).
