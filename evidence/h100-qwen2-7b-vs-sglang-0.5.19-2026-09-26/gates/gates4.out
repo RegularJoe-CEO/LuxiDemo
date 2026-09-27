@@ -1,0 +1,8 @@
+CPUSET=0-21
+gate D start 21:29:05
+rc=0
+gate D end 21:30:58
+gate E start 21:30:58
+/workspace/race/kit/gates.sh: line 15: 12786 Killed                  LXR_DET=1 LXR_DTYPE=bfloat16 LXR_BACKEND=${LXR_BACKEND:-fa3} taskset -c $CPUSET python $K/det_sglang.py $G/sglang_det_bf16.json > $G/sglang_det_bf16.log 2>&1
+rc=137
+gate E end 21:31:21

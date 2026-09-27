@@ -1,0 +1,28 @@
+CPUSET=0-21
+gate luxi start 21:14:42
+rc=0
+rc=0
+{"DETERMINISM_PASS": true, "CORRECTNESS_PASS": true, "SAME_BITS_AS_2026-09-26_FINAL": true}
+long2048 {'one_hash_across_batches_and_reps': True, 'one_token_seq': True, 'hash_equals_2026-09-26_c8_final_gate': True, 'n_rows': 4}
+long8192 {'one_hash_across_batches_and_reps': True, 'one_token_seq': True, 'hash_equals_2026-09-26_c8_final_gate': True, 'n_rows': 4}
+long32767 {'one_hash_across_batches_and_reps': True, 'one_token_seq': True, 'hash_equals_2026-09-26_c8_final_gate': True, 'n_rows': 4}
+gate0 {'one_hash_across_batches_and_reps': True, 'one_token_seq': True, 'hash_equals_2026-09-26_c8_final_gate': True, 'n_rows': 4, 'greedy_first_div_vs_HFfix': None, 'first_token': 12095, 'first_token_is_Paris_12095': True}
+gate1 {'one_hash_across_batches_and_reps': True, 'one_token_seq': True, 'hash_equals_2026-09-26_c8_final_gate': True, 'n_rows': 4, 'greedy_first_div_vs_HFfix': None}
+gate2 {'one_hash_across_batches_and_reps': True, 'one_token_seq': True, 'hash_equals_2026-09-26_c8_final_gate': True, 'n_rows': 4, 'greedy_first_div_vs_HFfix': None}
+gate3 {'one_hash_across_batches_and_reps': True, 'one_token_seq': True, 'hash_equals_2026-09-26_c8_final_gate': True, 'n_rows': 4, 'greedy_first_div_vs_HFfix': 16}
+gate4 {'one_hash_across_batches_and_reps': True, 'one_token_seq': True, 'hash_equals_2026-09-26_c8_final_gate': True, 'n_rows': 4, 'greedy_first_div_vs_HFfix': None}
+long1024 {'one_hash_across_batches_and_reps': True, 'one_token_seq': True, 'hash_equals_2026-09-26_c8_final_gate': True, 'n_rows': 6, 'greedy_first_div_vs_HFfix': 248}
+{'p': 0, 'argmax': 12095, 'hf_argmax': 12095, 'argmax_match': True, 'top5_order_equal': True, 'max_abs_diff_vs_hf_fp16': 0.02429676055908203, 'b1_b16_reps_one_hash': True}
+{'p': 1, 'argmax': 5562, 'hf_argmax': 5562, 'argmax_match': True, 'top5_order_equal': True, 'max_abs_diff_vs_hf_fp16': 0.02140665054321289, 'b1_b16_reps_one_hash': True}
+{'p': 2, 'argmax': 308, 'hf_argmax': 308, 'argmax_match': True, 'top5_order_equal': True, 'max_abs_diff_vs_hf_fp16': 0.01751422882080078, 'b1_b16_reps_one_hash': True}
+{'p': 3, 'argmax': 220, 'hf_argmax': 220, 'argmax_match': True, 'top5_order_equal': True, 'max_abs_diff_vs_hf_fp16': 0.03361940383911133, 'b1_b16_reps_one_hash': True}
+{'p': 4, 'argmax': 33121, 'hf_argmax': 33121, 'argmax_match': True, 'top5_order_equal': True, 'max_abs_diff_vs_hf_fp16': 0.017253875732421875, 'b1_b16_reps_one_hash': True}
+gate luxi end 21:19:16
+gate D start 21:19:16
+/workspace/race/kit/gates.sh: line 14:  7432 Killed                  SGL_DET=1 SGL_DTYPE=float16 SGL_BACKEND=${SGL_BACKEND:-fa3} taskset -c $CPUSET python $K/det_sglang.py $G/sglang_det_fp16.json > $G/sglang_det_fp16.log 2>&1
+rc=137
+gate D end 21:21:52
+gate E start 21:21:52
+/workspace/race/kit/gates.sh: line 15:  8582 Killed                  SGL_DET=1 SGL_DTYPE=bfloat16 SGL_BACKEND=${SGL_BACKEND:-fa3} taskset -c $CPUSET python $K/det_sglang.py $G/sglang_det_bf16.json > $G/sglang_det_bf16.log 2>&1
+rc=137
+gate E end 21:22:15
