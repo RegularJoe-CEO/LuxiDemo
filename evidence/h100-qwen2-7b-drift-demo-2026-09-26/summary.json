@@ -1,0 +1,34 @@
+{
+ "per_engine": {
+  "luxi_c8": {
+   "n": 80,
+   "tokens_identical": 80,
+   "logprob_identical": 80,
+   "text_changed": 0
+  },
+  "vllm_normal": {
+   "n": 140,
+   "tokens_identical": 128,
+   "logprob_identical": 0,
+   "text_changed": 12
+  },
+  "sglang_normal": {
+   "n": 140,
+   "tokens_identical": 129,
+   "logprob_identical": 1,
+   "text_changed": 11
+  },
+  "vllm_det": {
+   "n": 140,
+   "tokens_identical": 140,
+   "logprob_identical": 140,
+   "text_changed": 0
+  },
+  "sglang_det": {
+   "n": 140,
+   "tokens_identical": 140,
+   "logprob_identical": 140,
+   "text_changed": 0
+  }
+ }
+}
