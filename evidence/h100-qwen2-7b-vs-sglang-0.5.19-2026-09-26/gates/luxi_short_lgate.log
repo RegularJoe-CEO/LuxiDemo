@@ -1,0 +1,54 @@
+════════════════════════════════════════════════════════════
+  GPU TRADE · Qwen/LLaMA LuxiEdge model
+  model_dir=/root/models/Qwen2-7B-Instruct
+  LUXI_RECEIPT_AUDIT=None
+  LUXI_TRADE_ENERGY=Some("1")
+════════════════════════════════════════════════════════════
+weight_files=4
+config arch=qwen2 L=28 h=3584 heads=28 kv=4 inter=18944 vocab=152064
+load_tensors_s=13.79
+[luxi] trade_map MLP path=swiglu_gold gold=true
+[luxi] model_block arch=qwen2 rmsnorm=true pre_norm=true rope_theta=1000000 swiglu=true gqa=28/4 eps=0.000001
+map_layers_s=74.14 n_layers=28
+  uploaded layer 1/28
+  uploaded layer 5/28
+  uploaded layer 9/28
+  uploaded layer 13/28
+  uploaded layer 17/28
+  uploaded layer 21/28
+  uploaded layer 25/28
+  uploaded layer 28/28
+cuda_upload_s=6.45
+stack_path=device_resident (device-resident=1 H2D/1 D2H per stack; legacy=per-layer H2D/D2H)
+env ENERGY=Some("1") ATTN=Some("waller") FP16_MLP=Some("1") FP16_W=Some("1") FP16_GEMM=Some("1") STACK=Some("1") JOULE=None HBM_FP8=None
+prompt="The capital of France is" tokens=5
+TRADE_prefill_ms=104.1 seq=5
+first_token_id=12095 piece=" Paris"
+prompt_ids=[785, 6722, 315, 9625, 374]
+[q2f] decode attention: FA3 (fixed num_splits=1)
+[q2f] long-S attention: FlashAttention-3 (vLLM wheel) via shim, num_splits=1
+[q2f] attention kernel v2
+[q2f] last-layer prune 0
+[q2f] elementwise kernels v2
+QWEN2_FAST setup_s=16.56 max_batch=64 graph=true
+[q2f] decode setup maxB=64 ctx=1280 nsplit=10 kv=4.70 GB
+LGATE {"name":"p0","S":5,"B":1,"G":1,"rep":0,"secs":0.120,"logits_fnv64":"c9616f382c0beaf3","tokens":[12095]}
+LGATE {"name":"p0","S":5,"B":1,"G":1,"rep":1,"secs":0.013,"logits_fnv64":"c9616f382c0beaf3","tokens":[12095]}
+LGATE {"name":"p0","S":5,"B":16,"G":1,"rep":0,"secs":0.034,"logits_fnv64":"c9616f382c0beaf3","tokens":[12095]}
+LGATE {"name":"p0","S":5,"B":16,"G":1,"rep":1,"secs":0.015,"logits_fnv64":"c9616f382c0beaf3","tokens":[12095]}
+LGATE {"name":"p1","S":8,"B":1,"G":1,"rep":0,"secs":0.027,"logits_fnv64":"2dcb8013be067afd","tokens":[5562]}
+LGATE {"name":"p1","S":8,"B":1,"G":1,"rep":1,"secs":0.013,"logits_fnv64":"2dcb8013be067afd","tokens":[5562]}
+LGATE {"name":"p1","S":8,"B":16,"G":1,"rep":0,"secs":0.029,"logits_fnv64":"2dcb8013be067afd","tokens":[5562]}
+LGATE {"name":"p1","S":8,"B":16,"G":1,"rep":1,"secs":0.015,"logits_fnv64":"2dcb8013be067afd","tokens":[5562]}
+LGATE {"name":"p2","S":13,"B":1,"G":1,"rep":0,"secs":0.027,"logits_fnv64":"b01c35233216dcaa","tokens":[308]}
+LGATE {"name":"p2","S":13,"B":1,"G":1,"rep":1,"secs":0.013,"logits_fnv64":"b01c35233216dcaa","tokens":[308]}
+LGATE {"name":"p2","S":13,"B":16,"G":1,"rep":0,"secs":0.031,"logits_fnv64":"b01c35233216dcaa","tokens":[308]}
+LGATE {"name":"p2","S":13,"B":16,"G":1,"rep":1,"secs":0.016,"logits_fnv64":"b01c35233216dcaa","tokens":[308]}
+LGATE {"name":"p3","S":6,"B":1,"G":1,"rep":0,"secs":0.027,"logits_fnv64":"f4342a28c4fc6611","tokens":[220]}
+LGATE {"name":"p3","S":6,"B":1,"G":1,"rep":1,"secs":0.013,"logits_fnv64":"f4342a28c4fc6611","tokens":[220]}
+LGATE {"name":"p3","S":6,"B":16,"G":1,"rep":0,"secs":0.032,"logits_fnv64":"f4342a28c4fc6611","tokens":[220]}
+LGATE {"name":"p3","S":6,"B":16,"G":1,"rep":1,"secs":0.015,"logits_fnv64":"f4342a28c4fc6611","tokens":[220]}
+LGATE {"name":"p4","S":16,"B":1,"G":1,"rep":0,"secs":0.028,"logits_fnv64":"62b188d09a8bfbef","tokens":[33121]}
+LGATE {"name":"p4","S":16,"B":1,"G":1,"rep":1,"secs":0.013,"logits_fnv64":"62b188d09a8bfbef","tokens":[33121]}
+LGATE {"name":"p4","S":16,"B":16,"G":1,"rep":0,"secs":0.032,"logits_fnv64":"62b188d09a8bfbef","tokens":[33121]}
+LGATE {"name":"p4","S":16,"B":16,"G":1,"rep":1,"secs":0.016,"logits_fnv64":"62b188d09a8bfbef","tokens":[33121]}

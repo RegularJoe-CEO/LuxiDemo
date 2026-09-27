@@ -1,0 +1,47 @@
+date_utc=2026-09-26T21:09:48Z
+name, uuid, driver_version, power.limit [W], clocks.max.sm [MHz], clocks.max.memory [MHz], persistence_mode, temperature.gpu
+NVIDIA H100 80GB HBM3, [redacted], 570.195.03, 700.00 W, 1980 MHz, 2619 MHz, Enabled, 29
+|-----------------------------------------+------------------------+----------------------+
+Build cuda_12.4.r12.4/compiler.34097967_0
+/usr/bin/python3
+Python 3.11.10
+nproc=208
+        GPU0    NIC0    NIC1    NIC2    NIC3    NIC4    NIC5    NIC6    NIC7    NIC8    NIC9    CPU Affinity    NUMA Affinity   GPU NUMA ID
+GPU0     X      NODE    NODE    NODE    NODE    NODE    PIX     SYS     SYS     SYS     SYS     0-51,104-155    0               N/A
+NIC0    NODE     X      NODE    NODE    NODE    NODE    NODE    SYS     SYS     SYS     SYS
+NIC1    NODE    NODE     X      NODE    NODE    NODE    NODE    SYS     SYS     SYS     SYS
+NIC2    NODE    NODE    NODE     X      NODE    NODE    NODE    SYS     SYS     SYS     SYS
+NIC3    NODE    NODE    NODE    NODE     X      PIX     NODE    SYS     SYS     SYS     SYS
+NIC4    NODE    NODE    NODE    NODE    PIX      X      NODE    SYS     SYS     SYS     SYS
+NIC5    PIX     NODE    NODE    NODE    NODE    NODE     X      SYS     SYS     SYS     SYS
+NIC6    SYS     SYS     SYS     SYS     SYS     SYS     SYS      X      NODE    NODE    NODE
+NIC7    SYS     SYS     SYS     SYS     SYS     SYS     SYS     NODE     X      NODE    NODE
+NIC8    SYS     SYS     SYS     SYS     SYS     SYS     SYS     NODE    NODE     X      NODE
+NIC9    SYS     SYS     SYS     SYS     SYS     SYS     SYS     NODE    NODE    NODE     X
+
+Legend:
+
+  X    = Self
+  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)
+  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node
+  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)
+  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)
+  PIX  = Connection traversing at most a single PCIe bridge
+  NV#  = Connection traversing a bonded set of # NVLinks
+
+NIC Legend:
+
+  NIC0: mlx5_0
+  NIC1: mlx5_1
+  NIC2: mlx5_2
+  NIC3: mlx5_3
+  NIC4: mlx5_4
+  NIC5: mlx5_5
+  NIC6: mlx5_6
+  NIC7: mlx5_7
+  NIC8: mlx5_8
+  NIC9: mlx5_9
+
+Filesystem      Size  Used Avail Use% Mounted on
+overlay          80G  199M   80G   1% /
+overlay          80G  199M   80G   1% /
