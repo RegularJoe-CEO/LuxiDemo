@@ -49,7 +49,7 @@ Overview: [`../INFERENCE.md`](../INFERENCE.md) · what was and wasn't tested: [`
 [`h100-qwen2-7b-drift-demo-2026-09-26/`](h100-qwen2-7b-drift-demo-2026-09-26/) · summary: [`../INFERENCE.md#drift-demo`](../INFERENCE.md#drift-demo)
 
 - Each prompt's output under batch load compared with the same engine's output alone: 20 prompts, 256 greedy tokens, fp16
-- Luxi: 80 of 80 batch conditions identical in tokens and logprobs (fresh-process runs; batch conditions only)
+- Luxi: 80 of 80 batch conditions identical in tokens and logprobs (batch conditions only; the long prompt from a fresh-process re-run)
 - Normal vLLM 0.25.1 changed the visible answer in 12 of 140 conditions and normal SGLang 0.5.19 in 11 of 140; their deterministic modes stayed identical in 140 of 140
 - Includes an open Luxi fault seen in one long-running process, with its raw records
 - Includes the method sheet, per-prompt table, scripts, prompts and summary files
