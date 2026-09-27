@@ -1,0 +1,50 @@
+{
+ "long2048_B16_G1.f32": {
+  "argmax_luxi": 4683,
+  "argmax_hf": 4683,
+  "max_abs": 0.03199362754821777,
+  "mean_abs": 0.012697531841695309,
+  "top5_overlap": 5,
+  "top5_order_eq": true
+ },
+ "long2048_B1_G1.f32": {
+  "argmax_luxi": 4683,
+  "argmax_hf": 4683,
+  "max_abs": 0.03199362754821777,
+  "mean_abs": 0.012697531841695309,
+  "top5_overlap": 5,
+  "top5_order_eq": true
+ },
+ "long8192_B1_G1.f32": {
+  "argmax_luxi": 17,
+  "argmax_hf": 17,
+  "max_abs": 0.03421837091445923,
+  "mean_abs": 0.005449974909424782,
+  "top5_overlap": 5,
+  "top5_order_eq": true
+ },
+ "long8192_B4_G1.f32": {
+  "argmax_luxi": 17,
+  "argmax_hf": 17,
+  "max_abs": 0.03421837091445923,
+  "mean_abs": 0.005449974909424782,
+  "top5_overlap": 5,
+  "top5_order_eq": true
+ },
+ "long32767_B1_G1.f32": {
+  "argmax_luxi": 1714,
+  "argmax_hf": 1714,
+  "max_abs": 0.05482584238052368,
+  "mean_abs": 0.017937559634447098,
+  "top5_overlap": 5,
+  "top5_order_eq": true
+ },
+ "long32767_B2_G1.f32": {
+  "argmax_luxi": 1714,
+  "argmax_hf": 1714,
+  "max_abs": 0.05482584238052368,
+  "mean_abs": 0.017937559634447098,
+  "top5_overlap": 5,
+  "top5_order_eq": true
+ }
+}

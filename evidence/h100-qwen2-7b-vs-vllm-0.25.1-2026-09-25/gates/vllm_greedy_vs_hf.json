@@ -1,0 +1,40 @@
+{
+ "default": {
+  "vllm_vs_HF_long1024": 248,
+  "luxi_vs_vllm_long1024": null,
+  "gate_vllm_vs_HF": [
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "gate_luxi_vs_vllm": [
+   null,
+   null,
+   null,
+   16,
+   null
+  ],
+  "HF_margin_at_vllm_div": 0.7812
+ },
+ "bi": {
+  "vllm_vs_HF_long1024": 248,
+  "luxi_vs_vllm_long1024": null,
+  "gate_vllm_vs_HF": [
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "gate_luxi_vs_vllm": [
+   null,
+   null,
+   null,
+   16,
+   null
+  ],
+  "HF_margin_at_vllm_div": 0.7812
+ }
+}

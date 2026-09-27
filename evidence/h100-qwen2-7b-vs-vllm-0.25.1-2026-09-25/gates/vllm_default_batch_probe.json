@@ -1,0 +1,53 @@
+{
+ "vllm": "0.25.1",
+ "VLLM_BATCH_INVARIANT": "0",
+ "gen": 256,
+ "cases": {
+  "alone_rep": {
+   "first_token_div": null,
+   "first_logprob_div": null,
+   "n_logprob_steps_differing": 0
+  },
+  "uniform_batch16": {
+   "first_token_div": null,
+   "first_logprob_div": 1,
+   "n_logprob_steps_differing": 253
+  },
+  "uniform_batch16_rep": {
+   "first_token_div": null,
+   "first_logprob_div": null,
+   "n_logprob_steps_differing": 0
+  },
+  "uniform_batch64": {
+   "first_token_div": null,
+   "first_logprob_div": 1,
+   "n_logprob_steps_differing": 249
+  },
+  "uniform_batch64_rep": {
+   "first_token_div": null,
+   "first_logprob_div": null,
+   "n_logprob_steps_differing": 0
+  },
+  "staggered16": {
+   "first_token_div": null,
+   "first_logprob_div": 1,
+   "n_logprob_steps_differing": 253
+  },
+  "staggered16_rep": {
+   "first_token_div": null,
+   "first_logprob_div": null,
+   "n_logprob_steps_differing": 0
+  },
+  "prefill2048_alone_vs_staggered10": {
+   "identical": true,
+   "alone": [
+    4683,
+    "56afdcf2c25f"
+   ],
+   "staggered": [
+    4683,
+    "56afdcf2c25f"
+   ]
+  }
+ }
+}
