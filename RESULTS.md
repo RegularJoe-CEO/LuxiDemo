@@ -53,6 +53,8 @@ Method, determinism, why generation uses more energy, and what is borrowed vs
 Luxi's own: [`BENCHMARKS.md`](BENCHMARKS.md). Run summary:
 [`evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/`](evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/)
 
+SGLang 0.5.19 tables (separate H100 pod): [`BENCHMARKS.md`](BENCHMARKS.md#sglang-0519-deterministic-and-normal-mode) · drift demo: [`INFERENCE.md`](INFERENCE.md#drift-demo)
+
 Scope: one H100 SXM · GPU board energy (NVML) · not wall-plug · not
 multi-tenant full-server leadership · full scope: [`TEST_SCOPE.md`](TEST_SCOPE.md)
 

@@ -70,8 +70,8 @@ binary (OpenAI-shaped API, toy generate path) was published in this period.
 - S=128 B16/B32 multi-run
   (`evidence/prefill_freeze_matched_20260807T210749Z/`)
 
-Raw files are retained in both folders. Measured results are in
-[`BENCHMARKS.md`](BENCHMARKS.md).
+Raw files are retained in both folders. Index:
+[`HISTORICAL_BENCHMARKS.md`](HISTORICAL_BENCHMARKS.md).
 
 ### Mid August 2026: Luxi Book public Quant surface
 
@@ -89,12 +89,17 @@ Public site order: **Book (sale) → LuxiRisk freebie → inference demoted**.
 LuxiRisk v0.2 remains the free retail/crypto CLI with `lxr1_` receipts - not
 the option book.
 
-### September 25 to 26, 2026: Qwen2-7B vs vLLM 0.25.1 on H100
+### September 25 to 26, 2026: Qwen2-7B vs vLLM 0.25.1 and SGLang 0.5.19 on H100
 
 Prefill (2k to 32k-token prompts) and decode measured against vLLM 0.25.1
 default and batch-invariant modes on one H100 SXM, with engines alternated in
 matched blocks, 6 runs per cell, and NVML energy. Tables, method, determinism
 and disclosure: [`BENCHMARKS.md`](BENCHMARKS.md).
+
+On September 26 the same tests ran against SGLang 0.5.19 deterministic and
+normal modes on a separate H100 pod, and a drift demo compared each engine's
+output under batch load with its output alone
+([`INFERENCE.md`](INFERENCE.md#drift-demo)).
 
 ## How to read old packs
 

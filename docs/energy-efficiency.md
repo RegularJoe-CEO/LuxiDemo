@@ -7,7 +7,7 @@
 | NVIDIA L4 | 30.7B ops/sec | 72W | 426M ops/joule |
 | NVIDIA H100 | 286.94B ops/sec | 117.2W | 2.45B ops/joule |
 
-Validated by TestFort. 0% error rate. 1.47ms p95 latency.
+Validated by TestFort (December 2025 numerical-engine report; not the 2026 inference benchmarks). 0% error rate. 1.47ms p95 latency.
 
 ## The Problem
 
