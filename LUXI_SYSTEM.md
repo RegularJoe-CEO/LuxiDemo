@@ -13,7 +13,7 @@ or disconnected from the power system supporting it.
 | Layer | Control point | Purpose | Current maturity |
 |---|---|---|---|
 | **LuxiQuant** | Compute | Reproducible numerical and quantitative execution with receipts | **Working engine** · public **Luxi Book** (CSV BS/Black-76 + SHA-256) is the Quant try without NDA; older numerical REST/microbench demos still ship; TestFort Dec 2025 on a defined numerical suite |
-| **LuxiEdge** | Execute | Energy-aware GPU execution for AI inference, with packed work and scoped deterministic receipts | **Public AI wedge** · Qwen2-7B vs vLLM 0.25.1 prefill + decode measured on H100 ([`BENCHMARKS.md`](BENCHMARKS.md)); Version 99 third-party lineage |
+| **LuxiEdge** | Execute | Energy-aware GPU execution for AI inference, with packed work and scoped deterministic receipts | **Public AI wedge** · Qwen2-7B vs vLLM 0.25.1 and SGLang 0.5.19 prefill + decode measured on H100 ([`BENCHMARKS.md`](BENCHMARKS.md)), plus a drift demo under batch load ([`INFERENCE.md`](INFERENCE.md#drift-demo)); Version 99 third-party lineage |
 | **LuxiPack** | Schedule | Admit work after dependencies are ready and place it to reduce hold-not-work and repeated preparation | **In development** |
 | **LuxiPhase** | Shape | Shape aggregate compute timing to reduce power swings while respecting throughput and SLOs | **Prototype/local validation** |
 | **LuxiLoad** | Coordinate | Coordinate compute demand with generation, electrical, cooling, and reliability limits | **Early concept** |
@@ -31,7 +31,7 @@ Public portfolio order (website on Replit; this repo is binaries only): **sale �
 |---|---|---|
 | **Luxi Book** | **Primary Quant try** - CSV European options, five Greeks, output-vector hash + Ed25519 `lxq2_` receipt; macOS + Linux CPU + Linux CUDA closed binaries | [`DEMOS.md`](DEMOS.md) · [`downloads/luxibook/`](downloads/luxibook/) |
 | **LuxiRisk** | **Freebie** retail / crypto risk CLI + Ed25519 `lxr1_` receipts - not institutional Quant | [`luxirisk/`](luxirisk/) · release `luxirisk-v0.2` |
-| **LuxiEdge benchmarks + serve demo** | Measured H100 results vs vLLM 0.25.1 and a stripped serve binary (OpenAI-shaped API, toy generate path) | [`BENCHMARKS.md`](BENCHMARKS.md) · [`DEMOS.md`](DEMOS.md) · [`evidence/`](evidence/) |
+| **LuxiEdge benchmarks + serve demo** | Measured H100 results vs vLLM 0.25.1 and SGLang 0.5.19, a drift demo, and a stripped serve binary (OpenAI-shaped API, toy generate path) | [`INFERENCE.md`](INFERENCE.md) · [`BENCHMARKS.md`](BENCHMARKS.md) · [`DEMOS.md`](DEMOS.md) · [`evidence/`](evidence/) |
 | Numerical v3.0 demos | REST `/evaluate`, operators, ATE/tools - supporting quant math, not the option book | GitHub release `v3.0` · [`DEMOS.md`](DEMOS.md) |
 
 LuxiEdge remains the public **AI inference** wedge. Luxi Book is the public

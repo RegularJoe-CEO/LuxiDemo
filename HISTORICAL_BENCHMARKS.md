@@ -8,7 +8,7 @@ configurations. They are **not** the current public headline.
 | Surface | Where |
 |---------|--------|
 | Luxi Book receipt matrix | [`RESULTS.md`](RESULTS.md) · [`downloads/luxibook/`](downloads/luxibook/) |
-| Qwen2-7B vs vLLM 0.25.1 (H100 prefill + decode) | [`BENCHMARKS.md`](BENCHMARKS.md) |
+| Qwen2-7B vs vLLM 0.25.1 and SGLang 0.5.19 (H100 prefill + decode, drift demo) | [`INFERENCE.md`](INFERENCE.md) · [`BENCHMARKS.md`](BENCHMARKS.md) |
 | Full measured tables | [`RESULTS.md`](RESULTS.md) |
 | Chronology | [`HISTORY.md`](HISTORY.md) |
 
