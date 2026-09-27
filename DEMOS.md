@@ -228,7 +228,7 @@ proprietary engine source. See also [`scripts/README.md`](scripts/README.md).
 | **Luxi Book** (Quant sale) | CSV BS/Black-76 + Greeks + output-vector hash + Ed25519 `lxq2_` receipt; macOS + Linux CPU + Linux CUDA | Partner books / design-partner path; no universal GPU claim |
 | **LuxiRisk** (freebie) | Offline retail/crypto CLI + Ed25519 `lxr1_` receipts + verify + public vectors | [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2) (**OS binaries not code-signed**; Gatekeeper/SmartScreen friction) |
 | LuxiQuant numerical | v3.0 binary validation + REST + operator receipts | Keep secondary to Book; optional multi-platform numerical matrix |
-| LuxiEdge | Serve API demo + H100 benchmarks ([`BENCHMARKS.md`](BENCHMARKS.md)) + Version 99 verifier | Controlled downloadable inference evaluation package |
+| LuxiEdge | Serve API demo + H100 benchmarks vs vLLM and SGLang ([`BENCHMARKS.md`](BENCHMARKS.md)) + drift demo ([`INFERENCE.md`](INFERENCE.md#drift-demo)) + Version 99 verifier | Controlled downloadable inference evaluation package |
 | LuxiPack | None | Admission/placement trace versus a baseline |
 | LuxiPhase | None | Synthetic load-shaping trace with SLO and stability checks |
 | LuxiLoad | None | Controlled compute/power co-simulation or design engagement |
