@@ -44,6 +44,16 @@ Overview: [`../INFERENCE.md`](../INFERENCE.md) · what was and wasn't tested: [`
 - vs normal SGLang: 2k to 32k prompts 1.3–4.6% faster with 1.0–4.1% less energy per token; generation about equal speed with 1–7% more energy per token
 - Includes per-run rows, gate results and setup logs
 
+### Qwen2-7B output drift under batching and live traffic on H100 - 2026-09-26
+
+[`h100-qwen2-7b-drift-demo-2026-09-26/`](h100-qwen2-7b-drift-demo-2026-09-26/) · summary: [`../INFERENCE.md#drift-demo`](../INFERENCE.md#drift-demo)
+
+- Each prompt's output under batch load compared with the same engine's output alone: 20 prompts, 256 greedy tokens, fp16
+- Luxi: 80 of 80 batch conditions identical in tokens and logprobs (fresh-process runs; batch conditions only)
+- Normal vLLM 0.25.1 changed the visible answer in 12 of 140 conditions and normal SGLang 0.5.19 in 11 of 140; their deterministic modes stayed identical in 140 of 140
+- Includes an open Luxi fault seen in one long-running process, with its raw records
+- Includes the method sheet, per-prompt table, scripts, prompts and summary files
+
 ## Prior third-party-operated transformer measurement
 
 ### Version 99 matched prefill, 2026-07-23 (TESTfort)
@@ -52,7 +62,7 @@ Overview: [`../INFERENCE.md`](../INFERENCE.md) · what was and wasn't tested: [`
 
 - Earlier stack: thr trailed vLLM; modest board-energy edge; det + soak held
 - Kept as independent lineage - **not** the current thr claim
-- Covers the earlier Version 99 build only; it does not cover the 2026-09 vLLM or SGLang results
+- Covers the earlier Version 99 build only; it does not cover the 2026-09 vLLM or SGLang results or the drift demo
 
 Formal signed narrative: pending.
 
