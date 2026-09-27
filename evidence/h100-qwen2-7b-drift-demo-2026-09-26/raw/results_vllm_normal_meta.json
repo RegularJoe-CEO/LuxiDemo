@@ -1,0 +1,45 @@
+{
+ "engine": "vllm",
+ "mode": "normal",
+ "dtype": "float16",
+ "G": 256,
+ "server_cmd": [
+  "/root/vllm129/bin/vllm",
+  "serve",
+  "<model>",
+  "--dtype",
+  "float16",
+  "--max-model-len",
+  "4096",
+  "--no-enable-prefix-caching",
+  "--gpu-memory-utilization",
+  "0.85",
+  "--host",
+  "<local>",
+  "--port",
+  "<local>",
+  "--served-model-name",
+  "qwen2-7b-instruct",
+  "--generation-config",
+  "vllm",
+  "--seed",
+  "0"
+ ],
+ "VLLM_BATCH_INVARIANT": "0",
+ "staggered_specs": {
+  "srv_stagA": {
+   "n_fill": 24,
+   "gap_mean_s": 0.08,
+   "t_target_s": 0.6,
+   "seed": 100
+  },
+  "srv_stagB": {
+   "n_fill": 56,
+   "gap_mean_s": 0.04,
+   "t_target_s": 1.5,
+   "seed": 900
+  }
+ },
+ "ready_s": 39.0,
+ "started": "2026-09-27T03:09:42+0000"
+}

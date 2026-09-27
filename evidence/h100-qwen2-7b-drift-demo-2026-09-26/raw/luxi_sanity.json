@@ -1,0 +1,129 @@
+{
+ "lines": {
+  "p0": [
+   {
+    "B": 1,
+    "G": 1,
+    "hash": "c9616f382c0beaf3",
+    "matches_2026-09-26_race": true
+   },
+   {
+    "B": 16,
+    "G": 1,
+    "hash": "c9616f382c0beaf3",
+    "matches_2026-09-26_race": true
+   }
+  ],
+  "p1": [
+   {
+    "B": 1,
+    "G": 1,
+    "hash": "2dcb8013be067afd",
+    "matches_2026-09-26_race": true
+   },
+   {
+    "B": 16,
+    "G": 1,
+    "hash": "2dcb8013be067afd",
+    "matches_2026-09-26_race": true
+   }
+  ],
+  "p2": [
+   {
+    "B": 1,
+    "G": 1,
+    "hash": "b01c35233216dcaa",
+    "matches_2026-09-26_race": true
+   },
+   {
+    "B": 16,
+    "G": 1,
+    "hash": "b01c35233216dcaa",
+    "matches_2026-09-26_race": true
+   }
+  ],
+  "p3": [
+   {
+    "B": 1,
+    "G": 1,
+    "hash": "f4342a28c4fc6611",
+    "matches_2026-09-26_race": true
+   },
+   {
+    "B": 16,
+    "G": 1,
+    "hash": "f4342a28c4fc6611",
+    "matches_2026-09-26_race": true
+   }
+  ],
+  "p4": [
+   {
+    "B": 1,
+    "G": 1,
+    "hash": "62b188d09a8bfbef",
+    "matches_2026-09-26_race": true
+   },
+   {
+    "B": 16,
+    "G": 1,
+    "hash": "62b188d09a8bfbef",
+    "matches_2026-09-26_race": true
+   }
+  ],
+  "gate0": [
+   {
+    "B": 1,
+    "G": 64,
+    "hash": "a369dbac79f34aaa",
+    "matches_2026-09-26_race": true
+   }
+  ],
+  "gate1": [
+   {
+    "B": 1,
+    "G": 64,
+    "hash": "064cbfa886df47e2",
+    "matches_2026-09-26_race": true
+   }
+  ],
+  "gate2": [
+   {
+    "B": 1,
+    "G": 64,
+    "hash": "1b3dd50ab9b59ece",
+    "matches_2026-09-26_race": true
+   }
+  ],
+  "gate3": [
+   {
+    "B": 1,
+    "G": 64,
+    "hash": "f8a21d018508ae02",
+    "matches_2026-09-26_race": true
+   }
+  ],
+  "gate4": [
+   {
+    "B": 1,
+    "G": 64,
+    "hash": "d433900dd81854cd",
+    "matches_2026-09-26_race": true
+   }
+  ],
+  "long1024": [
+   {
+    "B": 1,
+    "G": 256,
+    "hash": "542ef41b301459e0",
+    "matches_2026-09-26_race": true
+   },
+   {
+    "B": 16,
+    "G": 256,
+    "hash": "542ef41b301459e0",
+    "matches_2026-09-26_race": true
+   }
+  ]
+ },
+ "ALL_MATCH": true
+}

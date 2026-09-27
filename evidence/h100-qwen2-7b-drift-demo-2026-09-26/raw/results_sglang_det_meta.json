@@ -1,0 +1,50 @@
+{
+ "engine": "sglang",
+ "mode": "det",
+ "dtype": "float16",
+ "G": 256,
+ "server_cmd": [
+  "/root/sgl/bin/python",
+  "-m",
+  "sglang.launch_server",
+  "--model-path",
+  "<model>",
+  "--dtype",
+  "float16",
+  "--context-length",
+  "4096",
+  "--disable-radix-cache",
+  "--attention-backend",
+  "fa3",
+  "--mem-fraction-static",
+  "0.85",
+  "--host",
+  "<local>",
+  "--port",
+  "<local>",
+  "--served-model-name",
+  "qwen2-7b-instruct",
+  "--sampling-defaults",
+  "openai",
+  "--log-level",
+  "warning",
+  "--enable-deterministic-inference"
+ ],
+ "VLLM_BATCH_INVARIANT": "0",
+ "staggered_specs": {
+  "srv_stagA": {
+   "n_fill": 24,
+   "gap_mean_s": 0.08,
+   "t_target_s": 0.6,
+   "seed": 100
+  },
+  "srv_stagB": {
+   "n_fill": 56,
+   "gap_mean_s": 0.04,
+   "t_target_s": 1.5,
+   "seed": 900
+  }
+ },
+ "ready_s": 51.0,
+ "started": "2026-09-27T03:45:57+0000"
+}
