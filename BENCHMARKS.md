@@ -4,7 +4,9 @@ Measured 2026-09-25/26 on NVIDIA H100 SXM GPUs (the vLLM and SGLang runs used se
 
 ## Headline
 
-Luxi runs Qwen2-7B on an H100 with bit-identical results at any batch size. On long prompts (2k to 32k tokens) it is 3–7% faster than vLLM 0.25.1 and uses 2–5% less energy per token. When generating tokens it matches vLLM's speed but uses 2–7% more energy per token. Against vLLM's own deterministic (batch-invariant) mode, Luxi is faster and uses less energy on every test, including 1.5–2.7× faster token generation with 16–50% less energy. It also beats SGLang's deterministic mode on every test, at 1.18–1.24× faster on 2k–32k prompts with 14–19% less energy per token, and 1.21–2.86× faster generation.
+Luxi runs Qwen2-7B on an H100 with bit-identical results across every batch size we tested (1, 16 and 64 when generating tokens; 1 against 16, 4 and 2 on 2k, 8k and 32k-token prompts), across repeated runs and separate processes. On long prompts (2k to 32k tokens) it is 3–7% faster than vLLM 0.25.1 and uses 2–5% less energy per token. When generating tokens it matches vLLM's speed but uses 2–7% more energy per token. Against vLLM's own deterministic (batch-invariant) mode, Luxi is faster and uses less energy on every test, including 1.5–2.7× faster token generation with 16–50% less energy. It also beats SGLang's deterministic mode on every test, at 1.18–1.24× faster on 2k–32k prompts with 14–19% less energy per token, and 1.21–2.86× faster generation.
+
+Overview for inference buyers: [`INFERENCE.md`](INFERENCE.md) · What was and wasn't tested: [`TEST_SCOPE.md`](TEST_SCOPE.md)
 
 ## Prefill (long prompts)
 
@@ -36,10 +38,11 @@ Throughput in prompt tokens/s and energy in joules (J) per prompt token.
 
 ## Determinism
 
-- Luxi output is bit-exact across batch sizes 1, 16 and 64, across repeats, and across separate processes.
-- It matches the Hugging Face reference argmax and top-5.
+- Luxi gave one logits hash and one generated-token sequence per test across its tested batch sizes and 2 repeats: batch 1, 16 and 64 for a 1,024-token prompt with 256 greedy tokens; batch 1 and 16 for a 2,048-token prompt and for five short prompts with 64 greedy tokens; batch 1 and 4 at 8,192 tokens; batch 1 and 2 at 32,767 tokens. A separate process on the SGLang pod (a different H100) gave the same hashes.
+- Compared with Hugging Face transformers in fp16: the 2,048, 8,192 and 32,767-token prompts give the same top token and ordered top-5 tokens (max absolute logit difference 0.032, 0.034 and 0.055). Greedy output matches Hugging Face for all 64 tokens on four of the five short prompts; on the fifth it diverges at token 16, where Hugging Face's top two tokens are tied. On the 1,024-token prompt it matches until token 248 of 256, the same token where vLLM (default and batch-invariant) diverges from Hugging Face. vLLM matched Hugging Face for all 64 tokens on the five short prompts.
 - vLLM default is repeatable for an identical batch but is not batch-invariant: per-step logprobs for a prompt differed on about 250 of 256 steps when it ran alone versus inside a batch.
 - vLLM's batch-invariant mode was identical in all cases tested.
+- Gate rows, Hugging Face comparisons and the vLLM batch probes: [`evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/gates/`](evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/gates/)
 
 ## Why generation uses more energy
 
@@ -54,7 +57,7 @@ To stay batch-invariant, Luxi pins one GEMM configuration per matrix shape at ev
 ## Run summary
 
 Per-cell means, spread, latency, median board power and SM clock:
-[`evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/summary.md`](evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/summary.md).
+[`evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/summary.md`](evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/summary.md). Per-run rows and the script that computes the summary: [`runs/`](evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/runs/).
 
 Engine labels in that file: `vllm_default` = vLLM 0.25.1 default · `vllm_BI` = vLLM batch-invariant mode · `luxi_c8_FA3` = Luxi (FA3) · `luxi_c8_ownattn` = Luxi own attention kernel.
 
@@ -113,17 +116,18 @@ Throughput in prompt tokens/s and energy in joules (J) per prompt token.
 
 ### Determinism and correctness
 
-- Luxi passed its determinism and correctness gate on this pod: for every test (2k, 8k and 32k prompts, a 1k prompt with 256 generated tokens at batch 1, 16 and 64, and five short prompts) it gave one logits hash across batch sizes and repeats. Argmax and top-5 match the Hugging Face fp16 reference on all five short prompts. The hashes were bit-identical to the 2026-09-26 final gate of the same build.
-- SGLang deterministic mode passed determinism in both fp16 and bf16: results were identical alone versus inside a batch and from run to run, for 2k, 8k and 32k prompts and for 256 generated tokens at batch 16 and 64 and with staggered arrivals. Argmax and top-5 matched Hugging Face on all five short prompts.
-- Normal SGLang is not batch-invariant. It is repeatable for an identical batch, but per-step top-5 logprobs for a prompt differed on 250–254 of 256 steps when it ran inside a batch of 16 or 64 versus alone, and on one of the five short prompts the greedy output changed at token 16 inside a batch of 16.
+- Luxi passed its determinism and correctness gate on this pod. Each test gave one logits hash and one token sequence across its tested batch sizes and 2 repeats: 2k (batch 1 and 16), 8k (1 and 4) and 32k (1 and 2) prompts, a 1k prompt with 256 generated tokens (batch 1, 16 and 64), and five short prompts with 64 generated tokens (batch 1 and 16). The hashes were bit-identical to the 2026-09-26 final gate of the same build, which ran in a separate process on the vLLM pod.
+- On five short prompts Luxi's top token and ordered top-5 tokens match the Hugging Face fp16 reference, with max absolute logit difference 0.017–0.034. Greedy output matches Hugging Face until token 16 on one short prompt (where Hugging Face's top two tokens are tied) and until token 248 on the 1k prompt; the other four short prompts match for all 64 tokens.
+- SGLang deterministic mode passed determinism in both fp16 and bf16: results were identical alone versus inside a batch and from run to run, for 2k, 8k and 32k prompts and for 256 generated tokens at batch 16 and 64 and with staggered arrivals. Top token and ordered top-5 tokens matched Hugging Face on the same five short prompts. On the 1k prompt greedy output diverges from Hugging Face at token 248 in fp16 and at token 128 in bf16; on the short prompts fp16 matches all 64 tokens and bf16 diverges at token 56 on one prompt.
+- Normal SGLang is not batch-invariant. It is repeatable for an identical batch, but per-step top-5 logprobs for a prompt differed on 250–254 of 256 steps when it ran inside a batch of 16 or 64 versus alone, and on one of the five short prompts the greedy output changed at token 16 inside a batch of 16. Run alone, its greedy output diverges from Hugging Face at token 248 on the 1k prompt and matches all 64 tokens on the short prompts.
 
 ### Run summary and raw files
 
 Per-test medians with latency, median board power and SM clock:
-[`evidence/h100-qwen2-7b-vs-sglang-0.5.19-2026-09-26/summary.md`](evidence/h100-qwen2-7b-vs-sglang-0.5.19-2026-09-26/summary.md). Gate outputs, setup logs, block logs and the runbook are in the same folder.
+[`evidence/h100-qwen2-7b-vs-sglang-0.5.19-2026-09-26/summary.md`](evidence/h100-qwen2-7b-vs-sglang-0.5.19-2026-09-26/summary.md). Gate outputs, setup logs, block logs and the runbook are in the same folder. Per-run rows and the script that computes the medians: [`runs/`](evidence/h100-qwen2-7b-vs-sglang-0.5.19-2026-09-26/runs/).
 
 Engine labels in that file: `luxi_c8` = Luxi (FA3) · `sglang_det_fp16` = SGLang deterministic (fp16) · `sglang_det_bf16` = SGLang deterministic (bf16) · `sglang_normal_fp16` = SGLang normal (fp16) · `vllm_0.25.1_default` = vLLM 0.25.1 default, run on this pod in the same round as normal SGLang.
 
-Scope: single-GPU board energy (not wall-plug), one model, one GPU class. Not a multi-tenant full-server comparison.
+Scope: single-GPU board energy (not wall-plug), one model, one GPU class. Not a multi-tenant full-server comparison. Full list of what was and wasn't tested: [`TEST_SCOPE.md`](TEST_SCOPE.md).
 
 Contact: Eric Waller, e@ewaller.com
