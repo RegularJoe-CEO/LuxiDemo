@@ -1,6 +1,6 @@
 # Luxi public demos and evidence
 
-**For inference buyers:** LuxiEdge keeps Qwen2-7B outputs bit-identical across every batch size we tested on an H100, at normal serving speed. Start with [`INFERENCE.md`](INFERENCE.md).
+**For inference buyers:** LuxiEdge keeps Qwen2-7B outputs bit-identical across every batch size we tested on an H100, at normal serving speed. Start with [`INFERENCE.md`](INFERENCE.md). Drift demo (outputs under batch load vs alone, compared with vLLM and SGLang): [`INFERENCE.md#drift-demo`](INFERENCE.md#drift-demo).
 
 **What this repo is:** closed **binaries**, **evidence packs**, and **markdown** run docs.  
 **What this repo is not:** marketing website source, proprietary engine source, or the luxiedge.com deploy tree.
@@ -25,7 +25,7 @@ This repository has two jobs:
 
 ## Current measured result
 
-### LuxiEdge vs vLLM 0.25.1 - Qwen2-7B on H100
+### LuxiEdge vs vLLM 0.25.1 and SGLang 0.5.19 - Qwen2-7B on H100
 
 Luxi runs Qwen2-7B on an H100 with bit-identical results across every batch size we tested (1, 16 and 64 when generating tokens; 1 against 16, 4 and 2 on 2k, 8k and 32k-token prompts), across repeated runs and separate processes. On long prompts (2k to 32k tokens) it is 3–7% faster than vLLM 0.25.1 and uses 2–5% less energy per token. When generating tokens it matches vLLM's speed but uses 2–7% more energy per token. Against vLLM's own deterministic (batch-invariant) mode, Luxi is faster and uses less energy on every test, including 1.5–2.7× faster token generation with 16–50% less energy. It also beats SGLang's deterministic mode on every test, at 1.18–1.24× faster on 2k–32k prompts with 14–19% less energy per token, and 1.21–2.86× faster generation.
 
@@ -126,7 +126,7 @@ measurement boundary.
 
 The historical work has **not** been deleted or hidden.
 
-- **Current measurement:** Qwen2-7B on H100 vs vLLM 0.25.1 and SGLang 0.5.19 - prefill + decode throughput, energy per token, determinism ([`BENCHMARKS.md`](BENCHMARKS.md); scope in [`TEST_SCOPE.md`](TEST_SCOPE.md)).
+- **Current measurement:** Qwen2-7B on H100 vs vLLM 0.25.1 and SGLang 0.5.19 - prefill + decode throughput, energy per token, determinism ([`BENCHMARKS.md`](BENCHMARKS.md); scope in [`TEST_SCOPE.md`](TEST_SCOPE.md)), and a drift demo under batch load ([`INFERENCE.md`](INFERENCE.md#drift-demo)).
 - **Prior third-party measurement:** Version 99 TESTfort matched-prefill pack.
 - **Current runnable demonstrations:** Luxi Book (macOS + Linux CPU + Linux CUDA) + LuxiRisk freebie + version-100 serve + v3.0 numerical tools.
 - **Independent numerical-engine evaluation:** linked and separately scoped.
