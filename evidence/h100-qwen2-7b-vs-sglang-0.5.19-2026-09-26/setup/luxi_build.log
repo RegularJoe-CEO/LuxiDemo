@@ -1,0 +1,36 @@
+warning: `attention-transformer-v2` (lib) generated 11 warnings (run `cargo fix --lib -p attention-transformer-v2` to apply 3 suggestions)
+warning: variable does not need to be mutable
+   --> examples/cuda_qwen7b_trade.rs:361:9
+    |
+361 |     let mut x = stack_forward(&mut layers, &hidden, seq0, legacy_per_layer)
+    |         ----^
+    |         |
+    |         help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+    --> examples/cuda_qwen7b_trade.rs:1284:17
+     |
+1284 |             let mut pool_rot: usize = 0;
+     |                 ----^^^^^^^^
+     |                 |
+     |                 help: remove this `mut`
+
+warning: value assigned to `kv_len` is never read
+   --> examples/cuda_qwen7b_trade.rs:182:9
+    |
+182 |         kv_len = sustain_seq.max(1);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: maybe it is overwritten before being read?
+    = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: `attention-transformer-v2` (example "cuda_qwen7b_trade") generated 3 warnings (run `cargo fix --example "cuda_qwen7b_trade" -p attention-transformer-v2` to apply 2 suggestions)
+    Finished `release` profile [optimized] target(s) in 1m 15s
+BUILD_EXIT 0 secs=76
+ 0x000000000000001d (RUNPATH)            Library runpath: [/root/vllm129/lib/python3.11/site-packages/nvidia/cublas/lib]
+ 0x0000000000000001 (NEEDED)             Shared library: [libcublas.so.12]
+ 0x0000000000000001 (NEEDED)             Shared library: [libcublasLt.so.12]
+7333dbda0e120cdb1ac708fbaaea1f92dd5df9d5bfbfd97b73d9915c39d05448  /workspace/luxi_rerun_2026-09-25/long/bin_P4
+fa3 shim loads OK

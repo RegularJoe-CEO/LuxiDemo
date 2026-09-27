@@ -1,0 +1,25 @@
+=== setup start 2026-09-26T21:09:47Z
+driver major 570
+[notice] To update, run: python -m pip install --upgrade pip
+rustc 1.98.1 (48a229cea 2026-09-01)
+True
+tensor(-62.5312, device='cuda:0', dtype=torch.float16)
+VLLM_DONE
+warning: `attention-transformer-v2` (example "cuda_qwen7b_trade") generated 3 warnings (run `cargo fix --example "cuda_qwen7b_trade" -p attention-transformer-v2` to apply 2 suggestions)
+    Finished `release` profile [optimized] target(s) in 1m 15s
+BUILD_EXIT 0 secs=76
+f00d17cbf433746c391ad43948613e373aa51222dbee3b0db61ffff59a74bb1a  model.safetensors.index.json
+MODEL_DONE
+cuda-python                  12.9.7
+flashinfer-python            0.6.18
+nvidia-cublas-cu12           12.9.1.4
+sgl-deep-ep                  0.1.2
+sgl-deep-gemm                0.1.7+cu129
+sglang                       0.5.19
+sglang-kernel                0.4.6.post1+cu129
+torch                        2.13.0+cu129
+transformers                 5.12.1
+triton                       3.7.1
++ echo SGL_DONE
+SGL_DONE
+=== setup end 2026-09-26T21:12:53Z
