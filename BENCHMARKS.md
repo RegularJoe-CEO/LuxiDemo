@@ -130,4 +130,10 @@ Engine labels in that file: `luxi_c8` = Luxi (FA3) · `sglang_det_fp16` = SGLang
 
 Scope: single-GPU board energy (not wall-plug), one model, one GPU class. Not a multi-tenant full-server comparison. Full list of what was and wasn't tested: [`TEST_SCOPE.md`](TEST_SCOPE.md).
 
+## Drift demo
+
+Outputs under batch load and live traffic compared with each engine's output alone (Luxi, vLLM 0.25.1 and SGLang 0.5.19, 2026-09-26): [`INFERENCE.md#drift-demo`](INFERENCE.md#drift-demo) · raw files: [`evidence/h100-qwen2-7b-drift-demo-2026-09-26/`](evidence/h100-qwen2-7b-drift-demo-2026-09-26/).
+
+Normal vLLM and SGLang changed the visible answer in 12 of 140 and 11 of 140 load conditions; Luxi (80 batch conditions) and the deterministic modes of vLLM and SGLang stayed bit-identical. The page also describes one open issue seen in a long-running Luxi process.
+
 Contact: Eric Waller, e@ewaller.com
