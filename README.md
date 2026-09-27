@@ -25,7 +25,7 @@ This repository has two jobs:
 
 ### LuxiEdge vs vLLM 0.25.1 - Qwen2-7B on H100
 
-Luxi runs Qwen2-7B on an H100 with bit-identical results at any batch size. On long prompts (2k to 32k tokens) it is 3–7% faster than vLLM 0.25.1 and uses 2–5% less energy per token. When generating tokens it matches vLLM's speed but uses 2–7% more energy per token. Against vLLM's own deterministic (batch-invariant) mode, Luxi is faster and uses less energy on every test, including 1.5–2.7× faster token generation with 16–50% less energy.
+Luxi runs Qwen2-7B on an H100 with bit-identical results at any batch size. On long prompts (2k to 32k tokens) it is 3–7% faster than vLLM 0.25.1 and uses 2–5% less energy per token. When generating tokens it matches vLLM's speed but uses 2–7% more energy per token. Against vLLM's own deterministic (batch-invariant) mode, Luxi is faster and uses less energy on every test, including 1.5–2.7× faster token generation with 16–50% less energy. It also beats SGLang's deterministic mode on every test, at 1.18–1.24× faster on 2k–32k prompts with 14–19% less energy per token, and 1.21–2.86× faster generation.
 
 Full prefill and decode tables, method, determinism, and what is borrowed vs Luxi's own: [`BENCHMARKS.md`](BENCHMARKS.md)
 
