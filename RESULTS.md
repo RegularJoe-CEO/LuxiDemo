@@ -31,7 +31,7 @@ match,” not desk VaR, not live market data, not `risk-pipeline`. Do not treat 
 
 ## LuxiEdge vs vLLM 0.25.1 - Qwen2-7B on H100 (2026-09-25/26)
 
-Luxi runs Qwen2-7B on an H100 with bit-identical results at any batch size. On long prompts (2k to 32k tokens) it is 3–7% faster than vLLM 0.25.1 and uses 2–5% less energy per token. When generating tokens it matches vLLM's speed but uses 2–7% more energy per token. Against vLLM's own deterministic (batch-invariant) mode, Luxi is faster and uses less energy on every test, including 1.5–2.7× faster token generation with 16–50% less energy.
+Luxi runs Qwen2-7B on an H100 with bit-identical results across every batch size we tested (1, 16 and 64 when generating tokens; 1 against 16, 4 and 2 on 2k, 8k and 32k-token prompts), across repeated runs and separate processes. On long prompts (2k to 32k tokens) it is 3–7% faster than vLLM 0.25.1 and uses 2–5% less energy per token. When generating tokens it matches vLLM's speed but uses 2–7% more energy per token. Against vLLM's own deterministic (batch-invariant) mode, Luxi is faster and uses less energy on every test, including 1.5–2.7× faster token generation with 16–50% less energy.
 
 **Prefill (long prompts)** - throughput tok/s and energy J per token:
 
@@ -54,7 +54,7 @@ Luxi's own: [`BENCHMARKS.md`](BENCHMARKS.md). Run summary:
 [`evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/`](evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/)
 
 Scope: one H100 SXM · GPU board energy (NVML) · not wall-plug · not
-multi-tenant full-server leadership.
+multi-tenant full-server leadership · full scope: [`TEST_SCOPE.md`](TEST_SCOPE.md)
 
 ## LuxiEdge Version 99 (prior third-party baseline)
 
