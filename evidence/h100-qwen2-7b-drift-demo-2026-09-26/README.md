@@ -43,12 +43,19 @@ Each prompt generates 256 tokens (ignore_eos). Comparisons use what a client wou
 
 **Files in this folder.**
 - `summary.md` / `summary.json`: rates per engine and condition.
-- `per_prompt.csv`: one row per engine and prompt, one column per condition. `same` = tokens and logprob hash identical to the reference, `lp` = tokens identical but logprob hash different, `text@N` = visible text changed with the first differing token at index N, `n/a` = condition not run for that engine.
-- `drift_chart.svg`: % identical tokens and logprob hashes by engine and condition group (drawn by the plotting code in `scripts/analyze.py` from the same results).
+- `per_prompt.csv`: one row per engine and prompt, one column per condition. `same` = tokens and logprob hash identical to the reference, `lp` = tokens identical but logprob hash different, `text@N` = visible text changed with the first differing token at index N, `n/a` = condition not run for that engine. Built from the drift results by `scripts/per_prompt.py`.
+- `drift_chart.svg`: % identical tokens and logprob hashes by engine and condition group (the same chart as the `drift_chart.png` drawn by `scripts/analyze.py`).
 - `examples.md`: side-by-side diffs of real cases.
-- `scripts/`: the vLLM/SGLang drivers, the analysis, and `drift_view.py` (e.g. `python scripts/drift_view.py . vllm_normal p07 srv_stagB`).
-- `data/prompts.json`: the 20 prompts with their token ids (stored in compact JSON). `data/build_data.py`: builds the prompts and fillers.
-- `raw/`: the Luxi sanity check, the Luxi p20 records (fault and fresh process) and the vLLM/SGLang run metadata.
-- `MANIFEST.sha256`: hashes of the files in this folder.
+- `scripts/`: the vLLM/SGLang drivers, the analysis, `per_prompt.py`, `rebuild.sh`, and `drift_view.py` (e.g. `python scripts/drift_view.py . vllm_normal p07 srv_stagB`).
+- `data/prompts.json`: the 20 prompts with their token ids (stored in compact JSON; `build_data.py` writes the same content with indentation). `data/build_data.py`: builds the prompts and fillers. `data/declaration_of_independence_gutenberg1.txt`: the Project Gutenberg #1 text used for the long prompt.
+- `raw/results_<engine>.partNN.jsonl`: every generated token and logprob for each engine (`luxi_c8`, `vllm_normal`, `vllm_det`, `sglang_normal`, `sglang_det`), split on line boundaries into parts of about 300 KB. Each part is valid JSONL.
+- `raw/`: also the Luxi sanity check, the Luxi p20 records (fault and fresh process) and the vLLM/SGLang run metadata.
+- `MANIFEST.sha256`: SHA-256 of every file in this folder, including the rebuilt files listed below.
 
-**Kept in the full run bundle, not in this folder (about 20 MB).** The per-engine `drift_results_*.json` files and `raw/results_*.jsonl` files with every generated token and logprob, `data/filler_pool.json`, the Project Gutenberg text of the Declaration of Independence (its full text is also inside `data/prompts.json`), and a PNG copy of the chart. `drift_view.py` and `analyze.py` read those files.
+**Rebuilding the large files.** The joined `raw/results_<engine>.jsonl` files, `data/filler_pool.json`, the `drift_results_<engine>.json` files and `drift_chart.png` are not committed because of their size. All of them rebuild byte for byte from the committed files, and the same steps reproduce the committed `summary.md`, `summary.json`, `examples.md` and `per_prompt.csv`:
+- `raw/results_<engine>.jsonl`: join the parts, e.g. `cat raw/results_vllm_normal.part*.jsonl > raw/results_vllm_normal.jsonl`.
+- `data/filler_pool.json` (2.8 MB): `python data/build_data.py TOKENIZER_DIR` (fixed seed). Run it on a copy of `data/`, because it also rewrites `data/prompts.json` with indentation.
+- `drift_results_<engine>.json`, `drift_chart.png`, `summary.md`, `summary.json` and `examples.md`: `python scripts/analyze.py RAW_DIR OUT_DIR --tokenizer TOKENIZER_DIR`, where RAW_DIR holds the five joined `results_<engine>.jsonl` files, `results_luxi_c8_p20_separate_process.jsonl` and `luxi_sanity.json`.
+- `per_prompt.csv`: `python scripts/per_prompt.py OUT_DIR`.
+
+`bash scripts/rebuild.sh TOKENIZER_DIR` runs all of these and then checks every file against `MANIFEST.sha256`. TOKENIZER_DIR holds `tokenizer.json` from Qwen/Qwen2-7B-Instruct (SHA-256 `f7c9b2dba4a296b1aa76c16a34b8225c0c118978400d4bb66bff0902d702f5b8`). The rebuild used Python 3.13, tokenizers 0.23.2 and matplotlib 3.11.2. A different matplotlib version can draw the same PNG chart with different bytes.
