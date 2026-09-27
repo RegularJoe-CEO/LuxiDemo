@@ -23,6 +23,8 @@ Tables: [`../RESULTS.md`](../RESULTS.md) · how to run: [`../DEMOS.md`](../DEMOS
 
 ## Current transformer measurements
 
+Overview: [`../INFERENCE.md`](../INFERENCE.md) · what was and wasn't tested: [`../TEST_SCOPE.md`](../TEST_SCOPE.md)
+
 ### Qwen2-7B vs vLLM 0.25.1 on H100 - 2026-09-25/26
 
 [`h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/`](h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/) · tables and method: [`../BENCHMARKS.md`](../BENCHMARKS.md)
@@ -30,7 +32,17 @@ Tables: [`../RESULTS.md`](../RESULTS.md) · how to run: [`../DEMOS.md`](../DEMOS
 - Long prompts (2k to 32k tokens): 3–7% faster than vLLM 0.25.1, 2–5% less energy per token
 - Token generation: matches vLLM's speed, 2–7% more energy per token
 - vs vLLM batch-invariant mode: faster and less energy on every test
-- Bit-identical output at batch sizes 1, 16 and 64
+- Bit-identical output across every batch size tested (1, 16 and 64 when generating; 1 against 16, 4 and 2 on long prompts)
+- Includes per-run rows, gate rows and Hugging Face comparisons
+
+### Qwen2-7B vs SGLang 0.5.19 on H100 - 2026-09-26
+
+[`h100-qwen2-7b-vs-sglang-0.5.19-2026-09-26/`](h100-qwen2-7b-vs-sglang-0.5.19-2026-09-26/) · tables and method: [`../BENCHMARKS.md`](../BENCHMARKS.md)
+
+- Different H100 pod from the vLLM pack; do not mix absolute numbers across the two packs
+- vs SGLang deterministic mode (fp16 and bf16): faster and less energy on every test; 2k to 32k prompts 1.18–1.24× faster with 14–19% less energy per token, generation 1.21–2.86× faster
+- vs normal SGLang: 2k to 32k prompts 1.3–4.6% faster with 1.0–4.1% less energy per token; generation about equal speed with 1–7% more energy per token
+- Includes per-run rows, gate results and setup logs
 
 ## Prior third-party-operated transformer measurement
 
@@ -40,6 +52,7 @@ Tables: [`../RESULTS.md`](../RESULTS.md) · how to run: [`../DEMOS.md`](../DEMOS
 
 - Earlier stack: thr trailed vLLM; modest board-energy edge; det + soak held
 - Kept as independent lineage - **not** the current thr claim
+- Covers the earlier Version 99 build only; it does not cover the 2026-09 vLLM or SGLang results
 
 Formal signed narrative: pending.
 
