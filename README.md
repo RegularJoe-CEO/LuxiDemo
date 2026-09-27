@@ -1,12 +1,14 @@
 # Luxi public demos and evidence
 
+**For inference buyers:** LuxiEdge keeps Qwen2-7B outputs bit-identical across every batch size we tested on an H100, at normal serving speed. Start with [`INFERENCE.md`](INFERENCE.md).
+
 **What this repo is:** closed **binaries**, **evidence packs**, and **markdown** run docs.  
 **What this repo is not:** marketing website source, proprietary engine source, or the luxiedge.com deploy tree.
 
 **Website (Replit, separate):** [luxiedge.com](https://luxiedge.com) - not published from this repository.  
 **Boundary:** [`REPO_BOUNDARY.md`](REPO_BOUNDARY.md)
 
-**Benchmarks:** [`BENCHMARKS.md`](BENCHMARKS.md) · **Runnable demos:** [`DEMOS.md`](DEMOS.md) · **Evidence:** [`evidence/README.md`](evidence/README.md) · **Architecture:** [`LUXI_SYSTEM.md`](LUXI_SYSTEM.md)
+**Inference:** [`INFERENCE.md`](INFERENCE.md) · **Benchmarks:** [`BENCHMARKS.md`](BENCHMARKS.md) · **Test scope:** [`TEST_SCOPE.md`](TEST_SCOPE.md) · **Runnable demos:** [`DEMOS.md`](DEMOS.md) · **Evidence:** [`evidence/README.md`](evidence/README.md) · **Architecture:** [`LUXI_SYSTEM.md`](LUXI_SYSTEM.md)
 
 **Try without an NDA:** [**Luxi Book**](downloads/luxibook/) (CSV European options + deterministic output hash + Ed25519 `lxq2_` receipts - the professional Quant try)
 and [**LuxiRisk**](luxirisk/) (free crypto/retail risk CLI). Inference serve binaries and numerical toys are documented in DEMOS below those two.
@@ -25,9 +27,9 @@ This repository has two jobs:
 
 ### LuxiEdge vs vLLM 0.25.1 - Qwen2-7B on H100
 
-Luxi runs Qwen2-7B on an H100 with bit-identical results at any batch size. On long prompts (2k to 32k tokens) it is 3–7% faster than vLLM 0.25.1 and uses 2–5% less energy per token. When generating tokens it matches vLLM's speed but uses 2–7% more energy per token. Against vLLM's own deterministic (batch-invariant) mode, Luxi is faster and uses less energy on every test, including 1.5–2.7× faster token generation with 16–50% less energy. It also beats SGLang's deterministic mode on every test, at 1.18–1.24× faster on 2k–32k prompts with 14–19% less energy per token, and 1.21–2.86× faster generation.
+Luxi runs Qwen2-7B on an H100 with bit-identical results across every batch size we tested (1, 16 and 64 when generating tokens; 1 against 16, 4 and 2 on 2k, 8k and 32k-token prompts), across repeated runs and separate processes. On long prompts (2k to 32k tokens) it is 3–7% faster than vLLM 0.25.1 and uses 2–5% less energy per token. When generating tokens it matches vLLM's speed but uses 2–7% more energy per token. Against vLLM's own deterministic (batch-invariant) mode, Luxi is faster and uses less energy on every test, including 1.5–2.7× faster token generation with 16–50% less energy. It also beats SGLang's deterministic mode on every test, at 1.18–1.24× faster on 2k–32k prompts with 14–19% less energy per token, and 1.21–2.86× faster generation.
 
-Full prefill and decode tables, method, determinism, and what is borrowed vs Luxi's own: [`BENCHMARKS.md`](BENCHMARKS.md)
+Full prefill and decode tables, method, determinism, and what is borrowed vs Luxi's own: [`BENCHMARKS.md`](BENCHMARKS.md) · What was and wasn't tested: [`TEST_SCOPE.md`](TEST_SCOPE.md)
 
 ### Prior third-party baseline (TESTfort Version 99, 2026-07-23)
 
@@ -107,7 +109,7 @@ Not Luxi Book. OpenAI-shaped API with a toy generate path. `/v1/gtm` returns bui
 | Quant/statistical operators | `validate`, `quant_chain`, normalization operators | **Working binary demo** |
 | Scientific and edge examples | Orbital and robotics commands | **Working binary demo** |
 | LuxiEdge serve demo (v100) | Stripped HTTP binary: OpenAI-shaped API, toy generate path | **Working binary demo (no source)** |
-| LuxiEdge Qwen2-7B vs vLLM 0.25.1 | H100 prefill + decode thr, J/token, determinism ([`BENCHMARKS.md`](BENCHMARKS.md)); engine private | **Measured evidence** |
+| LuxiEdge Qwen2-7B vs vLLM 0.25.1 and SGLang 0.5.19 | H100 prefill + decode thr, J/token, determinism ([`INFERENCE.md`](INFERENCE.md) · [`BENCHMARKS.md`](BENCHMARKS.md) · [`TEST_SCOPE.md`](TEST_SCOPE.md)); engine private | **Measured evidence** |
 | LuxiEdge Version 99 inference | TESTfort prior baseline; thr trailed vLLM | **Third-party measured lineage** |
 | Faithful Qwen2-7B CUDA | Website reports current acceptance result | **Raw public correctness pack pending** |
 | Llama 3.1 resident inference | No public performance binary or energy pack | **Internal milestone** |
@@ -124,7 +126,7 @@ measurement boundary.
 
 The historical work has **not** been deleted or hidden.
 
-- **Current measurement:** Qwen2-7B on H100 vs vLLM 0.25.1 - prefill + decode throughput, energy per token, determinism ([`BENCHMARKS.md`](BENCHMARKS.md)).
+- **Current measurement:** Qwen2-7B on H100 vs vLLM 0.25.1 and SGLang 0.5.19 - prefill + decode throughput, energy per token, determinism ([`BENCHMARKS.md`](BENCHMARKS.md); scope in [`TEST_SCOPE.md`](TEST_SCOPE.md)).
 - **Prior third-party measurement:** Version 99 TESTfort matched-prefill pack.
 - **Current runnable demonstrations:** Luxi Book (macOS + Linux CPU + Linux CUDA) + LuxiRisk freebie + version-100 serve + v3.0 numerical tools.
 - **Independent numerical-engine evaluation:** linked and separately scoped.
@@ -168,7 +170,9 @@ or SSH access information belong in this repository.
 | [`luxirisk/`](luxirisk/) | Freebie risk CLI binaries + public formulas/vectors |
 | [`evidence/`](evidence/) | Current and historical measurement packs |
 | [`DEMOS.md`](DEMOS.md) | Runnable public demo catalog |
-| [`BENCHMARKS.md`](BENCHMARKS.md) | Qwen2-7B on H100 vs vLLM 0.25.1 (prefill + decode) |
+| [`INFERENCE.md`](INFERENCE.md) | Inference overview: LuxiEdge vs vLLM and SGLang, normal and deterministic modes |
+| [`BENCHMARKS.md`](BENCHMARKS.md) | Qwen2-7B on H100 vs vLLM 0.25.1 and SGLang 0.5.19 (prefill + decode) |
+| [`TEST_SCOPE.md`](TEST_SCOPE.md) | What the inference benchmarks did and did not test |
 | [`RESULTS.md`](RESULTS.md) | Published results and measurement scope |
 | [`LUXI_SYSTEM.md`](LUXI_SYSTEM.md) | Product-family architecture and maturity |
 | [`HISTORY.md`](HISTORY.md) | Development chronology |
