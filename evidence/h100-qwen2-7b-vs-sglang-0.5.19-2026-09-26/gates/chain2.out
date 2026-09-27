@@ -1,0 +1,8 @@
+CPUSET=0-21
+gate E start 22:19:53
+rc=0
+gate E end 22:21:12
+gate N start 22:21:12
+rc=0
+gate N end 22:22:32
+CHAIN2_DONE

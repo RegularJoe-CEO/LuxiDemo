@@ -1,0 +1,7 @@
+flashinfer-python            0.6.18
+sgl-deep-gemm                0.1.7+cu129
+sglang                       0.5.19
+sglang-kernel                0.4.6.post1+cu129
+torch                        2.13.0+cu129
+transformers                 5.12.1
+triton                       3.7.1

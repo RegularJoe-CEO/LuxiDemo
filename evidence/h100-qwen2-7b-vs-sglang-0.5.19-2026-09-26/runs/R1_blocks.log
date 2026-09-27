@@ -1,0 +1,14 @@
+CPUSET=0-21 CELLS=p:2048x16,p:8192x4,p:32767x1,d:1024x1x256,d:1024x16x256,d:1024x64x256 RUNS=3 DUR=12 ORDER=D L E D L E
+block D1 start 21:33:31
+block D1 end 21:40:36 rc=0
+block L2 start 21:40:56
+block L2 end 21:48:47 rc=0
+block E3 start 21:49:07
+block E3 end 21:57:04 rc=0
+block D4 start 21:57:24
+block D4 end 22:04:29 rc=0
+block L5 start 22:04:49
+block L5 end 22:12:37 rc=0
+block E6 start 22:12:57
+block E6 end 22:19:21 rc=0
+ALL_DONE 22:19:41

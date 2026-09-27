@@ -1,0 +1,4 @@
+2699c2699
+<             if len(recv_obj.input_top_logprobs_val) > 0:
+---
+>             if recv_obj.input_top_logprobs_val is not None and len(recv_obj.input_top_logprobs_val) > 0:
