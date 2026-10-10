@@ -1,0 +1,15 @@
+python=3.11.10
+torch=2.13.0+cu129
+vllm=0.27.1
+flashinfer=0.6.16.post3
+transformers=5.19.0
+triton=3.7.1
+flash_attn=not a separate package in this environment
+model=Qwen/Qwen2-7B-Instruct
+model_revision=f2826a00ceef68f0f2b946d945ecc0477ce4450c
+pod_id=4yh5r1pn3swjbm
+datacenter=AP-IN-1
+image_tag=not exposed by the container environment fields that were recorded
+luxi_build_commit=e50c91fffe0c22b8390b0693bf39158dd14926ed
+luxi_gate_binary_sha256=54648cd345ba26020ae13ab86d5ebc37825bbf6444b1401907139ae23a1efc16
+luxi_echo_binary_sha256=e6630d5611112cd28dbc0967369fb95a35ca6a588f800fa6f106a66a4ed55f9e

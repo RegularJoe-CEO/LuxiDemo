@@ -1,0 +1,11 @@
+--- a/repro.py
++++ b/repro.py
+@@ -2,7 +2,7 @@
+ from collections import Counter
+ 
+ URL   = "http://127.0.0.1:8000/v1/chat/completions"
+-MODEL = "nvidia/DeepSeek-V4-Flash-nvfp4-DSpark"
++MODEL = "Qwen/Qwen2-7B-Instruct"
+ 
+ IDS = [
+     "c_mhw9v76obuh72x98f4pb8xr3",  "o_ftcj97ua0p5heapj5fpng02e",
