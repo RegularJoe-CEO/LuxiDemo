@@ -8,14 +8,7 @@ Worse: certification requires reproducibility. DO-178C doesn't accept "floating 
 
 ## How LuxiEdge Solves This
 
-Deterministic math. The trig functions, exponentials, and probability calculations your flight controller uses will produce identical results whether you run them on:
-
-- ARM64 edge device (1.6 MB binary, fits on constrained hardware)
-- x86 simulation workstation
-- GPU cluster for batch testing
-- CI/CD pipeline for regression tests
-
-Same input, same output, same SHA256 hash. Always.
+A receipt is the SHA-256 of one run. Re-running the same binary is stable. f32 `sin(x)` on the five gold inputs matched across macOS arm64, macOS x86_64, Linux x86_64, and Linux arm64. f64 Kepler sweeps did not all match. GPU was not measured.
 
 ## Example: Sensor Fusion
 
@@ -23,7 +16,7 @@ Same input, same output, same SHA256 hash. Always.
 curl -X POST http://localhost:10000/evaluate -H "Content-Type: application/json" -d '{"expr":"sin(x)*cos(x)","values":[0.1,0.2,0.3,0.4,0.5],"precision":"f32"}'
 ```
 
-That SHA256 hash in the response? It's identical on your test bench and in the field.
+That SHA256 hash is the receipt for the run you just made. Compare it with a later run of the same binary.
 
 ## Why This Matters for Certification
 
@@ -31,8 +24,8 @@ That SHA256 hash in the response? It's identical on your test bench and in the f
 |-------------|-------------------|
 | Reproducibility | SHA256 hash verification |
 | Traceability | Log inputs + hash, replay anytime |
-| Platform independence | Same binary behavior across ARM/x86 |
-| Determinism | No platform-specific math library calls |
+| Same binary | Re-running one binary is stable |
+| f64 math | Uses the platform libm, so hashes can differ |
 
 ## Edge Deployment
 

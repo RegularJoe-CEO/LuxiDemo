@@ -8,14 +8,7 @@ Standard math libraries use platform-specific optimizations. sin(x) on an Intel 
 
 ## How LuxiEdge Solves This
 
-Every calculation returns a SHA256 hash. Same input, same hash, every time. Doesn't matter if you run it on:
-
-- Linux server in your data center
-- macOS laptop during development
-- GPU cluster for production
-- ARM edge device for low-latency execution
-
-The hash matches. Bit-for-bit.
+Every successful calculation returns a SHA256 hash of the bytes that were computed. Re-running the same binary is stable. f64 receipts use the platform math library, so a laptop and a Linux server can disagree on a long sweep even when both residuals are tiny. GPU was not measured.
 
 ## Example: Option Pricing Components
 
@@ -33,11 +26,9 @@ Response includes a SHA256 hash you can store with your trade records.
 4. Re-run the same inputs
 5. Hash matches. Done.
 
-No arguing about floating point differences. No "well, we upgraded our servers." The math is the math.
+Store the input and the hash with the trade. A later run on the same binary can be compared with that hash. A different CPU is a new measurement, not an automatic match.
 
 ## Available Functions
-
-All produce identical hashes across platforms:
 
 | Function | Use Case |
 |----------|----------|

@@ -2,7 +2,7 @@
 
 Deterministic vector math. JSON in, results out, SHA256 hash on every response.
 
-Same input gives identical output across CPU, GPU, ARM, x86. Bit-for-bit. No floating point drift between platforms.
+A receipt is the SHA-256 of the result bytes from the run that produced them. Re-running the same binary is stable. It is not a promise that every CPU, GPU, or libm produces the same hash.
 
 ## Download
 
@@ -59,23 +59,21 @@ curl -X POST http://localhost:9090/evaluate
 
 
 
-You will receive:
+On this branch, macOS arm64, macOS x86_64, Linux x86_64, and Linux arm64 all returned:
+
 {
 "expr": "sin(x)",
-"results": [0.47942554, 0.84147096, 0.99999964, 0.9092974, 0.0015926529],
+"results": [0.4794255495071411, 0.8414709568023682, 0.9999997019767761, 0.9092974066734314, 0.0015925479819998145],
 "count": 5,
 "precision": "f32",
-"sha256": "9d7aa9e5e6b09ae8bb377f8c8ea01fbfa9e98a53814f533bee0681d924703ff1"
+"sha256": "0243d52127de37af8a1f49edadcf74a2a299732a5bec38693ee5b1804df28965"
 }
 
-
-
-
-That SHA256 hash is identical on every platform: macOS, Linux, CPU, GPU, ARM, x86. That is the point.
+That f32 sin(x) receipt matched on those four machines. GPU was not measured. This branch is not a release. The published v3.0 binaries still return sin(3.14) near 0.00848.
 
 ## Available Functions
 
-LuxiEdge supports 22 core deterministic mathematical functions:
+LuxiEdge supports 22 core mathematical functions:
 
 ### Trigonometric Functions
 
@@ -183,27 +181,25 @@ curl -X POST http://localhost:9090/evaluate
 
 ## Gold Master Hashes
 
-These hashes verify your binary is working correctly. All hashes below were generated using input values [0.5, 1.0, 1.57, 2.0, 3.14] with f32 precision.
-
-If your binary produces these exact hashes, it is operating correctly and deterministically.
+Measured with `luxiedge-demo` on macOS arm64, input `[0.5, 1.0, 1.57, 2.0, 3.14]`, precision f32. `sin(x)` also matched on macOS x86_64, Linux x86_64, and Linux arm64. The other rows were not re-measured on those machines. GPU was not measured. This branch is not a release.
 
 | Expression | SHA256 |
 |------------|--------|
-| sin(x) | 9d7aa9e5e6b09ae8bb377f8c8ea01fbfa9e98a53814f533bee0681d924703ff1 |
-| cos(x) | 61d97cf1bac8dfd44af0db506d458d8bdc2ffbe840480a3fc064de3519c03fa0 |
-| tan(x) | baba546c69199266c1b90dd215c58f08fb7dc9ad12f718ab9db4e5442165a98a |
-| sin(x)*cos(x) | 9ea125db0fa03d9eb348489016635436e5509b946e5b51629b246c03d4323b6b |
-| exp(x) | 2d7d36531aa3f132db7ba7a9e14ebd997737956c7ad1189cb14183635f7228f9 |
-| ln(x) | eaecff1d8edab73eddc00b00da2ef3d31aff5ff15ebd3f890ec3af42a66e1730 |
-| log10(x) | baba546c69199266c1b90dd215c58f08fb7dc9ad12f718ab9db4e5442165a98a |
-| sqrt(x) | 4963068c6387b177f78ee17b4caf072870e919ae7f18c495be25fb4c7f39b095 |
-| cbrt(x) | baba546c69199266c1b90dd215c58f08fb7dc9ad12f718ab9db4e5442165a98a |
+| sin(x) | 0243d52127de37af8a1f49edadcf74a2a299732a5bec38693ee5b1804df28965 |
+| cos(x) | f764241c7473a2306182dd086eae59a5e6e184e38b9d87b07115430744c96666 |
+| tan(x) | c2f3a5113c4d5d5febf7ce5e47565aad77bd58382a3ca37e094c766039e5e16a |
+| sin(x)*cos(x) | 7f488d2bd014e226f44f366c9e6dcee826667f2d32a0f07e98e21f692cbbfbc2 |
+| exp(x) | e9fa90fa7109168e2c6e33c09f4bdfe33f950d1618c63daa94ca50091c22c489 |
+| ln(x) | d9f04ca2fca66db0a39f7acfce0c17f3392f8c5d685ffd6b3cdd9878bece894f |
+| log10(x) | 3aaaf6e452f8e23a84d92cf205b3407da8f653c824e2f197d6ad5b4bf3777802 |
+| sqrt(x) | 3d88c5e3c24598b45ea32cd2347356c254e3cb9d2f92fbb0ce90b0ad6dff3f77 |
+| cbrt(x) | ef3075de3e76a739fc32e1affc73c38efda190c8715e4a82ccd5c5309d6e4e67 |
 | x^2 | 96620536e0763f86534ef44444a322a03c5e73b8415d737ebcd92206b8f069da |
 | x^3 | 3bf83ac5abbab1ce8ff39d19057a4a8bb5fc563dc692a1c17368384149533204 |
 | erf(x) | 91da32b8350f1ea6bd387b659c837de40bd7853aa4db2d0c2681a6143ae77988 |
 | normcdf(x) | 5bf3342a33330d9bb694053a061d7764f5ca8a5a9927ae58dbb2764b87b35a36 |
 | normpdf(x) | 27876beeed37a8722fa68c027f3a91a81c4e0b1fc54cafafa45d7ff5f7940cf7 |
-| gamma(x) | e2da3a67e3dbeadaeee51b2d6f45b5497fb789b6dbe910cb53ddfc0dd8a007a5 |
+| gamma(x) | 0f45aab892b79f822d0cae278d0d311cca4492f0af00dfb44c295a369b80f24d |
 
 ## Python Example
 
@@ -288,10 +284,10 @@ Transformer block (WNSM)             PASS  e1980a6fa77252dc...
 GPT-2 124M config preset             PASS  52cb6d0334f2
 Llama2 7B config preset              PASS  568f2a897fed
 ------------------------------------------------------------
-PASSED: 25   FAILED: 0
+PASSED: 28   FAILED: 0
 ```
 
-The transformer block hash should match `e1980a6fa77252dcab86e48aa7aa8ab2a6d3c5639789d0917e7efa1a7bb37628` on the reference build.
+On macOS arm64, `luxiedge-demo validate` reported `PASSED: 28 FAILED: 0`. The three checks beyond the old sample are f32 sin against libm, a compound expression, and a rejected expression that returns no receipt. The transformer block prefix `e1980a6fa77252dc` matched on that macOS arm64 run. It was not re-measured on Linux or macOS x86_64.
 
 ## ATE / Waller Geodesic Attention
 

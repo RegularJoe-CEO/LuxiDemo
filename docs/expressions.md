@@ -110,7 +110,7 @@ Precision
 Option	Bits	Use Case
 f32	32	Standard, faster
 f64	64	Higher precision
-Both produce deterministic SHA256 hashes.
+Both return a SHA256 of the bytes computed on that run.
 
 Genomics & Bioinformatics
 Sequence Alignment Scoring

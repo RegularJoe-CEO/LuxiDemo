@@ -6,7 +6,7 @@ Your model works in PyTorch. Export to ONNX, results drift. Deploy to TensorRT, 
 
 ## How LuxiEdge Solves This
 
-Run activation functions and attention math with bit-exact reproducibility. Same input, same hash, regardless of deployment target.
+Activation and attention calls return a SHA256 of the bytes computed on that run. Re-running the same binary is stable. Cross-target identity was not measured for these kernels, and GPU was not measured.
 
 ## Activation Functions
 
