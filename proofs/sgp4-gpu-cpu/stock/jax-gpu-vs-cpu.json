@@ -1,0 +1,46 @@
+{
+  "repo": "https://github.com/cmpriestley/jaxsgp4",
+  "commit": "382a41997c2ec35869da45b950506d88a38fbbc3",
+  "jax": "0.9.2",
+  "grid": {
+    "seed": 11,
+    "n_sats": 100,
+    "n_times": 29,
+    "n_states": 2900,
+    "tsince": "0 to 14 days step 0.5 day",
+    "batch": "per satellite, vmap over time"
+  },
+  "gpu_device": "cuda:0",
+  "cpu_device": "TFRT_CPU_0",
+  "cpu_platform_env": "JAX_PLATFORMS=cpu",
+  "measured": "2026-10-10",
+  "f64": {
+    "x64": true,
+    "n_bit_mismatch": 2701,
+    "n_finite": 2900,
+    "max_pos_km": 1.5853778190904915e-09,
+    "max_vel_km_s": 1.755852416785086e-12,
+    "median_pos_km": 1.4669153912828788e-12,
+    "p95_pos_km": 1.5492821159812617e-09,
+    "sha256_cpu": "c87e7e5b162cc143b75e8cea0da237f27a640b79a9a4ba00fe76705c13b1778c",
+    "sha256_gpu": "e299e63536376194c7d1dd03ef1ed51563f42fa51cb6899698e0376a13fdb094",
+    "gpu_runs": 3,
+    "gpu_runs_identical": true
+  },
+  "f32": {
+    "x64": false,
+    "n_bit_mismatch": 2824,
+    "n_finite": 2900,
+    "max_pos_km": 2.4645502245160555,
+    "max_vel_km_s": 0.002827067119259089,
+    "median_pos_km": 0.0010935347208965403,
+    "p95_pos_km": 0.8389554842531209,
+    "max_pos_km_day0": 0.00162976439,
+    "max_pos_km_day14": 1.69018345,
+    "sha256_cpu": "1aa09ca150c44396bec7825d1d72d2333e58e2076d6be65fa947bf3655eeb836",
+    "sha256_gpu": "b6403a5c3f369b27fdde436734303434589ecc053a16dbf11fc6e1e7e829d6af",
+    "gpu_runs": 3,
+    "gpu_runs_identical": true,
+    "values_are_exact_f32_widened_to_f64": true
+  }
+}
