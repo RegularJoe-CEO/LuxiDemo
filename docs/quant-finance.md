@@ -21,12 +21,12 @@ Response includes a SHA256 hash you can store with your trade records.
 ## Audit Trail
 
 1. Run your pricing model
-2. Store the SHA256 hash with the trade
+2. Store the input and the SHA256 hash with the trade
 3. Six months later, regulator asks for verification
-4. Re-run the same inputs
-5. Hash matches. Done.
+4. Re-run the same inputs on the same binary
+5. Compare the new hash with the stored one
 
-Store the input and the hash with the trade. A later run on the same binary can be compared with that hash. A different CPU is a new measurement, not an automatic match.
+A later run on the same binary can be compared with that hash. A different CPU is a new measurement, not an automatic match.
 
 ## Available Functions
 
