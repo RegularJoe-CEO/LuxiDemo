@@ -1,0 +1,320 @@
+{
+  "operationmode": "i",
+  "states": [
+    {
+      "name": "ISS",
+      "t_min": 0.0,
+      "python_error": 0,
+      "pos_km": 3.777415196472282e-12,
+      "vel_km_s": 3.532953350467458e-15
+    },
+    {
+      "name": "ISS",
+      "t_min": 10.0,
+      "python_error": 0,
+      "pos_km": 3.2155493553843714e-12,
+      "vel_km_s": 4.782987168225453e-15
+    },
+    {
+      "name": "ISS",
+      "t_min": 60.0,
+      "python_error": 0,
+      "pos_km": 1.1368683772161603e-12,
+      "vel_km_s": 2.3914935841127266e-15
+    },
+    {
+      "name": "ISS",
+      "t_min": 360.0,
+      "python_error": 0,
+      "pos_km": 1.458739910262506e-11,
+      "vel_km_s": 1.7530277419087253e-14
+    },
+    {
+      "name": "ISS",
+      "t_min": 1440.0,
+      "python_error": 0,
+      "pos_km": 2.145038964057813e-12,
+      "vel_km_s": 1.4770556661825108e-15
+    },
+    {
+      "name": "STARLINK-1007",
+      "t_min": 0.0,
+      "python_error": 0,
+      "pos_km": 3.1901860962122474e-12,
+      "vel_km_s": 2.589462819655575e-15
+    },
+    {
+      "name": "STARLINK-1007",
+      "t_min": 10.0,
+      "python_error": 0,
+      "pos_km": 2.651609927327309e-12,
+      "vel_km_s": 3.997188364167557e-15
+    },
+    {
+      "name": "STARLINK-1007",
+      "t_min": 60.0,
+      "python_error": 0,
+      "pos_km": 5.697967974875459e-12,
+      "vel_km_s": 6.836666485528232e-15
+    },
+    {
+      "name": "STARLINK-1007",
+      "t_min": 360.0,
+      "python_error": 0,
+      "pos_km": 2.389479896995845e-11,
+      "vel_km_s": 2.5892962128276316e-14
+    },
+    {
+      "name": "STARLINK-1007",
+      "t_min": 1440.0,
+      "python_error": 0,
+      "pos_km": 2.4421245292792358e-11,
+      "vel_km_s": 2.7982025520652192e-14
+    },
+    {
+      "name": "NOAA 18",
+      "t_min": 0.0,
+      "python_error": 0,
+      "pos_km": 5.275874611008483e-12,
+      "vel_km_s": 5.512120354514498e-15
+    },
+    {
+      "name": "NOAA 18",
+      "t_min": 10.0,
+      "python_error": 0,
+      "pos_km": 2.448889430131432e-12,
+      "vel_km_s": 2.9790409838967277e-15
+    },
+    {
+      "name": "NOAA 18",
+      "t_min": 60.0,
+      "python_error": 0,
+      "pos_km": 3.6662903532026344e-12,
+      "vel_km_s": 2.9790409838967277e-15
+    },
+    {
+      "name": "NOAA 18",
+      "t_min": 360.0,
+      "python_error": 0,
+      "pos_km": 2.2467464672510004e-11,
+      "vel_km_s": 2.3361226776030453e-14
+    },
+    {
+      "name": "NOAA 18",
+      "t_min": 1440.0,
+      "python_error": 0,
+      "pos_km": 6.374902626294008e-11,
+      "vel_km_s": 6.51419989285724e-14
+    },
+    {
+      "name": "CALSPHERE 1",
+      "t_min": 0.0,
+      "python_error": 0,
+      "pos_km": 4.992198626600082e-12,
+      "vel_km_s": 5.347542221830668e-15
+    },
+    {
+      "name": "CALSPHERE 1",
+      "t_min": 10.0,
+      "python_error": 0,
+      "pos_km": 1.016845989170083e-12,
+      "vel_km_s": 0.0
+    },
+    {
+      "name": "CALSPHERE 1",
+      "t_min": 60.0,
+      "python_error": 0,
+      "pos_km": 5.666122794708422e-12,
+      "vel_km_s": 5.687116766346677e-15
+    },
+    {
+      "name": "CALSPHERE 1",
+      "t_min": 360.0,
+      "python_error": 0,
+      "pos_km": 8.750933101476137e-12,
+      "vel_km_s": 8.417218664746814e-15
+    },
+    {
+      "name": "CALSPHERE 1",
+      "t_min": 1440.0,
+      "python_error": 0,
+      "pos_km": 7.85384353537039e-11,
+      "vel_km_s": 7.828859499902414e-14
+    },
+    {
+      "name": "LES-5",
+      "t_min": 0.0,
+      "python_error": 0,
+      "pos_km": 3.63941737170609e-11,
+      "vel_km_s": 2.9208375296568857e-15
+    },
+    {
+      "name": "LES-5",
+      "t_min": 10.0,
+      "python_error": 0,
+      "pos_km": 1.4665161412810538e-11,
+      "vel_km_s": 7.216449660063518e-16
+    },
+    {
+      "name": "LES-5",
+      "t_min": 60.0,
+      "python_error": 0,
+      "pos_km": 7.043303315780112e-11,
+      "vel_km_s": 5.881448387782104e-15
+    },
+    {
+      "name": "LES-5",
+      "t_min": 360.0,
+      "python_error": 0,
+      "pos_km": 8.745808428074544e-11,
+      "vel_km_s": 6.7796624366977475e-15
+    },
+    {
+      "name": "LES-5",
+      "t_min": 1440.0,
+      "python_error": 0,
+      "pos_km": 8.134771016527763e-12,
+      "vel_km_s": 0.0
+    },
+    {
+      "name": "GPS BIIR-2",
+      "t_min": 0.0,
+      "python_error": 0,
+      "pos_km": 1.671079446074866e-11,
+      "vel_km_s": 2.6296119242823513e-15
+    },
+    {
+      "name": "GPS BIIR-2",
+      "t_min": 10.0,
+      "python_error": 0,
+      "pos_km": 2.44085402306512e-11,
+      "vel_km_s": 1.9389211565826713e-15
+    },
+    {
+      "name": "GPS BIIR-2",
+      "t_min": 60.0,
+      "python_error": 0,
+      "pos_km": 2.3369766781851645e-11,
+      "vel_km_s": 3.310252409044606e-15
+    },
+    {
+      "name": "GPS BIIR-2",
+      "t_min": 360.0,
+      "python_error": 0,
+      "pos_km": 8.662854976569703e-11,
+      "vel_km_s": 1.2236652343360226e-14
+    },
+    {
+      "name": "GPS BIIR-2",
+      "t_min": 1440.0,
+      "python_error": 0,
+      "pos_km": 9.507183732396897e-11,
+      "vel_km_s": 1.4148702437024952e-14
+    },
+    {
+      "name": "NAVSTAR 62",
+      "t_min": 0.0,
+      "python_error": 0,
+      "pos_km": 4.404337993153505e-11,
+      "vel_km_s": 6.4047456679787536e-15
+    },
+    {
+      "name": "NAVSTAR 62",
+      "t_min": 10.0,
+      "python_error": 0,
+      "pos_km": 2.2296536684973512e-11,
+      "vel_km_s": 3.418333242764116e-15
+    },
+    {
+      "name": "NAVSTAR 62",
+      "t_min": 60.0,
+      "python_error": 0,
+      "pos_km": 1.289431282089738e-11,
+      "vel_km_s": 1.472877282518059e-15
+    },
+    {
+      "name": "NAVSTAR 62",
+      "t_min": 360.0,
+      "python_error": 0,
+      "pos_km": 2.2393998549998707e-11,
+      "vel_km_s": 3.1791949213824896e-15
+    },
+    {
+      "name": "NAVSTAR 62",
+      "t_min": 1440.0,
+      "python_error": 0,
+      "pos_km": 1.2829377041527943e-10,
+      "vel_km_s": 1.8831948404331963e-14
+    },
+    {
+      "name": "GLONASS-M 736",
+      "t_min": 0.0,
+      "python_error": 0,
+      "pos_km": 3.410605131648481e-13,
+      "vel_km_s": 0.0
+    },
+    {
+      "name": "GLONASS-M 736",
+      "t_min": 10.0,
+      "python_error": 0,
+      "pos_km": 0.0,
+      "vel_km_s": 2.220446049250313e-16
+    },
+    {
+      "name": "GLONASS-M 736",
+      "t_min": 60.0,
+      "python_error": 0,
+      "pos_km": 6.8060351382408795e-12,
+      "vel_km_s": 5.551115123125783e-17
+    },
+    {
+      "name": "GLONASS-M 736",
+      "t_min": 360.0,
+      "python_error": 0,
+      "pos_km": 1.8749713606747085e-11,
+      "vel_km_s": 3.5038047658940695e-15
+    },
+    {
+      "name": "GLONASS-M 736",
+      "t_min": 1440.0,
+      "python_error": 0,
+      "pos_km": 4.4555958862168665e-11,
+      "vel_km_s": 6.968805455576195e-15
+    },
+    {
+      "name": "LAGEOS 1",
+      "t_min": 0.0,
+      "python_error": 0,
+      "pos_km": 1.0444697861715917e-11,
+      "vel_km_s": 4.872603565914609e-15
+    },
+    {
+      "name": "LAGEOS 1",
+      "t_min": 10.0,
+      "python_error": 0,
+      "pos_km": 4.547473508864641e-13,
+      "vel_km_s": 4.440892098500626e-16
+    },
+    {
+      "name": "LAGEOS 1",
+      "t_min": 60.0,
+      "python_error": 0,
+      "pos_km": 6.431098710768743e-12,
+      "vel_km_s": 3.651941905191364e-15
+    },
+    {
+      "name": "LAGEOS 1",
+      "t_min": 360.0,
+      "python_error": 0,
+      "pos_km": 7.04315421773548e-11,
+      "vel_km_s": 3.333998079278064e-14
+    },
+    {
+      "name": "LAGEOS 1",
+      "t_min": 1440.0,
+      "python_error": 0,
+      "pos_km": 8.153050596234596e-11,
+      "vel_km_s": 3.7530793357970634e-14
+    }
+  ]
+}
