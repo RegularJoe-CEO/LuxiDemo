@@ -1,0 +1,18 @@
+{
+  "jax100": {
+    "n": 2900,
+    "n_finite": 2900,
+    "n_bit_mismatch": 0,
+    "max_pos_km": 0.0,
+    "max_vel_km_s": 0.0,
+    "sha256": "aaabbfe5a7d4ed5c759006f6f280bc9dcce2d313d981331ef9eeef083ace90e4"
+  },
+  "keplemon": {
+    "n": 45,
+    "n_finite": 45,
+    "n_bit_mismatch": 0,
+    "max_pos_km": 0.0,
+    "max_vel_km_s": 0.0,
+    "sha256": "87b46f78c620a1672e8b93d65bcca713b0386be60ea4df6edde25c4745be48a2"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "n": 2900,
+  "n_finite": 2900,
+  "n_bit_mismatch": 2876,
+  "max_pos_km": 3.9351208275573275e-09,
+  "max_pos_m": 3.9351208275573274e-06,
+  "max_vel_km_s": 4.313937740979949e-12,
+  "sha_luxi": "aaabbfe5a7d4ed5c759006f6f280bc9dcce2d313d981331ef9eeef083ace90e4",
+  "sha_cpp": "4439b27bc286969b724b21f1f7fd063beb88b12ac3f0d59a3af9c14b7eb2e852",
+  "cpp": "python-sgp4 2.25"
+}
