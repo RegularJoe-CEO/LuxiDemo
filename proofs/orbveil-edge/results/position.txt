@@ -1,0 +1,16 @@
+# Max Euclidean position gap, macOS Luxi dump versus python-sgp4 2.27 on this Mac.
+# 22,969,540 states. Every state finite on both sides. 0 validity mismatches.
+
+opsmode_i_max_km 6.62406383491043714e-03
+opsmode_i_worst sat 1051 norad 43233 name O3B FM14 time 0 period_min 287.93
+opsmode_i_near_max_km 7.79453790726550245e-09
+opsmode_i_near_n 15146
+opsmode_i_near_period_max_min 225
+opsmode_i_near_worst sat 384 norad 37740 name GLOBALSTAR M088 time 426
+opsmode_i_deep_max_km 6.62406383491043714e-03
+opsmode_i_deep_n 794
+opsmode_i_deep_worst sat 1051 norad 43233 name O3B FM14 time 0
+opsmode_a_max_km 1.79077728654311157e-04
+opsmode_a_worst sat 780 norad 41032 name COSMOS 2510 (EKS 1) time 1414 period_min 717.84
+opsmode_i_max_component_km 6.61140780504965164e-03
+opsmode_a_max_component_km 1.59448127760697389e-04

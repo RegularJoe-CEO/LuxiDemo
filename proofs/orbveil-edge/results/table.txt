@@ -1,0 +1,35 @@
+# Speed: median of 5 after 1 warmup. Propagation window only.
+# Luxi times: 2026-10-11 13:43 to 13:44 CDT. Load averages 5.04 4.42 5.10 at 1 core, 7.26 5.02 5.27 at 8 cores.
+# Stock times: same afternoon, python-sgp4 2.27, C++ extension, opsmode i.
+#   1 core = 1 process. 8 cores = 8 processes.
+#   Host snapshot at 13:03 CDT, before those stock timings: load averages 5.56 7.67 8.76.
+# CPU joules: later session, 2026-10-11 14:54 CDT, median of 3 windows after 1 warmup.
+#   powermetrics samplers cpu_power,gpu_power,ane_power, interval 100 ms.
+#   Whole machine during each propagation window.
+#   Apple's powermetrics manual says these subsystem power figures are estimated.
+#   Not an energy-impact score. Not a TDP estimate. package_j was not reported.
+# The joule session is not the median-of-5 session. Its propagate times are the joule_* rows.
+
+n_prop 22969540
+
+speed_stock_cores_1_median_s 5.332472
+speed_stock_cores_1_per_s 4307484
+speed_stock_cores_8_median_s 1.034126
+speed_stock_cores_8_per_s 22211557
+speed_luxi_cores_1_median_s 5.333366
+speed_luxi_cores_1_per_s 4306762
+speed_luxi_cores_8_median_s 1.054219
+speed_luxi_cores_8_per_s 21788210
+
+joule_stock_cores_1_median_s 5.451755
+joule_stock_cores_1_cpu_j 22.923342
+joule_stock_cores_1_combined_j 23.131602
+joule_stock_cores_8_median_s 0.916530
+joule_stock_cores_8_cpu_j 16.263594
+joule_stock_cores_8_combined_j 16.267631
+joule_luxi_cores_1_median_s 5.227693
+joule_luxi_cores_1_cpu_j 20.677514
+joule_luxi_cores_1_combined_j 21.634734
+joule_luxi_cores_8_median_s 0.929695
+joule_luxi_cores_8_cpu_j 16.226887
+joule_luxi_cores_8_combined_j 16.297442
