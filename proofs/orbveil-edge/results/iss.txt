@@ -1,0 +1,25 @@
+# OrbVeil screen() on data/active.tle.
+# Primary ISS (ZARYA) NORAD 25544. 7 days. 10 km. Default step 10 minutes.
+# Measured 2026-10-11 on the Apple M1 Pro.
+
+screen_7d_s 2.321841
+screen_events 6054
+screen_zero_km 6054
+screen_zero_secondaries 6
+screen_nonzero 0
+zero_tca_gap_s_min 600.000
+zero_tca_gap_s_max 600.000
+merge_window_s 300
+coarse_step_s 600
+
+zero_secondary 25575 n 1009 name ISS (UNITY)
+zero_secondary 26400 n 1009 name ISS (ZVEZDA)
+zero_secondary 26700 n 1009 name ISS (DESTINY)
+zero_secondary 36086 n 1009 name POISK
+zero_secondary 49044 n 1009 name ISS (NAUKA)
+zero_secondary 68837 n 1009 name PROGRESS-MS 34
+
+# Full line 1 and line 2 differ (catalog number, designator, revolution count, checksum).
+# Epoch, ndot, nddot, BSTAR, inclination, node, eccentricity, argument of perigee,
+# mean anomaly, and mean motion match Zarya. Element-set number is 999 on all seven.
+# scripts/check_claims.py recomputes that column check from data/active.tle.

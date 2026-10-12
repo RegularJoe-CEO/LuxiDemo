@@ -1,0 +1,44 @@
+# Recorded SHA-256 of the 1,102,537,920-byte little-endian f64 dumps.
+# Layout: satellite-major, then time, six fields x y z vx vy vz.
+# 15,940 objects, 1,441 epochs, 22,969,540 propagations, 0 errors on every row.
+# The dumps themselves are not in this repository.
+
+luxi_sha256 a14f625475a05892277a1a198aacc79aaf18b0192c97326bbe50fcafd31f8fa3
+luxi_macos_arm64_threads_1 a14f625475a05892277a1a198aacc79aaf18b0192c97326bbe50fcafd31f8fa3
+luxi_macos_arm64_threads_8 a14f625475a05892277a1a198aacc79aaf18b0192c97326bbe50fcafd31f8fa3
+luxi_linux_arm64_docker_native_threads_1 a14f625475a05892277a1a198aacc79aaf18b0192c97326bbe50fcafd31f8fa3
+luxi_linux_x86_64_qemu_user_threads_1 a14f625475a05892277a1a198aacc79aaf18b0192c97326bbe50fcafd31f8fa3
+luxi_checksum 56396a8fe69d1c87
+luxi_bytes 1102537920
+luxi_n_errors 0
+
+stock_macos_arm64 34dd469efae3caa123526120e70c880df46afc4569e2c8204298c93952e0f2bf
+stock_macos_arm64_processes_8 34dd469efae3caa123526120e70c880df46afc4569e2c8204298c93952e0f2bf
+stock_linux_arm64 b3fab0207b9a0e15d72235a07a07f6cbfd06460adcdd129c73aa3681905effb5
+stock_linux_x86_64_qemu 77f8a382db9729a9b64024bdd949fd83d6c3f858c12cf8741f3d596b718e312e
+stock_bytes 1102537920
+stock_n_errors 0
+
+# Stock run-to-run: each platform's repeated runs matched that platform's digest.
+# Stock across platforms: the three digests differ.
+# Luxi across platforms and across 1 and 8 threads: one digest.
+
+macos_vs_linux_arm64_states_differ 6436873
+macos_vs_linux_arm64_positions_differ 5504153
+macos_vs_linux_arm64_max_km 7.77154707746917322e-10
+macos_vs_linux_arm64_max_component_km 5.96173777012154460e-10
+macos_vs_linux_arm64_worst sat 5838 norad 57496 time 448
+
+macos_vs_qemu_x86_64_states_differ 18668301
+macos_vs_qemu_x86_64_positions_differ 15975195
+macos_vs_qemu_x86_64_max_km 4.22158880827356005e-08
+macos_vs_qemu_x86_64_max_component_km 4.10745997214689851e-08
+macos_vs_qemu_x86_64_worst sat 1214 norad 43920 time 425
+
+linux_arm64_vs_qemu_x86_64_states_differ 17249284
+linux_arm64_vs_qemu_x86_64_positions_differ 14128709
+linux_arm64_vs_qemu_x86_64_max_km 4.22175690645485688e-08
+linux_arm64_vs_qemu_x86_64_max_component_km 4.10745997214689851e-08
+linux_arm64_vs_qemu_x86_64_worst sat 1214 norad 43920 time 425
+n_nonfinite_mismatch 0
+n_states 22969540
