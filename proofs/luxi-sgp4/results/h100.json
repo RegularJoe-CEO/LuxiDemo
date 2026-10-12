@@ -1,0 +1,34 @@
+{
+  "measured": "2026-10-10",
+  "gpu": "NVIDIA H100 80GB HBM3",
+  "driver": "580.126.09",
+  "gpu_build": "near-earth only",
+  "cpu_platforms_matched": ["macOS arm64", "Linux arm64", "Linux x86_64"],
+  "linux_x86_64": "qemu-user-static 7.2, not a native x86_64 host",
+  "launches": [
+    {
+      "grid": "jax100",
+      "run": 1,
+      "n_errors": 0,
+      "bytes": 139200,
+      "sha256": "26eafb2b244fc1d4e24a7f561378774cf934f3976364fd7cc402853975d7175e",
+      "matches_cpu": true
+    },
+    {
+      "grid": "jax100",
+      "run": 2,
+      "n_errors": 0,
+      "bytes": 139200,
+      "sha256": "26eafb2b244fc1d4e24a7f561378774cf934f3976364fd7cc402853975d7175e",
+      "matches_cpu": true
+    },
+    {
+      "grid": "starlink-382a419",
+      "run": 1,
+      "n_errors": 79,
+      "bytes": 13002672,
+      "sha256": "42d0ca2ca598dae1553ecfae12ca8204b3dae5ceb67e9afa76e36dcb40a75c09",
+      "matches_cpu": true
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "host": "macOS arm64",
+  "rustc": "1.92.0 (ded5c06cf 2025-12-08)",
+  "date": "2026-10-10",
+  "source": "sgp4 crate 2.4.0 SGP4-VER vectors",
+  "cases": 33,
+  "compared_states": 666,
+  "expected_errors": 2,
+  "deferred": 0,
+  "max_abs_component_pos_km": 2.01884176931343973e-7,
+  "max_abs_component_vel_km_s": 5.21046317203399667e-10,
+  "pos_tol_1e-6_km": "PASS",
+  "vel_tol_1e-9_km_s": "PASS",
+  "worst_pos": "t=1844335 component=1 tle=1 20413U 83020D   05",
+  "linux": "not run"
+}

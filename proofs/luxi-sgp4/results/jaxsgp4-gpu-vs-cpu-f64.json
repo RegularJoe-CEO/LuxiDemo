@@ -1,0 +1,69 @@
+{
+  "question": "Does jaxsgp4 f64 on the H100 differ from jaxsgp4 f64 on CPU?",
+  "commit": "382a41997c2ec35869da45b950506d88a38fbbc3",
+  "jax": "0.9.2",
+  "x64": true,
+  "measured": "2026-10-10T22:23:00Z",
+  "paper_grid": {
+    "seed": 11,
+    "n_sats": 100,
+    "n_times": 29,
+    "batch": "per_sat",
+    "n_states": 2900,
+    "n_bit_mismatch": 2701,
+    "n_finite": 2900,
+    "max_pos_km": 1.5853778190904915e-09,
+    "max_vel_km_s": 1.755852416785086e-12,
+    "median_pos_km": 1.4669153912828788e-12,
+    "p95_pos_km": 1.5492821159812617e-09,
+    "worst_sat_index": 38,
+    "worst_time_index": 22,
+    "sha256_cpu": "c87e7e5b162cc143b75e8cea0da237f27a640b79a9a4ba00fe76705c13b1778c",
+    "sha256_gpu": "e299e63536376194c7d1dd03ef1ed51563f42fa51cb6899698e0376a13fdb094",
+    "gpu_run_sha256": [
+      "e299e63536376194c7d1dd03ef1ed51563f42fa51cb6899698e0376a13fdb094",
+      "e299e63536376194c7d1dd03ef1ed51563f42fa51cb6899698e0376a13fdb094",
+      "e299e63536376194c7d1dd03ef1ed51563f42fa51cb6899698e0376a13fdb094"
+    ],
+    "gpu_runs_identical": true
+  },
+  "batch_100": {
+    "gpu_all_sha256": "e299e63536376194c7d1dd03ef1ed51563f42fa51cb6899698e0376a13fdb094",
+    "gpu_all_matches_per_sat": true,
+    "gpu_scalar_vs_per_sat_bit_mismatches": 1,
+    "gpu_scalar_vs_per_sat_max_pos_km": 0.0,
+    "gpu_scalar_vs_per_sat_max_vel_km_s": 1.3877787807814457e-17,
+    "cpu_all_vs_per_sat_bit_mismatches": 580,
+    "cpu_all_vs_per_sat_max_pos_km": 3.2811998811807397e-12,
+    "cpu_scalar_vs_per_sat_bit_mismatches": 1403,
+    "cpu_scalar_vs_per_sat_max_pos_km": 3.1483957627833066e-09,
+    "gpu_all_vs_cpu_all_bit_mismatches": 2654,
+    "gpu_all_vs_cpu_all_max_pos_km": 1.5855205771680064e-09
+  },
+  "full_catalog": {
+    "n_pairs_in_file": 9341,
+    "n_sats": 9341,
+    "n_times": 29,
+    "n_states": 270889,
+    "n_bit_mismatch": 253026,
+    "max_pos_km": 7.76981796099376e-05,
+    "max_vel_km_s": 2.2696791545603468e-11,
+    "median_pos_km": 1.5752910326854155e-12,
+    "p95_pos_km": 1.5549214315730219e-09,
+    "p99_pos_km": 1.5773129004711338e-09,
+    "states_gt_1e-9_km": 16960,
+    "states_gt_1e-8_km": 7,
+    "sats_gt_1e-8_km": 2,
+    "states_gt_1e-6_km": 5,
+    "sats_gt_1e-6_km": 1,
+    "worst": {
+      "norad": "57440",
+      "line1": "1 57440U 23105L   26012.80405711  .05160981  68116-1  49232-2 0  9993",
+      "day": 14.0,
+      "pos_km": 7.76981796099376e-05
+    },
+    "sha256_cpu": "0ccd0ef2dcc6844b75fdf2b7dff63a03432a3d17e1a88b202d163b881a92287d",
+    "sha256_gpu": "e8e03f8597e207ae18c5020cc8aa870ce9ebaa91c83c3737744d6324364db366",
+    "gpu_runs": 1
+  }
+}
