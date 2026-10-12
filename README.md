@@ -36,6 +36,8 @@ The Space Data Network proxy is the first 2,000 catalog objects. Luxi is one has
 
 Stock jaxsgp4 commit `382a419`, same code on the H100 and on CPU, is not bit-identical. Float64 on 100 satellites and 29 times: 2701 of 2900 states differ, max position `1.5853778190904915e-09` km. Float32 on that grid: max position `2.4645502245160555` km. The published figure near 1e-9 km was jaxsgp4 versus C++ on CPU. See [`proofs/sgp4-gpu-cpu`](proofs/sgp4-gpu-cpu/).
 
+SAAL v9.6 (US Space Force Sgp4Prop) black-box cross-platform comparison on the same catalog: see [`proofs/saal-compare/SAAL_COMPARISON.md`](proofs/saal-compare/SAAL_COMPARISON.md).
+
 ### Genomics
 
 On 5,819,596,800 cells of public GIAB HG002 MHC reads, an unordered CPU reduction of PairHMM haplotype scores changed fingerprint with thread count. The canonical policy kept one fingerprint, `8296effda654807942e0f0121e8bdf32d4c6585b0ebe77c86151c19b7f66c150`, at every tested count. No throughput penalty was observed in the recorded runs. On an H200 the canonical GPU path finished that cell count in 80.3 ms at block size 128 and kept one fingerprint, `e678bd4eb00b96e7a6976f88055c21f511ff321703632017ad3d458fce011e94`, across block sizes 128, 256, 512, and 1024.
