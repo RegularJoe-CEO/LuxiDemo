@@ -21,7 +21,7 @@ The H100 benchmark: 444.4 trillion operations in one hour under 200 concurrent u
 
 ## Battery-Constrained Compute
 
-For edge devices and mobile deployments, efficiency is not optional. The ARM64 binary delivers deterministic math at a fraction of the power draw of general-purpose solutions.
+For edge devices and mobile deployments, efficiency is not optional. The ARM64 binary returns a SHA256 receipt for each run. Power for that binary was not re-measured on the v3.1 demo branch.
 
 | Metric | LuxiEdge ARM64 |
 |--------|----------------|
