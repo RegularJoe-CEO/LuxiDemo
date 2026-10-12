@@ -89,6 +89,10 @@ Public site order: **Book (sale) → LuxiRisk freebie → inference demoted**.
 LuxiRisk v0.2 remains the free retail/crypto CLI with `lxr1_` receipts - not
 the option book.
 
+> **Note (2026-10-12):** Positioning corrected. LuxiQuant Risk State Engine
+> (Risk Runtime v0.4.0) is the paid, evaluation-only LuxiQuant product; Luxi Book
+> is the free public demonstration; LuxiRisk v0.2 is a free legacy demo calculator.
+
 ### September 25 to 26, 2026: Qwen2-7B vs vLLM 0.25.1 and SGLang 0.5.19 on H100
 
 Prefill (2k to 32k-token prompts) and decode measured against vLLM 0.25.1

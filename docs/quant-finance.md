@@ -10,7 +10,7 @@
 - Closed binaries (macOS ARM64 CPU, Linux x86_64 CPU, Linux x86_64 CUDA)
 - You bring `T`, `r`, and `σ` - no live feed, no IV surface, no VaR, no fund desk
 
-**LuxiRisk** is a separate **freebie**: offline crypto / retail liquidation,
+**LuxiRisk v0.2** is a separate **free legacy demo calculator** (not the LuxiQuant Risk State Engine): offline liquidation,
 position size, and stop-loss math with Ed25519 `lxr1_` calculation receipts.
 It is not the institutional option book.
 
@@ -68,7 +68,7 @@ driver, or book shape will hash-match without re-measurement.
 |-------|--------|
 | Universal bit-exact results on every CPU and GPU | **No** - only measured boxes for Book |
 | Desk VaR / full risk engine / live market data | **No** |
-| LuxiRisk = institutional Quant | **No** - freebie retail/crypto CLI |
+| LuxiRisk v0.2 = LuxiQuant Risk State Engine | **No** - free legacy demo calculator |
 | TestFort 286B ops/s as option pricing thr | **No** - separate numerical suite |
 | `risk-pipeline --synthetic` as product face | **No** - internal/synthetic only |
 
@@ -90,7 +90,7 @@ That path is useful for operator smoke and historical numerical receipts. It is
 | Goal | Link |
 |------|------|
 | Download Book | [`downloads/luxibook/`](../downloads/luxibook/) |
-| Freebie risk CLI | [luxirisk/](../luxirisk/) |
+| LuxiRisk legacy demo calculator | [luxirisk/](../luxirisk/) |
 | Measured tables | [RESULTS.md](../RESULTS.md) |
 | Full catalog | [DEMOS.md](../DEMOS.md) |
 | Architecture | [LUXI_SYSTEM.md](../LUXI_SYSTEM.md) |

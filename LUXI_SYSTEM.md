@@ -25,17 +25,17 @@ The shorthand is:
 
 ## Public portfolio today (what to download)
 
-Public portfolio order on this page: **LuxiRisk, then the proof record, then Luxi Book**. The website on Replit is a separate tree.
+Public portfolio order on this page: **LuxiQuant Risk State Engine (paid, evaluation-only), then the proof record, then Luxi Book (free public demonstration)**; LuxiRisk v0.2 is a free legacy demo calculator. The website on Replit is a separate tree.
 
 | Surface | Role | Where |
 |---|---|---|
-| **LuxiRisk** | Free offline retail / crypto CLI: liquidation, size, max loss, Ed25519 `lxr1_` receipts | [`luxirisk/`](luxirisk/) · release `luxirisk-v0.2` |
+| **LuxiRisk v0.2** | Free legacy demo calculator, not the LuxiQuant Risk State Engine (Risk Runtime v0.4.0): liquidation, size, max loss, Ed25519 `lxr1_` receipts | [`luxirisk/`](luxirisk/) · release `luxirisk-v0.2` |
 | **LuxiEdge proofs** | Deterministic numerics with receipts. Inference on H100 is one measured surface, next to orbital, genomics, and the option book | [`README.md`](README.md) · [`RESULTS.md`](RESULTS.md) |
 | **Luxi Book** | Quant try: CSV European options, five Greeks, output-vector hash + Ed25519 `lxq2_` receipt. The 10-row public book is not the 1,000,000-option book | [`DEMOS.md`](DEMOS.md) · [`downloads/luxibook/`](downloads/luxibook/) |
 | Numerical v3.0 demos | REST `/evaluate`, operators, ATE/tools. Supporting math, not the option book | GitHub release `v3.0` · [`DEMOS.md`](DEMOS.md) |
 
 LuxiEdge is deterministic numerics with receipts. Inference is one measured
-surface. Luxi Book is the Quant path. LuxiRisk is the free retail CLI.
+surface. LuxiQuant Risk State Engine (Risk Runtime v0.4.0) is the paid LuxiQuant product (evaluation-only). Luxi Book is the free public demonstration. LuxiRisk v0.2 is a free legacy demo calculator.
 
 The later layers (Pack, Phase, Load, SDG) are a product roadmap at different
 stages of proof; they are not presented as deployed systems.

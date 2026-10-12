@@ -1,10 +1,10 @@
 # LuxiRisk v0.2
 
-**Freebie · closed-source · tiny offline CLI · unsigned binaries**
+**Free legacy demo calculator · closed-source · tiny offline CLI · unsigned binaries · not the LuxiQuant Risk State Engine**
 
 > **Portfolio note (2026-08):** On luxiedge.com and this repo, **Luxi Book** is the
-> professional Quant try (CSV European options + SHA-256). **LuxiRisk is the freebie**
-> for crypto / retail traders - not the institutional option book, not desk VaR.
+> professional Quant try (CSV European options + SHA-256). **LuxiRisk v0.2 is a free legacy demo
+> calculator** - not the LuxiQuant Risk State Engine (the paid, evaluation-only product), not desk VaR.
 > Book binaries: [`../downloads/luxibook/`](../downloads/luxibook/) ·
 > how to run: [`../DEMOS.md`](../DEMOS.md).
 
@@ -178,7 +178,7 @@ No funding rates, Kelly, Monte Carlo, prop-firm modes, exchange connections,
 website, open-sourced engine, local UI, or paid OS code-signing for this release.
 
 No European option books, Black-Scholes Greeks, or institutional risk - that path
-is **Luxi Book**, not this freebie.
+is **Luxi Book**, not this legacy demo calculator.
 
 ## Release
 

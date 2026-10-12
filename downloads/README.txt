@@ -17,7 +17,7 @@ Layout
 
   README.txt                    this file
 
-LuxiRisk freebie binaries live under ../luxirisk/dist/ (not this folder).
+LuxiRisk v0.2 legacy demo calculator binaries live under ../luxirisk/dist/ (not this folder).
 Numerical v3.0 demos (luxiedge-demo, luxi-tools) are on the GitHub v3.0 release.
 
 This repository is binaries + evidence + markdown only.
@@ -82,10 +82,10 @@ Verify:
   shasum -a 256 -c luxiedge-serve-macos-arm64.sha256
 
 ----------------------------------------------------------------------------
-C) LuxiRisk freebie
+C) LuxiRisk v0.2 (free legacy demo calculator)
 ----------------------------------------------------------------------------
 
 See ../../luxirisk/ and release tag luxirisk-v0.2.
-Retail/crypto CLI + lxr1_ receipts — not the option book.
+Calculator CLI + lxr1_ receipts — not the option book, not the LuxiQuant Risk State Engine.
 
 Contact: e@ewaller.com · https://luxiedge.com

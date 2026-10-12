@@ -44,8 +44,8 @@ Updating **public binaries and evidence** is a **LuxiDemo / GitHub** job.
 
 ## Product order (for any public surface)
 
-1. **Luxi Book** - Quant sale try (CSV BS/Black-76 + output-vector hash + Ed25519 `lxq2_` receipt)  
-2. **LuxiRisk** - freebie retail/crypto CLI  
+1. **Luxi Book** - free public receipt and determinism demonstration (CSV BS/Black-76 + output-vector hash + Ed25519 `lxq2_` receipt)  
+2. **LuxiRisk v0.2** - free legacy demo calculator (not the LuxiQuant Risk State Engine)  
 3. **Inference thr/J + serve** - evidence / demoted demos  
 
 ## Link targets from docs
@@ -54,7 +54,7 @@ Updating **public binaries and evidence** is a **LuxiDemo / GitHub** job.
 |------|------|
 | Book binaries | [`downloads/luxibook/`](downloads/luxibook/) |
 | Serve binaries | [`downloads/`](downloads/) |
-| Risk freebie | [`luxirisk/`](luxirisk/) |
+| LuxiRisk legacy demo | [`luxirisk/`](luxirisk/) |
 | How to run | [`DEMOS.md`](DEMOS.md) |
 | Measured tables | [`RESULTS.md`](RESULTS.md) |
 | Evidence index | [`evidence/README.md`](evidence/README.md) |

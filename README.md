@@ -6,9 +6,13 @@ LuxiEdge is deterministic numerics: same bits on every chip, with receipts. A re
 
 [Art of Fugue](https://github.com/RegularJoe-CEO/Art-of-Fugue) runs 200,000 floating-point operations and hashes the exact results. Its README records platform libm hashes `b02237875da129b90b6355d5918b38657e4bb2e697e413124c661acd0899eb19` on macOS ARM64 and `c060c5031b1bdb7b730ad6de7639ca87fd3257009a3e3580b71b4f116158c9d6` on Linux x86_64 with an NVIDIA GPU. The LuxiEdge example in that README is `781ae6b19ca58f36bfaaedde6e605f6fc8a766701d69175cbbcd39fe20efd610` on both of those rows. Download `art_of_fugue.py` and run `python3 art_of_fugue.py`.
 
-## LuxiRisk
+## LuxiQuant Risk State Engine
 
-LuxiRisk is a free offline CLI for crypto and retail traders. It computes a liquidation price, a position size from a risk percent, and the max dollar loss at a stop. Each result can carry an Ed25519 receipt (`lxr1_`). The institutional option book is Luxi Book, under Proof.
+LuxiQuant Risk State Engine (Risk Runtime v0.4.0) is the paid institutional product of LuxiQuant, LuxiEdge's primary commercial division. It is proprietary and evaluation-only, with no public download: [request a confidential evaluation at luxiedge.com](https://luxiedge.com/luxiquant). LuxiBook is the free public receipt and determinism demonstration, under Proof.
+
+## LuxiRisk v0.2 (legacy demo calculator)
+
+The LuxiRisk v0.2 CLI is a separate, free legacy demo calculator, not the Risk State Engine. It computes a liquidation price, a position size from a risk percent, and the max dollar loss at a stop. Each result can carry an Ed25519 receipt (`lxr1_`).
 
 Try it from the [luxirisk-v0.2 release](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2) or from [`luxirisk/`](luxirisk/). The v0.2 binaries are not code-signed. Formulas and test vectors are in that folder.
 
