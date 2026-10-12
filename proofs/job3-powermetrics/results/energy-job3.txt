@@ -1,0 +1,68 @@
+instrument powermetrics
+samplers cpu_power,gpu_power,ane_power
+interval_ms 100
+scope whole-machine during each marked window
+not_energy_impact yes
+not_tdp yes
+apple_note powermetrics man page says these subsystem power figures are estimated
+n_samples 254
+sdn_luxi_1 run 0 propagate_s 0.759344 window_s 0.759344 covered_s 0.759509 complete yes cpu_j 2.961125 combined_j 3.016960 package_j nan
+sdn_luxi_1 run 1 propagate_s 0.760281 window_s 0.760281 covered_s 0.760387 complete yes cpu_j 2.905299 combined_j 2.963920 package_j nan
+sdn_luxi_1 run 2 propagate_s 0.761330 window_s 0.761330 covered_s 0.760345 complete yes cpu_j 2.985703 combined_j 3.042559 package_j nan
+sdn_luxi_1 median_cpu_j 2.961125
+sdn_luxi_1 median_combined_j 3.016960
+sdn_luxi_1 n_complete 3
+sdn_luxi_8 run 0 propagate_s 0.133550 window_s 0.133550 covered_s 0.132979 complete yes cpu_j 2.256200 combined_j 2.266980 package_j nan
+sdn_luxi_8 run 1 propagate_s 0.137461 window_s 0.137461 covered_s 0.136832 complete yes cpu_j 2.370975 combined_j 2.381100 package_j nan
+sdn_luxi_8 run 2 propagate_s 0.135168 window_s 0.135168 covered_s 0.139374 complete yes cpu_j 2.351371 combined_j 2.361786 package_j nan
+sdn_luxi_8 median_cpu_j 2.351371
+sdn_luxi_8 median_combined_j 2.361786
+sdn_luxi_8 n_complete 3
+sdn_stock_1 run 0 propagate_s 0.750976 window_s 0.751362 covered_s 0.751365 complete yes cpu_j 2.916011 combined_j 2.970137 package_j nan
+sdn_stock_1 run 1 propagate_s 0.750477 window_s 0.750888 covered_s 0.751103 complete yes cpu_j 2.947740 combined_j 3.005551 package_j nan
+sdn_stock_1 run 2 propagate_s 0.752384 window_s 0.752811 covered_s 0.752857 complete yes cpu_j 3.040045 combined_j 3.093674 package_j nan
+sdn_stock_1 median_cpu_j 2.947740
+sdn_stock_1 median_combined_j 3.005551
+sdn_stock_1 n_complete 3
+sdn_stock_8 run 0 propagate_s 0.136060 window_s 0.136556 covered_s 0.137551 complete yes cpu_j 2.282849 combined_j 2.294403 package_j nan
+sdn_stock_8 run 1 propagate_s 0.136141 window_s 0.136669 covered_s 0.129369 complete yes cpu_j 2.141338 combined_j 2.152112 package_j nan
+sdn_stock_8 run 2 propagate_s 0.134106 window_s 0.134723 covered_s 0.143833 complete yes cpu_j 2.342025 combined_j 2.355059 package_j nan
+sdn_stock_8 median_cpu_j 2.282849
+sdn_stock_8 median_combined_j 2.294403
+sdn_stock_8 n_complete 3
+kep6_luxi_1 run 0 propagate_s 0.005042 window_s 0.005042 covered_s 0.005042 complete yes cpu_j 0.004442 combined_j 0.004835 package_j nan
+kep6_luxi_1 run 1 propagate_s 0.004797 window_s 0.004797 covered_s 0.004797 complete yes cpu_j 0.004226 combined_j 0.004600 package_j nan
+kep6_luxi_1 run 2 propagate_s 0.004426 window_s 0.004426 covered_s 0.004426 complete yes cpu_j 0.003899 combined_j 0.004245 package_j nan
+kep6_luxi_1 median_cpu_j 0.004226
+kep6_luxi_1 median_combined_j 0.004600
+kep6_luxi_1 n_complete 3
+kep6_stock_1 run 0 propagate_s 0.002673 window_s 0.002866 covered_s 0.002866 complete yes cpu_j 0.011842 combined_j 0.012054 package_j nan
+kep6_stock_1 run 1 propagate_s 0.002656 window_s 0.002824 covered_s 0.002824 complete yes cpu_j 0.011669 combined_j 0.011878 package_j nan
+kep6_stock_1 run 2 propagate_s 0.002640 window_s 0.002759 covered_s 0.002759 complete yes cpu_j 0.011399 combined_j 0.011603 package_j nan
+kep6_stock_1 median_cpu_j 0.011669
+kep6_stock_1 median_combined_j 0.011878
+kep6_stock_1 n_complete 3
+pc_luxi_1 run 0 propagate_s 0.264225 window_s 0.264243 covered_s 0.263540 complete yes cpu_j 1.163678 combined_j 1.183145 package_j nan
+pc_luxi_1 run 1 propagate_s 0.264584 window_s 0.264597 covered_s 0.264992 complete yes cpu_j 1.095122 combined_j 1.114808 package_j nan
+pc_luxi_1 run 2 propagate_s 0.264189 window_s 0.264200 covered_s 0.264069 complete yes cpu_j 1.090136 combined_j 1.109699 package_j nan
+pc_luxi_1 run 3 propagate_s 0.263051 window_s 0.263086 covered_s 0.263557 complete yes cpu_j 1.080470 combined_j 1.101841 package_j nan
+pc_luxi_1 run 4 propagate_s 0.267057 window_s 0.267072 covered_s 0.265258 complete yes cpu_j 1.150684 combined_j 1.170787 package_j nan
+pc_luxi_1 median_cpu_j 1.095122
+pc_luxi_1 median_combined_j 1.114808
+pc_luxi_1 n_complete 5
+pc_luxi_8 run 0 propagate_s 0.045331 window_s 0.045344 covered_s 0.045344 complete yes cpu_j 0.671451 combined_j 0.675577 package_j nan
+pc_luxi_8 run 1 propagate_s 0.045636 window_s 0.045652 covered_s 0.052543 complete yes cpu_j 0.985362 combined_j 0.989867 package_j nan
+pc_luxi_8 run 2 propagate_s 0.044957 window_s 0.044964 covered_s 0.044964 complete yes cpu_j 0.901574 combined_j 0.905351 package_j nan
+pc_luxi_8 run 3 propagate_s 0.048906 window_s 0.048911 covered_s 0.049776 complete yes cpu_j 0.836139 combined_j 0.840565 package_j nan
+pc_luxi_8 run 4 propagate_s 0.044769 window_s 0.044775 covered_s 0.044775 complete yes cpu_j 0.630877 combined_j 0.635041 package_j nan
+pc_luxi_8 median_cpu_j 0.836139
+pc_luxi_8 median_combined_j 0.840565
+pc_luxi_8 n_complete 5
+pc_stock_1 run 0 propagate_s 2.124936 window_s 2.124875 covered_s 2.124684 complete yes cpu_j 10.648469 combined_j 10.824717 package_j nan
+pc_stock_1 run 1 propagate_s 2.116299 window_s 2.116336 covered_s 2.116414 complete yes cpu_j 11.120009 combined_j 11.286445 package_j nan
+pc_stock_1 run 2 propagate_s 2.129042 window_s 2.129075 covered_s 2.129311 complete yes cpu_j 11.233874 combined_j 11.405012 package_j nan
+pc_stock_1 run 3 propagate_s 2.112088 window_s 2.112091 covered_s 2.112015 complete yes cpu_j 10.408226 combined_j 10.572317 package_j nan
+pc_stock_1 run 4 propagate_s 2.133146 window_s 2.133182 covered_s 2.131611 complete yes cpu_j 12.575430 combined_j 12.757242 package_j nan
+pc_stock_1 median_cpu_j 11.120009
+pc_stock_1 median_combined_j 11.286445
+pc_stock_1 n_complete 5

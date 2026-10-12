@@ -101,6 +101,31 @@ normal modes on a separate H100 pod, and a drift demo compared each engine's
 output under batch load with its output alone
 ([`INFERENCE.md`](INFERENCE.md#drift-demo)).
 
+The opening page used to carry this summary, which still lives in
+[`BENCHMARKS.md`](BENCHMARKS.md) and in the evidence packs. Luxi ran Qwen2-7B
+on an H100 with bit-identical results across every batch size tested (1, 16,
+and 64 when generating tokens; 1 against 16, 4, and 2 on 2k, 8k, and 32k-token
+prompts), across repeated runs and separate processes. On long prompts (2k to
+32k tokens) it was 3 to 7 percent faster than vLLM 0.25.1 and used 2 to 5
+percent less energy per token. When generating tokens it matched vLLM's speed
+and used 2 to 7 percent more energy per token. Against vLLM's batch-invariant
+mode, Luxi was faster and used less energy on every test in that pack,
+including 1.5 to 2.7 times faster token generation with 16 to 50 percent less
+energy. It also beat SGLang's deterministic mode on every test in that pack,
+at 1.18 to 1.24 times faster on 2k to 32k prompts with 14 to 19 percent less
+energy per token, and 1.21 to 2.86 times faster generation.
+
+### October 10 to 11, 2026: orbital proofs, Citra, and the product page
+
+The public proof folders landed on main: jaxsgp4 GPU versus CPU, Luxi SGP4
+byte match, and the OrbVeil catalog. A later H100 session repeated the
+keplemon 1.649 m ISS gap at commit `67d6497` and relaunched the published
+near-earth Luxi hashes. The OrbVeil catalog was not run on that GPU. Job 3
+CPU joules from Apple powermetrics are estimates in
+[`proofs/job3-powermetrics`](proofs/job3-powermetrics/). The line-by-line
+record is [`RESULTS.md`](RESULTS.md). The opening page is now the product
+page. LuxiRisk is the featured download.
+
 ## How to read old packs
 
 Use each pack’s original:

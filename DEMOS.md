@@ -163,10 +163,34 @@ same output receipt:
 
 `27365fdff1b57d9a8077acdc40ca9d6183481a11dd5928e9f7b7e4782d2019a9`
 
-That is a receipt for this binary, request, mode, and tested environment. It is
-not a universal cross-version or cross-platform guarantee. This smoke confirms
-execution and repeatability; numerical error bounds require a separate
-operator-accuracy contract.
+That is a receipt for this published v3.0 binary, this request, and this
+machine. It is not a cross-platform guarantee. The v3.1 measurement, which is
+not a release, returned f32 `sin(x)` receipt
+`0243d52127de37af8a1f49edadcf74a2a299732a5bec38693ee5b1804df28965`
+on macOS arm64, macOS x86_64, Linux x86_64, and Linux arm64. GPU was not
+measured. `sin(1.57)` was `0.9999997019767761` and `sin(3.14)` was
+`0.0015925479819998145`.
+
+The other rows below were measured with `luxiedge-demo` on macOS arm64 only.
+They were not re-measured on the other three machines.
+
+| Expression | SHA256 |
+|------------|--------|
+| sin(x) | 0243d52127de37af8a1f49edadcf74a2a299732a5bec38693ee5b1804df28965 |
+| cos(x) | f764241c7473a2306182dd086eae59a5e6e184e38b9d87b07115430744c96666 |
+| tan(x) | c2f3a5113c4d5d5febf7ce5e47565aad77bd58382a3ca37e094c766039e5e16a |
+| sin(x)*cos(x) | 7f488d2bd014e226f44f366c9e6dcee826667f2d32a0f07e98e21f692cbbfbc2 |
+| exp(x) | e9fa90fa7109168e2c6e33c09f4bdfe33f950d1618c63daa94ca50091c22c489 |
+| ln(x) | d9f04ca2fca66db0a39f7acfce0c17f3392f8c5d685ffd6b3cdd9878bece894f |
+| log10(x) | 3aaaf6e452f8e23a84d92cf205b3407da8f653c824e2f197d6ad5b4bf3777802 |
+| sqrt(x) | 3d88c5e3c24598b45ea32cd2347356c254e3cb9d2f92fbb0ce90b0ad6dff3f77 |
+| cbrt(x) | ef3075de3e76a739fc32e1affc73c38efda190c8715e4a82ccd5c5309d6e4e67 |
+| x^2 | 96620536e0763f86534ef44444a322a03c5e73b8415d737ebcd92206b8f069da |
+| x^3 | 3bf83ac5abbab1ce8ff39d19057a4a8bb5fc563dc692a1c17368384149533204 |
+| erf(x) | 91da32b8350f1ea6bd387b659c837de40bd7853aa4db2d0c2681a6143ae77988 |
+| normcdf(x) | 5bf3342a33330d9bb694053a061d7764f5ca8a5a9927ae58dbb2764b87b35a36 |
+| normpdf(x) | 27876beeed37a8722fa68c027f3a91a81c4e0b1fc54cafafa45d7ff5f7940cf7 |
+| gamma(x) | 0f45aab892b79f822d0cae278d0d311cca4492f0af00dfb44c295a369b80f24d |
 
 ## Demo 5: ATE / Waller / WNSM
 

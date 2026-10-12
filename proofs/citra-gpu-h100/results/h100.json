@@ -1,0 +1,62 @@
+{
+  "measured": "2026-10-11",
+  "device": "NVIDIA H100 80GB HBM3",
+  "driver": "580.126.09",
+  "keplemon": {
+    "commit": "67d64970a9061caa3b337ad3c1a20262b0a5a25b",
+    "test": "test_gpu_cpu_parity_all_regimes",
+    "satellites": 9,
+    "states": 45,
+    "failures": 0,
+    "passed": true,
+    "max_position_m_printed": 1.649,
+    "max_position_where": "ISS (ZARYA) t=4, 24 h",
+    "max_velocity_mm_s_printed": 6.431,
+    "cpu_timer_ms_printed": 0.04,
+    "gpu_timer_ms_printed": 0.06,
+    "iss_24h_cpu_km_printed": [1679.170301, -4777.212550, -4542.414712],
+    "iss_24h_gpu_km_printed": [1679.171092, -4777.213697, -4542.415593],
+    "iss_24h_diff_km_printed": [0.000791, -0.001148, -0.000881],
+    "state_dump_sha256": null,
+    "tdrs_3_in_this_test": false,
+    "term_split_measured": false
+  },
+  "luxi_relaunch": {
+    "scope": "near-earth image already recorded on 2026-10-10",
+    "times_are": "wall time of the whole launch process after one warmup",
+    "joules": null,
+    "jax100": {
+      "satellites": 100,
+      "times": 29,
+      "states": 2900,
+      "errors": 0,
+      "bytes": 139200,
+      "runs_s": [0.45936, 0.451879, 0.440776, 0.444795, 0.454266],
+      "median_s": 0.451879,
+      "sha256": "26eafb2b244fc1d4e24a7f561378774cf934f3976364fd7cc402853975d7175e",
+      "matches_published_cpu_payload": true
+    },
+    "starlink_382a419": {
+      "satellites": 9341,
+      "times": 29,
+      "states": 270889,
+      "errors": 79,
+      "bytes": 13002672,
+      "runs_s": [0.506278, 0.517403, 0.504902, 0.505075, 0.495941],
+      "median_s": 0.505075,
+      "sha256": "42d0ca2ca598dae1553ecfae12ca8204b3dae5ceb67e9afa76e36dcb40a75c09",
+      "matches_published_cpu_payload": true
+    }
+  },
+  "orbveil_catalog": {
+    "ran": false,
+    "expected_luxi_sha256": "a14f625475a05892277a1a198aacc79aaf18b0192c97326bbe50fcafd31f8fa3",
+    "produced_on_this_gpu": false
+  },
+  "board_power": {
+    "idle_util0_mean_w": 72.47390931372547,
+    "idle_util0_samples": 3264,
+    "idle_util0_mean_w_rounded": 72.47,
+    "propagate_window_joules": null
+  }
+}

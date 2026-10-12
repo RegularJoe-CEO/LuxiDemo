@@ -43,7 +43,7 @@ Open `evidence/h100-7b-class-TRADE/START_HERE.md` first.
 ## Measurement boundaries
 
 - TRADE 7B path is **not** HF chat-quality (architecture map into TRADE kernels).
-- Flash may win short-seq thr/J/tok; differentiated axes: free-ride/AUDIT, O(N) mem, measured board energy on real 7B-scale weights.
+- On the 12-layer H100 same-shape pack in [`evidence/h100-stack12-H2H`](evidence/h100-stack12-H2H/), seq 1024, PyTorch Flash fp16 wins joules per token. The recorded ratio `trade_over_pytorch_J_per_token_ratio` is 19.169052480042783. Differentiated axes elsewhere in these packs: free-ride and AUDIT, O(N) memory, and measured board energy on real 7B-scale weights.
 - Power is **GPU board** (pynvml), not wall-plug AC.
 - The sequence-length 5 result is a microbenchmark, not a current product
   result.

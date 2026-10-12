@@ -13,7 +13,7 @@ or disconnected from the power system supporting it.
 | Layer | Control point | Purpose | Current maturity |
 |---|---|---|---|
 | **LuxiQuant** | Compute | Reproducible numerical and quantitative execution with receipts | **Working engine** · public **Luxi Book** (CSV BS/Black-76 + SHA-256) is the Quant try without NDA; older numerical REST/microbench demos still ship; TestFort Dec 2025 on a defined numerical suite |
-| **LuxiEdge** | Execute | Energy-aware GPU execution for AI inference, with packed work and scoped deterministic receipts | **Public AI wedge** · Qwen2-7B vs vLLM 0.25.1 and SGLang 0.5.19 prefill + decode measured on H100 ([`BENCHMARKS.md`](BENCHMARKS.md)), plus a drift demo under batch load ([`INFERENCE.md`](INFERENCE.md#drift-demo)); Version 99 third-party lineage |
+| **LuxiEdge** | Execute | Deterministic numerics with receipts, including orbital propagation and energy-aware inference | **Measured** · orbital, genomics, and H100 inference rows in [`RESULTS.md`](RESULTS.md); Qwen2-7B vs vLLM 0.25.1 and SGLang 0.5.19 in [`BENCHMARKS.md`](BENCHMARKS.md) |
 | **LuxiPack** | Schedule | Admit work after dependencies are ready and place it to reduce hold-not-work and repeated preparation | **In development** |
 | **LuxiPhase** | Shape | Shape aggregate compute timing to reduce power swings while respecting throughput and SLOs | **Prototype/local validation** |
 | **LuxiLoad** | Coordinate | Coordinate compute demand with generation, electrical, cooling, and reliability limits | **Early concept** |
@@ -25,18 +25,17 @@ The shorthand is:
 
 ## Public portfolio today (what to download)
 
-Public portfolio order (website on Replit; this repo is binaries only): **sale → freebie → evidence**.
+Public portfolio order on this page: **LuxiRisk, then the proof record, then Luxi Book**. The website on Replit is a separate tree.
 
 | Surface | Role | Where |
 |---|---|---|
-| **Luxi Book** | **Primary Quant try** - CSV European options, five Greeks, output-vector hash + Ed25519 `lxq2_` receipt; macOS + Linux CPU + Linux CUDA closed binaries | [`DEMOS.md`](DEMOS.md) · [`downloads/luxibook/`](downloads/luxibook/) |
-| **LuxiRisk** | **Freebie** retail / crypto risk CLI + Ed25519 `lxr1_` receipts - not institutional Quant | [`luxirisk/`](luxirisk/) · release `luxirisk-v0.2` |
-| **LuxiEdge benchmarks + serve demo** | Measured H100 results vs vLLM 0.25.1 and SGLang 0.5.19, a drift demo, and a stripped serve binary (OpenAI-shaped API, toy generate path) | [`INFERENCE.md`](INFERENCE.md) · [`BENCHMARKS.md`](BENCHMARKS.md) · [`DEMOS.md`](DEMOS.md) · [`evidence/`](evidence/) |
-| Numerical v3.0 demos | REST `/evaluate`, operators, ATE/tools - supporting quant math, not the option book | GitHub release `v3.0` · [`DEMOS.md`](DEMOS.md) |
+| **LuxiRisk** | Free offline retail / crypto CLI: liquidation, size, max loss, Ed25519 `lxr1_` receipts | [`luxirisk/`](luxirisk/) · release `luxirisk-v0.2` |
+| **LuxiEdge proofs** | Deterministic numerics with receipts. Inference on H100 is one measured surface, next to orbital, genomics, and the option book | [`README.md`](README.md) · [`RESULTS.md`](RESULTS.md) |
+| **Luxi Book** | Quant try: CSV European options, five Greeks, output-vector hash + Ed25519 `lxq2_` receipt. The 10-row public book is not the 1,000,000-option book | [`DEMOS.md`](DEMOS.md) · [`downloads/luxibook/`](downloads/luxibook/) |
+| Numerical v3.0 demos | REST `/evaluate`, operators, ATE/tools. Supporting math, not the option book | GitHub release `v3.0` · [`DEMOS.md`](DEMOS.md) |
 
-LuxiEdge remains the public **AI inference** wedge. Luxi Book is the public
-**Quant** path that can become a design-partner conversation. LuxiRisk is a
-separate free product surface, not a substitute for Book.
+LuxiEdge is deterministic numerics with receipts. Inference is one measured
+surface. Luxi Book is the Quant path. LuxiRisk is the free retail CLI.
 
 The later layers (Pack, Phase, Load, SDG) are a product roadmap at different
 stages of proof; they are not presented as deployed systems.
@@ -51,8 +50,10 @@ Every public result should identify:
 - retained evidence
 
 GPU-board energy is not facility electricity. A controlled benchmark is not
-automatically a production or customer result. A receipt on one CSV book is not
-a universal CPU↔GPU claim.
+automatically a production or customer result. Hash claims are the rows in
+[`RESULTS.md`](RESULTS.md). The 10-row Luxi Book receipt is one measured book.
+It does not say that every CPU and GPU matches, and it is not the
+1,000,000-option book.
 
 ## Demo rule
 

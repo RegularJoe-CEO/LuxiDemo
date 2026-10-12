@@ -71,7 +71,7 @@ Formal signed narrative: pending.
 TestFort’s December 2025 report covers a defined deterministic numerical
 workload (not Luxi Book, not inference thr/J):
 
-[Open the public report](https://luxiedge.com/luxiedge-validation-report.pdf)
+The previous public URL `https://luxiedge.com/luxiedge-validation-report.pdf` returned HTTP 404 on 2026-10-11. The measured figures remain the December 2025 row in [`RESULTS.md`](../RESULTS.md).
 
 This evidence belongs to LuxiQuant numerical execution and is separate from
 transformer inference and from the option book.
