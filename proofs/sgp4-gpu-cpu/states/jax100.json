@@ -1,0 +1,16 @@
+{
+  "n_tle": 100,
+  "n_time": 29,
+  "order": "tle-major then time",
+  "fields": ["x_km", "y_km", "z_km", "vx_km_s", "vy_km_s", "vz_km_s"],
+  "dtype": "float64 little-endian",
+  "geopotential": "WGS72",
+  "mode": "afspc",
+  "n_errors": 0,
+  "sha256": "aaabbfe5a7d4ed5c759006f6f280bc9dcce2d313d981331ef9eeef083ace90e4",
+  "hosts": [
+    "macos arm64 rustc 1.92.0 (ded5c06cf 2025-12-08)",
+    "linux x86_64 rustc 1.99.0 (b940084d7 2026-09-28)",
+    "H100 PTX sm_70 rustc 1.101.0-nightly (32dba69d6 2026-10-09)"
+  ]
+}
