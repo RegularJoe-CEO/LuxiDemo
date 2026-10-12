@@ -1,114 +1,33 @@
-# Published results
+# Results log
 
-Last updated: 2026-09-26
+Newest first. One line per measured result. A hash is an output digest from that run. "none" means the run did not publish a single output digest.
 
-This page indexes **measured** public results. Each result is limited to the
-workload and hardware described in its evidence. Do not blend numbers across
-sections.
+## How results are logged
 
-## Luxi Book - CSV European options (primary Quant try)
+Every finished proof job appends a line. Proofs are merged to main weekly. The website links here.
 
-**Workload:** `example_book.csv` only · European Black-Scholes / Black-76 · five
-Greeks · SHA-256 over the canonical f64 little-endian price+Greeks vector.  
-**Kernel:** `black_scholes_book_kernel` (CPU gold; optional CUDA on Linux).  
-**Engine:** v0.2.0 (`b4645c2`) ships Ed25519 `lxq2_` seals; the **comparable** value across boxes remains the output vector hash below.
-
-| Surface | Result |
-|---|---|
-| Output vector SHA-256 | `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a` |
-| ATM_CALL price | `10.4505835721856215` |
-| v0.2.0 matrix (engine `b4645c2`) | **RTX 4090 (Ada)** + H200 + H100×2 devices (CPU+GPU agree) + Mac Mini arm64 CPU; receipts under [`downloads/luxibook/evidence/v0.2.0-matrix/`](downloads/luxibook/evidence/v0.2.0-matrix/) |
-| Historical A100 (2026-08-15, pre-attestation binary) | same **output hash** only - not re-measured under v0.2.0 |
-| Public binaries | macOS ARM64 CPU · Linux x86_64 CPU · Linux x86_64 CUDA |
-
-**Non-claims:** this book, these devices, this kernel - not “all GPUs always
-match,” not desk VaR, not live market data, not `risk-pipeline`. Do not treat the
-`lxq2_…` string as a published constant (per-install seal).
-
-- Binaries: [`downloads/luxibook/`](downloads/luxibook/)
-- Matrix receipts: [`downloads/luxibook/evidence/v0.2.0-matrix/`](downloads/luxibook/evidence/v0.2.0-matrix/)
-- How to run: [`DEMOS.md`](DEMOS.md)
-
-## LuxiEdge vs vLLM 0.25.1 - Qwen2-7B on H100 (2026-09-25/26)
-
-Luxi runs Qwen2-7B on an H100 with bit-identical results across every batch size we tested (1, 16 and 64 when generating tokens; 1 against 16, 4 and 2 on 2k, 8k and 32k-token prompts), across repeated runs and separate processes. On long prompts (2k to 32k tokens) it is 3–7% faster than vLLM 0.25.1 and uses 2–5% less energy per token. When generating tokens it matches vLLM's speed but uses 2–7% more energy per token. Against vLLM's own deterministic (batch-invariant) mode, Luxi is faster and uses less energy on every test, including 1.5–2.7× faster token generation with 16–50% less energy.
-
-**Prefill (long prompts)** - throughput tok/s and energy J per token:
-
-| Prompt length × batch | vLLM 0.25.1 default | vLLM batch-invariant mode | Luxi (FA3) | Luxi own attention kernel |
-|---|---:|---:|---:|---:|
-| 2048 × 16 | 44,680 tok/s, 0.01543 J | 43,190, 0.01601 | 46,180, 0.01515 | 44,270, 0.01579 |
-| 8192 × 4 | 41,120, 0.01688 | 40,070, 0.01734 | 42,350, 0.01647 | 36,700, 0.01905 |
-| 32767 × 1 | 29,980, 0.02269 | 29,240, 0.02325 | 32,190, 0.02162 | 21,820, 0.03158 |
-
-**Decode** (1024-token prompt, 256 greedy generated tokens) - throughput tok/s and energy J per output token:
-
-| Batch | vLLM default | vLLM batch-invariant mode | Luxi (FA3) | Luxi own attention kernel |
-|---:|---:|---:|---:|---:|
-| 1 | 165.8, 2.645 | 61.69, 5.626 | 165.5, 2.820 | 162.1, 2.784 |
-| 16 | 2078, 0.2558 | 941, 0.4233 | 2111, 0.2672 | 1832, 0.2813 |
-| 64 | 4875, 0.1313 | 3217, 0.1596 | 4898, 0.1338 | 3740, 0.1511 |
-
-Method, determinism, why generation uses more energy, and what is borrowed vs
-Luxi's own: [`BENCHMARKS.md`](BENCHMARKS.md). Run summary:
-[`evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/`](evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/)
-
-SGLang 0.5.19 tables (separate H100 pod): [`BENCHMARKS.md`](BENCHMARKS.md#sglang-0519-deterministic-and-normal-mode) · drift demo: [`INFERENCE.md`](INFERENCE.md#drift-demo)
-
-Scope: one H100 SXM · GPU board energy (NVML) · not wall-plug · not
-multi-tenant full-server leadership · full scope: [`TEST_SCOPE.md`](TEST_SCOPE.md)
-
-## LuxiEdge Version 99 (prior third-party baseline)
-
-Technician-operated matched prefill on one NVIDIA H100 80GB (2026-07-23).
-**Earlier stack** - thr trailed vLLM; kept for lineage.
-
-| Engine | Prefill positions/s | GPU-board J/position |
-|---|---:|---:|
-| LuxiEdge Version 99 | **28,374.7** | **0.018718** |
-| vLLM 0.25.1, default | 35,203.1 | 0.019316 |
-| vLLM 0.25.1, batch-invariant | 30,914.3 | 0.020604 |
-
-On this test, LuxiEdge reached 80.60% of default vLLM throughput and used 3.10%
-less GPU-board energy per position. Against vLLM batch-invariant mode,
-LuxiEdge reached 91.78% of its throughput and used 9.15% less GPU-board energy
-per position.
-
-Test configuration: Qwen2-7B-Instruct, batch 16, sequence length 128, packed
-prefill, prefix caching disabled, cumulative NVML energy, one H100 80GB.
-
-Evidence:
-[`h100-qwen2-7b-v99-matched-prefill-2026-07-23`](evidence/h100-qwen2-7b-v99-matched-prefill-2026-07-23/)
-
-## LuxiQuant numerical engine (microbench / REST - not the option book)
-
-A December 2025 TestFort evaluation reported:
-
-| Measurement | Result |
-|---|---:|
-| Aggregate rate across the seven tested functions | 286.94 billion operations/s |
-| Peak tested square-root rate | 331.13 billion operations/s |
-| Operations reported during the one-hour run | 444.4 trillion |
-| Request failures | 0 |
-| Matching GPU and CPU output hash | 5 of 5 runs on each path |
-| Average GPU power during sustained load | approximately 117.2 W |
-
-[Open the numerical-engine validation report](https://luxiedge.com/luxiedge-validation-report.pdf)
-
-These measurements apply to the **numerical expression engine** and its defined
-test suite. They are **not** transformer-inference measurements and **not**
-Luxi Book option-pricing results.
-
-## LuxiRisk freebie
-
-Retail / crypto liquidation, size, and stop-loss CLI with Ed25519 `lxr1_`
-receipts. Not institutional Quant. See [`luxirisk/`](luxirisk/) and release
-[luxirisk-v0.2](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2).
-No thr/J table - product is signed calculation receipts, not a GPU scoreboard.
-
-## Historical transformer research
-
-Earlier H100 experiments remain available with their original configurations,
-including TRADE, Flash comparisons, WNSM, long-context scaling, and sustained
-runtime work. See [`evidence/README.md`](evidence/README.md) and
-[`HISTORICAL_BENCHMARKS.md`](HISTORICAL_BENCHMARKS.md).
+| Date | What was measured | Headline number | Hash | Proof |
+| --- | --- | --- | --- | --- |
+| 2026-10-11 | OrbVeil `screen()` on ISS (NORAD 25544), CelesTrak active catalog, 15,940 objects, 7 days, 10 km, 10-minute step | 6,054 events, all at 0.0 km, from six secondaries at 1,009 events each. Merge window 300 s, step 600 s | none | [proofs/orbveil-edge](https://github.com/RegularJoe-CEO/LuxiDemo/tree/proofs/orbveil-edge) |
+| 2026-10-11 | Same catalog, 1,441 epochs. Luxi and python-sgp4 2.27 on an M1 Pro. Linux x86_64 was qemu-user | Luxi median 5.333366 s (1 core) and 1.054219 s (8 cores). python-sgp4 median 5.332472 s and 1.034126 s. Later-session CPU joules: Luxi 20.677514 and 16.226887, python-sgp4 22.923342 and 16.263594. Mac vs Linux ARM: 6,436,873 of 22,969,540 states differ, max 7.77154707746917322e-10 km | `a14f625475a05892277a1a198aacc79aaf18b0192c97326bbe50fcafd31f8fa3` on macOS arm64, Linux arm64, and qemu Linux x86_64 | [proofs/orbveil-edge](https://github.com/RegularJoe-CEO/LuxiDemo/tree/proofs/orbveil-edge) |
+| 2026-10-11 | Six keplemon TLEs from commit `67d6497`, five epochs, macOS arm64. Luxi versus python-sgp4 2.27 C++. Private log. GPU not run | Max position gap `9.50718373239689656e-11` km. f32 secular shift on ISS at 1440 min, rss `4.787629e-05` m. This six-TLE CPU row did not dump a GPU. The 1.649 m figure is the separate keplemon GPU-versus-CPU parity result recorded at commit `14114699` | `cdb15c2216277c7862ff1503cb66e039e1bc0c28ad88fa1823edd7c8cd77676a` | not published |
+| 2026-10-11 | Same six TLEs, 24 h, 1,441 epochs. Private log. Linux x86_64 was qemu-user | Luxi one hash on macOS arm64, Linux arm64, and qemu x86_64. Stock max position gap across those platforms `3.89444121394852235e-07` km | `a60e610f8b57996dcc253f4cd2f1b69e8bbaa54327cd34268f718ec4e086cae2` | not published |
+| 2026-10-11 | First 2,000 catalog objects, 1,441 epochs, plus a pair screen of 1,999,000 pairs. Private log. Linux x86_64 was qemu-user | Luxi one hash on three platforms. Stock max cross-platform position gap `4.22175690645485688e-08` km. Pair screen: 0 class flips at 10 cm, 75 m, 1 km, and 10 km. Largest Luxi-versus-stock position gap `6.62406383491043714e-03` km | `8fce3cdb85bd3060dbe3fdcdb89bb42af5a364ef67fb45ef9b3cb16a93c8efb6` | not published |
+| 2026-10-11 | 53 public CARA Pc CDMs, Alfano PcCircle mode 0 and mode 64. Private log. Linux x86_64 was qemu-user | Luxi one hash on three platforms at 1 and 8 threads. Mode 64, stock versus Luxi on macOS: max absolute Pc `1.734723e-18`, 23 of 53 exact. Versus CARA `Pc2D_NoAdj`: 1 of 53 exact, macOS max relative `4.641687e-08` | `a391e0a6759659a943e539a2f756142fabb2a608dab39aee93b8a7bde2bec9ed` | not published |
+| 2026-10-10 | 1,000,000-option book after the later row-accuracy pass. macOS arm64, Linux arm64, qemu Linux x86_64. Private log. No GPU | Book total minus reference `-1.2687831318692013e-6`. Max absolute row error `3.8385300817345264e-10`, same row and value as libm. One output hash on the three CPUs | `3aa738c3fd9369d2c262a547dd0ba342c6e2386ab2dfcb0086256bc7d2a3ff0f` | not published |
+| 2026-10-10 | Same 1,000,000-option book after the erfc fix, before that row-accuracy pass. Same three CPUs. Private log. No GPU | One output hash. Book total `116982007931.3436889648`. Book total minus reference `-0.0005505851893818692`. Max absolute row error `4.36972144093491e-09` | `821adc80126a76dc3c244344a109fefd8cb1e3ebbfe56ee0458048b71280d5d9` | not published |
+| 2026-10-10 | AWS numerical-validation sample, 1,000,000 European options, C++ pricer on x86 versus Graviton ARM. Not a Luxi Book hash | 45,867 of 1,000,000 prices differ. ARM fingerprint `2f44f60b7d3f4adb`. x86 fingerprint `73ba0b06993f03a2` | none | not published |
+| 2026-10-10 | Luxi f64 SGP4, jax100 (100 x 29) and starlink-382a419 (9341 x 29). macOS arm64, Linux arm64, qemu Linux x86_64, and an H100 near-earth GPU build | Both grids byte-identical on those four runs. H100 jax100 matched on two launches. Starlink had 79 rejected states on every platform that ran it. Deep-space was not in the GPU build | jax100 `26eafb2b244fc1d4e24a7f561378774cf934f3976364fd7cc402853975d7175e`. starlink `42d0ca2ca598dae1553ecfae12ca8204b3dae5ceb67e9afa76e36dcb40a75c09` | [proofs/luxi-sgp4](https://github.com/RegularJoe-CEO/LuxiDemo/tree/proofs/luxi-sgp4) |
+| 2026-10-10 | Stock jaxsgp4 commit `382a419`, float64, GPU versus CPU, same H100. 100 satellites, 29 times | 2701 of 2900 states differ. Max position `1.5853778190904915e-09` km. Three GPU runs agreed | GPU `e299e63536376194c7d1dd03ef1ed51563f42fa51cb6899698e0376a13fdb094`. CPU `c87e7e5b162cc143b75e8cea0da237f27a640b79a9a4ba00fe76705c13b1778c` | [proofs/luxi-sgp4](https://github.com/RegularJoe-CEO/LuxiDemo/tree/proofs/luxi-sgp4) and [proofs/sgp4-gpu-cpu](https://github.com/RegularJoe-CEO/LuxiDemo/tree/proofs/sgp4-gpu-cpu) |
+| 2026-10-10 | Stock jaxsgp4, same commit, float64, full catalog, one GPU run versus CPU | 253026 of 270889 states differ. Max position `7.76981796099376e-05` km at NORAD 57440, day 14 | GPU `e8e03f8597e207ae18c5020cc8aa870ce9ebaa91c83c3737744d6324364db366`. CPU `0ccd0ef2dcc6844b75fdf2b7dff63a03432a3d17e1a88b202d163b881a92287d` | [proofs/luxi-sgp4](https://github.com/RegularJoe-CEO/LuxiDemo/tree/proofs/luxi-sgp4) |
+| 2026-10-10 | Stock jaxsgp4, same commit, float32, 100 satellites, 29 times, GPU versus CPU | 2824 of 2900 states differ. Max position `2.4645502245160555` km. Three GPU runs agreed | GPU `b6403a5c3f369b27fdde436734303434589ecc053a16dbf11fc6e1e7e829d6af`. CPU `1aa09ca150c44396bec7825d1d72d2333e58e2076d6be65fa947bf3655eeb836` | [proofs/sgp4-gpu-cpu](https://github.com/RegularJoe-CEO/LuxiDemo/tree/proofs/sgp4-gpu-cpu) |
+| 2026-10-10 | Vallado SGP4-VER, 33 cases, 666 states, 2 expected errors | Max position `2.01884176931343973e-7` km. Max velocity `5.21046317203399667e-10` km/s. The luxi-sgp4 record is macOS arm64 only. The earlier sgp4-gpu-cpu record printed the same digits on macOS arm64 and Linux x86_64 | none | [proofs/luxi-sgp4](https://github.com/RegularJoe-CEO/LuxiDemo/tree/proofs/luxi-sgp4) and [proofs/sgp4-gpu-cpu](https://github.com/RegularJoe-CEO/LuxiDemo/tree/proofs/sgp4-gpu-cpu) |
+| 2026-10-10 | Demo v3.1 f32 `sin(x)` on `[0.5, 1.0, 1.57, 2.0, 3.14]`. macOS arm64, macOS x86_64, Linux x86_64, Linux arm64. GPU not measured | One receipt on those four machines. `sin(1.57) = 0.9999997019767761`. `sin(3.14) = 0.0015925479819998145` | `0243d52127de37af8a1f49edadcf74a2a299732a5bec38693ee5b1804df28965` | [fix/v3.1-demo](https://github.com/RegularJoe-CEO/LuxiDemo/tree/fix/v3.1-demo) |
+| 2026-10-10 | Demo v3.1 Kepler, REBOUND #849 (`e=0.1`, `M=0.991`) and the #934 log sweep | #849 residual 0 and one hash on macOS arm64, macOS x86_64, Linux x86_64, and Linux arm64. #934 max residual `5.551e-17`. The sweep hash matched on macOS x86_64, Linux x86_64, and Linux arm64, and differed on macOS arm64 | #849 `f9d23a13612bb6f140acdcab79463594a46a9c9c02c17f9fe77f79a944991758`. #934 three-machine `f7e97ade3e320ba58cd827f3bb2f6db98a2d04e532810dddd78ba0a2a668efb5`. macOS arm64 `aee00f24c9919b3217caf6a0f957e257590b807ca7b5f1171743fb16feba5b6e` | [fix/v3.1-demo](https://github.com/RegularJoe-CEO/LuxiDemo/tree/fix/v3.1-demo) |
+| 2026-10-10 | Demo v3.1 ANISE #340 Kepler sweep, `e=0.6`, 720 points. macOS x86_64 was Rosetta. Linux x86_64 was emulated | Max residual `4.441e-16` on every machine. macOS arm64 hash differed from macOS x86_64. Linux x86_64 matched Linux arm64 | macOS arm64 `03f91b713c6c0da3a67305a17768a31fea0403c8ae8d50a0ab1449add16f4049`. macOS x86_64 `24cae59fe541abcc873a512e3a6e7bfbede018e2572f0498f6ded3ea1b9b8b49`. Linux `edfcf59dd0b238bab7cabf397ed3da9948734edf06a79620ffcef69f8bee7a7f` | [fix/v3.1-demo](https://github.com/RegularJoe-CEO/LuxiDemo/tree/fix/v3.1-demo) |
+| 2026-10-10 | vLLM issue 53257 echo test, Qwen2-7B-Instruct fp16, one H100 SXM 80GB. Not DeepSeek-V4-Flash, not NVFP4, not B300 | Every listed vLLM 0.27.1 cell and every Luxi L-H cell had 1 distinct completion per run and minority 0.00. Logits gate matched the 2026-09-26 hashes before the Luxi rows | completion `e303fa1b7264281e8ff210c129911a595e70b9bac326556097ded44486e2480b` | [proofs/vllm-53257-echo](https://github.com/RegularJoe-CEO/LuxiDemo/tree/proofs/vllm-53257-echo) |
+| 2026-09-26 | Qwen2-7B-Instruct fp16 drift, one H100. 20 prompts, 256 greedy tokens. Batch and, for vLLM and SGLang, live arrivals | vLLM 0.25.1 default changed the visible answer in 12 of 140 conditions. SGLang 0.5.19 default in 11 of 140. Luxi c8 matched tokens and logprobs in 80 of 80 batch conditions. The long prompt's 6 conditions are from a fresh process. A long-running-process fault on that prompt is in the evidence | `per_prompt.csv` `e7bb513a2b42be966b519d78e01a62a2902d953f998ca24896a958188f8cf617` | [evidence/h100-qwen2-7b-drift-demo-2026-09-26](evidence/h100-qwen2-7b-drift-demo-2026-09-26/) |
+| 2026-09-25 | Qwen2-7B-Instruct fp16, one H100, versus vLLM 0.25.1. One cell from the committed table, not a blend across lengths | Prefill 32767 x 1: Luxi FA3 32,190 tok/s and 0.02162 J/token. vLLM default 29,980 tok/s and 0.02269 J/token. vLLM batch-invariant 29,240 tok/s and 0.02325 J/token | none | [evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25](evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/) |
+| 2026-08-16 | Luxi Book v0.2.1 public `example_book.csv`, 10 rows, five GPUs, CPU and GPU. This is not the 1,000,000-option book | Output vector hash identical on CPU and GPU for every device in that matrix. ATM call price `10.4505835721856215`. Book price `151.70016507843832` | `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a` | [downloads/luxibook/evidence/v0.2.1-phi-fix-matrix](downloads/luxibook/evidence/v0.2.1-phi-fix-matrix/) |
+| 2026-07-23 | LuxiEdge Version 99 matched prefill, Qwen2-7B-Instruct, batch 16, sequence 128, one H100 80GB | 28,374.7 positions/s and 0.018718 GPU-board J/position. vLLM 0.25.1 default 35,203.1 and 0.019316 | none | [evidence/h100-qwen2-7b-v99-matched-prefill-2026-07-23](evidence/h100-qwen2-7b-v99-matched-prefill-2026-07-23/) |
+| 2025-12 | TestFort numerical-engine run, one hour. Not a transformer result and not an option book | 286.94 billion operations/s aggregate. 331.13 billion operations/s peak square root. 444.4 trillion operations. 0 request failures. GPU and CPU output hash matched on 5 of 5 runs each | none | [luxiedge-validation-report.pdf](https://luxiedge.com/luxiedge-validation-report.pdf) |
