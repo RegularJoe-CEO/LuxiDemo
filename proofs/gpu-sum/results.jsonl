@@ -1,0 +1,156 @@
+{"machine": "pod", "mode": "exact_fsum_reference", "dt": "f32", "sum": "499894306221.96246", "sec": 0.551715612411499, "start": 1791897855.305785, "hash": "b952a970e4ad4440"}
+{"machine": "pod", "mode": "numpy_pairwise_f64", "dt": "f32", "sum": "499894306221.9619", "sec": 0.04154682159423828, "start": 1791897855.8576522, "hash": "4fe36fe40ac46759"}
+{"machine": "pod", "mode": "tf_reduce_sum_gpu", "dt": "f32", "sum": "499894321152.0", "sec": 0.0004467964172363281, "start": 1791897858.675961, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "tf_reduce_sum_gpu", "dt": "f32", "sum": "499894321152.0", "sec": 0.0002732276916503906, "start": 1791897858.6764877, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "tf_reduce_sum_gpu", "dt": "f32", "sum": "499894321152.0", "sec": 0.0002067089080810547, "start": 1791897858.6767912, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "tf_reduce_sum_gpu", "dt": "f32", "sum": "499894321152.0", "sec": 0.00019431114196777344, "start": 1791897858.6770222, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "tf_reduce_sum_gpu", "dt": "f32", "sum": "499894321152.0", "sec": 0.00019741058349609375, "start": 1791897858.6772404, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "tf_reduce_sum_gpu", "dt": "f32", "sum": "499894321152.0", "sec": 0.00018668174743652344, "start": 1791897858.6774614, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "tf_reduce_sum_gpu", "dt": "f32", "sum": "499894321152.0", "sec": 0.00019621849060058594, "start": 1791897858.6776712, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "tf_reduce_sum_gpu", "dt": "f32", "sum": "499894321152.0", "sec": 0.00018739700317382812, "start": 1791897858.6778932, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "tf_reduce_sum_gpu", "dt": "f32", "sum": "499894321152.0", "sec": 0.0001838207244873047, "start": 1791897858.678103, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "tf_reduce_sum_gpu", "dt": "f32", "sum": "499894321152.0", "sec": 0.00018596649169921875, "start": 1791897858.6783094, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "cupy_sum", "dt": "f32", "sum": "499894321152.0", "sec": 0.00019621849060058594, "start": 1791897858.8841045, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "cupy_sum", "dt": "f32", "sum": "499894321152.0", "sec": 5.888938903808594e-05, "start": 1791897858.8843954, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "cupy_sum", "dt": "f32", "sum": "499894321152.0", "sec": 4.673004150390625e-05, "start": 1791897858.884479, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "cupy_sum", "dt": "f32", "sum": "499894321152.0", "sec": 4.5299530029296875e-05, "start": 1791897858.8845453, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "cupy_sum", "dt": "f32", "sum": "499894321152.0", "sec": 5.054473876953125e-05, "start": 1791897858.8846095, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "cupy_sum", "dt": "f32", "sum": "499894321152.0", "sec": 5.91278076171875e-05, "start": 1791897858.8846772, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "cupy_sum", "dt": "f32", "sum": "499894321152.0", "sec": 5.245208740234375e-05, "start": 1791897858.8847573, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "cupy_sum", "dt": "f32", "sum": "499894321152.0", "sec": 4.839897155761719e-05, "start": 1791897858.8848264, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "cupy_sum", "dt": "f32", "sum": "499894321152.0", "sec": 4.982948303222656e-05, "start": 1791897858.8848906, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "cupy_sum", "dt": "f32", "sum": "499894321152.0", "sec": 4.9591064453125e-05, "start": 1791897858.8849578, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "cublas_dot_ones", "dt": "f32", "sum": "499894321152.0", "sec": 0.11762022972106934, "start": 1791897858.8850245, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "cublas_dot_ones", "dt": "f32", "sum": "499894321152.0", "sec": 0.0006628036499023438, "start": 1791897859.002707, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "cublas_dot_ones", "dt": "f32", "sum": "499894321152.0", "sec": 0.000621795654296875, "start": 1791897859.0033956, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "cublas_dot_ones", "dt": "f32", "sum": "499894321152.0", "sec": 0.0006203651428222656, "start": 1791897859.0040498, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "cublas_dot_ones", "dt": "f32", "sum": "499894321152.0", "sec": 0.0006256103515625, "start": 1791897859.0046992, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "cublas_dot_ones", "dt": "f32", "sum": "499894321152.0", "sec": 0.0006148815155029297, "start": 1791897859.0053456, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "cublas_dot_ones", "dt": "f32", "sum": "499894321152.0", "sec": 0.0006160736083984375, "start": 1791897859.0059824, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "cublas_dot_ones", "dt": "f32", "sum": "499894321152.0", "sec": 0.000614166259765625, "start": 1791897859.0066195, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "cublas_dot_ones", "dt": "f32", "sum": "499894321152.0", "sec": 0.0006222724914550781, "start": 1791897859.007256, "hash": "c50bc247dbde0944"}
+{"machine": "pod", "mode": "cublas_dot_ones", "dt": "f32", "sum": "499894321152.0", "sec": 0.0006251335144042969, "start": 1791897859.0079002, "hash": "c50bc247dbde0944"}
+{"machine":"pod","mode":"luxi_linalg_dot_product_f32","dt":"f32","simd":"avx512","sum":"499894321152.0","sec":0.030170701,"hash":"c50bc247dbde0944","start":1791897859.8631923}
+{"machine":"pod","mode":"luxi_pairhmm_kahan_sum_f32in_f64acc","dt":"f32","simd":"avx512","sum":"499894306221.96246","sec":0.029825789,"hash":"b952a970e4ad4440","start":1791897859.863584}
+{"machine":"pod","mode":"luxi_linalg_dot_product_f32","dt":"f32","simd":"avx512","sum":"499894321152.0","sec":0.029874413,"hash":"c50bc247dbde0944","start":1791897860.0295274}
+{"machine":"pod","mode":"luxi_pairhmm_kahan_sum_f32in_f64acc","dt":"f32","simd":"avx512","sum":"499894306221.96246","sec":0.029834683,"hash":"b952a970e4ad4440","start":1791897860.0296159}
+{"machine":"pod","mode":"luxi_linalg_dot_product_f32","dt":"f32","simd":"avx512","sum":"499894321152.0","sec":0.029886962,"hash":"c50bc247dbde0944","start":1791897860.197285}
+{"machine":"pod","mode":"luxi_pairhmm_kahan_sum_f32in_f64acc","dt":"f32","simd":"avx512","sum":"499894306221.96246","sec":0.029639297,"hash":"b952a970e4ad4440","start":1791897860.197578}
+{"machine":"pod","mode":"luxi_linalg_dot_product_f32","dt":"f32","simd":"avx512","sum":"499894321152.0","sec":0.029653218,"hash":"c50bc247dbde0944","start":1791897860.365108}
+{"machine":"pod","mode":"luxi_pairhmm_kahan_sum_f32in_f64acc","dt":"f32","simd":"avx512","sum":"499894306221.96246","sec":0.029710645,"hash":"b952a970e4ad4440","start":1791897860.3650937}
+{"machine":"pod","mode":"luxi_linalg_dot_product_f32","dt":"f32","simd":"avx512","sum":"499894321152.0","sec":0.029813401,"hash":"c50bc247dbde0944","start":1791897860.532293}
+{"machine":"pod","mode":"luxi_pairhmm_kahan_sum_f32in_f64acc","dt":"f32","simd":"avx512","sum":"499894306221.96246","sec":0.029822304,"hash":"b952a970e4ad4440","start":1791897860.5323303}
+{"machine":"pod","mode":"luxi_linalg_dot_product_f32","dt":"f32","simd":"avx512","sum":"499894321152.0","sec":0.029808733,"hash":"c50bc247dbde0944","start":1791897860.7001188}
+{"machine":"pod","mode":"luxi_pairhmm_kahan_sum_f32in_f64acc","dt":"f32","simd":"avx512","sum":"499894306221.96246","sec":0.03013046,"hash":"b952a970e4ad4440","start":1791897860.699837}
+{"machine":"pod","mode":"luxi_linalg_dot_product_f32","dt":"f32","simd":"avx512","sum":"499894321152.0","sec":0.029943308,"hash":"c50bc247dbde0944","start":1791897860.8632631}
+{"machine":"pod","mode":"luxi_pairhmm_kahan_sum_f32in_f64acc","dt":"f32","simd":"avx512","sum":"499894306221.96246","sec":0.029904749,"hash":"b952a970e4ad4440","start":1791897860.863351}
+{"machine":"pod","mode":"luxi_linalg_dot_product_f32","dt":"f32","simd":"avx512","sum":"499894321152.0","sec":0.029936166,"hash":"c50bc247dbde0944","start":1791897861.0278242}
+{"machine":"pod","mode":"luxi_pairhmm_kahan_sum_f32in_f64acc","dt":"f32","simd":"avx512","sum":"499894306221.96246","sec":0.029894042,"hash":"b952a970e4ad4440","start":1791897861.0279005}
+{"machine":"pod","mode":"luxi_linalg_dot_product_f32","dt":"f32","simd":"avx512","sum":"499894321152.0","sec":0.029995466,"hash":"c50bc247dbde0944","start":1791897861.1921697}
+{"machine":"pod","mode":"luxi_pairhmm_kahan_sum_f32in_f64acc","dt":"f32","simd":"avx512","sum":"499894306221.96246","sec":0.029924679,"hash":"b952a970e4ad4440","start":1791897861.1922774}
+{"machine":"pod","mode":"luxi_linalg_dot_product_f32","dt":"f32","simd":"avx512","sum":"499894321152.0","sec":0.029908414,"hash":"c50bc247dbde0944","start":1791897861.3509457}
+{"machine":"pod","mode":"luxi_pairhmm_kahan_sum_f32in_f64acc","dt":"f32","simd":"avx512","sum":"499894306221.96246","sec":0.029895315,"hash":"b952a970e4ad4440","start":1791897861.3510017}
+{"machine": "pod", "mode": "exact_fsum_reference", "dt": "f64", "sum": "500076362211.7982", "sec": 1.0230684280395508, "start": 1791897861.6598065, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "numpy_pairwise_f64", "dt": "f64", "sum": "500076362211.7987", "sec": 0.3555009365081787, "start": 1791897862.6830153, "hash": "127b21530d709f43"}
+{"machine": "pod", "mode": "tf_reduce_sum_gpu", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0008208751678466797, "start": 1791897865.7603838, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "tf_reduce_sum_gpu", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0005450248718261719, "start": 1791897865.761283, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "tf_reduce_sum_gpu", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0005006790161132812, "start": 1791897865.76186, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "tf_reduce_sum_gpu", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0005640983581542969, "start": 1791897865.7623856, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "tf_reduce_sum_gpu", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0005025863647460938, "start": 1791897865.7629771, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "tf_reduce_sum_gpu", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0004980564117431641, "start": 1791897865.7635055, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "tf_reduce_sum_gpu", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0004944801330566406, "start": 1791897865.764031, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "tf_reduce_sum_gpu", "dt": "f64", "sum": "500076362211.7982", "sec": 0.00048661231994628906, "start": 1791897865.7645483, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "tf_reduce_sum_gpu", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0004928112030029297, "start": 1791897865.7650616, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "tf_reduce_sum_gpu", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0004951953887939453, "start": 1791897865.7655773, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "cupy_sum", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0004024505615234375, "start": 1791897866.0072973, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "cupy_sum", "dt": "f64", "sum": "500076362211.7982", "sec": 0.00034236907958984375, "start": 1791897866.0077653, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "cupy_sum", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0003345012664794922, "start": 1791897866.008129, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "cupy_sum", "dt": "f64", "sum": "500076362211.7982", "sec": 0.00033664703369140625, "start": 1791897866.0084798, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "cupy_sum", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0003330707550048828, "start": 1791897866.008835, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "cupy_sum", "dt": "f64", "sum": "500076362211.7982", "sec": 0.000335693359375, "start": 1791897866.0091827, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "cupy_sum", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0003399848937988281, "start": 1791897866.0095325, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "cupy_sum", "dt": "f64", "sum": "500076362211.7982", "sec": 0.00033974647521972656, "start": 1791897866.0098965, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "cupy_sum", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0003323554992675781, "start": 1791897866.0102513, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "cupy_sum", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0003371238708496094, "start": 1791897866.010601, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "cublas_dot_ones", "dt": "f64", "sum": "500076362211.7982", "sec": 0.11752796173095703, "start": 1791897866.0109591, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "cublas_dot_ones", "dt": "f64", "sum": "500076362211.7982", "sec": 0.001348733901977539, "start": 1791897866.128541, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "cublas_dot_ones", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0012972354888916016, "start": 1791897866.1299212, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "cublas_dot_ones", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0013034343719482422, "start": 1791897866.1312459, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "cublas_dot_ones", "dt": "f64", "sum": "500076362211.7982", "sec": 0.001312255859375, "start": 1791897866.1325743, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "cublas_dot_ones", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0013065338134765625, "start": 1791897866.1339154, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "cublas_dot_ones", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0013070106506347656, "start": 1791897866.1352468, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "cublas_dot_ones", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0012896060943603516, "start": 1791897866.136578, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "cublas_dot_ones", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0013127326965332031, "start": 1791897866.1378913, "hash": "638e62814a6a5d6d"}
+{"machine": "pod", "mode": "cublas_dot_ones", "dt": "f64", "sum": "500076362211.7982", "sec": 0.0012934207916259766, "start": 1791897866.1392293, "hash": "638e62814a6a5d6d"}
+{"machine":"pod","mode":"luxi_linalg_dot_product_f64","dt":"f64","simd":"avx512","sum":"500076362211.7963","sec":0.003125318,"hash":"02e64f86f29a5fb3","start":1791897866.939968}
+{"machine":"pod","mode":"luxi_pairhmm_kahan_sum_f64","dt":"f64","simd":"avx512","sum":"500076362211.7982","sec":0.029901904,"hash":"638e62814a6a5d6d","start":1791897866.9132295}
+{"machine":"pod","mode":"luxi_linalg_dot_product_f64","dt":"f64","simd":"avx512","sum":"500076362211.7963","sec":0.003139039,"hash":"02e64f86f29a5fb3","start":1791897867.1064758}
+{"machine":"pod","mode":"luxi_pairhmm_kahan_sum_f64","dt":"f64","simd":"avx512","sum":"500076362211.7982","sec":0.029867052,"hash":"638e62814a6a5d6d","start":1791897867.0797987}
+{"machine":"pod","mode":"luxi_linalg_dot_product_f64","dt":"f64","simd":"avx512","sum":"500076362211.7963","sec":0.003256206,"hash":"02e64f86f29a5fb3","start":1791897867.282026}
+{"machine":"pod","mode":"luxi_pairhmm_kahan_sum_f64","dt":"f64","simd":"avx512","sum":"500076362211.7982","sec":0.029900342,"hash":"638e62814a6a5d6d","start":1791897867.2554276}
+{"machine":"pod","mode":"luxi_linalg_dot_product_f64","dt":"f64","simd":"avx512","sum":"500076362211.7963","sec":0.003221313,"hash":"02e64f86f29a5fb3","start":1791897867.4433975}
+{"machine":"pod","mode":"luxi_pairhmm_kahan_sum_f64","dt":"f64","simd":"avx512","sum":"500076362211.7982","sec":0.029963278,"hash":"638e62814a6a5d6d","start":1791897867.416697}
+{"machine":"pod","mode":"luxi_linalg_dot_product_f64","dt":"f64","simd":"avx512","sum":"500076362211.7963","sec":0.003154552,"hash":"02e64f86f29a5fb3","start":1791897867.6073334}
+{"machine":"pod","mode":"luxi_pairhmm_kahan_sum_f64","dt":"f64","simd":"avx512","sum":"500076362211.7982","sec":0.0297135,"hash":"638e62814a6a5d6d","start":1791897867.580815}
+{"machine":"pod","mode":"luxi_linalg_dot_product_f64","dt":"f64","simd":"avx512","sum":"500076362211.7963","sec":0.003266701,"hash":"02e64f86f29a5fb3","start":1791897867.7656217}
+{"machine":"pod","mode":"luxi_pairhmm_kahan_sum_f64","dt":"f64","simd":"avx512","sum":"500076362211.7982","sec":0.029915666,"hash":"638e62814a6a5d6d","start":1791897867.7390394}
+{"machine":"pod","mode":"luxi_linalg_dot_product_f64","dt":"f64","simd":"avx512","sum":"500076362211.7963","sec":0.003099889,"hash":"02e64f86f29a5fb3","start":1791897867.9290729}
+{"machine":"pod","mode":"luxi_pairhmm_kahan_sum_f64","dt":"f64","simd":"avx512","sum":"500076362211.7982","sec":0.029792969,"hash":"638e62814a6a5d6d","start":1791897867.9024181}
+{"machine":"pod","mode":"luxi_linalg_dot_product_f64","dt":"f64","simd":"avx512","sum":"500076362211.7963","sec":0.003131457,"hash":"02e64f86f29a5fb3","start":1791897868.0877728}
+{"machine":"pod","mode":"luxi_pairhmm_kahan_sum_f64","dt":"f64","simd":"avx512","sum":"500076362211.7982","sec":0.029727781,"hash":"638e62814a6a5d6d","start":1791897868.061222}
+{"machine":"pod","mode":"luxi_linalg_dot_product_f64","dt":"f64","simd":"avx512","sum":"500076362211.7963","sec":0.003115042,"hash":"02e64f86f29a5fb3","start":1791897868.2440946}
+{"machine":"pod","mode":"luxi_pairhmm_kahan_sum_f64","dt":"f64","simd":"avx512","sum":"500076362211.7982","sec":0.029863557,"hash":"638e62814a6a5d6d","start":1791897868.217388}
+{"machine":"pod","mode":"luxi_linalg_dot_product_f64","dt":"f64","simd":"avx512","sum":"500076362211.7963","sec":0.003159088,"hash":"02e64f86f29a5fb3","start":1791897868.4004152}
+{"machine":"pod","mode":"luxi_pairhmm_kahan_sum_f64","dt":"f64","simd":"avx512","sum":"500076362211.7982","sec":0.029788383,"hash":"638e62814a6a5d6d","start":1791897868.3738356}
+{"machine":"pod","mode":"luxi_cuda_kahan_single","dt":"f32","sum":"499894335937.5","sec":0.000625596,"start":1791897872.550903,"hash":"dea3ba0d0d333c55","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_kahan_single","dt":"f32","sum":"499894335937.5","sec":0.000624956,"start":1791897872.551552,"hash":"dea3ba0d0d333c55","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_kahan_single","dt":"f32","sum":"499894335937.5","sec":0.000626348,"start":1791897872.552190,"hash":"dea3ba0d0d333c55","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_kahan_single","dt":"f32","sum":"499894335937.5","sec":0.000624515,"start":1791897872.552826,"hash":"dea3ba0d0d333c55","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_kahan_single","dt":"f32","sum":"499894335937.5","sec":0.000624775,"start":1791897872.553458,"hash":"dea3ba0d0d333c55","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_kahan_single","dt":"f32","sum":"499894335937.5","sec":0.000624435,"start":1791897872.554091,"hash":"dea3ba0d0d333c55","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_kahan_single","dt":"f32","sum":"499894335937.5","sec":0.000624124,"start":1791897872.554723,"hash":"dea3ba0d0d333c55","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_kahan_single","dt":"f32","sum":"499894335937.5","sec":0.000625016,"start":1791897872.555355,"hash":"dea3ba0d0d333c55","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_kahan_single","dt":"f32","sum":"499894335937.5","sec":0.000624915,"start":1791897872.555988,"hash":"dea3ba0d0d333c55","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_kahan_single","dt":"f32","sum":"499894335937.5","sec":0.000625055,"start":1791897872.556622,"hash":"dea3ba0d0d333c55","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_kahan_chunked","dt":"f32","sum":"499894306601.5625","sec":0.000046480,"start":1791897872.557317,"hash":"9a17a62a95eea0eb","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_kahan_chunked","dt":"f32","sum":"499894306601.5625","sec":0.000046670,"start":1791897872.557379,"hash":"9a17a62a95eea0eb","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_kahan_chunked","dt":"f32","sum":"499894306601.5625","sec":0.000046550,"start":1791897872.557441,"hash":"9a17a62a95eea0eb","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_kahan_chunked","dt":"f32","sum":"499894306601.5625","sec":0.000046040,"start":1791897872.557503,"hash":"9a17a62a95eea0eb","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_kahan_chunked","dt":"f32","sum":"499894306601.5625","sec":0.000046561,"start":1791897872.557565,"hash":"9a17a62a95eea0eb","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_kahan_chunked","dt":"f32","sum":"499894306601.5625","sec":0.000046701,"start":1791897872.557627,"hash":"9a17a62a95eea0eb","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_kahan_chunked","dt":"f32","sum":"499894306601.5625","sec":0.000047112,"start":1791897872.557695,"hash":"9a17a62a95eea0eb","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_kahan_chunked","dt":"f32","sum":"499894306601.5625","sec":0.000047031,"start":1791897872.557758,"hash":"9a17a62a95eea0eb","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_kahan_chunked","dt":"f32","sum":"499894306601.5625","sec":0.000046641,"start":1791897872.557821,"hash":"9a17a62a95eea0eb","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_kahan_chunked","dt":"f32","sum":"499894306601.5625","sec":0.000045900,"start":1791897872.557883,"hash":"9a17a62a95eea0eb","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_fast_single","dt":"f32","sum":"499894257812.5","sec":0.000623794,"start":1791897872.558621,"hash":"0f347e1b6cea01a7","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_fast_single","dt":"f32","sum":"499894257812.5","sec":0.000623794,"start":1791897872.559253,"hash":"0f347e1b6cea01a7","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_fast_single","dt":"f32","sum":"499894257812.5","sec":0.000623453,"start":1791897872.559885,"hash":"0f347e1b6cea01a7","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_fast_single","dt":"f32","sum":"499894257812.5","sec":0.000623974,"start":1791897872.560516,"hash":"0f347e1b6cea01a7","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_fast_single","dt":"f32","sum":"499894257812.5","sec":0.000624034,"start":1791897872.561148,"hash":"0f347e1b6cea01a7","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_fast_single","dt":"f32","sum":"499894257812.5","sec":0.000623583,"start":1791897872.561780,"hash":"0f347e1b6cea01a7","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_fast_single","dt":"f32","sum":"499894257812.5","sec":0.000623753,"start":1791897872.562412,"hash":"0f347e1b6cea01a7","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_fast_single","dt":"f32","sum":"499894257812.5","sec":0.000623703,"start":1791897872.563044,"hash":"0f347e1b6cea01a7","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_fast_single","dt":"f32","sum":"499894257812.5","sec":0.000623884,"start":1791897872.563676,"hash":"0f347e1b6cea01a7","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_fast_single","dt":"f32","sum":"499894257812.5","sec":0.000623713,"start":1791897872.564307,"hash":"0f347e1b6cea01a7","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_fast_chunked","dt":"f32","sum":"499894306601.5625","sec":0.000030456,"start":1791897872.564997,"hash":"c4ee4fac152d0ee1","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_fast_chunked","dt":"f32","sum":"499894306601.5625","sec":0.000031097,"start":1791897872.565043,"hash":"c4ee4fac152d0ee1","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_fast_chunked","dt":"f32","sum":"499894306601.5625","sec":0.000030346,"start":1791897872.565090,"hash":"c4ee4fac152d0ee1","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_fast_chunked","dt":"f32","sum":"499894306601.5625","sec":0.000030907,"start":1791897872.565137,"hash":"c4ee4fac152d0ee1","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_fast_chunked","dt":"f32","sum":"499894306601.5625","sec":0.000030025,"start":1791897872.565183,"hash":"c4ee4fac152d0ee1","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_fast_chunked","dt":"f32","sum":"499894306601.5625","sec":0.000031027,"start":1791897872.565229,"hash":"c4ee4fac152d0ee1","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_fast_chunked","dt":"f32","sum":"499894306601.5625","sec":0.000030155,"start":1791897872.565277,"hash":"c4ee4fac152d0ee1","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_fast_chunked","dt":"f32","sum":"499894306601.5625","sec":0.000031118,"start":1791897872.565322,"hash":"c4ee4fac152d0ee1","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_fast_chunked","dt":"f32","sum":"499894306601.5625","sec":0.000030567,"start":1791897872.565369,"hash":"c4ee4fac152d0ee1","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_fast_chunked","dt":"f32","sum":"499894306601.5625","sec":0.000030647,"start":1791897872.565426,"hash":"c4ee4fac152d0ee1","note":"kernel out bits fnv; sum=mean*size host-combined"}
+{"machine":"pod","mode":"luxi_cuda_pairhmm_reduce_det_kahan","dt":"f32","sum":"499894306221.96246","sec":1.026087177,"start":1791897873.873685,"sum_bits_le":"997d6b7101195d42"}
+{"machine":"pod","mode":"luxi_cuda_pairhmm_reduce_det_kahan","dt":"f32","sum":"499894306221.96246","sec":1.027355746,"start":1791897874.899854,"sum_bits_le":"997d6b7101195d42"}
+{"machine":"pod","mode":"luxi_cuda_pairhmm_reduce_det_kahan","dt":"f32","sum":"499894306221.96246","sec":1.026132857,"start":1791897875.927253,"sum_bits_le":"997d6b7101195d42"}
+{"machine":"pod","mode":"luxi_cuda_pairhmm_reduce_det_kahan","dt":"f32","sum":"499894306221.96246","sec":1.027338942,"start":1791897876.953434,"sum_bits_le":"997d6b7101195d42"}
+{"machine":"pod","mode":"luxi_cuda_pairhmm_reduce_det_kahan","dt":"f32","sum":"499894306221.96246","sec":1.026115220,"start":1791897877.980820,"sum_bits_le":"997d6b7101195d42"}
+{"machine":"pod","mode":"luxi_cuda_pairhmm_reduce_det_kahan","dt":"f32","sum":"499894306221.96246","sec":1.027267664,"start":1791897879.006980,"sum_bits_le":"997d6b7101195d42"}
+{"machine":"pod","mode":"luxi_cuda_pairhmm_reduce_det_kahan","dt":"f32","sum":"499894306221.96246","sec":1.026194550,"start":1791897880.034295,"sum_bits_le":"997d6b7101195d42"}
+{"machine":"pod","mode":"luxi_cuda_pairhmm_reduce_det_kahan","dt":"f32","sum":"499894306221.96246","sec":1.027175694,"start":1791897881.060538,"sum_bits_le":"997d6b7101195d42"}
+{"machine":"pod","mode":"luxi_cuda_pairhmm_reduce_det_kahan","dt":"f32","sum":"499894306221.96246","sec":1.026195171,"start":1791897882.087761,"sum_bits_le":"997d6b7101195d42"}
+{"machine":"pod","mode":"luxi_cuda_pairhmm_reduce_det_kahan","dt":"f32","sum":"499894306221.96246","sec":1.027182555,"start":1791897883.114011,"sum_bits_le":"997d6b7101195d42"}
+{"machine": "pod", "mode": "luxi_cuda_kahan_single_CPU_EMULATION", "dt": "f32", "sum": "499894335937.5", "hash": "dea3ba0d0d333c55"}
+{"machine": "pod", "mode": "luxi_cuda_kahan_chunked_CPU_EMULATION", "dt": "f32", "sum": "499894306601.5625", "hash": "9a17a62a95eea0eb"}

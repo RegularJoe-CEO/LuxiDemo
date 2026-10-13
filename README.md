@@ -38,6 +38,10 @@ Stock jaxsgp4 commit `382a419`, same code on the H100 and on CPU, is not bit-ide
 
 SAAL v9.6 (US Space Force Sgp4Prop) black-box cross-platform comparison on the same catalog: see [`proofs/saal-compare/SAAL_COMPARISON.md`](proofs/saal-compare/SAAL_COMPARISON.md).
 
+### GPU sums
+
+Stock GPU float32 sums are repeatable but wrong: on 10,000,000 dollar values (exact total $499,894,306,221.96), cuBLAS, CuPy and TensorFlow on an NVIDIA L4 each returned the same answer every run, +$14,930.04 off. Luxi's fixed-order Kahan sum was exact ($0.00) with hash `b952a970e4ad4440` on the L4, x86 and Mac arm64. Luxi chunked GPU reduce was +$379.60 at 0.03 to 0.05 ms, with chunk totals combined in float64 on the host. Synthetic data, one GPU model. See [`proofs/gpu-sum`](proofs/gpu-sum/).
+
 ### Genomics
 
 On 5,819,596,800 cells of public GIAB HG002 MHC reads, an unordered CPU reduction of PairHMM haplotype scores changed fingerprint with thread count. The canonical policy kept one fingerprint, `8296effda654807942e0f0121e8bdf32d4c6585b0ebe77c86151c19b7f66c150`, at every tested count. No throughput penalty was observed in the recorded runs. On an H200 the canonical GPU path finished that cell count in 80.3 ms at block size 128 and kept one fingerprint, `e678bd4eb00b96e7a6976f88055c21f511ff321703632017ad3d458fce011e94`, across block sizes 128, 256, 512, and 1024.
