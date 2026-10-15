@@ -38,6 +38,8 @@ Stock jaxsgp4 commit `382a419`, same code on the H100 and on CPU, is not bit-ide
 
 SAAL v9.6 (US Space Force Sgp4Prop) black-box cross-platform comparison on the same catalog: see [`proofs/saal-compare/SAAL_COMPARISON.md`](proofs/saal-compare/SAAL_COMPARISON.md).
 
+NCAR LAFT Kessler warm-rain microphysics (Linck, Dennis, Schreck, Stengel & Gagne 2026, Apache-2.0): each LLM JAX translation gives a different float64 hash on Intel Xeon, Apple M1 Pro and NVIDIA A100, while Luxi gives one hash on all three. On the same A100, Luxi median 0.074 ms vs Gemini JAX 0.83 ms at 50 columns and 82.52 ms vs 154.56 ms at 1M (1M verified GPU-only). See [`proofs/kessler-laft/KESSLER.md`](proofs/kessler-laft/KESSLER.md).
+
 ### GPU sums
 
 Stock GPU float32 sums are repeatable but wrong: on 10,000,000 dollar values (exact total $499,894,306,221.96), cuBLAS, CuPy and TensorFlow on an NVIDIA L4 each returned the same answer every run, +$14,930.04 off. Luxi's fixed-order Kahan sum was exact ($0.00) with hash `b952a970e4ad4440` on the L4, x86 and Mac arm64. Luxi chunked GPU reduce was +$379.60 at 0.03 to 0.05 ms, with chunk totals combined in float64 on the host. Synthetic data, one GPU model. See [`proofs/gpu-sum`](proofs/gpu-sum/).
