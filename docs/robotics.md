@@ -1,10 +1,12 @@
 # LuxiEdge for Robotics & FSD
 
+> Market hypothesis only. This page does not claim a shipping product, customer deployment, certification, or production use. Public claims remain limited to the named demos and evidence.
+
 ## The Problem
 
 Your FSD algorithm works perfectly in simulation. Deploy to the vehicle and sensor fusion drifts. Inverse kinematics gives slightly different joint angles. You spend weeks debugging floating point differences instead of improving the product.
 
-## How LuxiEdge Solves This
+## What the demo explores
 
 A receipt is the SHA-256 of one run. Re-running the same binary is stable. Laptop, HIL, and ECU hashes were not measured against each other.
 

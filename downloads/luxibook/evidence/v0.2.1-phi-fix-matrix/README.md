@@ -1,4 +1,4 @@
-# Luxi Book matrix - post-Φ fix (v0.2.1 measurement)
+# LuxiBook matrix - post-Φ fix (v0.2.1 measurement)
 
 **Do not merge this table with `evidence/v0.2.0-matrix/`.** These are **different RunPod hosts** from the v0.2.0 campaign. Example: the v0.2.1 RTX 4090 host reports `host_simd_capability=avx2`; the v0.2.0 4090 host reported `avx512`. Same SKU labels, different installs.
 
@@ -29,13 +29,15 @@ Both hashes are **identical on all five devices, CPU and GPU**. Every `verify` r
 
 ## Devices (v0.2.1 campaign only)
 
-| Dir | Device | CC | host_simd | Endpoint |
-|-----|--------|----|-----------|----------|
-| `h200/` | NVIDIA H200 | 9.0 | avx512 | `38.80.152.249:30444` |
-| `h100/` | H100 80GB HBM3 | 9.0 | avx512 | `38.80.152.148:31978` |
-| `a100/` | A100-SXM4-80GB | 8.0 | avx2 | `195.26.233.55:19592` |
-| `rtx5090/` | GeForce RTX 5090 | 12.0 | avx512 | `213.173.111.147:32868` |
-| `rtx4090/` | GeForce RTX 4090 | 8.9 | **avx2** | `213.181.111.2:27577` |
+| Dir | Device | CC | host_simd |
+|-----|--------|----|-----------|
+| `h200/` | NVIDIA H200 | 9.0 | avx512 |
+| `h100/` | H100 80GB HBM3 | 9.0 | avx512 |
+| `a100/` | A100-SXM4-80GB | 8.0 | avx2 |
+| `rtx5090/` | GeForce RTX 5090 | 12.0 | avx512 |
+| `rtx4090/` | GeForce RTX 4090 | 8.9 | **avx2** |
+
+Connection endpoints are intentionally omitted from this public evidence page.
 
 ## Stress B (validation)
 

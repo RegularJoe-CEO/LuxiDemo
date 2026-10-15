@@ -1,5 +1,7 @@
 # Public: 7B-class TRADE on H100 NVL (public)
 
+> Historical research artifact. This is not the current paid product description. The LuxiQuant Risk State Engine, Risk Runtime v0.4.0, is LuxiEdge's only sellable product.
+
 This pack is on **public** [LuxiDemo](https://github.com/RegularJoe-CEO/LuxiDemo) so external evaluators can open it without private-repo access.
 
 **Start here:** [START_HERE.md](./START_HERE.md)

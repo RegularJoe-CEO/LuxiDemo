@@ -5,7 +5,7 @@
 
 LuxiEdge tested the open-source Oasis LMF loss engine (oasislmf 2.5.8) on the public OasisPiWind model. As far as we can tell, we are the first to report this run-to-run drift, put a dollar figure on it, and show a single fixed result across different machines and worker counts. All inputs are public, so anyone can reproduce the stock drift.
 
-We also ran a harsher test on a portfolio 8 times larger with extreme TIVs, and checked every portfolio loss total against an exact, correctly rounded reference. Stock Oasis got 97% of those totals wrong. Luxi got none wrong, and it produced the same output hash on every machine and worker count we ran ([details below](#harsher-test-8-portfolio-extreme-tivs-checked-against-an-exact-reference)).
+We also ran a harsher test on a portfolio 8 times larger with extreme TIVs, and checked every portfolio loss total against an exact, correctly rounded reference. Stock Oasis got 97% of those totals wrong. Luxi got none wrong, and it produced the same output hash on the tested Linux x86-64 and Apple M1 Pro Docker/arm64 configurations and stated worker counts ([details below](#harsher-test-8-portfolio-extreme-tivs-checked-against-an-exact-reference)).
 
 ## Results at a glance
 
@@ -124,7 +124,7 @@ Under defaults, the two hashes should differ. Add `--lookup-multiprocessing Fals
 - **Luxi's deterministic reduction is proprietary.** We don't publish its method or source code.
 - **The evidence is open.** The model, the exposure, the stock commands and the hashing method are all public. Anyone can confirm the stock drift independently, and anyone evaluating Luxi can check the `fc7daea9d3eb5ad5` result on their own hardware.
 - **Evaluation:** insurers, reinsurers and cat-modelling teams can request an evaluation at **luxiedge.com**, on PiWind or on your own model and portfolio.
-- **Production:** the **LuxiQuant Risk State Engine** is LuxiEdge's paid institutional product. It brings this fixed-result guarantee to production risk runs.
+- **Commercial evaluation:** the **LuxiQuant Risk State Engine, Risk Runtime v0.4.0,** is LuxiEdge's only sellable product. It is offered only through a paid confidential evaluation under NDA. This Oasis result is evidence, not a claim that the public Oasis test is the Risk State Engine.
 
 We don't claim LuxiEdge is the only way to make Oasis deterministic. We found the issue, measured it in dollars, and proved a single fixed result across machines. We've also reported the stock behaviour to the Oasis LMF maintainers, along with the public workaround.
 
@@ -155,7 +155,7 @@ The base test showed that stock Oasis drifts. The harsher test asks a stronger q
 | IL AAL | $3,779 | $14.4M | 2.6e-4 |
 | 100-yr IL/RI AEP (worst EP point) | $31,696 | — | 3.4e-4 |
 
-**Same answer on every machine**
+**Same answer on every tested configuration**
 
 | Run | Output hash (30 CSVs) |
 |---|---|

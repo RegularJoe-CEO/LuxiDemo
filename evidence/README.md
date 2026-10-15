@@ -4,7 +4,7 @@ This index separates **current claims**, **working demonstrations**, and
 **historical research**. Historical packs remain available because they explain
 the development path and preserve both wins and losses.
 
-## Luxi Book - Quant receipt (public try)
+## LuxiBook - Quant receipt (public try)
 
 Not a thr/J pack. Closed binaries + measured SHA-256 on one example book:
 
@@ -29,8 +29,8 @@ Overview: [`../INFERENCE.md`](../INFERENCE.md) · what was and wasn't tested: [`
 
 [`h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/`](h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/) · tables and method: [`../BENCHMARKS.md`](../BENCHMARKS.md)
 
-- Long prompts (2k to 32k tokens): 3–7% faster than vLLM 0.25.1, 2–5% less energy per token
-- Token generation: matches vLLM's speed, 2–7% more energy per token
+- Token generation: matches vLLM's speed within 2%, 2–7% more GPU-board energy per token
+- Long prompts (2k to 32k tokens): 3–7% faster than vLLM 0.25.1, 2–5% less GPU-board energy per token
 - vs vLLM batch-invariant mode: faster and less energy on every test
 - Bit-identical output across every batch size tested (1, 16 and 64 when generating; 1 against 16, 4 and 2 on long prompts)
 - Includes per-run rows, gate rows and Hugging Face comparisons
@@ -54,33 +54,22 @@ Overview: [`../INFERENCE.md`](../INFERENCE.md) · what was and wasn't tested: [`
 - Includes an open Luxi fault seen in one long-running process, with its raw records
 - Includes the method sheet, per-prompt table, scripts, prompts and summary files
 
-## Prior third-party-operated transformer measurement
+## Historical independent evaluation
 
-### Version 99 matched prefill, 2026-07-23 (TESTfort)
+TestFort independently evaluated a separate seven-function numerical-engine workload in December 2025. It is not LuxiBook and not the current inference comparison.
 
-[`h100-qwen2-7b-v99-matched-prefill-2026-07-23/`](h100-qwen2-7b-v99-matched-prefill-2026-07-23/)
+- [December 2025 TestFort report](https://luxiedge.com/luxiedge-validation-report.pdf)
+- [Measured result row](../RESULTS.md)
 
-- Earlier stack: thr trailed vLLM; modest board-energy edge; det + soak held
-- Kept as independent lineage - **not** the current thr claim
-- Covers the earlier Version 99 build only; it does not cover the 2026-09 vLLM or SGLang results or the drift demo
+The July 23, 2026 packed-prefill pack remains in the historical archive for lineage only. It is not used as current third-party validation.
 
-Formal signed narrative: pending.
-
-## Independently evaluated numerical engine
-
-TestFort’s December 2025 report covers a defined deterministic numerical
-workload (not Luxi Book, not inference thr/J):
-
-The previous public URL `https://luxiedge.com/luxiedge-validation-report.pdf` returned HTTP 404 on 2026-10-11. The measured figures remain the December 2025 row in [`RESULTS.md`](../RESULTS.md).
-
-This evidence belongs to LuxiQuant numerical execution and is separate from
-transformer inference and from the option book.
+The December report does not validate the September vLLM or SGLang comparisons or the drift demo. Proposed independent go-forward protocol: [TESTFORT_FORWARD_PROTOCOL.md](../TESTFORT_FORWARD_PROTOCOL.md).
 
 ## Current correctness status
 
 | Surface | Public status |
 |---|---|
-| Luxi Book example receipt | Measured on listed boxes; public binaries |
+| LuxiBook example receipt | Measured on listed boxes; public binaries |
 | Faithful Qwen2-7B CUDA | Website reports current limited acceptance result; raw public pack still required |
 | Llama 3.1 resident inference | Internal correctness milestone; no public performance/energy claim |
 
@@ -95,6 +84,7 @@ transformer inference and from the option book.
 | [`h100-LONGCTX-scaling`](h100-LONGCTX-scaling/) | O(N) versus dense O(N²) memory scaling |
 | [`h100-BASELINE-vs-geo`](h100-BASELINE-vs-geo/) | Single-layer baseline and geodesic wedges |
 | [`h100-serve-sustain-2026-07-11`](h100-serve-sustain-2026-07-11/) | Continuous-batch sustain context; CPU-bound serve path on H100 host |
+| [`h100-qwen2-7b-v99-matched-prefill-2026-07-23`](h100-qwen2-7b-v99-matched-prefill-2026-07-23/) | Archived packed-prefill lineage for a different build and workload; not current validation |
 | [`version-100-h100-gtm`](version-100-h100-gtm/) | Late-July 2026 short-prompt (S=128) B16/B32 multi-run raw files |
 | [`prefill_freeze_matched_20260807T210749Z`](prefill_freeze_matched_20260807T210749Z/) | August 2026 short-prompt (S=128) B16/B32 multi-run raw files |
 | [`prefill_accel_lock_20260807T233111Z`](prefill_accel_lock_20260807T233111Z/) | August 2026 short-prompt (S=128) recipe and batch sweep raw files |
@@ -118,3 +108,6 @@ For every result, identify:
 
 Do not combine throughput from one pack with power from another.
 Do not treat Book receipts as thr/J evidence, or thr/J packs as option pricing.
+
+
+Official proof page: [luxiedge.com/proof](https://luxiedge.com/proof). Confidential evaluation: [luxiedge.com/pilot](https://luxiedge.com/pilot).

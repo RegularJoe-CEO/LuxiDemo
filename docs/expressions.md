@@ -1,6 +1,6 @@
 # LuxiEdge Expression Reference
 
-Supporting numerical REST / operator surface (v3.0 demos). **Not** Luxi Book
+Supporting numerical REST / operator surface (v3.0 demos). **Not** LuxiBook
 (CSV options). For the Quant try see [`../downloads/luxibook/`](../downloads/luxibook/),
 [`../DEMOS.md`](../DEMOS.md), and [`quant-finance.md`](quant-finance.md).
 

@@ -1,10 +1,12 @@
 # LuxiEdge for ML Inference
 
+> Market hypothesis only. This page does not claim a shipping product, customer deployment, certification, or production use. Public claims remain limited to the named demos and evidence.
+
 ## The Problem
 
 Your model works in PyTorch. Export to ONNX, results drift. Deploy to TensorRT, more drift. Debugging inference errors across frameworks wastes months.
 
-## How LuxiEdge Solves This
+## What the demo explores
 
 Activation and attention calls return a SHA256 of the bytes computed on that run. Re-running the same binary is stable. Cross-target identity was not measured for these kernels, and GPU was not measured.
 

@@ -24,7 +24,7 @@ Citation text is taken from the LAFT README and CITATION.cff at commit `ae95165`
 
 ## Setup
 - Source: [NCAR LAFT](https://github.com/NCAR/LAFT) at commit `ae95165`. LAFT translates the Fortran Kessler scheme to JAX with LLMs; four public translations were tested (Claude Sonnet 4.6, Gemini 3.1 Pro, GPT-5.4 Thinking, Qwen 2.5 32B), plus the Fortran reference.
-- Inputs: LAFT-generated columns, 56 levels, float64. The same input files were used on every chip (input hashes checked per platform). For the timing sizes, the 4,096-column input was tiled cyclically to each column count.
+- Inputs: LAFT-generated columns, 56 levels, float64. The same input files were used on each of the three tested chips (input hashes checked per platform). For the timing sizes, the 4,096-column input was tiled cyclically to each column count.
 - Output: theta, qv, qc, qr, precl, relhum as float64, compared bit-for-bit by SHA-256 (first 16 hex shown).
 - Chips: Intel Xeon (Linux x86_64), Apple M1 Pro (macOS arm64), NVIDIA A100 80GB.
 - Luxi: closed float64 Kessler port on the Luxi engine.

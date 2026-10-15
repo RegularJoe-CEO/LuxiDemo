@@ -1,5 +1,7 @@
 # Phase 3 - grow_act_cap (status)
 
+> Historical research artifact. This is not the current paid product description. The LuxiQuant Risk State Engine, Risk Runtime v0.4.0, is LuxiEdge's only sellable product.
+
 **Date:** 2026-08-08  
 
 ## Intent

@@ -1,4 +1,4 @@
-# Luxi Book - public try
+# LuxiBook - public try
 
 Closed binaries from [luxi-quant-engine](https://github.com/RegularJoe-CEO/luxi-quant-engine) **v0.2.1**, built from engine commit `02388f7`, the value each binary reports as `git_sha` (`git_dirty=false`). **v0.2.1** corrects an accuracy defect present in **v0.2.0**. Do not use a **v0.2.0** download for any accuracy claim; use it only as the historical determinism record. Post-fix matrix: [`evidence/v0.2.1-phi-fix-matrix/`](evidence/v0.2.1-phi-fix-matrix/). Historical v0.2.0 matrix (determinism only): [`evidence/v0.2.0-matrix/`](evidence/v0.2.0-matrix/). **No engine source. No NDA.**
 
@@ -87,7 +87,7 @@ Measured on engine commits **`b4645c2`** (RTX 4090, H200, H100 A/B) and **`4a86d
 
 **A100** is a **measured v0.2.0** row (`4a86d2a`), not a v1-era historical line. Its host reports `host_simd_capability=avx2` (book pricing is still the scalar deterministic path on every host).
 
-**Scope of the table:** 6 NVIDIA GPUs on **5 RunPod public endpoints** - prior three endpoints for 4090 / H200 / both H100 pods, plus **A100** at `38.80.152.72:31171` and **RTX 5090** at `157.157.221.29:54914` - **plus** the published Mac Mini arm64 binary. A100 and 5090 were **not** in the first four-device set; the 5090 endpoint is on a **different public /16** (`157.157` vs `38.80`). No datacenter or region claim is made from the endpoints alone. H100 A and B are **two devices and two installs** (distinct GPU UUIDs and `signer_fp`); they are **not** claimed as separate physical servers.
+**Scope of the table:** 6 NVIDIA GPUs across recorded provider instances, plus the published Mac Mini arm64 binary. Connection endpoints and device identifiers are intentionally omitted. H100 A and B are recorded as two devices and two installs; they are not claimed as separate physical servers.
 
 Stored receipts: [`evidence/v0.2.0-matrix/`](evidence/v0.2.0-matrix/) (`r_cpu.json` / `r_gpu.json` per device; A100 and RTX 5090 also store CSVs and run logs).
 

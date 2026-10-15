@@ -8,7 +8,7 @@
 
 ## Summary
 
-Luxi runs Qwen2-7B on an H100 with bit-identical results across every batch size we tested (1, 16 and 64 when generating tokens; 1 against 16, 4 and 2 on 2k, 8k and 32k-token prompts), across repeated runs and separate processes. On long prompts (2k to 32k tokens) it is 3–7% faster than vLLM 0.25.1 and uses 2–5% less energy per token. When generating tokens it matches vLLM's speed but uses 2–7% more energy per token. Against vLLM's own deterministic (batch-invariant) mode, Luxi is faster and uses less energy on every test, including 1.5–2.7× faster token generation with 16–50% less energy.
+On the 2026-09-25 H100 Qwen2-7B-Instruct fp16 generation tests, Luxi matched normal vLLM 0.25.1 speed within 2% and used 2–7% more GPU-board energy per output token. On 2k–32k prompts, Luxi was 3–7% faster and used 2–5% less GPU-board energy per prompt token. Luxi produced bit-identical outputs across the stated tested batch sizes and repeats. Against vLLM batch-invariant mode it was faster in every tested cell, including 1.5–2.7× faster generation with 16–50% less GPU-board energy.
 
 ---
 

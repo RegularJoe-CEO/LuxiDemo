@@ -1,69 +1,66 @@
-# The Luxi Energy Architecture
+# LuxiEnergy and the broader roadmap
 
-Luxi is building the energy architecture for AI compute, from deterministic
-computation inside a processor to scheduling and power control at the facility
-boundary.
+**Deterministic numerics with receipts.**
 
-The unifying thesis is simple: energy is wasted when computation is repeated,
-moved unnecessarily, executed inefficiently, admitted too early, poorly timed,
-or disconnected from the power system supporting it.
+LuxiEdge is the company. It is not a system layer.
 
-## The layers
+## The only sellable product
 
-| Layer | Control point | Purpose | Current maturity |
-|---|---|---|---|
-| **LuxiQuant** | Compute | Reproducible numerical and quantitative execution with receipts | **Working engine** · public **Luxi Book** (CSV BS/Black-76 + SHA-256) is the Quant try without NDA; older numerical REST/microbench demos still ship; TestFort Dec 2025 on a defined numerical suite |
-| **LuxiEdge** | Execute | Deterministic numerics with receipts, including orbital propagation and energy-aware inference | **Measured** · orbital, genomics, and H100 inference rows in [`RESULTS.md`](RESULTS.md); Qwen2-7B vs vLLM 0.25.1 and SGLang 0.5.19 in [`BENCHMARKS.md`](BENCHMARKS.md) |
-| **LuxiPack** | Schedule | Admit work after dependencies are ready and place it to reduce hold-not-work and repeated preparation | **In development** |
-| **LuxiPhase** | Shape | Shape aggregate compute timing to reduce power swings while respecting throughput and SLOs | **Prototype/local validation** |
-| **LuxiLoad** | Coordinate | Coordinate compute demand with generation, electrical, cooling, and reliability limits | **Early concept** |
-| **LuxiSDG** | Control | Guarded local demand management for smaller commercial sites | **Early concept** |
+**The LuxiQuant Risk State Engine, Risk Runtime v0.4.0, is LuxiEdge's only sellable product.** It is offered only through a paid confidential evaluation under NDA. It is proprietary, has no public download, and has no public price. It provides deterministic authenticated risk state as a scenario-by-position matrix changes. Customer pricing, market data, scenarios, and methodology remain under customer control. Authoritative rebuilds remain comparators and reconciliation paths. [Request a confidential evaluation](https://luxiedge.com/pilot).
 
-The shorthand is:
+## Official company structure
 
-**Compute. Execute. Schedule. Shape. Coordinate. Control.**
+| Name | Role and status |
+|---|---|
+| **LuxiEdge** | Parent company |
+| **LuxiQuant** | Primary commercial division |
+| **LuxiQuant Risk State Engine** | LuxiEdge's only sellable product. Risk Runtime v0.4.0 is available only through a paid confidential evaluation under NDA. |
+| **LuxiEnergy** | Secondary division, also described as AI Energy Systems |
+| **LuxiBook v0.2.1** | Free option-book pricer demo with Ed25519 receipts |
+| **LuxiRisk v0.2** | Free legacy calculator demo |
 
-## Public portfolio today (what to download)
+The official page is [luxiedge.com/luxienergy](https://luxiedge.com/luxienergy). The old /luxi-system route redirects there.
 
-Public portfolio order on this page: **LuxiQuant Risk State Engine (paid, evaluation-only), then the proof record, then Luxi Book (free public demonstration)**; LuxiRisk v0.2 is a free legacy demo calculator. The website on Replit is a separate tree.
+## LuxiEnergy public framing
 
-| Surface | Role | Where |
-|---|---|---|
-| **LuxiRisk v0.2** | Free legacy demo calculator, not the LuxiQuant Risk State Engine (Risk Runtime v0.4.0): liquidation, size, max loss, Ed25519 `lxr1_` receipts | [`luxirisk/`](luxirisk/) · release `luxirisk-v0.2` |
-| **LuxiEdge proofs** | Deterministic numerics with receipts. Inference on H100 is one measured surface, next to orbital, genomics, and the option book | [`README.md`](README.md) · [`RESULTS.md`](RESULTS.md) |
-| **Luxi Book** | Quant try: CSV European options, five Greeks, output-vector hash + Ed25519 `lxq2_` receipt. The 10-row public book is not the 1,000,000-option book | [`DEMOS.md`](DEMOS.md) · [`downloads/luxibook/`](downloads/luxibook/) |
-| Numerical v3.0 demos | REST `/evaluate`, operators, ATE/tools. Supporting math, not the option book | GitHub release `v3.0` · [`DEMOS.md`](DEMOS.md) |
+LuxiEnergy organizes work around four sources of waste:
 
-LuxiEdge is deterministic numerics with receipts. Inference is one measured
-surface. LuxiQuant Risk State Engine (Risk Runtime v0.4.0) is the paid LuxiQuant product (evaluation-only). Luxi Book is the free public demonstration. LuxiRisk v0.2 is a free legacy demo calculator.
+| Area | Public scope |
+|---|---|
+| AI compute | Measured inference throughput, determinism, and GPU-board energy on the stated Qwen2-7B and H100 workloads |
+| Memory movement | Research and roadmap work. No standalone shipping product is claimed here. |
+| Workload behavior | LuxiPak and LuxiPhase roadmap work. No standalone shipping product is claimed here. |
+| Power delivery | LuxiSDG, historical software-defined-generator work. It is not presented as a current product. |
 
-The later layers (Pack, Phase, Load, SDG) are a product roadmap at different
-stages of proof; they are not presented as deployed systems.
+LuxiPak is the official spelling. LuxiLoad is an internal roadmap label that is absent from the current public site. It is not a public product. LuxiSDG is historical, not an early shipping concept.
+
+## Broader six-area roadmap
+
+The earlier Compute, Execute, Schedule, Shape, Coordinate, Control model is a roadmap, not a catalog of shipping products.
+
+| Roadmap area | Current interpretation |
+|---|---|
+| Compute | LuxiQuant product and demo surfaces |
+| Execute | Deterministic computation and proof capabilities. LuxiEdge remains the company, not this layer. |
+| Schedule | LuxiPak roadmap |
+| Shape | LuxiPhase roadmap |
+| Coordinate | LuxiLoad internal roadmap label, not a public product |
+| Control | Historical LuxiSDG work |
+
+Only the LuxiQuant Risk State Engine is the paid product named on the current site. LuxiBook v0.2.1 and LuxiRisk v0.2 are free demos. Market applications are hypotheses, not customers and not a list of shipping products.
+
+## Measurement rule
 
 Every public result should identify:
 
-- workload and accepted work unit
-- hardware and software
-- measurement boundary
-- reproducibility or numerical contract
-- validation status
-- retained evidence
+1. workload and accepted work unit,
+2. hardware and software,
+3. date,
+4. measurement boundary,
+5. reproducibility or numerical contract,
+6. validation status,
+7. limits and retained evidence.
 
-GPU-board energy is not facility electricity. A controlled benchmark is not
-automatically a production or customer result. Hash claims are the rows in
-[`RESULTS.md`](RESULTS.md). The 10-row Luxi Book receipt is one measured book.
-It does not say that every CPU and GPU matches, and it is not the
-1,000,000-option book.
+GPU-board energy is not facility electricity. Prefill is not complete inference. A controlled benchmark is not automatically a production or customer result.
 
-## Demo rule
-
-Every layer earns “working demo” status only after it has:
-
-1. retained inputs and outputs,
-2. a defined baseline,
-3. a repeatable command or executable,
-4. a measurement boundary,
-5. a clear statement of what the demonstration establishes.
-
-See [`DEMOS.md`](DEMOS.md) for current coverage and [`RESULTS.md`](RESULTS.md)
-for measured tables.
+[Request a confidential evaluation](https://luxiedge.com/pilot) or review the [official proof page](https://luxiedge.com/proof).

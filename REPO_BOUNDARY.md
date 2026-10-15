@@ -20,8 +20,8 @@ implementation source.
 
 | Kind | Where it lives instead |
 |------|------------------------|
-| Marketing website HTML/CSS/assets | **Replit** project that deploys [luxiedge.com](https://luxiedge.com) |
-| GitHub Pages deploy of a site tree | **Removed** - this repo does not host luxiedge.com |
+| Official marketing website HTML/CSS/assets | **Replit** project that deploys [luxiedge.com](https://luxiedge.com) |
+| Repository `site/` tree | Secondary GitHub Pages demo and evidence index. It is not luxiedge.com and must follow the official site's product language |
 | Proprietary engine source (quant, risk, inference) | **Private** repos only |
 | Model weights, credentials, SSH/pod addresses | Never |
 | “Universal bit-exact everywhere” claims without measured scope | Do not publish |
@@ -42,11 +42,13 @@ Replit  ──edit & publish──►  https://luxiedge.com
 Updating the **website** is a **Replit agent / Replit deploy** job.  
 Updating **public binaries and evidence** is a **LuxiDemo / GitHub** job.
 
-## Product order (for any public surface)
+## Product order for public surfaces
 
-1. **Luxi Book** - free public receipt and determinism demonstration (CSV BS/Black-76 + output-vector hash + Ed25519 `lxq2_` receipt)  
-2. **LuxiRisk v0.2** - free legacy demo calculator (not the LuxiQuant Risk State Engine)  
-3. **Inference thr/J + serve** - evidence / demoted demos  
+1. **LuxiEdge** is the company.
+2. **LuxiQuant** is the primary commercial division. **LuxiEnergy** is the secondary division.
+3. **LuxiQuant Risk State Engine, Risk Runtime v0.4.0**, is LuxiEdge's only sellable product. It is offered only through a paid confidential evaluation under NDA, with no public download or public price.
+4. **LuxiBook v0.2.1** and **LuxiRisk v0.2** are the free demos.
+5. Inference and the other measured families are evidence. Market applications and LuxiEnergy work beyond the named product are hypotheses or roadmap work, not shipping products.
 
 ## Link targets from docs
 

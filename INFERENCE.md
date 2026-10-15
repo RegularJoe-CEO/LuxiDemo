@@ -1,8 +1,8 @@
 # LuxiEdge inference: Qwen2-7B on H100
 
-**LuxiEdge keeps Qwen2-7B outputs bit-identical across every batch size we tested on an H100, runs at normal serving speed, and is faster and uses less energy than the deterministic modes of vLLM and SGLang in every test we ran.**
+**On the 2026-09-25 H100 generation tests, LuxiEdge matched normal vLLM 0.25.1 speed within 2% and used 2–7% more GPU-board energy per output token.**
 
-Identical outputs usually cost speed: vLLM's batch-invariant mode and SGLang's deterministic mode both run slower than their normal modes. LuxiEdge gives identical outputs at about the speed of normal vLLM 0.25.1 and SGLang 0.5.19.
+On 2k–32k prompts, LuxiEdge was 3–7% faster than normal vLLM and used 2–5% less GPU-board energy per prompt token. It kept Qwen2-7B outputs bit-identical across the stated tested batch sizes. Against the tested deterministic modes of vLLM and SGLang, it was faster in every reported cell and used less GPU-board energy. This is one model and one GPU type. The vLLM and SGLang comparisons used separate H100 pods.
 
 "Every batch size we tested" means batch 1, 16 and 64 when generating tokens, and batch 1 against 16, 4 and 2 on 2k, 8k and 32k-token prompts, across repeated runs and separate processes. The [drift demo](#drift-demo) below adds batch 16, 32 and 64 on 20 more prompts, and describes one open issue seen in a long-running process. Full scope: [`TEST_SCOPE.md`](TEST_SCOPE.md).
 

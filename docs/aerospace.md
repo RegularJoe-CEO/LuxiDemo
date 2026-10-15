@@ -1,10 +1,12 @@
 # LuxiEdge for Aerospace & Orbital Mechanics
 
+> Market hypothesis only. This page does not claim a shipping product, customer deployment, certification, or production use. Public claims remain limited to the named demos and evidence.
+
 ## The Problem
 
 Trajectory calculations run on ground simulators, then again on flight computers. Different hardware, different floating point results. When your satellite misses its injection burn by 0.001%, that is kilometers of error.
 
-## How LuxiEdge Solves This
+## What the demo explores
 
 A receipt is the SHA-256 of the little-endian f64 bytes of the values that were computed. Re-running the same binary is stable. A matching hash was not measured for every machine, and a mismatch on a long f64 sweep is not by itself a trajectory error.
 
@@ -29,7 +31,7 @@ curl -X POST http://localhost:10000/evaluate \
 
 ## What was measured
 
-f64 Kepler solve for REBOUND PR #849, `e=0.1`, `M=0.991`. Residual was 0 on every machine below. SHA-256 `f9d23a13612bb6f140acdcab79463594a46a9c9c02c17f9fe77f79a944991758` on macOS arm64, macOS x86_64, Linux x86_64, and Linux arm64. The same hash came from a CPython `math.sin` reference on the Mac.
+f64 Kepler solve for REBOUND PR #849, `e=0.1`, `M=0.991`. Residual was 0 on each listed machine. SHA-256 `f9d23a13612bb6f140acdcab79463594a46a9c9c02c17f9fe77f79a944991758` on macOS arm64, macOS x86_64, Linux x86_64, and Linux arm64. The same hash came from a CPython `math.sin` reference on the Mac.
 
 The REBOUND #934 log sweep (`e=0.1`, 100 mean anomalies from `1e-16` to `1`) kept a max residual of `5.551e-17` everywhere. The sweep hash matched on macOS x86_64, Linux x86_64, and Linux arm64 (`f7e97ade3e320ba58cd827f3bb2f6db98a2d04e532810dddd78ba0a2a668efb5`) and differed on macOS arm64 (`aee00f24c9919b3217caf6a0f957e257590b807ca7b5f1171743fb16feba5b6e`).
 

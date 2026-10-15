@@ -1,7 +1,7 @@
 # Version 99 matched-prefill measurement on H100
 
 **Date:** 2026-07-23  
-**Operator:** TESTfort technician on a client-staged H100 environment  
+**Operator:** TestFort technician on a client-staged H100 environment  
 **Source pin:** `d9ad7e06ff727440a1237e9fbb709d8bad0ba452`  
 **Status:** technician execution and attestation present; formal signed narrative pending
 

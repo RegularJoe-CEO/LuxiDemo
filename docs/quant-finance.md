@@ -1,8 +1,12 @@
 # Luxi for Quantitative Finance
 
-## What is public today
+## Official product boundary
 
-**Luxi Book** is the professional Quant try without an NDA:
+**LuxiQuant Risk State Engine, Risk Runtime v0.4.0**, is LuxiEdge's only sellable product. It is offered only through a paid confidential evaluation under NDA. It is proprietary, has no public download, and has no public price. It provides deterministic authenticated risk state as a scenario-by-position matrix changes. Customer pricing, market data, scenarios, and methodology remain under customer control. Authoritative rebuilds remain comparators and reconciliation paths. [Request a confidential evaluation](https://luxiedge.com/pilot).
+
+## Free public demos
+
+**LuxiBook v0.2.1** is the free option-book pricer demo:
 
 - CSV position book → European **Black-Scholes / Black-76** prices
 - Five Greeks
@@ -15,9 +19,9 @@ position size, and stop-loss math with Ed25519 `lxr1_` calculation receipts.
 It is not the institutional option book.
 
 Older **numerical** demos (`luxiedge-demo` REST `/evaluate`, operator validate)
-still ship as supporting math surfaces. They are **not** Luxi Book.
+still ship as supporting math surfaces. They are **not** LuxiBook.
 
-## How to run Luxi Book
+## How to run LuxiBook
 
 ```bash
 # Mac CPU
@@ -83,7 +87,7 @@ curl -X POST http://127.0.0.1:9090/evaluate \
 ```
 
 That path is useful for operator smoke and historical numerical receipts. It is
-**not** the Luxi Book product surface. See [`DEMOS.md`](../DEMOS.md).
+**not** the LuxiBook product surface. See [`DEMOS.md`](../DEMOS.md).
 
 ## Getting started
 
@@ -97,4 +101,4 @@ That path is useful for operator smoke and historical numerical receipts. It is
 
 ## Contact
 
-Design partners / commercial: e@ewaller.com · [luxiedge.com](https://luxiedge.com)
+Confidential evaluation: [luxiedge.com/pilot](https://luxiedge.com/pilot) · Proof: [luxiedge.com/proof](https://luxiedge.com/proof)

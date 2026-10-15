@@ -4,7 +4,7 @@ Measured 2026-09-25/26 on NVIDIA H100 SXM GPUs (the vLLM and SGLang runs used se
 
 ## Headline
 
-Luxi runs Qwen2-7B on an H100 with bit-identical results across every batch size we tested (1, 16 and 64 when generating tokens; 1 against 16, 4 and 2 on 2k, 8k and 32k-token prompts), across repeated runs and separate processes. On long prompts (2k to 32k tokens) it is 3–7% faster than vLLM 0.25.1 and uses 2–5% less energy per token. When generating tokens it matches vLLM's speed but uses 2–7% more energy per token. Against vLLM's own deterministic (batch-invariant) mode, Luxi is faster and uses less energy on every test, including 1.5–2.7× faster token generation with 16–50% less energy. It also beats SGLang's deterministic mode on every test, at 1.18–1.24× faster on 2k–32k prompts with 14–19% less energy per token, and 1.21–2.86× faster generation.
+On the 2026-09-25 H100 Qwen2-7B-Instruct fp16 generation tests, Luxi matched normal vLLM 0.25.1 speed within 2% and used 2–7% more GPU-board energy per output token. On 2k–32k prompts, Luxi was 3–7% faster and used 2–5% less GPU-board energy per prompt token. Luxi produced bit-identical outputs across the stated tested batch sizes and repeats. Against vLLM batch-invariant mode it was faster in every tested cell, including 1.5–2.7× faster generation with 16–50% less GPU-board energy. On a separate H100 pod on 2026-09-26, Luxi was 1.18–1.24× faster than SGLang 0.5.19 deterministic mode on 2k–32k prompts with 14–19% less GPU-board energy per token, and 1.21–2.86× faster in generation.
 
 Overview for inference buyers: [`INFERENCE.md`](INFERENCE.md) · What was and wasn't tested: [`TEST_SCOPE.md`](TEST_SCOPE.md)
 

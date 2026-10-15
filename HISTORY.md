@@ -9,13 +9,11 @@ and should not be mistaken for the current headline.
 
 ### December 2025: deterministic numerical engine
 
-TestFort independently evaluated a defined LuxiEdge numerical workload on an
-NVIDIA H100. The report records repeated CPU/GPU receipt agreement, a sustained
-load test, throughput, latency, and power for that workload.
+TestFort independently evaluated a separate seven-function numerical-engine workload on an NVIDIA H100. The report records repeated CPU/GPU receipt agreement, a sustained load test, throughput, latency, and power for that workload. [Read the December 2025 report](https://luxiedge.com/luxiedge-validation-report.pdf).
 
 This is the foundation now described as **LuxiQuant numerical** (REST /
 operators / microbench). It is separate from transformer-inference measurements
-and from the later **Luxi Book** option-pricing path.
+and from the later **LuxiBook** option-pricing path.
 
 ### June 2026: attention and receipt mechanisms
 
@@ -43,9 +41,10 @@ backend, improved multi-sequence packing, and crossed the project’s peer-energ
 gate under local testing. These engineering records explain the step change
 between the July 11 historical pack and Version 99.
 
-### July 23, 2026: Version 99 technician-operated measurement
+### July 23, 2026: archived Version 99 technician-operated measurement
 
-A TESTfort technician ran the frozen matched-prefill protocol on one H100.
+A TestFort technician ran the frozen matched-prefill protocol on one H100. This is historical lineage for a different build and workload. It does not validate the September vLLM or SGLang comparisons. The July report is [available here](https://luxiedge.com/luxiedge-validation-report-july-2026.pdf).
+
 LuxiEdge measured:
 
 - 28,374.7 prefill positions/s
@@ -53,9 +52,7 @@ LuxiEdge measured:
 - 80.60% of default-vLLM throughput with 3.10% lower board energy
 - 91.78% of batch-invariant-vLLM throughput with 9.15% lower board energy
 
-The current public pack preserves the technician attestation, per-run table,
-arithmetic audit, anomaly log, and selected receipts. The signed narrative is
-still pending.
+The public pack preserves the technician attestation, per-run table, arithmetic audit, anomaly log, and selected receipts. It remains archived evidence, not a current top-line claim.
 
 ### Late July 2026: version-100 serve demo
 
@@ -73,7 +70,7 @@ binary (OpenAI-shaped API, toy generate path) was published in this period.
 Raw files are retained in both folders. Index:
 [`HISTORICAL_BENCHMARKS.md`](HISTORICAL_BENCHMARKS.md).
 
-### Mid August 2026: Luxi Book public Quant surface
+### Mid August 2026: LuxiBook public Quant surface
 
 Closed `luxi-book` binaries published under [`downloads/luxibook/`](downloads/luxibook/)
 (marketing HTML for luxiedge.com stays on Replit, not in this repo):
@@ -85,13 +82,10 @@ Closed `luxi-book` binaries published under [`downloads/luxibook/`](downloads/lu
   (2026-08-15 multi-box matrix including A100/H100/H200; 2026-08-16 v0.2.0
   reconfirmed Mini + Linux CPU with Ed25519 `lxq2_` seals)
 
-Public site order: **Book (sale) → LuxiRisk freebie → inference demoted**.
-LuxiRisk v0.2 remains the free retail/crypto CLI with `lxr1_` receipts - not
-the option book.
+That was the August positioning. The current official structure is LuxiEdge as the company, LuxiQuant as the primary commercial division, LuxiEnergy as the secondary division, the LuxiQuant Risk State Engine as the paid product, and LuxiBook v0.2.1 plus LuxiRisk v0.2 as free demos.
 
 > **Note (2026-10-12):** Positioning corrected. LuxiQuant Risk State Engine
-> (Risk Runtime v0.4.0) is the paid, evaluation-only LuxiQuant product; Luxi Book
-> is the free public demonstration; LuxiRisk v0.2 is a free legacy demo calculator.
+> (Risk Runtime v0.4.0) is LuxiEdge's only sellable product and is offered only through a paid confidential evaluation under NDA, with no public download; LuxiBook v0.2.1 and LuxiRisk v0.2 are free demos.
 
 ### September 25 to 26, 2026: Qwen2-7B vs vLLM 0.25.1 and SGLang 0.5.19 on H100
 
@@ -127,8 +121,7 @@ keplemon 1.649 m ISS gap at commit `67d6497` and relaunched the published
 near-earth Luxi hashes. The OrbVeil catalog was not run on that GPU. Job 3
 CPU joules from Apple powermetrics are estimates in
 [`proofs/job3-powermetrics`](proofs/job3-powermetrics/). The line-by-line
-record is [`RESULTS.md`](RESULTS.md). The opening page is now the product
-page. LuxiRisk is the featured download.
+record is [`RESULTS.md`](RESULTS.md). The opening page now follows the current company and product hierarchy. LuxiBook v0.2.1 and LuxiRisk v0.2 remain free demos.
 
 ## How to read old packs
 

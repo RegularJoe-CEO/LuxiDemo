@@ -1,12 +1,14 @@
 # LuxiEdge for Autonomous Systems
 
+> Market hypothesis only. This page does not claim a shipping product, customer deployment, certification, or production use. Public claims remain limited to the named demos and evidence.
+
 ## The Problem
 
 Your drone's navigation algorithm runs on an ARM processor at the edge. You test it on an x86 workstation in the lab. The math libraries give slightly different results. You spend weeks debugging "phantom" issues that only appear in flight.
 
 Worse: certification requires reproducibility. DO-178C doesn't accept "floating point variance" as an excuse.
 
-## How LuxiEdge Solves This
+## What the demo explores
 
 A receipt is the SHA-256 of one run. Re-running the same binary is stable. f32 `sin(x)` on the five gold inputs matched across macOS arm64, macOS x86_64, Linux x86_64, and Linux arm64. f64 Kepler sweeps did not all match. GPU was not measured.
 

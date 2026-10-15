@@ -1,5 +1,7 @@
 # 7B-class TRADE  -  H100 NVL public benchmark pack
 
+> Historical research artifact. This is not the current paid product description. The LuxiQuant Risk State Engine, Risk Runtime v0.4.0, is LuxiEdge's only sellable product.
+
 **Hardware:** 1× NVIDIA H100 NVL (RunPod)  
 **Model:** `Qwen/Qwen2-7B-Instruct` → LuxiEdge native (**28L × h=3584**)  
 **Date:** 2026-07-11  

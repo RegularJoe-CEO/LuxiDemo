@@ -1,57 +1,33 @@
-# LuxiEdge for Energy Efficiency
+# LuxiEnergy measurement boundaries
 
-## The Numbers
+LuxiEnergy is LuxiEdge's secondary division, also described as AI Energy Systems. It is not a separate sellable product. LuxiEdge's only sellable product is the LuxiQuant Risk State Engine, Risk Runtime v0.4.0. This page summarizes measured energy evidence and roadmap boundaries. It does not describe a standalone shipping product.
 
-| Hardware | Throughput | Power Draw | Efficiency |
-|----------|------------|------------|------------|
-| NVIDIA L4 | 30.7B ops/sec | 72W | 426M ops/joule |
-| NVIDIA H100 | 286.94B ops/sec | 117.2W | 2.45B ops/joule |
+## Current measured inference evidence
 
-Validated by TestFort (December 2025 numerical-engine report; not the 2026 inference benchmarks). 0% error rate. 1.47ms p95 latency.
+The Qwen2-7B-Instruct fp16 comparisons were measured on NVIDIA H100 SXM GPUs on 2026-09-25 and 2026-09-26.
 
-## The Problem
+- Against normal vLLM 0.25.1 during generation, Luxi ran at the same speed within 2% and used 2 to 7% more GPU-board energy per output token.
+- On 2k to 32k prompts, Luxi was 3 to 7% faster than normal vLLM and used 2 to 5% less GPU-board energy per prompt token.
+- Against vLLM batch-invariant mode, generation was 1.5 to 2.7 times faster and used 16 to 50% less GPU-board energy per token.
+- Against SGLang 0.5.19 deterministic mode, the tested 2k to 32k prompt cells were 1.18 to 1.24 times faster with 14 to 19% less GPU-board energy per token. Generation was 1.21 to 2.86 times faster.
 
-You are paying for compute you do not need. General-purpose math libraries waste cycles on edge cases your workload never hits. GPU utilization sits at 60% while your power bill climbs.
+The vLLM and SGLang comparisons used different H100 pods. Energy came from the NVML GPU total-energy counter, with no idle subtraction. These are GPU-board measurements, not CPU, memory, cooling, wall-plug, or facility-energy measurements. Prefill is not complete inference.
 
-## How LuxiEdge Solves This
+See [BENCHMARKS.md](../BENCHMARKS.md) and [TEST_SCOPE.md](../TEST_SCOPE.md).
 
-Purpose-built for dense vector math. No bloat. No unnecessary precision. Just the operations you need at the throughput you need.
+## Historical TestFort evaluation
 
-The H100 benchmark: 444.4 trillion operations in one hour under 200 concurrent users. That is not a typo.
+TestFort independently evaluated a separate seven-function numerical-engine workload in December 2025. It is not LuxiBook and not the current inference comparison. [Read the historical report](https://luxiedge.com/luxiedge-validation-report.pdf).
 
-## Battery-Constrained Compute
+## Roadmap framing
 
-For edge devices and mobile deployments, efficiency is not optional. The ARM64 binary returns a SHA256 receipt for each run. Power for that binary was not re-measured on the v3.1 demo branch.
+| Area | Status |
+|---|---|
+| AI compute | Measured on the specifically named inference workloads |
+| Memory movement | Research and roadmap |
+| LuxiPak and LuxiPhase | Workload-behavior roadmap, not shipping products |
+| LuxiSDG | Historical software-defined-generator work |
 
-| Metric | LuxiEdge ARM64 |
-|--------|----------------|
-| Binary size | 1.6 MB |
-| Cold start | < 100ms |
-| Memory footprint | < 50 MB |
-| Dependencies | None |
+No repo result establishes a system-wide energy advantage, facility savings, or lifecycle savings from avoided reruns. Those effects have not been measured.
 
-No runtime. No JIT warmup. No garbage collection pauses.
-
-## Example: Batch Processing at Scale
-
-```bash
-curl -X POST http://localhost:10000/evaluate -H "Content-Type: application/json" -d '{"expr":"exp(x)*sin(x)","values":[0.001,0.002,0.003],"precision":"f32"}'
-```
-
-Pass millions of values. Get results back with a SHA256 hash for verification.
-
-## Tracking Power
-
-On GPU deployments, monitor power draw during batch operations:
-
-nvidia-smi -q -d POWER
-
-Compare ops/joule against your current solution. The difference funds itself.
-
-## Getting Started
-
-See the main [README](../README.md) for download and setup.
-
-## Contact
-
-e@ewaller.com
+[Request a confidential evaluation](https://luxiedge.com/pilot) or review [luxiedge.com/proof](https://luxiedge.com/proof).

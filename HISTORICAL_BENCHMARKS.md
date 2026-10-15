@@ -7,13 +7,13 @@ configurations. They are **not** the current public headline.
 
 | Surface | Where |
 |---------|--------|
-| Luxi Book receipt matrix | [`RESULTS.md`](RESULTS.md) · [`downloads/luxibook/`](downloads/luxibook/) |
+| LuxiBook receipt matrix | [`RESULTS.md`](RESULTS.md) · [`downloads/luxibook/`](downloads/luxibook/) |
 | Qwen2-7B vs vLLM 0.25.1 and SGLang 0.5.19 (H100 prefill + decode, drift demo) | [`INFERENCE.md`](INFERENCE.md) · [`BENCHMARKS.md`](BENCHMARKS.md) |
 | Full measured tables | [`RESULTS.md`](RESULTS.md) |
 | Chronology | [`HISTORY.md`](HISTORY.md) |
 
-Prior third-party inference baseline:
-[Version 99 matched-prefill](evidence/h100-qwen2-7b-v99-matched-prefill-2026-07-23/).
+Archived third-party-operated prefill lineage:
+[Version 99 matched-prefill](evidence/h100-qwen2-7b-v99-matched-prefill-2026-07-23/). It covers a different build and workload and does not validate the September vLLM or SGLang comparisons.
 
 All packs below are **public** under `evidence/`.  
 Folder names identify the hardware and workload represented by each pack.
@@ -47,4 +47,4 @@ Open `evidence/h100-7b-class-TRADE/START_HERE.md` first.
 - Power is **GPU board** (pynvml), not wall-plug AC.
 - The sequence-length 5 result is a microbenchmark, not a current product
   result.
-- These packs are **not** Luxi Book option-pricing results.
+- These packs are **not** LuxiBook option-pricing results.

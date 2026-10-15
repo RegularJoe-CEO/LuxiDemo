@@ -1,72 +1,88 @@
 # LuxiEdge
 
-LuxiEdge is deterministic numerics: same bits on every chip, with receipts. A receipt is the SHA-256 of the bytes from the run that produced them. The proof sections are the measurements. Stock position gaps on the catalogs below are sub-millimeter, and some Luxi f64 sweeps do not share one hash.
+**Deterministic numerics with receipts.**
 
-## Try it in 30 seconds
+**Deterministic computation you can verify.**
 
-[Art of Fugue](https://github.com/RegularJoe-CEO/Art-of-Fugue) runs 200,000 floating-point operations and hashes the exact results. Its README records platform libm hashes `b02237875da129b90b6355d5918b38657e4bb2e697e413124c661acd0899eb19` on macOS ARM64 and `c060c5031b1bdb7b730ad6de7639ca87fd3257009a3e3580b71b4f116158c9d6` on Linux x86_64 with an NVIDIA GPU. The LuxiEdge example in that README is `781ae6b19ca58f36bfaaedde6e605f6fc8a766701d69175cbbcd39fe20efd610` on both of those rows. Download `art_of_fugue.py` and run `python3 art_of_fugue.py`.
+LuxiEdge is the company.
 
-## LuxiQuant Risk State Engine
+## The only sellable product
 
-LuxiQuant Risk State Engine (Risk Runtime v0.4.0) is the paid institutional product of LuxiQuant, LuxiEdge's primary commercial division. It is proprietary and evaluation-only, with no public download: [request a confidential evaluation at luxiedge.com](https://luxiedge.com/luxiquant). LuxiBook is the free public receipt and determinism demonstration, under Proof.
+**The LuxiQuant Risk State Engine, Risk Runtime v0.4.0, is LuxiEdge's only sellable product.** It is offered only through a paid confidential evaluation under NDA. It is proprietary, has no public download, and has no public price.
 
-## LuxiRisk v0.2 (legacy demo calculator)
+It provides deterministic authenticated risk state as a scenario-by-position matrix changes. Customer pricing, market data, scenarios, and methodology remain under customer control. Authoritative rebuilds remain comparators and reconciliation paths.
 
-The LuxiRisk v0.2 CLI is a separate, free legacy demo calculator, not the Risk State Engine. It computes a liquidation price, a position size from a risk percent, and the max dollar loss at a stop. Each result can carry an Ed25519 receipt (`lxr1_`).
+[Request a confidential evaluation](https://luxiedge.com/pilot).
 
-Try it from the [luxirisk-v0.2 release](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2) or from [`luxirisk/`](luxirisk/). The v0.2 binaries are not code-signed. Formulas and test vectors are in that folder.
+The public proof claim is scoped reproducibility, not a universal cross-platform promise. Every proof below names its workload, hardware, date, and limits.
 
-```bash
-chmod +x luxirisk-macos-arm64
-shasum -a 256 -c luxirisk-macos-arm64.sha256
-./luxirisk-macos-arm64 liq --side long --entry 65000 --leverage 10
-```
+## Company structure and free demos
 
-## Proof
+| Name | Official status |
+|---|---|
+| **LuxiEdge** | Company |
+| **LuxiQuant** | Primary commercial division |
+| **LuxiQuant Risk State Engine** | LuxiEdge's only sellable product. Risk Runtime v0.4.0 is offered only through a paid confidential evaluation under NDA. |
+| **LuxiEnergy** | Secondary division, also described as AI Energy Systems |
+| **LuxiBook v0.2.1** | Free option-book pricer demo with Ed25519 receipts |
+| **LuxiRisk v0.2** | Free legacy calculator demo |
 
-### Space and orbital
+The markets discussed on luxiedge.com are hypotheses. They are not customer claims and not a list of shipping products.
 
-Luxi f64 SGP4 is byte-identical on macOS arm64, Linux arm64, qemu Linux x86_64, and an H100 for jax100 (`26eafb2b244fc1d4e24a7f561378774cf934f3976364fd7cc402853975d7175e`) and starlink-382a419 (`42d0ca2ca598dae1553ecfae12ca8204b3dae5ceb67e9afa76e36dcb40a75c09`). A 2026-10-11 H100 relaunch matched those hashes. Whole-process medians were 0.451879 s and 0.505075 s. The GPU image is near-earth, and the OrbVeil catalog was not run on it. See [`proofs/luxi-sgp4`](proofs/luxi-sgp4/) and [`proofs/citra-gpu-h100`](proofs/citra-gpu-h100/).
+Review the [official proof page](https://luxiedge.com/proof).
 
-On the OrbVeil catalog, 15,940 objects and 1,441 epochs, Luxi hash `a14f625475a05892277a1a198aacc79aaf18b0192c97326bbe50fcafd31f8fa3` is the same on macOS arm64, native Linux arm64, and qemu x86_64. One-core speed is a tie: Luxi median 5.333366 s, python-sgp4 2.27 median 5.332472 s. Stock hashes differ by platform. The largest stock position gap is `4.22175690645485688e-08` km. `screen()` on ISS (NORAD 25544) stored 6,054 events, all at 0.0 km, from six secondaries whose element columns match Zarya. The machine is an M1 Pro. See [`proofs/orbveil-edge`](proofs/orbveil-edge/).
+## Proof families on luxiedge.com
 
-Citra keplemon `67d6497` on that H100 printed max position error 1.649 m on ISS at 24 h, and the parity test passed. The same printed 1.649 m was recorded on 2026-10-10 at commit `14114699`.
+### Financial and catastrophe risk
 
-The Space Data Network proxy is the first 2,000 catalog objects. Luxi is one hash on three CPUs. Stock's largest cross-platform gap on that proxy is `4.22175690645485688e-08` km, and 1,999,000 pairs had 0 class flips at 10 cm, 75 m, 1 km, and 10 km. The TraCSS proxy is 53 public CARA CDMs. Luxi is one hash on three CPUs, and mode 64 stock versus Luxi on macOS has max absolute Pc `1.734723e-18`. That set is not the paper's 72,356 operational CDMs. Apple powermetrics CPU joules for these windows, labeled as estimates, are in [`proofs/job3-powermetrics`](proofs/job3-powermetrics/). The 2,000-object Luxi 1-thread median is 2.961125 J.
+On 2026-10-12, Luxi was tested with Oasis LMF 2.5.8 and the public OasisPiWind model on Linux x86-64 and Apple M1 Pro under Docker linux/arm64. Across the tested 1, 2, and 4 worker configurations, Luxi produced one output hash while stock defaults changed. This is one public model and two tested machine configurations, not a customer result or a universal Oasis claim. See [proofs/oasis-drift](proofs/oasis-drift/OASIS_DRIFT.md).
 
-Stock jaxsgp4 commit `382a419`, same code on the H100 and on CPU, is not bit-identical. Float64 on 100 satellites and 29 times: 2701 of 2900 states differ, max position `1.5853778190904915e-09` km. Float32 on that grid: max position `2.4645502245160555` km. The published figure near 1e-9 km was jaxsgp4 versus C++ on CPU. See [`proofs/sgp4-gpu-cpu`](proofs/sgp4-gpu-cpu/).
+### GPU numerical primitives
 
-SAAL v9.6 (US Space Force Sgp4Prop) black-box cross-platform comparison on the same catalog: see [`proofs/saal-compare/SAAL_COMPARISON.md`](proofs/saal-compare/SAAL_COMPARISON.md).
+On 2026-10-13, 10,000,000 synthetic float32 dollar values were summed on one NVIDIA L4. Luxi's fixed-order Kahan result matched the exact total and the same result hash was reproduced on the L4, an x86 CPU, and an Apple Silicon Mac. The exact GPU path is a correctness path, not a speed path. No energy result is claimed. See [proofs/gpu-sum](proofs/gpu-sum/README.md).
 
-NCAR LAFT Kessler warm-rain microphysics (Linck, Dennis, Schreck, Stengel & Gagne 2026, Apache-2.0): each LLM JAX translation gives a different float64 hash on Intel Xeon, Apple M1 Pro and NVIDIA A100, while Luxi gives one hash on all three. On the same A100, Luxi median 0.074 ms vs Gemini JAX 0.83 ms at 50 columns and 82.52 ms vs 154.56 ms at 1M (1M verified GPU-only). See [`proofs/kessler-laft/KESSLER.md`](proofs/kessler-laft/KESSLER.md).
+### Orbital propagation
 
-### GPU sums
+On 2026-10-10 and 2026-10-11, the named jax100 and starlink-382a419 SGP4 grids produced matching bytes on macOS arm64, Linux arm64, qemu Linux x86_64, and a near-earth NVIDIA H100 build. The x86 result used qemu emulation, not a native x86 host. The H100 build covered near-earth propagation only. The Starlink file contained 79 rejected states on every platform that ran it. This is not a universal cross-platform promise. See [proofs/luxi-sgp4](proofs/luxi-sgp4/README.md).
 
-Stock GPU float32 sums are repeatable but wrong: on 10,000,000 dollar values (exact total $499,894,306,221.96), cuBLAS, CuPy and TensorFlow on an NVIDIA L4 each returned the same answer every run, +$14,930.04 off. Luxi's fixed-order Kahan sum was exact ($0.00) with hash `b952a970e4ad4440` on the L4, x86 and Mac arm64. Luxi chunked GPU reduce was +$379.60 at 0.03 to 0.05 ms, with chunk totals combined in float64 on the host. Synthetic data, one GPU model. See [`proofs/gpu-sum`](proofs/gpu-sum/).
+### Qwen2-7B inference on H100
 
-### Genomics
+Measured 2026-09-25 and 2026-09-26 with Qwen2-7B-Instruct fp16 on NVIDIA H100 SXM GPUs:
 
-On 5,819,596,800 cells of public GIAB HG002 MHC reads, an unordered CPU reduction of PairHMM haplotype scores changed fingerprint with thread count. The canonical policy kept one fingerprint, `8296effda654807942e0f0121e8bdf32d4c6585b0ebe77c86151c19b7f66c150`, at every tested count. No throughput penalty was observed in the recorded runs. On an H200 the canonical GPU path finished that cell count in 80.3 ms at block size 128 and kept one fingerprint, `e678bd4eb00b96e7a6976f88055c21f511ff321703632017ad3d458fce011e94`, across block sizes 128, 256, 512, and 1024.
+- Against normal vLLM 0.25.1 during generation, Luxi ran at the same speed within 2% and used 2 to 7% more GPU-board energy per output token.
+- On 2k to 32k prompts, Luxi was 3 to 7% faster than normal vLLM and used 2 to 5% less GPU-board energy per prompt token.
+- Against vLLM batch-invariant mode, Luxi was faster in every tested cell. Generation was 1.5 to 2.7 times faster and used 16 to 50% less GPU-board energy per token.
+- Against SGLang 0.5.19 deterministic mode, Luxi was 1.18 to 1.24 times faster on 2k to 32k prompts with 14 to 19% less GPU-board energy per token. Generation was 1.21 to 2.86 times faster.
+- Against normal SGLang, Luxi was 1.3 to 4.6% faster on 2k to 32k prompts with 1.0 to 4.1% less GPU-board energy per token. Generation speed was about equal and Luxi used 1 to 7% more GPU-board energy per token.
 
-This is not a HaplotypeCaller replacement, not a demonstration of GATK-equivalent likelihoods, and not a claim of identical bits across CPU and GPU. It is not a genotype caller: no VCF is emitted, and production GATK per-read gap vectors were not used. It is not open source, and it is not the LuxiEdge engine. Paper: [10.5281/zenodo.22152053](https://doi.org/10.5281/zenodo.22152053). Repository: [Deterministic-PairHMM](https://github.com/RegularJoe-CEO/Deterministic-PairHMM). Upstream banding fix: [rust-bio PR 688](https://github.com/rust-bio/rust-bio/pull/688), merged 2026-09-16.
+The vLLM and SGLang comparisons used different H100 pods. Energy is the NVML GPU-board boundary, not wall-plug or facility energy. Correctness checks matched the top token and ordered top five tokens on the stated prompts; they do not establish full-sequence equivalence. The drift demonstration includes a published long-running-process fault. See [INFERENCE.md](INFERENCE.md), [BENCHMARKS.md](BENCHMARKS.md), and [TEST_SCOPE.md](TEST_SCOPE.md).
 
-### Inference
+## Additional evidence
 
-On one H100, Qwen2-7B-Instruct fp16, 20 prompts and 256 greedy tokens, vLLM 0.25.1 default changed the visible answer in 12 of 140 conditions and SGLang 0.5.19 default changed it in 11 of 140. Luxi c8 matched tokens and logprobs in 80 of 80 batch conditions. The long prompt's Luxi rows are from a fresh process. Evidence: [`evidence/h100-qwen2-7b-drift-demo-2026-09-26`](evidence/h100-qwen2-7b-drift-demo-2026-09-26/).
+These results remain public evidence, but they are not top-line proof families on luxiedge.com.
 
-Prefill versus vLLM 0.25.1 at 32767 tokens by batch 1: Luxi FA3 32,190 tok/s and 0.02162 J/token, vLLM default 29,980 tok/s and 0.02269 J/token. Evidence: [`evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25`](evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/).
+| Evidence | Workload, hardware, and date | Limits |
+|---|---|---|
+| [Kessler LAFT](proofs/kessler-laft/KESSLER.md) | NCAR LAFT Kessler warm-rain scheme, float64, Intel Xeon, Apple M1 Pro, and NVIDIA A100. The evidence page was added 2026-10-15. | The evidence page does not state a separate run date. The 1,000,000-column case was GPU-only. JAX stayed within rounding of the Fortran reference, so this is a reproducibility result, not an accuracy criticism. |
+| [SAAL comparison](proofs/saal-compare/SAAL_COMPARISON.md) | Public 15,940-object catalog, 24-hour grid, Linux x86-64, Linux arm64, macOS arm64, Rosetta 2, and Luxi H100 evidence, dated 2026-10-11. | Linux arm64 was under qemu for the SAAL comparison. Rosetta speed and energy reflect emulation. Timing harnesses differed, so ratios are indicative. |
+| [OrbVeil catalog](proofs/orbveil-edge/README.md) | Public 15,940-object catalog, 1,441 epochs, Apple M1 Pro, native Linux arm64 container, and qemu Linux x86_64, measured 2026-10-11. | The Mac was not a Jetson. Linux x86_64 was emulated. Linux rows were hash-only. Apple energy figures are estimated subsystem energy. |
+| Genomics | Public GIAB HG002 MHC PairHMM aggregate-score reduction on CPU and NVIDIA H200, measured 2026-06-17. | Not a genotype caller, not a HaplotypeCaller replacement, not a GATK-equivalence claim, and not a claim of identical CPU and GPU bits. See [RESULTS.md](RESULTS.md). |
+| [Attention v2](https://github.com/RegularJoe-CEO/attention-v2-benchmarks) | H200 morph versus Flash on the 16k rag_tokenized fixture, measured 2026-06-20. | The 9.84 times result is scoped to compressible KV. On the short-sequence 12-layer H100 comparison, PyTorch Flash fp16 won on joules per token. |
 
-Prefill versus SGLang 0.5.19 on a separate H100, same shape: Luxi c8 median `3.178e+04` tok/s and `0.02201` J/token, SGLang deterministic fp16 `2.622e+04` tok/s and `0.02652` J/token. Evidence: [`evidence/h100-qwen2-7b-vs-sglang-0.5.19-2026-09-26`](evidence/h100-qwen2-7b-vs-sglang-0.5.19-2026-09-26/).
+## TestFort status
 
-Compute efficiency is the frozen H100 and H200 set in [attention-v2-benchmarks](https://github.com/RegularJoe-CEO/attention-v2-benchmarks), checked by [`run_bench.sh`](https://github.com/RegularJoe-CEO/attention-v2-benchmarks/blob/main/run_bench.sh). On an H200, morph versus Flash at 16k `rag_tokenized` is 9.84 times faster and uses 16.78 times fewer joules per pass. The production-layer morph auto path on that fixture is 2.04 times faster and uses 2.06 times fewer joules. Those ratios are scoped to compressible KV. On the short-sequence 12-layer H100 same-shape comparison, PyTorch Flash fp16 wins by `19.169052480042783` times on joules per token. Records: [H200 morph](https://github.com/RegularJoe-CEO/attention-v2-benchmarks/blob/main/frozen/h200_morph_rag_tokenized_20260620.json) and [H100 12-layer](https://github.com/RegularJoe-CEO/attention-v2-benchmarks/blob/main/frozen/h100_stack12_h2h_20260711.json). The same H100 ratio is already in [`evidence/h100-stack12-H2H`](evidence/h100-stack12-H2H/).
+TestFort independently evaluated a separate seven-function numerical-engine workload in December 2025. It remains valid for that exact workload and does not validate LuxiBook or the September vLLM and SGLang comparisons. [Read the December 2025 report](https://luxiedge.com/luxiedge-validation-report.pdf).
 
-### Luxi Book
+The July 2026 packed-prefill pack remains only in the historical archive and is not part of the current third-party claim.
 
-The public 10-row `example_book.csv` hash is `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a` on the measured CPU and GPU boxes. That book is not the 1,000,000-option book. After the erfc fix, the million-option book hashed to `821adc80126a76dc3c244344a109fefd8cb1e3ebbfe56ee0458048b71280d5d9` on macOS arm64, Linux arm64, and qemu x86_64, with book total minus reference `-0.0005505851893818692`. A later row-accuracy pass on those three CPUs hashed to `3aa738c3fd9369d2c262a547dd0ba342c6e2386ab2dfcb0086256bc7d2a3ff0f`, and the max absolute row error was `3.8385300817345264e-10`. An AWS sample of 1,000,000 European options, C++ on x86 versus Graviton ARM, had 45,867 prices differ. The million-option logs are not a public binary here. Run the 10-row book from [`downloads/luxibook/`](downloads/luxibook/).
+The proposed independent go-forward test is in [TESTFORT_FORWARD_PROTOCOL.md](TESTFORT_FORWARD_PROTOCOL.md).
 
-## Full table
+## Public demos and evidence
 
-Every headline above is a row in [`RESULTS.md`](RESULTS.md). The chronology that used to open this page is in [`HISTORY.md`](HISTORY.md).
+- [Run LuxiBook v0.2.1 and LuxiRisk v0.2](DEMOS.md)
+- [Review the measured result ledger](RESULTS.md)
+- [Browse the evidence index](evidence/README.md)
+- [Read the repository boundary](REPO_BOUNDARY.md)
 
 ## Contact
 
