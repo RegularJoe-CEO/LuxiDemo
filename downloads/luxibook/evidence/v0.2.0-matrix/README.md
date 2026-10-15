@@ -1,4 +1,4 @@
-# Luxi Book v0.2.0 matrix evidence
+# LuxiBook v0.2.0 matrix evidence
 
 **Build:** engine `0.2.0` · same published `luxi-book-linux-x86_64-cuda` binary identity (`output_vector_sha256` below) on every GPU row.  
 **Measured on:** commit `b4645c2` (RTX 4090, H200, H100 A/B) and commit `4a86d2a` (A100, RTX 5090). Receipts from either verify under the current download.  

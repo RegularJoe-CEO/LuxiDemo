@@ -1,6 +1,6 @@
 # LuxiRisk v0.2 binaries (unsigned)
 
-**Free legacy demo calculator** - not the LuxiQuant Risk State Engine, not Luxi Book (CSV options). Book lives at
+**Free legacy demo calculator** - not the LuxiQuant Risk State Engine, not LuxiBook (CSV options). Book lives at
 `../../downloads/luxibook/`.
 
 Closed-source evaluation binaries. Matching `.sha256` files ship beside each

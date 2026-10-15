@@ -8,7 +8,7 @@ Worse: certification requires reproducibility. DO-178C doesn't accept "floating 
 
 ## How LuxiEdge Solves This
 
-A receipt is the SHA-256 of one run. Re-running the same binary is stable. f32 `sin(x)` on the five gold inputs matched across macOS arm64, macOS x86_64, Linux x86_64, and Linux arm64. f64 Kepler sweeps did not all match. GPU was not measured.
+The output hash is the SHA-256 of one run's output bytes; a signed receipt binds a payload to a key. Re-running the same binary is stable. f32 `sin(x)` on the five gold inputs matched across macOS arm64, macOS x86_64, Linux x86_64, and Linux arm64. f64 Kepler sweeps did not all match. GPU was not measured.
 
 ## Example: Sensor Fusion
 

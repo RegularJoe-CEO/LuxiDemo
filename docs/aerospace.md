@@ -6,7 +6,7 @@ Trajectory calculations run on ground simulators, then again on flight computers
 
 ## How LuxiEdge Solves This
 
-A receipt is the SHA-256 of the little-endian f64 bytes of the values that were computed. Re-running the same binary is stable. A matching hash was not measured for every machine, and a mismatch on a long f64 sweep is not by itself a trajectory error.
+The output hash is the SHA-256 of the little-endian f64 bytes of the values that were computed. Re-running the same binary is stable. A matching hash was not measured for every machine, and a mismatch on a long f64 sweep is not by itself a trajectory error.
 
 ## Orbital Mechanics Expressions
 

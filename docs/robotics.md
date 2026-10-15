@@ -6,7 +6,7 @@ Your FSD algorithm works perfectly in simulation. Deploy to the vehicle and sens
 
 ## How LuxiEdge Solves This
 
-A receipt is the SHA-256 of one run. Re-running the same binary is stable. Laptop, HIL, and ECU hashes were not measured against each other.
+The output hash is the SHA-256 of one run's output bytes; a signed receipt binds a payload to a key. Re-running the same binary is stable. Laptop, HIL, and ECU hashes were not measured against each other.
 
 ## Motion & Control Expressions
 

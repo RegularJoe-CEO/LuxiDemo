@@ -10,14 +10,16 @@ or disconnected from the power system supporting it.
 
 ## The layers
 
+LuxiEdge is the company, not a layer. LuxiQuant is its primary commercial division; LuxiEnergy / AI Energy Systems is its secondary research and roadmap division, not a second commercial product. The layers below are research and roadmap except where marked.
+
 | Layer | Control point | Purpose | Current maturity |
 |---|---|---|---|
-| **LuxiQuant** | Compute | Reproducible numerical and quantitative execution with receipts | **Working engine** · public **Luxi Book** (CSV BS/Black-76 + SHA-256) is the Quant try without NDA; older numerical REST/microbench demos still ship; TestFort Dec 2025 on a defined numerical suite |
-| **LuxiEdge** | Execute | Deterministic numerics with receipts, including orbital propagation and energy-aware inference | **Measured** · orbital, genomics, and H100 inference rows in [`RESULTS.md`](RESULTS.md); Qwen2-7B vs vLLM 0.25.1 and SGLang 0.5.19 in [`BENCHMARKS.md`](BENCHMARKS.md) |
-| **LuxiPack** | Schedule | Admit work after dependencies are ready and place it to reduce hold-not-work and repeated preparation | **In development** |
+| **LuxiQuant** | Compute | Primary commercial division. LuxiQuant Risk State Engine (Risk Runtime v0.4.0) is LuxiEdge's only commercial product | **Paid confidential evaluation under NDA** · free **LuxiBook** v0.2.1 and LuxiRisk v0.2 demos; TestFort Dec 2025 evaluated a defined seven-function numerical-engine workload, not the current Risk State Engine |
+| Inference evidence | Execute | Deterministic inference measurements | **Measured evidence, not an offer** · H100 inference rows in [`RESULTS.md`](RESULTS.md); Qwen2-7B vs vLLM 0.25.1 and SGLang 0.5.19 in [`BENCHMARKS.md`](BENCHMARKS.md) |
+| **LuxiPak** | Schedule | Admit work after dependencies are ready and place it to reduce hold-not-work and repeated preparation | **In development** |
 | **LuxiPhase** | Shape | Shape aggregate compute timing to reduce power swings while respecting throughput and SLOs | **Prototype/local validation** |
-| **LuxiLoad** | Coordinate | Coordinate compute demand with generation, electrical, cooling, and reliability limits | **Early concept** |
-| **LuxiSDG** | Control | Guarded local demand management for smaller commercial sites | **Early concept** |
+| **LuxiLoad** | Coordinate | Coordinate compute demand with generation, electrical, cooling, and reliability limits | **Roadmap** (not on luxiedge.com) |
+| **LuxiSDG** | Control | Guarded local demand management for smaller commercial sites | **Historical** (preserved software-defined-generator work; not a currently available product) |
 
 The shorthand is:
 
@@ -25,19 +27,19 @@ The shorthand is:
 
 ## Public portfolio today (what to download)
 
-Public portfolio order on this page: **LuxiQuant Risk State Engine (paid, evaluation-only), then the proof record, then Luxi Book (free public demonstration)**; LuxiRisk v0.2 is a free legacy demo calculator. The website on Replit is a separate tree.
+Public portfolio order on this page: **LuxiQuant Risk State Engine (the only commercial product; paid confidential evaluation under NDA), then the proof record, then LuxiBook (free public demonstration)**; LuxiRisk v0.2 is a free legacy demo calculator. The website on Replit is a separate tree.
 
 | Surface | Role | Where |
 |---|---|---|
 | **LuxiRisk v0.2** | Free legacy demo calculator, not the LuxiQuant Risk State Engine (Risk Runtime v0.4.0): liquidation, size, max loss, Ed25519 `lxr1_` receipts | [`luxirisk/`](luxirisk/) · release `luxirisk-v0.2` |
 | **LuxiEdge proofs** | Deterministic numerics with receipts. Inference on H100 is one measured surface, next to orbital, genomics, and the option book | [`README.md`](README.md) · [`RESULTS.md`](RESULTS.md) |
-| **Luxi Book** | Quant try: CSV European options, five Greeks, output-vector hash + Ed25519 `lxq2_` receipt. The 10-row public book is not the 1,000,000-option book | [`DEMOS.md`](DEMOS.md) · [`downloads/luxibook/`](downloads/luxibook/) |
+| **LuxiBook** | Quant try: CSV European options, five Greeks, output-vector hash + Ed25519 `lxq2_` receipt. The 10-row public book is not the 1,000,000-option book | [`DEMOS.md`](DEMOS.md) · [`downloads/luxibook/`](downloads/luxibook/) |
 | Numerical v3.0 demos | REST `/evaluate`, operators, ATE/tools. Supporting math, not the option book | GitHub release `v3.0` · [`DEMOS.md`](DEMOS.md) |
 
-LuxiEdge is deterministic numerics with receipts. Inference is one measured
-surface. LuxiQuant Risk State Engine (Risk Runtime v0.4.0) is the paid LuxiQuant product (evaluation-only). Luxi Book is the free public demonstration. LuxiRisk v0.2 is a free legacy demo calculator.
+LuxiEdge is deterministic numerics with receipts. Inference is measured
+evidence, not an offer. LuxiQuant Risk State Engine (Risk Runtime v0.4.0) is LuxiEdge's only commercial product (paid confidential evaluation under NDA). LuxiBook is the free public demonstration. LuxiRisk v0.2 is a free legacy demo calculator.
 
-The later layers (Pack, Phase, Load, SDG) are a product roadmap at different
+The later layers (LuxiPak, LuxiPhase, LuxiLoad, LuxiSDG) are research, roadmap, or historical work at different
 stages of proof; they are not presented as deployed systems.
 
 Every public result should identify:
@@ -51,7 +53,7 @@ Every public result should identify:
 
 GPU-board energy is not facility electricity. A controlled benchmark is not
 automatically a production or customer result. Hash claims are the rows in
-[`RESULTS.md`](RESULTS.md). The 10-row Luxi Book receipt is one measured book.
+[`RESULTS.md`](RESULTS.md). The 10-row LuxiBook receipt is one measured book.
 It does not say that every CPU and GPU matches, and it is not the
 1,000,000-option book.
 

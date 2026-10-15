@@ -1,4 +1,4 @@
-# Luxi Book - public try
+# LuxiBook - public try
 
 Closed binaries from [luxi-quant-engine](https://github.com/RegularJoe-CEO/luxi-quant-engine) **v0.2.1**, built from engine commit `02388f7`, the value each binary reports as `git_sha` (`git_dirty=false`). **v0.2.1** corrects an accuracy defect present in **v0.2.0**. Do not use a **v0.2.0** download for any accuracy claim; use it only as the historical determinism record. Post-fix matrix: [`evidence/v0.2.1-phi-fix-matrix/`](evidence/v0.2.1-phi-fix-matrix/). Historical v0.2.0 matrix (determinism only): [`evidence/v0.2.0-matrix/`](evidence/v0.2.0-matrix/). **No engine source. No NDA.**
 

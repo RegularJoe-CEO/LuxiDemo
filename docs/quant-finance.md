@@ -2,7 +2,7 @@
 
 ## What is public today
 
-**Luxi Book** is the professional Quant try without an NDA:
+**LuxiBook** is the professional Quant try without an NDA:
 
 - CSV position book → European **Black-Scholes / Black-76** prices
 - Five Greeks
@@ -15,9 +15,9 @@ position size, and stop-loss math with Ed25519 `lxr1_` calculation receipts.
 It is not the institutional option book.
 
 Older **numerical** demos (`luxiedge-demo` REST `/evaluate`, operator validate)
-still ship as supporting math surfaces. They are **not** Luxi Book.
+still ship as supporting math surfaces. They are **not** LuxiBook.
 
-## How to run Luxi Book
+## How to run LuxiBook
 
 ```bash
 # Mac CPU
@@ -83,7 +83,7 @@ curl -X POST http://127.0.0.1:9090/evaluate \
 ```
 
 That path is useful for operator smoke and historical numerical receipts. It is
-**not** the Luxi Book product surface. See [`DEMOS.md`](../DEMOS.md).
+**not** the LuxiBook product surface. See [`DEMOS.md`](../DEMOS.md).
 
 ## Getting started
 

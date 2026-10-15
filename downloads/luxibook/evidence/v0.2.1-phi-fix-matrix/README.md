@@ -1,4 +1,4 @@
-# Luxi Book matrix - post-Φ fix (v0.2.1 measurement)
+# LuxiBook matrix - post-Φ fix (v0.2.1 measurement)
 
 **Do not merge this table with `evidence/v0.2.0-matrix/`.** These are **different RunPod hosts** from the v0.2.0 campaign. Example: the v0.2.1 RTX 4090 host reports `host_simd_capability=avx2`; the v0.2.0 4090 host reported `avx512`. Same SKU labels, different installs.
 
