@@ -4,7 +4,7 @@ Luxi demos are distributed as **compiled evaluation binaries**. Evaluators can
 run the tools, supply inputs, inspect outputs, and compare **output vector hashes**
 (and signed calculation receipts) without receiving the private implementation source.
 
-**Portfolio:** LuxiQuant Risk State Engine (Risk Runtime v0.4.0) is the paid LuxiQuant product (evaluation-only, no public download; [luxiedge.com](https://luxiedge.com/luxiquant)). Luxi **Book** is the free public receipt and determinism demonstration. Luxi**Risk** v0.2 is a separate free legacy demo calculator.  
+**Portfolio:** LuxiQuant Risk State Engine (Risk Runtime v0.4.0) is the paid LuxiQuant product (evaluation-only, no public download; [luxiedge.com](https://luxiedge.com/luxiquant)). Luxi **Book** is the free public receipt and determinism demonstration. LuxiBook includes **LuxiSize**, the sizing calculator.  
 This repo ships **binaries + markdown only** - marketing HTML lives on Replit (luxiedge.com), not here.
 
 ## Demo 0: LuxiBook - CSV European options + attested receipt (the Quant try)
@@ -52,9 +52,9 @@ The signed `lxq2_…` receipt is **per-install** (not a published constant). Det
 
 Docs: this file · binaries: [`downloads/luxibook/`](downloads/luxibook/) · engine source: **private** (not in this repo)
 
-## Demo 1: LuxiRisk v0.2 - free legacy demo calculator (`lxr1_` receipts)
+### Part of LuxiBook: LuxiSize sizing calculator (`lxr1_` receipts)
 
-**Free legacy demo calculator - not the LuxiQuant Risk State Engine and not LuxiBook.**
+**Included with the free LuxiBook download. Not the LuxiQuant Risk State Engine and not the LuxiBook option pricer.**
 **Closed binary only - no engine source. OS code-signing is not applied (unsigned
 download; expect Gatekeeper / SmartScreen friction).** Three calculations for
 leveraged crypto / retail traders, each with an **Ed25519-signed** `lxr1_…`
@@ -250,7 +250,7 @@ proprietary engine source. See also [`scripts/README.md`](scripts/README.md).
 | Luxi layer | Public demo today | Next validation step |
 |---|---|---|
 | **LuxiBook** (free demo) | CSV BS/Black-76 + Greeks + output-vector hash + Ed25519 `lxq2_` receipt; macOS + Linux CPU + Linux CUDA | Free demonstration only; not evidence for the Risk State Engine; no universal GPU claim |
-| **LuxiRisk** (free legacy demo calculator) | Offline calculator CLI + Ed25519 `lxr1_` receipts + verify + public vectors | [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2) (**OS binaries not code-signed**; Gatekeeper/SmartScreen friction) |
+| **LuxiSize** (sizing calculator in LuxiBook) | Offline calculator CLI + Ed25519 `lxr1_` receipts + verify + public vectors | [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2) (**OS binaries not code-signed**; Gatekeeper/SmartScreen friction) |
 | LuxiQuant numerical | v3.0 binary validation + REST + operator receipts | Keep secondary to Book; optional multi-platform numerical matrix |
 | Inference evidence (not an offer) | Serve API demo + H100 benchmarks vs vLLM and SGLang ([`BENCHMARKS.md`](BENCHMARKS.md)) + drift demo ([`INFERENCE.md`](INFERENCE.md#drift-demo)) + Version 99 verifier | Evidence only; inference is not a separate paid offer |
 | LuxiPak | None | Admission/placement trace versus a baseline |

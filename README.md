@@ -10,13 +10,13 @@ LuxiEdge is deterministic numerics with receipts. Every result here is scoped to
 
 LuxiQuant Risk State Engine, powered by Risk Runtime v0.4.0, is LuxiEdge's only commercial product. LuxiQuant is LuxiEdge's primary commercial division. The Risk State Engine maintains deterministic, authenticated risk state as a scenario-by-position matrix changes. It is available only through a proprietary paid confidential evaluation under NDA, with no public runtime download or public prices: [request a confidential evaluation at luxiedge.com](https://luxiedge.com/pilot).
 
-LuxiBook v0.2.1 and LuxiRisk v0.2 are free demos. Inference, numerical primitives, quantization, and the proofs below are evidence and research, not separate paid offers. These proofs do not validate the current Risk State Engine.
+LuxiBook v0.2.1 is the free demo. It includes LuxiSize, the sizing calculator. Inference, numerical primitives, quantization, and the proofs below are evidence and research, not separate paid offers. These proofs do not validate the current Risk State Engine.
 
-## LuxiRisk v0.2 (legacy demo calculator)
+## LuxiBook free download (includes LuxiSize)
 
-The LuxiRisk v0.2 CLI is a separate, free legacy demo calculator, not the Risk State Engine. It computes a liquidation price, a position size from a risk percent, and the max dollar loss at a stop. Each result can carry an Ed25519 receipt (`lxr1_`).
+LuxiBook is the free download: the option-book pricer described under [LuxiBook (free demo)](#luxibook-free-demo) plus LuxiSize, the sizing calculator. Neither is the Risk State Engine. LuxiSize is a small offline CLI. It computes a liquidation price, a position size from a risk percent, and the max dollar loss at a stop. Each result can carry an Ed25519 receipt (`lxr1_`).
 
-Try it from the [luxirisk-v0.2 release](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2) or from [`luxirisk/`](luxirisk/). The v0.2 binaries are not code-signed. Formulas and test vectors are in that folder.
+Get the option-book pricer from [`downloads/luxibook/`](downloads/luxibook/). Get LuxiSize from the [luxirisk-v0.2 release](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2) or from [`luxirisk/`](luxirisk/). The v0.2 binaries are not code-signed. Formulas and test vectors are in that folder.
 
 ```bash
 chmod +x luxirisk-macos-arm64

@@ -1,6 +1,6 @@
-# LuxiRisk v0.2 - exact formulas & receipt scheme
+# LuxiSize v0.2 - exact formulas & receipt scheme
 
-These are the **only** calculations performed by LuxiRisk v0.2. Anyone can
+These are the **only** calculations performed by LuxiSize (v0.2 build). Anyone can
 re-implement them and compare outputs against the published
 [test vectors](test-vectors/).
 
@@ -43,7 +43,7 @@ P_{\text{liq}} = 65000 \times (1 + 0.1 - 0.005) = 65000 \times 1.095 = 71175
 \]
 
 > Simplified isolated-margin approximation. Live exchange engines may include
-> fees, funding, and tiered MMR. LuxiRisk does **not** call exchanges.
+> fees, funding, and tiered MMR. LuxiSize does **not** call exchanges.
 
 ---
 

@@ -1,5 +1,7 @@
 # LuxiBook - public try
 
+LuxiBook is the free download. It contains the option-book pricer below and [LuxiSize](#included-luxisize-sizing-calculator), the sizing calculator.
+
 Closed binaries from [luxi-quant-engine](https://github.com/RegularJoe-CEO/luxi-quant-engine) **v0.2.1**, built from engine commit `02388f7`, the value each binary reports as `git_sha` (`git_dirty=false`). **v0.2.1** corrects an accuracy defect present in **v0.2.0**. Do not use a **v0.2.0** download for any accuracy claim; use it only as the historical determinism record. Post-fix matrix: [`evidence/v0.2.1-phi-fix-matrix/`](evidence/v0.2.1-phi-fix-matrix/). Historical v0.2.0 matrix (determinism only): [`evidence/v0.2.0-matrix/`](evidence/v0.2.0-matrix/). **No engine source. No NDA.**
 
 **“Unsigned” here means the OS binary is not Apple-notarized / code-signed.**  
@@ -18,6 +20,34 @@ It does **not** mean the calculation receipt is unsigned. Receipts are **Ed25519
 | [`evidence/v0.2.0-matrix/`](evidence/v0.2.0-matrix/) | all | historical v0.2.0 matrix (do not mix with v0.2.1) |
 
 There is **no** macOS GPU binary. Use the CUDA Linux build only on machines with an NVIDIA driver.
+
+## Included: LuxiSize sizing calculator
+
+LuxiBook also includes **LuxiSize**, a small free offline calculator CLI for leveraged crypto / retail traders. It is not the LuxiQuant Risk State Engine, and it ships as its own binary, separate from the option pricer above.
+
+Three calculations, each with an **Ed25519-signed** `lxr1_…` calculation receipt (per-install identity):
+
+| Calculation | Example |
+|-------------|---------|
+| Liquidation price (isolated approx.) | `liq --side long --entry 65000 --leverage 10` → **58825** |
+| Position size from risk % | `size --balance 10000 --risk 1 --entry 65000 --stop 63000` → **0.05** base |
+| Max $ loss at stop | `risk --size 0.5 --entry 65000 --stop 63000` → **1000** |
+
+| File | Platform |
+|------|----------|
+| [`luxirisk-macos-arm64`](../../luxirisk/dist/luxirisk-macos-arm64) | macOS Apple Silicon |
+| [`luxirisk-linux-x86_64`](../../luxirisk/dist/luxirisk-linux-x86_64) | Linux x86_64 |
+| [`luxirisk-windows-x86_64.exe`](../../luxirisk/dist/luxirisk-windows-x86_64.exe) | Windows x86_64 |
+
+The same files, with `.sha256` checksums, are attached to the [`luxirisk-v0.2` release](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2). The binaries are not code-signed: on macOS right-click → Open; on Windows SmartScreen → More info → Run anyway.
+
+```bash
+chmod +x luxirisk-macos-arm64
+shasum -a 256 -c luxirisk-macos-arm64.sha256
+./luxirisk-macos-arm64 liq --side long --entry 65000 --leverage 10
+```
+
+Full guide: [`../../luxirisk/README.md`](../../luxirisk/README.md) · formulas: [`../../luxirisk/FORMULAS.md`](../../luxirisk/FORMULAS.md) · test vectors: [`../../luxirisk/test-vectors/`](../../luxirisk/test-vectors/)
 
 ## Commands
 

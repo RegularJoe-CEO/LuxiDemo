@@ -2,7 +2,7 @@
 
 ## v0.2 release policy: **unsigned by design**
 
-**LuxiRisk v0.2 ships without Apple Developer ID signing, notarization, or
+**LuxiSize v0.2 ships without Apple Developer ID signing, notarization, or
 Windows Authenticode.**
 
 | Topic | v0.2 status |

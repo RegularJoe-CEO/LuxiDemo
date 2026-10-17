@@ -32,7 +32,7 @@ implementation source.
 Private engines  ──build──►  closed binaries  ──publish──►  LuxiDemo (GitHub)
                                                               │
                                                               ├── downloads/
-                                                              ├── luxirisk/
+                                                              ├── luxirisk/   (LuxiSize)
                                                               └── evidence/
 
 Replit  ──edit & publish──►  https://luxiedge.com
@@ -46,8 +46,8 @@ Updating **public binaries and evidence** is a **LuxiDemo / GitHub** job.
 
 0. **LuxiQuant Risk State Engine** (Risk Runtime v0.4.0) - the only commercial product; paid confidential evaluation under NDA, no public download or public prices  
 1. **LuxiBook** - free public receipt and determinism demonstration (CSV BS/Black-76 + output-vector hash + Ed25519 `lxq2_` receipt)  
-2. **LuxiRisk v0.2** - free legacy demo calculator (not the LuxiQuant Risk State Engine)  
-3. **Inference thr/J + serve** - evidence / demoted demos  
+   Includes **LuxiSize**, the sizing calculator, in `luxirisk/` (not the LuxiQuant Risk State Engine)  
+2. **Inference thr/J + serve** - evidence / demoted demos  
 
 ## Link targets from docs
 
@@ -55,7 +55,7 @@ Updating **public binaries and evidence** is a **LuxiDemo / GitHub** job.
 |------|------|
 | Book binaries | [`downloads/luxibook/`](downloads/luxibook/) |
 | Serve binaries | [`downloads/`](downloads/) |
-| LuxiRisk legacy demo | [`luxirisk/`](luxirisk/) |
+| LuxiSize (part of LuxiBook) | [`luxirisk/`](luxirisk/) |
 | How to run | [`DEMOS.md`](DEMOS.md) |
 | Measured tables | [`RESULTS.md`](RESULTS.md) |
 | Evidence index | [`evidence/README.md`](evidence/README.md) |

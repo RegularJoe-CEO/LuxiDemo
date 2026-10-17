@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-17: LuxiSize, part of LuxiBook
+
+LuxiSize is now part of the free LuxiBook download. Documentation only. No code,
+binaries, checksums, release assets, tags or signed test vectors changed.
+
 ## [0.2.0] - luxirisk-v0.2
 
 ### Fixed (blocking)

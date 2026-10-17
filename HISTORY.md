@@ -130,6 +130,11 @@ CPU joules from Apple powermetrics are estimates in
 record is [`RESULTS.md`](RESULTS.md). The opening page is now the product
 page. LuxiRisk is the featured download.
 
+### October 17, 2026: LuxiSize joins LuxiBook
+
+LuxiBook became the one free download, with LuxiSize as its sizing calculator.
+The LuxiQuant Risk State Engine is the only product with "risk" in its name.
+
 ## How to read old packs
 
 Use each pack’s original:

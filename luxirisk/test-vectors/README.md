@@ -1,4 +1,4 @@
-# LuxiRisk test vectors (v0.2)
+# LuxiSize test vectors (v0.2)
 
 Public **input → expected output + Ed25519-signed `lxr1_` receipt** examples.
 
@@ -7,7 +7,7 @@ Public **input → expected output + Ed25519-signed `lxr1_` receipt** examples.
 | [`vectors.json`](vectors.json) | Machine-readable suite |
 | [`verify_receipts.py`](verify_receipts.py) | Offline signature check (Python + cryptography/PyNaCl) |
 
-## Quick verify (no LuxiRisk binary)
+## Quick verify (no LuxiSize binary)
 
 ```bash
 pip install cryptography

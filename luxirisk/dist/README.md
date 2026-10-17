@@ -1,7 +1,7 @@
-# LuxiRisk v0.2 binaries (unsigned)
+# LuxiSize v0.2 binaries (unsigned)
 
-**Free legacy demo calculator** - not the LuxiQuant Risk State Engine, not LuxiBook (CSV options). Book lives at
-`../../downloads/luxibook/`.
+**Sizing calculator included with the free LuxiBook download** - not the LuxiQuant Risk State Engine, not the LuxiBook
+option pricer (CSV options), which lives at `../../downloads/luxibook/`.
 
 Closed-source evaluation binaries. Matching `.sha256` files ship beside each
 binary. **These files are not Apple-notarized and not Authenticode-signed.**

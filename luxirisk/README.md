@@ -1,11 +1,11 @@
-# LuxiRisk v0.2
+# LuxiSize v0.2
 
-**Free legacy demo calculator · closed-source · tiny offline CLI · unsigned binaries · not the LuxiQuant Risk State Engine**
+**Sizing calculator included with the free LuxiBook download · closed-source · tiny offline CLI · unsigned binaries · not the LuxiQuant Risk State Engine**
 
-> **Portfolio note (2026-08):** On luxiedge.com and this repo, **LuxiBook** is the
-> professional Quant try (CSV European options + SHA-256). **LuxiRisk v0.2 is a free legacy demo
-> calculator** - not the LuxiQuant Risk State Engine (the paid, evaluation-only product), not desk VaR.
-> Book binaries: [`../downloads/luxibook/`](../downloads/luxibook/) ·
+> **Portfolio note (2026-10-17):** LuxiSize is part of the free **LuxiBook**
+> download. It is not the LuxiQuant Risk State Engine (the paid, evaluation-only
+> product), not desk VaR.
+> LuxiBook download page: [`../downloads/luxibook/`](../downloads/luxibook/) ·
 > how to run: [`../DEMOS.md`](../DEMOS.md).
 
 Three high-frequency risk calculations for crypto / retail traders, each with a
@@ -61,7 +61,7 @@ sha256sum -c luxirisk-linux-x86_64.sha256      # Linux
 
 | OS | What you will see | What to do |
 |----|-------------------|------------|
-| **macOS** | Gatekeeper blocks an unidentified developer | **Right-click** the binary → **Open** → **Open**. Or: System Settings → **Privacy & Security** → allow LuxiRisk. |
+| **macOS** | Gatekeeper blocks an unidentified developer | **Right-click** the binary → **Open** → **Open**. Or: System Settings → **Privacy & Security** → allow the binary. |
 | **Windows** | SmartScreen: “Windows protected your PC” | Click **More info** → **Run anyway**. |
 | **Linux** | Usually no signature gate | `chmod +x` and run. |
 
@@ -106,7 +106,7 @@ luxirisk vectors            # formula + signature self-test
 | `--stamp` | **Opt-in network**: bind to latest [drand](https://drand.love) beacon |
 | `--beacon VALUE` | Offline time-binding with a user-supplied value |
 
-`--stamp` is the **only** network call LuxiRisk ever makes. Endpoint:
+`--stamp` is the **only** network call LuxiSize ever makes. Endpoint:
 
 ```text
 https://api.drand.sh/public/latest
@@ -178,7 +178,7 @@ No funding rates, Kelly, Monte Carlo, prop-firm modes, exchange connections,
 website, open-sourced engine, local UI, or paid OS code-signing for this release.
 
 No European option books, Black-Scholes Greeks, or institutional risk - that path
-is **LuxiBook**, not this legacy demo calculator.
+is the **LuxiBook** option pricer, not this sizing calculator.
 
 ## Release
 

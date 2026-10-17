@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-17: LuxiSize folded into LuxiBook
+
+LuxiBook is now the one free download. It includes LuxiSize, the sizing calculator. The LuxiQuant Risk State Engine is the only product with "risk" in its name. Documentation only. No code, binaries, checksums, release assets, tags, signed test vectors or workflows changed.
+
+| Doc | Change |
+|---|---|
+| README.md | Demos line and download section present LuxiBook with LuxiSize included |
+| DEMOS.md | LuxiSize sits under Demo 0 (LuxiBook) as "Part of LuxiBook" |
+| downloads/luxibook/README.md | New "Included: LuxiSize sizing calculator" section |
+| REPO_BOUNDARY.md, LUXI_SYSTEM.md, docs/quant-finance.md, downloads/README.txt, scripts/README.md, luxirisk/*.md | Product name in prose is LuxiSize |
+
 ## 2026-10-15: Align LuxiDemo wording with luxiedge.com
 
 The repo now uses the same product structure, names, and scoped claims as luxiedge.com. No code, binaries, hashes, or measurements changed.
