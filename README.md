@@ -48,6 +48,8 @@ Prefill versus vLLM 0.25.1 at 32767 tokens by batch 1: Luxi FA3 32,190 tok/s and
 
 Prefill versus SGLang 0.5.19 on a separate H100, same shape: Luxi c8 median `3.178e+04` tok/s and `0.02201` J/token, SGLang deterministic fp16 `2.622e+04` tok/s and `0.02652` J/token. Evidence: [`evidence/h100-qwen2-7b-vs-sglang-0.5.19-2026-09-26`](evidence/h100-qwen2-7b-vs-sglang-0.5.19-2026-09-26/).
 
+Versus NVIDIA's Nemotron-H-8B Mamba-2 hybrid on vLLM 0.25.1 (one H100 SXM, 8 WikiText prompts, greedy, batch 1, 16 and 64): Luxi (Qwen2-7B-Instruct fp16) gave identical output at every batch size on 8 of 8 prompts; the Mamba-2 hybrid did on 2 of 8 (3 of 8 with a cuTile prefill). At batch 64 end to end, Luxi was 1.36x faster with 23.7% less GPU energy per token. Different models (7B Instruct vs 8B Base, fp16 vs bf16). See [`proofs/mamba2-comparison/RESULTS.md`](proofs/mamba2-comparison/RESULTS.md).
+
 ### LuxiBook (free demo)
 
 The public 10-row `example_book.csv` hash is `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a` on the measured CPU and GPU boxes. That book is not the 1,000,000-option book. After the erfc fix, the million-option book hashed to `821adc80126a76dc3c244344a109fefd8cb1e3ebbfe56ee0458048b71280d5d9` on macOS arm64, Linux arm64, and qemu x86_64, with book total minus reference `-0.0005505851893818692`. A later row-accuracy pass on those three CPUs hashed to `3aa738c3fd9369d2c262a547dd0ba342c6e2386ab2dfcb0086256bc7d2a3ff0f`, and the max absolute row error was `3.8385300817345264e-10`. An AWS sample of 1,000,000 European options, C++ on x86 versus Graviton ARM, had 45,867 prices differ. The million-option logs are not a public binary here. Run the 10-row book from [`downloads/luxibook/`](downloads/luxibook/).
