@@ -21,7 +21,7 @@ Dorado is Oxford Nanopore Technologies' open-source basecaller. It turns the raw
 
 - Dorado 2.1.2, models v5.0.0, input `sub40.pod5` (40 reads), NVIDIA A100.
 - Dorado's FASTQ md5 was different on all 12 runs (REPORT.md, Line H). The fast-model fairness series alone showed a different md5 on each of its 6 runs.
-- Changing batch size changes Dorado's basecalls, not just metadata. On the A100, fast at batch 64 vs auto: 26,052 of 561,279 bases differ (4.64%). Hac at batch 64, 256, 512 and 1024 vs auto: 16,398 of 356,818 bases differ (4.60%), with only 1 of 41 reads identical.
+- Changing batch size changes Dorado's basecalls, not just metadata. On the A100, fast at batch 64 vs auto: 26,052 of 561,279 bases differ (4.64%). Hac at batch 64, 256, 512 and 1024 vs auto: 16,398 of 356,818 bases differ (4.60%), with only 1 of 41 output reads identical (Dorado split one of the 40 input reads into two, giving 41 output reads).
 - Same reads, A100 vs H100: fast 5.63% of bases differ, hac 4.60%. GPU vs CPU: fast about 13.6% to 13.9%, hac about 16.5%.
 
 ## Luxi hashes (FASTQ md5, first 8 hex)
