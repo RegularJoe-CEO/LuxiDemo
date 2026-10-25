@@ -30,6 +30,10 @@ shasum -a 256 -c luxirisk-macos-arm64.sha256
 
 Oasis PiWind (oasislmf 2.5.8): stock defaults produced 10 distinct hashes from 10 runs on 2 machines; Luxi produced 1 hash. On a synthetic extreme-TIV stress case, stock differed from an exact correctly rounded reference on 5,851 of 6,006 ground-up totals; Luxi differed on none. No speed or energy claim. See [`proofs/oasis-drift/OASIS_DRIFT.md`](proofs/oasis-drift/OASIS_DRIFT.md).
 
+### Genomics
+
+Oxford Nanopore Dorado 2.1.2 (A100, models v5.0.0, 40 reads): stock Dorado output md5 differed on all 12 runs; Luxi output was identical on every run and matches a CPU reference. Fast model GPU kernel time incl. decode (CUPTI, mean of 3): Luxi 246.1 vs Dorado 295.7 ms (b864), 323.7 vs 351.4 ms (b512). Hac: exact, but slower on GPU kernel time (943.5 vs 838.4 ms). See [`proofs/dorado-drift/DORADO_DRIFT.md`](proofs/dorado-drift/DORADO_DRIFT.md).
+
 ### Space and orbital
 
 Luxi f64 SGP4 is byte-identical on macOS arm64, Linux arm64, qemu Linux x86_64, and an H100 for jax100 (`26eafb2b244fc1d4e24a7f561378774cf934f3976364fd7cc402853975d7175e`) and starlink-382a419 (`42d0ca2ca598dae1553ecfae12ca8204b3dae5ceb67e9afa76e36dcb40a75c09`). A 2026-10-11 H100 relaunch matched those hashes. Whole-process medians were 0.451879 s and 0.505075 s. The GPU image is near-earth, and the OrbVeil catalog was not run on it. See [`proofs/luxi-sgp4`](proofs/luxi-sgp4/) and [`proofs/citra-gpu-h100`](proofs/citra-gpu-h100/).
