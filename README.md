@@ -8,7 +8,7 @@ LuxiEdge is deterministic numerics with receipts. Every result here is scoped to
 
 ## LuxiQuant Risk State Engine (the only commercial product)
 
-LuxiQuant Risk State Engine, powered by Risk Runtime v0.4.0, is LuxiEdge's only commercial product. LuxiQuant is LuxiEdge's primary commercial division. The Risk State Engine maintains deterministic, authenticated risk state as a scenario-by-position matrix changes. It is available only through a proprietary paid confidential evaluation under NDA, with no public runtime download or public prices: [request a confidential evaluation at luxiedge.com](https://luxiedge.com/pilot).
+LuxiQuant Risk State Engine, powered by Risk Runtime v0.4.2, is LuxiEdge's only commercial product. LuxiQuant is LuxiEdge's primary commercial division. The Risk State Engine maintains deterministic, authenticated risk state as a scenario-by-position matrix changes. It is available only through a proprietary paid confidential evaluation under NDA, with no public runtime download or public prices: [request a confidential evaluation at luxiedge.com](https://luxiedge.com/pilot).
 
 LuxiBook v0.2.1 is the free demo. It includes LuxiSize, the sizing calculator. Inference, numerical primitives, quantization, and the proofs below are evidence and research, not separate paid offers. These proofs do not validate the current Risk State Engine.
 

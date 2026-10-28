@@ -44,7 +44,7 @@ Updating **public binaries and evidence** is a **LuxiDemo / GitHub** job.
 
 ## Product order (for any public surface)
 
-0. **LuxiQuant Risk State Engine** (Risk Runtime v0.4.0) - the only commercial product; paid confidential evaluation under NDA, no public download or public prices  
+0. **LuxiQuant Risk State Engine** (Risk Runtime v0.4.2) - the only commercial product; paid confidential evaluation under NDA, no public download or public prices  
 1. **LuxiBook** - free public receipt and determinism demonstration (CSV BS/Black-76 + output-vector hash + Ed25519 `lxq2_` receipt)  
    Includes **LuxiSize**, the sizing calculator, in `luxirisk/` (not the LuxiQuant Risk State Engine)  
 2. **Inference thr/J + serve** - evidence / demoted demos  
