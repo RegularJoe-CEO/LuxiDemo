@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-28: Risk Runtime v0.4.2 version mention
+
+The LuxiQuant Risk State Engine runs on Risk Runtime v0.4.2, matching luxiedge.com. Documentation only. No code, binaries, checksums, release assets, tags, signed test vectors or workflows changed. HISTORY.md keeps its dated 2026-10-12 note as written.
+
+| Doc | Change |
+|---|---|
+| README.md, DEMOS.md, LUXI_SYSTEM.md, REPO_BOUNDARY.md | "Risk Runtime v0.4.0" now reads "Risk Runtime v0.4.2" |
+
 ## 2026-10-17: LuxiSize folded into LuxiBook
 
 LuxiBook is now the one free download. It includes LuxiSize, the sizing calculator. The LuxiQuant Risk State Engine is the only product with "risk" in its name. Documentation only. No code, binaries, checksums, release assets, tags, signed test vectors or workflows changed.

@@ -4,7 +4,7 @@ Luxi demos are distributed as **compiled evaluation binaries**. Evaluators can
 run the tools, supply inputs, inspect outputs, and compare **output vector hashes**
 (and signed calculation receipts) without receiving the private implementation source.
 
-**Portfolio:** LuxiQuant Risk State Engine (Risk Runtime v0.4.0) is the paid LuxiQuant product (evaluation-only, no public download; [luxiedge.com](https://luxiedge.com/luxiquant)). Luxi **Book** is the free public receipt and determinism demonstration. LuxiBook includes **LuxiSize**, the sizing calculator.  
+**Portfolio:** LuxiQuant Risk State Engine (Risk Runtime v0.4.2) is the paid LuxiQuant product (evaluation-only, no public download; [luxiedge.com](https://luxiedge.com/luxiquant)). Luxi **Book** is the free public receipt and determinism demonstration. LuxiBook includes **LuxiSize**, the sizing calculator.  
 This repo ships **binaries + markdown only** - marketing HTML lives on Replit (luxiedge.com), not here.
 
 ## Demo 0: LuxiBook - CSV European options + attested receipt (the Quant try)
