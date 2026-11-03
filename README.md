@@ -6,7 +6,7 @@ LuxiEdge is deterministic numerics with receipts. Every result here is scoped to
 
 [Art of Fugue](https://github.com/RegularJoe-CEO/Art-of-Fugue) runs 200,000 floating-point operations and hashes the exact results. Its README records platform libm hashes `b02237875da129b90b6355d5918b38657e4bb2e697e413124c661acd0899eb19` on macOS ARM64 and `c060c5031b1bdb7b730ad6de7639ca87fd3257009a3e3580b71b4f116158c9d6` on Linux x86_64 with an NVIDIA GPU. The LuxiEdge example in that README is `781ae6b19ca58f36bfaaedde6e605f6fc8a766701d69175cbbcd39fe20efd610` on both of those rows. Download `art_of_fugue.py` and run `python3 art_of_fugue.py`.
 
-## LuxiQuant Risk State Engine (the only commercial product)
+## LuxiQuant Risk State Engine (commercial product)
 
 LuxiQuant Risk State Engine, powered by Risk Runtime v0.4.0, is LuxiEdge's only commercial product. LuxiQuant is LuxiEdge's primary commercial division. The Risk State Engine maintains deterministic, authenticated risk state as a scenario-by-position matrix changes. It is available only through a proprietary paid confidential evaluation under NDA, with no public runtime download or public prices: [request a confidential evaluation at luxiedge.com](https://luxiedge.com/pilot).
 
