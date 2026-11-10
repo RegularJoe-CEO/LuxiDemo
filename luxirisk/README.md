@@ -46,6 +46,11 @@ From [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag
 | Windows x86_64 | `luxirisk-windows-x86_64.exe` |
 
 Each ships with a matching `.sha256`. Also compare against `SHA256SUMS`.
+
+**The release assets and the [`dist/`](dist/) copies are two different v0.2 builds with different digests.** Pair each
+download with its own checksums: for `dist/`, the `.sha256` files and `SHA256SUMS` in `dist/`; for the release, the
+release's `SHA256SUMS` (`sha256sum -c SHA256SUMS --ignore-missing`). The release's per-file `.sha256` files carry a
+`dist/` path prefix, so compare their digest by eye. Both digest sets are listed in [`../DEMOS.md`](../DEMOS.md).
 CI build provenance (unsigned binaries) is available on the release workflow run.
 
 ### 2. Verify the binary hash
