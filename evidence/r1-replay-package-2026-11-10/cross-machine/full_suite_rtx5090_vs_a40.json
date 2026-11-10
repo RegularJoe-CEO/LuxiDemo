@@ -1,0 +1,302 @@
+{
+ "command": "./luxi compare rtx5090/records/<job>.json a40/records/<job>.json (each of the 17 full-suite jobs)",
+ "jobs": 17,
+ "jobs_identical": 17,
+ "answers_identical": 136,
+ "answers": 136,
+ "tokens": [
+  546114,
+  546114
+ ],
+ "rows": [
+  {
+   "job": "bundle_a4-aime24-2024-I-1.json",
+   "exit_code": 0,
+   "outputs_identical": true,
+   "answers": 8,
+   "answers_identical": 8,
+   "tokens": [
+    26779,
+    26779
+   ],
+   "devices": [
+    "NVIDIA GeForce RTX 5090",
+    "NVIDIA A40"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": []
+  },
+  {
+   "job": "bundle_a4-aime24-2024-I-3.json",
+   "exit_code": 0,
+   "outputs_identical": true,
+   "answers": 8,
+   "answers_identical": 8,
+   "tokens": [
+    44805,
+    44805
+   ],
+   "devices": [
+    "NVIDIA GeForce RTX 5090",
+    "NVIDIA A40"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": []
+  },
+  {
+   "job": "bundle_a4-aime24-2024-II-10.json",
+   "exit_code": 0,
+   "outputs_identical": true,
+   "answers": 8,
+   "answers_identical": 8,
+   "tokens": [
+    76144,
+    76144
+   ],
+   "devices": [
+    "NVIDIA GeForce RTX 5090",
+    "NVIDIA A40"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": []
+  },
+  {
+   "job": "bundle_a4-aime24-2024-II-4.json",
+   "exit_code": 0,
+   "outputs_identical": true,
+   "answers": 8,
+   "answers_identical": 8,
+   "tokens": [
+    27660,
+    27660
+   ],
+   "devices": [
+    "NVIDIA GeForce RTX 5090",
+    "NVIDIA A40"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": []
+  },
+  {
+   "job": "bundle_a4-math500-010.json",
+   "exit_code": 0,
+   "outputs_identical": true,
+   "answers": 8,
+   "answers_identical": 8,
+   "tokens": [
+    34351,
+    34351
+   ],
+   "devices": [
+    "NVIDIA GeForce RTX 5090",
+    "NVIDIA A40"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": []
+  },
+  {
+   "job": "bundle_a4-math500-050.json",
+   "exit_code": 0,
+   "outputs_identical": true,
+   "answers": 8,
+   "answers_identical": 8,
+   "tokens": [
+    23499,
+    23499
+   ],
+   "devices": [
+    "NVIDIA GeForce RTX 5090",
+    "NVIDIA A40"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": []
+  },
+  {
+   "job": "bundle_a4-math500-090.json",
+   "exit_code": 0,
+   "outputs_identical": true,
+   "answers": 8,
+   "answers_identical": 8,
+   "tokens": [
+    15095,
+    15095
+   ],
+   "devices": [
+    "NVIDIA GeForce RTX 5090",
+    "NVIDIA A40"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": []
+  },
+  {
+   "job": "bundle_a4-math500-130.json",
+   "exit_code": 0,
+   "outputs_identical": true,
+   "answers": 8,
+   "answers_identical": 8,
+   "tokens": [
+    36154,
+    36154
+   ],
+   "devices": [
+    "NVIDIA GeForce RTX 5090",
+    "NVIDIA A40"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": []
+  },
+  {
+   "job": "bundle_a4-math500-170.json",
+   "exit_code": 0,
+   "outputs_identical": true,
+   "answers": 8,
+   "answers_identical": 8,
+   "tokens": [
+    39721,
+    39721
+   ],
+   "devices": [
+    "NVIDIA GeForce RTX 5090",
+    "NVIDIA A40"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": []
+  },
+  {
+   "job": "bundle_a4-math500-210.json",
+   "exit_code": 0,
+   "outputs_identical": true,
+   "answers": 8,
+   "answers_identical": 8,
+   "tokens": [
+    39783,
+    39783
+   ],
+   "devices": [
+    "NVIDIA GeForce RTX 5090",
+    "NVIDIA A40"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": []
+  },
+  {
+   "job": "bundle_a4-math500-250.json",
+   "exit_code": 0,
+   "outputs_identical": true,
+   "answers": 8,
+   "answers_identical": 8,
+   "tokens": [
+    13528,
+    13528
+   ],
+   "devices": [
+    "NVIDIA GeForce RTX 5090",
+    "NVIDIA A40"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": []
+  },
+  {
+   "job": "bundle_a4-math500-290.json",
+   "exit_code": 0,
+   "outputs_identical": true,
+   "answers": 8,
+   "answers_identical": 8,
+   "tokens": [
+    19887,
+    19887
+   ],
+   "devices": [
+    "NVIDIA GeForce RTX 5090",
+    "NVIDIA A40"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": []
+  },
+  {
+   "job": "bundle_a4-math500-330.json",
+   "exit_code": 0,
+   "outputs_identical": true,
+   "answers": 8,
+   "answers_identical": 8,
+   "tokens": [
+    27578,
+    27578
+   ],
+   "devices": [
+    "NVIDIA GeForce RTX 5090",
+    "NVIDIA A40"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": []
+  },
+  {
+   "job": "bundle_a4-math500-370.json",
+   "exit_code": 0,
+   "outputs_identical": true,
+   "answers": 8,
+   "answers_identical": 8,
+   "tokens": [
+    11664,
+    11664
+   ],
+   "devices": [
+    "NVIDIA GeForce RTX 5090",
+    "NVIDIA A40"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": []
+  },
+  {
+   "job": "bundle_a4-math500-410.json",
+   "exit_code": 0,
+   "outputs_identical": true,
+   "answers": 8,
+   "answers_identical": 8,
+   "tokens": [
+    11507,
+    11507
+   ],
+   "devices": [
+    "NVIDIA GeForce RTX 5090",
+    "NVIDIA A40"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": []
+  },
+  {
+   "job": "bundle_a4-math500-450.json",
+   "exit_code": 0,
+   "outputs_identical": true,
+   "answers": 8,
+   "answers_identical": 8,
+   "tokens": [
+    17498,
+    17498
+   ],
+   "devices": [
+    "NVIDIA GeForce RTX 5090",
+    "NVIDIA A40"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": []
+  },
+  {
+   "job": "bundle_a4-math500-490.json",
+   "exit_code": 0,
+   "outputs_identical": true,
+   "answers": 8,
+   "answers_identical": 8,
+   "tokens": [
+    80461,
+    80461
+   ],
+   "devices": [
+    "NVIDIA GeForce RTX 5090",
+    "NVIDIA A40"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": []
+  }
+ ]
+}
