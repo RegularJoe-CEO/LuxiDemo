@@ -1,0 +1,12 @@
+{
+ "a": "/root/swap/ref/b1_h100",
+ "b": "/root/swap/out_A40/b1",
+ "jobs": 1,
+ "jobs_outputs_identical": 1,
+ "jobs_all_fields_identical": 1,
+ "answers": 1,
+ "answers_identical_tokens_and_fingerprints": 1,
+ "tokens_in_b": 1950,
+ "engine_fields_that_differ": [],
+ "diffs": []
+}

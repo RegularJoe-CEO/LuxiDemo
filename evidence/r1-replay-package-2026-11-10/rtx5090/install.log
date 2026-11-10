@@ -1,0 +1,16 @@
+[1/5] checking this machine
+  Linux x86_64, glibc 2.39
+  GPU: NVIDIA GeForce RTX 5090, 12.0, 32607 MiB, 595.91.07
+[2/5] checking package files against SHA256SUMS
+  all files match
+[3/5] Python 3.12 environment in .venv/
+  Python 3.12.3
+[4/5] installing pinned packages (PyTorch gpu build; the GPU build is about 3 GB)
+[5/5] checking the installation
+  torch 2.13.0+cu129 | numpy 2.5.4
+  CUDA OK: NVIDIA GeForce RTX 5090 compute capability 12.0
+
+Installed. Next:
+  ./luxi fetch-model                     # 8.7 GB from Hugging Face, once; every file is checked by sha256
+  ./luxi inspect --device gpu --check-weights
+  ./luxi demo --device gpu

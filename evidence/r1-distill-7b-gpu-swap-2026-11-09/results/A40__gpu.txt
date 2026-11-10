@@ -1,0 +1,2 @@
+name, clocks.max.sm [MHz], clocks.max.memory [MHz], power.limit [W]
+NVIDIA A40, 1740 MHz, 7251 MHz, 300.00 W

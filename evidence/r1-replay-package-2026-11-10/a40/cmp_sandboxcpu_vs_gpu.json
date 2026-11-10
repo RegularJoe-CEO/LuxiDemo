@@ -1,0 +1,25 @@
+{
+ "outputs_identical": true,
+ "a_errors": [],
+ "b_errors": [],
+ "first_mismatch": null,
+ "answers": 1,
+ "answers_identical": 1,
+ "tokens_a": 32,
+ "tokens_b": 32,
+ "output_field_diffs": [],
+ "engine_or_build_field_diffs": [],
+ "other_signed_field_diffs": [],
+ "signers": [
+  "0b5a3a8de55a5ffc0dc2ca8d2db3c981133fde3fb91ca82d30ef92ede579d521",
+  "f790cd340aaca3d97d79187ab957f7db626e0a88a1586a57558430102ae61741"
+ ],
+ "devices": [
+  "unknown",
+  "NVIDIA A40"
+ ],
+ "files": [
+  "/root/lxtest/sandbox_cpu_record.json",
+  "/root/lxtest/results_a40/demo_gpu_1/bundle_tiny-math500-090_gpu-NVIDIA_A40.json"
+ ]
+}

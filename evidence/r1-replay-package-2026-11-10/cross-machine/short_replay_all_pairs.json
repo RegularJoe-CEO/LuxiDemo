@@ -1,0 +1,187 @@
+{
+ "command": "./luxi compare A.json B.json (every pair of the five 32-token replay records below)",
+ "pairs": 10,
+ "pairs_identical": 10,
+ "rows": [
+  {
+   "exit_code": 0,
+   "a": "bundle_tiny-math500-090_cpu-AMD_EPYC_7543_32_Core_Processor.json",
+   "b": "bundle_tiny-math500-090_cpu-Intel_R__Xeon_R__Gold_6342_CPU___2_80GHz.json",
+   "outputs_identical": true,
+   "answers_identical": 1,
+   "tokens": [
+    32,
+    32
+   ],
+   "devices": [
+    "AMD EPYC 7543 32-Core Processor",
+    "Intel(R) Xeon(R) Gold 6342 CPU @ 2.80GHz"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": [],
+   "output_field_diffs": []
+  },
+  {
+   "exit_code": 0,
+   "a": "bundle_tiny-math500-090_cpu-AMD_EPYC_7543_32_Core_Processor.json",
+   "b": "bundle_tiny-math500-090_cpu-unknown.json",
+   "outputs_identical": true,
+   "answers_identical": 1,
+   "tokens": [
+    32,
+    32
+   ],
+   "devices": [
+    "AMD EPYC 7543 32-Core Processor",
+    "unknown"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": [],
+   "output_field_diffs": []
+  },
+  {
+   "exit_code": 0,
+   "a": "bundle_tiny-math500-090_cpu-AMD_EPYC_7543_32_Core_Processor.json",
+   "b": "bundle_tiny-math500-090_gpu-NVIDIA_A40.json",
+   "outputs_identical": true,
+   "answers_identical": 1,
+   "tokens": [
+    32,
+    32
+   ],
+   "devices": [
+    "AMD EPYC 7543 32-Core Processor",
+    "NVIDIA A40"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": [],
+   "output_field_diffs": []
+  },
+  {
+   "exit_code": 0,
+   "a": "bundle_tiny-math500-090_cpu-AMD_EPYC_7543_32_Core_Processor.json",
+   "b": "bundle_tiny-math500-090_gpu-NVIDIA_GeForce_RTX_5090.json",
+   "outputs_identical": true,
+   "answers_identical": 1,
+   "tokens": [
+    32,
+    32
+   ],
+   "devices": [
+    "AMD EPYC 7543 32-Core Processor",
+    "NVIDIA GeForce RTX 5090"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": [],
+   "output_field_diffs": []
+  },
+  {
+   "exit_code": 0,
+   "a": "bundle_tiny-math500-090_cpu-Intel_R__Xeon_R__Gold_6342_CPU___2_80GHz.json",
+   "b": "bundle_tiny-math500-090_cpu-unknown.json",
+   "outputs_identical": true,
+   "answers_identical": 1,
+   "tokens": [
+    32,
+    32
+   ],
+   "devices": [
+    "Intel(R) Xeon(R) Gold 6342 CPU @ 2.80GHz",
+    "unknown"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": [],
+   "output_field_diffs": []
+  },
+  {
+   "exit_code": 0,
+   "a": "bundle_tiny-math500-090_cpu-Intel_R__Xeon_R__Gold_6342_CPU___2_80GHz.json",
+   "b": "bundle_tiny-math500-090_gpu-NVIDIA_A40.json",
+   "outputs_identical": true,
+   "answers_identical": 1,
+   "tokens": [
+    32,
+    32
+   ],
+   "devices": [
+    "Intel(R) Xeon(R) Gold 6342 CPU @ 2.80GHz",
+    "NVIDIA A40"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": [],
+   "output_field_diffs": []
+  },
+  {
+   "exit_code": 0,
+   "a": "bundle_tiny-math500-090_cpu-Intel_R__Xeon_R__Gold_6342_CPU___2_80GHz.json",
+   "b": "bundle_tiny-math500-090_gpu-NVIDIA_GeForce_RTX_5090.json",
+   "outputs_identical": true,
+   "answers_identical": 1,
+   "tokens": [
+    32,
+    32
+   ],
+   "devices": [
+    "Intel(R) Xeon(R) Gold 6342 CPU @ 2.80GHz",
+    "NVIDIA GeForce RTX 5090"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": [],
+   "output_field_diffs": []
+  },
+  {
+   "exit_code": 0,
+   "a": "bundle_tiny-math500-090_cpu-unknown.json",
+   "b": "bundle_tiny-math500-090_gpu-NVIDIA_A40.json",
+   "outputs_identical": true,
+   "answers_identical": 1,
+   "tokens": [
+    32,
+    32
+   ],
+   "devices": [
+    "unknown",
+    "NVIDIA A40"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": [],
+   "output_field_diffs": []
+  },
+  {
+   "exit_code": 0,
+   "a": "bundle_tiny-math500-090_cpu-unknown.json",
+   "b": "bundle_tiny-math500-090_gpu-NVIDIA_GeForce_RTX_5090.json",
+   "outputs_identical": true,
+   "answers_identical": 1,
+   "tokens": [
+    32,
+    32
+   ],
+   "devices": [
+    "unknown",
+    "NVIDIA GeForce RTX 5090"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": [],
+   "output_field_diffs": []
+  },
+  {
+   "exit_code": 0,
+   "a": "bundle_tiny-math500-090_gpu-NVIDIA_A40.json",
+   "b": "bundle_tiny-math500-090_gpu-NVIDIA_GeForce_RTX_5090.json",
+   "outputs_identical": true,
+   "answers_identical": 1,
+   "tokens": [
+    32,
+    32
+   ],
+   "devices": [
+    "NVIDIA A40",
+    "NVIDIA GeForce RTX 5090"
+   ],
+   "first_mismatch": null,
+   "engine_or_build_field_diffs": [],
+   "output_field_diffs": []
+  }
+ ]
+}

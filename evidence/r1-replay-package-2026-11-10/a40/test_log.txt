@@ -1,0 +1,38 @@
+03:28:09 START a40
+name, compute_cap, memory.total [MiB], driver_version, power.limit [W]
+NVIDIA A40, 8.6, 46068 MiB, 595.91.07, 300.00 W
+luxi-replay-demo-1.0.0-linux-x86_64.tar.gz: OK
+03:31:26 install rc=0 173 s
+  CUDA OK: NVIDIA A40 compute capability 8.6
+
+Installed. Next:
+  ./luxi fetch-model                     # 8.7 GB from Hugging Face, once; every file is checked by sha256
+  ./luxi inspect --device gpu --check-weights
+  ./luxi demo --device gpu
+03:31:47 fetch-model rc=0 21 s
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{
+ "model_dir": "/root/lxhome_a40/.cache/luxi/models/DeepSeek-R1-Distill-Qwen-7B-quantized.w8a8",
+ "download_s": 11.6,
+ "checksum_s": 8.98,
+ "files_ok": [
+  "config.json",
+  "model-00001-of-00002.safetensors",
+  "model-00002-of-00002.safetensors",
+  "tokenizer.json"
+ ]
+}
+03:31:49 inspect gpu rc=0
+03:32:09 demo gpu #1 rc=0 RESULT: SAME BYTES as the Nov 9 H100 NVL reference (Merkle root over every token id and per-step logit fingerprint)
+03:32:28 demo gpu #2 rc=0 RESULT: SAME BYTES as the Nov 9 H100 NVL reference (Merkle root over every token id and per-step logit fingerprint)
+03:32:49 demo cpu rc=0 RESULT: SAME BYTES as the Nov 9 H100 NVL reference (Merkle root over every token id and per-step logit fingerprint)
+03:32:49 compare gpu1 vs gpu2 rc=0
+03:32:49 compare gpu vs pod cpu rc=0
+03:32:49 compare sandbox cpu vs gpu rc=0
+03:32:49 verify own key rc=0
+03:32:49 verify wrong key rc=1 (expect 1)
+03:32:49 tamper-test rc=0 (expect 0 = all edits rejected)
+03:32:49 missing model rc=4 (expect 4)
+03:32:49 FULL SUITE start
+03:46:30 full-suite rc=0 821 s RESULT: 136/136 answers and 546,114 tokens identical to the signed Nov 9 H100 NVL records
+03:46:31 DONE a40

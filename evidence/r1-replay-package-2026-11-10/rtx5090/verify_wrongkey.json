@@ -1,0 +1,9 @@
+{
+ "file": "/root/lxtest/results_r5090/demo_gpu_1/bundle_tiny-math500-090_gpu-NVIDIA_GeForce_RTX_5090.json",
+ "trusted_key": "42bb6bccd2bc7d0570b44d5e068971707a704a26e8cb0294b9df12f23fdfe418",
+ "verified": false,
+ "errors": [
+  "call 0: signed by key d068dd9a7f74bcd9..., not the trusted key 42bb6bccd2bc7d05..."
+ ],
+ "calls": 1
+}

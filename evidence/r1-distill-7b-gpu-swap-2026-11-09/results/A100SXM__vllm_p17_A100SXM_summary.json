@@ -1,0 +1,15 @@
+{
+ "max_num_seqs": 0,
+ "device": "NVIDIA A100-SXM4-80GB",
+ "vllm": "0.32.0",
+ "torch": "2.13.0+cu132",
+ "bi": false,
+ "model": "/root/m_r1",
+ "max_new": 16384,
+ "secs": 213.4,
+ "board_J": 69427.8,
+ "gen_tokens": 526568,
+ "tok_s": 2467.5,
+ "J_per_tok": 0.1318,
+ "energy": "NVML board energy counter (GPU board only, not wall)"
+}

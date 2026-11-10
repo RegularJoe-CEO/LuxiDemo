@@ -1,4 +1,42 @@
-# LuxiEdge inference: Qwen2-7B on H100
+# LuxiEdge inference
+
+LuxiEdge Inference is built for reproducible inference across rented GPUs and CPUs. In the November 2026 tests below, frozen DeepSeek-R1-Distill-Qwen-7B jobs replayed on the listed GPUs and CPUs gave the same token ids and per-step logit fingerprints; other models, jobs and machines are outside this evidence. The engine source is private. What the public can do today:
+
+| You want to | Where |
+|---|---|
+| Run a real replay yourself (Linux x86_64, NVIDIA GPU or CPU) | [`downloads/luxi-replay-demo/`](downloads/luxi-replay-demo/): closed-binary package, checksums, license, exact commands |
+| Inspect the November 9 nine-GPU result | [`evidence/r1-distill-7b-gpu-swap-2026-11-09/`](evidence/r1-distill-7b-gpu-swap-2026-11-09/): per-GPU result files, the 17 signed H100 NVL records, the public key, an offline verifier, and a statement of what was not retained |
+| Inspect how the public package was tested | [`evidence/r1-replay-package-2026-11-10/`](evidence/r1-replay-package-2026-11-10/) |
+| Test the engine on your own model, workload or GPUs | Private GPU-swap evaluation: https://luxiedge.com/contact#gpu-swap-evaluation |
+
+There is no browser inference demo, and the finance demos (LuxiBook, LuxiSize) are not this inference engine. The old `luxiedge-serve` binary in [`downloads/`](downloads/) is a historical API toy with a toy generate path, not the current reasoning engine.
+
+## November 2026: DeepSeek-R1-Distill-Qwen-7B, frozen engine v27
+
+### November 9 GPU swap test (internal measurement)
+
+Frozen engine v27 (`795c71736e22e2f6`), DeepSeek-R1-Distill-Qwen-7B w8a8 (RedHatAI), RunPod.
+
+- Nine GPU types: H100 NVL, H200, A100 SXM 80GB, RTX PRO 6000 Blackwell Server Edition, RTX A6000, A40, RTX 5090, RTX 4090 and RTX 3090.
+- Each matched 136/136 sampled answers and 546,114 generated tokens, with matching recorded per-step fingerprints against the signed H100 reference, plus a separate 92/92 Qwen gate. This is 17 problems with eight samples each, not 136 distinct questions.
+- Seven CPU models: AMD EPYC 9654, 7742, 9355, 7352 and 7452; Intel Xeon Platinum 8568Y+ and Xeon Gold 6342. Each matched 2/2 small Qwen checks and the short signed R1 replay capped at 32 tokens. These CPUs did not run the full GPU workload in this evidence.
+- A40 soak: 1,502 calls, 1,239 checks, zero mismatches.
+- vLLM 0.32 normal was faster and cheaper per token wherever the tested int8 configuration ran. Its sequence matches are against its own H100 reference, not Luxi. Different sequences do not establish accuracy errors.
+- The rental-choice comparison is Luxi versus Luxi: RTX 5090 delivered about 80% of Luxi H100 throughput at about one-third of its calculated rental cost per output token. November rental rates exclude licensing and other operating costs; they are not API prices or current rental offers.
+- Internal measurements, one cloud, fixed tested configurations. Single performance runs; initial 32-slot timings include one-time compilation. NVML GPU-board energy is not facility electricity.
+
+Full table (throughput, rental cost, board energy, vLLM comparator): [`evidence/r1-distill-7b-gpu-swap-2026-11-09/README.md`](evidence/r1-distill-7b-gpu-swap-2026-11-09/README.md). That folder also states which November 9 files were retained and which were not.
+
+### November 10 public replay package test
+
+November 10, 2026 package test (internal measurement): from a clean install of this tarball, with no private source or credentials, the 32-token replay produced identical records (every token id and per-step logit fingerprint) on an RTX 5090 and an A40 (twice each), on their host CPUs (AMD EPYC 7543 and Intel Xeon Gold 6342, once each), and on a separate x86_64 sandbox CPU (twice): all 10 cross-machine pairs compared identical. Their step root begins `158ee5ae768cb633`, the 16 hex digits that survive from the November 9 H100 NVL short replay; the full November 9 short record was not recovered. The full suite matched all 136 answers and 546,114 tokens of the 17 signed November 9 H100 NVL records on the RTX 5090 (301.6 s at 32 slots) and on the A40 (799.0 s at 32 slots), and the two GPUs matched each other on all 17 jobs. On all three machines each record verified offline against that installation's public key and was rejected under a wrong key, and the tamper test rejected every tested edit (changed token, per-step fingerprint, prompt token, seed or temperature; a dropped token; a re-signed forgery). Machines: two RunPod pods and one sandbox VM. Full-suite timings are single runs. Raw outputs: [`evidence/r1-replay-package-2026-11-10/`](evidence/r1-replay-package-2026-11-10/).
+
+The package is a new build identity (`build_sha256` `9f7931d9…6694`), compiled from the same v27 source. Its GPU matrix-multiply library differs from the one used on November 9; the model, quantization, sampler and reference outputs are unchanged. It does not inherit the November 9 nine-GPU result and was validated separately: its own tested machines are listed above.
+
+## Historical: Qwen2-7B on H100 (September 2026)
+
+The results in this section concern Qwen2-7B-Instruct and earlier engine builds, measured September 25-26, 2026. Their normal-speed, deterministic-mode and quality claims do not transfer to the November v27 build or the replay package.
+
 
 **LuxiEdge keeps Qwen2-7B outputs bit-identical across every batch size we tested on an H100, runs at normal serving speed, and is faster and uses less energy than the deterministic modes of vLLM and SGLang in every test we ran.**
 
@@ -6,7 +44,7 @@ Identical outputs usually cost speed: vLLM's batch-invariant mode and SGLang's d
 
 "Every batch size we tested" means batch 1, 16 and 64 when generating tokens, and batch 1 against 16, 4 and 2 on 2k, 8k and 32k-token prompts, across repeated runs and separate processes. The [drift demo](#drift-demo) below adds batch 16, 32 and 64 on 20 more prompts, and describes one open issue seen in a long-running process. Full scope: [`TEST_SCOPE.md`](TEST_SCOPE.md).
 
-## Results
+### Results
 
 Each ratio compares Luxi with one engine on the same GPU, in alternating blocks with 6 runs per engine per test. The vLLM and SGLang comparisons come from two different H100 pods, and each row uses only the Luxi runs from its own pod.
 
@@ -26,14 +64,14 @@ Normal vLLM and SGLang are not batch-invariant: a prompt's per-step top-5 logpro
 
 Energy is GPU board energy (NVML). One model, one GPU type, single-GPU harness; see [`TEST_SCOPE.md`](TEST_SCOPE.md) for what was not tested.
 
-## Details and raw files
+### Details and raw files
 
 - Full tables, method, determinism and correctness checks: [`BENCHMARKS.md`](BENCHMARKS.md)
 - What was and wasn't tested: [`TEST_SCOPE.md`](TEST_SCOPE.md)
 - vLLM evidence, with per-run rows: [`evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/`](evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/)
 - SGLang evidence, with per-run rows: [`evidence/h100-qwen2-7b-vs-sglang-0.5.19-2026-09-26/`](evidence/h100-qwen2-7b-vs-sglang-0.5.19-2026-09-26/)
 
-## Drift demo
+### Drift demo
 
 **Under batch load and live-traffic arrivals, normal vLLM and SGLang changed the visible answer in about 8% of prompt-conditions (12 of 140 and 11 of 140). LuxiEdge's output stayed bit-identical in every condition it ran (80 of 80, with the long prompt taken from a fresh-process re-run; see the open issue below), as did the deterministic modes of vLLM and SGLang, while LuxiEdge runs at about the speed of normal vLLM and SGLang (see [Results](#results)).**
 
@@ -64,4 +102,4 @@ Open issue: the 19 shorter prompts ran in one long-running LuxiEdge process. Whe
 
 Method, per-prompt results, scripts and raw records: [`evidence/h100-qwen2-7b-drift-demo-2026-09-26/`](evidence/h100-qwen2-7b-drift-demo-2026-09-26/).
 
-Contact: Eric Waller, e@ewaller.com
+Contact: Eric Waller, eric@luxiedge.com

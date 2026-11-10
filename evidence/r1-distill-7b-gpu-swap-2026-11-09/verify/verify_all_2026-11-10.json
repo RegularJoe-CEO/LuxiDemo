@@ -1,0 +1,24 @@
+{
+ "checked_utc": "2026-11-10T03:32:18Z",
+ "command": "python3 verify/luxi_verify.py verify reference/<file> --trusted-key reference/luxi_benchmark_key_2026-11.pub",
+ "exit_codes": {
+  "bundle_a4-aime24-2024-I-1.json": 0,
+  "bundle_a4-aime24-2024-I-3.json": 0,
+  "bundle_a4-aime24-2024-II-10.json": 0,
+  "bundle_a4-aime24-2024-II-4.json": 0,
+  "bundle_a4-math500-010.json": 0,
+  "bundle_a4-math500-050.json": 0,
+  "bundle_a4-math500-090.json": 0,
+  "bundle_a4-math500-130.json": 0,
+  "bundle_a4-math500-170.json": 0,
+  "bundle_a4-math500-210.json": 0,
+  "bundle_a4-math500-250.json": 0,
+  "bundle_a4-math500-290.json": 0,
+  "bundle_a4-math500-330.json": 0,
+  "bundle_a4-math500-370.json": 0,
+  "bundle_a4-math500-410.json": 0,
+  "bundle_a4-math500-450.json": 0,
+  "bundle_a4-math500-490.json": 0
+ },
+ "all_verify": true
+}

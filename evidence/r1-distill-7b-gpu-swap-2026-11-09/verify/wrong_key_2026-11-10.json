@@ -1,0 +1,11 @@
+{
+ "file": "reference/bundle_a4-math500-090.json",
+ "trusted_key": "0000000000000000000000000000000000000000000000000000000000000001",
+ "verified": false,
+ "errors": [
+  "call 0: signed by key 42bb6bccd2bc7d05..., not the trusted key 0000000000000000..."
+ ],
+ "calls": 1
+}
+
+exit code 1

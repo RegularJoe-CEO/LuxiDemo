@@ -1,0 +1,17 @@
+luxi-replay-demo 1.0.0 (Linux x86_64)
+
+Copyright 2026 Eric Waller. Public binaries are evaluation builds.
+
+Proprietary closed binary. Free to download and use for evaluation. Engine implementation source is not published.
+The compiled engine files in engine/ (liblx_cuda.so, liblx_cpu.so and the compiled modules lx_*.so) are not licensed
+under any open-source license.
+
+Public materials in this package may be shared freely for verification and education: the wrapper (luxi, install.sh,
+cli/), the verifier (verifier/luxi_verify.py), the receipt format (engine/lx_receipt.py), fixtures, the signed
+reference records, the public key and the documentation.
+
+Not included: model weights (downloaded separately from the publisher under the publisher's license, MIT for
+RedHatAI/DeepSeek-R1-Distill-Qwen-7B-quantized.w8a8) and Python packages (installed from PyPI and download.pytorch.org
+under their own licenses). Third-party components inside this package are listed in THIRD_PARTY_NOTICES.md.
+
+Private evaluation of the engine on your own workload: https://luxiedge.com/pilot

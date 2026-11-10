@@ -1,0 +1,19 @@
+{
+ "a_errors": [],
+ "b_errors": [],
+ "field_diffs": [
+  "call 0: rope_sha256"
+ ],
+ "engine_field_diffs": [],
+ "first_divergence": null,
+ "outputs_identical": true,
+ "identical": false,
+ "files": [
+  "/root/swap/ref/bundle_tiny_h100.json",
+  "/root/swap/out_RTX4090/bundle_tiny_cpu_RTX4090.json"
+ ],
+ "devices": [
+  "NVIDIA H100 NVL",
+  "AMD EPYC 7352 24-Core Processor"
+ ]
+}

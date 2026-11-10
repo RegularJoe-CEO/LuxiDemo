@@ -1,0 +1,21 @@
+{
+ "tokens": 1950,
+ "steps": 1949,
+ "prefill_s": 0.44317476404830813,
+ "decode_s": 13.194478192133829,
+ "rows_done": 1,
+ "jobs_done": 1,
+ "pauses": 0,
+ "resumes": 0,
+ "peak_active": 1,
+ "wall_s": 13.7,
+ "board_J": 3883.2,
+ "tok_s": 142.7,
+ "J_per_tok": 1.9914,
+ "device": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+ "slots": 1,
+ "maxctx": 16823,
+ "engine_sha256": "795c71736e22e2f66935e4acc91b8040120d40528b04d84ea9daedd5a5692f36",
+ "jobs": 1,
+ "energy": "NVML board energy counter (GPU board only, not wall)"
+}

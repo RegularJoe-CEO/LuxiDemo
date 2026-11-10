@@ -1,0 +1,1 @@
+error: The full 136-answer suite runs on a GPU only (--device gpu). The CPU path in this package covers the short 32-token replay (luxi demo --device cpu); no CPU full-suite result is claimed.

@@ -1,0 +1,16 @@
+[1/5] checking this machine
+  Linux x86_64, glibc 2.35
+[2/5] checking package files against SHA256SUMS
+  all files match
+[3/5] Python 3.12 environment in .venv/
+  fetching uv 0.13.7 (Python installer from astral.sh) into .uv/
+downloading uv 0.13.7 x86_64-unknown-linux-gnu
+  Python 3.12.16
+[4/5] installing pinned packages (PyTorch cpu build; the GPU build is about 3 GB)
+[5/5] checking the installation
+  torch 2.13.0+cpu | numpy 2.5.4
+
+Installed. Next:
+  ./luxi fetch-model                     # 8.7 GB from Hugging Face, once; every file is checked by sha256
+  ./luxi inspect --device cpu --check-weights
+  ./luxi demo --device cpu

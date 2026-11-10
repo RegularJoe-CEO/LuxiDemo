@@ -1,0 +1,21 @@
+{
+ "tokens": 546114,
+ "steps": 21751,
+ "prefill_s": 2.8955155399162322,
+ "decode_s": 641.7904930997174,
+ "rows_done": 136,
+ "jobs_done": 17,
+ "pauses": 0,
+ "resumes": 0,
+ "peak_active": 64,
+ "wall_s": 648.3,
+ "board_J": 188350.6,
+ "tok_s": 842.3,
+ "J_per_tok": 0.3449,
+ "device": "NVIDIA A40",
+ "slots": 64,
+ "maxctx": 16823,
+ "engine_sha256": "795c71736e22e2f66935e4acc91b8040120d40528b04d84ea9daedd5a5692f36",
+ "jobs": 17,
+ "energy": "NVML board energy counter (GPU board only, not wall)"
+}

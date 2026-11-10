@@ -1,0 +1,21 @@
+{
+ "tokens": 1950,
+ "steps": 1949,
+ "prefill_s": 0.6801747046411037,
+ "decode_s": 24.464603800326586,
+ "rows_done": 1,
+ "jobs_done": 1,
+ "pauses": 0,
+ "resumes": 0,
+ "peak_active": 1,
+ "wall_s": 25.2,
+ "board_J": 4561.2,
+ "tok_s": 77.4,
+ "J_per_tok": 2.3391,
+ "device": "NVIDIA A100-SXM4-80GB",
+ "slots": 1,
+ "maxctx": 16823,
+ "engine_sha256": "795c71736e22e2f66935e4acc91b8040120d40528b04d84ea9daedd5a5692f36",
+ "jobs": 1,
+ "energy": "NVML board energy counter (GPU board only, not wall)"
+}

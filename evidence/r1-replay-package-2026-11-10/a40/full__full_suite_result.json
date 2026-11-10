@@ -1,0 +1,69 @@
+{
+ "device": {
+  "name": "NVIDIA A40",
+  "compute_capability": "8.6",
+  "memory_gb": 47.7,
+  "driver": "595.91.07",
+  "torch": "2.13.0+cu129",
+  "torch_cuda": "12.9",
+  "arch": "sm_86 (RTX 30 series, RTX A6000, A40)"
+ },
+ "records": "/root/lxtest/results_a40/full/records",
+ "reference": "/root/lxtest/pkg/luxi-replay-demo-1.0.0-linux-x86_64/reference/nov09_h100_nvl_signed/full_suite",
+ "wall_s": 814.8,
+ "weights_checksum_s": 0.0,
+ "run": {
+  "tokens": 546114,
+  "steps": 29551,
+  "prefill_s": 2.7752037823665887,
+  "decode_s": 792.0920692970976,
+  "rows_done": 136,
+  "jobs_done": 17,
+  "pages": 4224,
+  "page_MB": 7.34,
+  "pauses": 0,
+  "resumes": 0,
+  "rerun_tokens": 0,
+  "peak_active": 32,
+  "peak_pages": 1090,
+  "split": true,
+  "plane_pages": 64,
+  "plane_page_MB": 5.62,
+  "wall_s": 799.0,
+  "board_J": 231585.1,
+  "tok_s": 683.5,
+  "J_per_tok": 0.4241,
+  "device": "NVIDIA A40",
+  "slots": 32,
+  "maxctx": 16823,
+  "engine_sha256": "795c71736e22e2f66935e4acc91b8040120d40528b04d84ea9daedd5a5692f36",
+  "engine_mode": "LX_V20=2",
+  "jobs": 17,
+  "build": {
+   "build_sha256": "9f7931d9d5457e2f9e48241836ae741eff6100a7140d9863967f8c42417a6694",
+   "build": "luxi-replay-demo-1.0.0 gpu-gemm=cublas"
+  },
+  "deck": "default",
+  "cmb3": "default",
+  "energy": "NVML board energy counter (GPU board only, not wall)"
+ },
+ "own_records_verify": true,
+ "signer_public_key": "f790cd340aaca3d97d79187ab957f7db626e0a88a1586a57558430102ae61741",
+ "vs_nov09_h100": {
+  "a": "/root/lxtest/pkg/luxi-replay-demo-1.0.0-linux-x86_64/reference/nov09_h100_nvl_signed/full_suite",
+  "b": "/root/lxtest/results_a40/full/records",
+  "jobs": 17,
+  "jobs_outputs_identical": 17,
+  "answers": 136,
+  "answers_identical": 136,
+  "tokens_a": 546114,
+  "tokens_b": 546114,
+  "missing_in_b": [],
+  "engine_or_build_field_diffs": [
+   "build",
+   "build_sha256"
+  ],
+  "mismatches": [],
+  "all_outputs_identical": true
+ }
+}

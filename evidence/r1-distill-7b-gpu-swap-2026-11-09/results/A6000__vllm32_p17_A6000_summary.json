@@ -1,0 +1,15 @@
+{
+ "max_num_seqs": 32,
+ "device": "NVIDIA RTX A6000",
+ "vllm": "0.32.0",
+ "torch": "2.13.0+cu132",
+ "bi": false,
+ "model": "/root/m_r1",
+ "max_new": 16384,
+ "secs": 542.7,
+ "board_J": 158765.9,
+ "gen_tokens": 503476,
+ "tok_s": 927.7,
+ "J_per_tok": 0.3153,
+ "energy": "NVML board energy counter (GPU board only, not wall)"
+}

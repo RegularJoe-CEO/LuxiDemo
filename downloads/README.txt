@@ -11,7 +11,12 @@ Layout
     *.sha256
     README.md
 
-  luxiedge-serve-macos-arm64    Inference serve API demo (demoted)
+  luxi-replay-demo/             Luxi inference replay demo 1.0.0 (Linux x86_64, NVIDIA GPU or CPU)
+    luxi-replay-demo-1.0.0-linux-x86_64.tar.gz
+    luxi-replay-demo-1.0.0-linux-x86_64.tar.gz.sha256
+    LICENSE.txt  THIRD_PARTY_NOTICES.md  README.md
+
+  luxiedge-serve-macos-arm64    Historical API toy (version-100 serve); not the current reasoning engine
   luxiedge-serve-linux-x86_64
   *.sha256
 
@@ -19,13 +24,14 @@ Layout
 
 LuxiSize, the sizing calculator included with LuxiBook, has its binaries under
 ../luxirisk/dist/ (not this folder).
-Numerical v3.0 demos (luxiedge-demo, luxi-tools) are on the GitHub v3.0 release.
+Numerical v3.0 demos (luxiedge-demo, luxi-tools) are on the GitHub v3.0 release. That release
+describes 10-day-expiring demo binaries: historical, not current working packages, not inference.
 
 This repository is binaries + evidence + markdown only.
 The marketing website https://luxiedge.com is deployed from Replit — not from this repo.
 
 ----------------------------------------------------------------------------
-A) Luxi Book (sale / professional try)
+A) LuxiBook (free demo, includes LuxiSize)
 ----------------------------------------------------------------------------
 
 # Mac CPU
@@ -42,19 +48,47 @@ shasum -a 256 -c luxibook/luxi-book-macos-arm64.sha256
 ./luxibook/luxi-book-linux-x86_64-cuda price \
   --book luxibook/example_book.csv --out report.csv --receipt receipt.json --mode gpu
 
-Measured receipt on example_book.csv only:
+Measured output hash on example_book.csv only:
   4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a
-  (Mini CPU · Linux CPU · A100 · H100 · H200). Not a universal GPU claim.
+  v0.2.1 matrix, 2026-08-16: H200 · H100 · A100 · RTX 5090 · RTX 4090, CPU and CUDA pricing
+  paths, 20 signed receipts across two books (luxibook/evidence/v0.2.1-phi-fix-matrix/).
+  Not a universal GPU claim, and separate from the November inference results.
 
 Unsigned binaries: macOS right-click → Open.
 
 ----------------------------------------------------------------------------
-B) LuxiEdge serve (inference API demo — not Book)
+B) Luxi inference replay demo 1.0.0 (current inference download)
 ----------------------------------------------------------------------------
 
-Product: LuxiEdge version-100 commercial demo binary
-What this is: OpenAI-shaped HTTP server (demo build, toy generate path)
-What this is not: Engine source, CUDA TRADE kernels, full model weights, Luxi Book
+Closed binary, evaluation license, engine source private. Linux x86_64, glibc 2.34+.
+NVIDIA GPU (compute capability 8.0/8.6/8.9/9.0/12.0, driver 570+) or an x86_64 CPU (short replay only;
+tested on AMD EPYC 7543, Intel Xeon Gold 6342 and one sandbox CPU).
+Full instructions, tested machines and identities: luxi-replay-demo/README.md
+
+  Pinned direct link:
+  https://github.com/RegularJoe-CEO/LuxiDemo/raw/32d85ac1891eba4d03b7dc365690acaea78b5aea/downloads/luxi-replay-demo/luxi-replay-demo-1.0.0-linux-x86_64.tar.gz
+
+  cd luxi-replay-demo
+  sha256sum -c luxi-replay-demo-1.0.0-linux-x86_64.tar.gz.sha256
+  # b1f6cf0b024f0270223807662ebc15d72191db4838c408bf6727400c5ec539c9
+  tar xzf luxi-replay-demo-1.0.0-linux-x86_64.tar.gz
+  cd luxi-replay-demo-1.0.0-linux-x86_64
+  sha256sum -c SHA256SUMS
+  ./install.sh --gpu            # or --cpu
+  ./luxi fetch-model            # 8.7 GB from Hugging Face, sha256-checked
+  ./luxi demo --device gpu      # or --device cpu
+  ./luxi full-suite --device gpu
+
+Private GPU-swap evaluation on your own workload: https://luxiedge.com/contact#gpu-swap-evaluation
+
+----------------------------------------------------------------------------
+C) LuxiEdge serve (historical API toy; not Book, not the current engine)
+----------------------------------------------------------------------------
+
+Product: LuxiEdge version-100 serve demo binary (July 2026)
+What this is: OpenAI-shaped HTTP server with a toy generate path, kept for its API shape
+What this is not: the current reasoning engine, the benchmarked engine, engine source,
+CUDA TRADE kernels, full model weights, Luxi Book
 
 # macOS Apple Silicon
 chmod +x luxiedge-serve-macos-arm64
@@ -77,16 +111,19 @@ a luxi block with the SHA-256 token_receipt of the generated tokens and the
 request latency_ms. /v1/gtm returns build info, a determinism note and a link
 to BENCHMARKS.md; /health includes build_version and the benchmarks link; the
 /dashboard top card links to BENCHMARKS.md.
-Measured H100 results: ../BENCHMARKS.md. Board joules ≠ wall-plug.
+The toy path does not run the benchmarked engine. Historical September H100 results:
+../BENCHMARKS.md. Board joules ≠ wall-plug.
 
 Verify:
   shasum -a 256 -c luxiedge-serve-macos-arm64.sha256
 
 ----------------------------------------------------------------------------
-C) LuxiSize (part of LuxiBook)
+D) LuxiSize (part of LuxiBook)
 ----------------------------------------------------------------------------
 
 See ../luxirisk/ and release tag luxirisk-v0.2.
 Sizing calculator CLI + lxr1_ receipts. Not the option book pricer, not the LuxiQuant Risk State Engine.
+The ../luxirisk/dist/ binaries and the luxirisk-v0.2 release assets are different builds with
+different digests. Check each with its own checksums (see ../DEMOS.md, LuxiSize section).
 
-Contact: e@ewaller.com · https://luxiedge.com
+Contact: eric@luxiedge.com · https://luxiedge.com

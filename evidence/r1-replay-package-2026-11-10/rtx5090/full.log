@@ -1,0 +1,50 @@
+full suite: 17 problems x 8 samples = 136 answers, up to 16,384 tokens each, on NVIDIA GeForce RTX 5090 (32 slots, reserve 19.0 GB). Records: /root/lxtest/results_r5090/full/records
+17 jobs to run (0 already done)
+start 2026-11-10T03:32:21Z device NVIDIA GeForce RTX 5090 slots 32 maxctx 16823 rows 136 engine 795c71736e22e2f6 LX_V20=2 pages 1877 (7.34 MB each)
+  t=     30s rows 3/136 jobs 0/17 active 32 tokens 96547 tok/s 3218 J 12199 pages 733/1877 pauses 0
+  t=     60s rows 30/136 jobs 2/17 active 32 tokens 186686 tok/s 3111 J 25314 pages 695/1877 pauses 0
+  t=     90s rows 50/136 jobs 4/17 active 32 tokens 273202 tok/s 3035 J 38769 pages 872/1877 pauses 0
+  t=    120s rows 72/136 jobs 4/17 active 32 tokens 352520 tok/s 2938 J 52786 pages 839/1877 pauses 0
+  t=    150s rows 108/136 jobs 8/17 active 28 tokens 435067 tok/s 2900 J 66507 pages 684/1877 pauses 0
+  t=    180s rows 126/136 jobs 14/17 active 10 tokens 483870 tok/s 2688 J 79207 pages 345/1877 pauses 0
+  t=    210s rows 127/136 jobs 14/17 active 9 tokens 514885 tok/s 2452 J 91890 pages 538/1877 pauses 0
+  t=    240s rows 133/136 jobs 16/17 active 3 tokens 534993 tok/s 2229 J 103932 pages 228/1877 pauses 0
+  t=    270s rows 135/136 jobs 16/17 active 1 tokens 542539 tok/s 2009 J 114663 pages 101/1877 pauses 0
+  t=    300s rows 135/136 jobs 16/17 active 1 tokens 545956 tok/s 1820 J 125034 pages 128/1877 pauses 0
+DONE {"tokens": 546114, "steps": 29551, "prefill_s": 1.564, "decode_s": 296.557, "rows_done": 136, "jobs_done": 17, "pages": 1877, "page_MB": 7.34, "pauses": 0, "resumes": 0, "rerun_tokens": 0, "peak_active": 32, "peak_pages": 1090, "split": true, "plane_pages": 64, "plane_page_MB": 5.62, "wall_s": 301.6, "board_J": 125541.9, "tok_s": 1810.5, "J_per_tok": 0.23, "device": "NVIDIA GeForce RTX 5090", "slots": 32, "maxctx": 16823, "engine_sha256": "795c71736e22e2f66935e4acc91b8040120d40528b04d84ea9daedd5a5692f36", "engine_mode": "LX_V20=2", "jobs": 17, "build": {"build_sha256": "9f7931d9d5457e2f9e48241836ae741eff6100a7140d9863967f8c42417a6694", "build": "luxi-replay-demo-1.0.0 gpu-gemm=cublas"}, "deck": "default", "cmb3": "default", "energy": "NVML board energy counter (GPU board only, not wall)"}
+{
+ "device": {
+  "name": "NVIDIA GeForce RTX 5090",
+  "compute_capability": "12.0",
+  "memory_gb": 33.7,
+  "driver": "595.91.07",
+  "torch": "2.13.0+cu129",
+  "torch_cuda": "12.9",
+  "arch": "sm_120 (RTX 50 series, RTX PRO 6000 Blackwell)"
+ },
+ "records": "/root/lxtest/results_r5090/full/records",
+ "reference": "/root/lxtest/pkg/luxi-replay-demo-1.0.0-linux-x86_64/reference/nov09_h100_nvl_signed/full_suite",
+ "wall_s": 331.3,
+ "weights_checksum_s": 0.0,
+ "own_records_verify": true,
+ "signer_public_key": "d068dd9a7f74bcd9038edbb5e6f0136d88ec4e5226ec24459950934229413643",
+ "vs_nov09_h100": {
+  "a": "/root/lxtest/pkg/luxi-replay-demo-1.0.0-linux-x86_64/reference/nov09_h100_nvl_signed/full_suite",
+  "b": "/root/lxtest/results_r5090/full/records",
+  "jobs": 17,
+  "jobs_outputs_identical": 17,
+  "answers": 136,
+  "answers_identical": 136,
+  "tokens_a": 546114,
+  "tokens_b": 546114,
+  "missing_in_b": [],
+  "engine_or_build_field_diffs": [
+   "build",
+   "build_sha256"
+  ],
+  "mismatches": [],
+  "all_outputs_identical": true
+ }
+}
+
+RESULT: 136/136 answers and 546,114 tokens identical to the signed Nov 9 H100 NVL records

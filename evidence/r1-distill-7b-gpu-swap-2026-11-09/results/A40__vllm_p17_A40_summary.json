@@ -1,0 +1,14 @@
+{
+ "device": "NVIDIA A40",
+ "vllm": "0.32.0",
+ "torch": "2.13.0+cu132",
+ "bi": false,
+ "model": "/root/m_r1",
+ "max_new": 16384,
+ "secs": 470.8,
+ "board_J": 132861.3,
+ "gen_tokens": 509377,
+ "tok_s": 1082.0,
+ "J_per_tok": 0.2608,
+ "energy": "NVML board energy counter (GPU board only, not wall)"
+}

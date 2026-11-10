@@ -1,0 +1,19 @@
+luxi-replay-demo-1.0.0-linux-x86_64.tar.gz: OK
+03:28:28 tarball sha rc=0
+03:28:29 SHA256SUMS rc=0 files=59
+03:29:11 install --cpu rc=0 42 s
+03:29:15 inspect rc=0
+03:29:59 demo cpu rc=0 RESULT: SAME BYTES as the Nov 9 H100 NVL reference (Merkle root over every token id and per-step logit fingerprint)
+03:30:12 demo cpu #2 rc=0 RESULT: SAME BYTES as the Nov 9 H100 NVL reference (Merkle root over every token id and per-step logit fingerprint)
+03:30:15 demo gpu on no-GPU box rc=3 (expect 3)
+03:30:17 install pub 
+03:30:18 verify own rc=0
+03:30:18 verify wrong key rc=1 (expect 1)
+03:30:18 tamper own rc=0
+03:30:18 compare run1 run2 rc=0
+03:30:18 compare rc1 sandbox vs final sandbox rc=0
+03:30:18 verify nov09 ref rc=0
+03:30:19 tamper nov09 rc=0
+03:30:19 full-suite cpu rc=2 (expect 2)
+03:30:19 missing model rc=4 (expect 4)
+03:30:19 DONE

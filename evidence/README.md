@@ -4,6 +4,28 @@ This index separates **current claims**, **working demonstrations**, and
 **historical research**. Historical packs remain available because they explain
 the development path and preserve both wins and losses.
 
+## Inference, November 2026 (current)
+
+Overview: [`../INFERENCE.md`](../INFERENCE.md) · scope: [`../TEST_SCOPE.md`](../TEST_SCOPE.md) · package: [`../downloads/luxi-replay-demo/`](../downloads/luxi-replay-demo/)
+
+### R1 replay package clean-install test - 2026-11-10
+
+[`r1-replay-package-2026-11-10/`](r1-replay-package-2026-11-10/) · complete for this test: every replay record, comparison and log is retained (per-install private keys and the downloaded model files are not)
+
+- Package `luxi-replay-demo-1.0.0-linux-x86_64.tar.gz`, sha256 `b1f6cf0b…39c9`, build `9f7931d9…6694` (a new build identity, not the November 9 binaries)
+- 32-token replay: identical records on RTX 5090, A40, AMD EPYC 7543, Intel Xeon Gold 6342 and a sandbox x86_64 CPU (all 10 cross-machine pairs); step root matches the surviving 16-hex-digit prefix of the November 9 H100 NVL short replay, whose full record was not recovered
+- Full suite: 136/136 answers and 546,114 tokens identical to the signed November 9 H100 NVL records on RTX 5090 and A40, and identical to each other job by job
+- Offline verify, wrong-key rejection and rejection of every tested tamper edit on all three machines
+
+### DeepSeek-R1-Distill-Qwen-7B GPU swap test - 2026-11-09
+
+[`r1-distill-7b-gpu-swap-2026-11-09/`](r1-distill-7b-gpu-swap-2026-11-09/) · partial: see its Completeness section
+
+- Nine GPU types each matched 136/136 sampled answers and 546,114 generated tokens against the signed H100 NVL reference, plus a separate 92/92 Qwen gate; 17 problems x 8 samples, not 136 distinct questions
+- Seven CPU models each matched 2/2 small Qwen checks and the short signed R1 replay capped at 32 tokens; they did not run the full GPU workload
+- vLLM 0.32 normal was faster and cheaper per token wherever the tested int8 configuration ran
+- Includes every per-GPU comparison, gate, CPU-check and soak file, the 17 signed H100 NVL records, the public key and an offline verifier. The per-GPU answer bundles are not in the recovered archive
+
 ## Luxi Book - Quant receipt (public try)
 
 Not a thr/J pack. Closed binaries + measured SHA-256 on one example book:
@@ -13,17 +35,18 @@ Not a thr/J pack. Closed binaries + measured SHA-256 on one example book:
 | Workload | `example_book.csv` · European BS / Black-76 · five Greeks |
 | Receipt | `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a` |
 | ATM_CALL | `10.4505835721856215` |
-| Boxes | Mac Mini CPU · RunPod x86 CPU · A100 · H100 · H200 (two GPU runs each) |
+| Boxes (current, v0.2.1) | H200 · H100 · A100 · RTX 5090 · RTX 4090, each on the CPU and CUDA pricing paths: 20 signed receipts across two books ([`../downloads/luxibook/evidence/v0.2.1-phi-fix-matrix/`](../downloads/luxibook/evidence/v0.2.1-phi-fix-matrix/)) |
+| Boxes (historical, pre-fix) | Mac Mini CPU · RunPod x86 CPU · A100 · H100 · H200 (two GPU runs each), 2026-08-15 |
 | Binaries | [`../downloads/luxibook/`](../downloads/luxibook/) |
-| Date | 2026-08-15 |
+| Date | 2026-08-16 (v0.2.1 matrix) |
 
 **Non-claim:** this book / these boxes / this kernel - not universal CPU↔GPU.
 
 Tables: [`../RESULTS.md`](../RESULTS.md) · how to run: [`../DEMOS.md`](../DEMOS.md)
 
-## Current transformer measurements
+## Historical transformer measurements (September 2026)
 
-Overview: [`../INFERENCE.md`](../INFERENCE.md) · what was and wasn't tested: [`../TEST_SCOPE.md`](../TEST_SCOPE.md)
+Qwen2-7B-Instruct and earlier engine builds. These speed, energy and determinism results do not transfer to the November v27 build or the replay package. Overview: [`../INFERENCE.md`](../INFERENCE.md#historical-qwen2-7b-on-h100-september-2026) · scope: [`../TEST_SCOPE.md`](../TEST_SCOPE.md)
 
 ### Qwen2-7B vs vLLM 0.25.1 on H100 - 2026-09-25/26
 
@@ -80,8 +103,10 @@ transformer inference and from the option book.
 
 | Surface | Public status |
 |---|---|
+| R1 replay package 1.0.0 | Public closed binary; RTX 5090, A40 and three CPUs tested on 2026-11-10, raw outputs retained |
+| R1 GPU swap test, 2026-11-09 | Per-GPU comparison files and the signed H100 NVL reference public; per-GPU answer bundles not recovered |
 | Luxi Book example receipt | Measured on listed boxes; public binaries |
-| Faithful Qwen2-7B CUDA | Website reports current limited acceptance result; raw public pack still required |
+| Faithful Qwen2-7B CUDA (historical) | Website reported a limited acceptance result; raw public pack still required |
 | Llama 3.1 resident inference | Internal correctness milestone; no public performance/energy claim |
 
 ## Historical H100 research

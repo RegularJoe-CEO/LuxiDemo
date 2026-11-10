@@ -1,0 +1,13 @@
+downloading RedHatAI/DeepSeek-R1-Distill-Qwen-7B-quantized.w8a8 @ 925259de674c80799e9455bfcd2bf50f999022cb to /root/lxhome_r5090/.cache/luxi/models/DeepSeek-R1-Distill-Qwen-7B-quantized.w8a8 (about 8.7 GB, once)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{
+ "model_dir": "/root/lxhome_r5090/.cache/luxi/models/DeepSeek-R1-Distill-Qwen-7B-quantized.w8a8",
+ "download_s": 25.0,
+ "checksum_s": 6.2,
+ "files_ok": [
+  "config.json",
+  "model-00001-of-00002.safetensors",
+  "model-00002-of-00002.safetensors",
+  "tokenizer.json"
+ ]
+}

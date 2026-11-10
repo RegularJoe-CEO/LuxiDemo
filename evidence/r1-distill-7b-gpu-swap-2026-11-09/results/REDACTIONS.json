@@ -1,0 +1,500 @@
+{
+ "note": "Public extracts of the Nov 9 Luxi run summaries. Internal memory-layout and engine-mode fields were removed; no value was changed or added. original_sha256 identifies each unredacted file in the private record.",
+ "files": {
+  "results/A100SXM__luxi_b1_summary.json": {
+   "original_sha256": "47692e885b24ef9fb2cf2c31e3d1ef9f0f3434f9f589f02d7397c278e371078f",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/A100SXM__luxi_b1w_summary.json": {
+   "original_sha256": "2927d6d339f7131064928c79befa5bdbb05d1867a6a61adae2fba659bff776f5",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/A100SXM__luxi_p17_summary.json": {
+   "original_sha256": "d6eb0770f2a9fd6c4dbd1ef2a4dcd46d42d362f7e7ffd33a95691a05f35ad9fb",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/A100SXM__luxi_p17s128_summary.json": {
+   "original_sha256": "efe48333760c2ee6b2cc108eb08749b577bcee508d924c48f80cd2a1fc416d4d",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/A40__luxi_b1_summary.json": {
+   "original_sha256": "8bae23b62f1ff36f783e8ad5bfb752e3d600e30be1cf7956bdbe3de5b0139a99",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/A40__luxi_b1w_summary.json": {
+   "original_sha256": "92055d0a2d9d7bf93dbdd73685eec3ca2759644c47e3b99864886667562d7d55",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/A40__luxi_p17_summary.json": {
+   "original_sha256": "f7194bbeea4145fe29f23345e831f60538aa3bc7fb534235fee3bbd2c6c13d6b",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/A40__luxi_p17s64_summary.json": {
+   "original_sha256": "82ffa5a358c49e3ab0d3d3dd77c980b9fe3764772bcef4eda0123e54b59def20",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/A6000__luxi_b1_summary.json": {
+   "original_sha256": "6ed3baf6352497e684ccdead822081dde023c7b8b3354fdfdbd2d4343ed17651",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/A6000__luxi_b1w_summary.json": {
+   "original_sha256": "528e78fa3cca7a0405405bd6f93d3cb94d8cada49de98f220226303f12ee4a61",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/A6000__luxi_p17_summary.json": {
+   "original_sha256": "5e791bb9a7e8f76c71451b83b3486f4937eda306b9838f2fee1db8631e74932d",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/H200__luxi_b1_summary.json": {
+   "original_sha256": "3e958431227969bc2a156617dbd061f437d8b2f4169c40f0c9653423f4f000c0",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/H200__luxi_b1w_summary.json": {
+   "original_sha256": "9bb47a09596960dd0f04f858bf92d11396b00c2606d275136ac522f5b1817f27",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/H200__luxi_p17_summary.json": {
+   "original_sha256": "aeff65b7b163946dc3d38fd04b7c31a0fa5c7c1205362f6494774f8303bcdf8c",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/NVL__luxi_b1_summary.json": {
+   "original_sha256": "6a5372cf191410c74a6ef23cc2574cab7c957eab3677f4a989ebfa6b118fd514",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/NVL__luxi_b1w_summary.json": {
+   "original_sha256": "ca68b6e54af4c7c5967e9cf5deb008d32c9d6452e033311ddcc1000c8eccc133",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/NVL__luxi_p17_summary.json": {
+   "original_sha256": "759738f5deee5d7365e81e85d5bdb64747908b63beae427e2841310d8f600a18",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/NVL__luxi_p17s128_summary.json": {
+   "original_sha256": "c18613faf2871c931be44a0354686513f2f65ed412c59309b4b35560830a2b36",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/PRO6000__luxi_b1_summary.json": {
+   "original_sha256": "75d1dbd6ae22136510b2f65a5ff94532479083ad6c6557f74530accec348bc66",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/PRO6000__luxi_b1w_summary.json": {
+   "original_sha256": "2bfd9e90b7dada54ab33ff07fe61a7150f2ca398f90ab38420a8246f7f69e522",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/PRO6000__luxi_p17_summary.json": {
+   "original_sha256": "cd126efaa6be36947a82e21b8b9b3111167f189f3fe6e7a4243ae83eea832596",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/RTX3090__luxi_b1_summary.json": {
+   "original_sha256": "eff89267cc902619ebe6baf48b2dc21b3ea0b108791088b33a0dd31fb202f1f6",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/RTX3090__luxi_b1w_summary.json": {
+   "original_sha256": "a5158aad8780be291c232345d81d17d7fc6051f1c19cd2239078a53cd11111fe",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/RTX3090__luxi_p17_summary.json": {
+   "original_sha256": "9436ea94c911d527f3206dfef624f6324e5fc071ba7969a571c9b5d729c18dad",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/RTX3090__luxi_p17s64_summary.json": {
+   "original_sha256": "fa2f3d5ba30e8d6494695cf480e4c15574e766c3ef773ab4ad256c2e89b458c6",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/RTX4090__luxi_b1_summary.json": {
+   "original_sha256": "54fb5e25979a0bb5227405e7c5573a09c76a9757b5aa42064e32e1dea6307d21",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/RTX4090__luxi_b1w_summary.json": {
+   "original_sha256": "aa26d033bc89111a1313023a25de8a0c36d039b2b43da1f39a4ac1e23e487b5f",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/RTX4090__luxi_p17_summary.json": {
+   "original_sha256": "689ca2fb12b47d9309b75d91e2cf539e57d81795bb52df3d0cae68812d210532",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/RTX4090__luxi_p17s64_summary.json": {
+   "original_sha256": "283f937a91c546c399e9c6ca655d998204c0320c87b63406cea499f8fb891b38",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/RTX5090__luxi_b1_summary.json": {
+   "original_sha256": "62a444af3ccd1179e169e77d1699b84aa5ec3d9619295e5e10ccaf11ccbacb91",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/RTX5090__luxi_b1w_summary.json": {
+   "original_sha256": "1b1a35660532723bd2e49c3781470d6d0737f3dc2023518bce5d4f2908308215",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/RTX5090__luxi_p17_summary.json": {
+   "original_sha256": "ba0429700a7d8d1dc2051ceba8a25060383fed902595e522b23043c5e738cc2d",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  },
+  "results/RTX5090__luxi_p17s64_summary.json": {
+   "original_sha256": "dafb65aeeb0c4022abc47c09ea51c53215efc6f1d71dd43350c458eac3d3d3c9",
+   "removed_fields": [
+    "cmb3",
+    "deck",
+    "engine_mode",
+    "page_MB",
+    "pages",
+    "peak_pages",
+    "plane_page_MB",
+    "plane_pages",
+    "rerun_tokens",
+    "split"
+   ]
+  }
+ }
+}

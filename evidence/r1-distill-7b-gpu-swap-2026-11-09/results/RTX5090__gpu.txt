@@ -1,0 +1,2 @@
+name, clocks.max.sm [MHz], clocks.max.memory [MHz], power.limit [W]
+NVIDIA GeForce RTX 5090, 3090 MHz, 14001 MHz, 520.00 W

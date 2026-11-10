@@ -1,0 +1,2 @@
+name, clocks.max.sm [MHz], clocks.max.memory [MHz], power.limit [W]
+NVIDIA A100-SXM4-80GB, 1410 MHz, 1593 MHz, 400.00 W
