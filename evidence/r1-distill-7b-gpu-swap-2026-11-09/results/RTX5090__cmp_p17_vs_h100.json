@@ -1,0 +1,12 @@
+{
+ "a": "/root/swap/ref/p17_h100",
+ "b": "/root/swap/out_RTX5090/p17",
+ "jobs": 17,
+ "jobs_outputs_identical": 17,
+ "jobs_all_fields_identical": 17,
+ "answers": 136,
+ "answers_identical_tokens_and_fingerprints": 136,
+ "tokens_in_b": 546114,
+ "engine_fields_that_differ": [],
+ "diffs": []
+}

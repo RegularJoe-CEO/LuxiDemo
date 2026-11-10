@@ -1,0 +1,2 @@
+name, clocks.max.sm [MHz], clocks.max.memory [MHz], power.limit [W]
+NVIDIA GeForce RTX 4090, 3135 MHz, 10501 MHz, 450.00 W

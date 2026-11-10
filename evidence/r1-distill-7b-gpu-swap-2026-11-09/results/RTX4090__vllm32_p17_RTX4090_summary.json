@@ -1,0 +1,15 @@
+{
+ "max_num_seqs": 32,
+ "device": "NVIDIA GeForce RTX 4090",
+ "vllm": "0.32.0",
+ "torch": "2.13.0+cu132",
+ "bi": false,
+ "model": "/root/m_r1",
+ "max_new": 16384,
+ "secs": 462.4,
+ "board_J": 130154.8,
+ "gen_tokens": 555583,
+ "tok_s": 1201.5,
+ "J_per_tok": 0.2343,
+ "energy": "NVML board energy counter (GPU board only, not wall)"
+}
