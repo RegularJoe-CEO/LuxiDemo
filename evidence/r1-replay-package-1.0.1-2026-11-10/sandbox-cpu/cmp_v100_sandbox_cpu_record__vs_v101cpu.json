@@ -1,0 +1,25 @@
+{
+ "outputs_identical": true,
+ "a_errors": [],
+ "b_errors": [],
+ "first_mismatch": null,
+ "answers": 1,
+ "answers_identical": 1,
+ "tokens_a": 32,
+ "tokens_b": 32,
+ "output_field_diffs": [],
+ "engine_or_build_field_diffs": [],
+ "other_signed_field_diffs": [],
+ "signers": [
+  "0b5a3a8de55a5ffc0dc2ca8d2db3c981133fde3fb91ca82d30ef92ede579d521",
+  "e66b5033da9506e58b2db4032e2595a37af4f91bc4c14e057eeee28aa8f9d2e2"
+ ],
+ "devices": [
+  "unknown",
+  "unknown"
+ ],
+ "files": [
+  "/home/user/scratch/demo_build/sandbox_cpu_record.json",
+  "luxi_out/bundle_tiny-math500-090_cpu-unknown.json"
+ ]
+}

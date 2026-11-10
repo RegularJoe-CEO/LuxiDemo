@@ -1,0 +1,1 @@
+error: /home/user/scratch/demo_build/LuxiDemo/evidence/r1-replay-package-2026-11-10/cross-machine/bundle_tiny-math500-090_cpu-AMD_EPYC_7543_32_Core_Processor.summary.json is not a signed Luxi record (pass the bundle_*.json file, not a summary file)

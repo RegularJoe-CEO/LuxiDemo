@@ -1,0 +1,42 @@
+luxi-replay-demo-1.0.1-linux-x86_64.tar.gz: OK
+15:02:35 SHA256SUMS rc=0 ok=60
+15:02:43 install rc=0 8 s
+15:02:45 inspect cpu rc=0
+15:03:12 demo cpu #1 rc=0 | RESULT: SAME OUTPUTS as the signed Nov 9 H100 NVL record: all 32 token ids and per-step logit
+15:03:12 README 3 verify (pattern) rc=0
+15:03:12 README 3 verify nov09 rc=0
+15:03:12 README 3 wrong key rc=1 (expect 1)
+15:03:12 README 3 tamper-test rc=0
+15:03:12 README 4 compare (pattern, RTX 5090 1.0.0 vs this CPU) rc=0
+15:03:12 Nov 9 short record sha256 rc=0
+15:03:13 verify Nov 9 short record (benchmark key) rc=0
+15:03:13 README compare vs Nov 9 record rc=0
+15:03:13 compare Nov 9 bundle_tiny_cpu_A100SXM vs this CPU rc=0
+15:03:13 compare Nov 9 bundle_tiny_cpu_A40 vs this CPU rc=0
+15:03:13 compare Nov 9 bundle_tiny_cpu_A6000 vs this CPU rc=0
+15:03:13 compare Nov 9 bundle_tiny_cpu_H200 vs this CPU rc=0
+15:03:13 compare Nov 9 bundle_tiny_cpu_NVL vs this CPU rc=0
+15:03:13 compare Nov 9 bundle_tiny_cpu_PRO6000 vs this CPU rc=0
+15:03:13 compare Nov 9 bundle_tiny_cpu_RTX3090 vs this CPU rc=0
+15:03:13 compare Nov 9 bundle_tiny_cpu_RTX4090 vs this CPU rc=0
+15:03:13 compare Nov 9 bundle_tiny_cpu_RTX5090 vs this CPU rc=0
+15:03:28 demo with an altered Nov 9 reference rc=1 (expect 1): RESULT: NO MATCH with the signed Nov 9 H100 NVL record (first difference: {'call': 0, 'row': 0, 'step': 5, 'to
+15:03:29 SHA256SUMS after restoring the reference rc=0
+15:03:44 demo cpu #2 rc=0
+15:03:44 compare cpu1 vs cpu2 rc=0
+15:03:44 compare 1.0.0 bundle_tiny-math500-090_gpu-NVIDIA_A40 vs 1.0.1 cpu rc=0
+15:03:44 compare 1.0.0 bundle_tiny-math500-090_gpu-NVIDIA_GeForce_RTX_5090 vs 1.0.1 cpu rc=0
+15:03:44 compare 1.0.0 bundle_tiny-math500-090_cpu-AMD_EPYC_7543_32_Core_Processor vs 1.0.1 cpu rc=0
+15:03:44 compare 1.0.0 bundle_tiny-math500-090_cpu-Intel_R__Xeon_R__Gold_6342_CPU___2_80GHz vs 1.0.1 cpu rc=0
+15:03:44 compare 1.0.0 bundle_tiny-math500-090_cpu-unknown vs 1.0.1 cpu rc=0
+15:03:44 compare 1.0.0 sandbox_cpu_record vs 1.0.1 cpu rc=0
+15:03:44 tamper-test own rc=0
+15:03:44 compare given a 1.0.0 summary file rc=2 (expect 2): error: /home/user/scratch/demo_build/LuxiDemo/evidence/r1-replay-package-2026-11-10/cross-machine/bundle_tiny-math500-090_cpu-AMD_EPYC_7543_32_Core_Processor.summary.json is not a signed Luxi record (pass the bundle_*.json file, not a summary file)
+15:03:44 compare-dirs with a stray 1.0.0 summary rc=0
+15:03:46 demo gpu on no-GPU host rc=3 (expect 3): error: GPU requested, but CUDA is not available: no NVIDIA driver or GPU visible to PyTorch (nvidia-smi not found). No C
+15:03:46 full-suite cpu rc=2 (expect 2)
+15:03:46 missing model rc=4 (expect 4)
+tokens_equal True fps_equal True
+build_equal True {'build_sha256': '9f7931d9d5457e2f9e48241836ae741eff6100a7140d9863967f8c42417a6694', 'build': 'luxi-replay-demo-1.0.0 gpu-gemm=cublas', 'package': 'luxi-replay-demo-1.0.0'}
+engine_sha_equal True
+15:03:46 DONE

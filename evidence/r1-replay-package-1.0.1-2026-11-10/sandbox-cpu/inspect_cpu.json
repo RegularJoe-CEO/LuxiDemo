@@ -1,0 +1,117 @@
+{
+ "package": "luxi-replay-demo",
+ "version": "1.0.1",
+ "built": "2026-11-10T15:02:03Z",
+ "build_sha256": "9f7931d9d5457e2f9e48241836ae741eff6100a7140d9863967f8c42417a6694",
+ "engine_source_sha256": "795c71736e22e2f66935e4acc91b8040120d40528b04d84ea9daedd5a5692f36",
+ "engine_mode": "LX_V20=2",
+ "compiled_for": {
+  "8.0": "sm_80 (A100 class)",
+  "8.6": "sm_86 (RTX 30 series, RTX A6000, A40)",
+  "8.9": "sm_89 (RTX 40 series, L4, L40S)",
+  "9.0": "sm_90 (H100, H200)",
+  "12.0": "sm_120 (RTX 50 series, RTX PRO 6000 Blackwell)"
+ },
+ "host": {
+  "os": "Linux-4.19.0-gvisor-x86_64-with-glibc2.35",
+  "cpu": "unknown",
+  "cpu_threads": 16,
+  "python": "3.12.16"
+ },
+ "selected_device": {
+  "kind": "cpu",
+  "name": "unknown",
+  "threads": 16
+ },
+ "torch": {
+  "version": "2.13.0+cpu",
+  "cuda_available": false
+ },
+ "weights_checksum_s": 0.0,
+ "weights_verified": true,
+ "model": {
+  "repo": "RedHatAI/DeepSeek-R1-Distill-Qwen-7B-quantized.w8a8",
+  "revision": "925259de674c80799e9455bfcd2bf50f999022cb",
+  "license": "MIT",
+  "dir": "/home/user/scratch/models/m_r1",
+  "files": {
+   "model-00001-of-00002.safetensors": {
+    "expected_sha256": "2fff4b44f0f6480741177898ad875d8cc2d3e61f1f324ed5bc4ff93a6e31e571",
+    "present": true,
+    "size_ok": true
+   },
+   "model-00002-of-00002.safetensors": {
+    "expected_sha256": "e615cb42da0232d0dc4782addcb9eae60d4cf1c0f06238a94e7d9a40b0c2ceab",
+    "present": true,
+    "size_ok": true
+   },
+   "config.json": {
+    "expected_sha256": "8bed7317068d2d914e477a6c8a37324f9f9231d6b05e88b44f2c436c05867177",
+    "present": true,
+    "size_ok": true
+   },
+   "tokenizer.json": {
+    "expected_sha256": "88145e3c3249adc2546ede277e9819d6e405e19072456e4b521cbc724bd60773",
+    "present": true,
+    "size_ok": true
+   }
+  },
+  "quantization": "publisher's original artifact (compressed-tensors int-quantized W8A8): int8 weights symmetric per output channel (static); int8 activations symmetric per token (dynamic); lm_head not quantized. Not created or modified by this package."
+ },
+ "fixtures": {
+  "tiny": {
+   "job_id": "tiny-math500-090",
+   "job_sha256": "132c53d20fb10d391845723d796fe3435dc01d83d248da4cf4bed205b879c8c0",
+   "prompt_tokens": 63,
+   "sampling": {
+    "temperature": "0.6",
+    "top_k": 0,
+    "top_p_pct": 95,
+    "seed": 2026,
+    "max_new": 32,
+    "eos": [
+     151643
+    ]
+   },
+   "n_samples": 1,
+   "max_new": 32,
+   "request_id": "0f8e95dc95735a58",
+   "nov09_reference": {
+    "steps_merkle_root_prefix": "158ee5ae768cb633",
+    "device": "NVIDIA H100 NVL",
+    "date": "2026-11-09",
+    "engine_sha256": "795c71736e22e2f66935e4acc91b8040120d40528b04d84ea9daedd5a5692f36",
+    "wall_s": 6.05,
+    "note": "Only the first 16 hex digits of the Nov 9 H100 NVL root were recovered (printed in the run log). The full Nov 9 tiny record is not in the recovered files. The same short replay matched on the host CPUs of the nine Nov 9 GPU machines (outputs_identical true)."
+   }
+  },
+  "full_suite": {
+   "jobs": 17,
+   "answers": 136,
+   "tokens": 546114,
+   "jobs_sha256": {
+    "a4-aime24-2024-I-1": "649384f203e3a1f73d6f7b757497be40bab5d5afbc0ad8f182ddc032ac4a8433",
+    "a4-aime24-2024-I-3": "8c881ee10cea40d0dc6336474cc06b3e601b46d1f4f3d6008a02d7913901f1a7",
+    "a4-aime24-2024-II-10": "550a1450061fa89b4400d6846d9ded1978eb8902bfd02434867b8d276b438199",
+    "a4-aime24-2024-II-4": "f76023a8eb56b2fcbe6ce15a30862d8f0a2f2e9a54f070023766185e5a125baa",
+    "a4-math500-010": "a033d8bf723c21942c806c4661249c3f8b0f9344d41e94e19af6435c45c7ea03",
+    "a4-math500-050": "db3649f3ae1d74fd2eb9f65c7d220b12d554119802d906639ff787e9958c95e5",
+    "a4-math500-090": "971aaefa53018bd7cdc8c0c55152797dec675d35e205b659964bdb9fecf5e9e7",
+    "a4-math500-130": "78cd86667aaf4d7ebcc16cb876d104958c21a9912ca1d2e04a9358cdb59bc923",
+    "a4-math500-170": "535536f0555fb8436232f9cd472eec2b424c5cd61ebb67cdee0f193faeb16765",
+    "a4-math500-210": "035cc071d6fbcf63b6b0df38085c9c17a47ac09fa3ecf052f06bd628cdd9402c",
+    "a4-math500-250": "9cf67e425457bbb75d93ffd132c1132499a97783b6b90700ce9102abe200dc98",
+    "a4-math500-290": "23e67c170f98b93fca561d6a988f6324725cd8616d1a1ef1f45efca972dc62d4",
+    "a4-math500-330": "66e669bc9da15b83bb200a4bd0b4922d936f46c3071448f3331fa3c85f0a1a6a",
+    "a4-math500-370": "e0e829ee4629a93816fdd8e916eb6a99fbcba6ee911439a0f7dd778a2da054a1",
+    "a4-math500-410": "a7c1fe5982c7e9b1c5ff2f2e10839479da7f7e264e8a1ae310a52ae399332535",
+    "a4-math500-450": "8047862b38e6aacaf3607a9b1a552804eaa21f54c6dd8353e74c39a10fa8122b",
+    "a4-math500-490": "d7470134c6694c98194bcaf34e31e7bf43b239c5649d79c2ac04edae3b6790b5"
+   },
+   "reference": "reference/nov09_h100_nvl_signed/full_suite (17 signed records, NVIDIA H100 NVL, 2026-11-09, engine 795c71736e22e2f6, signer 42bb6bccd2bc7d05)"
+  }
+ },
+ "trusted_keys": {
+  "nov09_benchmark_records": "42bb6bccd2bc7d0570b44d5e068971707a704a26e8cb0294b9df12f23fdfe418"
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "a": "/tmp/cr101f/results/dirA",
+ "b": "/tmp/cr101f/results/dirB",
+ "jobs": 1,
+ "jobs_outputs_identical": 1,
+ "answers": 1,
+ "answers_identical": 1,
+ "tokens_a": 32,
+ "tokens_b": 32,
+ "missing_in_b": [],
+ "engine_or_build_field_diffs": [],
+ "mismatches": [],
+ "all_outputs_identical": true
+}
