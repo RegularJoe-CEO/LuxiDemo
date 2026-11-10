@@ -1,0 +1,25 @@
+{
+ "outputs_identical": true,
+ "a_errors": [],
+ "b_errors": [],
+ "first_mismatch": null,
+ "answers": 1,
+ "answers_identical": 1,
+ "tokens_a": 32,
+ "tokens_b": 32,
+ "output_field_diffs": [],
+ "engine_or_build_field_diffs": [],
+ "other_signed_field_diffs": [],
+ "signers": [
+  "0b5a3a8de55a5ffc0dc2ca8d2db3c981133fde3fb91ca82d30ef92ede579d521",
+  "3f7a869ab0e96d8b55e6e6c8754f8868fc7762102f6f10a36f3eba021fa82ec4"
+ ],
+ "devices": [
+  "unknown",
+  "NVIDIA RTX A6000"
+ ],
+ "files": [
+  "/root/lxtest/ref_v100/bundle_tiny-math500-090_cpu-sandbox_v100.json",
+  "luxi_out/bundle_tiny-math500-090_gpu-NVIDIA_RTX_A6000.json"
+ ]
+}

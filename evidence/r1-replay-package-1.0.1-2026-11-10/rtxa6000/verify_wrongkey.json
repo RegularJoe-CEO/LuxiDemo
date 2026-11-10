@@ -1,0 +1,9 @@
+{
+ "file": "luxi_out/bundle_tiny-math500-090_gpu-NVIDIA_RTX_A6000.json",
+ "trusted_key": "42bb6bccd2bc7d0570b44d5e068971707a704a26e8cb0294b9df12f23fdfe418",
+ "verified": false,
+ "errors": [
+  "call 0: signed by key 3f7a869ab0e96d8b..., not the trusted key 42bb6bccd2bc7d05..."
+ ],
+ "calls": 1
+}

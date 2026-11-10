@@ -1,0 +1,30 @@
+{
+ "outputs_identical": true,
+ "a_errors": [],
+ "b_errors": [],
+ "first_mismatch": null,
+ "answers": 1,
+ "answers_identical": 1,
+ "tokens_a": 32,
+ "tokens_b": 32,
+ "output_field_diffs": [],
+ "engine_or_build_field_diffs": [
+  "call 0: build: (absent) vs luxi-replay-demo-1.0.0 g",
+  "call 0: build_sha256: (absent) vs 9f7931d9d5457e2f9e482418"
+ ],
+ "other_signed_field_diffs": [
+  "call 0: rope_sha256: 99f74785636bf4531a7b3d1b vs 49817fe61c9a880716a6e021"
+ ],
+ "signers": [
+  "42bb6bccd2bc7d0570b44d5e068971707a704a26e8cb0294b9df12f23fdfe418",
+  "3f7a869ab0e96d8b55e6e6c8754f8868fc7762102f6f10a36f3eba021fa82ec4"
+ ],
+ "devices": [
+  "AMD EPYC 9654 96-Core Processor",
+  "NVIDIA RTX A6000"
+ ],
+ "files": [
+  "/root/lxtest/nov09_tiny_cpu/bundle_tiny_cpu_RTX5090.json",
+  "luxi_out/bundle_tiny-math500-090_gpu-NVIDIA_RTX_A6000.json"
+ ]
+}

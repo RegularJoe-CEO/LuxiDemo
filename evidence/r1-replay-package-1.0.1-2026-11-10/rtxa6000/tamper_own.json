@@ -1,0 +1,80 @@
+{
+ "all_edits_rejected_and_original_accepted": true,
+ "results": [
+  {
+   "test": "untouched record (must be accepted)",
+   "rejected": false,
+   "reasons": []
+  },
+  {
+   "test": "change one generated token id",
+   "rejected": true,
+   "reasons": [
+    "output token hash mismatch",
+    "step Merkle root / count mismatch (a token or a logit fingerprint was changed)"
+   ]
+  },
+  {
+   "test": "change one per-step logit fingerprint",
+   "rejected": true,
+   "reasons": [
+    "step Merkle root / count mismatch (a token or a logit fingerprint was changed)"
+   ]
+  },
+  {
+   "test": "change one prompt token",
+   "rejected": true,
+   "reasons": [
+    "input hash mismatch",
+    "recorded prompt differs from the job"
+   ]
+  },
+  {
+   "test": "change the seed inside the signed receipt",
+   "rejected": true,
+   "reasons": [
+    "seed signed as 1, job says 2026",
+    "signature: Ed25519 signature rejected"
+   ]
+  },
+  {
+   "test": "change the seed in the job only",
+   "rejected": true,
+   "reasons": [
+    "seed signed as 2026, job says 1"
+   ]
+  },
+  {
+   "test": "change the temperature in the job only",
+   "rejected": true,
+   "reasons": [
+    "temperature signed as 0.6, job says 0.1"
+   ]
+  },
+  {
+   "test": "drop the last generated token",
+   "rejected": true,
+   "reasons": [
+    "output does not stop at an end token or max_new",
+    "output token hash mismatch",
+    "step Merkle root / count mismatch (a token or a logit fingerprint was changed)"
+   ]
+  },
+  {
+   "test": "forged: change a token, recompute every hash, re-sign with a new key (trusted key pinned)",
+   "rejected": true,
+   "reasons": [
+    "signed by key 9124d876a58d5879..., not the trusted key 3f7a869ab0e96d8b..."
+   ]
+  },
+  {
+   "test": "untouched record checked against a wrong trusted key",
+   "rejected": true,
+   "reasons": [
+    "signed by key 3f7a869ab0e96d8b..., not the trusted key 5625b06c08f36253..."
+   ]
+  }
+ ],
+ "file": "luxi_out/bundle_tiny-math500-090_gpu-NVIDIA_RTX_A6000.json",
+ "trusted_key": "3f7a869ab0e96d8b55e6e6c8754f8868fc7762102f6f10a36f3eba021fa82ec4"
+}

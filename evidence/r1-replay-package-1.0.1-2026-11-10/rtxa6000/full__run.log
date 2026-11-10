@@ -1,0 +1,24 @@
+start 2026-11-10T15:07:38Z device NVIDIA RTX A6000 slots 32 maxctx 16823 rows 136 engine 795c71736e22e2f6 LX_V20=2 pages 4224 (7.34 MB each)
+  t=     30s rows 0/136 jobs 0/17 active 32 tokens 47104 tok/s 1570 J 8903 pages 416/4224 pauses 0
+  t=     60s rows 1/136 jobs 0/17 active 32 tokens 86369 tok/s 1439 J 17850 pages 700/4224 pauses 0
+  t=     90s rows 16/136 jobs 0/17 active 32 tokens 123408 tok/s 1371 J 26835 pages 597/4224 pauses 0
+  t=    120s rows 26/136 jobs 2/17 active 32 tokens 161306 tok/s 1344 J 35740 pages 548/4224 pauses 0
+  t=    150s rows 35/136 jobs 2/17 active 32 tokens 198595 tok/s 1324 J 44699 pages 685/4224 pauses 0
+  t=    180s rows 47/136 jobs 3/17 active 32 tokens 235375 tok/s 1307 J 53636 pages 674/4224 pauses 0
+  t=    210s rows 48/136 jobs 4/17 active 32 tokens 269904 tok/s 1285 J 62573 pages 909/4224 pauses 0
+  t=    240s rows 53/136 jobs 4/17 active 32 tokens 302581 tok/s 1260 J 71519 pages 1013/4224 pauses 0
+  t=    270s rows 62/136 jobs 4/17 active 32 tokens 334078 tok/s 1237 J 80492 pages 996/4224 pauses 0
+  t=    300s rows 74/136 jobs 4/17 active 32 tokens 367338 tok/s 1224 J 89435 pages 903/4224 pauses 0
+  t=    330s rows 89/136 jobs 8/17 active 32 tokens 401241 tok/s 1216 J 98319 pages 736/4224 pauses 0
+  t=    360s rows 108/136 jobs 8/17 active 28 tokens 436271 tok/s 1211 J 107273 pages 695/4224 pauses 0
+  t=    390s rows 120/136 jobs 11/17 active 16 tokens 463299 tok/s 1188 J 116240 pages 519/4224 pauses 0
+  t=    420s rows 125/136 jobs 13/17 active 11 tokens 481457 tok/s 1146 J 125168 pages 458/4224 pauses 0
+  t=    450s rows 126/136 jobs 14/17 active 10 tokens 496550 tok/s 1103 J 134090 pages 444/4224 pauses 0
+  t=    480s rows 126/136 jobs 14/17 active 10 tokens 510760 tok/s 1064 J 143053 pages 556/4224 pauses 0
+  t=    510s rows 128/136 jobs 15/17 active 8 tokens 522952 tok/s 1025 J 151986 pages 496/4224 pauses 0
+  t=    540s rows 131/136 jobs 16/17 active 5 tokens 532798 tok/s 986 J 160968 pages 356/4224 pauses 0
+  t=    570s rows 133/136 jobs 16/17 active 3 tokens 538323 tok/s 944 J 169938 pages 254/4224 pauses 0
+  t=    600s rows 135/136 jobs 16/17 active 1 tokens 542184 tok/s 903 J 178900 pages 99/4224 pauses 0
+  t=    630s rows 135/136 jobs 16/17 active 1 tokens 544088 tok/s 863 J 187855 pages 114/4224 pauses 0
+  t=    660s rows 135/136 jobs 16/17 active 1 tokens 545983 tok/s 827 J 196804 pages 128/4224 pauses 0
+DONE {"tokens": 546114, "steps": 29551, "prefill_s": 2.365, "decode_s": 656.289, "rows_done": 136, "jobs_done": 17, "pages": 4224, "page_MB": 7.34, "pauses": 0, "resumes": 0, "rerun_tokens": 0, "peak_active": 32, "peak_pages": 1090, "split": true, "plane_pages": 64, "plane_page_MB": 5.62, "wall_s": 662.7, "board_J": 197498.1, "tok_s": 824.1, "J_per_tok": 0.362, "device": "NVIDIA RTX A6000", "slots": 32, "maxctx": 16823, "engine_sha256": "795c71736e22e2f66935e4acc91b8040120d40528b04d84ea9daedd5a5692f36", "engine_mode": "LX_V20=2", "jobs": 17, "build": {"build_sha256": "9f7931d9d5457e2f9e48241836ae741eff6100a7140d9863967f8c42417a6694", "build": "luxi-replay-demo-1.0.0 gpu-gemm=cublas"}, "deck": "default", "cmb3": "default", "energy": "NVML board energy counter (GPU board only, not wall)"}
