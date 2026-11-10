@@ -1,0 +1,2 @@
+[1/4] checking model files in /nonexistent
+error: model folder /nonexistent not found. Run: ./luxi fetch-model --model /nonexistent

@@ -1,0 +1,9 @@
+{
+ "file": "/home/user/scratch/clean2/demo_cpu/bundle_tiny-math500-090_cpu-unknown.json",
+ "trusted_key": "0000000000000000000000000000000000000000000000000000000000000001",
+ "verified": false,
+ "errors": [
+  "call 0: signed by key 16dccb52616d3bc6..., not the trusted key 0000000000000000..."
+ ],
+ "calls": 1
+}
