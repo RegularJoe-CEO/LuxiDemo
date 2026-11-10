@@ -1,8 +1,9 @@
-# LuxiEdge commercial demo (binary only - no source)
+# LuxiEdge version-100 serve demo (historical API toy, binary only - no source)
 
-**Product:** LuxiEdge version-100  
+**Status:** historical (July 2026). Kept for its API shape. Not the current reasoning engine and not the benchmarked engine.
+For a real inference replay, use [`../../downloads/luxi-replay-demo/`](../../downloads/luxi-replay-demo/).  
 **What this is:** OpenAI-shaped HTTP server (demo build, toy generate path)  
-**What this is not:** Engine source, CUDA TRADE kernels, or full model weights  
+**What this is not:** the current inference engine, engine source, CUDA TRADE kernels, or full model weights  
 
 ## Quick start (any laptop)
 
