@@ -1,0 +1,25 @@
+{
+ "outputs_identical": true,
+ "a_errors": [],
+ "b_errors": [],
+ "first_mismatch": null,
+ "answers": 1,
+ "answers_identical": 1,
+ "tokens_a": 32,
+ "tokens_b": 32,
+ "output_field_diffs": [],
+ "engine_or_build_field_diffs": [],
+ "other_signed_field_diffs": [],
+ "signers": [
+  "d068dd9a7f74bcd9038edbb5e6f0136d88ec4e5226ec24459950934229413643",
+  "d068dd9a7f74bcd9038edbb5e6f0136d88ec4e5226ec24459950934229413643"
+ ],
+ "devices": [
+  "NVIDIA GeForce RTX 5090",
+  "NVIDIA GeForce RTX 5090"
+ ],
+ "files": [
+  "/root/lxtest/results_r5090/demo_gpu_1/bundle_tiny-math500-090_gpu-NVIDIA_GeForce_RTX_5090.json",
+  "/root/lxtest/results_r5090/demo_gpu_2/bundle_tiny-math500-090_gpu-NVIDIA_GeForce_RTX_5090.json"
+ ]
+}
