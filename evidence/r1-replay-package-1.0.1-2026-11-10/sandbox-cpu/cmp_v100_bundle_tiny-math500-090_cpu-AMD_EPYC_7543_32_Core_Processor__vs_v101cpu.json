@@ -1,0 +1,25 @@
+{
+ "outputs_identical": true,
+ "a_errors": [],
+ "b_errors": [],
+ "first_mismatch": null,
+ "answers": 1,
+ "answers_identical": 1,
+ "tokens_a": 32,
+ "tokens_b": 32,
+ "output_field_diffs": [],
+ "engine_or_build_field_diffs": [],
+ "other_signed_field_diffs": [],
+ "signers": [
+  "d068dd9a7f74bcd9038edbb5e6f0136d88ec4e5226ec24459950934229413643",
+  "e66b5033da9506e58b2db4032e2595a37af4f91bc4c14e057eeee28aa8f9d2e2"
+ ],
+ "devices": [
+  "AMD EPYC 7543 32-Core Processor",
+  "unknown"
+ ],
+ "files": [
+  "/home/user/scratch/demo_build/LuxiDemo/evidence/r1-replay-package-2026-11-10/cross-machine/bundle_tiny-math500-090_cpu-AMD_EPYC_7543_32_Core_Processor.json",
+  "luxi_out/bundle_tiny-math500-090_cpu-unknown.json"
+ ]
+}

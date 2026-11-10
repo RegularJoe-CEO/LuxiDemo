@@ -1,0 +1,17 @@
+{
+ "a": "/root/lxtest/nov09_a6000_p17",
+ "b": "/root/lxtest/results_a6000f/full/records",
+ "jobs": 17,
+ "jobs_outputs_identical": 17,
+ "answers": 136,
+ "answers_identical": 136,
+ "tokens_a": 546114,
+ "tokens_b": 546114,
+ "missing_in_b": [],
+ "engine_or_build_field_diffs": [
+  "build",
+  "build_sha256"
+ ],
+ "mismatches": [],
+ "all_outputs_identical": true
+}

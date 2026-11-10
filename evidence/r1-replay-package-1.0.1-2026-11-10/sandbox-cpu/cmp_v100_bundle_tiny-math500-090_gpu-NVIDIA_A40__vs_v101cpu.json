@@ -1,0 +1,25 @@
+{
+ "outputs_identical": true,
+ "a_errors": [],
+ "b_errors": [],
+ "first_mismatch": null,
+ "answers": 1,
+ "answers_identical": 1,
+ "tokens_a": 32,
+ "tokens_b": 32,
+ "output_field_diffs": [],
+ "engine_or_build_field_diffs": [],
+ "other_signed_field_diffs": [],
+ "signers": [
+  "f790cd340aaca3d97d79187ab957f7db626e0a88a1586a57558430102ae61741",
+  "e66b5033da9506e58b2db4032e2595a37af4f91bc4c14e057eeee28aa8f9d2e2"
+ ],
+ "devices": [
+  "NVIDIA A40",
+  "unknown"
+ ],
+ "files": [
+  "/home/user/scratch/demo_build/LuxiDemo/evidence/r1-replay-package-2026-11-10/cross-machine/bundle_tiny-math500-090_gpu-NVIDIA_A40.json",
+  "luxi_out/bundle_tiny-math500-090_cpu-unknown.json"
+ ]
+}

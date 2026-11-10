@@ -2,7 +2,8 @@
 
 Internal measurements by LuxiEdge on one cloud provider (RunPod), with fixed tested configurations and single
 performance runs. Published on November 10, 2026 from the private record. No result was changed, re-run or
-reconstructed for this folder. What is missing is listed under [Completeness](#completeness).
+reconstructed for this folder. The per-GPU signed records, recovered later on November 10, are in
+[`records/`](records/). What is still missing is listed under [Completeness](#completeness).
 
 ## What was tested
 
@@ -70,6 +71,7 @@ come from [`grid.json`](grid.json) and the files in [`results/`](results/).
 | `results/A40__soak_A40.json` | The A40 soak log: 1,502 calls, 1,239 checks |
 | `results/<GPU>__gpu.txt`, `__lscpu.txt` | `nvidia-smi` and `lscpu` from that machine |
 | [`reference/`](reference/) | The 17 signed H100 NVL records and the benchmark public key |
+| [`records/`](records/) | The per-GPU signed records and the 32-token replay records, recovered November 10 and added unchanged, with their own `SHA256SUMS` and README |
 | [`verify/`](verify/) | The standalone offline verifier and its November 10 outputs on these records |
 | [`SHA256SUMS`](SHA256SUMS) | sha256 of every file in this folder |
 
@@ -109,18 +111,17 @@ Changed for publication: the Luxi run summaries are public extracts. Internal me
 removed; nothing was changed or added. [`results/REDACTIONS.json`](results/REDACTIONS.json) lists the removed field
 names and the sha256 of each original.
 
+Added on November 10, 2026 after recovery, unchanged: [`records/`](records/) holds the per-GPU signed records (the 136
+answers from each of the nine GPUs at 32 in flight, the 64 and 128 in-flight runs that were kept, the one-job checks),
+the nine host-CPU 32-token replay records and the H100 NVL 32-token record. They were found in the working storage of
+the session that ran the test. Every one verifies with the benchmark key and matches the reference; the check and its
+commands are in [`records/README.md`](records/README.md).
+
 Not in this folder:
 
-1. **The per-GPU answer bundles.** The 136 answers that each of the nine GPUs produced (and their signed records) are
-   not in the recovered November 9 archive. Its notes say they were retained in the H100 NVL pod backup; the session log
-   shows they were copied to the working storage of the session that ran the test instead, and they were not available
-   on November 10. Until they are recovered, the per-GPU 136/136 results rest on the comparisons each machine computed
-   on November 9 (`results/*cmp_p17*`), not on raw outputs a reader can re-compare. If they are recovered they will be
-   added here unchanged, with checksums. They will not be regenerated.
-2. **The 32-token CPU replay records and the H100 NVL 32-token record.** Only the comparison results
-   (`results/*cmp_tiny_cpu.json`) and the first 16 hex digits of the H100 NVL step root (`158ee5ae768cb633`) survive.
-3. **vLLM token rows.** Only run summaries were kept.
-4. **Run logs and kit scripts.** They name internal build settings and are kept in the private record.
+1. **vLLM token rows.** Recovered on November 10 into the private record; only the vLLM run summaries are published here.
+2. **Run logs, run summaries in full, and kit scripts.** They name internal build settings and are kept in the private
+   record. Public extracts of the run summaries are in [`results/`](results/).
 
 A separately dated, complete demonstration with every record retained is in
 [`../r1-replay-package-2026-11-10/`](../r1-replay-package-2026-11-10/). It tests the public package build, which is a

@@ -8,12 +8,21 @@ the development path and preserve both wins and losses.
 
 Overview: [`../INFERENCE.md`](../INFERENCE.md) · scope: [`../TEST_SCOPE.md`](../TEST_SCOPE.md) · package: [`../downloads/luxi-replay-demo/`](../downloads/luxi-replay-demo/)
 
-### R1 replay package clean-install test - 2026-11-10
+### R1 replay package 1.0.1 clean-install test - 2026-11-10
+
+[`r1-replay-package-1.0.1-2026-11-10/`](r1-replay-package-1.0.1-2026-11-10/) · complete for this test: every replay record, comparison and log is retained (per-install private keys and the downloaded model files are not)
+
+- Package `luxi-replay-demo-1.0.1-linux-x86_64.tar.gz`, sha256 `c2114aa7…b3`, build `9f7931d9…6694`: the same engine files as 1.0.0 (54 identical files, 5 changed, 1 added, all listed)
+- 32-token replay: identical to the signed November 9 H100 NVL short record (recovered November 10, shipped in the package) on RTX A6000, its host CPU Intel Xeon Gold 6342 and a sandbox x86_64 CPU; the 1.0.0 records and the nine November 9 host-CPU records also compare identical
+- Full suite on RTX A6000: 136/136 answers and 546,114 tokens identical to the signed November 9 H100 NVL records (662.7 s at 32 slots, 0.362 GPU-board J per token)
+- Offline verify, wrong-key rejection and every tested tamper edit rejected on both machines; an altered November 9 reference makes the demo report NO MATCH (exit 1)
+
+### R1 replay package 1.0.0 clean-install test - 2026-11-10
 
 [`r1-replay-package-2026-11-10/`](r1-replay-package-2026-11-10/) · complete for this test: every replay record, comparison and log is retained (per-install private keys and the downloaded model files are not)
 
 - Package `luxi-replay-demo-1.0.0-linux-x86_64.tar.gz`, sha256 `b1f6cf0b…39c9`, build `9f7931d9…6694` (a new build identity, not the November 9 binaries)
-- 32-token replay: identical records on RTX 5090, A40, AMD EPYC 7543, Intel Xeon Gold 6342 and a sandbox x86_64 CPU (all 10 cross-machine pairs); step root matches the surviving 16-hex-digit prefix of the November 9 H100 NVL short replay, whose full record was not recovered
+- 32-token replay: identical records on RTX 5090, A40, AMD EPYC 7543, Intel Xeon Gold 6342 and a sandbox x86_64 CPU (all 10 cross-machine pairs); at the time of this test only the first 16 hex digits of the November 9 H100 NVL short replay's step root were available, and the root matched them; the full record, recovered later that day, matches these records (see the 1.0.1 test)
 - Full suite: 136/136 answers and 546,114 tokens identical to the signed November 9 H100 NVL records on RTX 5090 and A40, and identical to each other job by job
 - Offline verify, wrong-key rejection and rejection of every tested tamper edit on all three machines
 
@@ -24,7 +33,7 @@ Overview: [`../INFERENCE.md`](../INFERENCE.md) · scope: [`../TEST_SCOPE.md`](..
 - Nine GPU types each matched 136/136 sampled answers and 546,114 generated tokens against the signed H100 NVL reference, plus a separate 92/92 Qwen gate; 17 problems x 8 samples, not 136 distinct questions
 - Seven CPU models each matched 2/2 small Qwen checks and the short signed R1 replay capped at 32 tokens; they did not run the full GPU workload
 - vLLM 0.32 normal was faster and cheaper per token wherever the tested int8 configuration ran
-- Includes every per-GPU comparison, gate, CPU-check and soak file, the 17 signed H100 NVL records, the public key and an offline verifier. The per-GPU answer bundles are not in the recovered archive
+- Includes every per-GPU comparison, gate, CPU-check and soak file, the 17 signed H100 NVL records, the public key and an offline verifier. Since November 10 it also has the per-GPU signed records in [`records/`](r1-distill-7b-gpu-swap-2026-11-09/records/) (282 records, recovered unchanged; all verify with the benchmark key and each GPU re-compares 136/136 with the offline verifier). Still not public: vLLM output rows, run logs, full run summaries and the test kit
 
 ## Luxi Book - Quant receipt (public try)
 
@@ -103,8 +112,8 @@ transformer inference and from the option book.
 
 | Surface | Public status |
 |---|---|
-| R1 replay package 1.0.0 | Public closed binary; RTX 5090, A40 and three CPUs tested on 2026-11-10, raw outputs retained |
-| R1 GPU swap test, 2026-11-09 | Per-GPU comparison files and the signed H100 NVL reference public; per-GPU answer bundles not recovered |
+| R1 replay package 1.0.1 | Public closed binary (1.0.0, same engine files, still available); RTX A6000 (1.0.1), RTX 5090 and A40 (1.0.0) and three CPUs tested on 2026-11-10, raw outputs retained |
+| R1 GPU swap test, 2026-11-09 | Per-GPU comparison files, the signed H100 NVL reference and the per-GPU signed records (recovered 2026-11-10) public; vLLM output rows, run logs and the test kit private |
 | Luxi Book example receipt | Measured on listed boxes; public binaries |
 | Faithful Qwen2-7B CUDA (historical) | Website reported a limited acceptance result; raw public pack still required |
 | Llama 3.1 resident inference | Internal correctness milestone; no public performance/energy claim |

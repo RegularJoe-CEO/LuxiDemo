@@ -1,4 +1,4 @@
-luxi-replay-demo 1.0.0 (Linux x86_64)
+luxi-replay-demo 1.0.1 (Linux x86_64)
 
 Copyright 2026 Eric Waller. Public binaries are evaluation builds.
 

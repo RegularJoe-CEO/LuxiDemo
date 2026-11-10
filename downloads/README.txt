@@ -11,8 +11,10 @@ Layout
     *.sha256
     README.md
 
-  luxi-replay-demo/             Luxi inference replay demo 1.0.0 (Linux x86_64, NVIDIA GPU or CPU)
-    luxi-replay-demo-1.0.0-linux-x86_64.tar.gz
+  luxi-replay-demo/             Luxi inference replay demo 1.0.1 (Linux x86_64, NVIDIA GPU or CPU)
+    luxi-replay-demo-1.0.1-linux-x86_64.tar.gz
+    luxi-replay-demo-1.0.1-linux-x86_64.tar.gz.sha256
+    luxi-replay-demo-1.0.0-linux-x86_64.tar.gz          (previous release, same engine files)
     luxi-replay-demo-1.0.0-linux-x86_64.tar.gz.sha256
     LICENSE.txt  THIRD_PARTY_NOTICES.md  README.md
 
@@ -57,27 +59,32 @@ Measured output hash on example_book.csv only:
 Unsigned binaries: macOS right-click → Open.
 
 ----------------------------------------------------------------------------
-B) Luxi inference replay demo 1.0.0 (current inference download)
+B) Luxi inference replay demo 1.0.1 (current inference download)
 ----------------------------------------------------------------------------
 
 Closed binary, evaluation license, engine source private. Linux x86_64, glibc 2.34+.
 NVIDIA GPU (compute capability 8.0/8.6/8.9/9.0/12.0, driver 570+) or an x86_64 CPU (short replay only;
-tested on AMD EPYC 7543, Intel Xeon Gold 6342 and one sandbox CPU).
+tested on AMD EPYC 7543, Intel Xeon Gold 6342 and one sandbox CPU). GPUs tested: RTX A6000 (1.0.1),
+RTX 5090 and A40 (1.0.0, same engine files).
 Full instructions, tested machines and identities: luxi-replay-demo/README.md
 
   Pinned direct link:
-  https://github.com/RegularJoe-CEO/LuxiDemo/raw/32d85ac1891eba4d03b7dc365690acaea78b5aea/downloads/luxi-replay-demo/luxi-replay-demo-1.0.0-linux-x86_64.tar.gz
+  https://github.com/RegularJoe-CEO/LuxiDemo/raw/88ebbe60311070f292cb81ba07a7132242ca694a/downloads/luxi-replay-demo/luxi-replay-demo-1.0.1-linux-x86_64.tar.gz
 
   cd luxi-replay-demo
-  sha256sum -c luxi-replay-demo-1.0.0-linux-x86_64.tar.gz.sha256
-  # b1f6cf0b024f0270223807662ebc15d72191db4838c408bf6727400c5ec539c9
-  tar xzf luxi-replay-demo-1.0.0-linux-x86_64.tar.gz
-  cd luxi-replay-demo-1.0.0-linux-x86_64
+  sha256sum -c luxi-replay-demo-1.0.1-linux-x86_64.tar.gz.sha256
+  # c2114aa7bd6c47822bdf94de2f7d77f1aa773a32dcc3268072cfb979c2e5c8b3
+  tar xzf luxi-replay-demo-1.0.1-linux-x86_64.tar.gz
+  cd luxi-replay-demo-1.0.1-linux-x86_64
   sha256sum -c SHA256SUMS
   ./install.sh --gpu            # or --cpu
   ./luxi fetch-model            # 8.7 GB from Hugging Face, sha256-checked
-  ./luxi demo --device gpu      # or --device cpu
+  ./luxi demo --device gpu      # or --device cpu; checked against the signed Nov 9 H100 NVL record
   ./luxi full-suite --device gpu
+
+  Previous release 1.0.0 (same engine files) stays in luxi-replay-demo/:
+  https://github.com/RegularJoe-CEO/LuxiDemo/raw/32d85ac1891eba4d03b7dc365690acaea78b5aea/downloads/luxi-replay-demo/luxi-replay-demo-1.0.0-linux-x86_64.tar.gz
+  # b1f6cf0b024f0270223807662ebc15d72191db4838c408bf6727400c5ec539c9
 
 Private GPU-swap evaluation on your own workload: https://luxiedge.com/contact#gpu-swap-evaluation
 

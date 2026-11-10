@@ -1,0 +1,357 @@
+{
+ "date": "2026-11-10",
+ "method": "verify/luxi_verify.py in this evidence folder (standalone verifier), run from the folder root after extracting each records/nov09_<GPU>_records.tar.gz into records/",
+ "trusted_key": "42bb6bccd2bc7d0570b44d5e068971707a704a26e8cb0294b9df12f23fdfe418",
+ "gpus": {
+  "NVL": {
+   "records": 37,
+   "records_verified_with_benchmark_key": 37,
+   "p17_vs_reference": {
+    "exit": 0,
+    "jobs": 17,
+    "jobs_outputs_identical": 17,
+    "answers": 136,
+    "answers_identical": 136,
+    "tokens_a": 546114,
+    "tokens_b": 546114,
+    "all_outputs_identical": true
+   },
+   "p17s128_vs_reference": {
+    "exit": 0,
+    "jobs": 17,
+    "jobs_outputs_identical": 17,
+    "answers": 136,
+    "answers_identical": 136,
+    "tokens_a": 546114,
+    "tokens_b": 546114,
+    "all_outputs_identical": true
+   },
+   "b1_vs_NVL_b1": {
+    "exit": 0,
+    "outputs_identical": true,
+    "answers": 1,
+    "tokens": 1950
+   },
+   "b1w_vs_NVL_b1": {
+    "exit": 0,
+    "outputs_identical": true,
+    "answers": 1,
+    "tokens": 1950
+   },
+   "host_cpu_short_replay_vs_h100_nvl_short_record": {
+    "exit": 0,
+    "outputs_identical": true,
+    "cpu": "AMD EPYC 9654 96-Core Processor",
+    "tokens": 32
+   }
+  },
+  "H200": {
+   "records": 20,
+   "records_verified_with_benchmark_key": 20,
+   "p17_vs_reference": {
+    "exit": 0,
+    "jobs": 17,
+    "jobs_outputs_identical": 17,
+    "answers": 136,
+    "answers_identical": 136,
+    "tokens_a": 546114,
+    "tokens_b": 546114,
+    "all_outputs_identical": true
+   },
+   "b1_vs_NVL_b1": {
+    "exit": 0,
+    "outputs_identical": true,
+    "answers": 1,
+    "tokens": 1950
+   },
+   "b1w_vs_NVL_b1": {
+    "exit": 0,
+    "outputs_identical": true,
+    "answers": 1,
+    "tokens": 1950
+   },
+   "host_cpu_short_replay_vs_h100_nvl_short_record": {
+    "exit": 0,
+    "outputs_identical": true,
+    "cpu": "INTEL(R) XEON(R) PLATINUM 8568Y+",
+    "tokens": 32
+   }
+  },
+  "A100SXM": {
+   "records": 37,
+   "records_verified_with_benchmark_key": 37,
+   "p17_vs_reference": {
+    "exit": 0,
+    "jobs": 17,
+    "jobs_outputs_identical": 17,
+    "answers": 136,
+    "answers_identical": 136,
+    "tokens_a": 546114,
+    "tokens_b": 546114,
+    "all_outputs_identical": true
+   },
+   "p17s128_vs_reference": {
+    "exit": 0,
+    "jobs": 17,
+    "jobs_outputs_identical": 17,
+    "answers": 136,
+    "answers_identical": 136,
+    "tokens_a": 546114,
+    "tokens_b": 546114,
+    "all_outputs_identical": true
+   },
+   "b1_vs_NVL_b1": {
+    "exit": 0,
+    "outputs_identical": true,
+    "answers": 1,
+    "tokens": 1950
+   },
+   "b1w_vs_NVL_b1": {
+    "exit": 0,
+    "outputs_identical": true,
+    "answers": 1,
+    "tokens": 1950
+   },
+   "host_cpu_short_replay_vs_h100_nvl_short_record": {
+    "exit": 0,
+    "outputs_identical": true,
+    "cpu": "AMD EPYC 7742 64-Core Processor",
+    "tokens": 32
+   }
+  },
+  "PRO6000": {
+   "records": 20,
+   "records_verified_with_benchmark_key": 20,
+   "p17_vs_reference": {
+    "exit": 0,
+    "jobs": 17,
+    "jobs_outputs_identical": 17,
+    "answers": 136,
+    "answers_identical": 136,
+    "tokens_a": 546114,
+    "tokens_b": 546114,
+    "all_outputs_identical": true
+   },
+   "b1_vs_NVL_b1": {
+    "exit": 0,
+    "outputs_identical": true,
+    "answers": 1,
+    "tokens": 1950
+   },
+   "b1w_vs_NVL_b1": {
+    "exit": 0,
+    "outputs_identical": true,
+    "answers": 1,
+    "tokens": 1950
+   },
+   "host_cpu_short_replay_vs_h100_nvl_short_record": {
+    "exit": 0,
+    "outputs_identical": true,
+    "cpu": "AMD EPYC 9355 32-Core Processor",
+    "tokens": 32
+   }
+  },
+  "RTX5090": {
+   "records": 37,
+   "records_verified_with_benchmark_key": 37,
+   "p17_vs_reference": {
+    "exit": 0,
+    "jobs": 17,
+    "jobs_outputs_identical": 17,
+    "answers": 136,
+    "answers_identical": 136,
+    "tokens_a": 546114,
+    "tokens_b": 546114,
+    "all_outputs_identical": true
+   },
+   "p17s64_vs_reference": {
+    "exit": 0,
+    "jobs": 17,
+    "jobs_outputs_identical": 17,
+    "answers": 136,
+    "answers_identical": 136,
+    "tokens_a": 546114,
+    "tokens_b": 546114,
+    "all_outputs_identical": true
+   },
+   "b1_vs_NVL_b1": {
+    "exit": 0,
+    "outputs_identical": true,
+    "answers": 1,
+    "tokens": 1950
+   },
+   "b1w_vs_NVL_b1": {
+    "exit": 0,
+    "outputs_identical": true,
+    "answers": 1,
+    "tokens": 1950
+   },
+   "host_cpu_short_replay_vs_h100_nvl_short_record": {
+    "exit": 0,
+    "outputs_identical": true,
+    "cpu": "AMD EPYC 9654 96-Core Processor",
+    "tokens": 32
+   }
+  },
+  "A6000": {
+   "records": 20,
+   "records_verified_with_benchmark_key": 20,
+   "p17_vs_reference": {
+    "exit": 0,
+    "jobs": 17,
+    "jobs_outputs_identical": 17,
+    "answers": 136,
+    "answers_identical": 136,
+    "tokens_a": 546114,
+    "tokens_b": 546114,
+    "all_outputs_identical": true
+   },
+   "b1_vs_NVL_b1": {
+    "exit": 0,
+    "outputs_identical": true,
+    "answers": 1,
+    "tokens": 1950
+   },
+   "b1w_vs_NVL_b1": {
+    "exit": 0,
+    "outputs_identical": true,
+    "answers": 1,
+    "tokens": 1950
+   },
+   "host_cpu_short_replay_vs_h100_nvl_short_record": {
+    "exit": 0,
+    "outputs_identical": true,
+    "cpu": "Intel(R) Xeon(R) Gold 6342 CPU @ 2.80GHz",
+    "tokens": 32
+   }
+  },
+  "A40": {
+   "records": 37,
+   "records_verified_with_benchmark_key": 37,
+   "p17_vs_reference": {
+    "exit": 0,
+    "jobs": 17,
+    "jobs_outputs_identical": 17,
+    "answers": 136,
+    "answers_identical": 136,
+    "tokens_a": 546114,
+    "tokens_b": 546114,
+    "all_outputs_identical": true
+   },
+   "p17s64_vs_reference": {
+    "exit": 0,
+    "jobs": 17,
+    "jobs_outputs_identical": 17,
+    "answers": 136,
+    "answers_identical": 136,
+    "tokens_a": 546114,
+    "tokens_b": 546114,
+    "all_outputs_identical": true
+   },
+   "b1_vs_NVL_b1": {
+    "exit": 0,
+    "outputs_identical": true,
+    "answers": 1,
+    "tokens": 1950
+   },
+   "b1w_vs_NVL_b1": {
+    "exit": 0,
+    "outputs_identical": true,
+    "answers": 1,
+    "tokens": 1950
+   },
+   "host_cpu_short_replay_vs_h100_nvl_short_record": {
+    "exit": 0,
+    "outputs_identical": true,
+    "cpu": "Intel(R) Xeon(R) Gold 6342 CPU @ 2.80GHz",
+    "tokens": 32
+   }
+  },
+  "RTX4090": {
+   "records": 37,
+   "records_verified_with_benchmark_key": 37,
+   "p17_vs_reference": {
+    "exit": 0,
+    "jobs": 17,
+    "jobs_outputs_identical": 17,
+    "answers": 136,
+    "answers_identical": 136,
+    "tokens_a": 546114,
+    "tokens_b": 546114,
+    "all_outputs_identical": true
+   },
+   "p17s64_vs_reference": {
+    "exit": 0,
+    "jobs": 17,
+    "jobs_outputs_identical": 17,
+    "answers": 136,
+    "answers_identical": 136,
+    "tokens_a": 546114,
+    "tokens_b": 546114,
+    "all_outputs_identical": true
+   },
+   "b1_vs_NVL_b1": {
+    "exit": 0,
+    "outputs_identical": true,
+    "answers": 1,
+    "tokens": 1950
+   },
+   "b1w_vs_NVL_b1": {
+    "exit": 0,
+    "outputs_identical": true,
+    "answers": 1,
+    "tokens": 1950
+   },
+   "host_cpu_short_replay_vs_h100_nvl_short_record": {
+    "exit": 0,
+    "outputs_identical": true,
+    "cpu": "AMD EPYC 7352 24-Core Processor",
+    "tokens": 32
+   }
+  },
+  "RTX3090": {
+   "records": 37,
+   "records_verified_with_benchmark_key": 37,
+   "p17_vs_reference": {
+    "exit": 0,
+    "jobs": 17,
+    "jobs_outputs_identical": 17,
+    "answers": 136,
+    "answers_identical": 136,
+    "tokens_a": 546114,
+    "tokens_b": 546114,
+    "all_outputs_identical": true
+   },
+   "p17s64_vs_reference": {
+    "exit": 0,
+    "jobs": 17,
+    "jobs_outputs_identical": 17,
+    "answers": 136,
+    "answers_identical": 136,
+    "tokens_a": 546114,
+    "tokens_b": 546114,
+    "all_outputs_identical": true
+   },
+   "b1_vs_NVL_b1": {
+    "exit": 0,
+    "outputs_identical": true,
+    "answers": 1,
+    "tokens": 1950
+   },
+   "b1w_vs_NVL_b1": {
+    "exit": 0,
+    "outputs_identical": true,
+    "answers": 1,
+    "tokens": 1950
+   },
+   "host_cpu_short_replay_vs_h100_nvl_short_record": {
+    "exit": 0,
+    "outputs_identical": true,
+    "cpu": "AMD EPYC 7452 32-Core Processor",
+    "tokens": 32
+   }
+  }
+ },
+ "h100_nvl_short_record_verified": true,
+ "h100_nvl_short_record_tamper_test_exit": 0
+}

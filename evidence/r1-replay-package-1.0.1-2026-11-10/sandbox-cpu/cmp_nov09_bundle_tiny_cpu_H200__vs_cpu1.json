@@ -1,0 +1,30 @@
+{
+ "outputs_identical": true,
+ "a_errors": [],
+ "b_errors": [],
+ "first_mismatch": null,
+ "answers": 1,
+ "answers_identical": 1,
+ "tokens_a": 32,
+ "tokens_b": 32,
+ "output_field_diffs": [],
+ "engine_or_build_field_diffs": [
+  "call 0: build: (absent) vs luxi-replay-demo-1.0.0 g",
+  "call 0: build_sha256: (absent) vs 9f7931d9d5457e2f9e482418"
+ ],
+ "other_signed_field_diffs": [
+  "call 0: rope_sha256: 99f74785636bf4531a7b3d1b vs 49817fe61c9a880716a6e021"
+ ],
+ "signers": [
+  "42bb6bccd2bc7d0570b44d5e068971707a704a26e8cb0294b9df12f23fdfe418",
+  "e66b5033da9506e58b2db4032e2595a37af4f91bc4c14e057eeee28aa8f9d2e2"
+ ],
+ "devices": [
+  "INTEL(R) XEON(R) PLATINUM 8568Y+",
+  "unknown"
+ ],
+ "files": [
+  "/home/user/scratch/nov09_raw/x/H200/swap/out_H200/bundle_tiny_cpu_H200.json",
+  "luxi_out/bundle_tiny-math500-090_cpu-unknown.json"
+ ]
+}

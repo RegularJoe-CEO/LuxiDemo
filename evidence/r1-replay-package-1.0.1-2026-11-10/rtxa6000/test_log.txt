@@ -1,0 +1,41 @@
+15:04:38 START a6000f
+name, compute_cap, memory.total [MiB], driver_version, power.limit [W]
+NVIDIA RTX A6000, 8.6, 49140 MiB, 595.91.07, 300.00 W
+luxi-replay-demo-1.0.1-linux-x86_64.tar.gz: OK
+15:04:38 SHA256SUMS rc=0 ok=60
+15:05:23 install rc=0 45 s
+Installed. Next:
+  ./luxi fetch-model                     # 8.7 GB from Hugging Face, once; every file is checked by sha256
+  ./luxi inspect --device gpu --check-weights
+  ./luxi demo --device gpu
+15:05:47 fetch-model rc=0 24 s
+15:05:50 inspect gpu rc=0
+15:06:17 demo gpu #1 rc=0 RESULT: SAME OUTPUTS as the signed Nov 9 H100 NVL record: all 32 token ids and per-step logit
+15:06:46 demo cpu rc=0 RESULT: SAME OUTPUTS as the signed Nov 9 H100 NVL record: all 32 token ids and per-step logit
+15:06:46 README verify (pattern) rc=0
+15:06:46 README compare gpu vs cpu (pattern) rc=0
+15:06:46 verify Nov 9 short record (benchmark key) rc=0
+15:06:46 README compare vs Nov 9 record (gpu) rc=0
+15:06:46 README compare vs Nov 9 record (pod cpu) rc=0
+15:06:46 compare Nov 9 bundle_tiny_cpu_A100SXM vs this GPU rc=0
+15:06:46 compare Nov 9 bundle_tiny_cpu_A40 vs this GPU rc=0
+15:06:46 compare Nov 9 bundle_tiny_cpu_A6000 vs this GPU rc=0
+15:06:46 compare Nov 9 bundle_tiny_cpu_H200 vs this GPU rc=0
+15:06:47 compare Nov 9 bundle_tiny_cpu_NVL vs this GPU rc=0
+15:06:47 compare Nov 9 bundle_tiny_cpu_PRO6000 vs this GPU rc=0
+15:06:47 compare Nov 9 bundle_tiny_cpu_RTX3090 vs this GPU rc=0
+15:06:47 compare Nov 9 bundle_tiny_cpu_RTX4090 vs this GPU rc=0
+15:06:47 compare Nov 9 bundle_tiny_cpu_RTX5090 vs this GPU rc=0
+15:07:11 demo gpu #2 rc=0 RESULT: SAME OUTPUTS as the signed Nov 9 H100 NVL record: all 32 token ids and per-step logit
+15:07:12 compare gpu1 vs gpu2 rc=0
+15:07:12 compare 1.0.0 bundle_tiny-math500-090_cpu-AMD_EPYC_7543_32_Core_Processor vs 1.0.1 gpu rc=0
+15:07:12 compare 1.0.0 bundle_tiny-math500-090_cpu-Intel_R__Xeon_R__Gold_6342_CPU___2_80GHz vs 1.0.1 gpu rc=0
+15:07:12 compare 1.0.0 bundle_tiny-math500-090_cpu-sandbox_v100 vs 1.0.1 gpu rc=0
+15:07:12 compare 1.0.0 bundle_tiny-math500-090_cpu-unknown vs 1.0.1 gpu rc=0
+15:07:12 compare 1.0.0 bundle_tiny-math500-090_gpu-NVIDIA_A40 vs 1.0.1 gpu rc=0
+15:07:12 compare 1.0.0 bundle_tiny-math500-090_gpu-NVIDIA_GeForce_RTX_5090 vs 1.0.1 gpu rc=0
+15:07:12 verify wrong key rc=1 (expect 1)
+15:07:12 tamper-test rc=0 (expect 0 = all edits rejected)
+15:07:12 FULL SUITE start
+15:18:47 full-suite rc=0 695 s RESULT: 136/136 answers and 546,114 tokens identical to the signed Nov 9 H100 NVL records
+15:18:50 full suite vs Nov 9 RTX A6000 records (per-machine build) rc=0

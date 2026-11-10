@@ -1,0 +1,80 @@
+{
+ "all_edits_rejected_and_original_accepted": true,
+ "results": [
+  {
+   "test": "untouched record (must be accepted)",
+   "rejected": false,
+   "reasons": []
+  },
+  {
+   "test": "change one generated token id",
+   "rejected": true,
+   "reasons": [
+    "output token hash mismatch",
+    "step Merkle root / count mismatch (a token or a logit fingerprint was changed)"
+   ]
+  },
+  {
+   "test": "change one per-step logit fingerprint",
+   "rejected": true,
+   "reasons": [
+    "step Merkle root / count mismatch (a token or a logit fingerprint was changed)"
+   ]
+  },
+  {
+   "test": "change one prompt token",
+   "rejected": true,
+   "reasons": [
+    "input hash mismatch",
+    "recorded prompt differs from the job"
+   ]
+  },
+  {
+   "test": "change the seed inside the signed receipt",
+   "rejected": true,
+   "reasons": [
+    "seed signed as 1, job says 2026",
+    "signature: Ed25519 signature rejected"
+   ]
+  },
+  {
+   "test": "change the seed in the job only",
+   "rejected": true,
+   "reasons": [
+    "seed signed as 2026, job says 1"
+   ]
+  },
+  {
+   "test": "change the temperature in the job only",
+   "rejected": true,
+   "reasons": [
+    "temperature signed as 0.6, job says 0.1"
+   ]
+  },
+  {
+   "test": "drop the last generated token",
+   "rejected": true,
+   "reasons": [
+    "output does not stop at an end token or max_new",
+    "output token hash mismatch",
+    "step Merkle root / count mismatch (a token or a logit fingerprint was changed)"
+   ]
+  },
+  {
+   "test": "forged: change a token, recompute every hash, re-sign with a new key (trusted key pinned)",
+   "rejected": true,
+   "reasons": [
+    "signed by key 92d81dd96f8cbbe2..., not the trusted key e66b5033da9506e5..."
+   ]
+  },
+  {
+   "test": "untouched record checked against a wrong trusted key",
+   "rejected": true,
+   "reasons": [
+    "signed by key e66b5033da9506e5..., not the trusted key d2ca141988a1506e..."
+   ]
+  }
+ ],
+ "file": "luxi_out/bundle_tiny-math500-090_cpu-unknown.json",
+ "trusted_key": "e66b5033da9506e58b2db4032e2595a37af4f91bc4c14e057eeee28aa8f9d2e2"
+}
