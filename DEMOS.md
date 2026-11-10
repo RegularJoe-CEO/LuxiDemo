@@ -102,25 +102,26 @@ pip install cryptography && python3 luxirisk/test-vectors/verify_receipts.py
 
 | File | sha256 |
 |---|---|
-| [`downloads/luxi-replay-demo/luxi-replay-demo-1.0.0-linux-x86_64.tar.gz`](downloads/luxi-replay-demo/luxi-replay-demo-1.0.0-linux-x86_64.tar.gz) (25,473,516 bytes) | `b1f6cf0b024f0270223807662ebc15d72191db4838c408bf6727400c5ec539c9` |
+| [`downloads/luxi-replay-demo/luxi-replay-demo-1.0.1-linux-x86_64.tar.gz`](downloads/luxi-replay-demo/luxi-replay-demo-1.0.1-linux-x86_64.tar.gz) (25,476,758 bytes) | `c2114aa7bd6c47822bdf94de2f7d77f1aa773a32dcc3268072cfb979c2e5c8b3` |
 
 ```bash
-curl -LO https://github.com/RegularJoe-CEO/LuxiDemo/raw/32d85ac1891eba4d03b7dc365690acaea78b5aea/downloads/luxi-replay-demo/luxi-replay-demo-1.0.0-linux-x86_64.tar.gz
-echo "b1f6cf0b024f0270223807662ebc15d72191db4838c408bf6727400c5ec539c9  luxi-replay-demo-1.0.0-linux-x86_64.tar.gz" | sha256sum -c
-tar xzf luxi-replay-demo-1.0.0-linux-x86_64.tar.gz && cd luxi-replay-demo-1.0.0-linux-x86_64
+curl -LO https://github.com/RegularJoe-CEO/LuxiDemo/raw/88ebbe60311070f292cb81ba07a7132242ca694a/downloads/luxi-replay-demo/luxi-replay-demo-1.0.1-linux-x86_64.tar.gz
+echo "c2114aa7bd6c47822bdf94de2f7d77f1aa773a32dcc3268072cfb979c2e5c8b3  luxi-replay-demo-1.0.1-linux-x86_64.tar.gz" | sha256sum -c
+tar xzf luxi-replay-demo-1.0.1-linux-x86_64.tar.gz && cd luxi-replay-demo-1.0.1-linux-x86_64
 sha256sum -c SHA256SUMS
 ./install.sh --gpu                 # or --cpu
 ./luxi fetch-model                 # 8.7 GB from Hugging Face, sha256-checked
 ./luxi inspect --device gpu --check-weights
-./luxi demo --device gpu           # or --device cpu; RESULT: SAME BYTES means the step root matches the surviving Nov 9 prefix
+./luxi demo --device gpu           # or --device cpu; RESULT: SAME OUTPUTS = identical to the signed Nov 9 H100 NVL record
 ./luxi verify luxi_out/bundle_tiny-math500-090_gpu-*.json --trusted-key <public key printed by the demo>
+./luxi compare reference/nov09_h100_nvl_signed/short_replay/bundle_tiny_h100.json luxi_out/bundle_tiny-math500-090_gpu-*.json
 ./luxi tamper-test reference/nov09_h100_nvl_signed/full_suite/bundle_a4-math500-090.json \
      --trusted-key reference/keys/luxi_benchmark_key_2026-11.pub
 ./luxi compare <record from machine A> <record from machine B>
 ./luxi full-suite --device gpu     # 136 answers vs the signed November 9 H100 NVL records
 ```
 
-Tested on November 10, 2026 from a clean install: the 32-token replay produced identical records on an RTX 5090, an A40, their host CPUs (AMD EPYC 7543, Intel Xeon Gold 6342) and a sandbox x86_64 CPU (10/10 pairs), with a step root that matches the surviving 16-hex-digit prefix of the November 9 H100 NVL short replay (the full November 9 short record was not recovered); the full suite matched 136/136 answers and 546,114 tokens of the signed November 9 H100 NVL records on the RTX 5090 and the A40. Other listed GPUs are compiled for but were not run with this build. Exact commands, license, identities and limits: [`downloads/luxi-replay-demo/README.md`](downloads/luxi-replay-demo/README.md). Evidence: [`evidence/r1-replay-package-2026-11-10/`](evidence/r1-replay-package-2026-11-10/) and [`evidence/r1-distill-7b-gpu-swap-2026-11-09/`](evidence/r1-distill-7b-gpu-swap-2026-11-09/). Your own model or workload: [private GPU-swap evaluation](https://luxiedge.com/contact#gpu-swap-evaluation).
+Tested on November 10, 2026 from a clean install. Release 1.0.1: the 32-token replay was identical to the signed November 9 H100 NVL short record on an RTX A6000, its host CPU (Intel Xeon Gold 6342) and a sandbox x86_64 CPU, and the full suite matched 136/136 answers and 546,114 tokens of the signed November 9 H100 NVL records on the RTX A6000. Release 1.0.0, which ships the same engine files: identical 32-token records on an RTX 5090, an A40, their host CPUs (AMD EPYC 7543, Intel Xeon Gold 6342) and the sandbox CPU, also identical to the 1.0.1 records, and the full suite matched 136/136 on the RTX 5090 and the A40. Other listed GPUs are compiled for but were not run with this build. Release 1.0.0 (sha256 `b1f6cf0b…39c9`) stays in the same folder. Exact commands, license, identities, changes and limits: [`downloads/luxi-replay-demo/README.md`](downloads/luxi-replay-demo/README.md). Evidence: [`evidence/r1-replay-package-1.0.1-2026-11-10/`](evidence/r1-replay-package-1.0.1-2026-11-10/), [`evidence/r1-replay-package-2026-11-10/`](evidence/r1-replay-package-2026-11-10/) and [`evidence/r1-distill-7b-gpu-swap-2026-11-09/`](evidence/r1-distill-7b-gpu-swap-2026-11-09/). Your own model or workload: [private GPU-swap evaluation](https://luxiedge.com/contact#gpu-swap-evaluation).
 
 ## Demo 2: version-100 serve (historical API toy)
 

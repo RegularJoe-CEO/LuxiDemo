@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-11-10 (later): Replay demo 1.0.1 and the recovered November 9 records
+
+A new package release and new evidence. 1.0.1 was tested from a clean install before these docs advertise it. Release 1.0.0 and its evidence folder are unchanged and stay available.
+
+| Area | Change |
+|---|---|
+| Download | [`downloads/luxi-replay-demo/`](downloads/luxi-replay-demo/): `luxi-replay-demo-1.0.1-linux-x86_64.tar.gz` (sha256 `c2114aa7…b3`) and `.sha256`. Same engine files as 1.0.0 (54 identical files, 5 changed, 1 added). The demo now checks the whole signed November 9 H100 NVL short record instead of a 16-hex-digit prefix; the documented `verify` and `compare` pattern commands, which stopped with exit 2 in 1.0.0, now run as written. `README.md` and `LICENSE.txt` updated for 1.0.1 |
+| New evidence | [`evidence/r1-replay-package-1.0.1-2026-11-10/`](evidence/r1-replay-package-1.0.1-2026-11-10/): every record, comparison and log from the 1.0.1 test on an RTX A6000 pod and a sandbox CPU, the package checksums and the file-by-file change list |
+| November 9 evidence | [`evidence/r1-distill-7b-gpu-swap-2026-11-09/records/`](evidence/r1-distill-7b-gpu-swap-2026-11-09/records/): the per-GPU signed records and the 32-token replay records, recovered on November 10 and added unchanged, with checksums and an independent check. The folder's README, Completeness section and `SHA256SUMS` updated. No existing file in that folder was otherwise changed |
+| README.md, INFERENCE.md, DEMOS.md, RESULTS.md, evidence/README.md, downloads/README.txt, site/index.html | Point to 1.0.1; describe the recovered records; the 1.0.0 test description now says the full November 9 short record was recovered after it |
+
 ## 2026-11-10: Inference replay demo, November evidence, corrections
 
 New public download and evidence. The closed-binary package was tested from a clean install before these docs advertise it. No existing binary, checksum, release asset, tag or signed test vector changed.
