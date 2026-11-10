@@ -1,0 +1,2 @@
+name, compute_cap, memory.total [MiB], driver_version, power.limit [W]
+NVIDIA A40, 8.6, 46068 MiB, 595.91.07, 300.00 W

@@ -1,0 +1,3 @@
+[1/4] checking model files in /root/lxhome_a40/.cache/luxi/models/DeepSeek-R1-Distill-Qwen-7B-quantized.w8a8
+[2/4] loading the model on Intel(R) Xeon(R) Gold 6342 CPU @ 2.80GHz (CPU path)
+[3/4] running fixture tiny-math500-090: 63-token prompt, 32 sampled tokens, seed 2026

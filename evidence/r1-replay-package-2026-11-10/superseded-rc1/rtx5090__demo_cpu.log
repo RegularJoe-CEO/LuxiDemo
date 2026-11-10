@@ -1,0 +1,72 @@
+[1/4] checking model files in /root/lxhome_r5090/.cache/luxi/models/DeepSeek-R1-Distill-Qwen-7B-quantized.w8a8
+[2/4] loading the model on AMD EPYC 7543 32-Core Processor (CPU path)
+[3/4] running fixture tiny-math500-090: 63-token prompt, 32 sampled tokens, seed 2026
+call 0: prompt 63 tok, 1 samples, out lens [32], root 158ee5ae768cb633
+[4/4] checking the signed record
+{
+ "record": "/root/lxtest/results_r5090/demo_cpu/bundle_tiny-math500-090_cpu-AMD_EPYC_7543_32_Core_Processor.json",
+ "device": {
+  "name": "AMD EPYC 7543 32-Core Processor",
+  "threads": 14
+ },
+ "job_id": "tiny-math500-090",
+ "generated_token_ids": [
+  32313,
+  11,
+  773,
+  358,
+  1184,
+  311,
+  7071,
+  700,
+  1246,
+  311,
+  21749,
+  220,
+  16,
+  15,
+  553,
+  220,
+  17,
+  14,
+  18,
+  11,
+  714,
+  358,
+  1513,
+  944,
+  6099,
+  279,
+  4734,
+  7354,
+  13,
+  88190,
+  11,
+  1077
+ ],
+ "generated_text": "Okay, so I need to figure out how to divide 10 by 2/3, but I don't remember the exact steps. Hmm, let",
+ "prompt_text": "<\uff5cbegin\u2581of\u2581sentence\uff5c><\uff5cUser\uff5c>Remmy wants to divide $10$ by $\\frac{2}{3}$, but he cannot remember how to do that.  By what number should he multiply $10$ to get the answer?\nPlease reason step by step, and put your final answer within \\boxed{}.<\uff5cAssistant\uff5c><think>\n",
+ "steps": 32,
+ "steps_merkle_root": "158ee5ae768cb633afeb89d288642651d0bedada58c0603a57abfd1620a66e6d",
+ "nov09_h100_reference_root_prefix": "158ee5ae768cb633",
+ "matches_nov09_reference": true,
+ "record_verifies": true,
+ "verify_errors": [],
+ "signer_public_key": "c8da7da1fc0d6ef02cae59d8204e53ef30de11fd0a5dda542412fa742b9927b7",
+ "signing_key_file": "/root/lxtest/pkg/luxi-replay-demo-1.0.0-linux-x86_64/.luxi_state/demo_signing_key.hex",
+ "timing": {
+  "weights_checksum_s": 0.0,
+  "model_load_s": 8.12,
+  "execution_s": 71.58,
+  "prefill_s": 41.3024,
+  "decode_s": 30.2229,
+  "sampler_s": 0.1693,
+  "gen_tokens": 32
+ },
+ "build_sha256": "9f7931d9d5457e2f9e48241836ae741eff6100a7140d9863967f8c42417a6694",
+ "engine_source_sha256": "795c71736e22e2f66935e4acc91b8040120d40528b04d84ea9daedd5a5692f36"
+}
+
+RESULT: SAME BYTES as the Nov 9 H100 NVL reference (Merkle root over every token id and per-step logit fingerprint)
+verify offline:  ./luxi verify /root/lxtest/results_r5090/demo_cpu/bundle_tiny-math500-090_cpu-AMD_EPYC_7543_32_Core_Processor.json --trusted-key c8da7da1fc0d6ef02cae59d8204e53ef30de11fd0a5dda542412fa742b9927b7
+compare runs:    ./luxi compare RECORD_FROM_OTHER_MACHINE.json /root/lxtest/results_r5090/demo_cpu/bundle_tiny-math500-090_cpu-AMD_EPYC_7543_32_Core_Processor.json

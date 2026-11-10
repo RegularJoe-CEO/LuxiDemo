@@ -1,0 +1,27 @@
+03:16:09 START a40
+name, compute_cap, memory.total [MiB], driver_version, power.limit [W]
+NVIDIA A40, 8.6, 46068 MiB, 595.91.07, 300.00 W
+luxi-replay-demo-1.0.0-linux-x86_64.tar.gz: OK
+03:16:47 install rc=0 38 s
+  CUDA OK: NVIDIA A40 compute capability 8.6
+
+Installed. Next:
+  ./luxi fetch-model                     # 8.7 GB from Hugging Face, once; every file is checked by sha256
+  ./luxi inspect --device gpu --check-weights
+  ./luxi demo --device gpu
+03:17:11 fetch-model rc=0 24 s
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{
+ "model_dir": "/root/lxhome_a40/.cache/luxi/models/DeepSeek-R1-Distill-Qwen-7B-quantized.w8a8",
+ "download_s": 13.9,
+ "checksum_s": 9.92,
+ "files_ok": [
+  "config.json",
+  "model-00001-of-00002.safetensors",
+  "model-00002-of-00002.safetensors",
+  "tokenizer.json"
+ ]
+}
+03:17:14 inspect gpu rc=0
+03:17:33 demo gpu #1 rc=0 RESULT: SAME BYTES as the Nov 9 H100 NVL reference (Merkle root over every token id and per-step logit fingerprint)
+03:17:53 demo gpu #2 rc=0 RESULT: SAME BYTES as the Nov 9 H100 NVL reference (Merkle root over every token id and per-step logit fingerprint)
