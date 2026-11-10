@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-10 (after release): Known issue in replay demo 1.0.1
+
+Documentation only; no shipped or evidence file changed. `./luxi inspect` in 1.0.1 prints a note carried over unchanged from 1.0.0 saying only the first 16 hex digits of the November 9 H100 NVL record were recovered. That is out of date: 1.0.1 ships the full signed record and its demo checks it. Now noted in [`downloads/luxi-replay-demo/README.md`](downloads/luxi-replay-demo/README.md#known-issue-in-101) (next to the `inspect` command and in its own section) and in the 1.0.1 entry of [`evidence/README.md`](evidence/README.md). The dated evidence folders are unchanged.
+
 ## 2026-11-10 (later): Replay demo 1.0.1 and the recovered November 9 records
 
 A new package release and new evidence. 1.0.1 was tested from a clean install before these docs advertise it. Release 1.0.0 and its evidence folder are unchanged and stay available.

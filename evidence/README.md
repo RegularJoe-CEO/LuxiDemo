@@ -16,6 +16,7 @@ Overview: [`../INFERENCE.md`](../INFERENCE.md) · scope: [`../TEST_SCOPE.md`](..
 - 32-token replay: identical to the signed November 9 H100 NVL short record (recovered November 10, shipped in the package) on RTX A6000, its host CPU Intel Xeon Gold 6342 and a sandbox x86_64 CPU; the 1.0.0 records and the nine November 9 host-CPU records also compare identical
 - Full suite on RTX A6000: 136/136 answers and 546,114 tokens identical to the signed November 9 H100 NVL records (662.7 s at 32 slots, 0.362 GPU-board J per token)
 - Offline verify, wrong-key rejection and every tested tamper edit rejected on both machines; an altered November 9 reference makes the demo report NO MATCH (exit 1)
+- Known issue (noted November 10, after release): the `inspect` outputs in this folder (`rtxa6000/inspect_gpu.json`, `sandbox-cpu/inspect_cpu.json`) include `fixtures.tiny.nov09_reference.note`, which still says only the first 16 hex digits of the November 9 record were recovered. That sentence comes from `fixtures/tiny/fixture.json`, which 1.0.1 ships unchanged from 1.0.0, and it is out of date: the full record ships in the package, and this folder's demo summaries show it was checked in full (`nov09_reference_signature_verified` and `matches_nov09_reference` are both `true`). No check reads the note. The folder itself is unchanged; see [Known issue in 1.0.1](../downloads/luxi-replay-demo/README.md#known-issue-in-101)
 
 ### R1 replay package 1.0.0 clean-install test - 2026-11-10
 

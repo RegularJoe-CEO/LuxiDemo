@@ -53,6 +53,8 @@ sha256sum -c SHA256SUMS          # every shipped file
 
 # 1. inspect: build identity, model checksums, device, fixtures
 ./luxi inspect --device gpu --check-weights      # or --device cpu
+#    inspect also prints fixtures.tiny.nov09_reference.note, carried over unchanged from 1.0.0. Its sentence
+#    "Only the first 16 hex digits ... were recovered" is out of date; see "Known issue in 1.0.1" below.
 
 # 2. short frozen replay (63-token prompt, 32 sampled tokens)
 ./luxi demo --device gpu
@@ -157,6 +159,16 @@ with its sha256 in both releases:
   matched it and those two commands stopped with a usage error (exit 2). In 1.0.1 the commands above run as written.
 - `verify`, `compare` and `tamper-test` reject a file that is not a signed record with a clear message (exit 2), and
   `compare-dirs` skips 1.0.0 summary files.
+
+## Known issue in 1.0.1
+
+`./luxi inspect` prints `fixtures.tiny.nov09_reference.note`, which says that only the first 16 hex digits of the
+November 9 H100 NVL step root were recovered and that the full record is not in the recovered files. That sentence was
+written for 1.0.0. It comes from `fixtures/tiny/fixture.json`, a file 1.0.1 ships unchanged from 1.0.0, and it was
+missed when 1.0.1 was prepared. It is out of date: the full signed record was recovered on November 10 and ships
+unchanged in `reference/nov09_h100_nvl_signed/short_replay/bundle_tiny_h100.json`, and `./luxi demo` checks your run
+against all of it. No check reads the note. Changing it would change a shipped file, so 1.0.1 stays exactly as
+published and tested (sha256 `c2114aa7…`). This section was added on November 10, 2026, after the release.
 
 ## Previous release: 1.0.0
 
