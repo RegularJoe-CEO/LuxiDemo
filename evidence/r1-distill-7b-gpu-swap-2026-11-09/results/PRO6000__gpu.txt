@@ -1,0 +1,2 @@
+name, clocks.max.sm [MHz], clocks.max.memory [MHz], power.limit [W]
+NVIDIA RTX PRO 6000 Blackwell Server Edition, 2430 MHz, 12481 MHz, 600.00 W

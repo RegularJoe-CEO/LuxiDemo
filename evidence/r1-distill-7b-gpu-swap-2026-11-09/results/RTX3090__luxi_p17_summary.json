@@ -1,0 +1,21 @@
+{
+ "tokens": 546114,
+ "steps": 31368,
+ "prefill_s": 88.8274743151851,
+ "decode_s": 580.3025429402478,
+ "rows_done": 136,
+ "jobs_done": 17,
+ "pauses": 61,
+ "resumes": 61,
+ "peak_active": 32,
+ "wall_s": 672.8,
+ "board_J": 228497.0,
+ "tok_s": 811.7,
+ "J_per_tok": 0.4184,
+ "device": "NVIDIA GeForce RTX 3090",
+ "slots": 32,
+ "maxctx": 16823,
+ "engine_sha256": "795c71736e22e2f66935e4acc91b8040120d40528b04d84ea9daedd5a5692f36",
+ "jobs": 17,
+ "energy": "NVML board energy counter (GPU board only, not wall)"
+}

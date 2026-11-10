@@ -1,0 +1,12 @@
+{
+ "a": "/root/swap/ref/p17_h100",
+ "b": "/root/swap/out_A6000/p17s128",
+ "jobs": 0,
+ "jobs_outputs_identical": 0,
+ "jobs_all_fields_identical": 0,
+ "answers": 0,
+ "answers_identical_tokens_and_fingerprints": 0,
+ "tokens_in_b": 0,
+ "engine_fields_that_differ": [],
+ "diffs": []
+}

@@ -1,0 +1,21 @@
+{
+ "tokens": 546114,
+ "steps": 29551,
+ "prefill_s": 10.761126697063446,
+ "decode_s": 230.02138394117355,
+ "rows_done": 136,
+ "jobs_done": 17,
+ "pauses": 0,
+ "resumes": 0,
+ "peak_active": 32,
+ "wall_s": 243.5,
+ "board_J": 74505.2,
+ "tok_s": 2242.9,
+ "J_per_tok": 0.1364,
+ "device": "NVIDIA H100 NVL",
+ "slots": 32,
+ "maxctx": 16823,
+ "engine_sha256": "795c71736e22e2f66935e4acc91b8040120d40528b04d84ea9daedd5a5692f36",
+ "jobs": 17,
+ "energy": "NVML board energy counter (GPU board only, not wall)"
+}

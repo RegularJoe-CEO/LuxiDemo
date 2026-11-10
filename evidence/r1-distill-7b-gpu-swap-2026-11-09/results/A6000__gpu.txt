@@ -1,0 +1,2 @@
+name, clocks.max.sm [MHz], clocks.max.memory [MHz], power.limit [W]
+NVIDIA RTX A6000, 2100 MHz, 8001 MHz, 300.00 W
