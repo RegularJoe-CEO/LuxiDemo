@@ -4,7 +4,7 @@ Luxi demos are distributed as **compiled evaluation binaries**. Evaluators can
 run the tools, supply inputs, inspect outputs, and compare **output vector hashes**
 (and signed calculation receipts) without receiving the private implementation source.
 
-**Portfolio:** LuxiQuant Risk State Engine (Risk Runtime v0.4.0) is the paid LuxiQuant product (evaluation-only, no public download; [luxiedge.com](https://luxiedge.com/luxiquant)). Luxi **Book** is the free public receipt and determinism demonstration. LuxiBook includes **LuxiSize**, the sizing calculator.  
+**Portfolio:** LuxiEdge is one core engine with seven commercial products ([luxiedge.com](https://luxiedge.com)). Only some have anything public here, and they are not equally validated. Public downloads in this repository: the **Luxi inference replay demo** (Demo 1, closed binary, Linux x86_64) and the free **LuxiBook** demo (Demo 0, includes **LuxiSize**). The LuxiQuant Risk State Engine (Risk Runtime v0.4.2) has no public download or public prices ([luxiedge.com/luxiquant](https://luxiedge.com/luxiquant)). Haplotastic has no public package here.  
 This repo ships **binaries + markdown only** - marketing HTML lives on Replit (luxiedge.com), not here.
 
 ## Demo 0: LuxiBook - CSV European options + attested receipt (the Quant try)
@@ -44,8 +44,8 @@ shasum -a 256 -c downloads/luxibook/luxi-book-macos-arm64.sha256
 `4a21b1e708fa5c694bf48237df5e5bd3b94599e6273d07986283c6c6b8e3c97a`  
 ATM_CALL `10.4505835721856215`. Kernel `black_scholes_book_kernel`.
 
-**v0.2.0 matrix (engine `b4645c2`):** Mac Mini arm64 CPU + four NVIDIA devices (RTX 4090 Ada, H200, H100×2) with CPU↔GPU hash agreement on this book - see [`downloads/luxibook/README.md`](downloads/luxibook/README.md) and stored receipts under [`evidence/v0.2.0-matrix/`](downloads/luxibook/evidence/v0.2.0-matrix/).  
-**A100:** still **historical** only (2026-08-15 pre-attestation binary, same output hash) - not re-measured under v0.2.0.  
+**Current v0.2.1 matrix (2026-08-16):** five GPUs (H200, H100, A100, RTX 5090, RTX 4090), each on both the LuxiBook CPU and CUDA pricing paths, with 20 signed receipts across two books (`example_book.csv` and `stress_book_a.csv`): [`downloads/luxibook/evidence/v0.2.1-phi-fix-matrix/`](downloads/luxibook/evidence/v0.2.1-phi-fix-matrix/). This LuxiBook matrix is separate from the November inference results.  
+**Historical v0.2.0 matrix (engine `b4645c2`, determinism only):** Mac Mini arm64 CPU + RTX 4090, H200, H100×2, stored under [`evidence/v0.2.0-matrix/`](downloads/luxibook/evidence/v0.2.0-matrix/). Do not use v0.2.0 for accuracy claims (see [`downloads/luxibook/README.md`](downloads/luxibook/README.md)).  
 **Non-claim:** this book, these devices, this kernel - not all GPUs always match.
 
 The signed `lxq2_…` receipt is **per-install** (not a published constant). Details: [`downloads/luxibook/README.md`](downloads/luxibook/README.md).
@@ -87,9 +87,44 @@ pip install cryptography && python3 luxirisk/test-vectors/verify_receipts.py
 - Test vectors: [`luxirisk/test-vectors/`](luxirisk/test-vectors/)
 - Release: [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2) (**unsigned** binaries + checksums)
 - Offline by default · optional `--stamp` / `--beacon` · CLI only · Built by the team behind LuxiEdge - luxiedge.com
-## Demo 2: version-100 commercial serve (inference)
 
-**Binary only - no engine source. Not LuxiBook.** OpenAI-shaped HTTP API with a toy generate path.
+**Two different v0.2 builds: pair each download with its own checksum.** The binaries in [`luxirisk/dist/`](luxirisk/dist/) and the assets on the `luxirisk-v0.2` release carry the same version label but have different digests. Check a repository copy with the `.sha256` or `SHA256SUMS` in `luxirisk/dist/` (run `shasum -a 256 -c` inside that folder). Check a release download with the release's own `SHA256SUMS` (`sha256sum -c SHA256SUMS --ignore-missing` in the download folder); the release's per-file `.sha256` files carry a `dist/` path prefix, so compare their digest by eye.
+
+| File | `luxirisk/dist/` sha256 | `luxirisk-v0.2` release sha256 |
+|---|---|---|
+| `luxirisk-linux-x86_64` | `66a4ab65fd71316db059cfd04b2a7c39e0de733352333f68168cf74fd56972e3` | `bc0a2bb606f050cdf8c8ecc3101a2d4df42b55f8a43c60a6d0394eeb26a00e57` |
+| `luxirisk-macos-arm64` | `154dc9c990c46c0d6b2afe02aa676fd8ece33a3f70e61b00002a92bbb507c284` | `6385d6cb55260b9b223fe6b26726ec03272de8d25569b2b0adaf07b2cd402a9f` |
+| `luxirisk-windows-x86_64.exe` | `50f4e00ce60c37f0de75262c3ea5605768f6049cfa62933f448b32386f0df17e` | `878023843c37303636becc44d160197de63ebdd6c04671ca6ab0856265adbf95` |
+
+## Demo 1: Luxi inference replay (closed binary, Linux x86_64)
+
+**Current inference download. Closed binary, evaluation license; engine source private.** A frozen DeepSeek-R1-Distill-Qwen-7B w8a8 job from the November 2026 R1 evaluation, replayed by a closed-binary build of the Luxi engine (Attention Transformer v2, engine v27 final). Runs on an NVIDIA GPU (compute capability 8.0, 8.6, 8.9, 9.0 or 12.0) or an x86_64 CPU (tested: AMD EPYC 7543, Intel Xeon Gold 6342 and one sandbox CPU whose model the VM did not expose). Not a chat app, API server or speed benchmark.
+
+| File | sha256 |
+|---|---|
+| [`downloads/luxi-replay-demo/luxi-replay-demo-1.0.0-linux-x86_64.tar.gz`](downloads/luxi-replay-demo/luxi-replay-demo-1.0.0-linux-x86_64.tar.gz) (25,473,516 bytes) | `b1f6cf0b024f0270223807662ebc15d72191db4838c408bf6727400c5ec539c9` |
+
+```bash
+curl -LO https://github.com/RegularJoe-CEO/LuxiDemo/raw/32d85ac1891eba4d03b7dc365690acaea78b5aea/downloads/luxi-replay-demo/luxi-replay-demo-1.0.0-linux-x86_64.tar.gz
+echo "b1f6cf0b024f0270223807662ebc15d72191db4838c408bf6727400c5ec539c9  luxi-replay-demo-1.0.0-linux-x86_64.tar.gz" | sha256sum -c
+tar xzf luxi-replay-demo-1.0.0-linux-x86_64.tar.gz && cd luxi-replay-demo-1.0.0-linux-x86_64
+sha256sum -c SHA256SUMS
+./install.sh --gpu                 # or --cpu
+./luxi fetch-model                 # 8.7 GB from Hugging Face, sha256-checked
+./luxi inspect --device gpu --check-weights
+./luxi demo --device gpu           # or --device cpu; RESULT: SAME BYTES means the step root matches the surviving Nov 9 prefix
+./luxi verify luxi_out/bundle_tiny-math500-090_gpu-*.json --trusted-key <public key printed by the demo>
+./luxi tamper-test reference/nov09_h100_nvl_signed/full_suite/bundle_a4-math500-090.json \
+     --trusted-key reference/keys/luxi_benchmark_key_2026-11.pub
+./luxi compare <record from machine A> <record from machine B>
+./luxi full-suite --device gpu     # 136 answers vs the signed November 9 H100 NVL records
+```
+
+Tested on November 10, 2026 from a clean install: the 32-token replay produced identical records on an RTX 5090, an A40, their host CPUs (AMD EPYC 7543, Intel Xeon Gold 6342) and a sandbox x86_64 CPU (10/10 pairs), with a step root that matches the surviving 16-hex-digit prefix of the November 9 H100 NVL short replay (the full November 9 short record was not recovered); the full suite matched 136/136 answers and 546,114 tokens of the signed November 9 H100 NVL records on the RTX 5090 and the A40. Other listed GPUs are compiled for but were not run with this build. Exact commands, license, identities and limits: [`downloads/luxi-replay-demo/README.md`](downloads/luxi-replay-demo/README.md). Evidence: [`evidence/r1-replay-package-2026-11-10/`](evidence/r1-replay-package-2026-11-10/) and [`evidence/r1-distill-7b-gpu-swap-2026-11-09/`](evidence/r1-distill-7b-gpu-swap-2026-11-09/). Your own model or workload: [private GPU-swap evaluation](https://luxiedge.com/contact#gpu-swap-evaluation).
+
+## Demo 2: version-100 serve (historical API toy)
+
+**Historical. Binary only - no engine source. Not LuxiBook, and not the current reasoning engine.** OpenAI-shaped HTTP API with a toy generate path, kept for its API shape. For real inference replay use [Demo 1](#demo-1-luxi-inference-replay-closed-binary-linux-x86_64).
 
 | Platform | Binary in repo |
 |----------|----------------|
@@ -105,11 +140,13 @@ curl -s -X POST http://127.0.0.1:8787/v1/audit -d '{}'
 ```
 
 - Package (binaries + docs): [`demo/luxiedge-yc-demo/`](demo/luxiedge-yc-demo/) · also [`downloads/`](downloads/)
-- Measured H100 results: [`BENCHMARKS.md`](BENCHMARKS.md)
+- Its generate path does not run the benchmarked engine. Historical September H100 results: [`BENCHMARKS.md`](BENCHMARKS.md)
 - Local generate path is a toy path for instant API demos. Completions return a `token_receipt` and `latency_ms`.
 - `/v1/gtm` returns build info, a determinism note and a link to [`BENCHMARKS.md`](BENCHMARKS.md); `/health` includes `build_version` and the benchmarks link; the `/dashboard` top card links to BENCHMARKS.md.
 
-## Download and verify (numerical v3.0)
+## Download and verify (numerical v3.0, historical)
+
+**Historical.** The v3.0 release (June 2026) describes 10-day-expiring demo binaries. They are kept as a record of the numerical demos, not as current working packages, and they are not inference packages. Demos 3 to 8 below use them.
 
 Download the matching files from the
 [v3.0 release](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/v3.0):
@@ -232,10 +269,10 @@ drag-decay, J2, and Lambert-style calculations.
 The robotics demonstration emits receipts for inverse kinematics, Kalman
 weighting, tire slip, motor torque, clothoid curvature, and lidar distance.
 
-## Demo 9: inference evidence verifier
+## Demo 9: Version 99 evidence verifier (historical)
 
-The full Version 99 Qwen2-7B engine is not distributed from this public demo
-repository. Its public arithmetic check is:
+The Version 99 Qwen2-7B engine (July 2026) is not distributed. This verifier is a summary arithmetic check, not a
+runnable engine or a raw-output comparison; for a runnable replay use [Demo 1](#demo-1-luxi-inference-replay-closed-binary-linux-x86_64). Its public arithmetic check is:
 
 ```bash
 python3 scripts/verify_v99_pack.py
@@ -252,8 +289,9 @@ proprietary engine source. See also [`scripts/README.md`](scripts/README.md).
 | **LuxiBook** (free demo) | CSV BS/Black-76 + Greeks + output-vector hash + Ed25519 `lxq2_` receipt; macOS + Linux CPU + Linux CUDA | Free demonstration only; not evidence for the Risk State Engine; no universal GPU claim |
 | **LuxiSize** (sizing calculator in LuxiBook) | Offline calculator CLI + Ed25519 `lxr1_` receipts + verify + public vectors | [**luxirisk-v0.2**](https://github.com/RegularJoe-CEO/LuxiDemo/releases/tag/luxirisk-v0.2) (**OS binaries not code-signed**; Gatekeeper/SmartScreen friction) |
 | LuxiQuant numerical | v3.0 binary validation + REST + operator receipts | Keep secondary to Book; optional multi-platform numerical matrix |
-| Inference evidence (not an offer) | Serve API demo + H100 benchmarks vs vLLM and SGLang ([`BENCHMARKS.md`](BENCHMARKS.md)) + drift demo ([`INFERENCE.md`](INFERENCE.md#drift-demo)) + Version 99 verifier | Evidence only; inference is not a separate paid offer |
-| Genomics drift (not an offer) | Oxford Nanopore Dorado basecaller: drift proof + like-for-like CUPTI GPU kernel timings ([`proofs/dorado-drift/DORADO_DRIFT.md`](proofs/dorado-drift/DORADO_DRIFT.md)) | Evidence only; closed engine |
+| **Inference** (commercial product) | Demo 1: closed-binary R1 replay package (GPU and CPU replay, offline verify, tamper test, compare, 136-answer GPU suite); November 9 nine-GPU evidence; November 10 package test. Historical: September H100 benchmarks vs vLLM and SGLang ([`BENCHMARKS.md`](BENCHMARKS.md)), drift demo ([`INFERENCE.md`](INFERENCE.md#drift-demo)), Version 99 verifier, serve API toy | Run the package on more GPU types; your own model or workload through a [private GPU-swap evaluation](https://luxiedge.com/contact#gpu-swap-evaluation) |
+| Haplotastic (commercial product) | None in this repository | [luxiedge.com/haplotastic](https://luxiedge.com/haplotastic) |
+| Genomics research (Dorado, PairHMM) | Oxford Nanopore Dorado basecaller drift proof + like-for-like CUPTI GPU kernel timings ([`proofs/dorado-drift/DORADO_DRIFT.md`](proofs/dorado-drift/DORADO_DRIFT.md)); Deterministic-PairHMM paper | Research studies of single workloads, not a Haplotastic variant-calling benchmark package; no public engine |
 | LuxiPak | None | Admission/placement trace versus a baseline |
 | LuxiPhase | None | Synthetic load-shaping trace with SLO and stability checks |
 | LuxiLoad (roadmap) | None | Roadmap only |

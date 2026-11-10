@@ -1,6 +1,25 @@
 # What was and wasn't tested
 
-Scope of the LuxiEdge Qwen2-7B inference results in [`INFERENCE.md`](INFERENCE.md) and [`BENCHMARKS.md`](BENCHMARKS.md). Raw files: [vLLM evidence](evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/) · [SGLang evidence](evidence/h100-qwen2-7b-vs-sglang-0.5.19-2026-09-26/) · [Drift demo evidence](evidence/h100-qwen2-7b-drift-demo-2026-09-26/).
+## November 2026: R1 replay package and GPU swap test
+
+Scope of the November results in [`INFERENCE.md`](INFERENCE.md). Raw files: [November 9 GPU swap test](evidence/r1-distill-7b-gpu-swap-2026-11-09/) · [November 10 package test](evidence/r1-replay-package-2026-11-10/) · package: [`downloads/luxi-replay-demo/`](downloads/luxi-replay-demo/).
+
+| Topic | Tested | Not tested |
+|---|---|---|
+| Model | DeepSeek-R1-Distill-Qwen-7B, RedHatAI w8a8 quantization, revision `925259de`. The November 9 gate also used RedHatAI Qwen2-7B-Instruct w8a8 | Other models, other quantizations, bf16/fp16 R1 |
+| Engine | November 9: frozen v27 (`795c71736e22e2f6`). Package: closed-binary build of the same v27 source, new build identity `9f7931d9…6694` (new binaries; a different GPU matrix-multiply library than November 9) | Any other engine build. A new binary does not inherit another build's machine list |
+| Full workload | 17 problems (4 AIME 2024, 13 MATH-500) x 8 sampled answers = 136 answers, 546,114 tokens, up to 16,384 new tokens each, temperature 0.6, top-p 0.95. November 9: nine GPU types. Package (November 10): RTX 5090 and A40 | 136 distinct questions (it is 17 problems x 8 samples). Answer accuracy is not the claim. Other GPU types with the package build |
+| Short replay | One MATH-500 prompt (63 tokens), one sample, capped at 32 tokens. November 9: host CPUs of all nine GPU machines (seven CPU models) plus all nine GPUs. Package (November 10): RTX 5090, A40, AMD EPYC 7543, Intel Xeon Gold 6342 and one sandbox x86_64 CPU whose model the VM does not expose | Longer CPU replays. Any CPU full-suite run: the package refuses `full-suite --device cpu` (exit 2) |
+| Small Qwen checks and gate (November 9 only) | 2/2 small Qwen2-7B checks on each CPU model; a 92-case Qwen2-7B gate on each GPU type | Not repeated with the package |
+| Comparator | vLLM 0.32 normal mode on November 9, same quantized files and prompts, sequence matches against its own H100 reference | Other vLLM modes or configurations, SGLang, TensorRT-LLM. vLLM's tested int8 configuration rejected SM120 (RTX 5090, RTX PRO 6000) |
+| Performance | November 9: one measured run per setting, rental rates observed that day, NVML GPU-board energy. Package: full suite one run per GPU, short replay twice per GPU and twice on the sandbox CPU, once per pod host CPU; timings printed for information | Repeated performance runs, facility energy, current or contracted prices, licensing costs, production serving, live failover, SLAs |
+| Signatures | Ed25519 records verified offline against a chosen public key; changed tokens, fingerprints, prompts, seeds, temperatures, dropped tokens, re-signed forgeries and wrong keys rejected | A signature does not show which machine ran a job or that an answer is correct |
+| Platforms | Linux x86_64, NVIDIA GPUs on one cloud (RunPod), Intel and AMD x86_64 CPUs | AMD or Apple GPUs, ARM CPUs, macOS, Windows, other clouds |
+| Evidence retained | See the completeness statement in the November 9 folder: per-GPU result files and the 17 signed H100 NVL records are public; the 136 answers each GPU produced (and their signed records) are not in the recovered archive | - |
+
+## September 2026: Qwen2-7B on H100 (historical)
+
+Scope of the historical LuxiEdge Qwen2-7B inference results in [`INFERENCE.md`](INFERENCE.md#historical-qwen2-7b-on-h100-september-2026) and [`BENCHMARKS.md`](BENCHMARKS.md). Raw files: [vLLM evidence](evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/) · [SGLang evidence](evidence/h100-qwen2-7b-vs-sglang-0.5.19-2026-09-26/) · [Drift demo evidence](evidence/h100-qwen2-7b-drift-demo-2026-09-26/).
 
 | Topic | Tested | Not tested |
 |---|---|---|
@@ -20,7 +39,7 @@ Scope of the LuxiEdge Qwen2-7B inference results in [`INFERENCE.md`](INFERENCE.m
 | Deployment | Single-GPU benchmark harness sending fixed batches to each engine in-process (vLLM and SGLang offline engine APIs, no HTTP server) | A full serving deployment: HTTP front end, live-traffic scheduling, multi-GPU or multi-node serving |
 | Re-run and lifecycle savings | — | Not measured yet (for example, avoided re-runs or re-validation because outputs stay the same) |
 | Third-party validation | TestFort evaluated earlier, different builds: the Version 99 matched-prefill test (2026-07-23) and the December 2025 numerical-engine report | These results. No third party has run or checked the vLLM or SGLang comparisons or the drift demo |
-| Public binaries | The version-100 serve binary in [`downloads/`](downloads/) is a demo server (OpenAI-shaped API, toy generate path) | It is not the benchmarked engine, which is private |
+| Public binaries | The version-100 `luxiedge-serve` binary in [`downloads/`](downloads/) is a historical API toy (OpenAI-shaped API, toy generate path) | It is not the benchmarked engine and not the current reasoning engine. The current public inference download is the November replay package |
 | Drift demo: setup | [Drift demo](INFERENCE.md#drift-demo), 2026-09-26, one H100 SXM 80GB. Qwen2-7B-Instruct fp16, greedy, 20 fixed prompts, 256 tokens each. Each output under load was compared with the same engine's output for that prompt alone. Engines: Luxi, vLLM 0.25.1 default and batch-invariant, SGLang 0.5.19 default and deterministic | Other models, dtypes or GPUs; sampled (non-greedy) decoding; repeating the whole demo |
 | Drift demo: conditions | Luxi: batch 16 and 64 with two filler sets and two row positions, 80 load conditions. vLLM and SGLang: the same, plus a mixed-length batch of 16 and two live-server runs with requests arriving at different times, 140 load conditions. For the 1,698-token prompt the "64" conditions used 32 rows for every engine (Luxi buffer limit). Luxi used a 2,048-token decode context | Luxi with live-server arrivals or mixed-length batches: the benchmarked Luxi engine has no server for requests arriving at different times and its batch API takes equal-length rows. Batch sizes other than 16, 32 and 64 |
 | Drift demo: what was compared | Generated tokens, visible text and logprob hashes. Luxi: logprobs at 9 positions (0, 1, 3, 7, 15, 31, 63, 127, 255) plus a hash of the full 152,064-entry logits vector at each. vLLM and SGLang: the chosen token's logprob at every position | Luxi logprobs at the other positions |

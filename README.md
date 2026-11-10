@@ -6,11 +6,28 @@ LuxiEdge is deterministic numerics with receipts. Every result here is scoped to
 
 [Art of Fugue](https://github.com/RegularJoe-CEO/Art-of-Fugue) runs 200,000 floating-point operations and hashes the exact results. Its README records platform libm hashes `b02237875da129b90b6355d5918b38657e4bb2e697e413124c661acd0899eb19` on macOS ARM64 and `c060c5031b1bdb7b730ad6de7639ca87fd3257009a3e3580b71b4f116158c9d6` on Linux x86_64 with an NVIDIA GPU. The LuxiEdge example in that README is `781ae6b19ca58f36bfaaedde6e605f6fc8a766701d69175cbbcd39fe20efd610` on both of those rows. Download `art_of_fugue.py` and run `python3 art_of_fugue.py`.
 
-## LuxiQuant Risk State Engine (commercial product)
+## What is public here
 
-LuxiQuant Risk State Engine, powered by Risk Runtime v0.4.0, is LuxiEdge's only commercial product. LuxiQuant is LuxiEdge's primary commercial division. The Risk State Engine maintains deterministic, authenticated risk state as a scenario-by-position matrix changes. It is available only through a proprietary paid confidential evaluation under NDA, with no public runtime download or public prices: [request a confidential evaluation at luxiedge.com](https://luxiedge.com/pilot).
+LuxiEdge is one core engine (patent allowed, grant pending) with seven commercial products: Inference, Haplotastic, LuxiQuant Risk State Engine, Orbital, Catastrophe, Edge and LuxiEnergy ([luxiedge.com](https://luxiedge.com)). They are not equally validated, and most have no public binary. This repository holds only what the public can download, run or inspect:
 
-LuxiBook v0.2.1 is the free demo. It includes LuxiSize, the sizing calculator. Inference, numerical primitives, quantization, and the proofs below are evidence and research, not separate paid offers. These proofs do not validate the current Risk State Engine.
+| Product | Public in this repository | Not public / how to get more |
+|---|---|---|
+| Inference | [Luxi replay demo 1.0.0](downloads/luxi-replay-demo/): closed-binary package for Linux x86_64 (NVIDIA GPU or CPU) that replays a frozen DeepSeek-R1-Distill-Qwen-7B job, verifies signed records offline and compares records across machines. Evidence: [November 9 GPU swap test](evidence/r1-distill-7b-gpu-swap-2026-11-09/) and [November 10 package test](evidence/r1-replay-package-2026-11-10/) | Engine source is private. Your own model or workload: [private GPU-swap evaluation](https://luxiedge.com/contact#gpu-swap-evaluation) |
+| Haplotastic (GPU germline variant caller) | Nothing. The Dorado and PairHMM studies below are separate research, not Haplotastic benchmarks | [luxiedge.com/haplotastic](https://luxiedge.com/haplotastic) |
+| LuxiQuant Risk State Engine (Risk Runtime v0.4.2) | Nothing. No public runtime download or public prices. LuxiBook below is a separate free pricer, not the Risk State Engine | [Confidential evaluation](https://luxiedge.com/pilot) |
+| Orbital, Catastrophe, Edge | Proof studies only (SGP4, Oasis, GPU sums, Art of Fugue below); no product binary | [luxiedge.com/contact](https://luxiedge.com/contact) |
+| LuxiEnergy | Nothing beyond historical research notes | [luxiedge.com/energy](https://luxiedge.com/energy) |
+| LuxiBook v0.2.1 (free demo, includes LuxiSize) | Closed binaries, example book, signed receipts | - |
+
+The Risk State Engine maintains deterministic, authenticated risk state as a scenario-by-position matrix changes. The proofs below do not validate it.
+
+## Inference replay demo (public download)
+
+[`downloads/luxi-replay-demo/`](downloads/luxi-replay-demo/) has a closed-binary build of the Luxi inference engine (Attention Transformer v2, engine v27 final, `795c71736e22e2f6`) with DeepSeek-R1-Distill-Qwen-7B w8a8. Install it on Linux x86_64, download the model from Hugging Face, and run a 32-token frozen replay on an NVIDIA GPU or a CPU, offline verification and tamper tests, a record-to-record compare, and on a GPU the full 136-answer suite against the signed November 9 H100 NVL records. Package sha256 `b1f6cf0b024f0270223807662ebc15d72191db4838c408bf6727400c5ec539c9`; evaluation license, no open-source license on the engine.
+
+November 10, 2026 package test (internal measurement): from a clean install of this tarball, with no private source or credentials, the 32-token replay produced identical records (every token id and per-step logit fingerprint) on an RTX 5090 and an A40 (twice each), on their host CPUs (AMD EPYC 7543 and Intel Xeon Gold 6342, once each), and on a separate x86_64 sandbox CPU (twice): all 10 cross-machine pairs compared identical. Their step root begins `158ee5ae768cb633`, the 16 hex digits that survive from the November 9 H100 NVL short replay; the full November 9 short record was not recovered. The full suite matched all 136 answers and 546,114 tokens of the 17 signed November 9 H100 NVL records on the RTX 5090 (301.6 s at 32 slots) and on the A40 (799.0 s at 32 slots), and the two GPUs matched each other on all 17 jobs. On all three machines each record verified offline against that installation's public key and was rejected under a wrong key, and the tamper test rejected every tested edit (changed token, per-step fingerprint, prompt token, seed or temperature; a dropped token; a re-signed forgery). Machines: two RunPod pods and one sandbox VM. Full-suite timings are single runs. Raw outputs: [`evidence/r1-replay-package-2026-11-10/`](evidence/r1-replay-package-2026-11-10/).
+
+November 9, 2026 GPU swap test (frozen v27 build, internal measurement, earlier build identity than the package above): nine GPU types (H100 NVL, H200, A100 SXM 80GB, RTX PRO 6000 Blackwell Server Edition, RTX A6000, A40, RTX 5090, RTX 4090 and RTX 3090) each matched 136/136 sampled answers and 546,114 generated tokens, with matching recorded per-step fingerprints against the signed H100 reference, plus a separate 92/92 Qwen gate. This is 17 problems with eight samples each, not 136 distinct questions. Seven CPU models (AMD EPYC 9654, 7742, 9355, 7352 and 7452; Intel Xeon Platinum 8568Y+ and Xeon Gold 6342) each matched 2/2 small Qwen checks and the short signed R1 replay capped at 32 tokens; these CPUs did not run the full GPU workload in this evidence. A40 soak: 1,502 calls, 1,239 checks, zero mismatches. vLLM 0.32 normal was faster and cheaper per token wherever the tested int8 configuration ran; its sequence matches are against its own H100 reference, not Luxi, and different sequences do not establish accuracy errors. The rental-choice comparison is Luxi versus Luxi: RTX 5090 delivered about 80% of Luxi H100 throughput at about one-third of its calculated rental cost per output token. November rental rates exclude licensing and other operating costs; they are not API prices or current rental offers. Internal measurements, one cloud, fixed tested configurations, single performance runs; initial 32-slot timings include one-time compilation; NVML GPU-board energy is not facility electricity. Evidence, including what was not retained: [`evidence/r1-distill-7b-gpu-swap-2026-11-09/`](evidence/r1-distill-7b-gpu-swap-2026-11-09/).
 
 ## LuxiBook free download (includes LuxiSize)
 
@@ -32,6 +49,8 @@ Oasis PiWind (oasislmf 2.5.8): stock defaults produced 10 distinct hashes from 1
 
 ### Genomics
 
+These are research studies on specific workloads. They are not a Haplotastic variant-calling benchmark, and there is no public Haplotastic package in this repository.
+
 Oxford Nanopore Dorado 2.1.2 (A100, models v5.0.0, 40 reads): stock Dorado output md5 differed on all 12 runs; Luxi output was identical on every run and matches a CPU reference. Fast model GPU kernel time incl. decode (CUPTI, mean of 3): Luxi 246.1 vs Dorado 295.7 ms (b864), 323.7 vs 351.4 ms (b512). Hac: exact, but slower on GPU kernel time (943.5 vs 838.4 ms). See [`proofs/dorado-drift/DORADO_DRIFT.md`](proofs/dorado-drift/DORADO_DRIFT.md).
 
 PairHMM score stability (GIAB HG002): see the [Deterministic-PairHMM paper](https://github.com/RegularJoe-CEO/Deterministic-PairHMM).
@@ -44,11 +63,13 @@ Luxi f64 SGP4 is byte-identical on macOS arm64, Linux arm64, qemu Linux x86_64, 
 
 Stock GPU float32 sums are repeatable but wrong: on 10,000,000 dollar values (exact total $499,894,306,221.96), cuBLAS, CuPy and TensorFlow on an NVIDIA L4 each returned the same answer every run, +$14,930.04 off. Luxi's fixed-order Kahan sum was exact ($0.00) with hash `b952a970e4ad4440` on the L4, x86 and Mac arm64. Luxi chunked GPU reduce was +$379.60 at 0.03 to 0.05 ms, with chunk totals combined in float64 on the host. Synthetic data, one GPU model. See [`proofs/gpu-sum`](proofs/gpu-sum/).
 
-### Inference
+### Inference (historical, September 2026)
+
+These September results concern Qwen2-7B-Instruct and earlier engine builds. They do not transfer to the November v27 build or the replay demo above.
 
 On one H100, Qwen2-7B-Instruct fp16, 20 prompts and 256 greedy tokens, vLLM 0.25.1 default changed the visible answer in 12 of 140 conditions and SGLang 0.5.19 default changed it in 11 of 140. Luxi c8 matched tokens and logprobs in 80 of 80 batch conditions. The long prompt's Luxi rows are from a fresh process. Evidence: [`evidence/h100-qwen2-7b-drift-demo-2026-09-26`](evidence/h100-qwen2-7b-drift-demo-2026-09-26/).
 
-Generation versus the named comparators (Qwen2-7B-Instruct, H100 SXM, 1,024-token prompt, 256 greedy tokens): against vLLM 0.25.1 batch-invariant mode, Luxi was 1.5 to 2.7 times faster with 16 to 50% less GPU energy per token; against vLLM 0.25.1 default, the same speed with 2 to 7% more GPU energy per token; against SGLang 0.5.19 deterministic fp16/bf16, 1.21 to 2.86 times faster; against SGLang normal fp16, about the same speed with 1 to 7% more GPU energy per token. Energy is NVML GPU-board energy, not facility energy. Offline fixed batches, not production serving, and not third-party validated. Inference is evidence, not a commercial offer.
+Generation versus the named comparators (Qwen2-7B-Instruct, H100 SXM, 1,024-token prompt, 256 greedy tokens): against vLLM 0.25.1 batch-invariant mode, Luxi was 1.5 to 2.7 times faster with 16 to 50% less GPU energy per token; against vLLM 0.25.1 default, the same speed with 2 to 7% more GPU energy per token; against SGLang 0.5.19 deterministic fp16/bf16, 1.21 to 2.86 times faster; against SGLang normal fp16, about the same speed with 1 to 7% more GPU energy per token. Energy is NVML GPU-board energy, not facility energy. Offline fixed batches, not production serving, and not third-party validated.
 
 Prefill versus vLLM 0.25.1 at 32767 tokens by batch 1: Luxi FA3 32,190 tok/s and 0.02162 J/token, vLLM default 29,980 tok/s and 0.02269 J/token. Evidence: [`evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25`](evidence/h100-qwen2-7b-vs-vllm-0.25.1-2026-09-25/).
 
@@ -96,6 +117,6 @@ Every headline above is a row in [`RESULTS.md`](RESULTS.md). The chronology that
 
 ## Contact
 
-Eric Waller, e@ewaller.com
+Eric Waller, eric@luxiedge.com
 
 Copyright 2026 Eric Waller. Public binaries are evaluation builds.
