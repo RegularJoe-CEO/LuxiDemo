@@ -1,0 +1,79 @@
+Luxi replay demo 1.0.1 versus 1.0.0: every shipped file, from the two packages' SHA256SUMS (SHA256SUMS itself is regenerated).
+
+Identical in both (54 files, including every engine file):
+  16015e5de732c1059eec3a6d41589856dc6ac198c82e8078af0e89e267c11d7b  THIRD_PARTY_NOTICES.md
+  d46f9225c1883039e8a6853e6d96ca1af11d034ce186a090952e4a7c8a7c2fdc  engine/libgomp.so.1
+  3d0c12317b58a1ad43295454141954f0616f576fd410ca1abfe0e4933fd92950  engine/liblx_cpu.so
+  47dd2820777e2caf2cda88be63bdc676f04697587538b7d9ff81ba9bc122c67c  engine/liblx_cuda.so
+  33288230d4e04007968ea754bc608afb7d3e53b2128fd29d8910b746f3bc6627  engine/lx_engine.so
+  4852a4fe4c2326faa64e16088f90b44c7256af5845953a1815bee105e10fa572  engine/lx_evalrun.so
+  d62cb8952ae07498218d130934662d447c65a1d72eb748e8602031baabcf8955  engine/lx_receipt.py
+  60b3d28a3e8ba9621a02a6443f8ac6e8b51e3adbd1ffc144261d60671f6d6827  engine/lx_replay.so
+  b5f32d4f170929ef1a242a723d676568ceb1d2dfd7c73ca8cabe53101ac65f99  engine/lx_sample.so
+  f33c0f0ead555f9322c17ec9c6e46186ccbf7a71506cf47688e306cfcf2d6fed  engine/lx_sample_exp_s4096_w36.npy
+  ed7c9ec5b1f29e3e4c62adfdaef4548bbf161033aff90887a76352bff074f76c  engine/lx_sample_fast.so
+  eda60b471f3d58c59767d5adfc14ccb61891eb82cb5ad472cf530a586f170ad8  engine/rope_10000_master33792.npz
+  3350013b4f5777381d177dc947d554d651f51d676ab8ac49777769b750f24db7  fixtures/full_suite/fixture.json
+  649384f203e3a1f73d6f7b757497be40bab5d5afbc0ad8f182ddc032ac4a8433  fixtures/full_suite/jobs/a4-aime24-2024-I-1.json
+  8c881ee10cea40d0dc6336474cc06b3e601b46d1f4f3d6008a02d7913901f1a7  fixtures/full_suite/jobs/a4-aime24-2024-I-3.json
+  550a1450061fa89b4400d6846d9ded1978eb8902bfd02434867b8d276b438199  fixtures/full_suite/jobs/a4-aime24-2024-II-10.json
+  f76023a8eb56b2fcbe6ce15a30862d8f0a2f2e9a54f070023766185e5a125baa  fixtures/full_suite/jobs/a4-aime24-2024-II-4.json
+  a033d8bf723c21942c806c4661249c3f8b0f9344d41e94e19af6435c45c7ea03  fixtures/full_suite/jobs/a4-math500-010.json
+  db3649f3ae1d74fd2eb9f65c7d220b12d554119802d906639ff787e9958c95e5  fixtures/full_suite/jobs/a4-math500-050.json
+  971aaefa53018bd7cdc8c0c55152797dec675d35e205b659964bdb9fecf5e9e7  fixtures/full_suite/jobs/a4-math500-090.json
+  78cd86667aaf4d7ebcc16cb876d104958c21a9912ca1d2e04a9358cdb59bc923  fixtures/full_suite/jobs/a4-math500-130.json
+  535536f0555fb8436232f9cd472eec2b424c5cd61ebb67cdee0f193faeb16765  fixtures/full_suite/jobs/a4-math500-170.json
+  035cc071d6fbcf63b6b0df38085c9c17a47ac09fa3ecf052f06bd628cdd9402c  fixtures/full_suite/jobs/a4-math500-210.json
+  9cf67e425457bbb75d93ffd132c1132499a97783b6b90700ce9102abe200dc98  fixtures/full_suite/jobs/a4-math500-250.json
+  23e67c170f98b93fca561d6a988f6324725cd8616d1a1ef1f45efca972dc62d4  fixtures/full_suite/jobs/a4-math500-290.json
+  66e669bc9da15b83bb200a4bd0b4922d936f46c3071448f3331fa3c85f0a1a6a  fixtures/full_suite/jobs/a4-math500-330.json
+  e0e829ee4629a93816fdd8e916eb6a99fbcba6ee911439a0f7dd778a2da054a1  fixtures/full_suite/jobs/a4-math500-370.json
+  a7c1fe5982c7e9b1c5ff2f2e10839479da7f7e264e8a1ae310a52ae399332535  fixtures/full_suite/jobs/a4-math500-410.json
+  8047862b38e6aacaf3607a9b1a552804eaa21f54c6dd8353e74c39a10fa8122b  fixtures/full_suite/jobs/a4-math500-450.json
+  d7470134c6694c98194bcaf34e31e7bf43b239c5649d79c2ac04edae3b6790b5  fixtures/full_suite/jobs/a4-math500-490.json
+  3fa7ad513bb5f83e16d583723eb53ddb124507e188f6040b3b4d9321e1844fe6  fixtures/tiny/fixture.json
+  132c53d20fb10d391845723d796fe3435dc01d83d248da4cf4bed205b879c8c0  fixtures/tiny/job_tiny-math500-090.json
+  06a0fde73e36f0a685d92c38e281a0a40fb8c70be2042649216e4c7ac711a57b  install.sh
+  146a1278e29306bdeacfeb2ccaf8443663adfacf873ef17d6312dc2f9706ece7  luxi
+  6836d4fc395cab745d7a834fdf6e6c9381bea2a0e8841760d67afbfb8d83475d  reference/keys/luxi_benchmark_key_2026-11.pub
+  f971c2a99cec60dd7d107e7877f7d5ff76879e0f2858531348e357eae66e4dae  reference/nov09_h100_nvl_signed/full_suite/bundle_a4-aime24-2024-I-1.json
+  5998ee6c69411bc327ca848283609b275f1fc0a755d81623974ef52860b9e4ed  reference/nov09_h100_nvl_signed/full_suite/bundle_a4-aime24-2024-I-3.json
+  00337ca017f8abb5d18d3f46b17154a3782444422f73ba65cf13115ce6b22841  reference/nov09_h100_nvl_signed/full_suite/bundle_a4-aime24-2024-II-10.json
+  242c66cf9d0d3b5d9b88eaf5f69e117dfab47b5195c95636b2b71982cfe99228  reference/nov09_h100_nvl_signed/full_suite/bundle_a4-aime24-2024-II-4.json
+  1003b998614f40682163143bc1f2bcc5b7218bcf307970bc7a41ed148cfcf729  reference/nov09_h100_nvl_signed/full_suite/bundle_a4-math500-010.json
+  8cf4daaabaf0d687cfe9b36d469d6900604c0aa154f619c0ef64d8c6eb850440  reference/nov09_h100_nvl_signed/full_suite/bundle_a4-math500-050.json
+  45bf03ee61a64a4e0484089d240ab4633c86551c4e26160d2d6e8b8a29ed6c07  reference/nov09_h100_nvl_signed/full_suite/bundle_a4-math500-090.json
+  59051251bb1d01089373f414c75a7bf6016fdc3121ee44d7316c8c47c229810e  reference/nov09_h100_nvl_signed/full_suite/bundle_a4-math500-130.json
+  e46465c3c5919fff09cdea18ffda70f45a778ceeb1fe8cfa55257204e76ce418  reference/nov09_h100_nvl_signed/full_suite/bundle_a4-math500-170.json
+  149e73dbdab436371665c4db9e6d1a35db2f6880b53879a4defcb4a658281998  reference/nov09_h100_nvl_signed/full_suite/bundle_a4-math500-210.json
+  74353e1f5d94dfa384d2861d591212809a54e147602fdd70dafb00cc152ce6cc  reference/nov09_h100_nvl_signed/full_suite/bundle_a4-math500-250.json
+  2ea635ab8f298b5005d1d0a5f04bcf15a031303e5d1da83d26b26ba5a71216a5  reference/nov09_h100_nvl_signed/full_suite/bundle_a4-math500-290.json
+  1b74d1f67c3004d6a14683cad9dc169f04eb91679e2094e23dbe35b8adf28a02  reference/nov09_h100_nvl_signed/full_suite/bundle_a4-math500-330.json
+  e5454ddcf809e61523c2d2eaecf7b632077a8cb4ad9e271b76806666f8cfe70f  reference/nov09_h100_nvl_signed/full_suite/bundle_a4-math500-370.json
+  f545fc55fc6dc9b9f528c20025b6e90b8f4ba8595505f66846001c57386866d8  reference/nov09_h100_nvl_signed/full_suite/bundle_a4-math500-410.json
+  7c7ef1bd660694d9fed32de0454693cc1c7f69256908fe22e30cfcf87e527583  reference/nov09_h100_nvl_signed/full_suite/bundle_a4-math500-450.json
+  d8f5c05b4b36d7b19f3bf4c2a436f493c223f4a062a69266cf5d655f0a7e10d2  reference/nov09_h100_nvl_signed/full_suite/bundle_a4-math500-490.json
+  2c782f45e1d01219a2b4de3475d9637d9e65639d7f0384abfa7cc5d4c651e404  requirements-cpu.txt
+  ed1a967cead2dba3503a739ddb2650b7d2ea22d1710e5022857cb91a9a892a9e  requirements-gpu.txt
+
+Changed (5 files; wrapper source, documentation and build information):
+  BUILD_INFO.json
+    1.0.0 4cfe88f22dced0245d33d4b76fb04f77b0ac33a985714325340d90b19f83ba88
+    1.0.1 f0c1c91a14862b749488103e53d764b4fe261085e481c42b56a39df107965cda
+  LICENSE.txt
+    1.0.0 4e28b1cb821e910afa9c8595e335e50328810f11b3c092cbf15f893ca31568d6
+    1.0.1 34489834f0c95cb257b5ed62cb906993b4b940314dadaaef2de24f7dbaeef405
+  README.md
+    1.0.0 a28f2d96ff88a5d605534163fc23a381fd45da3dfbf7590c8237804ce1fd8ade
+    1.0.1 bf39924449e4322f38a8aff5b5eb3a524d874b948d50fe248e86c6109839af97
+  cli/luxi_cli.py
+    1.0.0 5a120846785b7c2f8697dc153b70555b67e7b4e61b12b11d7065d751f33c772f
+    1.0.1 1c02d58b9615e80a108f3ca3e11c8b4a891138b13bcb231936abebb163413b3b
+  verifier/luxi_verify.py
+    1.0.0 dc4c1ae8f3e4568d7a2e6b36040c00b60ec89a1c42f2afd64751926e32c82b9c
+    1.0.1 d7a268082eff73b0a905cd47bc2323fdcf69d64239a8edc622617f5f48de197d
+
+Added (1 file; the signed November 9 H100 NVL 32-token record, recovered November 10 and copied unchanged):
+  a2d3cf40119916334126076c606bfe71ca269f27691b8e4e281bf77d4f2036df  reference/nov09_h100_nvl_signed/short_replay/bundle_tiny_h100.json
+
+Removed: 0 files
